@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100x Agentic Engineer — The Autonomous Dev Pipeline</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--card:#12121a;--border:#1e1e2e;--accent:#6c5ce7;--accent2:#00cec9;--accent3:#fd79a8;--text:#e0e0e0;--text2:#888;--green:#00b894;--red:#ff6b6b;--yellow:#ffeaa7;--gradient:linear-gradient(135deg,#6c5ce7,#00cec9)}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(108,92,231,0.08) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(0,206,201,0.06) 0%,transparent 50%);animation:pulse 8s ease-in-out infinite alternate}
+@keyframes pulse{0%{opacity:0.5;transform:scale(1)}100%{opacity:1;transform:scale(1.05)}}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;position:relative;z-index:1}
+.hero .subtitle{font-size:clamp(1rem,2.5vw,1.5rem);color:var(--text2);max-width:700px;margin:0 auto 2rem;position:relative;z-index:1}
+.hero .quote{font-style:italic;color:var(--accent2);font-size:1.1rem;max-width:600px;margin:0 auto 2rem;border-left:3px solid var(--accent2);padding-left:1rem;text-align:left;position:relative;z-index:1}
+.hero .quote .attr{display:block;color:var(--text2);font-style:normal;margin-top:0.3rem;font-size:0.9rem}
+
+/* Stats bar */
+.stats-bar{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin:2rem 0;position:relative;z-index:1}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.5rem;min-width:140px;text-align:center}
+.stat .num{font-size:1.8rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat .label{font-size:0.75rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.05em;margin-top:0.2rem}
+
+/* Sections */
+.section{max-width:1200px;margin:0 auto;padding:4rem 2rem}
+.section-title{font-size:2rem;font-weight:700;margin-bottom:0.5rem}
+.section-sub{color:var(--text2);margin-bottom:2rem;font-size:1.05rem}
+
+/* Architecture diagram */
+.arch-diagram{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;overflow-x:auto;margin-bottom:3rem}
+.arch-diagram pre{font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:0.8rem;color:var(--accent2);line-height:1.5;white-space:pre;overflow-x:auto}
+
+/* Cards grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-bottom:3rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:border-color 0.3s,transform 0.3s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card .icon{font-size:2rem;margin-bottom:0.75rem}
+.card h3{font-size:1.15rem;margin-bottom:0.5rem;font-weight:600}
+.card p{color:var(--text2);font-size:0.9rem;line-height:1.5}
+.card .metric{display:inline-block;background:rgba(108,92,231,0.15);color:var(--accent);padding:0.2rem 0.6rem;border-radius:6px;font-size:0.8rem;font-weight:600;margin-top:0.5rem}
+
+/* ROI multipliers */
+.roi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin:2rem 0}
+.roi-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden}
+.roi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
+.roi-card .multiplier{font-size:2.5rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.roi-card h3{margin:0.5rem 0;font-size:1rem}
+.roi-card p{color:var(--text2);font-size:0.85rem}
+.roi-card .evidence{margin-top:0.75rem;padding:0.5rem 0.75rem;background:rgba(0,206,201,0.08);border-radius:8px;font-size:0.8rem;color:var(--accent2)}
+
+/* Pipeline flow */
+.pipeline-flow{display:flex;align-items:center;gap:0;overflow-x:auto;padding:1rem 0;margin:2rem 0}
+.pipeline-step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;min-width:150px;text-align:center;flex-shrink:0}
+.pipeline-step .step-num{font-size:0.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;font-weight:600}
+.pipeline-step h4{font-size:0.95rem;margin:0.3rem 0}
+.pipeline-step p{font-size:0.75rem;color:var(--text2)}
+.pipeline-arrow{color:var(--accent);font-size:1.5rem;flex-shrink:0;padding:0 0.25rem}
+
+/* Cost comparison table */
+.cost-table{width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.9rem}
+.cost-table th{background:var(--card);color:var(--accent2);padding:0.75rem 1rem;text-align:left;border-bottom:2px solid var(--accent);font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em}
+.cost-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border)}
+.cost-table tr:hover td{background:rgba(108,92,231,0.05)}
+.cost-table .highlight{color:var(--green);font-weight:700}
+.cost-table .savings{background:rgba(0,184,148,0.1);color:var(--green);padding:0.15rem 0.5rem;border-radius:4px;font-weight:600;font-size:0.8rem}
+
+/* Onboarding steps */
+.onboarding{counter-reset:step}
+.onboard-step{display:flex;gap:1.5rem;margin-bottom:2rem;align-items:flex-start}
+.onboard-step::before{counter-increment:step;content:counter(step);background:var(--gradient);color:white;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem;flex-shrink:0}
+.onboard-step .step-content{flex:1}
+.onboard-step h4{font-size:1rem;margin-bottom:0.25rem}
+.onboard-step p{color:var(--text2);font-size:0.9rem}
+.onboard-step code{background:var(--card);border:1px solid var(--border);padding:0.15rem 0.5rem;border-radius:4px;font-family:'SF Mono',monospace;font-size:0.8rem;color:var(--accent2)}
+.onboard-step pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;margin-top:0.5rem;overflow-x:auto;font-size:0.8rem;color:var(--accent2);font-family:'SF Mono','Fira Code',monospace}
+
+/* Karpathy section */
+.karpathy-rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:2rem 0}
+.rule-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;position:relative}
+.rule-card .rule-num{position:absolute;top:1rem;right:1rem;font-size:2rem;font-weight:800;color:rgba(108,92,231,0.15)}
+.rule-card h4{color:var(--accent);font-size:0.9rem;margin-bottom:0.5rem;font-weight:600}
+.rule-card p{font-size:0.85rem;color:var(--text2)}
+
+/* Layer stack */
+.layer-stack{margin:2rem 0}
+.layer{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:0.5rem;transition:border-color 0.3s}
+.layer:hover{border-color:var(--accent)}
+.layer .layer-num{width:28px;height:28px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.75rem;flex-shrink:0;color:white}
+.layer .layer-info{flex:1}
+.layer .layer-info h4{font-size:0.95rem}
+.layer .layer-info p{font-size:0.8rem;color:var(--text2)}
+.layer .layer-status{font-size:0.75rem;padding:0.2rem 0.6rem;border-radius:4px;font-weight:600}
+.layer .ready{background:rgba(0,184,148,0.15);color:var(--green)}
+.layer .manual{background:rgba(255,234,167,0.15);color:var(--yellow)}
+
+/* Footer */
+.footer{text-align:center;padding:3rem 2rem;color:var(--text2);font-size:0.85rem;border-top:1px solid var(--border)}
+.footer .tagline{font-size:1.1rem;color:var(--text);margin-bottom:0.5rem}
+
+/* Badge */
+.badge{display:inline-flex;align-items:center;gap:0.3rem;padding:0.3rem 0.75rem;border-radius:20px;font-size:0.75rem;font-weight:600}
+.badge-green{background:rgba(0,184,148,0.15);color:var(--green)}
+.badge-red{background:rgba(255,107,107,0.15);color:var(--red)}
+.badge-yellow{background:rgba(255,234,167,0.15);color:var(--yellow)}
+.badge-purple{background:rgba(108,92,231,0.15);color:var(--accent)}
+
+/* Responsive */
+@media(max-width:768px){
+  .pipeline-flow{flex-direction:column}
+  .pipeline-arrow{transform:rotate(90deg)}
+  .stats-bar{flex-direction:column;align-items:center}
+  .onboard-step{flex-direction:column;align-items:center;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>100x Agentic Engineer</h1>
+  <p class="subtitle">The fully autonomous development pipeline that turns a single developer into a 100-person engineering team.</p>
+  <div class="quote">
+    "People who master agentic workflows may outperform others by far more than 10x. Vibe coding raises the floor. Agentic engineering extrapolates the ceiling."
+    <span class="attr">— Andrej Karpathy, Sequoia AI Ascent 2026</span>
+  </div>
+  <div class="stats-bar">
+    <div class="stat"><div class="num">6-10x</div><div class="label">Harness Multiplier</div></div>
+    <div class="stat"><div class="num">85%</div><div class="label">Cost Reduction</div></div>
+    <div class="stat"><div class="num">90%</div><div class="label">Cache Savings</div></div>
+    <div class="stat"><div class="num">10</div><div class="label">Pipeline Layers</div></div>
+    <div class="stat"><div class="num">$0.28/M</div><div class="label">DeepSeek Flash</div></div>
+  </div>
+</section>
+
+<!-- WHAT IS THIS -->
+<section class="section">
+  <h2 class="section-title">What Is This?</h2>
+  <p class="section-sub">A complete, buildable system that combines Claude Code, MCP servers, multi-agent orchestration, NASA-grade quality gates, cost-optimized model routing, and compounding memory into one autonomous pipeline. Every component exists today. Every script is copy-paste ready.</p>
+
+  <div class="arch-diagram">
+    <pre>
+┌──────────────────────────────────────────────────────────────┐
+│                     ORCHESTRATOR LAYER                        │
+│    Shell scripts  ·  Cron  ·  GitHub Actions  ·  Routines    │
+├────────┬────────┬────────┬────────┬────────┬─────────────────┤
+│ PLAN   │ CODE   │ REVIEW │ TEST   │ DEPLOY │   MCP SERVERS   │
+│ Agent  │ Agents │ Agent  │ Agent  │ Agent  │ Memory · GitHub  │
+│ (Opus) │(Sonnet)│ (Opus) │(Haiku) │(Haiku) │ Search · Browser │
+├────────┴────────┴────────┴────────┴────────┴─────────────────┤
+│                    QUALITY GATE LAYER                          │
+│  Prettier → ESLint → tsc → Vitest → Semgrep → Gitleaks → npm │
+├──────────────────────────────────────────────────────────────┤
+│                    COST CONTROL LAYER                          │
+│   Model routing  ·  Prompt caching  ·  Token budgets          │
+│   Circuit breakers  ·  Cost attribution per feature           │
+├────────┬────────┬────────┬────────┬───────────────────────────┤
+│ Memory │ Evals  │ Observ │ Router │ Hooks (deterministic)     │
+│ System │ System │ Stack  │ Logic  │ Pre/Post tool gates       │
+└────────┴────────┴────────┴────────┴───────────────────────────┘
+    </pre>
+  </div>
+</section>
+
+<!-- ROI MULTIPLIERS -->
+<section class="section" style="background:linear-gradient(180deg,rgba(108,92,231,0.03) 0%,transparent 100%)">
+  <h2 class="section-title">The 4 ROI Multipliers</h2>
+  <p class="section-sub">Each one compounds. Together they create a fundamentally different operating level.</p>
+
+  <div class="roi-grid">
+    <div class="roi-card">
+      <div class="multiplier">10x</div>
+      <h3>Harness Engineering</h3>
+      <p>The wrapper around a fixed model changes performance by 6-10x on the same benchmark. Most agent failures are configuration problems, not model limitations.</p>
+      <div class="evidence">Hashline changed only the edit format: Grok Code Fast went from 6.7% → 68.3% — a 10x improvement with zero model change.</div>
+    </div>
+    <div class="roi-card">
+      <div class="multiplier">85%</div>
+      <h3>Model Routing</h3>
+      <p>Route simple queries to cheap models, complex to expensive. RouteLLM achieves 85% cost reduction while maintaining 95% of GPT-4 quality.</p>
+      <div class="evidence">Only 26% of calls need the expensive model. Matrix factorization router, ICLR 2025. 40% cheaper than commercial routers.</div>
+    </div>
+    <div class="roi-card">
+      <div class="multiplier">90%</div>
+      <h3>Prompt Caching</h3>
+      <p>Cache reads cost 10% of standard input on Anthropic. DeepSeek cache hits are 50x cheaper than misses. Semantic caching gives 100% savings on similar queries.</p>
+      <div class="evidence">ProjectDiscovery cut LLM costs by 59% with prompt caching alone. Hit rates: 7% naive → 84% optimized.</div>
+    </div>
+    <div class="roi-card">
+      <div class="multiplier">$0</div>
+      <h3>Loop Budgets</h3>
+      <p>90% of agent projects fail in 30 days — runaway costs are #1. Budget enforcement outside the agent prevents $47K incidents.</p>
+      <div class="evidence">Real incidents: $16-50K in 5 hours (recursion loop), $47K in 11 days (LangChain agent). 5-layer budget system prevents all of these.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE FLOW -->
+<section class="section">
+  <h2 class="section-title">How the Pipeline Works</h2>
+  <p class="section-sub">Every task flows through 5 stages. Each stage can run autonomously or with human checkpoints.</p>
+
+  <div class="pipeline-flow">
+    <div class="pipeline-step">
+      <div class="step-num">Stage 1</div>
+      <h4>Analyze</h4>
+      <p>Understand codebase, identify files, create plan</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">Stage 2</div>
+      <h4>Implement</h4>
+      <p>Execute plan, write code, handle dependencies</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">Stage 3</div>
+      <h4>Test</h4>
+      <p>Run tests, fix failures, add coverage</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">Stage 4</div>
+      <h4>Review</h4>
+      <p>Security scan, quality check, LLM-as-judge</p>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">Stage 5</div>
+      <h4>Ship</h4>
+      <p>Commit, create PR, deploy</p>
+    </div>
+  </div>
+
+  <p style="color:var(--text2);font-size:0.85rem;text-align:center;margin-top:1rem">Budget tracked at every stage. Circuit breakers halt runaway agents. Quality gates block bad code automatically.</p>
+</section>
+
+<!-- 10 LAYERS -->
+<section class="section">
+  <h2 class="section-title">The 10-Layer Stack</h2>
+  <p class="section-sub">Adopt incrementally. Each layer compounds on the previous ones.</p>
+
+  <div class="layer-stack">
+    <div class="layer">
+      <div class="layer-num">1</div>
+      <div class="layer-info"><h4>CLAUDE.md + Auto Memory</h4><p>Project instructions that make Claude 2-3x more accurate on your codebase</p></div>
+      <span class="layer-status ready">Ready</span>
+    </div>
+    <div class="layer">
+      <div class="layer-num">2</div>
+      <div class="layer-info"><h4>MCP Servers</h4><p>GitHub, Search, Memory, Browser, Docs — expand Claude's operational surface</p></div>
+      <span class="layer-status ready">Ready</span>
+    </div>
+    <div class="layer">
+      <div class="layer-num">3</div>
+      <div class="layer-info"><h4>Hooks (Lifecycle Gates)</h4><p>Auto-format, block secrets, protect files — deterministic enforcement</p></div>
+      <span class="layer-status ready">Ready</span>
+    </div>
+    <div class="layer">
+      <div class="layer-num">4</div>
+      <div class="layer-info"><h4>Quality Gates (NASA P10)</h4><p>ESLint → tsc → Vitest → Semgrep → Gitleaks → npm audit (7-stage fail-fast)</p></div>
+      <span class="layer-status ready">Ready</span>
+    </div>
+    <div class="layer">
+      <div class="layer-num">5</div>
+      <div class="layer-info"><h4>CLI Pipeline Automation</h4><p>Shell scripts that orchestrate Claude: analyze → implement → test → review</p></div>
+      <span class="layer-status ready">Ready</span>
+    </div>
+    <div class="layer">
+      <div class="layer-num">6</div>
+      <div class="layer-info"><h4>Multi-Agent Orchestration</h4><p>Subagents, Agent Teams, worktree parallelism — run 2-20 agents concurrently</p></div>
+      <span class="layer-status ready">Ready</span>
+    </div>
+    <div class="layer">
+      <div class="layer-num">7</div>
+      <div class="layer-info"><h4>GitHub Actions CI/CD</h4><p>Automated PR review, issue triage, @claude mentions in comments</p></div>
+      <span class="layer-status ready">Ready</span>
+    </div>
+    <div class="layer">
+      <div class="layer-num">8</div>
+      <div class="layer-info"><h4>Cost Control & Model Routing</h4><p>Route cheap → expensive, token budgets, circuit breakers, per-feature cost tracking</p></div>
+      <span class="layer-status manual">Setup Required</span>
+    </div>
+    <div class="layer">
+      <div class="layer-num">9</div>
+      <div class="layer-info"><h4>Eval System</h4><p>pass@k / pass^k metrics, LLM-as-judge, regression suites, quality trending</p></div>
+      <span class="layer-status manual">Setup Required</span>
+    </div>
+    <div class="layer">
+      <div class="layer-num">10</div>
+      <div class="layer-info"><h4>LLM Wiki (Compounding Memory)</h4><p>Karpathy's 3-layer pattern: conversations → daily logs → compiled wiki → next session</p></div>
+      <span class="layer-status manual">Setup Required</span>
+    </div>
+  </div>
+</section>
+
+<!-- KARPATHY RULES -->
+<section class="section" style="background:linear-gradient(180deg,transparent,rgba(0,206,201,0.03) 100%)">
+  <h2 class="section-title">Karpathy's 4 Rules</h2>
+  <p class="section-sub">From the 126K+ starred CLAUDE.md that started the agentic engineering movement. <span class="badge badge-yellow">41%→11% claim unverified</span></p>
+
+  <div class="karpathy-rules">
+    <div class="rule-card">
+      <div class="rule-num">1</div>
+      <h4>Think Before Coding</h4>
+      <p>Don't assume. Don't hide confusion. Surface tradeoffs. If multiple interpretations exist, present them — don't pick silently.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">2</div>
+      <h4>Simplicity First</h4>
+      <p>Minimum code that solves the problem. Nothing speculative. No abstractions for single-use code. If 200 lines could be 50, rewrite it.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">3</div>
+      <h4>Surgical Changes</h4>
+      <p>Touch only what you must. Clean up only your own mess. Every changed line should trace directly to the user's request.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">4</div>
+      <h4>Goal-Driven Execution</h4>
+      <p>Define success criteria. Loop until verified. Transform tasks into verifiable goals, then loop independently until they pass.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COST COMPARISON -->
+<section class="section">
+  <h2 class="section-title">Cost Comparison <span class="badge badge-red">DeepSeek 75% Off — 19 Days Left</span></h2>
+  <p class="section-sub">V4 Pro at promotional pricing is 7-11x cheaper than frontier models. V4 Flash is 35-100x cheaper.</p>
+
+  <table class="cost-table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Input / 1M tokens</th>
+        <th>Output / 1M tokens</th>
+        <th>SWE-bench</th>
+        <th>vs Frontier</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Claude Opus 4.7</strong></td>
+        <td>$5.00</td>
+        <td>$25.00</td>
+        <td>80.8%</td>
+        <td>Baseline</td>
+      </tr>
+      <tr>
+        <td><strong>GPT-5.5</strong></td>
+        <td>~$1.00</td>
+        <td>~$10.00</td>
+        <td>—</td>
+        <td>Baseline</td>
+      </tr>
+      <tr>
+        <td><strong>DeepSeek V4 Pro</strong> <span class="badge badge-red">75% OFF</span></td>
+        <td class="highlight">$0.435</td>
+        <td class="highlight">$0.87</td>
+        <td>80.6%</td>
+        <td><span class="savings">~7x cheaper</span></td>
+      </tr>
+      <tr>
+        <td><strong>DeepSeek V4 Flash</strong></td>
+        <td class="highlight">$0.14</td>
+        <td class="highlight">$0.28</td>
+        <td>~79%</td>
+        <td><span class="savings">35-100x cheaper</span></td>
+      </tr>
+      <tr>
+        <td><strong>DeepSeek V4 Pro</strong> (cache hit)</td>
+        <td class="highlight">$0.003625</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="savings">~1,400x cheaper</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="color:var(--text2);font-size:0.8rem;margin-top:0.5rem">Promo ends May 31, 2026 15:59 UTC. Flash trails Pro by only 1.6 SWE-bench points but costs 25x less per output token.</p>
+</section>
+
+<!-- ONBOARDING -->
+<section class="section" style="background:linear-gradient(180deg,rgba(108,92,231,0.03) 0%,transparent 100%)">
+  <h2 class="section-title">Get Started in 15 Minutes</h2>
+  <p class="section-sub">Incremental adoption. Each step works independently. No all-or-nothing commitment.</p>
+
+  <div class="onboarding">
+    <div class="onboard-step">
+      <div class="step-content">
+        <h4>Clone the Pipeline Repo</h4>
+        <p>All configs, scripts, and research in one place.</p>
+        <pre>git clone https://github.com/theluckystrike/100xagenticdev.git
+cd 100xagenticdev</pre>
+      </div>
+    </div>
+
+    <div class="onboard-step">
+      <div class="step-content">
+        <h4>Copy CLAUDE.md to Your Project</h4>
+        <p>Adapt the rules to your codebase. Keep under 200 lines. Add project-specific patterns.</p>
+        <pre>cp 100xagenticdev/CLAUDE.md ~/your-project/CLAUDE.md
+# Edit to match your stack, conventions, gotchas</pre>
+      </div>
+    </div>
+
+    <div class="onboard-step">
+      <div class="step-content">
+        <h4>Install MCP Servers</h4>
+        <p>Expand Claude's capabilities with memory, search, browser, and GitHub access.</p>
+        <pre>bash 100xagenticdev/config/mcp-setup.sh
+# Then add API keys for Brave Search + GitHub
+claude mcp list  # verify</pre>
+      </div>
+    </div>
+
+    <div class="onboard-step">
+      <div class="step-content">
+        <h4>Enable Hooks (Quality Gates)</h4>
+        <p>Auto-format on every edit. Block edits to .env files. Restore context after compaction.</p>
+        <pre>cp 100xagenticdev/config/hooks-settings.json ~/.claude/settings.json
+# Or merge with your existing settings</pre>
+      </div>
+    </div>
+
+    <div class="onboard-step">
+      <div class="step-content">
+        <h4>Run Your First Autonomous Pipeline</h4>
+        <p>4-stage pipeline: Analyze → Implement → Test → Review. Budget-tracked, JSON-logged.</p>
+        <pre>cd ~/your-project
+bash ~/100xagenticdev/scripts/pipeline.sh "Add input validation to all API endpoints"</pre>
+      </div>
+    </div>
+
+    <div class="onboard-step">
+      <div class="step-content">
+        <h4>Run Parallel Agents</h4>
+        <p>Spawn N isolated Claude instances on separate git worktrees. Each auto-commits results.</p>
+        <pre>bash ~/100xagenticdev/scripts/parallel-agents.sh \
+  "Refactor auth to use bcrypt" \
+  "Add integration tests for payments" \
+  "Update deprecated API calls"</pre>
+      </div>
+    </div>
+
+    <div class="onboard-step">
+      <div class="step-content">
+        <h4>Set Up GitHub Actions</h4>
+        <p>Automated PR review on every push. Claude reviews diffs for security, correctness, and quality.</p>
+        <pre># Copy to your project:
+mkdir -p .github/workflows
+# Add claude-review.yml from pipeline/ARCHITECTURE.md</pre>
+      </div>
+    </div>
+
+    <div class="onboard-step">
+      <div class="step-content">
+        <h4>Optimize Costs (Optional)</h4>
+        <p>Route simple tasks to DeepSeek Flash ($0.28/M), complex to Claude Opus. Set token budgets.</p>
+        <pre># Get DeepSeek API key: https://api.deepseek.com
+# 5M free tokens for new accounts
+# 75% off V4 Pro until May 31, 2026</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY INSIGHTS -->
+<section class="section">
+  <h2 class="section-title">Key Insights from Research</h2>
+  <p class="section-sub">200+ web searches, 8 parallel research agents, academic papers, production case studies.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="icon">🏗️</div>
+      <h3>Agent = Model + Harness</h3>
+      <p>Stripe ships 1,300 AI-generated PRs/week. OpenAI Codex merged ~1,500 PRs with zero hand-written code. The harness is the product, not the model.</p>
+      <span class="metric">6x performance from harness alone</span>
+    </div>
+    <div class="card">
+      <div class="icon">📐</div>
+      <h3>CLAUDE.md Works (~80%)</h3>
+      <p>Anthropic officially states CLAUDE.md is advisory at ~80% compliance. Beyond 200 lines, compliance degrades. Pragmatic approach: 80% rules + 20% deterministic hooks.</p>
+      <span class="metric">150-line ceiling for effectiveness</span>
+    </div>
+    <div class="card">
+      <div class="icon">🧠</div>
+      <h3>Memory Compounds</h3>
+      <p>Karpathy's LLM Wiki: conversations → daily logs → compiled wiki → next session. Creates a compounding brain, not a forgetful retriever.</p>
+      <span class="metric">Knowledge improves every session</span>
+    </div>
+    <div class="card">
+      <div class="icon">🔄</div>
+      <h3>Generator ≠ Reviewer</h3>
+      <p>The strongest pattern: the agent that writes code never reviews its own work. A separate reviewer catches blind spots that self-review misses.</p>
+      <span class="metric">Production pattern from Stackbilt</span>
+    </div>
+    <div class="card">
+      <div class="icon">⚡</div>
+      <h3>Evals > Vibes</h3>
+      <p>LLM-as-judge achieves 80% agreement with humans — matching human-human agreement. 500-5000x cheaper than human review. Start with 20-50 tasks from real failures.</p>
+      <span class="metric">pass@k for capability, pass^k for reliability</span>
+    </div>
+    <div class="card">
+      <div class="icon">🛡️</div>
+      <h3>Budgets Outside the Agent</h3>
+      <p>If a gateway enforces the budget before forwarding, the agent literally cannot make a violating call. 5 layers: per-request, token circuit breaker, progress detection, session, daily.</p>
+      <span class="metric">Prevents $47K incidents</span>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULA -->
+<section class="section" style="text-align:center;padding:5rem 2rem">
+  <h2 class="section-title" style="margin-bottom:2rem">The 100x Formula</h2>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;display:inline-block;text-align:left;max-width:600px;font-family:'SF Mono',monospace;font-size:0.95rem;line-height:2">
+    <span style="color:var(--accent)">100x</span> = CLAUDE.md rules<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Harness engineering <span style="color:var(--text2)">(6-10x on same model)</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Model routing <span style="color:var(--text2)">(75-85% cost reduction)</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Prompt caching <span style="color:var(--text2)">(90% input savings)</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Eval loops <span style="color:var(--text2)">(quality maintenance)</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Loop budgets <span style="color:var(--text2)">(prevents $47K incidents)</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Multi-agent <span style="color:var(--text2)">(parallel execution)</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Memory system <span style="color:var(--text2)">(compounding knowledge)</span>
+  </div>
+  <p style="color:var(--text2);margin-top:2rem;max-width:600px;margin-left:auto;margin-right:auto">The bottleneck has shifted from generation to verification. Agents produce at incredible speed. Knowing whether output is correct is the hard part. That's where the 100x engineer lives.</p>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="tagline">"You can outsource your thinking, but you can't outsource your understanding." — Andrej Karpathy</p>
+  <p>Built with research from 200+ sources · All claims sourced · Unverified claims flagged</p>
+  <p style="margin-top:1rem"><a href="https://github.com/theluckystrike/100xagenticdev">GitHub Repo</a> · <a href="https://karpathy.bearblog.dev/sequoia-ascent-2026/">Karpathy's Sequoia Talk</a> · <a href="https://code.claude.com/docs/en/mcp">Claude Code MCP Docs</a></p>
+</footer>
+
+</body>
+</html>
