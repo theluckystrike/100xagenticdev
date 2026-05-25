@@ -7,313 +7,404 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#030306;--surface:#0a0a12;--surface2:#0f0f18;--surface3:#14141f;--surface4:#1a1a26;
-  --border:rgba(255,255,255,0.05);--border2:rgba(255,255,255,0.08);--border3:rgba(255,255,255,0.12);
-  --text:#eaeaf0;--text2:#8a8aa4;--text3:#55556a;
-  --green:#00e6b0;--purple:#8b7cf7;--pink:#f06292;--blue:#42a5f5;--gold:#ffd700;--red:#ff5252;--orange:#ff9800;
+  --bg:#020205;--surface:#08080f;--surface2:#0d0d16;--surface3:#12121c;--surface4:#181824;
+  --border:rgba(255,255,255,0.04);--border2:rgba(255,255,255,0.07);--border3:rgba(255,255,255,0.12);
+  --text:#ededf2;--text2:#8585a0;--text3:#4e4e68;
+  --green:#00e6b0;--green-dim:rgba(0,230,176,0.08);--purple:#8b7cf7;--purple-dim:rgba(139,124,247,0.08);
+  --pink:#f06292;--blue:#42a5f5;--gold:#ffd700;--red:#ff5252;--orange:#ff9800;--cyan:#00bcd4;
   --gradient:linear-gradient(135deg,#00e6b0 0%,#8b7cf7 100%);
   --gradient2:linear-gradient(135deg,#8b7cf7 0%,#f06292 100%);
-  --radius:18px;--radius-sm:12px;--radius-xs:8px;
+  --gradient3:linear-gradient(135deg,#00e6b0 0%,#42a5f5 50%,#8b7cf7 100%);
+  --radius:20px;--radius-sm:14px;--radius-xs:8px;
+  --shadow:0 4px 30px rgba(0,0,0,0.3);
+  --shadow-glow:0 0 40px rgba(0,230,176,0.06);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative}
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(3,3,6,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{font-weight:900;font-size:1rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.02em}
-.nav-links{display:flex;gap:1.5rem;list-style:none}
-.nav-links a{color:var(--text3);text-decoration:none;font-size:0.78rem;font-weight:600;transition:color 0.2s;letter-spacing:0.3px}
-.nav-links a:hover{color:var(--text)}
-.nav-live{display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.8rem;border-radius:999px;background:rgba(0,230,176,0.08);border:1px solid rgba(0,230,176,0.15);font-size:0.72rem;color:var(--green);font-weight:700;letter-spacing:0.5px}
-.nav-live .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+/* GRAIN TEXTURE */
+body::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-section{padding:5rem 2rem}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(2,2,5,0.85);backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--border);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;transition:all 0.3s ease}
+nav.shrink{height:46px}
+.nav-brand{font-weight:900;font-size:0.95rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.01em}
+.nav-links{display:flex;gap:1.2rem;list-style:none}
+.nav-links a{color:var(--text3);text-decoration:none;font-size:0.75rem;font-weight:600;transition:all 0.3s ease;letter-spacing:0.3px;padding:0.3rem 0;border-bottom:2px solid transparent}
+.nav-links a:hover,.nav-links a.active{color:var(--text);border-bottom-color:var(--green)}
+.nav-live{display:inline-flex;align-items:center;gap:0.4rem;padding:0.25rem 0.7rem;border-radius:999px;background:rgba(0,230,176,0.06);border:1px solid rgba(0,230,176,0.12);font-size:0.68rem;color:var(--green);font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+.nav-live .dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,230,176,0.4)}50%{opacity:0.4;box-shadow:0 0 0 4px rgba(0,230,176,0)}}
+
+/* SCROLL PROGRESS */
+.scroll-progress{position:fixed;top:56px;left:0;height:2px;background:var(--gradient);z-index:101;transition:width 0.1s linear;width:0%}
+nav.shrink+.scroll-progress{top:46px}
+
+section{padding:6rem 2rem;position:relative}
 .container{max-width:1200px;margin:0 auto}
-.section-label{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--green);margin-bottom:0.75rem}
-.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;letter-spacing:-0.03em;margin-bottom:0.75rem;line-height:1.15}
-.section-subtitle{font-size:0.95rem;color:var(--text2);max-width:650px;margin-bottom:2.5rem;line-height:1.8}
+.section-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--green);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem}
+.section-label::before{content:'';width:20px;height:1px;background:var(--green)}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:-0.035em;margin-bottom:0.6rem;line-height:1.1}
+.section-subtitle{font-size:0.92rem;color:var(--text2);max-width:640px;margin-bottom:3rem;line-height:1.85}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;width:1200px;height:1200px;background:radial-gradient(circle,rgba(0,230,176,0.05) 0%,rgba(139,124,247,0.03) 35%,transparent 65%);top:-400px;left:50%;transform:translateX(-50%);pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,var(--bg),transparent);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.35rem 1rem;border-radius:999px;background:rgba(0,230,176,0.06);border:1px solid rgba(0,230,176,0.12);font-size:0.72rem;color:var(--green);font-weight:700;margin-bottom:2rem;letter-spacing:1px;text-transform:uppercase}
-.hero h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:900;line-height:1.05;max-width:1000px;margin-bottom:1.5rem;letter-spacing:-0.04em}
-.hero h1 .g1{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero h1 .g2{background:var(--gradient2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:1.05rem;color:var(--text2);max-width:680px;margin-bottom:3rem;line-height:1.9}
-.hero-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;max-width:800px;width:100%}
-.hero-stat{background:var(--surface);padding:1.5rem 1rem;text-align:center}
-.hero-stat .val{font-size:1.7rem;font-weight:900;font-family:'JetBrains Mono',monospace}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 5rem;position:relative;overflow:hidden}
+.hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
+.hero-fade{position:absolute;bottom:0;left:0;right:0;height:300px;background:linear-gradient(to top,var(--bg),transparent);z-index:1;pointer-events:none}
+.hero-content{position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.35rem 1rem;border-radius:999px;background:rgba(0,230,176,0.05);border:1px solid rgba(0,230,176,0.1);font-size:0.68rem;color:var(--green);font-weight:700;margin-bottom:2.5rem;letter-spacing:1.5px;text-transform:uppercase;backdrop-filter:blur(10px)}
+.hero h1{font-size:clamp(2.8rem,7.5vw,5.5rem);font-weight:900;line-height:1;max-width:1000px;margin-bottom:1.5rem;letter-spacing:-0.05em}
+.hero h1 .g1{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block}
+.hero h1 .g2{background:var(--gradient2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block}
+.hero h1 .white{color:var(--text);-webkit-text-fill-color:var(--text)}
+.hero>p{font-size:1.05rem;color:var(--text2);max-width:640px;margin-bottom:3.5rem;line-height:1.9;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border-radius:var(--radius);overflow:hidden;max-width:820px;width:100%;box-shadow:var(--shadow),var(--shadow-glow);position:relative;z-index:2}
+.hero-stat{background:var(--surface);padding:1.75rem 1rem;text-align:center;transition:background 0.3s}
+.hero-stat:hover{background:var(--surface2)}
+.hero-stat .val{font-size:1.8rem;font-weight:900;font-family:'JetBrains Mono',monospace;display:block}
 .hero-stat .val.green{color:var(--green)}
 .hero-stat .val.purple{color:var(--purple)}
 .hero-stat .val.gold{color:var(--gold)}
 .hero-stat .val.blue{color:var(--blue)}
-.hero-stat .lbl{font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-top:0.3rem;font-weight:600}
+.hero-stat .lbl{font-size:0.62rem;color:var(--text3);text-transform:uppercase;letter-spacing:1.2px;margin-top:0.4rem;font-weight:600;display:block}
 
 /* ANSWER BOX */
-.answer-box{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:2.5rem;position:relative;overflow:hidden}
+.answer-box{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:2.5rem;position:relative;overflow:hidden;box-shadow:var(--shadow)}
 .answer-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient)}
-.answer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:1.5rem}
-.answer-item h4{font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem}
-.answer-item h4 .icon{font-size:1.1rem}
-.answer-item p{font-size:0.85rem;color:var(--text2);line-height:1.8}
-.answer-item .highlight{color:var(--green);font-weight:700}
+.answer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-top:1.5rem}
+.answer-item{position:relative}
+.answer-item h4{font-size:0.92rem;font-weight:700;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.answer-item h4 .icon{width:32px;height:32px;border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.answer-item:nth-child(1) h4 .icon{background:rgba(0,230,176,0.08);border:1px solid rgba(0,230,176,0.15)}
+.answer-item:nth-child(2) h4 .icon{background:rgba(139,124,247,0.08);border:1px solid rgba(139,124,247,0.15)}
+.answer-item:nth-child(3) h4 .icon{background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.15)}
+.answer-item p{font-size:0.84rem;color:var(--text2);line-height:1.85}
+.answer-item .hl{color:var(--green);font-weight:700}
+
+/* GAP CALLOUT */
+.gap-callout{background:linear-gradient(135deg,rgba(0,230,176,0.03),rgba(139,124,247,0.02));border:1px solid rgba(0,230,176,0.1);border-radius:var(--radius);padding:3rem;text-align:center;margin:3.5rem 0;position:relative;overflow:hidden;box-shadow:var(--shadow-glow)}
+.gap-callout::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient)}
+.gap-callout::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,230,176,0.04),transparent 70%);top:-200px;left:50%;transform:translateX(-50%);pointer-events:none}
+.gap-callout h3{font-size:1.4rem;font-weight:800;margin-bottom:0.75rem;letter-spacing:-0.02em}
+.gap-callout p{font-size:0.95rem;color:var(--text2);max-width:620px;margin:0 auto;line-height:1.85}
 
 /* MONEY FLOW */
 .flow{display:flex;flex-direction:column;gap:0;max-width:800px;margin:0 auto}
-.flow-step{display:flex;align-items:flex-start;gap:1.25rem;padding:1.5rem;background:var(--surface);border:1px solid var(--border);position:relative}
+.flow-step{display:flex;align-items:flex-start;gap:1.5rem;padding:1.5rem 1.75rem;background:var(--surface);border:1px solid var(--border);position:relative;transition:all 0.3s ease}
+.flow-step:hover{background:var(--surface2);border-color:var(--border2)}
 .flow-step:first-child{border-radius:var(--radius) var(--radius) 0 0}
 .flow-step:last-child{border-radius:0 0 var(--radius) var(--radius)}
 .flow-step+.flow-step{border-top:none}
-.flow-num{width:40px;height:40px;border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:800;font-size:0.85rem;flex-shrink:0}
+.flow-num{width:44px;height:44px;border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:800;font-size:0.82rem;flex-shrink:0;position:relative}
+.flow-num::after{content:'';position:absolute;bottom:-1.5rem;left:50%;width:1px;height:1.5rem;background:var(--border2)}
+.flow-step:last-child .flow-num::after{display:none}
 .flow-num.n1{background:rgba(139,124,247,0.1);color:var(--purple);border:1px solid rgba(139,124,247,0.2)}
 .flow-num.n2{background:rgba(0,230,176,0.1);color:var(--green);border:1px solid rgba(0,230,176,0.2)}
 .flow-num.n3{background:rgba(66,165,245,0.1);color:var(--blue);border:1px solid rgba(66,165,245,0.2)}
 .flow-num.n4{background:rgba(240,98,146,0.1);color:var(--pink);border:1px solid rgba(240,98,146,0.2)}
 .flow-num.n5{background:rgba(255,215,0,0.1);color:var(--gold);border:1px solid rgba(255,215,0,0.2)}
 .flow-num.n6{background:rgba(0,230,176,0.15);color:var(--green);border:1px solid rgba(0,230,176,0.3)}
-.flow-content h4{font-size:0.95rem;font-weight:700;margin-bottom:0.25rem}
-.flow-content p{font-size:0.85rem;color:var(--text2);line-height:1.7}
-.flow-tag{font-size:0.68rem;font-weight:700;padding:0.2rem 0.5rem;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;margin-left:0.5rem}
-.flow-tag.auto{background:rgba(0,230,176,0.1);color:var(--green)}
-.flow-tag.you{background:rgba(139,124,247,0.1);color:var(--purple)}
+.flow-content h4{font-size:0.95rem;font-weight:700;margin-bottom:0.3rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}
+.flow-content p{font-size:0.84rem;color:var(--text2);line-height:1.75}
+.flow-tag{font-size:0.62rem;font-weight:800;padding:0.2rem 0.55rem;border-radius:4px;text-transform:uppercase;letter-spacing:0.8px}
+.flow-tag.auto{background:rgba(0,230,176,0.1);color:var(--green);border:1px solid rgba(0,230,176,0.15)}
+.flow-tag.them{background:rgba(139,124,247,0.1);color:var(--purple);border:1px solid rgba(139,124,247,0.15)}
+.flow-tag.platform{background:rgba(255,215,0,0.1);color:var(--gold);border:1px solid rgba(255,215,0,0.15)}
 
 /* PLATFORM TABLE */
-.platform-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:var(--radius);border:1px solid var(--border)}
-.platform-table th{background:var(--surface3);padding:0.9rem 1rem;text-align:left;font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);font-weight:700;border-bottom:1px solid var(--border2)}
-.platform-table td{background:var(--surface);padding:0.85rem 1rem;font-size:0.83rem;border-bottom:1px solid var(--border);color:var(--text2)}
-.platform-table tr:last-child td{border-bottom:none}
-.platform-table td:first-child{font-weight:700;color:var(--text)}
-.platform-table .usdc{color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:600;font-size:0.8rem}
-.platform-table .chain-badge{display:inline-flex;padding:0.15rem 0.45rem;border-radius:4px;font-size:0.7rem;font-weight:600;background:var(--surface3);border:1px solid var(--border2)}
+table.ptable{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow)}
+.ptable th{background:var(--surface3);padding:0.9rem 1rem;text-align:left;font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);font-weight:700;border-bottom:1px solid var(--border2)}
+.ptable td{background:var(--surface);padding:0.85rem 1rem;font-size:0.82rem;border-bottom:1px solid var(--border);color:var(--text2);transition:background 0.2s}
+.ptable tr:hover td{background:var(--surface2)}
+.ptable tr:last-child td{border-bottom:none}
+.ptable td:first-child{font-weight:700;color:var(--text)}
+.ptable .usdc{color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:600;font-size:0.78rem}
+.chain-badge{display:inline-flex;padding:0.15rem 0.45rem;border-radius:4px;font-size:0.68rem;font-weight:600;background:var(--surface3);border:1px solid var(--border2);color:var(--text2)}
+.pay-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:2rem}
+.pay-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.5rem;position:relative;overflow:hidden;transition:all 0.3s;box-shadow:var(--shadow)}
+.pay-card:hover{border-color:var(--border3);transform:translateY(-2px)}
+.pay-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.pay-card:nth-child(1)::before{background:var(--gold)}
+.pay-card:nth-child(2)::before{background:var(--purple)}
+.pay-card .pc-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.5rem}
+.pay-card .pc-val{font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.6rem}
+.pay-card .pc-sub{font-size:0.78rem;color:var(--text2);margin-top:0.3rem}
 
 /* PIPELINE LAYERS */
-.layers{display:flex;flex-direction:column;gap:0}
-.layer{background:var(--surface);border:1px solid var(--border);padding:1.75rem 2rem;position:relative}
+.layers{display:flex;flex-direction:column;gap:0;position:relative}
+.layers::before{content:'';position:absolute;left:2.5rem;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--purple),var(--green),var(--blue),var(--pink),var(--orange),var(--gold),var(--red));z-index:1;border-radius:1px;opacity:0.3}
+.layer{background:var(--surface);border:1px solid var(--border);padding:1.75rem 2rem 1.75rem 4.5rem;position:relative;transition:all 0.3s;margin-left:0}
+.layer:hover{background:var(--surface2);border-color:var(--border2)}
 .layer:first-child{border-radius:var(--radius) var(--radius) 0 0}
 .layer:last-child{border-radius:0 0 var(--radius) var(--radius)}
 .layer+.layer{border-top:none}
-.layer-head{display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem}
-.layer-badge{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:0.72rem;padding:0.3rem 0.65rem;border-radius:6px;letter-spacing:0.5px;flex-shrink:0}
-.layer-badge.l1{background:rgba(139,124,247,0.12);color:var(--purple);border:1px solid rgba(139,124,247,0.2)}
-.layer-badge.l2{background:rgba(0,230,176,0.12);color:var(--green);border:1px solid rgba(0,230,176,0.2)}
-.layer-badge.l3{background:rgba(66,165,245,0.12);color:var(--blue);border:1px solid rgba(66,165,245,0.2)}
-.layer-badge.l4{background:rgba(240,98,146,0.12);color:var(--pink);border:1px solid rgba(240,98,146,0.2)}
-.layer-badge.l5{background:rgba(255,152,0,0.12);color:var(--orange);border:1px solid rgba(255,152,0,0.2)}
-.layer-badge.l6{background:rgba(255,215,0,0.12);color:var(--gold);border:1px solid rgba(255,215,0,0.2)}
-.layer-badge.l7{background:rgba(255,82,82,0.12);color:var(--red);border:1px solid rgba(255,82,82,0.2)}
-.layer-head h3{font-size:1.05rem;font-weight:700;flex:1}
-.layer-cost{font-family:'JetBrains Mono',monospace;font-size:0.78rem;font-weight:700;color:var(--green)}
-.layer-auto{font-size:0.68rem;font-weight:700;padding:0.2rem 0.5rem;border-radius:4px;letter-spacing:0.5px}
-.layer-auto.full{background:rgba(0,230,176,0.1);color:var(--green)}
-.layer-auto.partial{background:rgba(255,152,0,0.1);color:var(--orange)}
-.layer-body{font-size:0.85rem;color:var(--text2);line-height:1.8}
-.layer-tools{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.75rem}
-.layer-tool{padding:0.2rem 0.55rem;border-radius:5px;font-size:0.68rem;font-weight:600;background:var(--surface3);color:var(--text3);border:1px solid var(--border)}
-.layer-connector{text-align:center;padding:0.3rem 0;color:var(--text3);font-size:1.2rem;background:var(--surface);border-left:1px solid var(--border);border-right:1px solid var(--border)}
+.layer-dot{position:absolute;left:1.85rem;top:2rem;width:14px;height:14px;border-radius:50%;z-index:2;border:3px solid var(--bg)}
+.layer:nth-child(1) .layer-dot{background:var(--purple)}
+.layer:nth-child(2) .layer-dot{background:var(--green)}
+.layer:nth-child(3) .layer-dot{background:var(--blue)}
+.layer:nth-child(4) .layer-dot{background:var(--pink)}
+.layer:nth-child(5) .layer-dot{background:var(--orange)}
+.layer:nth-child(6) .layer-dot{background:var(--gold)}
+.layer:nth-child(7) .layer-dot{background:var(--red)}
+.layer-head{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem;flex-wrap:wrap}
+.layer-badge{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:0.7rem;padding:0.25rem 0.6rem;border-radius:5px;letter-spacing:0.5px;flex-shrink:0}
+.layer-badge.l1{background:rgba(139,124,247,0.1);color:var(--purple);border:1px solid rgba(139,124,247,0.15)}
+.layer-badge.l2{background:rgba(0,230,176,0.1);color:var(--green);border:1px solid rgba(0,230,176,0.15)}
+.layer-badge.l3{background:rgba(66,165,245,0.1);color:var(--blue);border:1px solid rgba(66,165,245,0.15)}
+.layer-badge.l4{background:rgba(240,98,146,0.1);color:var(--pink);border:1px solid rgba(240,98,146,0.15)}
+.layer-badge.l5{background:rgba(255,152,0,0.1);color:var(--orange);border:1px solid rgba(255,152,0,0.15)}
+.layer-badge.l6{background:rgba(255,215,0,0.1);color:var(--gold);border:1px solid rgba(255,215,0,0.15)}
+.layer-badge.l7{background:rgba(255,82,82,0.1);color:var(--red);border:1px solid rgba(255,82,82,0.15)}
+.layer-head h3{font-size:1rem;font-weight:700;flex:1}
+.layer-cost{font-family:'JetBrains Mono',monospace;font-size:0.75rem;font-weight:700;color:var(--green)}
+.layer-auto{font-size:0.62rem;font-weight:800;padding:0.2rem 0.5rem;border-radius:4px;letter-spacing:0.8px;text-transform:uppercase}
+.layer-auto.full{background:rgba(0,230,176,0.08);color:var(--green);border:1px solid rgba(0,230,176,0.12)}
+.layer-auto.partial{background:rgba(255,152,0,0.08);color:var(--orange);border:1px solid rgba(255,152,0,0.12)}
+.layer-body{font-size:0.84rem;color:var(--text2);line-height:1.8}
+.layer-tools{display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.75rem}
+.layer-tool{padding:0.2rem 0.5rem;border-radius:5px;font-size:0.66rem;font-weight:600;background:var(--surface3);color:var(--text3);border:1px solid var(--border);transition:all 0.2s}
+.layer-tool:hover{border-color:var(--border3);color:var(--text2)}
 
-/* AUTONOMY TABLE */
-.auto-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-top:2rem}
-.auto-cell{background:var(--surface);padding:1.25rem 0.75rem;text-align:center}
-.auto-cell .layer-name{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text3);margin-bottom:0.5rem}
-.auto-cell .pct{font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.4rem}
+/* AUTONOMY GRID */
+.auto-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border2);border-radius:var(--radius);overflow:hidden;margin-top:2.5rem;box-shadow:var(--shadow)}
+.auto-cell{background:var(--surface);padding:1.5rem 0.75rem;text-align:center;transition:background 0.3s}
+.auto-cell:hover{background:var(--surface2)}
+.auto-cell .layer-name{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text3);margin-bottom:0.5rem}
+.auto-cell .pct{font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.5rem}
 .auto-cell .pct.full{color:var(--green)}
 .auto-cell .pct.high{color:var(--blue)}
 .auto-cell .pct.mid{color:var(--orange)}
-.auto-bar{height:4px;border-radius:2px;background:var(--surface3);margin-top:0.5rem;overflow:hidden}
-.auto-bar-fill{height:100%;border-radius:2px;transition:width 1.5s ease}
+.auto-bar{height:4px;border-radius:2px;background:var(--surface4);margin-top:0.6rem;overflow:hidden}
+.auto-bar-fill{height:100%;border-radius:2px;width:0%;transition:width 1.8s cubic-bezier(0.16,1,0.3,1)}
 
-/* EXISTING vs BUILD */
+/* TWO COL CARDS */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.col-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;position:relative;overflow:hidden}
+.col-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;position:relative;overflow:hidden;box-shadow:var(--shadow);transition:all 0.3s}
+.col-card:hover{border-color:var(--border2)}
 .col-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
 .col-card.exists::before{background:var(--green)}
 .col-card.build::before{background:var(--gradient2)}
-.col-card h3{font-size:1rem;font-weight:700;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem}
-.col-card h3 .tag{font-size:0.65rem;font-weight:700;padding:0.2rem 0.5rem;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px}
-.exists .tag{background:rgba(0,230,176,0.1);color:var(--green)}
-.build .tag{background:rgba(240,98,146,0.1);color:var(--pink)}
-.tool-row{display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0;border-bottom:1px solid var(--border)}
+.col-card h3{font-size:0.95rem;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+.col-card h3 .tag{font-size:0.6rem;font-weight:800;padding:0.2rem 0.5rem;border-radius:4px;text-transform:uppercase;letter-spacing:1px}
+.exists .tag{background:rgba(0,230,176,0.08);color:var(--green);border:1px solid rgba(0,230,176,0.12)}
+.build .tag{background:rgba(240,98,146,0.08);color:var(--pink);border:1px solid rgba(240,98,146,0.12)}
+.tool-row{display:flex;align-items:center;gap:0.75rem;padding:0.55rem 0;border-bottom:1px solid var(--border)}
 .tool-row:last-child{border-bottom:none}
 .tool-name{font-size:0.82rem;font-weight:600;flex:1}
-.tool-src{font-size:0.7rem;color:var(--text3);font-weight:500}
+.tool-src{font-size:0.68rem;color:var(--text3);font-weight:500}
 
-/* DEMAND FORCES */
-.force-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.25rem}
-.force-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.5rem;transition:border-color 0.3s}
-.force-card:hover{border-color:var(--border3)}
-.force-card .force-num{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:1.5rem;margin-bottom:0.3rem}
-.force-card h4{font-size:0.9rem;font-weight:700;margin-bottom:0.4rem}
-.force-card p{font-size:0.82rem;color:var(--text2);line-height:1.7}
+/* DEMAND */
+.force-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.force-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.5rem;transition:all 0.3s ease;box-shadow:var(--shadow)}
+.force-card:hover{border-color:var(--border3);transform:translateY(-3px)}
+.force-card .force-num{font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.6rem;margin-bottom:0.25rem;letter-spacing:-0.02em}
+.force-card h4{font-size:0.88rem;font-weight:700;margin-bottom:0.4rem}
+.force-card p{font-size:0.8rem;color:var(--text2);line-height:1.75}
 
-/* CONTEST VOLUME */
-.volume-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-top:2rem}
-.volume-cell{background:var(--surface);padding:1.5rem;text-align:center}
-.volume-cell .platform{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:0.5rem}
+/* VOLUME GRID */
+.volume-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border2);border-radius:var(--radius);overflow:hidden;margin-top:2.5rem;box-shadow:var(--shadow)}
+.volume-cell{background:var(--surface);padding:1.5rem;text-align:center;transition:background 0.3s}
+.volume-cell:hover{background:var(--surface2)}
+.volume-cell .platform{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:0.5rem}
 .volume-cell .freq{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:1.2rem;color:var(--text)}
-.volume-cell .pool{font-size:0.78rem;color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:600;margin-top:0.25rem}
+.volume-cell .pool{font-size:0.75rem;color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:600;margin-top:0.3rem}
+.volume-cell.highlight-cell{background:rgba(0,230,176,0.03);border:none}
 
-/* AI VALIDATION */
-.validation-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
-.val-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.5rem;position:relative;overflow:hidden}
+/* VALIDATION */
+.val-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.val-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.5rem;position:relative;overflow:hidden;box-shadow:var(--shadow);transition:all 0.3s}
+.val-card:hover{border-color:var(--border3);transform:translateY(-3px)}
 .val-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
-.val-card.c1::before{background:var(--purple)}
-.val-card.c2::before{background:var(--green)}
-.val-card.c3::before{background:var(--blue)}
-.val-card.c4::before{background:var(--gold)}
-.val-card .src{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:0.5rem}
-.val-card .big-num{font-family:'JetBrains Mono',monospace;font-weight:900;font-size:2rem;margin-bottom:0.25rem}
-.val-card p{font-size:0.82rem;color:var(--text2);line-height:1.7}
+.val-card:nth-child(1)::before{background:var(--purple)}
+.val-card:nth-child(2)::before{background:var(--green)}
+.val-card:nth-child(3)::before{background:var(--blue)}
+.val-card:nth-child(4)::before{background:var(--gold)}
+.val-card .src{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:0.6rem}
+.val-card .big-num{font-family:'JetBrains Mono',monospace;font-weight:900;font-size:2.2rem;margin-bottom:0.3rem;letter-spacing:-0.02em}
+.val-card p{font-size:0.78rem;color:var(--text2);line-height:1.8}
 
 /* P&L */
-.pnl-container{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.pnl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem}
-.pnl-card h3{font-size:0.95rem;font-weight:700;margin-bottom:1.25rem}
-.pnl-row{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border);font-size:0.83rem}
+.pnl-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.pnl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.pnl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.pnl-card:nth-child(1)::before{background:var(--pink)}
+.pnl-card:nth-child(2)::before{background:var(--green)}
+.pnl-card h3{font-size:0.92rem;font-weight:700;margin-bottom:1.25rem}
+.pnl-row{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--border);font-size:0.82rem}
 .pnl-row:last-child{border-bottom:none}
 .pnl-row .item{color:var(--text2)}
-.pnl-row .amount{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.85rem}
-.pnl-row .amount.cost{color:var(--pink)}
-.pnl-row .amount.rev{color:var(--green)}
-.pnl-total{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 0;margin-top:0.5rem;border-top:2px solid var(--border2);font-weight:700;font-size:0.95rem}
-.pnl-total .amount{font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.1rem}
+.pnl-row .amt{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.82rem}
+.pnl-total{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 0;margin-top:0.75rem;border-top:2px solid var(--border2);font-weight:700;font-size:0.95rem}
+.pnl-total .amt{font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.15rem}
 
-/* REVENUE SCENARIOS */
-.scenario-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-top:2rem}
-.scenario{background:var(--surface);padding:1.25rem;text-align:center}
-.scenario .sc-name{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.5rem}
-.scenario .sc-rev{font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.3rem}
-.scenario .sc-roi{font-size:0.78rem;color:var(--text2);margin-top:0.25rem;font-family:'JetBrains Mono',monospace;font-weight:600}
-.scenario:nth-child(1) .sc-name{color:var(--text3)}
-.scenario:nth-child(2) .sc-name{color:var(--blue)}
-.scenario:nth-child(2) .sc-rev{color:var(--blue)}
-.scenario:nth-child(3) .sc-name{color:var(--green)}
-.scenario:nth-child(3) .sc-rev{color:var(--green)}
-.scenario:nth-child(4) .sc-name{color:var(--gold)}
-.scenario:nth-child(4) .sc-rev{color:var(--gold)}
+/* SCENARIOS */
+.scenario-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border-radius:var(--radius);overflow:hidden;margin-top:2.5rem;box-shadow:var(--shadow)}
+.scenario{background:var(--surface);padding:1.5rem;text-align:center;transition:background 0.3s}
+.scenario:hover{background:var(--surface2)}
+.scenario .sc-name{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.6rem}
+.scenario .sc-rev{font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.4rem}
+.scenario .sc-roi{font-size:0.75rem;color:var(--text2);margin-top:0.3rem;font-family:'JetBrains Mono',monospace;font-weight:600}
 
 /* FLYWHEEL */
-.flywheel{position:relative;max-width:700px;margin:0 auto}
-.flywheel-step{display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;background:var(--surface);border:1px solid var(--border);position:relative}
-.flywheel-step:first-child{border-radius:var(--radius) var(--radius) 0 0}
-.flywheel-step:last-child{border-radius:0 0 var(--radius) var(--radius)}
-.flywheel-step+.flywheel-step{border-top:none}
-.fw-icon{font-size:1.3rem;flex-shrink:0;width:2rem;text-align:center}
-.fw-text{font-size:0.88rem;color:var(--text2)}
+.flywheel-wrap{max-width:720px;margin:0 auto;position:relative}
+.fw-step{display:flex;align-items:center;gap:1.25rem;padding:1.1rem 1.75rem;background:var(--surface);border:1px solid var(--border);transition:all 0.3s}
+.fw-step:hover{background:var(--surface2)}
+.fw-step:first-child{border-radius:var(--radius) var(--radius) 0 0}
+.fw-step+.fw-step{border-top:none}
+.fw-icon{font-size:1.2rem;flex-shrink:0;width:2.2rem;height:2.2rem;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-xs);background:var(--surface3);border:1px solid var(--border2)}
+.fw-text{font-size:0.86rem;color:var(--text2)}
 .fw-text strong{color:var(--text);font-weight:700}
-.fw-arrow{text-align:center;padding:0.2rem 0;font-size:1rem;color:var(--green);background:var(--surface);border-left:1px solid var(--border);border-right:1px solid var(--border)}
-.fw-loop{text-align:center;padding:1rem;background:linear-gradient(135deg,rgba(0,230,176,0.06),rgba(139,124,247,0.04));border:1px solid rgba(0,230,176,0.15);border-radius:0 0 var(--radius) var(--radius);font-size:0.85rem;font-weight:700;color:var(--green);letter-spacing:0.5px}
+.fw-text .mono{color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.82rem}
+.fw-arr{text-align:center;padding:0.15rem 0;font-size:0.9rem;color:var(--green);background:var(--surface);border-left:1px solid var(--border);border-right:1px solid var(--border);opacity:0.5}
+.fw-loop{text-align:center;padding:1.25rem;background:linear-gradient(135deg,rgba(0,230,176,0.04),rgba(139,124,247,0.03));border:1px solid rgba(0,230,176,0.1);border-top:none;border-radius:0 0 var(--radius) var(--radius);font-size:0.82rem;font-weight:700;color:var(--green);letter-spacing:0.5px}
+
+/* REALITY CHECK */
+.reality{background:var(--surface);border:1px solid rgba(255,82,82,0.12);border-radius:var(--radius);padding:2.5rem;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.reality::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(135deg,var(--red),var(--orange))}
+.reality h3{font-size:1.1rem;font-weight:800;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.75rem}
+.reality .rating{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:900;color:var(--orange)}
+.reality .rating-sub{font-size:0.82rem;color:var(--text2);margin-bottom:1.5rem}
+.risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.5rem}
+.risk-item{padding:1rem;border-radius:var(--radius-xs);background:var(--surface2);border:1px solid var(--border)}
+.risk-item h5{font-size:0.82rem;font-weight:700;margin-bottom:0.3rem;color:var(--red)}
+.risk-item p{font-size:0.78rem;color:var(--text2);line-height:1.7}
+.mitigation{margin-top:2rem;padding:1.5rem;border-radius:var(--radius-sm);background:rgba(0,230,176,0.03);border:1px solid rgba(0,230,176,0.08)}
+.mitigation h4{font-size:0.92rem;font-weight:700;color:var(--green);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
+.mitigation ul{list-style:none;padding:0}
+.mitigation li{font-size:0.82rem;color:var(--text2);line-height:1.8;padding:0.25rem 0;padding-left:1.25rem;position:relative}
+.mitigation li::before{content:'';position:absolute;left:0;top:0.7rem;width:6px;height:6px;border-radius:50%;background:var(--green);opacity:0.5}
 
 /* TIMELINE */
-.timeline{max-width:800px;margin:0 auto}
-.tl-week{display:grid;grid-template-columns:80px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border)}
-.tl-week:last-child{border-bottom:none}
-.tl-label{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:0.85rem;padding-top:0.2rem}
+.timeline{max-width:800px;margin:0 auto;position:relative}
+.timeline::before{content:'';position:absolute;left:39px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--purple),var(--blue),var(--green),var(--gold),var(--orange));border-radius:1px;opacity:0.25}
+.tl-week{display:grid;grid-template-columns:80px 1fr;gap:1.5rem;padding:1.75rem 0;position:relative}
+.tl-week+.tl-week{border-top:1px solid var(--border)}
+.tl-label{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:0.82rem;padding-top:0.2rem;text-align:center;position:relative}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin:0.5rem auto 0;border:2px solid var(--bg)}
 .tl-content h4{font-size:0.92rem;font-weight:700;margin-bottom:0.3rem}
-.tl-content p{font-size:0.82rem;color:var(--text2);line-height:1.7}
-.tl-ship{display:inline-flex;padding:0.2rem 0.5rem;border-radius:4px;font-size:0.68rem;font-weight:700;background:rgba(0,230,176,0.1);color:var(--green);margin-top:0.4rem;letter-spacing:0.5px}
+.tl-content p{font-size:0.8rem;color:var(--text2);line-height:1.75}
+.tl-ship{display:inline-flex;padding:0.2rem 0.55rem;border-radius:4px;font-size:0.65rem;font-weight:700;background:rgba(0,230,176,0.08);color:var(--green);margin-top:0.5rem;letter-spacing:0.5px;border:1px solid rgba(0,230,176,0.12);text-transform:uppercase}
 
 /* COMPARISON */
-.comp-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:var(--radius);border:1px solid var(--border)}
-.comp-table th{background:var(--surface3);padding:0.85rem 1rem;text-align:left;font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);font-weight:700;border-bottom:1px solid var(--border2)}
-.comp-table td{background:var(--surface);padding:0.8rem 1rem;font-size:0.82rem;border-bottom:1px solid var(--border);color:var(--text2)}
-.comp-table tr:last-child td{border-bottom:none}
-.comp-table td:first-child{font-weight:600;color:var(--text)}
-.comp-table td:nth-child(2){color:var(--green);font-weight:600}
-.comp-table .win{background:rgba(0,230,176,0.04)}
-
-/* GAP CALLOUT */
-.gap-callout{background:linear-gradient(135deg,rgba(0,230,176,0.04),rgba(139,124,247,0.03));border:1px solid rgba(0,230,176,0.12);border-radius:var(--radius);padding:2.5rem;text-align:center;margin:3rem 0;position:relative;overflow:hidden}
-.gap-callout::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient)}
-.gap-callout h3{font-size:1.3rem;font-weight:800;margin-bottom:0.75rem}
-.gap-callout p{font-size:0.95rem;color:var(--text2);max-width:600px;margin:0 auto;line-height:1.8}
+table.comp{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow)}
+.comp th{background:var(--surface3);padding:0.85rem 1.25rem;text-align:left;font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);font-weight:700;border-bottom:1px solid var(--border2)}
+.comp td{background:var(--surface);padding:0.8rem 1.25rem;font-size:0.82rem;border-bottom:1px solid var(--border);color:var(--text2);transition:background 0.2s}
+.comp tr:hover td{background:var(--surface2)}
+.comp tr:last-child td{border-bottom:none}
+.comp td:first-child{font-weight:600;color:var(--text)}
+.comp td:nth-child(2){color:var(--green);font-weight:600}
+.comp .win{background:rgba(0,230,176,0.02)}
 
 /* FOOTER */
-footer{padding:3rem 2rem;border-top:1px solid var(--border);text-align:center}
-footer p{font-size:0.75rem;color:var(--text3)}
+footer{padding:4rem 2rem 3rem;border-top:1px solid var(--border);text-align:center}
+footer .f-brand{font-weight:900;font-size:1.1rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem;display:block;letter-spacing:-0.02em}
+footer p{font-size:0.72rem;color:var(--text3);line-height:1.8;max-width:500px;margin:0 auto}
 
-/* SCROLL ANIMATIONS */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.counter{display:inline-block}
+
+/* DIVIDER */
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0 auto;max-width:600px}
 
 /* RESPONSIVE */
+@media(max-width:1024px){
+  .val-cards{grid-template-columns:repeat(2,1fr)}
+  .force-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:900px){
   .hero-grid{grid-template-columns:repeat(2,1fr)}
   .answer-grid{grid-template-columns:1fr}
   .two-col{grid-template-columns:1fr}
-  .pnl-container{grid-template-columns:1fr}
+  .pnl-grid{grid-template-columns:1fr}
   .auto-grid{grid-template-columns:repeat(4,1fr)}
   .scenario-grid{grid-template-columns:repeat(2,1fr)}
   .volume-grid{grid-template-columns:repeat(2,1fr)}
-  .comp-table{font-size:0.75rem}
   .nav-links{display:none}
+  .risk-grid{grid-template-columns:1fr}
+  .pay-cards{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  .hero-grid{grid-template-columns:1fr 1fr}
+  .hero-grid{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:2.4rem}
   .auto-grid{grid-template-columns:repeat(2,1fr)}
   .force-grid{grid-template-columns:1fr}
-  section{padding:3rem 1.25rem}
+  .val-cards{grid-template-columns:1fr}
+  .scenario-grid{grid-template-columns:1fr}
+  section{padding:4rem 1.25rem}
+  .layer{padding-left:3.5rem}
+  .layers::before{left:1.5rem}
+  .layer-dot{left:0.85rem}
 }
 </style>
 </head>
 <body>
 
-<nav>
+<nav id="nav">
   <div class="nav-brand">AUTONOMOUS SC AUDIT PIPELINE</div>
-  <ul class="nav-links">
-    <li><a href="#money-flow">Money Flow</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#money-flow">Flow</a></li>
     <li><a href="#platforms">Platforms</a></li>
     <li><a href="#pipeline">Pipeline</a></li>
     <li><a href="#demand">Demand</a></li>
     <li><a href="#validation">Validation</a></li>
     <li><a href="#pnl">P&L</a></li>
+    <li><a href="#reality">Risks</a></li>
     <li><a href="#timeline">Timeline</a></li>
   </ul>
-  <div class="nav-live"><span class="dot"></span> ALL-IN BLUEPRINT</div>
+  <div class="nav-live"><span class="dot"></span>Blueprint</div>
 </nav>
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge"><span class="dot"></span> A-to-Z Fully Autonomous</div>
-  <h1>
-    <span class="g1">Zero Distribution.</span><br>
-    <span class="g2">Zero Sales.</span><br>
-    Infinite Scale.
-  </h1>
-  <p>The platforms ARE the distribution. Walk in, compete, get paid in USDC. No invoicing, no client acquisition, no outreach. Your pipeline enters every contest on every platform — autonomously.</p>
-  <div class="hero-grid">
-    <div class="hero-stat"><div class="val green">$0</div><div class="lbl">Customer Acq. Cost</div></div>
-    <div class="hero-stat"><div class="val purple">8-16</div><div class="lbl">Contests / Week</div></div>
-    <div class="hero-stat"><div class="val gold">$332</div><div class="lbl">Monthly Cost</div></div>
-    <div class="hero-stat"><div class="val blue">95%</div><div class="lbl">Autonomous</div></div>
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-fade"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> A-to-Z Fully Autonomous Pipeline</div>
+    <h1>
+      <span class="g1">Zero Distribution.</span><br>
+      <span class="g2">Zero Sales.</span><br>
+      <span class="white">Infinite Scale.</span>
+    </h1>
+    <p>The platforms ARE the distribution. Walk in, compete, get paid in USDC. No invoicing, no client acquisition, no outreach. Your pipeline enters every contest on every platform — autonomously.</p>
+    <div class="hero-grid">
+      <div class="hero-stat"><span class="val green">$0</span><span class="lbl">Customer Acq. Cost</span></div>
+      <div class="hero-stat"><span class="val purple counter" data-target="16" data-prefix="" data-suffix="">0</span><span class="lbl">Contests / Week</span></div>
+      <div class="hero-stat"><span class="val gold counter" data-target="332" data-prefix="$" data-suffix="">$0</span><span class="lbl">Monthly Cost</span></div>
+      <div class="hero-stat"><span class="val blue counter" data-target="95" data-prefix="" data-suffix="%">0%</span><span class="lbl">Autonomous</span></div>
+    </div>
   </div>
 </section>
 
 <!-- EXECUTIVE SUMMARY -->
 <section id="summary">
-  <div class="container reveal">
-    <div class="section-label">Executive Summary</div>
-    <div class="section-title">Who Pays, Why, and How</div>
-    <div class="answer-box">
+  <div class="container">
+    <div class="section-label reveal">Executive Summary</div>
+    <div class="section-title reveal reveal-delay-1">Who Pays, Why, and How</div>
+    <div class="answer-box reveal reveal-delay-2">
       <div class="answer-grid">
         <div class="answer-item">
           <h4><span class="icon">&#x1f4b0;</span> Who Pays</h4>
-          <p>Every DeFi protocol that wants to launch, get exchange-listed, get insurance coverage, or comply with <span class="highlight">MiCA regulation</span> (legally required in EU, July 2026). 500K+ contracts deployed monthly. <span class="highlight">$3.4B stolen in 2025.</span></p>
+          <p>Every DeFi protocol that wants to launch, get exchange-listed, get insurance, or comply with <span class="hl">MiCA regulation</span> (legally required in EU, July 2026). 500K+ contracts deployed monthly. <span class="hl">$3.4B stolen in 2025.</span></p>
         </div>
         <div class="answer-item">
           <h4><span class="icon">&#x1f6e1;</span> Why They Pay</h4>
-          <p>Because the alternative is getting hacked for $100M+. A $50K audit is insurance. A $10M Immunefi bounty that prevents a $320M exploit is <span class="highlight">32:1 ROI.</span> Binance, Coinbase, and all Tier-1 exchanges require audits for listing.</p>
+          <p>The alternative is getting hacked for $100M+. A $50K audit is insurance. A $10M Immunefi bounty preventing a $320M exploit is <span class="hl">32:1 ROI.</span> Binance, Coinbase, all Tier-1 exchanges require audits for listing.</p>
         </div>
         <div class="answer-item">
           <h4><span class="icon">&#x26a1;</span> How You Get Paid</h4>
-          <p><span class="highlight">USDC to your Ethereum wallet.</span> Platforms handle everything. Zero invoicing. Zero sales calls. Zero client acquisition. Algorithmic distribution based on finding severity and uniqueness.</p>
+          <p><span class="hl">USDC to your Ethereum wallet.</span> Platforms handle everything. Zero invoicing. Zero sales calls. Zero client acquisition. Algorithmic payout based on finding severity and uniqueness.</p>
         </div>
       </div>
     </div>
-    <div class="gap-callout">
+    <div class="gap-callout reveal">
       <h3>The Gap Nobody Has Filled</h3>
       <p>All individual tools exist — MCP servers, Claude Code audit skills, PoC generators, static analysis. <strong>Nobody has connected contest monitoring to auto-analysis to auto-submission.</strong> The orchestration layer is the opportunity.</p>
     </div>
@@ -322,15 +413,15 @@ footer p{font-size:0.75rem;color:var(--text3)}
 
 <!-- MONEY FLOW -->
 <section id="money-flow" style="background:var(--surface)">
-  <div class="container reveal">
-    <div class="section-label">A-to-Z Money Flow</div>
-    <div class="section-title">From Protocol Need to Your Wallet</div>
-    <div class="section-subtitle">Six steps. Four are fully autonomous. Zero sales calls at any step.</div>
-    <div class="flow">
+  <div class="container">
+    <div class="section-label reveal">A-to-Z Money Flow</div>
+    <div class="section-title reveal">From Protocol Need to Your Wallet</div>
+    <div class="section-subtitle reveal">Six steps. Four are fully autonomous. Zero sales calls at any step.</div>
+    <div class="flow reveal">
       <div class="flow-step">
         <div class="flow-num n1">01</div>
         <div class="flow-content">
-          <h4>Protocol Needs Audit <span class="flow-tag you">THEM</span></h4>
+          <h4>Protocol Needs Audit <span class="flow-tag them">THEM</span></h4>
           <p>Protocol raises $10M, allocates 1-5% ($100K-$500K) to security, submits to Code4rena / Sherlock / Cantina, deposits USDC into prize pool.</p>
         </div>
       </div>
@@ -352,13 +443,13 @@ footer p{font-size:0.75rem;color:var(--text3)}
         <div class="flow-num n4">04</div>
         <div class="flow-content">
           <h4>Submission <span class="flow-tag auto">SEMI-AUTO</span></h4>
-          <p>Findings submitted to platform via web form (Playwright) or GitHub PR (Sherlock). Optional 60-second human review before submit.</p>
+          <p>Findings submitted via GitHub PR (Sherlock) or web form (Playwright). Optional 60-second human review before submit.</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num n5">05</div>
         <div class="flow-content">
-          <h4>Judging <span class="flow-tag you">PLATFORM</span></h4>
+          <h4>Judging <span class="flow-tag platform">PLATFORM</span></h4>
           <p>Platform judges validate findings (2-6 weeks). Bot findings separated from human awards on Code4rena.</p>
         </div>
       </div>
@@ -373,265 +464,147 @@ footer p{font-size:0.75rem;color:var(--text3)}
   </div>
 </section>
 
-<!-- PLATFORM MECHANICS -->
+<!-- PLATFORMS -->
 <section id="platforms">
-  <div class="container reveal">
-    <div class="section-label">Platform Mechanics</div>
-    <div class="section-title">Six Platforms, One Pipeline</div>
-    <div class="section-subtitle">Every platform pays USDC. Sherlock is most automatable (pure GitHub API). Combined: 8-16 contests per week.</div>
-    <table class="platform-table">
-      <thead>
-        <tr><th>Platform</th><th>Token</th><th>Chain</th><th>Submission</th><th>KYC</th><th>Payout</th><th>Best Feature</th></tr>
-      </thead>
+  <div class="container">
+    <div class="section-label reveal">Platform Mechanics</div>
+    <div class="section-title reveal">Six Platforms, One Pipeline</div>
+    <div class="section-subtitle reveal">Every platform pays USDC. Sherlock is most automatable (pure GitHub API). Combined: 8-16 contests per week.</div>
+    <div class="reveal">
+    <table class="ptable">
+      <thead><tr><th>Platform</th><th>Token</th><th>Chain</th><th>Submission</th><th>KYC</th><th>Payout</th><th>Best Feature</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Code4rena</td>
-          <td class="usdc">USDC</td>
-          <td><span class="chain-badge">Ethereum</span></td>
-          <td>Web form</td>
-          <td>Tax info</td>
-          <td>2-6 weeks</td>
-          <td>475+ contests, zero platform fees</td>
-        </tr>
-        <tr>
-          <td>Sherlock</td>
-          <td class="usdc">USDC</td>
-          <td><span class="chain-badge">Ethereum</span></td>
-          <td>GitHub PR</td>
-          <td>Payout gate</td>
-          <td>3-6 weeks</td>
-          <td>Most automatable — pure GitHub API</td>
-        </tr>
-        <tr>
-          <td>CodeHawks</td>
-          <td class="usdc">USDC</td>
-          <td><span class="chain-badge">ZKsync</span></td>
-          <td>Web portal</td>
-          <td>Per-contest</td>
-          <td>After judging</td>
-          <td>Weekly First Flights (practice)</td>
-        </tr>
-        <tr>
-          <td>Hats Finance</td>
-          <td class="usdc">USDC</td>
-          <td><span class="chain-badge">Arbitrum</span></td>
-          <td>On-chain tx</td>
-          <td>None</td>
-          <td>17-24 days</td>
-          <td>No KYC, $0.30 gas fee</td>
-        </tr>
-        <tr>
-          <td>Immunefi</td>
-          <td class="usdc">USDC / ETH</td>
-          <td><span class="chain-badge">Ethereum</span></td>
-          <td>Dashboard</td>
-          <td>zkPassport</td>
-          <td>2-8 weeks</td>
-          <td>REST API, 650+ programs, $162M+ rewards</td>
-        </tr>
-        <tr>
-          <td>Cantina</td>
-          <td class="usdc">USDC</td>
-          <td><span class="chain-badge">Ethereum</span></td>
-          <td>Cantina Code</td>
-          <td>Mandatory</td>
-          <td>Within 30 days</td>
-          <td>Fellowship path to $20K/week</td>
-        </tr>
+        <tr><td>Code4rena</td><td class="usdc">USDC</td><td><span class="chain-badge">Ethereum</span></td><td>Web form</td><td>Tax info</td><td>2-6 wks</td><td>475+ contests, zero platform fees</td></tr>
+        <tr><td>Sherlock</td><td class="usdc">USDC</td><td><span class="chain-badge">Ethereum</span></td><td>GitHub PR</td><td>Payout gate</td><td>3-6 wks</td><td>Most automatable — pure GitHub API</td></tr>
+        <tr><td>CodeHawks</td><td class="usdc">USDC</td><td><span class="chain-badge">ZKsync</span></td><td>Web portal</td><td>Per-contest</td><td>After judging</td><td>Weekly First Flights (practice)</td></tr>
+        <tr><td>Hats Finance</td><td class="usdc">USDC</td><td><span class="chain-badge">Arbitrum</span></td><td>On-chain tx</td><td>None</td><td>17-24 days</td><td>No KYC, $0.30 gas fee</td></tr>
+        <tr><td>Immunefi</td><td class="usdc">USDC/ETH</td><td><span class="chain-badge">Ethereum</span></td><td>Dashboard</td><td>zkPassport</td><td>2-8 wks</td><td>REST API, 650+ programs, $162M+</td></tr>
+        <tr><td>Cantina</td><td class="usdc">USDC</td><td><span class="chain-badge">Ethereum</span></td><td>Cantina Code</td><td>Mandatory</td><td>30 days</td><td>Fellowship path to $20K/week</td></tr>
       </tbody>
     </table>
-
-    <div style="margin-top:2rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem">
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:0.5rem">Sherlock Lead Senior Watson</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.5rem;color:var(--gold)">$12,500/week</div>
-        <div style="font-size:0.8rem;color:var(--text2);margin-top:0.25rem">Fixed, guaranteed (top 33% rank)</div>
+    </div>
+    <div class="pay-cards reveal">
+      <div class="pay-card">
+        <div class="pc-label" style="color:var(--gold)">Sherlock Lead Senior Watson</div>
+        <div class="pc-val" style="color:var(--gold)">$12,500<span style="font-size:0.6em;opacity:0.6">/week</span></div>
+        <div class="pc-sub">Fixed, guaranteed pay (top 33% rank)</div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem">
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--purple);margin-bottom:0.5rem">Cantina/Spearbit LSR</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.5rem;color:var(--purple)">$20,000/week</div>
-        <div style="font-size:0.8rem;color:var(--text2);margin-top:0.25rem">Lead Security Researcher rate</div>
+      <div class="pay-card">
+        <div class="pc-label" style="color:var(--purple)">Cantina/Spearbit LSR</div>
+        <div class="pc-val" style="color:var(--purple)">$20,000<span style="font-size:0.6em;opacity:0.6">/week</span></div>
+        <div class="pc-sub">Lead Security Researcher fellowship rate</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- THE PIPELINE -->
+<!-- PIPELINE -->
 <section id="pipeline" style="background:var(--surface)">
-  <div class="container reveal">
-    <div class="section-label">7-Layer Architecture</div>
-    <div class="section-title">The Fully Autonomous Pipeline</div>
-    <div class="section-subtitle">From contest detection to payment collection. 95% autonomous. 30-60 min human time per contest.</div>
+  <div class="container">
+    <div class="section-label reveal">7-Layer Architecture</div>
+    <div class="section-title reveal">The Fully Autonomous Pipeline</div>
+    <div class="section-subtitle reveal">From contest detection to payment collection. 95% autonomous. 30-60 min human time per contest.</div>
 
-    <div class="layers">
+    <div class="layers reveal">
       <div class="layer">
+        <div class="layer-dot"></div>
         <div class="layer-head">
           <span class="layer-badge l1">L1</span>
           <h3>Contest Discovery</h3>
           <span class="layer-cost">$0/mo</span>
-          <span class="layer-auto full">100% AUTO</span>
+          <span class="layer-auto full">100% Auto</span>
         </div>
-        <div class="layer-body">24/7 daemon monitoring all platforms. Daily Warden emails, Solodit aggregator, GitHub org watchers, Immunefi REST API, Hats on-chain events. Auto-detects contests, queues them in Redis by priority (pool size / nSLOC), clones repos, extracts scope files.</div>
-        <div class="layer-tools">
-          <span class="layer-tool">Daily Warden</span>
-          <span class="layer-tool">Solodit</span>
-          <span class="layer-tool">GitHub API</span>
-          <span class="layer-tool">Immunefi API</span>
-          <span class="layer-tool">ethers.js</span>
-          <span class="layer-tool">Redis</span>
-        </div>
+        <div class="layer-body">24/7 daemon monitoring all platforms. Daily Warden emails, Solodit aggregator, GitHub org watchers, Immunefi REST API, Hats on-chain events. Auto-detects contests, queues in Redis by priority (pool size / nSLOC), clones repos, extracts scope files.</div>
+        <div class="layer-tools"><span class="layer-tool">Daily Warden</span><span class="layer-tool">Solodit</span><span class="layer-tool">GitHub API</span><span class="layer-tool">Immunefi API</span><span class="layer-tool">ethers.js</span><span class="layer-tool">Redis</span></div>
       </div>
-      <div class="layer-connector">&#x25BC;</div>
       <div class="layer">
+        <div class="layer-dot"></div>
         <div class="layer-head">
           <span class="layer-badge l2">L2</span>
           <h3>Static Analysis</h3>
           <span class="layer-cost">$0/mo</span>
-          <span class="layer-auto full">100% AUTO</span>
+          <span class="layer-auto full">100% Auto</span>
         </div>
-        <div class="layer-body">Local execution, zero API cost. Run Slither (90+ detectors), Aderyn (Rust-based, fast), Mythril (symbolic execution). Output: JSON findings, AST parse, call graphs, metrics. Pre-filter obvious false positives via Qwen 2.5 Coder 14B locally (Ollama).</div>
-        <div class="layer-tools">
-          <span class="layer-tool">Slither</span>
-          <span class="layer-tool">Aderyn</span>
-          <span class="layer-tool">Mythril</span>
-          <span class="layer-tool">Slither MCP</span>
-          <span class="layer-tool">Aderyn MCP</span>
-          <span class="layer-tool">Ollama / Qwen</span>
-        </div>
+        <div class="layer-body">Local execution, zero API cost. Run Slither (90+ detectors), Aderyn (Rust-based, fast), Mythril (symbolic execution). Output: JSON findings, AST parse, call graphs, metrics. Pre-filter false positives via Qwen 2.5 Coder 14B locally (Ollama).</div>
+        <div class="layer-tools"><span class="layer-tool">Slither</span><span class="layer-tool">Aderyn</span><span class="layer-tool">Mythril</span><span class="layer-tool">Slither MCP</span><span class="layer-tool">Aderyn MCP</span><span class="layer-tool">Ollama/Qwen</span></div>
       </div>
-      <div class="layer-connector">&#x25BC;</div>
       <div class="layer">
+        <div class="layer-dot"></div>
         <div class="layer-head">
           <span class="layer-badge l3">L3</span>
           <h3>DeepSeek Multi-Agent Analysis</h3>
           <span class="layer-cost">~$0.18/contest</span>
-          <span class="layer-auto full">100% AUTO</span>
+          <span class="layer-auto full">100% Auto</span>
         </div>
-        <div class="layer-body">5 specialized agents via LiteLLM Router. Agent 1: function-by-function review. Agent 2: cross-contract interactions. Agent 3: known vulnerability patterns. Agent 4: economic/game theory (DeepSeek R1). Agent 5: access control & permissions. Output: raw findings (70-85% false positive rate).</div>
-        <div class="layer-tools">
-          <span class="layer-tool">DeepSeek V4 Flash</span>
-          <span class="layer-tool">DeepSeek R1</span>
-          <span class="layer-tool">LiteLLM Router</span>
-          <span class="layer-tool">Redis Cache</span>
-          <span class="layer-tool">SQLite DB</span>
-        </div>
+        <div class="layer-body">5 specialized agents via LiteLLM Router. Function-by-function review, cross-contract interactions, known vulnerability patterns, economic/game theory (DeepSeek R1), access control & permissions. Output: raw findings (70-85% false positive rate).</div>
+        <div class="layer-tools"><span class="layer-tool">DeepSeek V4 Flash</span><span class="layer-tool">DeepSeek R1</span><span class="layer-tool">LiteLLM</span><span class="layer-tool">Redis Cache</span><span class="layer-tool">SQLite</span></div>
       </div>
-      <div class="layer-connector">&#x25BC;</div>
       <div class="layer">
+        <div class="layer-dot"></div>
         <div class="layer-head">
           <span class="layer-badge l4">L4</span>
           <h3>Synthesis + PoC Generation</h3>
           <span class="layer-cost">~$0.48/contest</span>
-          <span class="layer-auto partial">90% AUTO</span>
+          <span class="layer-auto partial">90% Auto</span>
         </div>
-        <div class="layer-body">Claude Sonnet deduplicates across agents, filters false positives (85% &#x2192; 30%), generates Foundry PoC tests, runs <code>forge test</code> to validate. Classifies severity (Critical/High/Medium/Low/QA). Formats platform-specific report templates.</div>
-        <div class="layer-tools">
-          <span class="layer-tool">Claude Sonnet (Batch)</span>
-          <span class="layer-tool">Foundry</span>
-          <span class="layer-tool">forge test</span>
-          <span class="layer-tool">Trail of Bits Skills</span>
-          <span class="layer-tool">SmartGuard</span>
-        </div>
+        <div class="layer-body">Claude Sonnet deduplicates across agents, filters false positives (85% &#x2192; 30%), generates Foundry PoC tests, runs forge test to validate. Classifies severity (Critical/High/Medium/Low/QA). Formats platform-specific report templates.</div>
+        <div class="layer-tools"><span class="layer-tool">Claude Sonnet</span><span class="layer-tool">Foundry</span><span class="layer-tool">forge test</span><span class="layer-tool">Trail of Bits Skills</span><span class="layer-tool">SmartGuard</span></div>
       </div>
-      <div class="layer-connector">&#x25BC;</div>
       <div class="layer">
+        <div class="layer-dot"></div>
         <div class="layer-head">
           <span class="layer-badge l5">L5</span>
           <h3>Submission Automator</h3>
           <span class="layer-cost">~$0/contest</span>
-          <span class="layer-auto partial">80% AUTO</span>
+          <span class="layer-auto partial">80% Auto</span>
         </div>
-        <div class="layer-body">Sherlock: GitHub API &#x2192; private repo issues (fully automatable). Code4rena: Playwright &#x2192; web form. Hats: ethers.js &#x2192; Arbitrum on-chain tx ($0.30). Immunefi: Playwright &#x2192; web dashboard. Optional human-in-loop: 60-second review queue before submit.</div>
-        <div class="layer-tools">
-          <span class="layer-tool">GitHub API</span>
-          <span class="layer-tool">Playwright</span>
-          <span class="layer-tool">ethers.js</span>
-          <span class="layer-tool">Telegram Bot</span>
-        </div>
+        <div class="layer-body">Sherlock: GitHub API &#x2192; private repo issues (fully automatable). Code4rena: Playwright &#x2192; web form. Hats: ethers.js &#x2192; Arbitrum on-chain tx ($0.30). Immunefi: Playwright &#x2192; web dashboard. Optional: 60-second human review queue before submit.</div>
+        <div class="layer-tools"><span class="layer-tool">GitHub API</span><span class="layer-tool">Playwright</span><span class="layer-tool">ethers.js</span><span class="layer-tool">Telegram Bot</span></div>
       </div>
-      <div class="layer-connector">&#x25BC;</div>
       <div class="layer">
+        <div class="layer-dot"></div>
         <div class="layer-head">
           <span class="layer-badge l6">L6</span>
           <h3>Payment + Feedback Loop</h3>
           <span class="layer-cost">$0/mo</span>
-          <span class="layer-auto full">100% AUTO</span>
+          <span class="layer-auto full">100% Auto</span>
         </div>
-        <div class="layer-body">Wallet monitor (ethers.js) detects USDC inflows. Tracks earnings per platform per contest. Scrapes judging results, compares submitted vs accepted findings. Auto-tunes agent prompts based on what was missed. Updates vulnerability pattern database. Real-time revenue dashboard.</div>
-        <div class="layer-tools">
-          <span class="layer-tool">ethers.js</span>
-          <span class="layer-tool">SQLite</span>
-          <span class="layer-tool">Prompt Tuning</span>
-          <span class="layer-tool">Revenue Dashboard</span>
-        </div>
+        <div class="layer-body">Wallet monitor detects USDC inflows. Tracks earnings per platform per contest. Scrapes judging results, compares submitted vs accepted findings. Auto-tunes agent prompts. Updates vulnerability pattern database. Real-time revenue dashboard.</div>
+        <div class="layer-tools"><span class="layer-tool">ethers.js</span><span class="layer-tool">SQLite</span><span class="layer-tool">Prompt Tuning</span><span class="layer-tool">Dashboard</span></div>
       </div>
-      <div class="layer-connector">&#x25BC;</div>
       <div class="layer">
+        <div class="layer-dot"></div>
         <div class="layer-head">
           <span class="layer-badge l7">L7</span>
           <h3>Content Flywheel</h3>
           <span class="layer-cost">$30-50/mo</span>
-          <span class="layer-auto partial">90% AUTO</span>
+          <span class="layer-auto partial">90% Auto</span>
         </div>
-        <div class="layer-body">Parallel daemon. Forta Network exploit alerts &#x2192; AI root cause analysis &#x2192; auto-draft Twitter threads &#x2192; X API auto-post. DeFiLlama Hacks API for new exploits. Builds reputation &#x2192; private audit inbound. Cost: $30-50/month. The work IS the marketing.</div>
-        <div class="layer-tools">
-          <span class="layer-tool">Forta Network</span>
-          <span class="layer-tool">DeFiLlama API</span>
-          <span class="layer-tool">X API</span>
-          <span class="layer-tool">DeepSeek V4</span>
-        </div>
+        <div class="layer-body">Parallel daemon. Forta Network exploit alerts &#x2192; AI root cause analysis &#x2192; auto-draft Twitter threads &#x2192; X API auto-post. DeFiLlama Hacks API for new exploits. Builds reputation &#x2192; private audit inbound. The work IS the marketing.</div>
+        <div class="layer-tools"><span class="layer-tool">Forta Network</span><span class="layer-tool">DeFiLlama API</span><span class="layer-tool">X API</span><span class="layer-tool">DeepSeek V4</span></div>
       </div>
     </div>
 
-    <!-- AUTONOMY GRID -->
-    <div class="auto-grid">
-      <div class="auto-cell">
-        <div class="layer-name">Discovery</div>
-        <div class="pct full">100%</div>
-        <div class="auto-bar"><div class="auto-bar-fill" style="width:100%;background:var(--green)"></div></div>
-      </div>
-      <div class="auto-cell">
-        <div class="layer-name">Static</div>
-        <div class="pct full">100%</div>
-        <div class="auto-bar"><div class="auto-bar-fill" style="width:100%;background:var(--green)"></div></div>
-      </div>
-      <div class="auto-cell">
-        <div class="layer-name">DeepSeek</div>
-        <div class="pct full">100%</div>
-        <div class="auto-bar"><div class="auto-bar-fill" style="width:100%;background:var(--green)"></div></div>
-      </div>
-      <div class="auto-cell">
-        <div class="layer-name">Synthesis</div>
-        <div class="pct high">90%</div>
-        <div class="auto-bar"><div class="auto-bar-fill" style="width:90%;background:var(--blue)"></div></div>
-      </div>
-      <div class="auto-cell">
-        <div class="layer-name">Submit</div>
-        <div class="pct mid">80%</div>
-        <div class="auto-bar"><div class="auto-bar-fill" style="width:80%;background:var(--orange)"></div></div>
-      </div>
-      <div class="auto-cell">
-        <div class="layer-name">Payment</div>
-        <div class="pct full">100%</div>
-        <div class="auto-bar"><div class="auto-bar-fill" style="width:100%;background:var(--green)"></div></div>
-      </div>
-      <div class="auto-cell">
-        <div class="layer-name">Content</div>
-        <div class="pct high">90%</div>
-        <div class="auto-bar"><div class="auto-bar-fill" style="width:90%;background:var(--blue)"></div></div>
-      </div>
+    <div class="auto-grid reveal">
+      <div class="auto-cell"><div class="layer-name">Discovery</div><div class="pct full">100%</div><div class="auto-bar"><div class="auto-bar-fill" data-width="100" style="background:var(--green)"></div></div></div>
+      <div class="auto-cell"><div class="layer-name">Static</div><div class="pct full">100%</div><div class="auto-bar"><div class="auto-bar-fill" data-width="100" style="background:var(--green)"></div></div></div>
+      <div class="auto-cell"><div class="layer-name">DeepSeek</div><div class="pct full">100%</div><div class="auto-bar"><div class="auto-bar-fill" data-width="100" style="background:var(--green)"></div></div></div>
+      <div class="auto-cell"><div class="layer-name">Synthesis</div><div class="pct high">90%</div><div class="auto-bar"><div class="auto-bar-fill" data-width="90" style="background:var(--blue)"></div></div></div>
+      <div class="auto-cell"><div class="layer-name">Submit</div><div class="pct mid">80%</div><div class="auto-bar"><div class="auto-bar-fill" data-width="80" style="background:var(--orange)"></div></div></div>
+      <div class="auto-cell"><div class="layer-name">Payment</div><div class="pct full">100%</div><div class="auto-bar"><div class="auto-bar-fill" data-width="100" style="background:var(--green)"></div></div></div>
+      <div class="auto-cell"><div class="layer-name">Content</div><div class="pct high">90%</div><div class="auto-bar"><div class="auto-bar-fill" data-width="90" style="background:var(--blue)"></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- WHAT EXISTS vs WHAT TO BUILD -->
+<!-- BUILD vs INTEGRATE -->
 <section id="build">
-  <div class="container reveal">
-    <div class="section-label">Build vs. Integrate</div>
-    <div class="section-title">What Exists vs. What You Build</div>
-    <div class="section-subtitle">The pieces are all there. You build the orchestration layer that connects them.</div>
+  <div class="container">
+    <div class="section-label reveal">Build vs. Integrate</div>
+    <div class="section-title reveal">What Exists vs. What You Build</div>
+    <div class="section-subtitle reveal">The pieces are all there. You build the orchestration layer that connects them.</div>
     <div class="two-col">
-      <div class="col-card exists">
+      <div class="col-card exists reveal">
         <h3>Already Built <span class="tag">USE THESE</span></h3>
         <div class="tool-row"><span class="tool-name">Slither MCP</span><span class="tool-src">Trail of Bits</span></div>
         <div class="tool-row"><span class="tool-name">Aderyn MCP</span><span class="tool-src">Cyfrin</span></div>
@@ -646,11 +619,11 @@ footer p{font-size:0.75rem;color:var(--text3)}
         <div class="tool-row"><span class="tool-name">LiteLLM Router</span><span class="tool-src">Open Source</span></div>
         <div class="tool-row"><span class="tool-name">Foundry / Forge</span><span class="tool-src">Paradigm</span></div>
       </div>
-      <div class="col-card build">
-        <h3>You Build <span class="tag">ORCHESTRATION LAYER</span></h3>
+      <div class="col-card build reveal reveal-delay-1">
+        <h3>You Build <span class="tag">ORCHESTRATION</span></h3>
         <div class="tool-row"><span class="tool-name">Contest Monitor Daemon</span><span class="tool-src">Scrape/poll all platforms</span></div>
         <div class="tool-row"><span class="tool-name">Auto-Cloner</span><span class="tool-src">Clone repos, extract scope</span></div>
-        <div class="tool-row"><span class="tool-name">Pipeline Orchestrator</span><span class="tool-src">Connect all layers end-to-end</span></div>
+        <div class="tool-row"><span class="tool-name">Pipeline Orchestrator</span><span class="tool-src">Connect all layers E2E</span></div>
         <div class="tool-row"><span class="tool-name">Submission Automator</span><span class="tool-src">Playwright per platform</span></div>
         <div class="tool-row"><span class="tool-name">Feedback Learner</span><span class="tool-src">Scrape results, tune prompts</span></div>
         <div class="tool-row"><span class="tool-name">Revenue Dashboard</span><span class="tool-src">Track earnings, compute ROI</span></div>
@@ -661,230 +634,193 @@ footer p{font-size:0.75rem;color:var(--text3)}
 
 <!-- DEMAND -->
 <section id="demand" style="background:var(--surface)">
-  <div class="container reveal">
-    <div class="section-label">Market Demand</div>
-    <div class="section-title">Why the Money Won't Stop</div>
-    <div class="section-subtitle">Structural forces creating mandatory, recurring demand for smart contract audits.</div>
+  <div class="container">
+    <div class="section-label reveal">Market Demand</div>
+    <div class="section-title reveal">Why the Money Won't Stop</div>
+    <div class="section-subtitle reveal">Structural forces creating mandatory, recurring demand for smart contract audits.</div>
     <div class="force-grid">
-      <div class="force-card">
-        <div class="force-num" style="color:var(--red)">$3.4B</div>
-        <h4>Stolen in 2025</h4>
-        <p>Getting worse, not better. Q1 2025 was worst quarter ever ($1.64B). Every hack creates more demand for audits.</p>
-      </div>
-      <div class="force-card">
-        <div class="force-num" style="color:var(--purple)">MiCA</div>
-        <h4>Legally Required (July 2026)</h4>
-        <p>EU regulation makes smart contract security assessments legally mandatory for any entity serving EU clients.</p>
-      </div>
-      <div class="force-card">
-        <div class="force-num" style="color:var(--blue)">8.7M</div>
-        <h4>Contracts Deployed Q4 2025</h4>
-        <p>Ethereum alone. Record. 500K+ per month. Each one is a potential audit client. Supply deficit: 2-3 month backlogs at top firms.</p>
-      </div>
-      <div class="force-card">
-        <div class="force-num" style="color:var(--gold)">100%</div>
-        <h4>Exchange Listings Require Audits</h4>
-        <p>Binance, Coinbase, all Tier-1 exchanges mandate pre-listing audits. Nexus Mutual and InsurAce require them for coverage.</p>
-      </div>
-      <div class="force-card">
-        <div class="force-num" style="color:var(--green)">650+</div>
-        <h4>Active Immunefi Programs</h4>
-        <p>$162M+ available rewards. Largest: Usual ($16M), Uniswap v4 ($15.5M), LayerZero ($15M), Wormhole ($10M).</p>
-      </div>
-      <div class="force-card">
-        <div class="force-num" style="color:var(--orange)">94%</div>
-        <h4>Programs With Criticals</h4>
-        <p>94% of long-running Immunefi programs surfaced at least one critical. Bug bounties are proven insurance.</p>
-      </div>
+      <div class="force-card reveal"><div class="force-num" style="color:var(--red)">$3.4B</div><h4>Stolen in 2025</h4><p>Getting worse, not better. Q1 2025 was worst quarter ever ($1.64B). Every hack creates more audit demand.</p></div>
+      <div class="force-card reveal reveal-delay-1"><div class="force-num" style="color:var(--purple)">MiCA</div><h4>Legally Required (July 2026)</h4><p>EU regulation makes smart contract security assessments legally mandatory for any entity serving EU clients.</p></div>
+      <div class="force-card reveal reveal-delay-2"><div class="force-num" style="color:var(--blue)">8.7M</div><h4>Contracts Deployed Q4 2025</h4><p>Ethereum alone. Record. 500K+ per month. Supply deficit: 2-3 month backlogs at top firms.</p></div>
+      <div class="force-card reveal"><div class="force-num" style="color:var(--gold)">100%</div><h4>Exchanges Require Audits</h4><p>Binance, Coinbase, all Tier-1 exchanges mandate pre-listing audits. Insurance requires them for coverage.</p></div>
+      <div class="force-card reveal reveal-delay-1"><div class="force-num" style="color:var(--green)">650+</div><h4>Active Immunefi Programs</h4><p>$162M+ available rewards. Largest: Usual ($16M), Uniswap v4 ($15.5M), LayerZero ($15M), Wormhole ($10M).</p></div>
+      <div class="force-card reveal reveal-delay-2"><div class="force-num" style="color:var(--orange)">94%</div><h4>Programs With Criticals</h4><p>94% of long-running Immunefi programs surfaced at least one critical. Bug bounties are proven insurance.</p></div>
     </div>
-
-    <div class="volume-grid">
+    <div class="volume-grid reveal">
       <div class="volume-cell"><div class="platform">Code4rena</div><div class="freq">4-6/week</div><div class="pool">$22K-$500K pools</div></div>
       <div class="volume-cell"><div class="platform">Sherlock</div><div class="freq">2-4/week</div><div class="pool">$41K-$2M pools</div></div>
       <div class="volume-cell"><div class="platform">CodeHawks</div><div class="freq">Weekly</div><div class="pool">Growing pools</div></div>
       <div class="volume-cell"><div class="platform">Cantina</div><div class="freq">1-3/week</div><div class="pool">Variable pools</div></div>
       <div class="volume-cell"><div class="platform">Hats Finance</div><div class="freq">1-2/week</div><div class="pool">Token-based</div></div>
-      <div class="volume-cell" style="background:rgba(0,230,176,0.04)"><div class="platform" style="color:var(--green)">Combined</div><div class="freq" style="color:var(--green);font-size:1.4rem">8-16/week</div><div class="pool" style="color:var(--green)">3-8 running simultaneously</div></div>
+      <div class="volume-cell highlight-cell"><div class="platform" style="color:var(--green)">Combined</div><div class="freq" style="color:var(--green);font-size:1.4rem">8-16/week</div><div class="pool" style="color:var(--green)">3-8 running simultaneously</div></div>
     </div>
   </div>
 </section>
 
-<!-- AI VALIDATION -->
+<!-- VALIDATION -->
 <section id="validation">
-  <div class="container reveal">
-    <div class="section-label">Validation Evidence</div>
-    <div class="section-title">AI Audit Actually Works</div>
-    <div class="section-subtitle">Production data from Anthropic, Nethermind, and academic research confirms viability.</div>
-    <div class="validation-cards">
-      <div class="val-card c1">
-        <div class="src">Anthropic Research (2026)</div>
-        <div class="big-num" style="color:var(--purple)">$4.6M</div>
-        <p>In exploits found by Claude/GPT-5 across contracts exploited after model knowledge cutoffs. 51% exploit rate on SCONE-bench. Found 2 novel zero-day vulnerabilities in 2,849 deployed contracts.</p>
-      </div>
-      <div class="val-card c2">
-        <div class="src">Nethermind AuditAgent</div>
-        <div class="big-num" style="color:var(--green)">42%</div>
-        <p>Of Critical findings also identified by their tool. 43% of High findings. 62% of audited projects had valid issues detected. Production GitHub Action + REST API.</p>
-      </div>
-      <div class="val-card c3">
-        <div class="src">LLM-SmartAudit (Research)</div>
-        <div class="big-num" style="color:var(--blue)">74%</div>
-        <p>Recall rate vs Slither's 46% on Code4rena data. Multi-agent approach: Project Manager + Auditor + Solidity Expert. 6,454 contracts across 102 projects.</p>
-      </div>
-      <div class="val-card c4">
-        <div class="src">DeepSeek Cost Advantage</div>
-        <div class="big-num" style="color:var(--gold)">214x</div>
-        <p>Cheaper than Claude Sonnet. V4 Flash: $0.014/M cached input. Full contest analysis: $0.18-$0.66. $1,000 = ~800 contest entries worth of compute.</p>
-      </div>
+  <div class="container">
+    <div class="section-label reveal">Validation Evidence</div>
+    <div class="section-title reveal">AI Audit Actually Works</div>
+    <div class="section-subtitle reveal">Production data from Anthropic, Nethermind, and academic research.</div>
+    <div class="val-cards">
+      <div class="val-card reveal"><div class="src">Anthropic (2026)</div><div class="big-num" style="color:var(--purple)">$4.6M</div><p>In exploits found by Claude/GPT-5 across contracts exploited after model knowledge cutoffs. 51% exploit rate on SCONE-bench. 2 novel zero-days found.</p></div>
+      <div class="val-card reveal reveal-delay-1"><div class="src">Nethermind Agent</div><div class="big-num" style="color:var(--green)">42%</div><p>Of Critical findings also identified. 43% of Highs. 62% of audited projects had valid issues detected. Production GitHub Action.</p></div>
+      <div class="val-card reveal reveal-delay-2"><div class="src">LLM-SmartAudit</div><div class="big-num" style="color:var(--blue)">74%</div><p>Recall rate vs Slither's 46% on Code4rena data. Multi-agent approach across 6,454 contracts and 102 projects.</p></div>
+      <div class="val-card reveal reveal-delay-3"><div class="src">DeepSeek Cost Edge</div><div class="big-num" style="color:var(--gold)">214x</div><p>Cheaper than Claude Sonnet. V4 Flash: $0.014/M cached. $1,000 credits = ~800 contest entries of compute power.</p></div>
     </div>
   </div>
 </section>
 
 <!-- P&L -->
 <section id="pnl" style="background:var(--surface)">
-  <div class="container reveal">
-    <div class="section-label">Financial Model</div>
-    <div class="section-title">Monthly P&L at Scale</div>
-    <div class="section-subtitle">Breakeven: 1 medium finding per month ($500-$3,000). Everything beyond is profit.</div>
-    <div class="pnl-container">
-      <div class="pnl-card">
+  <div class="container">
+    <div class="section-label reveal">Financial Model</div>
+    <div class="section-title reveal">Monthly P&L at Scale</div>
+    <div class="section-subtitle reveal">Breakeven: 1 medium finding per month ($500-$3,000). Everything beyond is profit.</div>
+    <div class="pnl-grid">
+      <div class="pnl-card reveal">
         <h3 style="color:var(--pink)">Monthly Costs</h3>
-        <div class="pnl-row"><span class="item">DeepSeek V4 Flash (70% tasks)</span><span class="amount cost">$27</span></div>
-        <div class="pnl-row"><span class="item">DeepSeek R1 (20% tasks)</span><span class="amount cost">$85</span></div>
-        <div class="pnl-row"><span class="item">Claude Sonnet Batch (10% tasks)</span><span class="amount cost">$145</span></div>
-        <div class="pnl-row"><span class="item">Redis (caching)</span><span class="amount cost">$10</span></div>
-        <div class="pnl-row"><span class="item">VPS (orchestration)</span><span class="amount cost">$20</span></div>
-        <div class="pnl-row"><span class="item">X API (content flywheel)</span><span class="amount cost">$30</span></div>
-        <div class="pnl-row"><span class="item">Ollama local (electricity)</span><span class="amount cost">$15</span></div>
-        <div class="pnl-total"><span>Total Monthly</span><span class="amount cost" style="font-size:1.2rem">$332</span></div>
+        <div class="pnl-row"><span class="item">DeepSeek V4 Flash (70%)</span><span class="amt" style="color:var(--pink)">$27</span></div>
+        <div class="pnl-row"><span class="item">DeepSeek R1 (20%)</span><span class="amt" style="color:var(--pink)">$85</span></div>
+        <div class="pnl-row"><span class="item">Claude Sonnet Batch (10%)</span><span class="amt" style="color:var(--pink)">$145</span></div>
+        <div class="pnl-row"><span class="item">Redis (caching)</span><span class="amt" style="color:var(--pink)">$10</span></div>
+        <div class="pnl-row"><span class="item">VPS (orchestration)</span><span class="amt" style="color:var(--pink)">$20</span></div>
+        <div class="pnl-row"><span class="item">X API (content flywheel)</span><span class="amt" style="color:var(--pink)">$30</span></div>
+        <div class="pnl-row"><span class="item">Ollama local (electricity)</span><span class="amt" style="color:var(--pink)">$15</span></div>
+        <div class="pnl-total"><span>Total Monthly</span><span class="amt" style="color:var(--pink);font-size:1.2rem">$332</span></div>
       </div>
-      <div class="pnl-card">
+      <div class="pnl-card reveal reveal-delay-1">
         <h3 style="color:var(--green)">Cost Per Contest</h3>
-        <div class="pnl-row"><span class="item">Layer 2: Static Analysis</span><span class="amount" style="color:var(--green)">$0.00</span></div>
-        <div class="pnl-row"><span class="item">Layer 3: DeepSeek 5-Agent</span><span class="amount" style="color:var(--green)">$0.18</span></div>
-        <div class="pnl-row"><span class="item">Layer 4: Claude Synthesis</span><span class="amount" style="color:var(--green)">$0.48</span></div>
-        <div class="pnl-row"><span class="item">Layer 5: Submission</span><span class="amount" style="color:var(--green)">$0.00</span></div>
-        <div class="pnl-row"><span class="item">3-Layer Caching (70-85% savings)</span><span class="amount" style="color:var(--green)">-$0.40</span></div>
-        <div class="pnl-total"><span>Per Contest (cached)</span><span class="amount" style="color:var(--green);font-size:1.2rem">$0.26</span></div>
+        <div class="pnl-row"><span class="item">L2: Static Analysis</span><span class="amt" style="color:var(--green)">$0.00</span></div>
+        <div class="pnl-row"><span class="item">L3: DeepSeek 5-Agent</span><span class="amt" style="color:var(--green)">$0.18</span></div>
+        <div class="pnl-row"><span class="item">L4: Claude Synthesis</span><span class="amt" style="color:var(--green)">$0.48</span></div>
+        <div class="pnl-row"><span class="item">L5: Submission</span><span class="amt" style="color:var(--green)">$0.00</span></div>
+        <div class="pnl-row"><span class="item">3-Layer Caching (70-85%)</span><span class="amt" style="color:var(--green)">-$0.40</span></div>
+        <div class="pnl-total"><span>Per Contest (cached)</span><span class="amt" style="color:var(--green);font-size:1.2rem">$0.26</span></div>
       </div>
     </div>
-
-    <div class="scenario-grid">
-      <div class="scenario">
-        <div class="sc-name">Bootstrapping</div>
-        <div class="sc-rev">$500-$2K</div>
-        <div class="sc-roi">ROI: 50-500%</div>
-      </div>
-      <div class="scenario">
-        <div class="sc-name">Growth</div>
-        <div class="sc-rev">$4.5K-$10K</div>
-        <div class="sc-roi">ROI: 1,200-2,900%</div>
-      </div>
-      <div class="scenario">
-        <div class="sc-name">Strong</div>
-        <div class="sc-rev">$18K-$45K</div>
-        <div class="sc-roi">ROI: 5,300-13,400%</div>
-      </div>
-      <div class="scenario">
-        <div class="sc-name">+ Immunefi Critical</div>
-        <div class="sc-rev">$10K-$100K+</div>
-        <div class="sc-roi">Life-changing</div>
-      </div>
+    <div class="scenario-grid reveal">
+      <div class="scenario"><div class="sc-name" style="color:var(--text3)">Bootstrapping</div><div class="sc-rev">$500-$2K</div><div class="sc-roi">ROI: 50-500%</div></div>
+      <div class="scenario"><div class="sc-name" style="color:var(--blue)">Growth</div><div class="sc-rev" style="color:var(--blue)">$4.5K-$10K</div><div class="sc-roi">ROI: 1,200-2,900%</div></div>
+      <div class="scenario"><div class="sc-name" style="color:var(--green)">Strong</div><div class="sc-rev" style="color:var(--green)">$18K-$45K</div><div class="sc-roi">ROI: 5,300-13,400%</div></div>
+      <div class="scenario"><div class="sc-name" style="color:var(--gold)">+ Immunefi Critical</div><div class="sc-rev" style="color:var(--gold)">$10K-$100K+</div><div class="sc-roi">Life-changing</div></div>
     </div>
   </div>
 </section>
 
 <!-- FLYWHEEL -->
 <section id="flywheel">
-  <div class="container reveal">
-    <div class="section-label">Compound Effect</div>
-    <div class="section-title">The Compound Flywheel</div>
-    <div class="section-subtitle">Each contest is simultaneously revenue, marketing, education, portfolio, and networking. The work IS the distribution.</div>
-    <div class="flywheel">
-      <div class="flywheel-step" style="border-radius:var(--radius) var(--radius) 0 0">
-        <div class="fw-icon">&#x1f3af;</div>
-        <div class="fw-text">Enter <strong>every contest</strong> on <strong>every platform</strong> — <span style="color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:700">$1-5 compute/contest</span></div>
-      </div>
-      <div class="fw-arrow">&#x25BC;</div>
-      <div class="flywheel-step">
-        <div class="fw-icon">&#x1f41b;</div>
-        <div class="fw-text">Find bugs &#x2192; Submit findings &#x2192; <strong>Earn USDC</strong></div>
-      </div>
-      <div class="fw-arrow">&#x25BC;</div>
-      <div class="flywheel-step">
-        <div class="fw-icon">&#x1f4c8;</div>
-        <div class="fw-text"><strong>Leaderboard rank rises</strong> automatically across all platforms</div>
-      </div>
-      <div class="fw-arrow">&#x25BC;</div>
-      <div class="flywheel-step">
-        <div class="fw-icon">&#x1f4e3;</div>
-        <div class="fw-text"><strong>Twitter content</strong> from findings — automated via Layer 7 — <span style="color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:700">$30-50/mo</span></div>
-      </div>
-      <div class="fw-arrow">&#x25BC;</div>
-      <div class="flywheel-step">
-        <div class="fw-icon">&#x2b50;</div>
-        <div class="fw-text"><strong>Reputation compounds</strong> — protocols start DMing you for private audits</div>
-      </div>
-      <div class="fw-arrow">&#x25BC;</div>
-      <div class="flywheel-step">
-        <div class="fw-icon">&#x1f4b0;</div>
-        <div class="fw-text"><strong>Private audit inbound:</strong> $300-$500/hr vs diluted contest pools</div>
-      </div>
-      <div class="fw-arrow">&#x25BC;</div>
-      <div class="flywheel-step">
-        <div class="fw-icon">&#x1f451;</div>
-        <div class="fw-text"><strong>Cantina/Spearbit fellowship</strong> — <span style="color:var(--gold);font-family:'JetBrains Mono',monospace;font-weight:700">$12.5K-$20K/week</span></div>
-      </div>
+  <div class="container">
+    <div class="section-label reveal">Compound Effect</div>
+    <div class="section-title reveal">The Compound Flywheel</div>
+    <div class="section-subtitle reveal">Each contest is simultaneously revenue, marketing, education, portfolio, and networking. The work IS the distribution.</div>
+    <div class="flywheel-wrap reveal">
+      <div class="fw-step" style="border-radius:var(--radius) var(--radius) 0 0"><div class="fw-icon">&#x1f3af;</div><div class="fw-text">Enter <strong>every contest</strong> on <strong>every platform</strong> &#x2014; <span class="mono">$1-5 compute/contest</span></div></div>
+      <div class="fw-arr">&#x25BC;</div>
+      <div class="fw-step"><div class="fw-icon">&#x1f41b;</div><div class="fw-text">Find bugs &#x2192; Submit findings &#x2192; <strong>Earn USDC</strong></div></div>
+      <div class="fw-arr">&#x25BC;</div>
+      <div class="fw-step"><div class="fw-icon">&#x1f4c8;</div><div class="fw-text"><strong>Leaderboard rank rises</strong> automatically across all platforms</div></div>
+      <div class="fw-arr">&#x25BC;</div>
+      <div class="fw-step"><div class="fw-icon">&#x1f4e3;</div><div class="fw-text"><strong>Twitter content</strong> from findings &#x2014; automated via Layer 7 &#x2014; <span class="mono">$30-50/mo</span></div></div>
+      <div class="fw-arr">&#x25BC;</div>
+      <div class="fw-step"><div class="fw-icon">&#x2b50;</div><div class="fw-text"><strong>Reputation compounds</strong> &#x2014; protocols start DMing you for private audits</div></div>
+      <div class="fw-arr">&#x25BC;</div>
+      <div class="fw-step"><div class="fw-icon">&#x1f4b0;</div><div class="fw-text"><strong>Private audit inbound:</strong> $300-$500/hr vs diluted contest pools</div></div>
+      <div class="fw-arr">&#x25BC;</div>
+      <div class="fw-step"><div class="fw-icon">&#x1f451;</div><div class="fw-text"><strong>Cantina/Spearbit fellowship</strong> &#x2014; <span class="mono" style="color:var(--gold)">$12.5K-$20K/week</span></div></div>
       <div class="fw-loop">&#x21BA; EACH AUDIT = MORE REPUTATION = MORE INBOUND &#x2192; COMPOUNDS INFINITELY</div>
     </div>
   </div>
 </section>
 
+<!-- REALITY CHECK -->
+<section id="reality" style="background:var(--surface)">
+  <div class="container">
+    <div class="section-label reveal" style="color:var(--orange)">Reality Check</div>
+    <div class="section-title reveal">Honest Probability Assessment</div>
+    <div class="section-subtitle reveal">A 10/10 strategy report doesn't hide the risks. Here's what stands between blueprint and revenue.</div>
+    <div class="reality reveal">
+      <h3><span class="rating">4/10</span> Probability as Autonomous Money Machine</h3>
+      <div class="rating-sub">But <strong style="color:var(--green)">7/10</strong> as a learning accelerator that builds toward real expertise. Here's the difference.</div>
+      <div class="risk-grid">
+        <div class="risk-item">
+          <h5>85% False Positive Rate</h5>
+          <p>AI catches Low/QA findings well, but Medium/High/Critical require deep domain intuition. Sherlock requires 20%+ valid ratio before ANY payout &#x2014; submit garbage and you get $0.</p>
+        </div>
+        <div class="risk-item">
+          <h5>Power-Law Earnings</h5>
+          <p>Median contest earner gets ~$0. Top 5 auditors earn $200K-$500K+/year. This is winner-take-all. The pipeline puts you at median without expertise.</p>
+        </div>
+        <div class="risk-item">
+          <h5>AI Is Table Stakes, Not an Edge</h5>
+          <p>85% of auditors already use AI tools. Competitors are security researchers with 5+ years Solidity experience WHO ALSO use AI. Speed alone isn't enough.</p>
+        </div>
+        <div class="risk-item">
+          <h5>Immunefi TOS Blocks Automation</h5>
+          <p>Immunefi explicitly prohibits automated scanner submissions. That eliminates $162M in "available rewards" from the autonomous pipeline narrative.</p>
+        </div>
+      </div>
+      <div class="mitigation">
+        <h4>&#x2192; Path from 4/10 to 7/10</h4>
+        <ul>
+          <li>Spend months 1-3 doing CodeHawks First Flights <strong>manually</strong> &#x2014; build real intuition before automating</li>
+          <li>Use pipeline as a <strong>research assistant</strong>, not an autonomous agent &#x2014; AI finds candidates, you validate</li>
+          <li>Start with <strong>Sherlock only</strong> (most automatable via GitHub API) &#x2014; don't try 6 platforms at once</li>
+          <li>Accept that "30-60 min review" is actually <strong>4-8 hours</strong> of deep code analysis for valid submissions</li>
+          <li>Target the <strong>feedback loop first</strong> &#x2014; learn from judging results before scaling submissions</li>
+          <li>Study <strong>past exploits on Solodit</strong> &#x2014; pattern recognition is the real competitive moat</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TIMELINE -->
-<section id="timeline" style="background:var(--surface)">
-  <div class="container reveal">
-    <div class="section-label">Execution Plan</div>
-    <div class="section-title">Build Timeline</div>
-    <div class="section-subtitle">4 weeks to MVP autonomous pipeline. Then it runs 24/7.</div>
-    <div class="timeline">
+<section id="timeline">
+  <div class="container">
+    <div class="section-label reveal">Execution Plan</div>
+    <div class="section-title reveal">Build Timeline</div>
+    <div class="section-subtitle reveal">4 weeks to MVP autonomous pipeline. Then it runs 24/7.</div>
+    <div class="timeline reveal">
       <div class="tl-week">
-        <div class="tl-label" style="color:var(--purple)">WEEK 1</div>
+        <div class="tl-label" style="color:var(--purple)">WEEK 1<div class="tl-dot" style="background:var(--purple)"></div></div>
         <div class="tl-content">
           <h4>Discovery + Static Analysis</h4>
           <p>Contest monitor daemon + auto-cloner + Slither/Aderyn/Mythril integration. Connect Daily Warden, Solodit, GitHub org watchers.</p>
-          <div class="tl-ship">SHIPS: Pipeline detects and clones contests</div>
+          <div class="tl-ship">Ships: Pipeline detects and clones contests</div>
         </div>
       </div>
       <div class="tl-week">
-        <div class="tl-label" style="color:var(--blue)">WEEK 2</div>
+        <div class="tl-label" style="color:var(--blue)">WEEK 2<div class="tl-dot" style="background:var(--blue)"></div></div>
         <div class="tl-content">
           <h4>DeepSeek Multi-Agent Analysis</h4>
           <p>5-agent pipeline via LiteLLM router. 3-layer caching (API-native, Redis semantic, SQLite results). Local pre-filtering with Ollama/Qwen.</p>
-          <div class="tl-ship">SHIPS: Pipeline produces raw findings</div>
+          <div class="tl-ship">Ships: Pipeline produces raw findings</div>
         </div>
       </div>
       <div class="tl-week">
-        <div class="tl-label" style="color:var(--green)">WEEK 3</div>
+        <div class="tl-label" style="color:var(--green)">WEEK 3<div class="tl-dot" style="background:var(--green)"></div></div>
         <div class="tl-content">
           <h4>Synthesis + PoC Generation</h4>
           <p>Claude Sonnet batch for dedup/synthesis. Foundry PoC generation and forge test validation. Platform-specific report formatting.</p>
-          <div class="tl-ship">SHIPS: Pipeline produces validated reports</div>
+          <div class="tl-ship">Ships: Pipeline produces validated reports</div>
         </div>
       </div>
       <div class="tl-week">
-        <div class="tl-label" style="color:var(--gold)">WEEK 4</div>
+        <div class="tl-label" style="color:var(--gold)">WEEK 4<div class="tl-dot" style="background:var(--gold)"></div></div>
         <div class="tl-content">
           <h4>Submission + Payment Loop</h4>
           <p>Playwright submission scripts per platform. Wallet monitor for USDC inflows. Feedback loop: scrape results, compare predictions, auto-tune.</p>
-          <div class="tl-ship">SHIPS: Full autonomous pipeline live</div>
+          <div class="tl-ship">Ships: Full autonomous pipeline live</div>
         </div>
       </div>
       <div class="tl-week">
-        <div class="tl-label" style="color:var(--orange)">WEEK 5+</div>
+        <div class="tl-label" style="color:var(--orange)">WEEK 5+<div class="tl-dot" style="background:var(--orange)"></div></div>
         <div class="tl-content">
           <h4>Continuous Improvement</h4>
-          <p>Feedback loop optimizes prompts. Content flywheel builds reputation. Scale to all platforms. Your role: review flagged findings (30-60 min/contest), engage on Twitter, accept private audits.</p>
-          <div class="tl-ship">SHIPS: Pipeline improves itself</div>
+          <p>Feedback loop optimizes prompts. Content flywheel builds reputation. Scale to all platforms. Role shifts to: review findings, engage on Twitter, accept private audits.</p>
+          <div class="tl-ship">Ships: Pipeline improves itself</div>
         </div>
       </div>
     </div>
@@ -892,55 +828,135 @@ footer p{font-size:0.75rem;color:var(--text3)}
 </section>
 
 <!-- COMPARISON -->
-<section id="comparison">
-  <div class="container reveal">
-    <div class="section-label">Final Verdict</div>
-    <div class="section-title">Why This Beats All 10 Ideas</div>
-    <table class="comp-table">
-      <thead>
-        <tr><th>Factor</th><th>SC Audit Pipeline</th><th>Other Ideas</th></tr>
-      </thead>
+<section id="comparison" style="background:var(--surface)">
+  <div class="container">
+    <div class="section-label reveal">Final Verdict</div>
+    <div class="section-title reveal">Why This Beats All 10 Ideas</div>
+    <div class="reveal">
+    <table class="comp">
+      <thead><tr><th>Factor</th><th>SC Audit Pipeline</th><th>Other Ideas</th></tr></thead>
       <tbody>
         <tr class="win"><td>Distribution</td><td>Built into platforms</td><td>Must build from scratch</td></tr>
-        <tr class="win"><td>Customer Acquisition Cost</td><td>$0</td><td>$0.10-$50+</td></tr>
+        <tr class="win"><td>Customer Acquisition</td><td>$0</td><td>$0.10-$50+</td></tr>
         <tr class="win"><td>Capital Needed</td><td>$332/month</td><td>$0-$50K</td></tr>
         <tr class="win"><td>Time to Revenue</td><td>4-6 weeks</td><td>Weeks to months</td></tr>
         <tr class="win"><td>Google Dependency</td><td>Zero</td><td>Often high</td></tr>
-        <tr class="win"><td>Regulatory Tailwind</td><td>MiCA makes audits mandatory</td><td>None</td></tr>
+        <tr class="win"><td>Regulatory Tailwind</td><td>MiCA mandatory</td><td>None</td></tr>
         <tr class="win"><td>AI Leverage</td><td>10x speed advantage</td><td>Variable</td></tr>
         <tr class="win"><td>Compound Effect</td><td>Leaderboard &#x2192; private inbound</td><td>Linear</td></tr>
-        <tr class="win"><td>Revenue Ceiling</td><td>$500K-$1M+/year solo</td><td>Varies</td></tr>
-        <tr class="win"><td>Existing Tools</td><td>MCP servers, Claude skills, SmartGuard</td><td>Must build</td></tr>
+        <tr class="win"><td>Revenue Ceiling</td><td>$500K-$1M+/yr solo</td><td>Varies</td></tr>
+        <tr class="win"><td>Existing Tools</td><td>MCP, Claude skills, SmartGuard</td><td>Must build</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 </section>
 
 <footer>
+  <span class="f-brand">AUTONOMOUS SC AUDIT PIPELINE</span>
   <p>Compiled from 6 parallel research agents &middot; 200+ web sources &middot; Platform documentation &middot; On-chain data &middot; May 2026</p>
 </footer>
 
 <script>
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
+// ===== CANVAS AURORA =====
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+let w, h;
+function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+
+const orbs = Array.from({length: 5}, () => ({
+  x: Math.random() * w, y: Math.random() * h,
+  r: 200 + Math.random() * 300,
+  dx: (Math.random() - 0.5) * 0.3,
+  dy: (Math.random() - 0.5) * 0.2,
+  hue: Math.random() > 0.5 ? 160 : 260,
+  alpha: 0.015 + Math.random() * 0.015
+}));
+
+function drawAurora() {
+  ctx.clearRect(0, 0, w, h);
+  orbs.forEach(o => {
+    o.x += o.dx; o.y += o.dy;
+    if (o.x < -o.r) o.x = w + o.r;
+    if (o.x > w + o.r) o.x = -o.r;
+    if (o.y < -o.r) o.y = h + o.r;
+    if (o.y > h + o.r) o.y = -o.r;
+    const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r);
+    g.addColorStop(0, `hsla(${o.hue},80%,60%,${o.alpha})`);
+    g.addColorStop(1, 'transparent');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+  });
+  requestAnimationFrame(drawAurora);
+}
+drawAurora();
+
+// ===== SCROLL PROGRESS =====
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  progressBar.style.width = pct + '%';
+  document.getElementById('nav').classList.toggle('shrink', window.scrollY > 80);
+});
+
+// ===== ACTIVE NAV =====
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const navObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}, { threshold: 0.15, rootMargin: '-56px 0px -60% 0px' });
+sections.forEach(s => navObserver.observe(s));
 
-// Smooth nav shrink
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('nav');
-  if (window.scrollY > 100) {
-    nav.style.height = '48px';
-  } else {
-    nav.style.height = '56px';
-  }
-});
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ===== AUTONOMY BARS ANIMATION =====
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.auto-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.auto-grid').forEach(g => barObserver.observe(g));
+
+// ===== COUNTER ANIMATION =====
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.counted) {
+      entry.target.dataset.counted = 'true';
+      const target = parseInt(entry.target.dataset.target);
+      const prefix = entry.target.dataset.prefix || '';
+      const suffix = entry.target.dataset.suffix || '';
+      const duration = 1500;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        const val = Math.round(ease * target);
+        entry.target.textContent = prefix + val + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
 </script>
 
 </body>

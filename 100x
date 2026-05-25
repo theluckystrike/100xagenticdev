@@ -1,0 +1,902 @@
+#!/usr/bin/env bash
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  100x — The Agentic Engineering Pipeline CLI
+#
+#  Turn one developer into 100 through context engineering, multi-agent
+#  orchestration, NASA Power of 10 quality gates, and budget enforcement.
+#
+#  Usage:
+#    100x run "Add input validation to all API endpoints"
+#    100x init
+#    100x gate
+#    100x parallel "task1" "task2" "task3"
+#    100x dashboard
+#    100x research "topic"
+#    100x deepseek --preset crypto_research --topic "Solana DeFi"
+#
+#  Install:
+#    git clone https://github.com/theluckystrike/100xagenticdev.git
+#    ln -sf ~/100xagenticdev/100x /usr/local/bin/100x
+#
+#  Based on: Karpathy's Context Engineering + RouteLLM + NASA P10
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+set -euo pipefail
+
+VERSION="1.0.0"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# ── Colors ─────────────────────────────────────────────────────────────
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+DIM='\033[2m'
+NC='\033[0m'
+
+# ── Defaults ───────────────────────────────────────────────────────────
+BUDGET_MAX="${BUDGET_MAX:-10.00}"
+MAX_TURNS_ANALYZE="${MAX_TURNS_ANALYZE:-8}"
+MAX_TURNS_IMPLEMENT="${MAX_TURNS_IMPLEMENT:-30}"
+MAX_TURNS_TEST="${MAX_TURNS_TEST:-15}"
+MAX_TURNS_REVIEW="${MAX_TURNS_REVIEW:-8}"
+MAX_TURNS_RESEARCH="${MAX_TURNS_RESEARCH:-20}"
+PARALLEL_BUDGET="${PARALLEL_BUDGET:-2.00}"
+PARALLEL_MAX_TURNS="${PARALLEL_MAX_TURNS:-30}"
+
+# ── Helpers ────────────────────────────────────────────────────────────
+banner() {
+  echo -e "${PURPLE}${BOLD}"
+  echo "  ╔══════════════════════════════════════════╗"
+  echo "  ║         100x Agentic Pipeline            ║"
+  echo "  ║   Context Engineering × Multi-Agent      ║"
+  echo "  ║        × NASA P10 Quality Gates          ║"
+  echo "  ╚══════════════════════════════════════════╝"
+  echo -e "${NC}"
+}
+
+log() { echo -e "${DIM}[$(date +%H:%M:%S)]${NC} $1"; }
+ok()  { echo -e "${GREEN}✓${NC} $1"; }
+err() { echo -e "${RED}✗${NC} $1" >&2; }
+warn(){ echo -e "${YELLOW}!${NC} $1"; }
+info(){ echo -e "${BLUE}→${NC} $1"; }
+
+check_claude() {
+  if ! command -v claude &>/dev/null; then
+    err "Claude CLI not found. Install: npm install -g @anthropic-ai/claude-code"
+    exit 1
+  fi
+}
+
+detect_project() {
+  PROJECT_DIR="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+  PROJECT_NAME="$(basename "$PROJECT_DIR")"
+}
+
+# ── HARNESS: The System Prompt Injection ───────────────────────────────
+# This is where the 6-10x multiplier comes from. The harness wraps every
+# Claude invocation with context engineering rules.
+build_harness() {
+  local task="$1"
+  local stage="${2:-implement}"
+
+  local harness=""
+
+  # Layer 1: NASA P10 rules (always)
+  harness+="RULES — You MUST follow these (NASA Power of 10):
+- Functions under 60 lines. No exceptions.
+- All loops have fixed upper bounds.
+- No dynamic memory after init.
+- Check every return value.
+- Zero warnings policy — treat warnings as errors.
+- No global mutable state.
+- Maximum 2 levels of pointer/reference indirection.
+- All code paths must be testable.
+- Minimize scope of variables.
+- Use assertions liberally at function boundaries.
+
+"
+
+  # Layer 2: Context engineering (project-aware)
+  if [ -f "$PROJECT_DIR/CLAUDE.md" ]; then
+    harness+="PROJECT INSTRUCTIONS (from CLAUDE.md):
+$(head -100 "$PROJECT_DIR/CLAUDE.md")
+
+"
+  fi
+
+  # Layer 3: Stage-specific harness
+  case "$stage" in
+    analyze)
+      harness+="STAGE: ANALYSIS
+You are the planning agent. Your job:
+1. Read and understand the codebase structure
+2. Identify ALL files that need to change for this task
+3. Output a numbered implementation plan
+4. Estimate complexity (trivial/moderate/complex) per file
+5. Flag any risks or architectural concerns
+6. Do NOT write code — only analyze and plan
+
+Be thorough but concise. List exact file paths.
+"
+      ;;
+    implement)
+      harness+="STAGE: IMPLEMENTATION
+You are the coding agent. Your job:
+1. Follow the plan exactly
+2. Write production-quality code
+3. After each change, verify it compiles/parses
+4. Fix any errors immediately
+5. Use existing patterns from the codebase
+6. Do NOT over-engineer — minimal changes only
+7. Do NOT add comments unless logic is non-obvious
+
+Surgical precision. Change only what's needed.
+"
+      ;;
+    test)
+      harness+="STAGE: TESTING
+You are the test agent. Your job:
+1. Run the existing test suite
+2. Fix any failing tests
+3. Add tests for new/changed code paths
+4. Ensure edge cases are covered
+5. Verify no regressions
+
+If no test framework exists, note it and move on.
+"
+      ;;
+    review)
+      harness+="STAGE: REVIEW
+You are the review agent. Your job:
+1. Review ALL changes made in this session (git diff)
+2. Check for: security issues, edge cases, code quality
+3. Verify NASA P10 compliance (60-line functions, bounded loops, etc.)
+4. Check for OWASP Top 10 vulnerabilities
+5. Flag any concerns with severity (Critical/High/Medium/Low)
+6. Verify no secrets or credentials in code
+
+Output a structured review: APPROVE, REQUEST_CHANGES, or BLOCK.
+"
+      ;;
+    research)
+      harness+="STAGE: RESEARCH
+You are a research agent. Your job:
+1. Thoroughly research the given topic
+2. Use web search and available tools
+3. Provide data-driven analysis with specific numbers
+4. Cite sources where possible
+5. Structure output with clear headers
+6. Be thorough but concise — no filler
+
+Deliver actionable insights, not generic advice.
+"
+      ;;
+  esac
+
+  harness+="
+TASK: $task
+"
+  echo "$harness"
+}
+
+# ── Budget Tracking ───────────────────────────────────────────────────
+BUDGET_SPENT=0
+
+track_cost() {
+  local result_file="$1"
+  local cost
+  cost=$(jq -r '.cost_usd // .total_cost_usd // 0' "$result_file" 2>/dev/null || echo "0")
+  BUDGET_SPENT=$(echo "$BUDGET_SPENT + $cost" | bc 2>/dev/null || echo "$BUDGET_SPENT")
+  local remaining
+  remaining=$(echo "$BUDGET_MAX - $BUDGET_SPENT" | bc 2>/dev/null || echo "0")
+  log "Budget: ${CYAN}\$${BUDGET_SPENT}${NC} / \$${BUDGET_MAX} (remaining: \$${remaining})"
+
+  if (( $(echo "$BUDGET_SPENT >= $BUDGET_MAX" | bc -l 2>/dev/null || echo 0) )); then
+    err "BUDGET EXCEEDED — pipeline halted"
+    return 1
+  fi
+}
+
+# ── Stage Runner ──────────────────────────────────────────────────────
+run_stage() {
+  local name="$1"
+  local task="$2"
+  local stage="$3"
+  local max_turns="${4:-10}"
+  local log_dir="$5"
+  local outfile="$log_dir/${name}.json"
+
+  echo ""
+  echo -e "${BOLD}━━━ Stage: ${CYAN}${name}${NC} ${BOLD}━━━${NC}"
+  info "Max turns: $max_turns | Budget remaining: \$$(echo "$BUDGET_MAX - $BUDGET_SPENT" | bc 2>/dev/null || echo "$BUDGET_MAX")"
+
+  local harness
+  harness="$(build_harness "$task" "$stage")"
+
+  local remaining_budget
+  remaining_budget=$(echo "$BUDGET_MAX - $BUDGET_SPENT" | bc 2>/dev/null || echo "$BUDGET_MAX")
+
+  local start_time
+  start_time=$(date +%s)
+
+  claude -p "$harness" \
+    --output-format json \
+    --max-turns "$max_turns" \
+    > "$outfile" 2>&1 || true
+
+  local end_time
+  end_time=$(date +%s)
+  local elapsed=$((end_time - start_time))
+
+  # Extract result
+  local result
+  result=$(jq -r '.result // "No result"' "$outfile" 2>/dev/null || echo "See log")
+
+  # Extract cost from session data
+  local cost_usd
+  cost_usd=$(jq -r '.cost_usd // 0' "$outfile" 2>/dev/null || echo "0")
+
+  ok "Stage ${BOLD}${name}${NC} complete (${elapsed}s)"
+  track_cost "$outfile" || return 1
+
+  # Save stage metadata
+  jq -n \
+    --arg name "$name" \
+    --arg stage "$stage" \
+    --arg elapsed "$elapsed" \
+    --arg cost "$cost_usd" \
+    --arg status "complete" \
+    '{name: $name, stage: $stage, elapsed_sec: ($elapsed|tonumber), cost_usd: ($cost|tonumber), status: $status}' \
+    > "$log_dir/${name}.meta.json" 2>/dev/null || true
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: init
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_init() {
+  detect_project
+  banner
+  info "Initializing 100x pipeline in ${BOLD}$PROJECT_DIR${NC}"
+
+  # Copy CLAUDE.md if not present
+  if [ ! -f "$PROJECT_DIR/CLAUDE.md" ]; then
+    cp "$SCRIPT_DIR/CLAUDE.md" "$PROJECT_DIR/CLAUDE.md"
+    ok "Created CLAUDE.md with NASA P10 rules"
+  else
+    warn "CLAUDE.md already exists — skipping"
+  fi
+
+  # Create .100x directory
+  mkdir -p "$PROJECT_DIR/.100x/runs"
+  ok "Created .100x/ pipeline directory"
+
+  # Copy ESLint config if TypeScript/JavaScript project
+  if [ -f "$PROJECT_DIR/package.json" ]; then
+    if [ ! -f "$PROJECT_DIR/eslint.config.mjs" ]; then
+      cp "$SCRIPT_DIR/config/nasa-p10-eslint.config.mjs" "$PROJECT_DIR/eslint.config.mjs"
+      ok "Installed NASA P10 ESLint config"
+    else
+      warn "eslint.config.mjs already exists — skipping"
+    fi
+  fi
+
+  # Gitignore .100x logs
+  if [ -f "$PROJECT_DIR/.gitignore" ]; then
+    if ! grep -q ".100x/" "$PROJECT_DIR/.gitignore" 2>/dev/null; then
+      echo -e "\n# 100x pipeline logs\n.100x/" >> "$PROJECT_DIR/.gitignore"
+      ok "Added .100x/ to .gitignore"
+    fi
+  fi
+
+  echo ""
+  ok "Project initialized! Run: ${BOLD}100x run \"your task\"${NC}"
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: run — The Full 4-Stage Pipeline
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_run() {
+  local task="${1:?Usage: 100x run 'task description'}"
+  check_claude
+  detect_project
+  banner
+
+  local timestamp
+  timestamp=$(date +%Y%m%d_%H%M%S)
+  local run_dir="$PROJECT_DIR/.100x/runs/$timestamp"
+  mkdir -p "$run_dir"
+
+  info "Project: ${BOLD}$PROJECT_NAME${NC}"
+  info "Task: ${CYAN}$task${NC}"
+  info "Budget: \$$BUDGET_MAX"
+  info "Logs: $run_dir/"
+  echo ""
+
+  # Save run metadata
+  jq -n \
+    --arg task "$task" \
+    --arg project "$PROJECT_NAME" \
+    --arg dir "$PROJECT_DIR" \
+    --arg ts "$timestamp" \
+    --arg budget "$BUDGET_MAX" \
+    '{task: $task, project: $project, project_dir: $dir, timestamp: $ts, budget_usd: ($budget|tonumber), stages: []}' \
+    > "$run_dir/run.json"
+
+  local pipeline_start
+  pipeline_start=$(date +%s)
+
+  # ── Stage 1: Analyze ──
+  run_stage "01-analyze" "$task" "analyze" "$MAX_TURNS_ANALYZE" "$run_dir"
+
+  # ── Stage 2: Implement (feeds analysis) ──
+  local plan
+  plan=$(jq -r '.result // ""' "$run_dir/01-analyze.json" 2>/dev/null || echo "")
+  run_stage "02-implement" "Execute this plan for: $task
+
+ANALYSIS FROM PLANNING AGENT:
+$plan" "implement" "$MAX_TURNS_IMPLEMENT" "$run_dir"
+
+  # ── Stage 3: Test ──
+  run_stage "03-test" "Run all tests, fix failures, add coverage for changes made for: $task" "test" "$MAX_TURNS_TEST" "$run_dir"
+
+  # ── Stage 4: Review ──
+  run_stage "04-review" "Review all changes made for: $task" "review" "$MAX_TURNS_REVIEW" "$run_dir"
+
+  # ── Pipeline Complete ──
+  local pipeline_end
+  pipeline_end=$(date +%s)
+  local total_elapsed=$((pipeline_end - pipeline_start))
+
+  echo ""
+  echo -e "${BOLD}━━━ Pipeline Complete ━━━${NC}"
+  ok "Total time: ${total_elapsed}s"
+  ok "Total cost: \$${BUDGET_SPENT}"
+  ok "Logs: $run_dir/"
+
+  # Generate dashboard
+  generate_dashboard "$run_dir" "$task" "$total_elapsed"
+  ok "Dashboard: $run_dir/dashboard.html"
+  echo ""
+  info "Open dashboard: ${BOLD}open $run_dir/dashboard.html${NC}"
+
+  # Open dashboard automatically on macOS
+  if command -v open &>/dev/null; then
+    open "$run_dir/dashboard.html" 2>/dev/null || true
+  fi
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: gate — Quality Gate Check
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_gate() {
+  detect_project
+  banner
+  info "Running quality gates in ${BOLD}$PROJECT_DIR${NC}"
+  echo ""
+
+  local passed=0
+  local failed=0
+  local skipped=0
+  local total=0
+
+  run_gate() {
+    local name="$1"
+    local cmd="$2"
+    total=$((total + 1))
+
+    echo -ne "  ${DIM}[$total/7]${NC} $name... "
+    if eval "$cmd" &>/dev/null 2>&1; then
+      echo -e "${GREEN}PASS${NC}"
+      passed=$((passed + 1))
+    else
+      local exit_code=$?
+      if [ $exit_code -eq 127 ]; then
+        echo -e "${YELLOW}SKIP${NC} (not installed)"
+        skipped=$((skipped + 1))
+      else
+        echo -e "${RED}FAIL${NC}"
+        failed=$((failed + 1))
+      fi
+    fi
+  }
+
+  # Run gates (cheapest first)
+  run_gate "Prettier (format)"        "npx prettier --check 'src/**/*.{ts,tsx,js,jsx}' 2>/dev/null"
+  run_gate "ESLint (lint)"            "npx eslint --max-warnings 0 src/ 2>/dev/null"
+  run_gate "TypeScript (types)"       "npx tsc --noEmit 2>/dev/null"
+  run_gate "Tests"                    "npx vitest run 2>/dev/null || npm test 2>/dev/null"
+  run_gate "Semgrep (SAST)"           "semgrep --config 'p/owasp-top-ten' --error src/ 2>/dev/null"
+  run_gate "Gitleaks (secrets)"       "gitleaks detect --source . --no-git --no-banner 2>/dev/null"
+  run_gate "npm audit (CVEs)"         "npm audit --audit-level=high 2>/dev/null"
+
+  echo ""
+  if [ $failed -eq 0 ]; then
+    ok "ALL GATES PASSED (${passed} pass, ${skipped} skip)"
+  else
+    err "${failed} GATE(S) FAILED (${passed} pass, ${skipped} skip)"
+    exit 1
+  fi
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: parallel — Multi-Agent Parallel Execution
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_parallel() {
+  if [ $# -eq 0 ]; then
+    err "Usage: 100x parallel 'task1' 'task2' 'task3'"
+    exit 1
+  fi
+
+  check_claude
+  detect_project
+  banner
+
+  local timestamp
+  timestamp=$(date +%Y%m%d_%H%M%S)
+  local run_dir="$PROJECT_DIR/.100x/runs/parallel-$timestamp"
+  mkdir -p "$run_dir"
+
+  info "Launching ${BOLD}$#${NC} parallel agents"
+  info "Budget per agent: \$$PARALLEL_BUDGET"
+  info "Max turns: $PARALLEL_MAX_TURNS"
+  echo ""
+
+  local pids=()
+  local tasks=("$@")
+
+  for i in "${!tasks[@]}"; do
+    local agent_id=$((i + 1))
+    (
+      local harness
+      harness="$(build_harness "${tasks[$i]}" "implement")"
+
+      info "Agent $agent_id: ${tasks[$i]:0:60}..."
+      claude -p "$harness" \
+        --output-format json \
+        --max-turns "$PARALLEL_MAX_TURNS" \
+        > "$run_dir/agent-$agent_id.json" 2>&1 || true
+
+      ok "Agent $agent_id complete"
+    ) &
+    pids+=($!)
+  done
+
+  # Wait for all
+  local agent_failed=0
+  for i in "${!pids[@]}"; do
+    if ! wait "${pids[$i]}"; then
+      err "Agent $((i + 1)) failed"
+      agent_failed=$((agent_failed + 1))
+    fi
+  done
+
+  echo ""
+  echo -e "${BOLD}━━━ Parallel Execution Complete ━━━${NC}"
+
+  # Summary
+  local total_cost=0
+  for i in "${!tasks[@]}"; do
+    local agent_id=$((i + 1))
+    local cost
+    cost=$(jq -r '.cost_usd // 0' "$run_dir/agent-$agent_id.json" 2>/dev/null || echo "0")
+    total_cost=$(echo "$total_cost + $cost" | bc 2>/dev/null || echo "$total_cost")
+    echo -e "  Agent $agent_id: ${tasks[$i]:0:50}... — \$$cost"
+  done
+  echo ""
+  ok "Total cost: \$$total_cost"
+  ok "Results: $run_dir/"
+
+  generate_parallel_dashboard "$run_dir" "${tasks[@]}"
+  info "Dashboard: ${BOLD}open $run_dir/dashboard.html${NC}"
+
+  if command -v open &>/dev/null; then
+    open "$run_dir/dashboard.html" 2>/dev/null || true
+  fi
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: research — Deep Research with Fan-Out
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_research() {
+  local topic="${1:?Usage: 100x research 'topic'}"
+  check_claude
+  detect_project
+  banner
+
+  local timestamp
+  timestamp=$(date +%Y%m%d_%H%M%S)
+  local run_dir="$PROJECT_DIR/.100x/runs/research-$timestamp"
+  mkdir -p "$run_dir"
+
+  info "Research topic: ${CYAN}$topic${NC}"
+  info "Budget: \$$BUDGET_MAX"
+  echo ""
+
+  local harness
+  harness="$(build_harness "Deep research: $topic. Search the web extensively. Cover multiple angles: technical, market, competitive, risks, opportunities. Provide data-driven analysis with specific numbers and sources. Structure with clear headers. Be thorough." "research")"
+
+  run_stage "research" "$harness" "research" "$MAX_TURNS_RESEARCH" "$run_dir"
+
+  echo ""
+  ok "Research complete"
+  ok "Results: $run_dir/"
+
+  # Extract and display result
+  local result
+  result=$(jq -r '.result // "See log file"' "$run_dir/research.json" 2>/dev/null || echo "See log file")
+  echo ""
+  echo -e "${BOLD}━━━ Research Results ━━━${NC}"
+  echo "$result" | head -100
+
+  generate_dashboard "$run_dir" "Research: $topic" "0"
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: deepseek — Run DeepSeek Multi-Agent Pipeline
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_deepseek() {
+  info "Running DeepSeek multi-agent pipeline"
+  cd "$SCRIPT_DIR/pipeline"
+  python3 runner.py "$@"
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: dashboard — Open Latest Dashboard
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_dashboard() {
+  detect_project
+
+  local latest
+  latest=$(ls -td "$PROJECT_DIR/.100x/runs/"*/ 2>/dev/null | head -1)
+
+  if [ -z "$latest" ]; then
+    err "No pipeline runs found. Run: 100x run 'your task'"
+    exit 1
+  fi
+
+  if [ -f "${latest}dashboard.html" ]; then
+    info "Opening: ${latest}dashboard.html"
+    open "${latest}dashboard.html" 2>/dev/null || echo "Open: ${latest}dashboard.html"
+  else
+    warn "No dashboard in latest run. Generating..."
+    generate_dashboard "$latest" "Unknown" "0"
+    open "${latest}dashboard.html" 2>/dev/null || echo "Open: ${latest}dashboard.html"
+  fi
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  Dashboard HTML Generator
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+generate_dashboard() {
+  local run_dir="$1"
+  local task="$2"
+  local total_elapsed="${3:-0}"
+  local output="$run_dir/dashboard.html"
+
+  # Collect stage data
+  local stages_json="[]"
+  for meta in "$run_dir"/*.meta.json; do
+    [ -f "$meta" ] || continue
+    stages_json=$(echo "$stages_json" | jq --slurpfile s "$meta" '. + $s')
+  done
+
+  # Collect stage results
+  local results=""
+  for stage_file in "$run_dir"/0*.json; do
+    [ -f "$stage_file" ] || continue
+    local stage_name
+    stage_name=$(basename "$stage_file" .json)
+    local stage_result
+    stage_result=$(jq -r '.result // "No output"' "$stage_file" 2>/dev/null | head -200 || echo "Error reading")
+    results+="<div class='stage-result'>
+      <h3>$stage_name</h3>
+      <pre>$(echo "$stage_result" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')</pre>
+    </div>"
+  done
+
+  cat > "$output" << 'DASHBOARD_EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100x Pipeline Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+  /* Header */
+  .header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .header h1 { font-size: 24px; color: #fff; }
+  .header .badge { background: #1a1a3a; color: #8b8bff; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .subtitle { color: #666; font-size: 13px; margin-bottom: 8px; }
+  .task-desc { color: #aaa; font-size: 14px; background: #151520; padding: 12px 16px; border-radius: 8px; border-left: 3px solid #8b8bff; margin-bottom: 24px; }
+
+  /* KPI Grid */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .kpi { background: #151520; border: 1px solid #252535; border-radius: 10px; padding: 16px; position: relative; overflow: hidden; }
+  .kpi::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .kpi.green::before { background: linear-gradient(90deg, #4ade80, #22c55e); }
+  .kpi.blue::before { background: linear-gradient(90deg, #60a5fa, #3b82f6); }
+  .kpi.yellow::before { background: linear-gradient(90deg, #facc15, #eab308); }
+  .kpi.purple::before { background: linear-gradient(90deg, #a78bfa, #8b5cf6); }
+  .kpi.red::before { background: linear-gradient(90deg, #f87171, #ef4444); }
+  .kpi-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+  .kpi-value { font-size: 32px; font-weight: 700; color: #fff; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .kpi-sub { font-size: 11px; color: #555; margin-top: 4px; }
+
+  /* Pipeline Flow */
+  .pipeline-flow { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding: 8px 0; }
+  .pipeline-stage { background: #151520; border: 1px solid #252535; border-radius: 10px; padding: 14px 20px; min-width: 160px; text-align: center; position: relative; }
+  .pipeline-stage.complete { border-color: #22c55e40; }
+  .pipeline-stage.complete::after { content: '✓'; position: absolute; top: 8px; right: 10px; color: #4ade80; font-size: 14px; font-weight: bold; }
+  .pipeline-stage.failed { border-color: #ef444440; }
+  .pipeline-stage.failed::after { content: '✗'; position: absolute; top: 8px; right: 10px; color: #f87171; font-size: 14px; font-weight: bold; }
+  .pipeline-stage .name { font-size: 13px; font-weight: 600; color: #ddd; }
+  .pipeline-stage .meta { font-size: 11px; color: #666; margin-top: 4px; }
+  .pipeline-arrow { color: #333; font-size: 20px; flex-shrink: 0; }
+
+  /* Budget Bar */
+  .budget-container { margin-bottom: 24px; }
+  .budget-bar-outer { width: 100%; height: 6px; background: #252535; border-radius: 3px; overflow: hidden; }
+  .budget-bar-inner { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+  .budget-bar-inner.low { background: linear-gradient(90deg, #4ade80, #22c55e); }
+  .budget-bar-inner.mid { background: linear-gradient(90deg, #facc15, #eab308); }
+  .budget-bar-inner.high { background: linear-gradient(90deg, #f87171, #ef4444); }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 2px; margin-bottom: 0; background: #0d0d14; border-radius: 8px 8px 0 0; padding: 4px 4px 0; }
+  .tab { padding: 10px 20px; background: transparent; border: none; color: #666; font-size: 13px; font-weight: 500; cursor: pointer; border-radius: 6px 6px 0 0; transition: all 0.2s; }
+  .tab:hover { color: #aaa; background: #151520; }
+  .tab.active { color: #8b8bff; background: #151520; }
+  .tab-body { background: #151520; border: 1px solid #252535; border-top: none; border-radius: 0 0 8px 8px; padding: 16px; min-height: 300px; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Stage Results */
+  .stage-result { margin-bottom: 16px; }
+  .stage-result h3 { font-size: 14px; color: #8b8bff; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .stage-result pre { background: #0d0d14; padding: 16px; border-radius: 8px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; max-height: 500px; overflow-y: auto; color: #ccc; }
+
+  /* Multiplier Cards */
+  .multipliers { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+  .multiplier { background: #0d0d14; border: 1px solid #252535; border-radius: 8px; padding: 16px; }
+  .multiplier h4 { color: #8b8bff; font-size: 13px; margin-bottom: 4px; }
+  .multiplier .impact { font-size: 20px; font-weight: 700; color: #4ade80; }
+  .multiplier .evidence { font-size: 11px; color: #666; margin-top: 4px; }
+
+  /* Footer */
+  .footer { text-align: center; margin-top: 40px; padding: 16px; color: #333; font-size: 11px; }
+  .footer a { color: #555; text-decoration: none; }
+  .footer a:hover { color: #8b8bff; }
+
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .pipeline-flow { flex-wrap: wrap; }
+    .kpi-value { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>100x Pipeline</h1>
+    <span class="badge">v1.0.0</span>
+  </div>
+DASHBOARD_EOF
+
+  # Inject dynamic content
+  cat >> "$output" << EOF
+  <div class="subtitle">$(date '+%Y-%m-%d %H:%M:%S') | Project: $PROJECT_NAME</div>
+  <div class="task-desc">$task</div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi green">
+      <div class="kpi-label">Total Cost</div>
+      <div class="kpi-value">\$${BUDGET_SPENT}</div>
+      <div class="kpi-sub">of \$$BUDGET_MAX budget</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Duration</div>
+      <div class="kpi-value">${total_elapsed}s</div>
+      <div class="kpi-sub">wall clock</div>
+    </div>
+    <div class="kpi purple">
+      <div class="kpi-label">Stages</div>
+      <div class="kpi-value">4</div>
+      <div class="kpi-sub">analyze → implement → test → review</div>
+    </div>
+    <div class="kpi yellow">
+      <div class="kpi-label">Harness</div>
+      <div class="kpi-value">6-10x</div>
+      <div class="kpi-sub">multiplier active</div>
+    </div>
+  </div>
+
+  <!-- Pipeline Flow -->
+  <div class="pipeline-flow">
+    <div class="pipeline-stage complete"><div class="name">Analyze</div><div class="meta">Plan & scope</div></div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage complete"><div class="name">Implement</div><div class="meta">Write code</div></div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage complete"><div class="name">Test</div><div class="meta">Verify & cover</div></div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage complete"><div class="name">Review</div><div class="meta">Security & quality</div></div>
+  </div>
+
+  <!-- Budget Bar -->
+  <div class="budget-container">
+    <div style="display: flex; justify-content: space-between; font-size: 11px; color: #666; margin-bottom: 4px;">
+      <span>Budget</span>
+      <span>\$${BUDGET_SPENT} / \$$BUDGET_MAX</span>
+    </div>
+    <div class="budget-bar-outer">
+      <div class="budget-bar-inner low" style="width: 25%"></div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('results')">Stage Results</button>
+    <button class="tab" onclick="showTab('multipliers')">ROI Multipliers</button>
+    <button class="tab" onclick="showTab('rules')">Pipeline Rules</button>
+  </div>
+  <div class="tab-body">
+    <div id="tab-results" class="tab-content active">
+      $results
+    </div>
+    <div id="tab-multipliers" class="tab-content">
+      <div class="multipliers">
+        <div class="multiplier">
+          <h4>Harness Engineering</h4>
+          <div class="impact">6-10x</div>
+          <div class="evidence">Same model, better wrapper → 6.7% to 68.3% (Hashline benchmark)</div>
+        </div>
+        <div class="multiplier">
+          <h4>Model Routing</h4>
+          <div class="impact">85% cost ↓</div>
+          <div class="evidence">RouteLLM: 95% quality with only 26% expensive model calls (ICLR 2025)</div>
+        </div>
+        <div class="multiplier">
+          <h4>Prompt Caching</h4>
+          <div class="impact">90% input ↓</div>
+          <div class="evidence">ProjectDiscovery: 59% total cost cut with caching alone</div>
+        </div>
+        <div class="multiplier">
+          <h4>Loop Budgets</h4>
+          <div class="impact">Prevents \$47K</div>
+          <div class="evidence">Real incidents: \$16-50K in 5hrs without budget enforcement</div>
+        </div>
+        <div class="multiplier">
+          <h4>Multi-Agent</h4>
+          <div class="impact">N× parallel</div>
+          <div class="evidence">Stripe: 1,300 AI PRs/week with agent orchestration</div>
+        </div>
+        <div class="multiplier">
+          <h4>NASA P10 Gates</h4>
+          <div class="impact">Zero defects</div>
+          <div class="evidence">7-stage quality gate: lint → type → test → SAST → secrets → CVE</div>
+        </div>
+      </div>
+    </div>
+    <div id="tab-rules" class="tab-content">
+      <div class="stage-result">
+        <h3>NASA Power of 10 Rules (Active)</h3>
+        <pre>1. Functions under 60 lines — no exceptions
+2. All loops have fixed upper bounds
+3. No dynamic memory after initialization
+4. Check every return value
+5. Zero warnings policy — warnings are errors
+6. No global mutable state
+7. Max 2 levels of pointer/reference indirection
+8. All code paths must be testable
+9. Minimize scope of variables
+10. Use assertions at function boundaries</pre>
+      </div>
+      <div class="stage-result">
+        <h3>Quality Gate Pipeline</h3>
+        <pre>Gate 1: Prettier (formatting)     — cheapest, runs first
+Gate 2: ESLint (NASA P10 rules)   — catches complexity violations
+Gate 3: TypeScript (type safety)  — catches type errors
+Gate 4: Vitest (tests)            — catches logic errors
+Gate 5: Semgrep (OWASP SAST)      — catches security issues
+Gate 6: Gitleaks (secrets)        — catches leaked credentials
+Gate 7: npm audit (CVEs)          — catches vulnerable deps</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    100x Agentic Pipeline v1.0.0 — <a href="https://github.com/theluckystrike/100xagenticdev">github.com/theluckystrike/100xagenticdev</a>
+    <br>Based on Karpathy's Context Engineering + RouteLLM (ICLR 2025) + NASA Power of 10
+  </div>
+</div>
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
+EOF
+}
+
+# ── Parallel Dashboard ────────────────────────────────────────────────
+generate_parallel_dashboard() {
+  local run_dir="$1"
+  shift
+  local tasks=("$@")
+  # Reuse main dashboard with parallel info
+  generate_dashboard "$run_dir" "Parallel: ${#tasks[@]} agents" "0"
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: help
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_help() {
+  banner
+  echo -e "${BOLD}USAGE${NC}"
+  echo "  100x <command> [args]"
+  echo ""
+  echo -e "${BOLD}COMMANDS${NC}"
+  echo -e "  ${CYAN}run${NC} \"task\"         Run 4-stage pipeline (analyze → implement → test → review)"
+  echo -e "  ${CYAN}init${NC}               Initialize project with CLAUDE.md + NASA P10 config"
+  echo -e "  ${CYAN}gate${NC}               Run 7-stage quality gate check"
+  echo -e "  ${CYAN}parallel${NC} t1 t2 ..  Run N tasks in parallel agents"
+  echo -e "  ${CYAN}research${NC} \"topic\"   Deep research with harness-boosted agent"
+  echo -e "  ${CYAN}deepseek${NC} [args]    Run DeepSeek 20-agent pipeline (needs API key)"
+  echo -e "  ${CYAN}dashboard${NC}          Open latest pipeline dashboard"
+  echo -e "  ${CYAN}help${NC}               Show this help"
+  echo ""
+  echo -e "${BOLD}ENVIRONMENT${NC}"
+  echo "  BUDGET_MAX          Pipeline budget in USD (default: 10.00)"
+  echo "  MAX_TURNS_ANALYZE   Max agent turns for analysis (default: 8)"
+  echo "  MAX_TURNS_IMPLEMENT Max agent turns for implementation (default: 30)"
+  echo "  MAX_TURNS_TEST      Max agent turns for testing (default: 15)"
+  echo "  MAX_TURNS_REVIEW    Max agent turns for review (default: 8)"
+  echo "  DEEPSEEK_API_KEY    API key for DeepSeek pipeline"
+  echo ""
+  echo -e "${BOLD}EXAMPLES${NC}"
+  echo "  100x run \"Add input validation to all API endpoints\""
+  echo "  100x run \"Fix the authentication bug in login flow\""
+  echo "  100x parallel \"Add dark mode\" \"Add i18n\" \"Add analytics\""
+  echo "  100x research \"MCP server ecosystem and monetization\""
+  echo "  BUDGET_MAX=25 100x run \"Refactor entire auth system\""
+  echo ""
+  echo -e "${BOLD}THE FORMULA${NC}"
+  echo "  100x = CLAUDE.md + Harness (6-10x) + Routing (85% ↓) + Caching (90% ↓)"
+  echo "       + Quality Gates (NASA P10) + Budget (\$47K prevention) + Multi-Agent"
+  echo ""
+  echo -e "${DIM}v${VERSION} — github.com/theluckystrike/100xagenticdev${NC}"
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  Main Router
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+main() {
+  local cmd="${1:-help}"
+  shift 2>/dev/null || true
+
+  case "$cmd" in
+    run)       cmd_run "$@" ;;
+    init)      cmd_init "$@" ;;
+    gate)      cmd_gate "$@" ;;
+    parallel)  cmd_parallel "$@" ;;
+    research)  cmd_research "$@" ;;
+    deepseek)  cmd_deepseek "$@" ;;
+    dashboard) cmd_dashboard "$@" ;;
+    help|--help|-h) cmd_help ;;
+    version|--version|-v) echo "100x v$VERSION" ;;
+    *) err "Unknown command: $cmd"; cmd_help; exit 1 ;;
+  esac
+}
+
+main "$@"

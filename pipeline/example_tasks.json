@@ -1,0 +1,23 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "research-01",
+          "prompt": "Analyze the top 10 DeFi protocols by TVL in May 2026. For each: current TVL, 30-day change, revenue model, token price performance YTD.",
+          "system_prompt": "You are an expert crypto research analyst. Provide specific numbers and data.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "research-02",
+          "prompt": "Research the current state of Layer 2 scaling solutions. Compare Arbitrum, Optimism, Base, zkSync, Starknet on: TVL, TPS, fees, developer activity.",
+          "system_prompt": "You are an expert crypto research analyst. Provide specific numbers and data.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Combine these research findings into a unified DeFi landscape overview. Highlight the top 3 opportunities."
+    }
+  ]
+}
