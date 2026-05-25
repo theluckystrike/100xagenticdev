@@ -12,9 +12,12 @@ Turn a single developer into a 100-person engineering team through context engin
 git clone https://github.com/theluckystrike/100xagenticdev.git
 cd 100xagenticdev
 ln -sf "$(pwd)/100x" /usr/local/bin/100x
+
+# Check prerequisites
+100x doctor
 ```
 
-**Requires:** [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`)
+**Requires:** [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`), `jq`, `git`, `bc`
 
 ## Quick Start
 
@@ -70,21 +73,31 @@ After completion, an interactive **HTML dashboard** opens automatically showing 
 |---------|-------------|
 | `100x run "task"` | Full 4-stage pipeline (analyze → implement → test → review) |
 | `100x init` | Initialize project with CLAUDE.md + NASA P10 config |
-| `100x gate` | Run 7-stage quality gate (Prettier → ESLint → tsc → Vitest → Semgrep → Gitleaks → npm audit) |
-| `100x parallel "t1" "t2"` | Run N tasks in parallel Claude agents |
+| `100x gate` | Auto-detect project type and run quality gates |
+| `100x parallel "t1" "t2"` | Run N tasks in parallel with git worktree isolation |
 | `100x research "topic"` | Deep research with harness-boosted agent |
+| `100x history` | Show past pipeline runs with costs |
+| `100x doctor` | Check all prerequisites |
+| `100x config set k v` | Persistent settings (~/.100x.json) |
 | `100x deepseek --preset X` | Run DeepSeek 20-agent pipeline (needs `DEEPSEEK_API_KEY`) |
 | `100x dashboard` | Open latest pipeline dashboard |
 
-## Environment Variables
+## Configuration
+
+Persistent settings via `100x config`:
 
 ```bash
-BUDGET_MAX=10.00          # Pipeline budget in USD (default: 10)
-MAX_TURNS_ANALYZE=8       # Agent turns for analysis stage
-MAX_TURNS_IMPLEMENT=30    # Agent turns for implementation
-MAX_TURNS_TEST=15         # Agent turns for testing
-MAX_TURNS_REVIEW=8        # Agent turns for review
-DEEPSEEK_API_KEY=sk-...   # For DeepSeek multi-agent pipeline
+100x config set budget_max 25        # USD budget per run
+100x config set autonomous true      # Non-interactive mode
+100x config set src_dir lib          # Custom source directory
+```
+
+Or environment variables (override config):
+
+```bash
+BUDGET_MAX=25 100x run "task"
+AUTONOMOUS=true 100x run "task"
+DEEPSEEK_API_KEY=sk-... 100x deepseek --preset crypto_research
 ```
 
 ## Project Setup
@@ -98,17 +111,14 @@ Running `100x init` in your project directory:
 
 ## Quality Gates
 
-The `100x gate` command runs 7 checks in fail-fast order (cheapest first):
+`100x gate` auto-detects your project type and runs the appropriate checks:
 
-```
-Gate 1: Prettier       — formatting
-Gate 2: ESLint         — NASA P10 rules (60-line max, complexity 10, depth 4)
-Gate 3: TypeScript     — type safety
-Gate 4: Vitest/Jest    — unit tests
-Gate 5: Semgrep        — OWASP Top 10 SAST
-Gate 6: Gitleaks       — secret detection
-Gate 7: npm audit      — dependency CVEs
-```
+| Project | Gates |
+|---------|-------|
+| **JS/TS** (package.json) | Prettier → ESLint → tsc → Vitest → Semgrep → Gitleaks → npm audit |
+| **Rust** (Cargo.toml) | cargo fmt → clippy → test → audit → Gitleaks |
+| **Go** (go.mod) | gofmt → go vet → test → govulncheck → Gitleaks |
+| **Python** (pyproject.toml) | ruff → mypy → pytest → Semgrep → Gitleaks |
 
 ## DeepSeek Multi-Agent Pipeline
 
@@ -198,7 +208,7 @@ For heavy research tasks, use the 20-agent DeepSeek pipeline ($0.14-$0.87/M toke
 
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE)
 
 ---
 

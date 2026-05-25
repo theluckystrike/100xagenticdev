@@ -12,7 +12,8 @@
 #    100x parallel "task1" "task2" "task3"
 #    100x dashboard
 #    100x research "topic"
-#    100x deepseek --preset crypto_research --topic "Solana DeFi"
+#    100x history
+#    100x doctor
 #
 #  Install:
 #    git clone https://github.com/theluckystrike/100xagenticdev.git
@@ -22,8 +23,9 @@
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 set -euo pipefail
 
-VERSION="1.0.0"
+VERSION="1.1.0"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+CONFIG_FILE="${HOME}/.100x.json"
 
 # ── Colors ─────────────────────────────────────────────────────────────
 RED='\033[0;31m'
@@ -36,6 +38,16 @@ BOLD='\033[1m'
 DIM='\033[2m'
 NC='\033[0m'
 
+# ── Config Loading ────────────────────────────────────────────────────
+load_config() {
+  if [ -f "$CONFIG_FILE" ]; then
+    BUDGET_MAX="${BUDGET_MAX:-$(jq -r '.budget_max // empty' "$CONFIG_FILE" 2>/dev/null || true)}"
+    AUTONOMOUS="${AUTONOMOUS:-$(jq -r '.autonomous // empty' "$CONFIG_FILE" 2>/dev/null || true)}"
+    SRC_DIR="${SRC_DIR:-$(jq -r '.src_dir // empty' "$CONFIG_FILE" 2>/dev/null || true)}"
+  fi
+}
+load_config
+
 # ── Defaults ───────────────────────────────────────────────────────────
 BUDGET_MAX="${BUDGET_MAX:-10.00}"
 MAX_TURNS_ANALYZE="${MAX_TURNS_ANALYZE:-8}"
@@ -45,6 +57,8 @@ MAX_TURNS_REVIEW="${MAX_TURNS_REVIEW:-8}"
 MAX_TURNS_RESEARCH="${MAX_TURNS_RESEARCH:-20}"
 PARALLEL_BUDGET="${PARALLEL_BUDGET:-2.00}"
 PARALLEL_MAX_TURNS="${PARALLEL_MAX_TURNS:-30}"
+AUTONOMOUS="${AUTONOMOUS:-false}"
+SRC_DIR="${SRC_DIR:-src}"
 
 # ── Helpers ────────────────────────────────────────────────────────────
 banner() {
@@ -75,9 +89,31 @@ detect_project() {
   PROJECT_NAME="$(basename "$PROJECT_DIR")"
 }
 
+detect_src_dir() {
+  if [ -d "$PROJECT_DIR/src" ]; then SRC_DIR="src"
+  elif [ -d "$PROJECT_DIR/lib" ]; then SRC_DIR="lib"
+  elif [ -d "$PROJECT_DIR/app" ]; then SRC_DIR="app"
+  else SRC_DIR="."
+  fi
+}
+
+# Cross-platform open
+open_file() {
+  local filepath="$1"
+  if command -v open &>/dev/null; then open "$filepath" 2>/dev/null || true
+  elif command -v xdg-open &>/dev/null; then xdg-open "$filepath" 2>/dev/null || true
+  elif command -v start &>/dev/null; then start "$filepath" 2>/dev/null || true
+  else info "Open: $filepath"
+  fi
+}
+
+# HTML-safe escaping via jq (no fragile sed)
+html_escape() {
+  local text="$1"
+  echo "$text" | jq -Rs '.' | sed 's/^"//; s/"$//' | sed 's/\\n/\n/g; s/\\t/\t/g; s/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g'
+}
+
 # ── HARNESS: The System Prompt Injection ───────────────────────────────
-# This is where the 6-10x multiplier comes from. The harness wraps every
-# Claude invocation with context engineering rules.
 build_harness() {
   local task="$1"
   local stage="${2:-implement}"
@@ -102,7 +138,7 @@ build_harness() {
   # Layer 2: Context engineering (project-aware)
   if [ -f "$PROJECT_DIR/CLAUDE.md" ]; then
     harness+="PROJECT INSTRUCTIONS (from CLAUDE.md):
-$(head -100 "$PROJECT_DIR/CLAUDE.md")
+$(cat "$PROJECT_DIR/CLAUDE.md")
 
 "
   fi
@@ -140,7 +176,7 @@ Surgical precision. Change only what's needed.
       harness+="STAGE: TESTING
 You are the test agent. Your job:
 1. Run the existing test suite
-2. Fix any failing tests
+2. Fix any failing tests caused by recent changes
 3. Add tests for new/changed code paths
 4. Ensure edge cases are covered
 5. Verify no regressions
@@ -151,7 +187,7 @@ If no test framework exists, note it and move on.
     review)
       harness+="STAGE: REVIEW
 You are the review agent. Your job:
-1. Review ALL changes made in this session (git diff)
+1. Review ALL changes shown below
 2. Check for: security issues, edge cases, code quality
 3. Verify NASA P10 compliance (60-line functions, bounded loops, etc.)
 4. Check for OWASP Top 10 vulnerabilities
@@ -182,13 +218,13 @@ TASK: $task
   echo "$harness"
 }
 
-# ── Budget Tracking ───────────────────────────────────────────────────
+# ── Budget Tracking (uses total_cost_usd from Claude CLI JSON) ────────
 BUDGET_SPENT=0
 
 track_cost() {
   local result_file="$1"
   local cost
-  cost=$(jq -r '.cost_usd // .total_cost_usd // 0' "$result_file" 2>/dev/null || echo "0")
+  cost=$(jq -r '.total_cost_usd // 0' "$result_file" 2>/dev/null || echo "0")
   BUDGET_SPENT=$(echo "$BUDGET_SPENT + $cost" | bc 2>/dev/null || echo "$BUDGET_SPENT")
   local remaining
   remaining=$(echo "$BUDGET_MAX - $BUDGET_SPENT" | bc 2>/dev/null || echo "0")
@@ -198,6 +234,18 @@ track_cost() {
     err "BUDGET EXCEEDED — pipeline halted"
     return 1
   fi
+}
+
+# ── Build Claude CLI flags ────────────────────────────────────────────
+build_claude_flags() {
+  local max_turns="$1"
+  local flags="--output-format json --max-turns $max_turns"
+
+  if [ "$AUTONOMOUS" = "true" ]; then
+    flags+=" --permission-mode bypassPermissions"
+  fi
+
+  echo "$flags"
 }
 
 # ── Stage Runner ──────────────────────────────────────────────────────
@@ -216,40 +264,34 @@ run_stage() {
   local harness
   harness="$(build_harness "$task" "$stage")"
 
-  local remaining_budget
-  remaining_budget=$(echo "$BUDGET_MAX - $BUDGET_SPENT" | bc 2>/dev/null || echo "$BUDGET_MAX")
+  local claude_flags
+  claude_flags="$(build_claude_flags "$max_turns")"
 
   local start_time
   start_time=$(date +%s)
 
-  claude -p "$harness" \
-    --output-format json \
-    --max-turns "$max_turns" \
-    > "$outfile" 2>&1 || true
+  # shellcheck disable=SC2086
+  claude -p "$harness" $claude_flags > "$outfile" 2>/dev/null || true
 
   local end_time
   end_time=$(date +%s)
   local elapsed=$((end_time - start_time))
 
-  # Extract result
-  local result
-  result=$(jq -r '.result // "No result"' "$outfile" 2>/dev/null || echo "See log")
-
-  # Extract cost from session data
+  # Extract cost (Claude CLI uses total_cost_usd)
   local cost_usd
-  cost_usd=$(jq -r '.cost_usd // 0' "$outfile" 2>/dev/null || echo "0")
+  cost_usd=$(jq -r '.total_cost_usd // 0' "$outfile" 2>/dev/null || echo "0")
 
-  ok "Stage ${BOLD}${name}${NC} complete (${elapsed}s)"
+  ok "Stage ${BOLD}${name}${NC} complete (${elapsed}s, \$${cost_usd})"
   track_cost "$outfile" || return 1
 
   # Save stage metadata
   jq -n \
     --arg name "$name" \
     --arg stage "$stage" \
-    --arg elapsed "$elapsed" \
+    --argjson elapsed "$elapsed" \
     --arg cost "$cost_usd" \
     --arg status "complete" \
-    '{name: $name, stage: $stage, elapsed_sec: ($elapsed|tonumber), cost_usd: ($cost|tonumber), status: $status}' \
+    '{name: $name, stage: $stage, elapsed_sec: $elapsed, cost_usd: ($cost|tonumber), status: $status}' \
     > "$log_dir/${name}.meta.json" 2>/dev/null || true
 }
 
@@ -285,8 +327,8 @@ cmd_init() {
 
   # Gitignore .100x logs
   if [ -f "$PROJECT_DIR/.gitignore" ]; then
-    if ! grep -q ".100x/" "$PROJECT_DIR/.gitignore" 2>/dev/null; then
-      echo -e "\n# 100x pipeline logs\n.100x/" >> "$PROJECT_DIR/.gitignore"
+    if ! grep -q "^\.100x/" "$PROJECT_DIR/.gitignore" 2>/dev/null; then
+      printf '\n# 100x pipeline logs\n.100x/\n' >> "$PROJECT_DIR/.gitignore"
       ok "Added .100x/ to .gitignore"
     fi
   fi
@@ -309,9 +351,14 @@ cmd_run() {
   local run_dir="$PROJECT_DIR/.100x/runs/$timestamp"
   mkdir -p "$run_dir"
 
+  # Snapshot pre-run state for context chain
+  git diff HEAD --stat > "$run_dir/pre-state.txt" 2>/dev/null || true
+  git rev-parse HEAD > "$run_dir/pre-commit.txt" 2>/dev/null || true
+
   info "Project: ${BOLD}$PROJECT_NAME${NC}"
   info "Task: ${CYAN}$task${NC}"
   info "Budget: \$$BUDGET_MAX"
+  info "Autonomous: $AUTONOMOUS"
   info "Logs: $run_dir/"
   echo ""
 
@@ -322,7 +369,8 @@ cmd_run() {
     --arg dir "$PROJECT_DIR" \
     --arg ts "$timestamp" \
     --arg budget "$BUDGET_MAX" \
-    '{task: $task, project: $project, project_dir: $dir, timestamp: $ts, budget_usd: ($budget|tonumber), stages: []}' \
+    --arg auto "$AUTONOMOUS" \
+    '{task: $task, project: $project, project_dir: $dir, timestamp: $ts, budget_usd: ($budget|tonumber), autonomous: $auto, stages: []}' \
     > "$run_dir/run.json"
 
   local pipeline_start
@@ -331,7 +379,7 @@ cmd_run() {
   # ── Stage 1: Analyze ──
   run_stage "01-analyze" "$task" "analyze" "$MAX_TURNS_ANALYZE" "$run_dir"
 
-  # ── Stage 2: Implement (feeds analysis) ──
+  # ── Stage 2: Implement (feeds analysis result) ──
   local plan
   plan=$(jq -r '.result // ""' "$run_dir/01-analyze.json" 2>/dev/null || echo "")
   run_stage "02-implement" "Execute this plan for: $task
@@ -339,11 +387,32 @@ cmd_run() {
 ANALYSIS FROM PLANNING AGENT:
 $plan" "implement" "$MAX_TURNS_IMPLEMENT" "$run_dir"
 
-  # ── Stage 3: Test ──
-  run_stage "03-test" "Run all tests, fix failures, add coverage for changes made for: $task" "test" "$MAX_TURNS_TEST" "$run_dir"
+  # ── Capture changes for context chain ──
+  local changes_diff=""
+  changes_diff=$(git diff HEAD 2>/dev/null || echo "No git diff available")
+  local changes_stat=""
+  changes_stat=$(git diff HEAD --stat 2>/dev/null || echo "")
+  # Save diff for later stages
+  echo "$changes_diff" > "$run_dir/changes.diff"
+  echo "$changes_stat" > "$run_dir/changes-stat.txt"
 
-  # ── Stage 4: Review ──
-  run_stage "04-review" "Review all changes made for: $task" "review" "$MAX_TURNS_REVIEW" "$run_dir"
+  # ── Stage 3: Test (knows what changed) ──
+  run_stage "03-test" "Run all tests, fix failures, add coverage for changes made for: $task
+
+FILES CHANGED BY IMPLEMENTATION AGENT:
+$changes_stat
+
+DIFF OF CHANGES:
+$(echo "$changes_diff" | head -300)" "test" "$MAX_TURNS_TEST" "$run_dir"
+
+  # ── Stage 4: Review (knows what changed) ──
+  run_stage "04-review" "Review all changes made for: $task
+
+FILES CHANGED:
+$changes_stat
+
+FULL DIFF TO REVIEW:
+$(echo "$changes_diff" | head -500)" "review" "$MAX_TURNS_REVIEW" "$run_dir"
 
   # ── Pipeline Complete ──
   local pipeline_end
@@ -362,10 +431,7 @@ $plan" "implement" "$MAX_TURNS_IMPLEMENT" "$run_dir"
   echo ""
   info "Open dashboard: ${BOLD}open $run_dir/dashboard.html${NC}"
 
-  # Open dashboard automatically on macOS
-  if command -v open &>/dev/null; then
-    open "$run_dir/dashboard.html" 2>/dev/null || true
-  fi
+  open_file "$run_dir/dashboard.html"
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -373,44 +439,70 @@ $plan" "implement" "$MAX_TURNS_IMPLEMENT" "$run_dir"
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 cmd_gate() {
   detect_project
+  detect_src_dir
   banner
-  info "Running quality gates in ${BOLD}$PROJECT_DIR${NC}"
+  info "Running quality gates in ${BOLD}$PROJECT_DIR${NC} (src: $SRC_DIR)"
   echo ""
 
   local passed=0
   local failed=0
   local skipped=0
-  local total=0
+  local gate_num=0
 
   run_gate() {
     local name="$1"
     local cmd="$2"
-    total=$((total + 1))
+    gate_num=$((gate_num + 1))
 
-    echo -ne "  ${DIM}[$total/7]${NC} $name... "
-    if eval "$cmd" &>/dev/null 2>&1; then
+    echo -ne "  ${DIM}[$gate_num]${NC} $name... "
+
+    # Capture exit code properly before conditional
+    local exit_code=0
+    eval "$cmd" >/dev/null 2>&1 || exit_code=$?
+
+    if [ $exit_code -eq 0 ]; then
       echo -e "${GREEN}PASS${NC}"
       passed=$((passed + 1))
+    elif [ $exit_code -eq 127 ]; then
+      echo -e "${YELLOW}SKIP${NC} (not installed)"
+      skipped=$((skipped + 1))
     else
-      local exit_code=$?
-      if [ $exit_code -eq 127 ]; then
-        echo -e "${YELLOW}SKIP${NC} (not installed)"
-        skipped=$((skipped + 1))
-      else
-        echo -e "${RED}FAIL${NC}"
-        failed=$((failed + 1))
-      fi
+      echo -e "${RED}FAIL${NC}"
+      failed=$((failed + 1))
     fi
   }
 
-  # Run gates (cheapest first)
-  run_gate "Prettier (format)"        "npx prettier --check 'src/**/*.{ts,tsx,js,jsx}' 2>/dev/null"
-  run_gate "ESLint (lint)"            "npx eslint --max-warnings 0 src/ 2>/dev/null"
-  run_gate "TypeScript (types)"       "npx tsc --noEmit 2>/dev/null"
-  run_gate "Tests"                    "npx vitest run 2>/dev/null || npm test 2>/dev/null"
-  run_gate "Semgrep (SAST)"           "semgrep --config 'p/owasp-top-ten' --error src/ 2>/dev/null"
-  run_gate "Gitleaks (secrets)"       "gitleaks detect --source . --no-git --no-banner 2>/dev/null"
-  run_gate "npm audit (CVEs)"         "npm audit --audit-level=high 2>/dev/null"
+  # Auto-detect project type and run appropriate gates
+  if [ -f "$PROJECT_DIR/package.json" ]; then
+    run_gate "Prettier (format)"        "npx prettier --check '${SRC_DIR}/**/*.{ts,tsx,js,jsx}' 2>/dev/null"
+    run_gate "ESLint (lint)"            "npx eslint --max-warnings 0 ${SRC_DIR}/ 2>/dev/null"
+    run_gate "TypeScript (types)"       "npx tsc --noEmit 2>/dev/null"
+    run_gate "Tests"                    "npx vitest run 2>/dev/null || npm test 2>/dev/null"
+    run_gate "Semgrep (SAST)"           "semgrep --config 'p/owasp-top-ten' --error ${SRC_DIR}/ 2>/dev/null"
+    run_gate "Gitleaks (secrets)"       "gitleaks detect --source . --no-git --no-banner 2>/dev/null"
+    run_gate "npm audit (CVEs)"         "npm audit --audit-level=high 2>/dev/null"
+  elif [ -f "$PROJECT_DIR/Cargo.toml" ]; then
+    run_gate "cargo fmt (format)"       "cargo fmt -- --check 2>/dev/null"
+    run_gate "cargo clippy (lint)"      "cargo clippy -- -D warnings 2>/dev/null"
+    run_gate "cargo test"               "cargo test 2>/dev/null"
+    run_gate "cargo audit (CVEs)"       "cargo audit 2>/dev/null"
+    run_gate "Gitleaks (secrets)"       "gitleaks detect --source . --no-git --no-banner 2>/dev/null"
+  elif [ -f "$PROJECT_DIR/go.mod" ]; then
+    run_gate "gofmt (format)"           "test -z \"\$(gofmt -l .)\" 2>/dev/null"
+    run_gate "go vet (lint)"            "go vet ./... 2>/dev/null"
+    run_gate "go test"                  "go test ./... 2>/dev/null"
+    run_gate "govulncheck (CVEs)"       "govulncheck ./... 2>/dev/null"
+    run_gate "Gitleaks (secrets)"       "gitleaks detect --source . --no-git --no-banner 2>/dev/null"
+  elif [ -f "$PROJECT_DIR/pyproject.toml" ] || [ -f "$PROJECT_DIR/setup.py" ]; then
+    run_gate "ruff (lint)"              "ruff check . 2>/dev/null"
+    run_gate "mypy (types)"             "mypy . 2>/dev/null"
+    run_gate "pytest"                   "pytest 2>/dev/null || python3 -m pytest 2>/dev/null"
+    run_gate "Semgrep (SAST)"           "semgrep --config 'p/owasp-top-ten' --error . 2>/dev/null"
+    run_gate "Gitleaks (secrets)"       "gitleaks detect --source . --no-git --no-banner 2>/dev/null"
+  else
+    run_gate "Gitleaks (secrets)"       "gitleaks detect --source . --no-git --no-banner 2>/dev/null"
+    warn "Unknown project type — only ran secret detection"
+  fi
 
   echo ""
   if [ $failed -eq 0 ]; then
@@ -422,7 +514,7 @@ cmd_gate() {
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#  COMMAND: parallel — Multi-Agent Parallel Execution
+#  COMMAND: parallel — Multi-Agent Parallel Execution (with worktrees)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 cmd_parallel() {
   if [ $# -eq 0 ]; then
@@ -434,42 +526,69 @@ cmd_parallel() {
   detect_project
   banner
 
+  # Verify we're in a git repo (required for worktrees)
+  if ! git rev-parse --show-toplevel &>/dev/null; then
+    err "Not a git repository. Parallel mode requires git for worktree isolation."
+    exit 1
+  fi
+
   local timestamp
   timestamp=$(date +%Y%m%d_%H%M%S)
   local run_dir="$PROJECT_DIR/.100x/runs/parallel-$timestamp"
-  mkdir -p "$run_dir"
+  local worktree_base="$PROJECT_DIR/.100x/worktrees"
+  mkdir -p "$run_dir" "$worktree_base"
 
-  info "Launching ${BOLD}$#${NC} parallel agents"
+  info "Launching ${BOLD}$#${NC} parallel agents with worktree isolation"
   info "Budget per agent: \$$PARALLEL_BUDGET"
   info "Max turns: $PARALLEL_MAX_TURNS"
   echo ""
 
   local pids=()
   local tasks=("$@")
+  local claude_flags
+  claude_flags="$(build_claude_flags "$PARALLEL_MAX_TURNS")"
 
   for i in "${!tasks[@]}"; do
     local agent_id=$((i + 1))
+    local branch="100x-agent-${agent_id}-${timestamp}"
+    local worktree="$worktree_base/agent-${agent_id}"
+
+    # Clean stale worktree
+    git worktree remove "$worktree" --force 2>/dev/null || true
+
+    # Create isolated worktree
+    git worktree add "$worktree" -b "$branch" HEAD 2>/dev/null
+
     (
+      cd "$worktree"
       local harness
       harness="$(build_harness "${tasks[$i]}" "implement")"
 
       info "Agent $agent_id: ${tasks[$i]:0:60}..."
-      claude -p "$harness" \
-        --output-format json \
-        --max-turns "$PARALLEL_MAX_TURNS" \
-        > "$run_dir/agent-$agent_id.json" 2>&1 || true
+      # shellcheck disable=SC2086
+      claude -p "$harness" $claude_flags \
+        > "$run_dir/agent-$agent_id.json" 2>/dev/null || true
 
+      # Auto-commit if there are changes
+      if ! git diff --quiet HEAD 2>/dev/null; then
+        git add -A 2>/dev/null || true
+        git commit -m "100x agent $agent_id: ${tasks[$i]:0:50}..." 2>/dev/null || true
+      fi
       ok "Agent $agent_id complete"
     ) &
     pids+=($!)
+    echo -e "  Agent $agent_id launched on branch ${CYAN}$branch${NC}"
   done
 
-  # Wait for all
+  echo ""
+  info "Waiting for ${#pids[@]} agents..."
   local agent_failed=0
   for i in "${!pids[@]}"; do
     if ! wait "${pids[$i]}"; then
       err "Agent $((i + 1)) failed"
       agent_failed=$((agent_failed + 1))
+    else
+      ok "Agent $((i + 1)) done"
     fi
   done
 
@@ -481,24 +600,29 @@ cmd_parallel() {
   for i in "${!tasks[@]}"; do
     local agent_id=$((i + 1))
     local cost
-    cost=$(jq -r '.cost_usd // 0' "$run_dir/agent-$agent_id.json" 2>/dev/null || echo "0")
+    cost=$(jq -r '.total_cost_usd // 0' "$run_dir/agent-$agent_id.json" 2>/dev/null || echo "0")
     total_cost=$(echo "$total_cost + $cost" | bc 2>/dev/null || echo "$total_cost")
-    echo -e "  Agent $agent_id: ${tasks[$i]:0:50}... — \$$cost"
+    echo -e "  Agent $agent_id: \$$cost — ${tasks[$i]:0:50}"
   done
   echo ""
   ok "Total cost: \$$total_cost"
-  ok "Results: $run_dir/"
 
-  generate_parallel_dashboard "$run_dir" "${tasks[@]}"
-  info "Dashboard: ${BOLD}open $run_dir/dashboard.html${NC}"
+  # Cleanup worktrees
+  for i in "${!tasks[@]}"; do
+    local agent_id=$((i + 1))
+    git worktree remove "$worktree_base/agent-$agent_id" --force 2>/dev/null || true
+  done
 
-  if command -v open &>/dev/null; then
-    open "$run_dir/dashboard.html" 2>/dev/null || true
-  fi
+  ok "Worktrees cleaned up"
+  info "Review agent branches: ${BOLD}git log --all --oneline --graph${NC}"
+
+  BUDGET_SPENT="$total_cost"
+  generate_dashboard "$run_dir" "Parallel: ${#tasks[@]} agents" "0"
+  open_file "$run_dir/dashboard.html"
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#  COMMAND: research — Deep Research with Fan-Out
+#  COMMAND: research — Deep Research (no double-harness)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 cmd_research() {
   local topic="${1:?Usage: 100x research 'topic'}"
@@ -515,10 +639,8 @@ cmd_research() {
   info "Budget: \$$BUDGET_MAX"
   echo ""
 
-  local harness
-  harness="$(build_harness "Deep research: $topic. Search the web extensively. Cover multiple angles: technical, market, competitive, risks, opportunities. Provide data-driven analysis with specific numbers and sources. Structure with clear headers. Be thorough." "research")"
-
-  run_stage "research" "$harness" "research" "$MAX_TURNS_RESEARCH" "$run_dir"
+  # FIX: Pass raw topic to run_stage, let run_stage call build_harness once
+  run_stage "research" "Deep research: $topic. Search the web extensively. Cover multiple angles: technical, market, competitive, risks, opportunities. Provide data-driven analysis with specific numbers and sources. Structure with clear headers. Be thorough." "research" "$MAX_TURNS_RESEARCH" "$run_dir"
 
   echo ""
   ok "Research complete"
@@ -544,12 +666,202 @@ cmd_deepseek() {
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: history — Show Past Pipeline Runs
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_history() {
+  detect_project
+  local runs_dir="$PROJECT_DIR/.100x/runs"
+
+  if [ ! -d "$runs_dir" ] || [ -z "$(ls -A "$runs_dir" 2>/dev/null)" ]; then
+    err "No pipeline runs found. Run: 100x run 'your task'"
+    exit 1
+  fi
+
+  banner
+  echo -e "${BOLD}Pipeline History${NC} — $PROJECT_NAME"
+  echo ""
+  printf "  ${DIM}%-18s %-10s %-8s %s${NC}\n" "TIMESTAMP" "COST" "TIME" "TASK"
+  printf "  ${DIM}%-18s %-10s %-8s %s${NC}\n" "──────────────────" "──────────" "────────" "────────────────────────────────"
+
+  local total_cost=0
+  local total_runs=0
+
+  # shellcheck disable=SC2012,SC2045
+  for run_dir in $(ls -td "$runs_dir"/*/); do
+    [ -d "$run_dir" ] || continue
+
+    local ts
+    ts=$(basename "$run_dir")
+    local task="unknown"
+    local cost="0"
+    local elapsed="?"
+
+    if [ -f "$run_dir/run.json" ]; then
+      task=$(jq -r '.task // "unknown"' "$run_dir/run.json" 2>/dev/null || echo "unknown")
+    fi
+
+    # Sum costs from all stage JSON files
+    local run_cost=0
+    for stage_json in "$run_dir"/*.json; do
+      [ -f "$stage_json" ] || continue
+      local stage_cost
+      stage_cost=$(jq -r '.total_cost_usd // 0' "$stage_json" 2>/dev/null || echo "0")
+      run_cost=$(echo "$run_cost + $stage_cost" | bc 2>/dev/null || echo "$run_cost")
+    done
+
+    total_cost=$(echo "$total_cost + $run_cost" | bc 2>/dev/null || echo "$total_cost")
+    total_runs=$((total_runs + 1))
+
+    # Format timestamp
+    local display_ts
+    display_ts=$(echo "$ts" | sed 's/_/ /; s/\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)/\1-\2-\3/')
+
+    printf "  %-18s ${GREEN}\$%-9s${NC} %-8s %s\n" "$display_ts" "$run_cost" "${elapsed}s" "${task:0:40}"
+  done
+
+  echo ""
+  echo -e "  ${BOLD}Total: $total_runs runs, \$${total_cost}${NC}"
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: doctor — Check Prerequisites
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_doctor() {
+  banner
+  echo -e "${BOLD}Prerequisite Check${NC}"
+  echo ""
+
+  local ok_count=0
+  local warn_count=0
+  local fail_count=0
+
+  check_tool() {
+    local name="$1"
+    local cmd="$2"
+    local required="$3"
+    local install_hint="$4"
+
+    echo -ne "  $name... "
+    if command -v "$cmd" &>/dev/null; then
+      local ver
+      ver=$($cmd --version 2>&1 | head -1 | grep -oE '[0-9]+\.[0-9]+[.0-9]*' | head -1 || echo "?")
+      echo -e "${GREEN}OK${NC} (v$ver)"
+      ok_count=$((ok_count + 1))
+    elif [ "$required" = "required" ]; then
+      echo -e "${RED}MISSING${NC} — $install_hint"
+      fail_count=$((fail_count + 1))
+    else
+      echo -e "${YELLOW}OPTIONAL${NC} — $install_hint"
+      warn_count=$((warn_count + 1))
+    fi
+  }
+
+  echo -e "  ${DIM}Required:${NC}"
+  check_tool "Claude CLI" "claude" "required" "npm install -g @anthropic-ai/claude-code"
+  check_tool "git" "git" "required" "brew install git"
+  check_tool "jq" "jq" "required" "brew install jq"
+  check_tool "bc" "bc" "required" "brew install bc"
+
+  echo ""
+  echo -e "  ${DIM}Quality gates (JS/TS):${NC}"
+  check_tool "Node.js" "node" "optional" "brew install node"
+  check_tool "npx" "npx" "optional" "comes with Node.js"
+
+  echo ""
+  echo -e "  ${DIM}Quality gates (Python):${NC}"
+  check_tool "Python 3" "python3" "optional" "brew install python3"
+  check_tool "ruff" "ruff" "optional" "pip install ruff"
+
+  echo ""
+  echo -e "  ${DIM}Security tools:${NC}"
+  check_tool "Semgrep" "semgrep" "optional" "pip install semgrep"
+  check_tool "Gitleaks" "gitleaks" "optional" "brew install gitleaks"
+
+  echo ""
+  echo -e "  ${DIM}DeepSeek pipeline:${NC}"
+  check_tool "httpx (Python)" "python3" "optional" "pip install httpx"
+  if [ -n "${DEEPSEEK_API_KEY:-}" ]; then
+    echo -e "  DEEPSEEK_API_KEY... ${GREEN}SET${NC}"
+    ok_count=$((ok_count + 1))
+  else
+    echo -e "  DEEPSEEK_API_KEY... ${YELLOW}NOT SET${NC} (needed for 100x deepseek)"
+    warn_count=$((warn_count + 1))
+  fi
+
+  echo ""
+  if [ $fail_count -eq 0 ]; then
+    ok "All required tools present (${ok_count} ok, ${warn_count} optional missing)"
+  else
+    err "${fail_count} required tool(s) missing. Install them and re-run."
+    exit 1
+  fi
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  COMMAND: config — Persistent Settings
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cmd_config() {
+  if [ $# -eq 0 ]; then
+    # Show current config
+    banner
+    echo -e "${BOLD}Configuration${NC} ($CONFIG_FILE)"
+    echo ""
+    if [ -f "$CONFIG_FILE" ]; then
+      jq '.' "$CONFIG_FILE"
+    else
+      echo "  No config file. Using defaults."
+    fi
+    echo ""
+    echo -e "  ${DIM}Usage:${NC}"
+    echo "    100x config set budget_max 25"
+    echo "    100x config set autonomous true"
+    echo "    100x config set src_dir lib"
+    return
+  fi
+
+  local action="${1:-}"
+  shift || true
+
+  case "$action" in
+    set)
+      local key="${1:?Usage: 100x config set <key> <value>}"
+      local value="${2:?Usage: 100x config set <key> <value>}"
+
+      # Create config if missing
+      if [ ! -f "$CONFIG_FILE" ]; then
+        echo '{}' > "$CONFIG_FILE"
+      fi
+
+      # Update key
+      local tmp
+      tmp=$(mktemp)
+      jq --arg k "$key" --arg v "$value" '.[$k] = $v' "$CONFIG_FILE" > "$tmp"
+      mv "$tmp" "$CONFIG_FILE"
+      ok "Set $key = $value"
+      ;;
+    get)
+      local key="${1:?Usage: 100x config get <key>}"
+      if [ -f "$CONFIG_FILE" ]; then
+        jq -r --arg k "$key" '.[$k] // "not set"' "$CONFIG_FILE"
+      else
+        echo "not set"
+      fi
+      ;;
+    *)
+      err "Unknown config action: $action (use set/get)"
+      exit 1
+      ;;
+  esac
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #  COMMAND: dashboard — Open Latest Dashboard
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 cmd_dashboard() {
   detect_project
 
   local latest
+  # shellcheck disable=SC2012
   latest=$(ls -td "$PROJECT_DIR/.100x/runs/"*/ 2>/dev/null | head -1)
 
   if [ -z "$latest" ]; then
@@ -559,16 +871,17 @@ cmd_dashboard() {
 
   if [ -f "${latest}dashboard.html" ]; then
     info "Opening: ${latest}dashboard.html"
-    open "${latest}dashboard.html" 2>/dev/null || echo "Open: ${latest}dashboard.html"
+    open_file "${latest}dashboard.html"
   else
     warn "No dashboard in latest run. Generating..."
+    BUDGET_SPENT="0"
     generate_dashboard "$latest" "Unknown" "0"
-    open "${latest}dashboard.html" 2>/dev/null || echo "Open: ${latest}dashboard.html"
+    open_file "${latest}dashboard.html"
   fi
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#  Dashboard HTML Generator
+#  Dashboard HTML Generator (uses jq for safe escaping)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 generate_dashboard() {
   local run_dir="$1"
@@ -576,28 +889,36 @@ generate_dashboard() {
   local total_elapsed="${3:-0}"
   local output="$run_dir/dashboard.html"
 
-  # Collect stage data
-  local stages_json="[]"
-  for meta in "$run_dir"/*.meta.json; do
-    [ -f "$meta" ] || continue
-    stages_json=$(echo "$stages_json" | jq --slurpfile s "$meta" '. + $s')
-  done
-
-  # Collect stage results
-  local results=""
-  for stage_file in "$run_dir"/0*.json; do
+  # Collect stage results safely via jq
+  local results_html=""
+  for stage_file in "$run_dir"/0*.json "$run_dir"/research.json; do
     [ -f "$stage_file" ] || continue
     local stage_name
     stage_name=$(basename "$stage_file" .json)
     local stage_result
     stage_result=$(jq -r '.result // "No output"' "$stage_file" 2>/dev/null | head -200 || echo "Error reading")
-    results+="<div class='stage-result'>
-      <h3>$stage_name</h3>
-      <pre>$(echo "$stage_result" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')</pre>
-    </div>"
+    # Escape HTML via jq
+    local escaped_result
+    escaped_result=$(printf '%s' "$stage_result" | jq -Rs '.' | sed 's/^"//;s/"$//' | sed 's/\\n/<br>/g; s/\\t/\&nbsp;\&nbsp;\&nbsp;\&nbsp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/&lt;br&gt;/<br>/g')
+    results_html+="<div class=\"stage-result\"><h3>$stage_name</h3><pre>$escaped_result</pre></div>"
   done
 
-  cat > "$output" << 'DASHBOARD_EOF'
+  # Calculate budget bar width dynamically
+  local budget_pct=0
+  if [ "$(echo "$BUDGET_MAX > 0" | bc -l 2>/dev/null || echo 0)" = "1" ]; then
+    budget_pct=$(echo "scale=0; $BUDGET_SPENT * 100 / $BUDGET_MAX" | bc 2>/dev/null || echo "0")
+  fi
+  local budget_class="low"
+  if [ "$budget_pct" -gt 80 ] 2>/dev/null; then budget_class="high"
+  elif [ "$budget_pct" -gt 50 ] 2>/dev/null; then budget_class="mid"
+  fi
+
+  # Escape task for HTML
+  local safe_task
+  safe_task=$(printf '%s' "$task" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g')
+
+  # Write dashboard (static CSS block, then dynamic content)
+  cat > "$output" << 'CSSEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -605,189 +926,119 @@ generate_dashboard() {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>100x Pipeline Dashboard</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
-  .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
-
-  /* Header */
-  .header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-  .header h1 { font-size: 24px; color: #fff; }
-  .header .badge { background: #1a1a3a; color: #8b8bff; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; }
-  .subtitle { color: #666; font-size: 13px; margin-bottom: 8px; }
-  .task-desc { color: #aaa; font-size: 14px; background: #151520; padding: 12px 16px; border-radius: 8px; border-left: 3px solid #8b8bff; margin-bottom: 24px; }
-
-  /* KPI Grid */
-  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
-  .kpi { background: #151520; border: 1px solid #252535; border-radius: 10px; padding: 16px; position: relative; overflow: hidden; }
-  .kpi::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-  .kpi.green::before { background: linear-gradient(90deg, #4ade80, #22c55e); }
-  .kpi.blue::before { background: linear-gradient(90deg, #60a5fa, #3b82f6); }
-  .kpi.yellow::before { background: linear-gradient(90deg, #facc15, #eab308); }
-  .kpi.purple::before { background: linear-gradient(90deg, #a78bfa, #8b5cf6); }
-  .kpi.red::before { background: linear-gradient(90deg, #f87171, #ef4444); }
-  .kpi-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
-  .kpi-value { font-size: 32px; font-weight: 700; color: #fff; margin-top: 4px; font-variant-numeric: tabular-nums; }
-  .kpi-sub { font-size: 11px; color: #555; margin-top: 4px; }
-
-  /* Pipeline Flow */
-  .pipeline-flow { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding: 8px 0; }
-  .pipeline-stage { background: #151520; border: 1px solid #252535; border-radius: 10px; padding: 14px 20px; min-width: 160px; text-align: center; position: relative; }
-  .pipeline-stage.complete { border-color: #22c55e40; }
-  .pipeline-stage.complete::after { content: '✓'; position: absolute; top: 8px; right: 10px; color: #4ade80; font-size: 14px; font-weight: bold; }
-  .pipeline-stage.failed { border-color: #ef444440; }
-  .pipeline-stage.failed::after { content: '✗'; position: absolute; top: 8px; right: 10px; color: #f87171; font-size: 14px; font-weight: bold; }
-  .pipeline-stage .name { font-size: 13px; font-weight: 600; color: #ddd; }
-  .pipeline-stage .meta { font-size: 11px; color: #666; margin-top: 4px; }
-  .pipeline-arrow { color: #333; font-size: 20px; flex-shrink: 0; }
-
-  /* Budget Bar */
-  .budget-container { margin-bottom: 24px; }
-  .budget-bar-outer { width: 100%; height: 6px; background: #252535; border-radius: 3px; overflow: hidden; }
-  .budget-bar-inner { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
-  .budget-bar-inner.low { background: linear-gradient(90deg, #4ade80, #22c55e); }
-  .budget-bar-inner.mid { background: linear-gradient(90deg, #facc15, #eab308); }
-  .budget-bar-inner.high { background: linear-gradient(90deg, #f87171, #ef4444); }
-
-  /* Tabs */
-  .tabs { display: flex; gap: 2px; margin-bottom: 0; background: #0d0d14; border-radius: 8px 8px 0 0; padding: 4px 4px 0; }
-  .tab { padding: 10px 20px; background: transparent; border: none; color: #666; font-size: 13px; font-weight: 500; cursor: pointer; border-radius: 6px 6px 0 0; transition: all 0.2s; }
-  .tab:hover { color: #aaa; background: #151520; }
-  .tab.active { color: #8b8bff; background: #151520; }
-  .tab-body { background: #151520; border: 1px solid #252535; border-top: none; border-radius: 0 0 8px 8px; padding: 16px; min-height: 300px; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-
-  /* Stage Results */
-  .stage-result { margin-bottom: 16px; }
-  .stage-result h3 { font-size: 14px; color: #8b8bff; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-  .stage-result pre { background: #0d0d14; padding: 16px; border-radius: 8px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; max-height: 500px; overflow-y: auto; color: #ccc; }
-
-  /* Multiplier Cards */
-  .multipliers { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
-  .multiplier { background: #0d0d14; border: 1px solid #252535; border-radius: 8px; padding: 16px; }
-  .multiplier h4 { color: #8b8bff; font-size: 13px; margin-bottom: 4px; }
-  .multiplier .impact { font-size: 20px; font-weight: 700; color: #4ade80; }
-  .multiplier .evidence { font-size: 11px; color: #666; margin-top: 4px; }
-
-  /* Footer */
-  .footer { text-align: center; margin-top: 40px; padding: 16px; color: #333; font-size: 11px; }
-  .footer a { color: #555; text-decoration: none; }
-  .footer a:hover { color: #8b8bff; }
-
-  @media (max-width: 768px) {
-    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-    .pipeline-flow { flex-wrap: wrap; }
-    .kpi-value { font-size: 24px; }
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro',system-ui,sans-serif;background:#0a0a0f;color:#e0e0e0;min-height:100vh}
+.container{max-width:1400px;margin:0 auto;padding:24px}
+.header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.header h1{font-size:24px;color:#fff}
+.badge{background:#1a1a3a;color:#8b8bff;padding:4px 12px;border-radius:12px;font-size:12px;font-weight:600}
+.subtitle{color:#666;font-size:13px;margin-bottom:8px}
+.task-desc{color:#aaa;font-size:14px;background:#151520;padding:12px 16px;border-radius:8px;border-left:3px solid #8b8bff;margin-bottom:24px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:24px}
+.kpi{background:#151520;border:1px solid #252535;border-radius:10px;padding:16px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.kpi.green::before{background:linear-gradient(90deg,#4ade80,#22c55e)}
+.kpi.blue::before{background:linear-gradient(90deg,#60a5fa,#3b82f6)}
+.kpi.yellow::before{background:linear-gradient(90deg,#facc15,#eab308)}
+.kpi.purple::before{background:linear-gradient(90deg,#a78bfa,#8b5cf6)}
+.kpi-label{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+.kpi-value{font-size:32px;font-weight:700;color:#fff;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi-sub{font-size:11px;color:#555;margin-top:4px}
+.pipeline-flow{display:flex;align-items:center;gap:8px;margin-bottom:24px;overflow-x:auto;padding:8px 0}
+.pipeline-stage{background:#151520;border:1px solid #252535;border-radius:10px;padding:14px 20px;min-width:160px;text-align:center;position:relative}
+.pipeline-stage.complete{border-color:#22c55e40}
+.pipeline-stage.complete::after{content:'✓';position:absolute;top:8px;right:10px;color:#4ade80;font-size:14px;font-weight:bold}
+.pipeline-stage .name{font-size:13px;font-weight:600;color:#ddd}
+.pipeline-stage .meta{font-size:11px;color:#666;margin-top:4px}
+.pipeline-arrow{color:#333;font-size:20px;flex-shrink:0}
+.budget-container{margin-bottom:24px}
+.budget-bar-outer{width:100%;height:6px;background:#252535;border-radius:3px;overflow:hidden}
+.budget-bar-inner{height:100%;border-radius:3px;transition:width .5s ease}
+.budget-bar-inner.low{background:linear-gradient(90deg,#4ade80,#22c55e)}
+.budget-bar-inner.mid{background:linear-gradient(90deg,#facc15,#eab308)}
+.budget-bar-inner.high{background:linear-gradient(90deg,#f87171,#ef4444)}
+.tabs{display:flex;gap:2px;margin-bottom:0;background:#0d0d14;border-radius:8px 8px 0 0;padding:4px 4px 0}
+.tab{padding:10px 20px;background:0 0;border:none;color:#666;font-size:13px;font-weight:500;cursor:pointer;border-radius:6px 6px 0 0;transition:all .2s}
+.tab:hover{color:#aaa;background:#151520}
+.tab.active{color:#8b8bff;background:#151520}
+.tab-body{background:#151520;border:1px solid #252535;border-top:none;border-radius:0 0 8px 8px;padding:16px;min-height:300px}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.stage-result{margin-bottom:16px}
+.stage-result h3{font-size:14px;color:#8b8bff;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.stage-result pre{background:#0d0d14;padding:16px;border-radius:8px;font-family:'SF Mono','Fira Code',monospace;font-size:12px;line-height:1.6;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word;max-height:500px;overflow-y:auto;color:#ccc}
+.multipliers{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.multiplier{background:#0d0d14;border:1px solid #252535;border-radius:8px;padding:16px}
+.multiplier h4{color:#8b8bff;font-size:13px;margin-bottom:4px}
+.multiplier .impact{font-size:20px;font-weight:700;color:#4ade80}
+.multiplier .evidence{font-size:11px;color:#666;margin-top:4px}
+.footer{text-align:center;margin-top:40px;padding:16px;color:#333;font-size:11px}
+.footer a{color:#555;text-decoration:none}
+.footer a:hover{color:#8b8bff}
+@media(max-width:768px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.pipeline-flow{flex-wrap:wrap}.kpi-value{font-size:24px}}
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="header">
-    <h1>100x Pipeline</h1>
-    <span class="badge">v1.0.0</span>
-  </div>
-DASHBOARD_EOF
+<div class="header"><h1>100x Pipeline</h1><span class="badge">v1.1.0</span></div>
+CSSEOF
 
-  # Inject dynamic content
-  cat >> "$output" << EOF
-  <div class="subtitle">$(date '+%Y-%m-%d %H:%M:%S') | Project: $PROJECT_NAME</div>
-  <div class="task-desc">$task</div>
+  # Inject dynamic content — using printf to avoid heredoc escaping issues
+  {
+    printf '<div class="subtitle">%s | Project: %s</div>\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$PROJECT_NAME"
+    printf '<div class="task-desc">%s</div>\n' "$safe_task"
 
-  <!-- KPI Cards -->
-  <div class="kpi-grid">
-    <div class="kpi green">
-      <div class="kpi-label">Total Cost</div>
-      <div class="kpi-value">\$${BUDGET_SPENT}</div>
-      <div class="kpi-sub">of \$$BUDGET_MAX budget</div>
-    </div>
-    <div class="kpi blue">
-      <div class="kpi-label">Duration</div>
-      <div class="kpi-value">${total_elapsed}s</div>
-      <div class="kpi-sub">wall clock</div>
-    </div>
-    <div class="kpi purple">
-      <div class="kpi-label">Stages</div>
-      <div class="kpi-value">4</div>
-      <div class="kpi-sub">analyze → implement → test → review</div>
-    </div>
-    <div class="kpi yellow">
-      <div class="kpi-label">Harness</div>
-      <div class="kpi-value">6-10x</div>
-      <div class="kpi-sub">multiplier active</div>
-    </div>
-  </div>
+    cat << KPIEOF
+<div class="kpi-grid">
+<div class="kpi green"><div class="kpi-label">Total Cost</div><div class="kpi-value">\$${BUDGET_SPENT}</div><div class="kpi-sub">of \$${BUDGET_MAX} budget</div></div>
+<div class="kpi blue"><div class="kpi-label">Duration</div><div class="kpi-value">${total_elapsed}s</div><div class="kpi-sub">wall clock</div></div>
+<div class="kpi purple"><div class="kpi-label">Stages</div><div class="kpi-value">4</div><div class="kpi-sub">analyze → implement → test → review</div></div>
+<div class="kpi yellow"><div class="kpi-label">Harness</div><div class="kpi-value">6-10x</div><div class="kpi-sub">multiplier active</div></div>
+</div>
+<div class="pipeline-flow">
+<div class="pipeline-stage complete"><div class="name">Analyze</div><div class="meta">Plan &amp; scope</div></div>
+<div class="pipeline-arrow">→</div>
+<div class="pipeline-stage complete"><div class="name">Implement</div><div class="meta">Write code</div></div>
+<div class="pipeline-arrow">→</div>
+<div class="pipeline-stage complete"><div class="name">Test</div><div class="meta">Verify &amp; cover</div></div>
+<div class="pipeline-arrow">→</div>
+<div class="pipeline-stage complete"><div class="name">Review</div><div class="meta">Security &amp; quality</div></div>
+</div>
+<div class="budget-container">
+<div style="display:flex;justify-content:space-between;font-size:11px;color:#666;margin-bottom:4px">
+<span>Budget</span><span>\$${BUDGET_SPENT} / \$${BUDGET_MAX} (${budget_pct}%)</span>
+</div>
+<div class="budget-bar-outer"><div class="budget-bar-inner ${budget_class}" style="width:${budget_pct}%"></div></div>
+</div>
+KPIEOF
 
-  <!-- Pipeline Flow -->
-  <div class="pipeline-flow">
-    <div class="pipeline-stage complete"><div class="name">Analyze</div><div class="meta">Plan & scope</div></div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-stage complete"><div class="name">Implement</div><div class="meta">Write code</div></div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-stage complete"><div class="name">Test</div><div class="meta">Verify & cover</div></div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-stage complete"><div class="name">Review</div><div class="meta">Security & quality</div></div>
-  </div>
+    cat << 'TABSEOF'
+<div class="tabs">
+<button class="tab active" onclick="showTab('results')">Stage Results</button>
+<button class="tab" onclick="showTab('multipliers')">ROI Multipliers</button>
+<button class="tab" onclick="showTab('rules')">Pipeline Rules</button>
+</div>
+<div class="tab-body">
+<div id="tab-results" class="tab-content active">
+TABSEOF
 
-  <!-- Budget Bar -->
-  <div class="budget-container">
-    <div style="display: flex; justify-content: space-between; font-size: 11px; color: #666; margin-bottom: 4px;">
-      <span>Budget</span>
-      <span>\$${BUDGET_SPENT} / \$$BUDGET_MAX</span>
-    </div>
-    <div class="budget-bar-outer">
-      <div class="budget-bar-inner low" style="width: 25%"></div>
-    </div>
-  </div>
+    printf '%s\n' "$results_html"
 
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('results')">Stage Results</button>
-    <button class="tab" onclick="showTab('multipliers')">ROI Multipliers</button>
-    <button class="tab" onclick="showTab('rules')">Pipeline Rules</button>
-  </div>
-  <div class="tab-body">
-    <div id="tab-results" class="tab-content active">
-      $results
-    </div>
-    <div id="tab-multipliers" class="tab-content">
-      <div class="multipliers">
-        <div class="multiplier">
-          <h4>Harness Engineering</h4>
-          <div class="impact">6-10x</div>
-          <div class="evidence">Same model, better wrapper → 6.7% to 68.3% (Hashline benchmark)</div>
-        </div>
-        <div class="multiplier">
-          <h4>Model Routing</h4>
-          <div class="impact">85% cost ↓</div>
-          <div class="evidence">RouteLLM: 95% quality with only 26% expensive model calls (ICLR 2025)</div>
-        </div>
-        <div class="multiplier">
-          <h4>Prompt Caching</h4>
-          <div class="impact">90% input ↓</div>
-          <div class="evidence">ProjectDiscovery: 59% total cost cut with caching alone</div>
-        </div>
-        <div class="multiplier">
-          <h4>Loop Budgets</h4>
-          <div class="impact">Prevents \$47K</div>
-          <div class="evidence">Real incidents: \$16-50K in 5hrs without budget enforcement</div>
-        </div>
-        <div class="multiplier">
-          <h4>Multi-Agent</h4>
-          <div class="impact">N× parallel</div>
-          <div class="evidence">Stripe: 1,300 AI PRs/week with agent orchestration</div>
-        </div>
-        <div class="multiplier">
-          <h4>NASA P10 Gates</h4>
-          <div class="impact">Zero defects</div>
-          <div class="evidence">7-stage quality gate: lint → type → test → SAST → secrets → CVE</div>
-        </div>
-      </div>
-    </div>
-    <div id="tab-rules" class="tab-content">
-      <div class="stage-result">
-        <h3>NASA Power of 10 Rules (Active)</h3>
-        <pre>1. Functions under 60 lines — no exceptions
+    cat << 'RESTEOF'
+</div>
+<div id="tab-multipliers" class="tab-content">
+<div class="multipliers">
+<div class="multiplier"><h4>Harness Engineering</h4><div class="impact">6-10x</div><div class="evidence">Same model, better wrapper → 6.7% to 68.3% (Hashline benchmark)</div></div>
+<div class="multiplier"><h4>Model Routing</h4><div class="impact">85% cost ↓</div><div class="evidence">RouteLLM: 95% quality with only 26% expensive model calls (ICLR 2025)</div></div>
+<div class="multiplier"><h4>Prompt Caching</h4><div class="impact">90% input ↓</div><div class="evidence">ProjectDiscovery: 59% total cost cut with caching alone</div></div>
+<div class="multiplier"><h4>Loop Budgets</h4><div class="impact">Prevents $47K</div><div class="evidence">Real incidents: $16-50K in 5hrs without budget enforcement</div></div>
+<div class="multiplier"><h4>Multi-Agent</h4><div class="impact">N× parallel</div><div class="evidence">Stripe: 1,300 AI PRs/week with agent orchestration</div></div>
+<div class="multiplier"><h4>NASA P10 Gates</h4><div class="impact">Zero defects</div><div class="evidence">7-stage quality gate: lint → type → test → SAST → secrets → CVE</div></div>
+</div>
+</div>
+<div id="tab-rules" class="tab-content">
+<div class="stage-result"><h3>NASA Power of 10 Rules (Active)</h3>
+<pre>1. Functions under 60 lines — no exceptions
 2. All loops have fixed upper bounds
 3. No dynamic memory after initialization
 4. Check every return value
@@ -796,46 +1047,23 @@ DASHBOARD_EOF
 7. Max 2 levels of pointer/reference indirection
 8. All code paths must be testable
 9. Minimize scope of variables
-10. Use assertions at function boundaries</pre>
-      </div>
-      <div class="stage-result">
-        <h3>Quality Gate Pipeline</h3>
-        <pre>Gate 1: Prettier (formatting)     — cheapest, runs first
-Gate 2: ESLint (NASA P10 rules)   — catches complexity violations
-Gate 3: TypeScript (type safety)  — catches type errors
-Gate 4: Vitest (tests)            — catches logic errors
-Gate 5: Semgrep (OWASP SAST)      — catches security issues
-Gate 6: Gitleaks (secrets)        — catches leaked credentials
-Gate 7: npm audit (CVEs)          — catches vulnerable deps</pre>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">
-    100x Agentic Pipeline v1.0.0 — <a href="https://github.com/theluckystrike/100xagenticdev">github.com/theluckystrike/100xagenticdev</a>
-    <br>Based on Karpathy's Context Engineering + RouteLLM (ICLR 2025) + NASA Power of 10
-  </div>
+10. Use assertions at function boundaries</pre></div>
+<div class="stage-result"><h3>Quality Gate Pipeline</h3>
+<pre>Gate 1: Prettier/fmt (formatting)  — cheapest, runs first
+Gate 2: ESLint/clippy (lint)       — catches complexity violations
+Gate 3: TypeScript/mypy (types)    — catches type errors
+Gate 4: Vitest/pytest (tests)      — catches logic errors
+Gate 5: Semgrep (OWASP SAST)       — catches security issues
+Gate 6: Gitleaks (secrets)         — catches leaked credentials
+Gate 7: npm audit/cargo audit      — catches vulnerable deps</pre></div>
 </div>
-<script>
-function showTab(name) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
-}
-</script>
-</body>
-</html>
-EOF
-}
-
-# ── Parallel Dashboard ────────────────────────────────────────────────
-generate_parallel_dashboard() {
-  local run_dir="$1"
-  shift
-  local tasks=("$@")
-  # Reuse main dashboard with parallel info
-  generate_dashboard "$run_dir" "Parallel: ${#tasks[@]} agents" "0"
+</div>
+<div class="footer">100x Agentic Pipeline v1.1.0 — <a href="https://github.com/theluckystrike/100xagenticdev">github.com/theluckystrike/100xagenticdev</a><br>Based on Karpathy's Context Engineering + RouteLLM (ICLR 2025) + NASA Power of 10</div>
+</div>
+<script>function showTab(n){document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));document.getElementById('tab-'+n).classList.add('active');event.target.classList.add('active')}</script>
+</body></html>
+RESTEOF
+  } >> "$output"
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -849,31 +1077,27 @@ cmd_help() {
   echo -e "${BOLD}COMMANDS${NC}"
   echo -e "  ${CYAN}run${NC} \"task\"         Run 4-stage pipeline (analyze → implement → test → review)"
   echo -e "  ${CYAN}init${NC}               Initialize project with CLAUDE.md + NASA P10 config"
-  echo -e "  ${CYAN}gate${NC}               Run 7-stage quality gate check"
-  echo -e "  ${CYAN}parallel${NC} t1 t2 ..  Run N tasks in parallel agents"
+  echo -e "  ${CYAN}gate${NC}               Run quality gates (auto-detects JS/TS/Rust/Go/Python)"
+  echo -e "  ${CYAN}parallel${NC} t1 t2 ..  Run N tasks in parallel (git worktree isolation)"
   echo -e "  ${CYAN}research${NC} \"topic\"   Deep research with harness-boosted agent"
   echo -e "  ${CYAN}deepseek${NC} [args]    Run DeepSeek 20-agent pipeline (needs API key)"
+  echo -e "  ${CYAN}history${NC}            Show past pipeline runs with costs"
+  echo -e "  ${CYAN}doctor${NC}             Check all prerequisites"
+  echo -e "  ${CYAN}config${NC} [set|get]   Manage persistent settings"
   echo -e "  ${CYAN}dashboard${NC}          Open latest pipeline dashboard"
   echo -e "  ${CYAN}help${NC}               Show this help"
   echo ""
-  echo -e "${BOLD}ENVIRONMENT${NC}"
-  echo "  BUDGET_MAX          Pipeline budget in USD (default: 10.00)"
-  echo "  MAX_TURNS_ANALYZE   Max agent turns for analysis (default: 8)"
-  echo "  MAX_TURNS_IMPLEMENT Max agent turns for implementation (default: 30)"
-  echo "  MAX_TURNS_TEST      Max agent turns for testing (default: 15)"
-  echo "  MAX_TURNS_REVIEW    Max agent turns for review (default: 8)"
-  echo "  DEEPSEEK_API_KEY    API key for DeepSeek pipeline"
+  echo -e "${BOLD}FLAGS${NC}"
+  echo "  AUTONOMOUS=true   Enable non-interactive mode (bypasses permissions)"
+  echo "  BUDGET_MAX=25     Set budget limit in USD"
   echo ""
   echo -e "${BOLD}EXAMPLES${NC}"
   echo "  100x run \"Add input validation to all API endpoints\""
-  echo "  100x run \"Fix the authentication bug in login flow\""
   echo "  100x parallel \"Add dark mode\" \"Add i18n\" \"Add analytics\""
   echo "  100x research \"MCP server ecosystem and monetization\""
-  echo "  BUDGET_MAX=25 100x run \"Refactor entire auth system\""
-  echo ""
-  echo -e "${BOLD}THE FORMULA${NC}"
-  echo "  100x = CLAUDE.md + Harness (6-10x) + Routing (85% ↓) + Caching (90% ↓)"
-  echo "       + Quality Gates (NASA P10) + Budget (\$47K prevention) + Multi-Agent"
+  echo "  AUTONOMOUS=true BUDGET_MAX=25 100x run \"Refactor auth system\""
+  echo "  100x config set autonomous true"
+  echo "  100x config set budget_max 25"
   echo ""
   echo -e "${DIM}v${VERSION} — github.com/theluckystrike/100xagenticdev${NC}"
 }
@@ -892,6 +1116,9 @@ main() {
     parallel)  cmd_parallel "$@" ;;
     research)  cmd_research "$@" ;;
     deepseek)  cmd_deepseek "$@" ;;
+    history)   cmd_history "$@" ;;
+    doctor)    cmd_doctor "$@" ;;
+    config)    cmd_config "$@" ;;
     dashboard) cmd_dashboard "$@" ;;
     help|--help|-h) cmd_help ;;
     version|--version|-v) echo "100x v$VERSION" ;;

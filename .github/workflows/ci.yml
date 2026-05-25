@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install shellcheck
+        run: sudo apt-get install -y shellcheck
+      - name: Lint 100x CLI
+        run: shellcheck -x 100x scripts/*.sh
+      - name: Lint config scripts
+        run: shellcheck -x config/mcp-setup.sh
+
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: CLI help
+        run: ./100x help
+      - name: CLI version
+        run: ./100x version
+      - name: CLI doctor (no claude expected)
+        run: ./100x doctor || true
+
+  python-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Syntax check pipeline
+        run: python3 -m py_compile pipeline/orchestrator.py && python3 -m py_compile pipeline/deepseek_client.py && python3 -m py_compile pipeline/runner.py && python3 -m py_compile pipeline/aggregator.py && python3 -m py_compile pipeline/task_templates.py
+      - name: Dry run pipeline
+        run: cd pipeline && python3 runner.py --preset market_scan --dry-run --agents 3

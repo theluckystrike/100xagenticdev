@@ -1,0 +1,29 @@
+# Pipeline run logs
+.100x/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Results from DeepSeek pipeline
+pipeline/results/
+
+# Config with API keys
+.env
