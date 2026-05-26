@@ -1,0 +1,729 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "market-01",
+          "prompt": "CONTEXT: BeLikeNative is a Chrome extension (10,000+ daily users, 4.6/5 stars, 296 reviews) for AI-powered text rewriting. Users select text on any website, get AI fixes/rewrites, copy back. Revenue: $135/mo MRR, 16 paying customers, $772.83 total since Jan 2026. Pricing: Learner $4/mo, Native $6/mo, Premium $14/mo with $1 first month trial. 691 shortcuts, 50 prompt packs, 1,100+ templates, 80+ languages.\n\nTASK: Size the total addressable market (TAM) for AI-powered writing assistance tools in 2026. Include Chrome extension market specifically. Break down by: (1) Consumer writing assistance (Grammarly-like), (2) Browser-based AI tools, (3) Text transformation/rewriting specifically. Provide real market data with sources. Calculate SAM and SOM for BeLikeNative reaching $1M ARR.",
+          "system_prompt": "You are a market research analyst specializing in AI/SaaS markets. All data must be cited with sources. Focus on quantifiable metrics.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-02",
+          "prompt": "CONTEXT: BeLikeNative competes in AI writing tools. Current: 10,000+ daily users, $135/mo MRR, Chrome extension.\n\nTASK: Deep competitive analysis of the top 15 AI writing/text transformation tools. For each: pricing, user count, funding, revenue (if known), key differentiators. Include: Grammarly, QuillBot, Wordtune, Jasper, Copy.ai, Hemingway, LanguageTool, ProWritingAid, Writesonic, Rytr, Sudowrite, Anyword, Writer.com, Textio, DeepL Write. What gaps exist that BeLikeNative can exploit? Focus on the 'select text anywhere + transform' workflow that none of them do well.",
+          "system_prompt": "You are a competitive intelligence analyst. Provide specific numbers and data points. Identify white space opportunities.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-03",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension for AI text rewriting. Non-English markets outperform 2-8x (India 0.71% CTR vs US 0.19%, Nigeria 1.61%). 80+ languages supported.\n\nTASK: Analyze the non-English AI writing tool market opportunity. Which countries/languages have: (1) highest demand for writing assistance, (2) lowest competition, (3) highest willingness to pay for Chrome extensions, (4) growing internet penetration. Rank top 20 markets by opportunity size. Include data on English learning market size globally. What's the ESL/EFL market opportunity for a tool that helps non-native speakers write better English?",
+          "system_prompt": "You are an international market expansion strategist. Focus on emerging markets and language learning demographics. Cite real data.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-04",
+          "prompt": "CONTEXT: BeLikeNative helps users fix AI-sounding text ('em dash problem', 'typical AI formatting'). Chrome extension, select text, transform.\n\nTASK: Quantify the 'AI humanization' market — people who need to make AI-generated text sound human. Include: (1) students submitting papers, (2) professionals using ChatGPT for emails, (3) content creators, (4) job seekers writing cover letters, (5) social media managers. How many people use AI to write content daily? What percentage want to 'humanize' it? Size this market. List the top AI humanizer tools and their pricing/user counts.",
+          "system_prompt": "You are a market sizing specialist. Use bottom-up and top-down approaches. All estimates must show methodology.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-05",
+          "prompt": "CONTEXT: BeLikeNative is a Chrome extension. Chrome Web Store has 3.4B+ Chrome users globally.\n\nTASK: Analyze the Chrome extension economy in 2026. (1) How many extensions have 1M+ users? (2) What are the top-grossing Chrome extensions? (3) What distribution mechanics work best for Chrome extensions (SEO, cross-promotion, featured listings)? (4) Chrome extension discovery mechanisms and their effectiveness. (5) What's the average conversion rate from free to paid for Chrome extensions? (6) Case studies of Chrome extensions that scaled from 10K to 1M+ users — what tactics did they use?",
+          "system_prompt": "You are a Chrome extension growth expert. Provide specific case studies and data points.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-06",
+          "prompt": "CONTEXT: BeLikeNative targets anyone who selects text on any website. Universal use case.\n\nTASK: Identify the top 10 industries/verticals where AI text transformation creates the most value. For each: (1) market size, (2) pain point severity (1-10), (3) willingness to pay, (4) number of potential users, (5) competition intensity. Industries to analyze: education, legal, healthcare, customer support, sales, marketing, journalism, academic research, government, immigration/visa applications.",
+          "system_prompt": "You are an industry analyst. Rank industries by opportunity score combining market size, pain, and willingness to pay.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-07",
+          "prompt": "CONTEXT: BeLikeNative has $1 first month trial launched May 7 2026, saw 2.5x acquisition boost. Current: $4-14/month pricing.\n\nTASK: Analyze pricing strategies of the 20 most successful Chrome extensions and SaaS tools under $20/month. What pricing models work? Freemium vs trial vs paid-only? What's the optimal price point for AI writing tools? Analyze price elasticity. Should BeLikeNative have a free tier? What features should be free vs paid? Case studies of pricing changes that 10x'd revenue.",
+          "system_prompt": "You are a pricing strategist. Use real case studies and data. Focus on conversion rate impact of different pricing models.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-08",
+          "prompt": "CONTEXT: BeLikeNative 691 shortcuts, 50 prompt packs, custom prompt support. Users can select text on any website and apply transformations.\n\nTASK: Map all possible use cases for a 'select text + transform' tool. Create a comprehensive taxonomy. Group by: (1) Writing improvement (grammar, style, tone), (2) Content transformation (summarize, expand, simplify, translate), (3) Professional tasks (email rewriting, report polishing, legal text simplification), (4) Creative tasks (brainstorm, storytelling, poetry), (5) Learning (explain like I'm 5, quiz generation, study notes), (6) Coding (code review, documentation, variable naming). For each, estimate user demand and monetization potential.",
+          "system_prompt": "You are a product strategist. Create a comprehensive use case map with TAM estimates for each category.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-09",
+          "prompt": "CONTEXT: BeLikeNative has 1.9M SEO impressions but only 0.19% blog CTR. 10,000+ daily users.\n\nTASK: Analyze the SEO landscape for AI writing tool keywords. What are the top 50 highest-volume keywords related to: AI writing, text rewriting, paraphrasing, grammar checker, AI humanizer, text transformation? For each: estimated monthly search volume, competition level, CPC, current top 3 ranking sites. Which long-tail keywords are underserved? What content strategy would drive 100K monthly organic visitors?",
+          "system_prompt": "You are an SEO analyst specializing in SaaS and Chrome extension SEO. Provide specific keyword data and search volumes.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-10",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension with AI text rewriting.\n\nTASK: Analyze the AI tools investment landscape in 2025-2026. (1) Which AI writing/productivity startups received funding? (2) What valuations? (3) What metrics do investors look for in AI writing tools? (4) What ARR multiple do these companies trade at? (5) What's the path to $1M ARR for a bootstrapped AI Chrome extension? Model the unit economics: CAC, LTV, payback period, gross margin. What metrics would make BeLikeNative attractive for a seed round?",
+          "system_prompt": "You are a venture capital analyst specializing in AI startups. Use real funding data and multiples.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-11",
+          "prompt": "CONTEXT: BeLikeNative 71% retention after 4 months, 16 paying customers, $4-14/month.\n\nTASK: Benchmark BeLikeNative's metrics against industry standards for Chrome extensions and SaaS tools. Compare: (1) 71% 4-month retention vs industry, (2) conversion rate from free to paid, (3) ARPU of $8.44, (4) 10K daily users, (5) 296 reviews / 4.6 stars. What are best-in-class benchmarks for each? Where is BeLikeNative above/below average? What's the gap to close for $1M ARR?",
+          "system_prompt": "You are a SaaS metrics analyst. Provide specific benchmarks with sources. Calculate gaps.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-12",
+          "prompt": "CONTEXT: BeLikeNative helps with 'em dash problem', AI-sounding text. Users include writers, students, professionals.\n\nTASK: Research the 'AI detection and humanization' ecosystem. (1) How big is the AI detection market (GPTZero, Originality.ai, Turnitin AI)? (2) What percentage of university students use AI for writing? (3) What anti-AI-detection tools exist? (4) Legal and ethical landscape. (5) How does BeLikeNative position as a 'writing improvement' vs 'AI humanizer' tool? What positioning maximizes market size while avoiding ethical concerns?",
+          "system_prompt": "You are a market positioning expert. Analyze the ethical and commercial dimensions of AI text humanization.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-13",
+          "prompt": "CONTEXT: BeLikeNative works on any website. Users select text, transform it.\n\nTASK: Analyze platform risk and opportunity for Chrome extensions in 2026. (1) Chrome's Manifest V3 impact on extensions, (2) Safari extension opportunity (growing market share), (3) Firefox extension market, (4) Edge extension compatibility, (5) Mobile browser extensions possibility, (6) Chrome Enterprise policies affecting distribution, (7) Google's AI integration into Chrome (Gemini) — threat or complement? What multi-platform strategy maximizes reach?",
+          "system_prompt": "You are a platform strategy analyst. Assess risks and opportunities across browser platforms.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-14",
+          "prompt": "CONTEXT: BeLikeNative supports 80+ languages, works in any text field on any website.\n\nTASK: Analyze the enterprise/B2B opportunity for AI text transformation tools. (1) Enterprise email communication pain points, (2) Customer support teams using AI, (3) Sales teams writing outreach, (4) HR departments writing job descriptions, (5) Legal teams simplifying contracts. For each: number of potential seats, willingness to pay per seat, competition, buying process. What would a BeLikeNative Teams/Enterprise product look like? Price points?",
+          "system_prompt": "You are a B2B SaaS strategist. Focus on enterprise buying signals and seat-based pricing models.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-15",
+          "prompt": "CONTEXT: BeLikeNative 10K daily users, 296 reviews, growing fast. Chrome extension.\n\nTASK: Analyze viral and network effect mechanisms for Chrome extensions. (1) What makes a Chrome extension go viral? (2) Analyze 10 cases of extensions that grew from 10K to 1M+ users organically. (3) What referral mechanics work? (4) How do Chrome extension review counts affect ranking? (5) What's the correlation between review count and install rate? (6) How can BeLikeNative engineer viral loops? Consider: sharing transformed text, team features, prompt marketplace.",
+          "system_prompt": "You are a growth hacking expert specializing in browser extensions. Focus on organic viral mechanics.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-16",
+          "prompt": "CONTEXT: BeLikeNative has custom prompt support. Users can create and share prompt packs.\n\nTASK: Analyze the prompt marketplace/economy opportunity. (1) What prompt marketplaces exist (PromptBase, etc.)? Revenue? (2) Could BeLikeNative become a prompt execution platform? (3) What's the value of a curated prompt library for specific professions? (4) Revenue share models for prompt creators. (5) How do AI app stores/marketplaces drive engagement and retention? Analyze Notion templates, Canva templates, Figma plugins as analogies.",
+          "system_prompt": "You are a marketplace/platform economist. Analyze two-sided marketplace dynamics and revenue potential.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-17",
+          "prompt": "CONTEXT: BeLikeNative helps transform text with AI. Works anywhere on the web.\n\nTASK: Analyze the accessibility market for AI text tools. (1) Dyslexia and learning disability market (number of people, existing tools, spending). (2) Non-native English speakers in workplaces. (3) Aging population needing simplified text. (4) WCAG compliance requirements for text clarity. (5) Government/institutional mandates for plain language. What's the total market for 'text simplification and accessibility' tools? How much do institutions pay?",
+          "system_prompt": "You are an accessibility technology analyst. Size the assistive technology market for text transformation.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-18",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension, $135/month MRR.\n\nTASK: Analyze the 'AI wrapper' business model in 2026. (1) Success stories: which AI wrappers reached $1M+ ARR? (2) What makes some AI wrappers succeed vs fail? (3) Defensibility strategies (workflow integration, data flywheel, network effects, brand). (4) Margin analysis for AI wrapper businesses (API costs vs revenue). (5) Model-agnostic strategy (switching between GPT, Claude, Gemini, open-source). What's BeLikeNative's path to defensibility?",
+          "system_prompt": "You are a startup strategy analyst. Focus on sustainable competitive advantages for AI wrapper businesses.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-19",
+          "prompt": "CONTEXT: BeLikeNative serves 80+ languages, has strong traction in India, Nigeria, Pakistan.\n\nTASK: Deep dive on the English-as-second-language (ESL) technology market. (1) Global ESL learners (by country). (2) ESL edtech market size. (3) Top ESL apps and their revenue (Duolingo, Babbel, Busuu, etc.). (4) What tools help ESL speakers WRITE better English specifically? (5) ESL in professional contexts (business English). (6) Government English programs that purchase tools. What would a BeLikeNative for ESL positioning look like?",
+          "system_prompt": "You are an edtech market analyst specializing in language learning. Provide country-level data.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "market-20",
+          "prompt": "CONTEXT: BeLikeNative has 50 prompt packs across industries. 1,100+ templates.\n\nTASK: Analyze the 'micro-SaaS aggregation' strategy. (1) How do single-feature tools grow into platforms? (2) Analyze Notion, Airtable, Zapier growth paths. (3) Could BeLikeNative become a 'text transformation platform' with plugins? (4) What adjacent features naturally extend from 'select text + transform'? Consider: screenshot + OCR, PDF transformation, clipboard manager, writing analytics, email integration. (5) What product additions have the highest leverage for growth?",
+          "system_prompt": "You are a product strategy consultant specializing in platform evolution from point solutions.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "You are synthesizing market research from 20 expert analysts about BeLikeNative, a Chrome extension for AI text rewriting (10K daily users, $135/mo MRR, $4-14/month pricing, 80+ languages).\n\nSynthesize ALL findings into a structured report with these sections:\n1. TOTAL ADDRESSABLE MARKET — consolidated TAM/SAM/SOM with methodology\n2. COMPETITIVE LANDSCAPE — key competitors, white space, defensibility\n3. TOP 10 MARKET OPPORTUNITIES — ranked by revenue potential\n4. KEY METRICS & BENCHMARKS — how BeLikeNative compares to industry\n5. CRITICAL MARKET INSIGHTS — non-obvious findings from the research\n\nDeduplicate data. Resolve contradictions. Highlight the single biggest market opportunity."
+    },
+    {
+      "tasks": [
+        {
+          "task_id": "growth-01",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension, 10K daily users, $135/mo MRR, 16 paying customers. $1 trial launched May 7 → 2.5x acquisition boost. 71% retention after 4 months. 296 reviews, 4.6/5 stars.\n\nTASK: Design a comprehensive conversion funnel optimization strategy. Current conversion: ~0.16% (16 paying / ~10K daily). (1) Benchmark against top Chrome extension conversion rates. (2) Identify every friction point in the funnel: install → activate → use → trial → pay → retain. (3) Design 10 specific A/B tests to improve conversion. (4) What conversion rate is needed for $1M ARR? Calculate the math.",
+          "system_prompt": "You are a conversion rate optimization expert. All recommendations must include expected impact estimates.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-02",
+          "prompt": "CONTEXT: BeLikeNative has 1.9M SEO impressions, 0.19% blog CTR. Strong in non-English markets (India, Nigeria, Pakistan).\n\nTASK: Design a content marketing strategy to drive 100K monthly organic visitors. (1) Top 30 content topics by search volume and conversion intent. (2) Content types that work for Chrome extensions (comparison posts, how-to guides, use case galleries). (3) SEO technical improvements needed. (4) Link building strategy. (5) Content-to-install conversion optimization. (6) Multi-language content strategy for top 10 markets.",
+          "system_prompt": "You are a content marketing strategist for SaaS/Chrome extensions. Focus on high-intent traffic that converts to installs.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-03",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension with AI text rewriting capabilities.\n\nTASK: Design a Product-Led Growth (PLG) strategy for BeLikeNative. (1) What free features drive viral adoption? (2) How to create 'aha moments' in the first 5 minutes. (3) Self-serve onboarding flow design. (4) Usage-based upgrade triggers. (5) In-product referral mechanics. (6) Analyze PLG case studies from: Notion, Figma, Loom, Grammarly — what specifically drove their early growth? Apply those lessons to BeLikeNative.",
+          "system_prompt": "You are a PLG growth strategist. Design specific mechanics with implementation details.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-04",
+          "prompt": "CONTEXT: BeLikeNative has 296 reviews, 4.6/5 stars on Chrome Web Store.\n\nTASK: Chrome Web Store optimization strategy. (1) How does CWS ranking algorithm work? (2) What factors influence discovery? (3) Optimal listing copy, screenshots, video strategy. (4) Review acquisition tactics (ethical). (5) Category selection strategy. (6) Keyword optimization for CWS search. (7) Analysis of top-ranked extensions in AI/writing categories — what do their listings look like? (8) How to get featured in CWS collections.",
+          "system_prompt": "You are a Chrome Web Store ASO (App Store Optimization) expert. Provide specific tactical recommendations.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-05",
+          "prompt": "CONTEXT: BeLikeNative is useful for anyone who writes text online. Universal use case.\n\nTASK: Design a social media growth strategy across platforms. (1) TikTok/YouTube Shorts: viral demo video concepts showing text transformation. (2) Twitter/X: AI writing tips thread strategy. (3) LinkedIn: professional writing improvement content. (4) Reddit: community engagement in r/writing, r/ChatGPT, r/chrome_extensions. (5) Product Hunt launch strategy. (6) Influencer collaboration plan. Provide 20 specific content ideas that could go viral.",
+          "system_prompt": "You are a social media growth strategist. Create specific viral content concepts with estimated reach.",
+          "temperature": 0.8,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-06",
+          "prompt": "CONTEXT: BeLikeNative needs to grow from 10K to 100K to 1M daily users.\n\nTASK: Design a partnership and integration strategy. (1) Which platforms should BeLikeNative integrate with? (Google Docs, Notion, Slack, Gmail, LinkedIn). (2) Which companies would benefit from co-marketing? (3) Educational institution partnerships for ESL. (4) Corporate training partnerships. (5) Chrome Web Store cross-promotion with complementary extensions. (6) API partnerships. Rank partnerships by effort vs impact.",
+          "system_prompt": "You are a business development strategist. Focus on high-leverage partnerships with minimal resource requirements.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-07",
+          "prompt": "CONTEXT: BeLikeNative has 70% of prompt packs unused. 691 shortcuts, 50 packs, 1,100+ templates.\n\nTASK: Design a user engagement and feature adoption strategy. (1) Why are 70% of prompt packs unused? (2) How to increase feature discovery in a Chrome extension. (3) Onboarding flow that introduces features progressively. (4) Gamification mechanics for daily usage. (5) Usage streaks and achievements. (6) Weekly email digests showing personal improvement. (7) Community features (share prompts, templates, shortcuts). (8) What metrics indicate a 'power user' vs 'at risk of churn'?",
+          "system_prompt": "You are a product engagement specialist. Design specific mechanics that increase DAU and feature adoption.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-08",
+          "prompt": "CONTEXT: BeLikeNative has $1 trial → 2.5x acquisition boost. $4-14/month tiers.\n\nTASK: Design a revenue optimization strategy to reach $1M ARR ($83,333/month). Current: $135/mo. (1) Math: what combination of users × conversion × ARPU = $83K/month? (2) Pricing experiments to test. (3) Annual plan discounts and their impact on cash flow. (4) Upsell strategies between tiers. (5) Add-on revenue (prompt packs, priority support, team features). (6) Usage-based pricing tier for heavy users. Model 5 scenarios to $1M ARR.",
+          "system_prompt": "You are a revenue optimization specialist. Build financial models with specific numbers and timeframes.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-09",
+          "prompt": "CONTEXT: BeLikeNative helps fix AI-sounding text, grammar issues, tone adjustments.\n\nTASK: Design an email marketing automation strategy. (1) Welcome sequence for new users (what to send, when). (2) Activation emails for users who installed but haven't used. (3) Upgrade triggers based on usage patterns. (4) Win-back campaigns for churned users. (5) Feature announcement emails. (6) Weekly writing tips newsletter that drives engagement. (7) Dunning emails for failed payments. Provide exact email copy for the top 5 most important emails.",
+          "system_prompt": "You are an email marketing automation expert for SaaS. Provide specific copy and timing recommendations.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-10",
+          "prompt": "CONTEXT: BeLikeNative works on 140+ websites. Chrome extension with content script injection.\n\nTASK: Analyze paid acquisition channels for Chrome extensions. (1) Google Ads: what CPC for writing tool keywords? Expected CAC? (2) Facebook/Instagram ads: targeting options for writers. (3) YouTube pre-roll ads. (4) Reddit ads in relevant subreddits. (5) Sponsoring newsletters (which ones?). (6) Sponsoring YouTube creators. For each channel: expected CAC, LTV/CAC ratio, scale potential. What's the optimal paid channel mix with a $5K/month budget?",
+          "system_prompt": "You are a paid acquisition strategist. Provide specific CAC estimates and channel recommendations.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-11",
+          "prompt": "CONTEXT: BeLikeNative 71% retention at 4 months. Chrome extension.\n\nTASK: Design a retention and churn reduction strategy. (1) What causes Chrome extension churn? (2) Analyze the 29% who churn by month 4 — what triggers it? (3) Proactive churn prevention triggers. (4) Re-engagement tactics. (5) How to make BeLikeNative 'sticky' — what makes users unable to live without it? (6) Habit formation strategy (Hook model). (7) What daily/weekly engagement targets indicate retention? (8) Community building for retention.",
+          "system_prompt": "You are a retention and customer success expert. Focus on measurable interventions with expected impact.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-12",
+          "prompt": "CONTEXT: BeLikeNative helps with text transformation across all websites.\n\nTASK: Design an affiliate and referral program. (1) How do successful Chrome extension referral programs work? (2) What incentive structure maximizes virality? (3) Double-sided rewards analysis. (4) Affiliate program for bloggers and content creators. (5) Teacher/professor referral program for educational use. (6) IT admin referral for enterprise deployment. (7) Commission structures and breakeven analysis. Analyze: Dropbox, Grammarly, Honey referral programs.",
+          "system_prompt": "You are a referral marketing expert. Design specific programs with conversion rate expectations.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-13",
+          "prompt": "CONTEXT: BeLikeNative strong in India, Nigeria, Pakistan. 80+ languages.\n\nTASK: Design an international expansion playbook. For each of the top 10 target countries: (1) Market size for AI writing tools, (2) Local competitors, (3) Price sensitivity (purchasing power adjusted pricing), (4) Marketing channels that work, (5) Localization requirements, (6) Payment method preferences, (7) Partnership opportunities. Create a phased rollout plan: which markets first, second, third?",
+          "system_prompt": "You are an international growth strategist for SaaS products. Provide country-specific data and tactics.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-14",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension with 10K daily users.\n\nTASK: Analyze the mobile opportunity. (1) Mobile browser extension possibilities (Kiwi, Firefox Mobile, Samsung Internet). (2) Standalone mobile app opportunity. (3) Keyboard app approach (like Grammarly keyboard). (4) Share sheet integration on iOS/Android. (5) Market size for mobile AI writing tools. (6) Technical feasibility comparison. What's the fastest path to mobile users? Which approach maximizes reach with minimum engineering?",
+          "system_prompt": "You are a mobile product strategist. Evaluate build-vs-buy decisions and platform strategy.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-15",
+          "prompt": "CONTEXT: BeLikeNative has custom prompt capability. Any user can create custom prompts.\n\nTASK: Design a user-generated content and community strategy. (1) Prompt marketplace where users sell/share prompts. (2) Community templates library. (3) Leaderboards for top prompt creators. (4) Community forums or Discord. (5) User showcase (before/after text transformations). (6) Weekly challenges. (7) How does community drive growth? Analyze: Canva community, Notion templates, Obsidian plugins. Revenue sharing models.",
+          "system_prompt": "You are a community-led growth strategist. Design specific community mechanics with engagement projections.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-16",
+          "prompt": "CONTEXT: BeLikeNative for text transformation.\n\nTASK: Design a PR and media strategy for a bootstrapped Chrome extension. (1) Story angles that get coverage (AI humanization, ESL helper, productivity tool). (2) Target publications (TechCrunch, The Verge, ProductHunt, Hacker News, Chrome Unboxed). (3) Case study creation strategy (user success stories). (4) Data-driven PR (original research on AI writing trends). (5) Thought leadership content. (6) Timeline and budget for a PR campaign. What story would make TechCrunch write about BeLikeNative?",
+          "system_prompt": "You are a PR strategist for tech startups. Focus on earned media strategies with low budget.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-17",
+          "prompt": "CONTEXT: BeLikeNative transforms text with AI. Useful for everyday writing.\n\nTASK: Analyze the education vertical specifically. (1) Number of students globally using AI for writing. (2) University writing center market. (3) K-12 writing assistance tools. (4) ESL/EFL education specifically. (5) Writing assessment tools market. (6) Institutional licensing models. (7) EDU pricing strategy (discounts). (8) Teacher-driven adoption patterns. (9) Learning management system integrations. What's the total education market for a tool like BeLikeNative?",
+          "system_prompt": "You are an edtech market analyst. Size each sub-segment with data sources.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-18",
+          "prompt": "CONTEXT: BeLikeNative 11 silently rejected analytics events, needs better data.\n\nTASK: Design a comprehensive analytics and experimentation framework. (1) Key metrics to track (North Star Metric, leading indicators, health metrics). (2) Analytics tools selection for Chrome extensions. (3) A/B testing framework. (4) Cohort analysis setup. (5) Attribution modeling for install sources. (6) User behavior funnels. (7) Revenue analytics dashboards. (8) Weekly KPI reporting template. What metrics predict conversion and churn?",
+          "system_prompt": "You are a product analytics expert. Design a metrics framework that guides growth decisions.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-19",
+          "prompt": "CONTEXT: BeLikeNative needs to go from $135/mo to $83K/mo MRR.\n\nTASK: Design a B2B/enterprise go-to-market strategy. (1) Enterprise Chrome extension deployment (managed Chrome policies). (2) IT admin buying process. (3) Enterprise pricing (per-seat, volume discounts). (4) SOC 2 / security requirements for enterprise. (5) SSO/SAML requirements. (6) Team management features needed. (7) Enterprise sales cycle and touchpoints. (8) Case study: how did Grammarly Business go from consumer to enterprise? What would BeLikeNative Teams look like?",
+          "system_prompt": "You are a B2B SaaS go-to-market strategist. Design an enterprise entry strategy for a consumer Chrome extension.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "growth-20",
+          "prompt": "CONTEXT: BeLikeNative select text → transform → copy back. Works on any website.\n\nTASK: Design the ultimate 90-day growth sprint for BeLikeNative. Given all constraints (bootstrapped, Chrome extension, current $135/mo MRR, 10K daily users), what are the 10 highest-impact growth actions in priority order? For each: (1) expected impact on MRR, (2) implementation effort (days), (3) confidence level. Create a week-by-week execution plan. What's the realistic MRR target in 90 days?",
+          "system_prompt": "You are a startup growth advisor. Create a practical, resource-constrained growth plan with specific timelines.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "You are synthesizing growth strategy research from 20 expert analysts about BeLikeNative (Chrome extension, 10K daily users, $135/mo MRR, needs to reach $1M ARR).\n\nSynthesize into:\n1. TOP 10 GROWTH LEVERS — ranked by impact × feasibility, with expected MRR impact\n2. CONVERSION FUNNEL OPTIMIZATION — specific changes with expected lift\n3. DISTRIBUTION STRATEGY — best channels ranked by CAC efficiency\n4. 90-DAY SPRINT PLAN — week-by-week action items\n5. REVENUE MODEL — paths to $83K/month MRR with math\n\nBe specific. Include numbers. Resolve contradictions between agents."
+    },
+    {
+      "tasks": [
+        {
+          "task_id": "product-01",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension: React 18 + TypeScript, Webpack, MV3, Node.js/Express backend, MongoDB, Stripe. 691 shortcuts, 50 prompt packs, 1,100+ templates.\n\nTASK: Design the product roadmap for BeLikeNative to reach 100M users. What features would a 100M-user text transformation tool need? (1) Core product improvements, (2) Platform features, (3) Social/community features, (4) Enterprise features, (5) AI model improvements. Prioritize by impact on user acquisition vs retention vs monetization. Create a 12-month roadmap.",
+          "system_prompt": "You are a product manager for AI-powered consumer tools. Create a prioritized feature roadmap.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-02",
+          "prompt": "CONTEXT: BeLikeNative helps fix AI-sounding text. Custom prompts supported.\n\nTASK: Analyze the AI model strategy for BeLikeNative. (1) Which AI models provide the best text rewriting quality? (GPT-4, Claude, Gemini, open-source). (2) Cost comparison per 1K rewrites. (3) Latency comparison. (4) Quality comparison for different use cases. (5) Multi-model strategy (route different tasks to different models). (6) Fine-tuning opportunity for specific text transformation tasks. (7) On-device AI possibility for privacy/speed. What model strategy minimizes cost while maximizing quality?",
+          "system_prompt": "You are an AI infrastructure engineer. Compare models with specific cost/quality/latency data.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-03",
+          "prompt": "CONTEXT: BeLikeNative select text → pop up → choose action → get result → copy.\n\nTASK: Redesign the UX for maximum speed and delight. (1) How can the workflow be faster? (keyboard shortcuts, auto-detect intent, predictive UI). (2) What micro-interactions increase satisfaction? (3) How to make the extension feel 'magical'? (4) Analyze UX of top productivity Chrome extensions. (5) Accessibility improvements. (6) Mobile-friendly UX patterns. (7) Offline mode UX. Create wireframe descriptions for 5 UX improvements.",
+          "system_prompt": "You are a UX designer specializing in browser extensions and productivity tools. Focus on reducing friction.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-04",
+          "prompt": "CONTEXT: BeLikeNative 50 prompt packs, 70% unused.\n\nTASK: Design an AI-powered prompt recommendation engine. (1) How to detect what the user is writing about (context awareness). (2) Automatically suggest relevant prompts based on: website, text content, writing style, user history. (3) Machine learning model for prompt recommendation. (4) Personalization over time. (5) Smart defaults for different contexts (email vs essay vs social media vs code). (6) How does this increase prompt pack usage from 30% to 90%?",
+          "system_prompt": "You are an AI product designer. Design intelligent recommendation systems for text tools.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-05",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension with content script injection on all websites.\n\nTASK: Design 'BeLikeNative Everywhere' — the most aggressive integration strategy. (1) Gmail integration (smart compose alternative). (2) Google Docs sidebar. (3) LinkedIn message enhancement. (4) Slack message polisher. (5) Twitter/X post optimizer. (6) Notion page transformer. (7) Zoom chat enhancer. (8) VS Code extension for code comments/docs. For each: technical feasibility, user demand, competitive landscape.",
+          "system_prompt": "You are a product integration strategist. Prioritize by user demand and technical feasibility.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-06",
+          "prompt": "CONTEXT: BeLikeNative transforms text. Multiple AI models possible.\n\nTASK: Design advanced AI features that create 10x more value. (1) Writing style cloning (learn user's voice, apply to all text). (2) Tone matching (match the tone of the conversation). (3) Context-aware rewrites (understand the full page, not just selection). (4) Multi-step transformations (chain: translate → simplify → make professional). (5) Writing analytics (readability scores, improvement tracking). (6) Real-time suggestions as you type. Which feature would most increase willingness to pay?",
+          "system_prompt": "You are an AI product innovator. Design features that create defensible competitive advantages.",
+          "temperature": 0.8,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-07",
+          "prompt": "CONTEXT: BeLikeNative Node.js backend, MongoDB, 41 API endpoints.\n\nTASK: Design the infrastructure for 100M users. (1) Current architecture assessment for scale. (2) What breaks at 100K, 1M, 10M, 100M users? (3) Serverless vs container strategy. (4) Edge computing for low latency. (5) Caching strategy for common transformations. (6) Rate limiting and abuse prevention. (7) Cost modeling at each scale tier. (8) CDN and global distribution. What's the infrastructure roadmap?",
+          "system_prompt": "You are a systems architect specializing in scaling consumer SaaS to 100M+ users.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-08",
+          "prompt": "CONTEXT: BeLikeNative processes user text through AI.\n\nTASK: Design the privacy and security architecture for a text transformation tool at scale. (1) End-to-end encryption possibilities. (2) Zero-knowledge text processing. (3) GDPR compliance requirements. (4) Data retention policies. (5) SOC 2 certification path. (6) Privacy-first marketing positioning. (7) On-device processing for sensitive text. (8) Enterprise security requirements. How to make privacy a competitive advantage?",
+          "system_prompt": "You are a security and privacy architect. Design for enterprise-grade privacy without sacrificing functionality.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-09",
+          "prompt": "CONTEXT: BeLikeNative has 691 shortcuts, custom prompts, multiple AI models.\n\nTASK: Design an API/developer platform for BeLikeNative. (1) Public API for text transformation. (2) Zapier/Make integrations. (3) Browser automation compatibility. (4) SDK for developers. (5) API pricing models. (6) Developer documentation strategy. (7) Use cases for API (CRM integrations, help desk, content management). (8) How big is the API market for text transformation? What's the B2B API opportunity?",
+          "system_prompt": "You are a developer platform strategist. Design an API product with pricing and go-to-market.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-10",
+          "prompt": "CONTEXT: BeLikeNative works in 80+ languages.\n\nTASK: Design the multilingual product strategy. (1) Which 10 languages to optimize for first (by market size)? (2) UI localization vs content localization. (3) Language-specific AI model quality comparison. (4) Translation as a core feature (select text, translate, improve). (5) Cross-lingual writing assistance (write in one language, get help from AI trained in another). (6) RTL language support. (7) Language detection and auto-routing. What's the product experience for a Japanese user?",
+          "system_prompt": "You are a localization product manager. Design a multilingual product strategy with prioritization.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-11",
+          "prompt": "CONTEXT: BeLikeNative helps people write better.\n\nTASK: Design the 'BeLikeNative for Teams' product. (1) Team management dashboard. (2) Shared prompt libraries. (3) Brand voice enforcement. (4) Compliance checks (legal, HR approved language). (5) Usage analytics for managers. (6) Centralized billing and SSO. (7) Team onboarding flow. (8) Integration with team tools (Slack, Teams, Jira). (9) Pricing: per-seat vs per-team. What would make a team admin buy this for 50+ people?",
+          "system_prompt": "You are a B2B product designer for collaboration tools. Design team features that drive seat expansion.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-12",
+          "prompt": "CONTEXT: BeLikeNative select text → transform. Content script on any website.\n\nTASK: Design an 'AI copilot' experience that goes beyond text transformation. (1) Proactive suggestions (detect opportunities to improve text without user selecting). (2) Writing coach mode (learning path, improvement tracking). (3) Smart clipboard (save and organize transformed text). (4) Document analysis (summarize a page, extract key points). (5) Research assistant (highlight text → get context/citations). Which features have the highest activation energy benefit?",
+          "system_prompt": "You are an AI UX innovator. Design proactive AI experiences that feel magical, not intrusive.",
+          "temperature": 0.8,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-13",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension, MV3.\n\nTASK: Analyze the browser extension architecture limitations and opportunities under Manifest V3. (1) Service worker constraints and workarounds. (2) Memory and performance limits. (3) Content script isolation challenges. (4) Chrome Side Panel API opportunities. (5) Chrome's new declarative APIs. (6) WebHID/WebUSB possibilities. (7) What features are impossible in MV3 that users want? (8) How to build a great extension within MV3 constraints?",
+          "system_prompt": "You are a Chrome extension architecture expert. Assess MV3 limitations and creative solutions.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-14",
+          "prompt": "CONTEXT: BeLikeNative handles user-generated text, potentially sensitive.\n\nTASK: Design the data strategy for BeLikeNative. (1) What data can be collected ethically? (2) Anonymized writing pattern analysis. (3) Aggregate insights (most common writing errors by region/profession). (4) Data flywheel: how does more usage improve the product? (5) Prompt effectiveness scoring. (6) A/B testing framework for AI outputs. (7) User behavior data for product decisions. How to build a data moat while respecting privacy?",
+          "system_prompt": "You are a data strategy lead. Balance data collection with privacy for a competitive advantage.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-15",
+          "prompt": "CONTEXT: BeLikeNative for text transformation.\n\nTASK: Design the notifications and engagement system. (1) Smart notification strategy (not annoying, but drives engagement). (2) Usage reminders and streaks. (3) Weekly writing improvement reports. (4) New feature announcements. (5) Prompt pack recommendations. (6) Social proof notifications ('3,000 people improved their writing today'). (7) Notification channel strategy (browser, email, in-extension). What drives daily active usage?",
+          "system_prompt": "You are an engagement product designer. Create notification systems that increase DAU without annoying users.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-16",
+          "prompt": "CONTEXT: BeLikeNative transforms text. 1,100+ templates.\n\nTASK: Design the template/prompt creation experience. (1) Visual prompt builder (no-code). (2) Template testing sandbox. (3) Prompt chaining (multi-step workflows). (4) Variables and placeholders in templates. (5) Template sharing and discovery. (6) Template analytics (which ones work best). (7) AI-assisted prompt creation ('describe what you want, we'll write the prompt'). How to turn every user into a prompt creator?",
+          "system_prompt": "You are a no-code product designer. Create intuitive creation tools for non-technical users.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-17",
+          "prompt": "CONTEXT: BeLikeNative has a one-click text transformation workflow.\n\nTASK: Design keyboard-first power user features. (1) Global keyboard shortcuts across OS. (2) Command palette (Cmd+K style). (3) Quick actions without popup. (4) Vim-style text operations. (5) Custom keyboard shortcut mapping. (6) Multi-selection transformation. (7) Clipboard history with transformations. Power users drive word-of-mouth. What features make them evangelists?",
+          "system_prompt": "You are a productivity tool designer. Design for power users who will become brand advocates.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-18",
+          "prompt": "CONTEXT: BeLikeNative offers writing assistance.\n\nTASK: Design the writing analytics dashboard for users. (1) Readability score tracking over time. (2) Common error patterns. (3) Writing style analysis (formal vs casual, complex vs simple). (4) Vocabulary diversity metrics. (5) Improvement trajectory. (6) Comparison with professional writing benchmarks. (7) Exportable writing improvement reports. (8) Certification/badges for writing milestones. How does this increase retention and upgrade willingness?",
+          "system_prompt": "You are a learning analytics designer. Create metrics that motivate users and demonstrate value.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-19",
+          "prompt": "CONTEXT: BeLikeNative uses AI APIs for text transformation.\n\nTASK: Design the AI cost optimization strategy. (1) Model routing: when to use cheap vs expensive models. (2) Caching identical/similar transformations. (3) Prompt optimization (shorter prompts = less cost). (4) Batch processing for non-urgent transforms. (5) On-device inference for simple tasks. (6) Token budget per user tier. (7) Gross margin analysis at each pricing tier. What model mix achieves 80%+ gross margin?",
+          "system_prompt": "You are an AI infrastructure cost optimization expert. Model the unit economics precisely.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "product-20",
+          "prompt": "CONTEXT: BeLikeNative is a Chrome extension that transforms text.\n\nTASK: Identify the single biggest product innovation that could make BeLikeNative a category-defining tool. Think 10x, not incremental. (1) What if it could transform any content type (images, audio, video)? (2) What if it learned your exact writing style? (3) What if it was a universal input method? (4) What if it had a social layer (collaborative writing)? (5) What if it was the 'Grammarly for everything, not just writing'? Describe the vision that makes this a $100M+ company.",
+          "system_prompt": "You are a visionary product thinker. Think in terms of platform shifts, not feature additions. What's the 10x idea?",
+          "temperature": 0.9,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "You are synthesizing product strategy research from 20 expert analysts about BeLikeNative (Chrome extension for AI text rewriting).\n\nSynthesize into:\n1. TOP 10 PRODUCT CHANGES — ranked by impact on reaching 100M users\n2. TECHNICAL ARCHITECTURE — key decisions for scale\n3. AI MODEL STRATEGY — optimal model mix for cost/quality\n4. ENTERPRISE PRODUCT — B2B/Teams feature requirements\n5. MOONSHOT VISION — the single biggest idea that could make this a $100M+ company\n\nResolve contradictions. Be specific and actionable."
+    },
+    {
+      "tasks": [
+        {
+          "task_id": "exec-01",
+          "prompt": "CONTEXT: BeLikeNative: $135/mo MRR, 10K daily users, 16 paying, 71% retention, 4.6 stars, bootstrapped. Goal: $1M ARR.\n\nTASK: Build a financial model for BeLikeNative reaching $1M ARR. Include: (1) Monthly cohort model with acquisition, activation, conversion, retention, expansion. (2) Revenue projections under 3 scenarios (conservative, base, aggressive). (3) Cost structure (AI API costs, infrastructure, marketing). (4) Break-even analysis. (5) Cash flow projections. (6) Key assumptions and sensitivities. Show the month-by-month path from $135 to $83,333 MRR.",
+          "system_prompt": "You are a financial modeler for SaaS startups. Build detailed cohort-based models with specific assumptions.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-02",
+          "prompt": "CONTEXT: BeLikeNative bootstrapped, single founder, Chrome extension.\n\nTASK: Design the optimal team structure to reach $1M ARR. (1) What roles to hire first (growth marketer, product engineer, customer success)? (2) At what MRR milestones? (3) Fractional vs full-time vs contractors? (4) Cost per role. (5) Where to find talent (globally). (6) Management overhead. (7) What can be automated vs needs humans? (8) Org chart at $10K, $50K, $100K MRR.",
+          "system_prompt": "You are a startup operations advisor. Design resource-efficient team scaling plans.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-03",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension with 296 reviews.\n\nTASK: Analyze Chrome Web Store algorithmic ranking and design a review acquisition strategy to reach 1,000 reviews. (1) How do reviews impact CWS ranking? (2) Optimal timing for review prompts. (3) In-product review request flow design. (4) Review velocity targets. (5) Handling negative reviews. (6) How many installs needed per review? (7) 90-day plan to go from 296 to 1,000 reviews. What's the expected impact on organic installs?",
+          "system_prompt": "You are a Chrome Web Store growth expert. Design ethical review acquisition strategies with measurable targets.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-04",
+          "prompt": "CONTEXT: BeLikeNative helps with text transformation. Bootstrapped.\n\nTASK: Design a Product Hunt launch strategy. (1) Pre-launch preparation (community building, email list, beta testers). (2) Launch day execution plan (timing, support crew, updates). (3) Post-launch follow-up. (4) How do top-5 Product Hunt launches convert to long-term growth? (5) Case studies of Chrome extensions that launched on PH. (6) What messaging resonates on PH? (7) Expected traffic and install numbers from a successful PH launch.",
+          "system_prompt": "You are a Product Hunt launch strategist. Provide specific tactical playbook with timing.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-05",
+          "prompt": "CONTEXT: BeLikeNative has 1.9M SEO impressions, 0.19% CTR.\n\nTASK: Design a 30-day SEO sprint to 10x CTR from 0.19% to 1.9%. (1) Title tag optimization templates for each page type. (2) Meta description A/B testing framework. (3) Rich snippet opportunities (FAQ schema, HowTo schema). (4) Featured snippet targeting strategy. (5) Internal linking improvements. (6) Page speed optimizations. (7) Core Web Vitals fixes. (8) Content refreshing strategy for existing pages. Prioritize by impression volume × CTR improvement potential.",
+          "system_prompt": "You are a technical SEO specialist. Create a tactical 30-day sprint with daily actions.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-06",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension. Want to reach 100M users.\n\nTASK: Analyze the regulatory landscape for AI writing tools. (1) EU AI Act implications. (2) FTC guidelines on AI disclosure. (3) COPPA for student users. (4) FERPA for educational institutions. (5) Data protection laws by country. (6) Terms of service for Chrome Web Store. (7) AI model usage policies (OpenAI, Anthropic, Google terms). What compliance investments are needed before scaling?",
+          "system_prompt": "You are a tech regulatory analyst. Identify specific compliance requirements with deadlines and costs.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-07",
+          "prompt": "CONTEXT: BeLikeNative processes user text through AI APIs.\n\nTASK: Design a customer support strategy for scaling from 10K to 1M users. (1) Self-serve knowledge base design. (2) In-product help and tooltips. (3) Chatbot for common queries. (4) Escalation paths. (5) Community-driven support (forums, Discord). (6) Support metrics and SLAs. (7) Multilingual support strategy. (8) Cost per ticket optimization. What support stack handles 1M users with minimal headcount?",
+          "system_prompt": "You are a customer support operations designer. Optimize for scale with minimal human intervention.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-08",
+          "prompt": "CONTEXT: BeLikeNative $772.83 total revenue since January 2026. Goal: $1M ARR.\n\nTASK: Design a fundraising strategy (if needed) and alternatives. (1) Should BeLikeNative raise? Pros/cons at this stage. (2) What metrics would a seed investor want to see? (3) Valuation benchmarks for AI writing tools. (4) Revenue-based financing options. (5) Grants for AI/edtech startups. (6) Accelerator programs (YC, Techstars, etc.). (7) Bootstrap vs raise analysis for reaching $1M ARR. What's the fastest path to $1M ARR with vs without funding?",
+          "system_prompt": "You are a startup fundraising advisor. Analyze funding vs bootstrapping objectively with specific data.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-09",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension, MV3, React + TypeScript.\n\nTASK: Design an engineering velocity optimization plan. (1) CI/CD pipeline for Chrome extensions. (2) Automated testing strategy (unit, integration, E2E). (3) Feature flag system for gradual rollouts. (4) Error monitoring and alerting (Sentry, etc.). (5) Performance monitoring. (6) Chrome extension update delivery mechanism. (7) Development workflow optimizations. (8) Tech debt priorities. What engineering investments have the highest ROI for product velocity?",
+          "system_prompt": "You are a VP Engineering for a high-growth startup. Prioritize engineering investments by growth impact.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-10",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension. Bootstrapped.\n\nTASK: Risk assessment and mitigation plan. (1) Platform risk: Chrome banning extension or changing policies. (2) AI provider risk: OpenAI/API pricing changes. (3) Competition risk: Grammarly adding same features. (4) Regulatory risk: AI writing bans in education. (5) Security risk: data breach. (6) Financial risk: running out of runway. (7) Single-founder risk. For each: probability (1-10), impact (1-10), mitigation strategy. What's the biggest existential risk?",
+          "system_prompt": "You are a risk analyst for tech startups. Quantify risks and provide actionable mitigation strategies.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-11",
+          "prompt": "CONTEXT: BeLikeNative helps users write better in 80+ languages.\n\nTASK: Design an impact measurement framework. (1) How to measure 'lives changed' by BeLikeNative. (2) User success metrics (writing improvement over time). (3) Impact on non-native speakers' professional opportunities. (4) Impact on students' academic performance. (5) Productivity savings quantified. (6) Case study development process. (7) Impact reporting for marketing. How does quantified impact drive word-of-mouth and willingness to pay?",
+          "system_prompt": "You are an impact measurement consultant. Design frameworks that demonstrate product value quantitatively.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-12",
+          "prompt": "CONTEXT: BeLikeNative at $135/month needs to reach $1M ARR.\n\nTASK: Design a lifecycle marketing automation system. (1) User journey stages (prospect → trial → active → power user → champion). (2) Triggers and actions at each stage. (3) Behavioral emails. (4) In-product messaging. (5) Personalization strategy. (6) Segment definitions and targeting. (7) Tool stack (customer.io, intercom, etc.). (8) Expected impact on conversion and retention metrics.",
+          "system_prompt": "You are a lifecycle marketing automation expert. Design trigger-based systems that maximize conversion.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-13",
+          "prompt": "CONTEXT: BeLikeNative 50 prompt packs for various industries.\n\nTASK: Design industry-specific go-to-market strategies. Pick the top 5 industries and for each: (1) Target persona. (2) Pain points this solves. (3) Ideal marketing channels. (4) Pricing expectations. (5) Partnership opportunities. (6) Content strategy. (7) Case study angle. (8) 90-day launch plan. Industries to evaluate: legal, healthcare, customer support, sales, education, journalism, government, HR, real estate, finance.",
+          "system_prompt": "You are an industry go-to-market strategist. Create detailed vertical entry strategies.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-14",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension handling text transformation.\n\nTASK: Design an operational excellence framework. (1) Incident management for extension outages. (2) Status page. (3) Deployment cadence and rollback procedures. (4) Customer feedback collection and prioritization (NPS, CSAT, feature requests). (5) Quality assurance process. (6) Documentation strategy. (7) Knowledge management for a growing team. What operational investments matter most pre-$1M ARR?",
+          "system_prompt": "You are a startup operations leader. Focus on high-impact, low-overhead operational systems.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-15",
+          "prompt": "CONTEXT: BeLikeNative bootstrapped with limited resources.\n\nTASK: Design the most cost-effective marketing stack for a Chrome extension. (1) Free tools that work. (2) Essential paid tools and their ROI. (3) Total marketing budget allocation at $1K, $5K, $10K/month. (4) What to do yourself vs outsource. (5) Marketing calendar template. (6) Reporting dashboard. (7) Attribution setup. Budget everything — what does the optimal $5K/month marketing spend look like?",
+          "system_prompt": "You are a bootstrap marketing advisor. Maximize marketing ROI on a tight budget with specific tool recommendations.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-16",
+          "prompt": "CONTEXT: BeLikeNative needs word-of-mouth growth.\n\nTASK: Design 10 specific 'wow moments' in BeLikeNative that make users tell friends. (1) What makes users screenshot and share? (2) What transformation results are most impressive? (3) What triggers user testimonials? (4) How to engineer shareability into the product. (5) User-generated content opportunities. (6) Social proof displays. (7) 'Before and after' sharing mechanics. Create specific feature designs for each wow moment.",
+          "system_prompt": "You are a word-of-mouth marketing expert. Design specific shareable moments with implementation details.",
+          "temperature": 0.8,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-17",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension.\n\nTASK: Competitive response planning. If Grammarly, QuillBot, or Google (via Gemini in Chrome) launches similar features, what should BeLikeNative do? (1) Speed advantage (already in market). (2) Specialization strategy (own a niche). (3) Price advantage (cheaper than enterprise tools). (4) Community advantage (user-created content). (5) Integration advantage (works everywhere). Design 3 competitive scenarios and response playbooks.",
+          "system_prompt": "You are a competitive strategy consultant. Design war-gaming scenarios with specific response plans.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-18",
+          "prompt": "CONTEXT: BeLikeNative aiming for 100M users, currently 10K daily.\n\nTASK: Design the growth metrics dashboard. (1) North Star Metric: what single metric best represents value delivered? (2) Input metrics that predict NSM. (3) Weekly growth rate targets. (4) Cohort retention curves. (5) Revenue per user trends. (6) Feature adoption rates. (7) Funnel conversion rates. (8) Health metrics (uptime, latency, error rate). Create the exact dashboard layout with metrics, targets, and alert thresholds.",
+          "system_prompt": "You are a growth analytics leader. Design a metrics dashboard that enables data-driven decisions.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-19",
+          "prompt": "CONTEXT: BeLikeNative for text transformation, any industry.\n\nTASK: Create the ultimate value proposition messaging for each target segment. (1) Students: what messaging converts? (2) Professionals: what pain point leads? (3) ESL speakers: what emotional trigger works? (4) Content creators: what benefit resonates? (5) Customer support teams: what ROI story? (6) Developers: what productivity angle? For each: one-liner, elevator pitch, landing page headline, ad copy. A/B test suggestions.",
+          "system_prompt": "You are a copywriting and positioning expert. Create segment-specific messaging that converts.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "exec-20",
+          "prompt": "CONTEXT: BeLikeNative: $135/mo MRR, 10K daily users, 16 paying customers, 71% retention, 4.6 stars, bootstrapped. Needs $1M ARR and 100M users.\n\nTASK: Create the definitive prioritized action list: THE 10 BIGGEST CHANGES that will have the most impact on reaching $1M ARR and 100M users. For each: (1) What specifically to do, (2) Expected revenue impact, (3) Expected user growth impact, (4) Implementation timeline, (5) Resource requirements, (6) Confidence level (1-10). Rank by composite score of impact × feasibility × confidence. This is the master list.",
+          "system_prompt": "You are a startup CEO advisor. Cut through noise and identify the 10 highest-leverage actions. Be brutally honest about what matters vs what's noise.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "You are the final synthesizer for a 100-agent analysis of BeLikeNative — a Chrome extension for AI text transformation (10K daily users, $135/mo MRR, goal: $1M ARR, 100M users).\n\nYou have received research from 60 expert agents across 3 previous phases (Market Analysis, Growth Strategy, Product Strategy) plus 20 Execution Strategy agents.\n\nCreate the DEFINITIVE REPORT:\n\n## THE 10 BIGGEST CHANGES TO REACH $1M ARR AND 100M USERS\n\nFor each of the 10 changes:\n1. **What**: Specific, actionable description\n2. **Why**: Data-backed reasoning with citations from agent research\n3. **Expected Impact**: Revenue + user growth numbers\n4. **Timeline**: Implementation schedule\n5. **Effort**: Resources needed\n6. **Risk**: What could go wrong\n7. **Confidence**: 1-10 based on evidence quality\n\n## FINANCIAL MODEL\n- Month-by-month path from $135 to $83,333 MRR\n- Key assumptions\n- Three scenarios (conservative, base, aggressive)\n\n## 90-DAY EXECUTION PLAN\n- Week-by-week action items\n- Key milestones\n- Decision points\n\n## MOONSHOT VISION\n- The single biggest idea that could make this a $100M+ company\n\nBe specific. Include numbers. Every recommendation must be backed by data from the agent research. This report will determine the company's strategy."
+    },
+    {
+      "tasks": [
+        {
+          "task_id": "validate-01",
+          "prompt": "CONTEXT: You are validating recommendations for BeLikeNative, a Chrome extension for AI text rewriting with 10K daily users, $135/mo MRR.\n\nTASK: Validate the claim that the ESL/EFL market is the biggest opportunity for BeLikeNative. (1) What is the actual number of ESL learners globally? (2) How many use digital tools? (3) What do they pay? (4) Which ESL-focused tools have succeeded? (5) Is the willingness to pay for a Chrome extension validated in ESL markets? Counter-argue: what if ESL users have low willingness to pay? What if the market is too fragmented?",
+          "system_prompt": "You are a devil's advocate analyst. Challenge assumptions with data. Find weaknesses in the strategy.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-02",
+          "prompt": "CONTEXT: BeLikeNative considering freemium model.\n\nTASK: Validate or refute the freemium strategy for BeLikeNative. (1) What percentage of Chrome extensions succeed with freemium? (2) Case studies of freemium failures in AI tools. (3) Does freemium attract the wrong users (freebie seekers)? (4) Impact on ARPU if adding a free tier. (5) Support cost increase from free users. (6) What's the optimal free-to-paid ratio? Counter-argue: what if the $1 trial is already optimal?",
+          "system_prompt": "You are a pricing strategy devil's advocate. Challenge conventional wisdom about freemium.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-03",
+          "prompt": "CONTEXT: BeLikeNative considering B2B/enterprise expansion.\n\nTASK: Validate the B2B opportunity for BeLikeNative. (1) How long does it actually take a consumer tool to sell to enterprise? (2) What's the real cost of SOC 2? (3) How many people need to be in the enterprise sales team? (4) Case studies of consumer Chrome extensions that successfully went B2B. (5) Is the B2B market actually accessible for a bootstrapped company? Counter-argue: what if B2B is a distraction from consumer growth?",
+          "system_prompt": "You are a B2B reality-checker. Separate hype from feasible strategies for a bootstrapped company.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-04",
+          "prompt": "CONTEXT: BeLikeNative using AI APIs (OpenAI, etc.) for text transformation.\n\nTASK: Validate the unit economics of an AI wrapper business at scale. (1) What are actual API costs per transformation? (2) At $4/month, how many transformations can a user do before the business loses money? (3) What happens when AI API prices change? (4) Can gross margins stay above 70%? (5) What's the real COGS at 100K and 1M users? (6) Is the AI wrapper business model sustainable long-term? Counter-argue with specific numbers.",
+          "system_prompt": "You are a financial analyst focused on AI startup unit economics. Use specific cost data.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-05",
+          "prompt": "CONTEXT: BeLikeNative considering viral growth and referral programs.\n\nTASK: Validate viral growth assumptions. (1) What's the realistic viral coefficient for a writing tool? (2) Case studies of Chrome extensions with viral growth — what actually worked? (3) Is text transformation inherently shareable? (4) What's the difference between 'useful for me' and 'worth telling friends about'? (5) How many referrals per user is realistic? Counter-argue: what if organic growth is too slow and paid acquisition is required?",
+          "system_prompt": "You are a growth skeptic. Challenge viral growth assumptions with data from similar products.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-06",
+          "prompt": "CONTEXT: BeLikeNative competing against Grammarly and other AI writing tools.\n\nTASK: Validate BeLikeNative's competitive position. (1) Can a bootstrapped Chrome extension compete with Grammarly ($13B valuation)? (2) What happens when Google integrates Gemini into Chrome for free? (3) Is the 'select text + transform' workflow defensible? (4) What prevents Grammarly from copying this in a week? (5) Realistic market share potential against well-funded competitors. Counter-argue: what if the category becomes commoditized?",
+          "system_prompt": "You are a competitive strategy skeptic. Find real threats and undefensible positions.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-07",
+          "prompt": "CONTEXT: BeLikeNative aiming for 100M users from current 10K.\n\nTASK: Reality-check the 100M user goal. (1) How many Chrome extensions have 100M users? (2) What does a typical growth curve look like for successful extensions? (3) What's the realistic ceiling for an AI writing extension? (4) How long would it take? (5) What compounding growth rate is needed (10K → 100M)? (6) What would need to be true for this to happen? Counter-argue: what's a more realistic ambition?",
+          "system_prompt": "You are a reality-checking analyst. Use data to test whether ambitious goals are achievable.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-08",
+          "prompt": "CONTEXT: BeLikeNative considering prompt marketplace and platform strategy.\n\nTASK: Validate the prompt marketplace opportunity. (1) What happened to PromptBase and other prompt marketplaces? (2) Are prompts actually sellable? (3) What's the average revenue per prompt seller? (4) Does a marketplace drive growth or fragment focus? (5) What percentage of users would create content? (6) Two-sided marketplace chicken-and-egg problem. Counter-argue: what if the marketplace is a distraction?",
+          "system_prompt": "You are a marketplace strategy skeptic. Challenge platform assumptions with real marketplace data.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-09",
+          "prompt": "CONTEXT: BeLikeNative considering mobile expansion.\n\nTASK: Validate mobile strategy for a browser extension company. (1) How many Chrome extension companies successfully launched mobile apps? (2) What's the development cost for iOS + Android? (3) Mobile keyboard app user acquisition costs. (4) Competition in mobile writing assistants. (5) Can a small team maintain both Chrome extension and mobile apps? (6) Is mobile necessary for $1M ARR or is desktop-only sufficient? Counter-argue: what if mobile is a resource black hole?",
+          "system_prompt": "You are a mobile product strategy skeptic. Challenge the assumption that mobile is necessary.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-10",
+          "prompt": "CONTEXT: BeLikeNative $135/mo MRR to $1M ARR = 617x growth.\n\nTASK: Validate the $1M ARR timeline. (1) What percentage of bootstrapped SaaS reach $1M ARR? (2) Median time to $1M ARR for tools with similar starting metrics. (3) What growth rate is needed monthly? (4) Is this growth rate realistic given current metrics? (5) What are the most likely failure modes? (6) What if the real achievable goal is $100K ARR instead of $1M? Counter-argue: provide a conservative, realistic timeline.",
+          "system_prompt": "You are a startup metrics realist. Ground ambitious goals in statistical reality.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-11",
+          "prompt": "CONTEXT: BeLikeNative processes user text through AI APIs.\n\nTASK: Validate privacy and security risks at scale. (1) What data breach risks exist? (2) Regulatory fines for data mishandling. (3) User trust concerns with AI text processing. (4) Competitor privacy-focused positioning. (5) Cost of SOC 2 and ongoing compliance. (6) Insurance requirements. (7) What happens if a user's sensitive text is leaked? Quantify the financial and reputational risk.",
+          "system_prompt": "You are a cybersecurity risk analyst. Quantify specific risks and their financial impact.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-12",
+          "prompt": "CONTEXT: BeLikeNative considering education vertical.\n\nTASK: Validate the education market strategy. (1) Can an AI writing tool be sold to schools that are banning AI? (2) What's the actual buying process for K-12 technology? (3) How long are education sales cycles? (4) Do students pay for Chrome extensions? (5) COPPA/FERPA compliance costs. (6) Is the education positioning compatible with the 'AI humanizer' use case? Counter-argue: education might be toxic for an AI writing tool.",
+          "system_prompt": "You are an edtech market skeptic. Challenge education-focused assumptions.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-13",
+          "prompt": "CONTEXT: BeLikeNative SEO strategy with 1.9M impressions.\n\nTASK: Validate the SEO growth strategy. (1) Is SEO actually the best channel for a Chrome extension? (2) What's the typical timeframe for SEO results? (3) How much does SEO cost (content + links)? (4) Can a bootstrapped company compete for 'AI writing tool' keywords? (5) Organic CTR benchmarks for Chrome extension landing pages. (6) Is 100K monthly organic visitors realistic? Counter-argue: what if paid acquisition or partnerships are more efficient?",
+          "system_prompt": "You are an SEO strategy skeptic. Challenge overly optimistic SEO projections.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-14",
+          "prompt": "CONTEXT: BeLikeNative considering multiple AI models.\n\nTASK: Validate the multi-model AI strategy. (1) Actual cost comparison: GPT-4 vs Claude vs Gemini vs open-source for text rewriting. (2) Quality difference for text transformation specifically. (3) Latency comparison. (4) Reliability/uptime comparison. (5) Terms of service restrictions. (6) Cost of maintaining multiple model integrations. (7) Is fine-tuning actually worth it for text rewriting? Counter-argue with specific benchmarks.",
+          "system_prompt": "You are an AI infrastructure analyst. Compare models with actual performance data.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-15",
+          "prompt": "CONTEXT: BeLikeNative with 71% retention at 4 months.\n\nTASK: Validate the retention metrics. (1) Is 71% actually good for a Chrome extension? (2) What's the typical retention curve shape? (3) Does retention stabilize or continue declining? (4) What causes the 29% churn? (5) Is the cohort large enough for this metric to be statistically significant (only 16 paying)? (6) Can conclusions be drawn from such a small sample? Counter-argue: 16 paying customers is too small for any reliable metrics.",
+          "system_prompt": "You are a statistical analyst. Challenge metrics derived from small sample sizes.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-16",
+          "prompt": "CONTEXT: BeLikeNative bootstrapped Chrome extension.\n\nTASK: What are the top 10 reasons this business could FAIL? For each failure mode: (1) Probability (1-10). (2) Timeline to impact. (3) Early warning signs. (4) Mitigation available. (5) Examples of similar failures. Be brutally honest. Include: Google releasing competing features, AI API cost increases, Chrome policy changes, founder burnout, market saturation, regulatory crackdown, security breach, competitor acquisition, user apathy, technology commoditization.",
+          "system_prompt": "You are a pre-mortem facilitator. Identify the most likely causes of failure before they happen.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-17",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension.\n\nTASK: Analyze what the absolute MINIMUM viable product changes are to reach $10K MRR (first milestone on path to $1M ARR). Strip everything to essentials. (1) What's the fastest path from $135 to $10K MRR? (2) What's the minimum number of features needed? (3) What can be cut? (4) What single change would have the most impact? (5) How many users needed at current conversion rate? (6) What if the answer is just 'better marketing of existing product'?",
+          "system_prompt": "You are a minimalist startup advisor. Find the simplest path to $10K MRR. Kill complexity.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-18",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension handling text.\n\nTASK: Validate the total cost of reaching $1M ARR. (1) Marketing spend required. (2) Engineering costs. (3) Infrastructure costs at scale. (4) AI API costs at scale. (5) Support costs. (6) Legal/compliance costs. (7) Total investment needed before $1M ARR is achieved. (8) Can this be bootstrapped or does it require funding? Counter-argue: show the math on whether bootstrapping to $1M ARR is financially feasible.",
+          "system_prompt": "You are a startup financial analyst. Calculate the true total cost with no optimistic bias.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-19",
+          "prompt": "CONTEXT: BeLikeNative helps fix AI-sounding text.\n\nTASK: Validate the 'AI humanization' positioning. (1) Is this a growing or shrinking use case? (2) Will AI detection tools keep improving, making humanization harder? (3) Ethical concerns with this positioning. (4) What if society normalizes AI-generated text? (5) Longevity of this use case. (6) Better positioning alternatives. Counter-argue: what if 'AI humanization' becomes legally risky or socially unacceptable?",
+          "system_prompt": "You are an ethical tech analyst. Evaluate the sustainability of the AI humanization positioning.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "validate-20",
+          "prompt": "CONTEXT: All previous analysis from 80+ agents about BeLikeNative.\n\nTASK: You are the final validator. Based on all evidence, what are the TRUE top 5 opportunities and TRUE top 5 risks for BeLikeNative? Cut through the optimism bias of the other agents. (1) What recommendations are supported by strong data? (2) What recommendations are based on wishful thinking? (3) What's missing from the analysis? (4) What's the ONE thing that matters most right now? (5) If you could only do ONE thing to reach $1M ARR, what would it be?",
+          "system_prompt": "You are the chief skeptic and final arbiter. Your job is to cut through noise and identify what actually matters. Be brutally honest.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "You are the FINAL GRAND SYNTHESIZER for a 100-agent analysis of BeLikeNative.\n\nYou have research from 5 phases:\n- Phase 1 (20 agents): Market Analysis\n- Phase 2 (20 agents): Growth Strategy  \n- Phase 3 (20 agents): Product Strategy\n- Phase 4 (20 agents): Execution Strategy\n- Phase 5 (20 agents): Validation & Devil's Advocate\n\nThe validation phase challenged every assumption. Now create the ULTIMATE REPORT.\n\n# THE 10 BIGGEST CHANGES TO MAKE BELIKENATIVE A $1M ARR BUSINESS\n\nFor each change, provide:\n1. **WHAT**: One-sentence description\n2. **WHY IT'S #1-10**: Data-backed reasoning\n3. **EXPECTED IMPACT**: Revenue + user projections with math\n4. **CONFIDENCE**: 1-10 (adjusted for validation challenges)\n5. **RISK**: What could go wrong\n6. **FIRST STEP**: What to do this week\n\n# FINANCIAL REALITY CHECK\n- Validated path from $135 → $83,333 MRR\n- Conservative vs optimistic timeline\n- Total investment required\n- Biggest financial risk\n\n# 90-DAY BATTLE PLAN\n- Week 1-4: Quick wins\n- Week 5-8: Medium-term plays\n- Week 9-12: Strategic bets\n- Key decision points\n\n# THE HONEST TRUTH\n- What's realistic vs wishful thinking\n- The ONE thing that matters most\n- What NOT to do (common traps)\n- The minimum viable path to $10K MRR first\n\nEvery claim must be supported by agent research. Flag where evidence is weak. This report determines the company's future."
+    }
+  ]
+}
