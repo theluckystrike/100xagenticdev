@@ -1,0 +1,267 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "gist-01",
+          "prompt": "Create a COMPLETE bash script called publish-github-gists.sh for automated backlink building via GitHub Gists API. The script should:\n1. Take an article markdown file as input (with YAML frontmatter: title, canonical_url, description)\n2. Read GitHub token from ~/.zovo-keys/github-token\n3. Create a PUBLIC gist via POST https://api.github.com/gists with:\n   - Description containing a dofollow link to belikenative.com\n   - A markdown file (article-title.md) with the article content including 2-3 natural mentions of BeLikeNative with links to belikenative.com\n   - A second file (resources.md) with 'Related Resources' linking back to the canonical URL and belikenative.com\n4. Log result to state/published.log as: gist|slug|gist_url|timestamp\n5. Handle errors, rate limits (5000 req/hr authenticated)\n6. Use curl + jq (no dependencies)\n7. The gist description should be: 'Article Title — Originally published at belikenative.com'\nProvide the COMPLETE working script with all error handling.",
+          "system_prompt": "You are a senior bash developer. Write production-ready scripts. Every API call must include error handling and HTTP status code checking. Use set -euo pipefail.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "gist-02",
+          "prompt": "Research the EXACT behavior of GitHub Gists for SEO backlinks. Answer with specific evidence:\n1. Are links in gist DESCRIPTIONS rendered as dofollow HTML? Check the actual HTML output at gist.github.com\n2. Are links in gist MARKDOWN FILES rendered as dofollow? Do they use rel='nofollow'?\n3. Does Google index public gists? How quickly? What's the crawl frequency?\n4. What's the maximum number of gists per account before triggering spam detection?\n5. Can you have multiple files per gist? What's the maximum?\n6. What's the character limit for gist descriptions?\n7. Does GitHub add any X-Robots-Tag headers to gist pages?\n8. Are anonymous gists (no auth) still supported?\n9. What's the exact URL format: gist.github.com/username/hash?\n10. Can you update a gist after creation to add more links?",
+          "system_prompt": "You are a GitHub platform expert. Provide technically precise answers about how GitHub Gists work for SEO. If unsure about dofollow status, say UNVERIFIED.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "gist-03",
+          "prompt": "Design the optimal CONTENT STRATEGY for GitHub Gists backlinks for BeLikeNative (AI writing Chrome extension). Create 10 gist templates that would look natural and useful:\n1. 'ESL Writing Tips Cheatsheet' — markdown reference card with BeLikeNative mention\n2. 'Grammar Rules Quick Reference' — common grammar mistakes with tool recommendation\n3. 'Chrome Extension Dev Setup Guide' — developer-focused with BeLikeNative as example\n4. 'Multilingual Email Templates' — business email templates mentioning BeLikeNative\n5-10. Create 5 more natural-looking gist ideas\nFor each: provide the full markdown content (500-800 words), natural link placement, and description text. Links should be contextual, not spammy. The gist should provide REAL VALUE to readers.",
+          "system_prompt": "You are a content strategist. Create genuinely useful reference materials that happen to mention BeLikeNative naturally. No spam.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "gist-04",
+          "prompt": "Write a Python script that converts our existing WordPress article markdown files into GitHub Gist-optimized format. Input: markdown file with frontmatter (title, canonical_url, description). Output: JSON payload for GitHub Gists API. The script should:\n1. Extract frontmatter fields\n2. Truncate content to 800 words (gist-appropriate length)\n3. Add a header: '# Title\\n> Originally published at [belikenative.com](canonical_url)\\n'\n4. Add a footer: '---\\n*Read the full article at [belikenative.com](canonical_url). [BeLikeNative](https://belikenative.com) is a free Chrome extension for AI writing assistance.*'\n5. Create a second file 'resources.md' with related links\n6. Output the complete JSON for curl POST to /gists\n7. Handle edge cases: missing frontmatter, empty content, special characters in title\nProvide the complete Python script.",
+          "system_prompt": "You are a Python developer. Write clean, production-ready code with proper error handling.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "gitlab-01",
+          "prompt": "Create a COMPLETE bash script called publish-gitlab-pages.sh for automated backlink building via GitLab API. Similar to our GitHub Pages script but for GitLab. The script should:\n1. Take an article markdown file as input (YAML frontmatter: title, canonical_url, description)\n2. Read GitLab token from ~/.zovo-keys/gitlab-token\n3. Create a NEW PROJECT via POST https://gitlab.com/api/v4/projects\n4. Push index.html via Repository Files API: POST /projects/:id/repository/files/index.html\n5. Push .gitlab-ci.yml for Pages deployment (simple pages job)\n6. The HTML template should match our GitHub Pages template: clean design, canonical tag, dofollow links, sitemap.xml\n7. Enable GitLab Pages (automatic with .gitlab-ci.yml)\n8. Log to published.log as: gitlab|slug|pages_url|timestamp\n9. URL format: username.gitlab.io/project-name/\n10. Handle rate limits: 300 req/min authenticated\nProvide the COMPLETE working bash script.",
+          "system_prompt": "You are a GitLab CI/CD expert. Write a production-ready bash script that creates and deploys GitLab Pages sites via API only (no git clone needed).",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "gitlab-02",
+          "prompt": "Research GitLab Pages deployment via API WITHOUT git clone. I need to push files directly via REST API:\n1. Can you create a project AND push files via API only? What's the exact sequence of API calls?\n2. POST /projects — what fields are required? visibility=public?\n3. POST /projects/:id/repository/files/:file_path — how to push index.html?\n4. What .gitlab-ci.yml is needed for Pages? Minimal config?\n5. How long after pushing .gitlab-ci.yml does Pages deploy?\n6. What's the URL format: username.gitlab.io/project-name/?\n7. Rate limits for project creation? File pushing?\n8. Can you create multiple projects per day? Any limit?\n9. Does GitLab add any nofollow headers to Pages sites?\n10. Free tier limits: storage, bandwidth, number of projects?\nProvide exact curl examples for each step.",
+          "system_prompt": "You are a GitLab API specialist. Provide exact, tested API calls. Every curl must be copy-pasteable.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "gitlab-03",
+          "prompt": "Create the minimal .gitlab-ci.yml file needed for GitLab Pages deployment. Requirements:\n1. Must deploy static HTML from the project root\n2. No build step needed (pre-built HTML)\n3. Must work with GitLab's free tier\n4. Should deploy to the default Pages URL\n5. What's the exact 'pages' job configuration?\n6. Does the artifacts path need to be 'public/'? If so, do files need to be in a public/ directory?\n7. How to handle the initial commit + CI pipeline trigger via API?\n8. Can we skip the CI pipeline and use the Pages API directly?\n9. What's the fastest way to get a GitLab Pages site live via API only?\n10. Provide the complete .gitlab-ci.yml content (as few lines as possible)",
+          "system_prompt": "You are a GitLab CI/CD expert. Provide the minimal, working configuration.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "gitlab-04",
+          "prompt": "Research GitLab Snippets API for backlink building. We want to create public snippets with dofollow links.\n1. POST https://gitlab.com/api/v4/snippets — exact request format?\n2. Are links in snippet DESCRIPTIONS dofollow? Check actual HTML output.\n3. Are links in snippet FILE CONTENT (markdown) rendered as dofollow HTML?\n4. Does GitLab render markdown in snippets? Or just plain text?\n5. What's the URL format for public snippets?\n6. Rate limits for snippet creation?\n7. Maximum number of snippets per account?\n8. Maximum files per snippet?\n9. Does Google index GitLab snippets? How quickly?\n10. Provide a complete curl example for creating a public snippet with a markdown file containing links.\nAlso provide a COMPLETE bash script publish-gitlab-snippets.sh similar to our gists publisher.",
+          "system_prompt": "You are a GitLab API expert. Be precise about dofollow status. If you can't verify, say UNVERIFIED.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "cf-01",
+          "prompt": "Create a COMPLETE bash script called publish-cloudflare-pages.sh for automated backlink building via Cloudflare Pages Direct Upload API. The script should:\n1. Take an article markdown file as input (YAML frontmatter)\n2. Read Cloudflare API token and Account ID from ~/.zovo-keys/cloudflare-token and ~/.zovo-keys/cloudflare-account-id\n3. Create a NEW Cloudflare Pages project via API (or use existing one)\n4. Upload index.html via Direct Upload API\n5. The HTML template: clean design, canonical tag, dofollow links to belikenative.com\n6. Generate sitemap.xml\n7. URL format: project-name.pages.dev\n8. Log to published.log as: cloudflare|slug|pages_url|timestamp\n9. Handle rate limits\n10. One project per article OR multiple pages in one project?\nProvide the COMPLETE working bash script with error handling.",
+          "system_prompt": "You are a Cloudflare developer. Write production-ready bash scripts using the Cloudflare Pages API. Every API call must include proper authentication and error handling.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "cf-02",
+          "prompt": "Research Cloudflare Pages Direct Upload API in detail:\n1. What's the exact API endpoint for creating a Pages project? POST /accounts/:id/pages/projects?\n2. How to upload files via Direct Upload (no git)? What's the multipart format?\n3. Can you create a NEW project AND deploy in one API call?\n4. What's the deployment URL format? project-name.pages.dev?\n5. Rate limits for project creation and file uploads?\n6. Free tier: how many projects? Bandwidth? Storage?\n7. Does Cloudflare add any nofollow headers or meta tags to Pages sites?\n8. Can you have custom headers (like canonical) on Pages?\n9. How long does deployment take after upload?\n10. Can you create multiple projects per day? Any spam detection?\nProvide exact curl examples for the complete workflow: create project → upload files → verify deployment.",
+          "system_prompt": "You are a Cloudflare Pages API expert. Provide exact, working curl commands with proper auth headers.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "cf-03",
+          "prompt": "Research Cloudflare Pages authentication and setup:\n1. What type of API token is needed? What permissions/scopes?\n2. How to create a Cloudflare API token for Pages only?\n3. What's the Account ID and how to find it?\n4. Can you use a Global API Key instead of a token?\n5. What's the difference between Cloudflare Pages projects and Workers Sites?\n6. Does Cloudflare Pages support _headers and _redirects files?\n7. Can we add a canonical meta tag via _headers file?\n8. Is there a wrangler CLI alternative to the REST API?\n9. Cost: is Cloudflare Pages truly free? Any hidden limits?\n10. Comparison: Cloudflare Pages vs GitHub Pages vs GitLab Pages for automated backlink building — which is easiest to automate via API?",
+          "system_prompt": "You are a Cloudflare infrastructure expert. Focus on practical setup steps.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "cf-04",
+          "prompt": "Write the EXACT sequence of Cloudflare API calls to deploy a static HTML site to Cloudflare Pages:\n\nStep 1: Create project\ncurl -X POST 'https://api.cloudflare.com/client/v4/accounts/{account_id}/pages/projects' \\\n  -H 'Authorization: Bearer {api_token}' \\\n  -H 'Content-Type: application/json' \\\n  -d '{...}'\n\nStep 2: Create deployment\nStep 3: Upload files\nStep 4: Verify deployment\n\nFor EACH step provide:\n- The exact curl command\n- The exact JSON payload\n- The expected response\n- How to extract the deployment URL from the response\n\nAlso: Can this be done with a SINGLE Direct Upload call? The Cloudflare docs mention 'Direct Upload' where you can upload a zip or individual files. What's the fastest path?\n\nFinally: is the approach 'one project per article' or 'one project with multiple pages' better for backlinks?",
+          "system_prompt": "You are a Cloudflare Pages deployment expert. Provide exact, tested API calls. Show complete request and response examples.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "codepen-01",
+          "prompt": "Research CodePen API for creating pens programmatically:\n1. Does CodePen have a public REST API? What endpoints?\n2. How to create a pen via API? POST endpoint?\n3. Authentication: API key? OAuth? How to get credentials?\n4. Can you set pen description with links? Are description links dofollow?\n5. Are links in pen HTML content dofollow when the pen is viewed?\n6. Does Google index CodePen pens? How quickly?\n7. Rate limits for pen creation?\n8. Free tier limits: how many pens? Public vs private?\n9. What's the pen URL format?\n10. Alternative: CodePen prefill API — can you create pens via URL parameters without an account?\n\nIf CodePen doesn't have a proper API, describe the prefill/embed approach instead:\n- POST to https://codepen.io/pen/define with form data\n- Pre-filled pen creation via JSON payload\n- How to automate this with curl",
+          "system_prompt": "You are a CodePen expert. Be precise about API availability. If there's no public API, describe the workaround (prefill API).",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "codepen-02",
+          "prompt": "Create 10 CodePen demo ideas for BeLikeNative (AI writing Chrome extension) that would be valuable and get indexed:\n1. 'Grammar Checker UI Demo' — interactive grammar checking interface\n2. 'Text Readability Score Calculator' — JavaScript tool that calculates Flesch-Kincaid\n3. 'Multilingual Text Formatter' — format text for different languages\n4. 'Email Template Generator' — professional email templates\n5-10. Create 5 more\n\nFor each: provide the complete HTML/CSS/JS code (pen content), the pen title, and the description (with natural BeLikeNative link). The code should be functional and useful — not just a link container. Each pen should have 50-200 lines of working JavaScript.\n\nAlso: how to include a 'Powered by BeLikeNative' footer in each pen naturally.",
+          "system_prompt": "You are a front-end developer and content creator. Create genuinely useful interactive tools that naturally reference BeLikeNative.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "surge-01",
+          "prompt": "Create a COMPLETE bash script called publish-surge.sh for automated backlink building via Surge.sh:\n1. Take an article markdown file as input (YAML frontmatter)\n2. Convert markdown to HTML (same template as our GitHub Pages publisher)\n3. Create a temporary directory with index.html + sitemap.xml\n4. Deploy via surge CLI: surge ./tmpdir subdomain.surge.sh\n5. Generate unique subdomain: bln-{slug-truncated}-{random4}.surge.sh\n6. Log to published.log as: surge|slug|url|timestamp\n7. Handle errors\n\nKEY QUESTIONS to answer in the script comments:\n- Does surge require login? How to authenticate non-interactively?\n- Can you set SURGE_LOGIN and SURGE_TOKEN environment variables?\n- How to install surge globally: npm install -g surge?\n- Rate limits: how many deploys per hour/day?\n- Does surge add any headers or modify the HTML?\n- Can you deploy via API instead of CLI?\n\nProvide the COMPLETE working script.",
+          "system_prompt": "You are a deployment automation expert. Write a production-ready bash script for Surge.sh deployment.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "surge-02",
+          "prompt": "Research Surge.sh in detail for automated static site deployment:\n1. How to authenticate non-interactively? SURGE_LOGIN + SURGE_TOKEN env vars?\n2. How to get a surge token programmatically?\n3. Rate limits: max deployments per hour/day/month?\n4. Free tier: what are the limits? Bandwidth? Projects?\n5. Does Surge.sh add any nofollow headers to deployed sites?\n6. Does Surge.sh modify HTML content in any way?\n7. Does Google index *.surge.sh subdomains well?\n8. Can you use custom domains on the free tier?\n9. Is there a REST API alternative to the CLI?\n10. How to teardown/delete a surge project via CLI?\n11. Comparison: Surge.sh vs GitHub Pages vs Netlify for automated deployment\n12. Any anti-spam measures that would block mass deployment?",
+          "system_prompt": "You are a Surge.sh expert. Focus on automation and mass deployment capabilities.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "bitbucket-01",
+          "prompt": "Create a COMPLETE bash script called publish-bitbucket-snippets.sh for automated backlink building via Bitbucket Snippets API:\n1. Take an article markdown file as input\n2. Read Bitbucket credentials from ~/.zovo-keys/bitbucket-app-password (format: username:app_password)\n3. Create a PUBLIC snippet via POST https://api.bitbucket.org/2.0/snippets/{workspace}\n4. Include a markdown file with article content + BeLikeNative links\n5. Set title to article title\n6. Log to published.log as: bitbucket|slug|snippet_url|timestamp\n7. Handle errors and rate limits\n\nKEY QUESTIONS:\n- Bitbucket Snippets API v2 exact format for multipart upload?\n- Are links in snippet content rendered as HTML? Dofollow?\n- Rate limits: 1000 req/hr authenticated?\n- Maximum snippet size?\n- Does Google index Bitbucket snippets?\n\nProvide the COMPLETE working script.",
+          "system_prompt": "You are a Bitbucket API expert. Write production-ready bash scripts with proper authentication and error handling.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "npm-01",
+          "prompt": "Design a minimal but USEFUL npm package that links back to belikenative.com. The package should:\n1. Be genuinely useful (not just a link container)\n2. Have belikenative.com as the homepage in package.json\n3. Include README.md with natural BeLikeNative mentions and links\n4. Be small (<1KB of actual code)\n5. Name suggestions: 'text-readability-score', 'grammar-check-utils', 'writing-style-analyzer', 'esl-writing-helpers'\n\nProvide:\n- Complete package.json with homepage, repository, keywords\n- index.js with actual working code (a text utility function)\n- README.md with installation, usage, and BeLikeNative mention\n- How to publish: npm publish --access public\n- Will the npmjs.com package page have dofollow links to the homepage?\n- How to set up npm auth token for automated publishing\n\nThe package must provide REAL VALUE — even if small.",
+          "system_prompt": "You are an npm package developer. Create a legitimate, useful micro-package that also serves as a backlink source.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "npm-02",
+          "prompt": "Research npm package pages for SEO backlinks:\n1. Are 'homepage' links in package.json rendered as dofollow on npmjs.com?\n2. Are links in README.md rendered as dofollow on npmjs.com?\n3. Does Google index npm package pages? How quickly?\n4. What's the minimum content needed for a package to not be flagged as spam?\n5. Can you publish multiple packages under one account?\n6. npm publish rate limits: how many packages per day?\n7. Does npm have any anti-spam detection for packages with promotional links?\n8. How to set up automated npm publishing via CI/CD?\n9. What keywords/metadata help npm package pages rank in Google?\n10. Can you update a package's README after publishing to add links?",
+          "system_prompt": "You are an npm ecosystem expert. Focus on how npm package pages work for SEO.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "pypi-01",
+          "prompt": "Design a minimal but USEFUL Python package that links back to belikenative.com and create the publishing script. The package should:\n1. Be genuinely useful (text utility)\n2. Have belikenative.com in project_urls in pyproject.toml\n3. Include README.md with natural BeLikeNative mentions\n4. Name suggestions: 'text-readability', 'grammar-utils', 'writing-analyzer', 'esl-helpers'\n\nProvide:\n- Complete pyproject.toml with all metadata including project_urls (Homepage, Documentation, etc.)\n- __init__.py with actual working code\n- README.md with usage examples and BeLikeNative mention\n- How to publish: python -m build && twine upload dist/*\n- Are project_urls links dofollow on pypi.org?\n- How to set up PyPI API token for automated publishing\n\nAlso provide a bash script publish-pypi-package.sh that automates the entire process.",
+          "system_prompt": "You are a Python packaging expert. Create a legitimate package with proper metadata.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "integration-01",
+          "prompt": "Design the INTEGRATION LAYER for adding 6 new platforms to the existing BeLikeNative backlink pipeline. Current architecture:\n- platform-adapter-bln.sh: fetches article from WP, rewrites via Claude/DeepSeek, publishes via platform script\n- publish-devto.sh, publish-telegraph.sh, publish-github-pages.sh: platform-specific publishers\n- orchestrator: handles --blast N mode\n\nDesign:\n1. How to add 6 new publishers (gists, gitlab-pages, gitlab-snippets, cloudflare-pages, surge, bitbucket-snippets) to platform-adapter-bln.sh\n2. Should each platform have its own rewrite rules? Or share rules?\n3. Platform-specific content requirements:\n   - Gists: shorter (500-800 words), reference-card style\n   - Pages (GitLab, CF): full articles (800-1200 words), same as GitHub Pages\n   - Snippets (GitLab, BB): code-focused, 300-600 words\n   - Surge: full articles (same as Pages)\n4. Velocity scheduling: how to distribute across platforms per week\n5. State management: track which articles published where\n6. Error handling across 9 platforms\n7. Dry run mode for testing",
+          "system_prompt": "You are a pipeline architect. Design a clean, maintainable system for managing 9+ publishing platforms.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "integration-02",
+          "prompt": "Create a VELOCITY SCHEDULER bash script called schedule-weekly-blast.sh that implements the 12-week velocity plan:\n- Week 1-4: 10/week (4 Dev.to + 4 Telegraph + 2 GitHub Pages)\n- Week 5-8: 12/week (5 Dev.to + 5 Telegraph + 2 GitHub Pages)\n- Week 9-12: 14/week (6 Dev.to + 6 Telegraph + 2 GitHub Pages)\n\nThe script should:\n1. Calculate current week number from pipeline start date\n2. Determine correct volume per platform for this week\n3. Spread publishing across Mon-Fri (never >3/day)\n4. Add random delays between publishes (30-120 seconds)\n5. Track daily counts to never exceed daily limits\n6. Log velocity metrics to state/velocity.log\n7. Support --dry-run mode\n8. Support --week N to override week number\n9. Support adding new platforms (gists, gitlab, cloudflare, etc.)\n10. Cron-compatible: can be run daily to publish that day's allocation\n\nProvide the COMPLETE bash script.",
+          "system_prompt": "You are a scheduling system architect. Write a production-ready velocity controller.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "dofollow-verify-01",
+          "prompt": "Design a DOFOLLOW VERIFICATION script that automatically checks if published backlinks are actually dofollow. The script should:\n1. Read published.log entries\n2. For each URL, fetch the page via curl\n3. Parse HTML to find links pointing to belikenative.com\n4. Check if any link has rel='nofollow', rel='ugc', rel='sponsored', or rel='noopener noreferrer'\n5. Report: URL, link_found (yes/no), rel_attribute, dofollow (yes/no)\n6. Output a summary: X/Y links verified as dofollow\n7. Flag any platform that has gone nofollow (policy change detection)\n8. Also check for X-Robots-Tag headers (noindex, nofollow)\n9. Also check for <meta name='robots' content='nofollow'>\n10. Support batch processing of all entries in published.log\n\nProvide the COMPLETE bash script (verify-dofollow.sh) using curl + grep/sed.",
+          "system_prompt": "You are a technical SEO engineer. Write a script that definitively verifies dofollow status of live backlinks.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "dofollow-verify-02",
+          "prompt": "Research how to VERIFY dofollow status programmatically across different platforms:\n1. What HTTP headers indicate nofollow? (X-Robots-Tag)\n2. What meta tags indicate nofollow? (<meta name='robots'>)\n3. What link attributes indicate nofollow? (rel='nofollow ugc sponsored')\n4. How do different platforms implement nofollow:\n   - GitHub Pages: any server-side nofollow injection?\n   - Telegraph: any hidden nofollow?\n   - Dev.to: canonical_url vs content links?\n   - GitLab: any nofollow on Pages vs Snippets?\n   - Cloudflare Pages: any nofollow injection?\n5. Does Google treat rel='nofollow' as a hint or directive? (hint since 2020)\n6. How to use curl to check all relevant signals:\n   - curl -I (headers)\n   - curl -s (body for meta tags and link attributes)\n7. Python script using BeautifulSoup for more reliable HTML parsing\n8. How often should we re-verify? (weekly? monthly?)\n9. How to detect if a platform silently changes their nofollow policy\n10. Create a scoring system: VERIFIED_DOFOLLOW, LIKELY_DOFOLLOW, UNKNOWN, LIKELY_NOFOLLOW, VERIFIED_NOFOLLOW",
+          "system_prompt": "You are a link analysis expert. Focus on programmatic verification methods.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "content-01",
+          "prompt": "Create 10 article templates optimized for SNIPPET platforms (GitHub Gists, GitLab Snippets, Bitbucket Snippets). These are shorter than blog posts (300-600 words) and should be reference-card style. Topics for BeLikeNative (AI writing Chrome extension):\n1. 'Quick Reference: 50 Commonly Confused English Words'\n2. 'Cheatsheet: Professional Email Phrases for Non-Native Speakers'\n3. 'Guide: Setting Up Chrome Extensions for Writing'\n4. 'Reference: Formal vs Informal English Expressions'\n5. 'Checklist: Before You Send That Business Email'\n6-10. Create 5 more\n\nFor each template provide:\n- Title\n- Full markdown content (400-600 words)\n- Natural BeLikeNative mention (1-2 per snippet)\n- Description text for the snippet\n- Tags/keywords\n\nContent must be genuinely useful, not spammy.",
+          "system_prompt": "You are a technical writer specializing in ESL/EFL content. Create genuinely useful reference materials.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "content-02",
+          "prompt": "Create 10 article templates optimized for STATIC SITE platforms (GitLab Pages, Cloudflare Pages, Surge.sh). These are full-length articles (800-1200 words) similar to our GitHub Pages content. Topics for BeLikeNative:\n1. 'How AI Writing Assistants Help Non-Native English Speakers'\n2. 'The Complete Guide to Chrome Extensions for Productivity'\n3. 'Why Grammar Checkers Are Essential for Professional Communication'\n4. '5 Ways to Improve Your Business English Writing'\n5. 'Comparing AI Translation Tools: What Actually Works'\n6-10. Create 5 more\n\nFor each: provide full markdown content with:\n- Natural BeLikeNative mentions (2-3 per article)\n- Links to belikenative.com in context\n- Useful, informative content\n- SEO-optimized headings\n- Frontmatter: title, description, canonical_url placeholder",
+          "system_prompt": "You are an SEO content writer. Write human-sounding, informative articles. Follow HUMANIZE-CONTENT rules: no bold, no emoji, varied sentence rhythm, first-person conversational tone, no banned words (seamlessly, delve, leverage, utilize).",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "account-setup-01",
+          "prompt": "Create a COMPLETE account setup guide for all 6 new platforms. For each platform, provide:\n\n1. **GitLab**: How to create account, generate Personal Access Token (scopes needed: api, write_repository), where to save token\n2. **Cloudflare**: How to create account, generate API token (Pages permissions), find Account ID, where to save credentials\n3. **Surge.sh**: How to install CLI, create account (surge login), get token (surge token), where to save\n4. **Bitbucket**: How to create account, generate App Password (scopes: snippets:write), where to save\n5. **CodePen**: Account creation, API access (if available), alternatives\n6. **npm**: Account creation, generate auth token (npm token create), where to save\n7. **PyPI**: Account creation, generate API token, where to save\n\nFor each: exact URLs, exact commands, security best practices (never commit tokens). All tokens should be saved in ~/.zovo-keys/ directory.\n\nProvide a bash script setup-new-platforms.sh that verifies all credentials exist and tests each API.",
+          "system_prompt": "You are a DevOps engineer. Create a clear, step-by-step setup guide that can be followed in 30 minutes.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "account-setup-02",
+          "prompt": "Create a bash script called verify-platform-credentials.sh that:\n1. Checks for token files in ~/.zovo-keys/ for each platform:\n   - github-token (existing)\n   - gitlab-token (new)\n   - cloudflare-token + cloudflare-account-id (new)\n   - surge-token (new)\n   - bitbucket-credentials (new, format: user:app_password)\n   - npm-token (new)\n   - pypi-token (new)\n2. For each token found, makes a test API call to verify it works:\n   - GitHub: GET /user\n   - GitLab: GET /user\n   - Cloudflare: GET /user/tokens/verify\n   - Surge: surge whoami\n   - Bitbucket: GET /2.0/user\n   - npm: npm whoami\n   - PyPI: no simple verify endpoint — just check token format\n3. Reports status: FOUND + VERIFIED, FOUND + INVALID, MISSING\n4. Outputs a summary table\n5. Suggests next steps for missing credentials\n\nProvide the COMPLETE script.",
+          "system_prompt": "You are a DevOps engineer. Write a thorough credential verification script.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "indexing-01",
+          "prompt": "Create a bash script called submit-indexing.sh that accelerates Google discovery of new backlinks:\n1. Read new entries from published.log (last N entries or since date)\n2. For each backlink URL:\n   a. Submit to Google via URL Inspection API (if GSC credentials available)\n   b. Submit to Bing via IndexNow protocol (simple HTTP ping)\n   c. Submit to Yandex via IndexNow\n3. IndexNow implementation:\n   - Generate a key file\n   - POST to https://api.indexnow.org/IndexNow with URL batch\n   - Bing endpoint: https://www.bing.com/indexnow\n4. Also submit the TARGET page (belikenative.com) for re-crawling\n5. Log submissions to state/indexing.log\n6. Rate limiting: max 10 submissions per minute\n7. Support --dry-run mode\n\nProvide the COMPLETE working script. Focus on IndexNow (free, no API key needed for basic usage).",
+          "system_prompt": "You are a search engine indexing expert. Write a script that legitimately speeds up backlink discovery.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "indexing-02",
+          "prompt": "Research IndexNow protocol implementation in detail:\n1. Exact API endpoint for batch URL submission\n2. Do you need an API key? How to generate one?\n3. Where to host the key file (for verification)?\n4. Can you submit URLs from OTHER domains (e.g., submit dev.to/article URLs)?\n5. Does IndexNow work for Bing and Yandex? What about Google?\n6. Rate limits: max URLs per batch? Max batches per day?\n7. How to verify submission was accepted?\n8. Does IndexNow actually speed up discovery? Any evidence?\n9. Alternative: Google's Indexing API — who can use it? (only JobPosting/BroadcastEvent schema?)\n10. Alternative: Ping-o-matic — does it still work in 2025?\n11. Sitemap ping: GET https://www.google.com/ping?sitemap=URL — still supported?\n12. Provide complete curl examples for IndexNow batch submission",
+          "system_prompt": "You are a search engine expert. Focus on methods that actually work in 2025-2026.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "dashboard-01",
+          "prompt": "Design new dashboard tab panels for the 6 new platforms to add to BLN-BACKLINK-DASHBOARD.html. Current dashboard has tabs for: Overview, Dev.to, Telegraph, GitHub Pages, Queue, Published Log, Research, Improvements, Wins, ROI, Velocity Plan, New Sources, Commands.\n\nDesign HTML for these new tab panels:\n1. 'GitHub Gists' tab — stats grid (count, DA 95, dofollow, equity), articles table\n2. 'GitLab' tab — combined GitLab Pages + Snippets stats\n3. 'Cloudflare Pages' tab — stats, articles table\n4. 'Other Platforms' tab — Surge, Bitbucket, npm, PyPI combined\n\nFor each tab provide:\n- Stats grid with platform-specific metrics\n- Table with slug, URL, timestamp columns\n- JavaScript function to populate from PUBLISHED_DATA\n- Badge color scheme (consistent with existing dashboard)\n\nUse the same design patterns as existing tabs. Dark theme, red accent (#e94560), green for live (#4ade80).",
+          "system_prompt": "You are a dashboard UI designer. Match the existing dark theme design system exactly.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "safety-01",
+          "prompt": "Create a comprehensive RISK ASSESSMENT for automated backlink building across 9 platforms. For each risk:\n1. Google Manual Action: probability, triggers, recovery time\n2. Platform bans: which platforms actively detect automated posting? What are the consequences?\n3. Domain reputation damage: can mass backlink building from the same 3-4 high-DA domains (GitHub, GitLab, Cloudflare) look unnatural?\n4. Content detection: can platforms detect AI-generated content? What's the penalty?\n5. Account termination: which platforms are most aggressive about shutting down 'SEO farms'?\n6. Rate limiting gotchas: hidden rate limits not documented in APIs?\n7. Legal risks: any TOS violations we should be aware of?\n8. Temporal patterns: what publishing patterns look most natural?\n9. IP reputation: does publishing from the same IP to multiple platforms raise flags?\n10. Anchor text penalties: how to ensure our anchor text distribution stays safe\n\nFor each risk, provide: severity (1-5), likelihood (1-5), mitigation strategy.",
+          "system_prompt": "You are a technical SEO risk analyst. Be brutally honest about risks. Don't sugarcoat.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "safety-02",
+          "prompt": "Research Google's SpamBrain and Link Spam Update (December 2024) in detail:\n1. What exactly does SpamBrain detect? Machine learning signals?\n2. How does it identify 'link networks' (multiple sites linking to same target)?\n3. Does it look at domain footprints (all from *.github.io, *.gitlab.io, *.pages.dev)?\n4. How does it handle legitimate content syndication vs link spam?\n5. What's the difference between a manual action and an algorithmic devaluation?\n6. Case studies: sites penalized by SpamBrain — what did they do wrong?\n7. How to check if you've been hit: GSC Manual Actions page, traffic drops\n8. Recovery: how long does it take to recover from a link spam penalty?\n9. Does SpamBrain distinguish between different subdomains of the same parent domain (e.g., user1.github.io vs user2.github.io)?\n10. CRITICAL: Does building backlinks exclusively from *.github.io trigger a domain-pattern flag?",
+          "system_prompt": "You are a Google algorithm expert specializing in link spam detection. Be specific and technical.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "monitoring-01",
+          "prompt": "Create a bash script called monitor-backlinks.sh that provides a weekly health check:\n1. Count total backlinks per platform from published.log\n2. Check last 5 published URLs per platform are still live (HTTP 200)\n3. Verify dofollow status of random sample (5 URLs)\n4. Calculate velocity: links added this week vs last week\n5. Check for velocity spikes (>3x increase = warning)\n6. Anchor text distribution analysis from all published articles\n7. Platform diversity score (% from each platform)\n8. Output a formatted report to state/weekly-report-{date}.md\n9. Support --json mode for programmatic consumption\n10. Alert if any platform returns 404 (content removed)\n\nProvide the COMPLETE bash script.",
+          "system_prompt": "You are an SEO monitoring expert. Write a production-ready monitoring script.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "testing-01",
+          "prompt": "Create a test script called test-publishers.sh that validates all publisher scripts work correctly:\n1. Create a test article (test-article.md) with proper frontmatter\n2. For each publisher (devto, telegraph, github, gist, gitlab-pages, gitlab-snippets, cloudflare, surge, bitbucket):\n   a. Run the publisher in --dry-run mode (if supported)\n   b. Verify the output format\n   c. Verify the published.log entry format\n   d. Check the published URL returns HTTP 200\n   e. Verify dofollow links exist on the page\n3. Report: PASS/FAIL for each platform\n4. Cleanup: delete test articles/repos/gists after testing\n5. Support --platform X to test a single platform\n6. Support --no-cleanup to keep test content for manual inspection\n\nProvide the COMPLETE script with test fixtures.",
+          "system_prompt": "You are a QA engineer. Write thorough test scripts that catch integration issues early.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "master-script-01",
+          "prompt": "Create a MASTER ORCHESTRATOR script called blast-all-platforms.sh that manages publishing across all 9 platforms:\n\nUsage:\n  ./blast-all-platforms.sh --count 10          # 10 articles to each platform\n  ./blast-all-platforms.sh --weekly             # Use velocity schedule\n  ./blast-all-platforms.sh --platform github    # Single platform\n  ./blast-all-platforms.sh --daily              # Today's allocation only\n\nFeatures:\n1. --weekly mode: follows the 12-week velocity plan automatically\n2. --daily mode: calculates today's allocation based on day-of-week schedule\n3. Tracks which articles have been published to which platforms\n4. Never publishes the same article to the same platform twice\n5. Randomizes publish order across platforms (not all devto first, then all telegraph)\n6. Adds random delays (30-120s between publishes)\n7. Real-time progress output\n8. Supports --dry-run\n9. Logs all activity to state/blast.log\n10. Summary at end: X/Y success per platform, total cost estimate\n\nProvide the COMPLETE bash script.",
+          "system_prompt": "You are a pipeline orchestrator architect. Write the definitive blast management script.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "master-script-02",
+          "prompt": "Design the STATE MANAGEMENT system for tracking which articles have been published to which platforms. Currently: published.log has format platform|slug|url|timestamp.\n\nDesign:\n1. How to efficiently check if slug X has been published to platform Y? (grep is slow at 10K+ entries)\n2. Should we use a SQLite database instead of a flat file?\n3. How to track failed publishes that should be retried?\n4. How to handle rate limit errors (queue for later)?\n5. How to mark articles that shouldn't be published (blacklist)?\n6. How to prioritize articles (publish high-value ones first)?\n7. How to generate the list of 'next articles to publish for platform X'?\n8. Cross-platform deduplication: same slug, different platforms\n9. Status tracking: pending → publishing → published → verified → error\n10. Migration path from current flat-file to new system\n\nProvide a practical solution (bash + SQLite or bash + indexed files) with code.",
+          "system_prompt": "You are a data engineering expert. Design a simple but scalable state management system for the pipeline.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        }
+      ]
+    }
+  ]
+}

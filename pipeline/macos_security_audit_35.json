@@ -1,0 +1,206 @@
+{
+  "name": "macOS Security Deep Audit — ChatGPT.app Malware Incident",
+  "description": "35-agent parallel threat intelligence and macOS hardening audit after fake ChatGPT.app malware detection",
+  "phases": [
+    {
+      "name": "Phase 1: Malware Threat Intelligence",
+      "tasks": [
+        {
+          "id": "threat-1",
+          "prompt": "Research the fake 'ChatGPT.app' malware campaigns targeting macOS in 2025-2026. What are the known variants? What domains distribute them? What payload types (info-stealer, RAT, cryptominer, adware)? List known IOCs (hashes, domains, IPs). Focus on campaigns that mimic OpenAI/ChatGPT branding.",
+          "system_prompt": "You are a senior malware analyst specializing in macOS threats. Provide specific, actionable threat intelligence with IOCs, TTPs, and detection methods."
+        },
+        {
+          "id": "threat-2",
+          "prompt": "What are the most common macOS malware families in 2025-2026 that disguise as legitimate AI applications (ChatGPT, Claude, Copilot, Gemini)? How do they achieve persistence? What data do they exfiltrate? Map their kill chains using MITRE ATT&CK framework.",
+          "system_prompt": "You are a senior malware analyst specializing in macOS threats. Provide specific, actionable threat intelligence with IOCs, TTPs, and detection methods."
+        },
+        {
+          "id": "threat-3",
+          "prompt": "How does macOS Gatekeeper and XProtect detect fake ChatGPT malware? What specific XProtect signatures (MACOS.ChatGPT* or similar) exist? When was the latest XProtect update? Can malware bypass Gatekeeper after being quarantined? What does 'Malware Blocked and Moved to Trash' mean technically?",
+          "system_prompt": "You are a senior malware analyst specializing in macOS threats. Provide specific, actionable threat intelligence with IOCs, TTPs, and detection methods."
+        },
+        {
+          "id": "threat-4",
+          "prompt": "Research the Atomic Stealer (AMOS), Realst, and Cthulhu Stealer malware families on macOS. These are the top info-stealers distributed as fake AI apps. What browsers/wallets do they target? Do they steal from Chrome, Coinbase Wallet, crypto wallets? How do they exfiltrate data?",
+          "system_prompt": "You are a senior malware analyst specializing in macOS threats. Provide specific, actionable threat intelligence with IOCs, TTPs, and detection methods."
+        },
+        {
+          "id": "threat-5",
+          "prompt": "What are the common distribution channels for fake ChatGPT.app malware on macOS? Google Ads poisoning, SEO poisoning, Telegram channels, Discord, phishing emails, fake GitHub repos? Which is most common in 2026? How can a user identify the fake download vs the real one?",
+          "system_prompt": "You are a senior malware analyst specializing in macOS threats. Provide specific, actionable threat intelligence with IOCs, TTPs, and detection methods."
+        },
+        {
+          "id": "threat-6",
+          "prompt": "Analyze the persistence mechanisms used by macOS malware disguised as ChatGPT: LaunchAgents, LaunchDaemons, Login Items, cron jobs, browser extensions, kernel extensions, profiles, dylib hijacking. Which are most common? How to detect each?",
+          "system_prompt": "You are a senior malware analyst specializing in macOS threats. Provide specific, actionable threat intelligence with IOCs, TTPs, and detection methods."
+        },
+        {
+          "id": "threat-7",
+          "prompt": "If macOS Gatekeeper blocked and trashed a fake ChatGPT.app BEFORE it ran, what is the risk level? Could it have executed any code before being blocked? Could it have dropped payloads during the download? Is the quarantine attribute (com.apple.quarantine) sufficient protection? What residual artifacts might remain?",
+          "system_prompt": "You are a senior malware analyst specializing in macOS threats. Provide specific, actionable threat intelligence with IOCs, TTPs, and detection methods."
+        }
+      ]
+    },
+    {
+      "name": "Phase 2: macOS Hardening & Detection",
+      "tasks": [
+        {
+          "id": "harden-1",
+          "prompt": "Provide a comprehensive macOS security hardening checklist for 2026. Cover: Gatekeeper, SIP, FileVault, Firewall, XProtect, automatic updates, Lockdown Mode, Safari settings, sharing services, AirDrop, Remote Login, Bluetooth. Which are critical vs nice-to-have?",
+          "system_prompt": "You are a macOS security hardening specialist. Provide actionable commands and settings. Be specific about System Settings paths and terminal commands."
+        },
+        {
+          "id": "harden-2",
+          "prompt": "What are the best free and paid malware detection tools for macOS in 2026? Compare: Malwarebytes, KnockKnock, BlockBlock, RansomWhere, LuLu firewall, Objective-See tools, ClamAV, SentinelOne. Which detect info-stealers best? Which have real-time protection?",
+          "system_prompt": "You are a macOS security hardening specialist. Provide actionable commands and settings. Be specific about System Settings paths and terminal commands."
+        },
+        {
+          "id": "harden-3",
+          "prompt": "How to audit macOS LaunchAgents, LaunchDaemons, and Login Items for malware persistence. Provide exact terminal commands to list, inspect, and remove suspicious entries. What are known-good Apple/system plists vs suspicious third-party ones? How to check plist signatures?",
+          "system_prompt": "You are a macOS security hardening specialist. Provide actionable commands and settings. Be specific about System Settings paths and terminal commands."
+        },
+        {
+          "id": "harden-4",
+          "prompt": "How to audit Chrome browser extensions for malware on macOS. Commands to list all extensions, check their permissions, identify suspicious ones. What extension permissions are red flags? How do malicious extensions steal data from Coinbase Wallet and other crypto extensions?",
+          "system_prompt": "You are a macOS security hardening specialist. Provide actionable commands and settings. Be specific about System Settings paths and terminal commands."
+        },
+        {
+          "id": "harden-5",
+          "prompt": "How to check if a macOS system has been compromised by an info-stealer: check browser password stores, keychain access logs, clipboard history, SSH keys, crypto wallet files, screenshots folder, Documents access. What forensic artifacts indicate data theft occurred?",
+          "system_prompt": "You are a macOS security hardening specialist. Provide actionable commands and settings. Be specific about System Settings paths and terminal commands."
+        },
+        {
+          "id": "harden-6",
+          "prompt": "macOS network security audit: how to detect unauthorized outbound connections, DNS exfiltration, C2 beaconing. Commands using lsof, nettop, tcpdump, Little Snitch, LuLu. What suspicious patterns indicate malware communication? How to check if NordVPN tunnel is leaking?",
+          "system_prompt": "You are a macOS security hardening specialist. Provide actionable commands and settings. Be specific about System Settings paths and terminal commands."
+        },
+        {
+          "id": "harden-7",
+          "prompt": "How to verify macOS system integrity after a malware scare: check SIP status, verify system binary signatures, check for unauthorized kernel extensions, verify Gatekeeper database integrity, check TCC database for unauthorized permissions, verify code signing of all running processes.",
+          "system_prompt": "You are a macOS security hardening specialist. Provide actionable commands and settings. Be specific about System Settings paths and terminal commands."
+        }
+      ]
+    },
+    {
+      "name": "Phase 3: Crypto & Credential Security",
+      "tasks": [
+        {
+          "id": "crypto-1",
+          "prompt": "How do macOS info-stealers target cryptocurrency wallets and browser extensions like Coinbase Wallet? Do they steal from Chrome extension storage, keychain, or browser local storage? Can they extract private keys from Coinbase Wallet extension? What defensive measures work?",
+          "system_prompt": "You are a cryptocurrency security researcher. Focus on practical attack vectors and defenses for browser-based crypto wallets on macOS."
+        },
+        {
+          "id": "crypto-2",
+          "prompt": "After a malware scare on macOS with Coinbase Wallet Chrome extension installed: what should the user do? Should they rotate wallet keys? Move funds? Check transaction history? Is the Chrome extension sandbox sufficient protection if the malware never executed?",
+          "system_prompt": "You are a cryptocurrency security researcher. Focus on practical attack vectors and defenses for browser-based crypto wallets on macOS."
+        },
+        {
+          "id": "crypto-3",
+          "prompt": "How do Atomic Stealer and similar macOS info-stealers steal browser saved passwords, cookies, and autofill data from Chrome? Do they access the Login Data SQLite DB, the Cookies DB, Chrome's encrypted password store? Can they steal 2FA TOTP seeds? What's the attack flow?",
+          "system_prompt": "You are a cryptocurrency security researcher. Focus on practical attack vectors and defenses for browser-based crypto wallets on macOS."
+        },
+        {
+          "id": "crypto-4",
+          "prompt": "Best practices for securing SSH keys, API keys, and .env files on macOS against info-stealers. Should keys be in Keychain? Should .env files be encrypted? How to audit what files an app accessed using TCC logs? How to protect DeepSeek API keys and Anthropic API keys stored in environment?",
+          "system_prompt": "You are a cryptocurrency security researcher. Focus on practical attack vectors and defenses for browser-based crypto wallets on macOS."
+        },
+        {
+          "id": "crypto-5",
+          "prompt": "How to verify that a Proton account and recovery phrase are secure after a malware scare. The user has a proton-recovery-phrase.pdf in Downloads. Should they change passwords? Re-generate recovery codes? Is the PDF itself a risk vector? How do info-stealers target email accounts?",
+          "system_prompt": "You are a cryptocurrency security researcher. Focus on practical attack vectors and defenses for browser-based crypto wallets on macOS."
+        },
+        {
+          "id": "crypto-6",
+          "prompt": "macOS Keychain security: how do info-stealers access Keychain items? Does the system password prompt protect against automated access? Can malware dump Keychain without user interaction on macOS 15 Sequoia? How to audit Keychain access logs?",
+          "system_prompt": "You are a cryptocurrency security researcher. Focus on practical attack vectors and defenses for browser-based crypto wallets on macOS."
+        },
+        {
+          "id": "crypto-7",
+          "prompt": "NordVPN security implications: if a user has NordVPN running during a malware scare, does the VPN tunnel protect against data exfiltration? Can info-stealers bypass the VPN? Does NordVPN's Threat Protection feature detect malware downloads? What NordVPN settings improve security?",
+          "system_prompt": "You are a cryptocurrency security researcher. Focus on practical attack vectors and defenses for browser-based crypto wallets on macOS."
+        }
+      ]
+    },
+    {
+      "name": "Phase 4: Incident Response Playbook",
+      "tasks": [
+        {
+          "id": "ir-1",
+          "prompt": "Write a step-by-step incident response playbook for a macOS user who received a Gatekeeper malware block on a fake ChatGPT.app. Cover: immediate actions (first 1 hour), short-term (24 hours), medium-term (1 week). Assume the malware was blocked before execution.",
+          "system_prompt": "You are a senior incident response analyst. Provide a structured, prioritized playbook with specific commands and verification steps."
+        },
+        {
+          "id": "ir-2",
+          "prompt": "How to perform a forensic timeline analysis on macOS after a malware detection. Use: unified log, FSEvents, quarantine database, Spotlight metadata, file system timestamps. Reconstruct: when was the file downloaded, from where, did it execute, what did it access?",
+          "system_prompt": "You are a senior incident response analyst. Provide a structured, prioritized playbook with specific commands and verification steps."
+        },
+        {
+          "id": "ir-3",
+          "prompt": "How to safely clean up after macOS Gatekeeper blocks malware: empty Trash securely, clear quarantine database entries, check for residual files in ~/Library/Application Support, /tmp, ~/Library/Caches. Clear browser download history. Verify no scheduled tasks were created.",
+          "system_prompt": "You are a senior incident response analyst. Provide a structured, prioritized playbook with specific commands and verification steps."
+        },
+        {
+          "id": "ir-4",
+          "prompt": "After a malware scare on a developer workstation with API keys, SSH keys, and crypto wallets: priority list for credential rotation. Which to rotate first? How to rotate DeepSeek API keys, Anthropic API keys, GitHub PATs, AWS credentials, MongoDB connection strings? Fastest secure rotation workflow.",
+          "system_prompt": "You are a senior incident response analyst. Provide a structured, prioritized playbook with specific commands and verification steps."
+        },
+        {
+          "id": "ir-5",
+          "prompt": "How to set up ongoing monitoring after a macOS malware incident: LuLu for network monitoring, BlockBlock for persistence detection, KnockKnock for startup auditing, ReiKey for keylogger detection. Installation commands and recommended configurations for each.",
+          "system_prompt": "You are a senior incident response analyst. Provide a structured, prioritized playbook with specific commands and verification steps."
+        },
+        {
+          "id": "ir-6",
+          "prompt": "How to report the fake ChatGPT.app malware: report to Apple (XProtect feedback), report to Google Safe Browsing, report the download URL to phishing databases, report to OpenAI (impersonation). What information to include in each report?",
+          "system_prompt": "You are a senior incident response analyst. Provide a structured, prioritized playbook with specific commands and verification steps."
+        },
+        {
+          "id": "ir-7",
+          "prompt": "How to verify macOS system integrity post-incident without a full reinstall: verify all running processes are signed, check for unsigned dylibs loaded into processes, verify startup items, check for unauthorized cron entries, verify DNS hasn't been tampered with, check /etc/hosts for modifications.",
+          "system_prompt": "You are a senior incident response analyst. Provide a structured, prioritized playbook with specific commands and verification steps."
+        }
+      ]
+    },
+    {
+      "name": "Phase 5: Prevention & Long-term Security",
+      "tasks": [
+        {
+          "id": "prevent-1",
+          "prompt": "Design a 'developer workstation security baseline' for macOS in 2026. Cover: disk encryption, firewall rules, app installation policy (only App Store + signed), browser security settings, password manager, 2FA everywhere, VPN, DNS-over-HTTPS. Prioritize by impact.",
+          "system_prompt": "You are a security architect designing defense-in-depth for a developer workstation that handles crypto, API keys, and production credentials."
+        },
+        {
+          "id": "prevent-2",
+          "prompt": "How to configure macOS firewall and Little Snitch / LuLu to block unauthorized outbound connections from developer tools. Which ports/protocols to allow, which to block. How to detect if a compromised npm/pip package is exfiltrating data from node_modules or pip packages.",
+          "system_prompt": "You are a security architect designing defense-in-depth for a developer workstation that handles crypto, API keys, and production credentials."
+        },
+        {
+          "id": "prevent-3",
+          "prompt": "Supply chain security for a developer using npm, pip, brew on macOS: how to detect typosquatting, compromised packages, malicious post-install scripts. Tools: npm audit, pip-audit, brew audit, Socket.dev, Snyk. Which catches the most real threats?",
+          "system_prompt": "You are a security architect designing defense-in-depth for a developer workstation that handles crypto, API keys, and production credentials."
+        },
+        {
+          "id": "prevent-4",
+          "prompt": "How to properly store and manage API keys and secrets on a macOS developer workstation: macOS Keychain vs 1Password CLI vs encrypted .env vs Hashicorp Vault. Compare security, convenience, and integration with Node.js/Python development workflows.",
+          "system_prompt": "You are a security architect designing defense-in-depth for a developer workstation that handles crypto, API keys, and production credentials."
+        },
+        {
+          "id": "prevent-5",
+          "prompt": "Browser isolation and compartmentalization for a developer who uses Chrome with Coinbase Wallet and other sensitive extensions. Should they use separate Chrome profiles? Firefox for crypto, Chrome for dev? Browser sandboxing effectiveness on macOS. How to prevent cross-extension attacks.",
+          "system_prompt": "You are a security architect designing defense-in-depth for a developer workstation that handles crypto, API keys, and production credentials."
+        },
+        {
+          "id": "prevent-6",
+          "prompt": "macOS automatic security features in 2026: XProtect, MRT, Gatekeeper, Notarization, Runtime hardening, TCC, SIP, Lockdown Mode. Which are on by default? Which need manual activation? Are they sufficient without third-party tools? What gaps remain?",
+          "system_prompt": "You are a security architect designing defense-in-depth for a developer workstation that handles crypto, API keys, and production credentials."
+        },
+        {
+          "id": "prevent-7",
+          "prompt": "Backup and recovery strategy for a developer workstation after a security incident: Time Machine encrypted backups, bootable clone with Carbon Copy Cloner, iCloud Keychain sync, 1Password emergency kit. How to verify backups aren't infected. How to do a clean reinstall while preserving dev environment.",
+          "system_prompt": "You are a security architect designing defense-in-depth for a developer workstation that handles crypto, API keys, and production credentials."
+        }
+      ]
+    }
+  ]
+}

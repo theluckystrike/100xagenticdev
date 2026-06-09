@@ -1,0 +1,206 @@
+{
+  "name": "macOS Extreme Deep Scan — Backdoor Hunting & System Integrity",
+  "description": "35-agent extreme scan: app backdoors, system rules, dylib injection, browser session theft, env var exposure, supply chain, certificate store, AirPlay/sharing services exploitation",
+  "phases": [
+    {
+      "name": "Phase 1: Backdoor & Implant Hunting",
+      "tasks": [
+        {
+          "id": "bd-1",
+          "prompt": "A macOS developer has 55 apps installed, all passing code signing verification. However, legitimate signed apps can contain backdoors via: (1) supply chain compromise of the signing key, (2) malicious updates after initial notarization, (3) XPC service exploitation, (4) dylib injection into signed bundles. For each attack vector, explain how a top 1% forensic analyst would detect it. What specific checks beyond codesign -v are needed?",
+          "system_prompt": "You are a top 1% macOS forensic analyst and reverse engineer. Think like an APT hunter, not a script kiddie."
+        },
+        {
+          "id": "bd-2",
+          "prompt": "The developer has these apps that could be backdoor vectors: Karabiner-Elements (kernel driver, DriverKit extension, keyboard access), Logitech Options+ (listening on 0.0.0.0:59869, device control), iScreen Shoter (Mac App Store, has symlinks to Desktop/Downloads/Documents). Analyze each app's attack surface. Could any be weaponized by a sophisticated attacker? What forensic artifacts would prove exploitation?",
+          "system_prompt": "You are a top 1% macOS forensic analyst and reverse engineer. Think like an APT hunter, not a script kiddie."
+        },
+        {
+          "id": "bd-3",
+          "prompt": "macOS AirPlay receiver (ControlCenter) is listening on ports 7000 and 5000 on ALL interfaces (0.0.0.0). The developer is in Vietnam, frequenting coffee shops. Can AirPlay be exploited to push content, execute code, or deliver malware? Have there been CVEs for AirPlay exploitation? What about the Spotify listener on port 57621? Could these open ports be used as a covert channel?",
+          "system_prompt": "You are a top 1% macOS forensic analyst and reverse engineer. Think like an APT hunter, not a script kiddie."
+        },
+        {
+          "id": "bd-4",
+          "prompt": "The developer has 11 .env files across their Desktop projects containing API keys, database credentials, and service tokens. Environment variables exposed: CLOUDFLARE_API_TOKEN, DEEPSEEK_API_KEY, ETHERSCAN_API_KEY, GITHUB_TOKEN. Any malware or compromised npm/pip package running on the system can read ALL environment variables. Analyze: (1) How easy is env var theft? (2) Which packages commonly exfiltrate env vars? (3) What's the blast radius if GITHUB_TOKEN is stolen?",
+          "system_prompt": "You are a top 1% macOS forensic analyst and reverse engineer. Think like an APT hunter, not a script kiddie."
+        },
+        {
+          "id": "bd-5",
+          "prompt": "Chrome has active sessions/cookies for these sensitive domains: coinbase.com, wallet.coinbase.com, proton.me (mail), openai.com (platform+auth), anthropic.com, deepseek.ai, github.com. If an attacker steals Chrome cookies (via AMOS stealer, extension exploit, or session hijacking), which sessions can they hijack? Which have adequate session binding (IP, device fingerprint)? Which are vulnerable to cookie replay?",
+          "system_prompt": "You are a top 1% macOS forensic analyst and reverse engineer. Think like an APT hunter, not a script kiddie."
+        },
+        {
+          "id": "bd-6",
+          "prompt": "Investigate the sharingd quarantine type-6 entries from 2026-05-28 20:45. The developer's Mac was on a local network with a TP-Link router and an LG device. Could the LG device (smart TV) be compromised and used to AirDrop malware? Has LG webOS been exploited in the wild? Could a compromised smart TV on the same network push files to a Mac via AirDrop/Bonjour/mDNS?",
+          "system_prompt": "You are a top 1% macOS forensic analyst and reverse engineer. Think like an APT hunter, not a script kiddie."
+        },
+        {
+          "id": "bd-7",
+          "prompt": "The developer has git credentials configured via GitHub CLI (gh auth git-credential) and an empty .git-credentials file. They have SSH keys (Ed25519) for GitHub and AWS Lightsail (BLN backend at 13.53.98.37). Analyze: Could a compromised Git operation (git clone, npm install with git+https deps) lead to credential theft or RCE? What about git hooks in cloned repos? SSH config has StrictHostKeyChecking=no for bln-backend — is this exploitable?",
+          "system_prompt": "You are a top 1% macOS forensic analyst and reverse engineer. Think like an APT hunter, not a script kiddie."
+        }
+      ]
+    },
+    {
+      "name": "Phase 2: Advanced macOS Attack Surface",
+      "tasks": [
+        {
+          "id": "adv-1",
+          "prompt": "macOS Sequoia (latest) security features: Analyze ALL built-in protections and their bypass techniques known as of 2026. Cover: Gatekeeper bypass (xattr -d), SIP bypass (boot to recovery), TCC bypass (CVEs), sandbox escape, dylib hijacking via DYLD_INSERT_LIBRARIES, code injection via task_for_pid, notarization revocation bypass. Which are the highest-risk attack surfaces on a developer machine?",
+          "system_prompt": "You are a world-class macOS security researcher publishing at BlackHat/DEF CON. Provide cutting-edge attack surface analysis."
+        },
+        {
+          "id": "adv-2",
+          "prompt": "The developer runs 50+ cron jobs executing Python and shell scripts that fetch from external APIs (Immunefi, DeepSeek, Binance, Etherscan, CoinGecko, GitHub). Each script is a supply chain attack surface. How could an attacker compromise: (1) a Python dependency used by these scripts, (2) the API responses to inject malicious payloads, (3) the log files written by these scripts? What monitoring detects compromised cron execution?",
+          "system_prompt": "You are a world-class macOS security researcher publishing at BlackHat/DEF CON. Provide cutting-edge attack surface analysis."
+        },
+        {
+          "id": "adv-3",
+          "prompt": "The developer uses NordVPN (from Mac App Store) with DNS routing through 100.64.0.2. Analyze: (1) Can NordVPN itself be a data collection vector? (2) Does NordVPN's kernel extension have elevated privileges that malware could exploit? (3) Is DNS-over-VPN sufficient against DNS poisoning on the local network? (4) What happens if NordVPN drops — is there a kill switch preventing credential leakage?",
+          "system_prompt": "You are a world-class macOS security researcher publishing at BlackHat/DEF CON. Provide cutting-edge attack surface analysis."
+        },
+        {
+          "id": "adv-4",
+          "prompt": "Docker Desktop is installed with a VMNetd daemon and socket. Analyze Docker as an attack surface on macOS: (1) Docker socket (/var/run/docker.sock) exploitation — can any user process access it? (2) Container escape to host, (3) Pulling malicious images, (4) Docker Desktop auto-updates as a supply chain vector. The developer likely pulls images for MongoDB, Node.js, etc.",
+          "system_prompt": "You are a world-class macOS security researcher publishing at BlackHat/DEF CON. Provide cutting-edge attack surface analysis."
+        },
+        {
+          "id": "adv-5",
+          "prompt": "Certificate trust store analysis: The system keychain has a self-signed cert (com.apple.systemdefault). No proxy is configured. No rogue CA certificates detected. However, analyze: (1) Could NordVPN inject a CA cert for traffic inspection? (2) Could a coffee shop captive portal install a persistent CA? (3) How to detect MITM via certificate pinning violations in Chrome? (4) What about mkcert or local dev CAs that could be abused?",
+          "system_prompt": "You are a world-class macOS security researcher publishing at BlackHat/DEF CON. Provide cutting-edge attack surface analysis."
+        },
+        {
+          "id": "adv-6",
+          "prompt": "No dylib injection was detected via vmmap scanning. However, analyze advanced injection techniques that bypass vmmap detection: (1) DYLD_INSERT_LIBRARIES with SIP-exempt processes, (2) Electron app injection (Chrome, VS Code, Discord, Slack are all Electron), (3) DriverKit exploitation via Karabiner, (4) XPC service man-in-the-middle. Which techniques would survive a reboot? Which leave forensic traces?",
+          "system_prompt": "You are a world-class macOS security researcher publishing at BlackHat/DEF CON. Provide cutting-edge attack surface analysis."
+        },
+        {
+          "id": "adv-7",
+          "prompt": "The developer has Homebrew installed at /opt/homebrew. Analyze Homebrew as an attack surface: (1) brew tap poisoning, (2) formula modification (cask swapping), (3) post-install script execution, (4) Homebrew auto-update timing attacks. Has there been any documented Homebrew supply chain compromise? What's the verification chain for brew install?",
+          "system_prompt": "You are a world-class macOS security researcher publishing at BlackHat/DEF CON. Provide cutting-edge attack surface analysis."
+        }
+      ]
+    },
+    {
+      "name": "Phase 3: Who Is Targeting & How",
+      "tasks": [
+        {
+          "id": "who-1",
+          "prompt": "Profile the likely attacker behind a fake ChatGPT.app targeting a developer in Vietnam with crypto assets. Is this: (1) Automated SEO poisoning campaign (mass targeting), (2) Targeted spear-phishing (someone knows the target), (3) Local proximity attack (AirDrop in coffee shop), (4) Compromised website/ad network drive-by. Analyze the evidence: quarantine DB has no URL, sharingd events day before, developer was watching ChatGPT YouTube videos. What's the most likely attack path?",
+          "system_prompt": "You are a threat intelligence analyst specializing in targeted attacks against high-net-worth crypto holders and developers in Southeast Asia."
+        },
+        {
+          "id": "who-2",
+          "prompt": "The developer has $73K+ in BTC (visible on screen in public), Coinbase Wallet browser extension, and works from Vietnamese coffee shops. What are known crypto-targeting attack groups operating in Vietnam/Southeast Asia in 2025-2026? Are there Lazarus Group (North Korea), APT41 (China), or local Vietnamese cybercrime operations targeting expat developers? What indicators should we look for?",
+          "system_prompt": "You are a threat intelligence analyst specializing in targeted attacks against high-net-worth crypto holders and developers in Southeast Asia."
+        },
+        {
+          "id": "who-3",
+          "prompt": "Could this be a reconnaissance probe rather than a full attack? The malware was BLOCKED, but the attacker now knows: (1) the target downloads ChatGPT-related apps, (2) the target is a developer (visible from screen), (3) the target has crypto (dashboard visible). What follow-up attacks should we expect? Social engineering? More sophisticated malware? Physical theft? SIM swap? Account takeover attempts on Proton/OpenAI/GitHub?",
+          "system_prompt": "You are a threat intelligence analyst specializing in targeted attacks against high-net-worth crypto holders and developers in Southeast Asia."
+        },
+        {
+          "id": "who-4",
+          "prompt": "The fake ChatGPT.app was downloaded through Chrome but with NO URL in the quarantine database. What download methods produce empty quarantine URLs? Analyze: (1) JavaScript blob downloads, (2) Service worker cache exploitation, (3) Browser extension-initiated downloads, (4) WebSocket-delivered payloads, (5) Data URI schemes, (6) Chrome DevTools protocol exploitation. Which is most likely for delivering a .app bundle?",
+          "system_prompt": "You are a threat intelligence analyst specializing in targeted attacks against high-net-worth crypto holders and developers in Southeast Asia."
+        },
+        {
+          "id": "who-5",
+          "prompt": "Timeline reconstruction: May 13 — YouTube videos about ChatGPT. May 14 — OpenAI login with MFA. May 15 — chatgpt.com visits. May 28 20:45 — sharingd events. May 29 22:05-22:06 — 4 Chrome downloads in rapid succession, then malware blocked. Reconstruct the likely attack narrative. Was the attacker building a profile? Was the May 28 sharingd event a test run? Were the 4 rapid downloads attempts to bypass Gatekeeper?",
+          "system_prompt": "You are a threat intelligence analyst specializing in targeted attacks against high-net-worth crypto holders and developers in Southeast Asia."
+        },
+        {
+          "id": "who-6",
+          "prompt": "The developer's SSH config has StrictHostKeyChecking=no for the BLN backend server (13.53.98.37, AWS EC2 Stockholm). This means SSH will NOT warn about changed host keys. Could an attacker who controls DNS or performs MITM on the WiFi redirect SSH connections to a fake server to capture credentials? Analyze this specific misconfiguration in the context of a developer in Vietnamese coffee shops.",
+          "system_prompt": "You are a threat intelligence analyst specializing in targeted attacks against high-net-worth crypto holders and developers in Southeast Asia."
+        },
+        {
+          "id": "who-7",
+          "prompt": "The developer has a Polygon wallet (0x30A4884E0Ac933fce6D1bD1D1AAffae9305D8A90), Etherscan API key, and runs DeFi/crypto research pipelines. Could blockchain activity be used to identify and target the developer? Can Etherscan API key usage be traced to reveal the developer's research targets? Is the Polygon address linkable to a real identity through exchange deposits?",
+          "system_prompt": "You are a threat intelligence analyst specializing in targeted attacks against high-net-worth crypto holders and developers in Southeast Asia."
+        }
+      ]
+    },
+    {
+      "name": "Phase 4: Top 1% Hardening Protocol",
+      "tasks": [
+        {
+          "id": "top-1",
+          "prompt": "Design the ultimate macOS lockdown for a developer with crypto assets in a hostile network environment (Vietnam public WiFi). Top 1% security posture. Cover: (1) Enable Lockdown Mode? Pros/cons for a developer, (2) Hardware security keys (YubiKey) setup for all services, (3) Separate user account for crypto, (4) Application firewall rules per-app, (5) DNS-over-HTTPS configuration. Provide exact commands.",
+          "system_prompt": "You are a top 1% security architect designing defense-in-depth for a high-value developer target. Only provide battle-tested configurations."
+        },
+        {
+          "id": "top-2",
+          "prompt": "SSH hardening for a developer who needs GitHub and AWS access from coffee shops: (1) Fix StrictHostKeyChecking=no (CRITICAL), (2) Certificate-based SSH instead of key-based, (3) SSH jump host / bastion configuration, (4) ProxyJump through VPN, (5) SSH agent forwarding risks, (6) FIDO2/resident keys for SSH. Provide exact ~/.ssh/config.",
+          "system_prompt": "You are a top 1% security architect designing defense-in-depth for a high-value developer target. Only provide battle-tested configurations."
+        },
+        {
+          "id": "top-3",
+          "prompt": "Design an automated security monitoring daemon for macOS that runs as a LaunchAgent and checks every 6 hours: (1) New LaunchAgents/Daemons, (2) New cron entries, (3) Unexpected listening ports, (4) Unsigned processes, (5) Modified system binaries, (6) New Chrome extensions, (7) DNS configuration changes, (8) Certificate store changes. Output to a log file and alert via Telegram bot. Provide the complete script.",
+          "system_prompt": "You are a top 1% security architect designing defense-in-depth for a high-value developer target. Only provide battle-tested configurations."
+        },
+        {
+          "id": "top-4",
+          "prompt": "Secrets management for a solo developer with 11 .env files, 5 exposed environment variables, and 50+ cron jobs: Design a practical secrets management system using 1Password CLI (op) that: (1) Replaces all .env files with 1Password references, (2) Injects secrets at runtime for cron jobs, (3) Rotates keys automatically, (4) Provides audit logging. Provide implementation steps and example cron entries.",
+          "system_prompt": "You are a top 1% security architect designing defense-in-depth for a high-value developer target. Only provide battle-tested configurations."
+        },
+        {
+          "id": "top-5",
+          "prompt": "Network-level protection for a MacBook in hostile WiFi environments: (1) Configure NordVPN kill switch verification, (2) Set up LuLu with per-application rules, (3) Block all mDNS/Bonjour traffic, (4) Disable LLMNR/NetBIOS, (5) Configure DNS-over-HTTPS bypassing VPN DNS, (6) ARP spoofing detection. Provide exact commands and config files.",
+          "system_prompt": "You are a top 1% security architect designing defense-in-depth for a high-value developer target. Only provide battle-tested configurations."
+        },
+        {
+          "id": "top-6",
+          "prompt": "Implement a 'break glass' emergency response automation for macOS: A single script that when executed: (1) Kills all network interfaces, (2) Revokes GitHub token via API, (3) Rotates DeepSeek/Anthropic API keys, (4) Locks the screen, (5) Sends a Telegram alert with the device location, (6) Begins an encrypted backup of critical files. Provide the complete bash script.",
+          "system_prompt": "You are a top 1% security architect designing defense-in-depth for a high-value developer target. Only provide battle-tested configurations."
+        },
+        {
+          "id": "top-7",
+          "prompt": "Post-incident monitoring setup for the next 30 days: (1) Enhanced logging configuration, (2) Tripwire/AIDE for file integrity monitoring on macOS, (3) Network traffic baseline with daily deviation alerting, (4) Chrome extension change monitoring, (5) Honeypot files that alert if accessed (canary tokens). Provide complete setup guide with commands.",
+          "system_prompt": "You are a top 1% security architect designing defense-in-depth for a high-value developer target. Only provide battle-tested configurations."
+        }
+      ]
+    },
+    {
+      "name": "Phase 5: iOS Cross-Device Security",
+      "tasks": [
+        {
+          "id": "ios-1",
+          "prompt": "If the developer's Mac was targeted, could their iPhone also be at risk via the same iCloud account? Analyze: (1) iCloud Keychain sync (passwords shared across devices), (2) Handoff/Universal Clipboard (clipboard monitoring), (3) AirDrop between devices, (4) iMessage link previews (zero-click exploits), (5) Shared WiFi passwords. What iOS security checks should be performed?",
+          "system_prompt": "You are an iOS security specialist who has worked on Project Zero-quality vulnerability research. Provide forensic-grade analysis."
+        },
+        {
+          "id": "ios-2",
+          "prompt": "iOS security hardening for a developer with crypto assets: (1) Enable Lockdown Mode on iPhone, (2) Disable message previews on lock screen, (3) Use Signal instead of iMessage for sensitive communication, (4) Hardware security key for Apple ID, (5) Separate Apple ID for sensitive services, (6) Disable USB accessories when locked, (7) SIM PIN. Provide complete checklist.",
+          "system_prompt": "You are an iOS security specialist who has worked on Project Zero-quality vulnerability research. Provide forensic-grade analysis."
+        },
+        {
+          "id": "ios-3",
+          "prompt": "The developer uses proton.me email. Analyze Proton Mail security on iOS: (1) Is Proton Mail app sandboxed adequately? (2) Can iOS malware read Proton emails? (3) Is Proton Bridge needed on iOS? (4) What about Proton VPN vs NordVPN — should they use the same VPN provider on both Mac and iPhone? (5) Recovery phrase PDF exposure — if synced to iCloud, is it on all devices?",
+          "system_prompt": "You are an iOS security specialist who has worked on Project Zero-quality vulnerability research. Provide forensic-grade analysis."
+        },
+        {
+          "id": "ios-4",
+          "prompt": "SIM swap attack prevention for a developer in Vietnam: (1) Which Vietnamese carriers are vulnerable to SIM swap? (2) Is eSIM more secure than physical SIM? (3) Should the developer use a different phone number for 2FA? (4) What about Google Voice or similar virtual numbers? (5) How to detect if a SIM swap has occurred? (6) Which services fall to SMS 2FA bypass?",
+          "system_prompt": "You are an iOS security specialist who has worked on Project Zero-quality vulnerability research. Provide forensic-grade analysis."
+        },
+        {
+          "id": "ios-5",
+          "prompt": "Analyze the risk of using Coinbase Wallet mobile app vs Chrome extension: (1) Which has a larger attack surface? (2) iOS Secure Enclave for key storage vs Chrome extension sandbox, (3) Biometric protection on iOS vs no biometric on Chrome extension, (4) Should the developer move all crypto to a hardware wallet (Ledger/Trezor)? (5) Multi-signature setup for $73K+ BTC protection.",
+          "system_prompt": "You are an iOS security specialist who has worked on Project Zero-quality vulnerability research. Provide forensic-grade analysis."
+        },
+        {
+          "id": "ios-6",
+          "prompt": "Physical security for devices in Vietnam: (1) iPhone theft protection (Stolen Device Protection in iOS 17+), (2) Apple Watch as authentication factor, (3) AirTag on laptop bag, (4) Remote wipe capabilities and limitations, (5) What data survives a remote wipe? (6) Can law enforcement in Vietnam force device unlock? What are the legal implications?",
+          "system_prompt": "You are an iOS security specialist who has worked on Project Zero-quality vulnerability research. Provide forensic-grade analysis."
+        },
+        {
+          "id": "ios-7",
+          "prompt": "Design a complete cross-device security architecture for a developer with MacBook + iPhone + crypto assets in Vietnam: (1) Network segmentation (separate VPN profiles per device), (2) Credential isolation (which passwords on which device), (3) Backup strategy (encrypted, offline), (4) Communication security (Signal, Proton), (5) Emergency procedures. The goal is top 1% security posture while maintaining developer productivity.",
+          "system_prompt": "You are an iOS security specialist who has worked on Project Zero-quality vulnerability research. Provide forensic-grade analysis."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "phases": [
+    {
+      "phase_name": "1000x NVIDIA — 35-Agent SEC Validation + Fresh Intel Sprint",
+      "tasks": [
+        {
+          "task_id": "val-GAU",
+          "prompt": "SEC EDGAR DATA VALIDATION — GAU (Galiano Gold Inc.)\n\nYou are validating our investment thesis for GAU, scored 62/B, rated GO #1 PICK (8/10 conviction). Order placed: 100 shares @ $2.34 ($234 total).\n\nOUR THESIS CLAIMS:\n- Gold miner with Asanko mine in Ghana\n- AISC (All-In Sustaining Cost) around $1,200-1,400/oz\n- Gold price tailwind ($4,500+/oz)\n- Strong FCF generation\n- Clean balance sheet\n\nVALIDATE against SEC EDGAR / SEDAR filings:\n1. Most recent annual report (40-F or 20-F): Revenue, net income, cash, debt, FCF, gold production oz, AISC per oz\n2. Most recent quarterly report: Production update, cost per oz, cash position\n3. Reserve/resource statement: Proven+probable reserves in oz\n4. Insider transactions (Form 4 / SEDI): Any selling in last 90 days?\n5. Auditor opinion: Going concern? Material weakness?\n6. Share count and dilution trend\n\nFor EVERY number, cite the specific filing (form type, date, page/section). If you cannot verify, mark UNVERIFIED.\n\nOutput: DATA_QUALITY score 1-10, list of verified vs unverified metrics, any RED FLAGS.",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Your job is to verify investment thesis claims against real regulatory filings. Every number must have a citation. Never guess or hallucinate data. If you cannot find or verify a number, explicitly say UNVERIFIED.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-BTG",
+          "prompt": "SEC EDGAR DATA VALIDATION — BTG (B2Gold Corp)\n\nValidating investment thesis. Scored 58/B, rated GO (CONFIRM). Order placed: ~42 shares @ $4.75 ($199).\n\nOUR THESIS CLAIMS:\n- Gold miner, primary asset Fekola mine in Mali\n- Q1 2025 beat budget by 7%\n- AISC ~$2,806/oz (needs verification — seems high)\n- Gold at $4,539 vs AISC = massive margin\n- Analyst target $6.60 (+46%)\n- Prepaid contracts expire June = earnings catalyst\n- Net cash position\n\nVALIDATE against SEC EDGAR / SEDAR:\n1. 40-F/20-F: Revenue, net income, gold production oz, AISC, cash, debt, FCF\n2. Most recent quarterly: Q1 production, costs, cash\n3. Fekola mine: Current status, expansion plans, Mali political risk\n4. Insider transactions: Any selling?\n5. Dividend history and yield\n6. Share count trend\n\nCite specific filings for EVERY number. Mark anything unverifiable.",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Every number must have a citation from a real filing. Never guess or hallucinate data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-GRAB",
+          "prompt": "SEC EDGAR DATA VALIDATION — GRAB (Grab Holdings Limited)\n\nValidating investment thesis. Scored 36/D (MEGA_CAP -10 penalty, $14.5B MCap). Rated GO (7.5/10). Order placed: 50 shares @ $3.55 ($177.50).\n\nOUR THESIS CLAIMS:\n- Revenue growth 23.5% (which year/quarter?)\n- Net cash $4.5B-$5B\n- SE Asia #1 super-app (ride-hailing, food delivery, fintech)\n- GXS digital bank launched\n- 90:1 voting ratio (Anthony Tan 74.9% votes, 2.2% economics)\n- 32% SoftBank/Uber overhang\n- Indonesia 8% foreign ownership cap risk\n\nVALIDATE against SEC 20-F:\n1. Revenue by segment (deliveries, mobility, financial services)\n2. Net income / adjusted EBITDA trend (last 4 quarters)\n3. Cash and equivalents, total debt\n4. Monthly transacting users (MTU) trend\n5. GXS bank: actual revenue/users if disclosed\n6. Voting structure: verify 90:1 claim\n7. Major shareholder percentages (SoftBank, Uber)\n8. Indonesia regulatory status\n\nCite 20-F filing date, page numbers. Every claim must be verified or marked UNVERIFIED.",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Every number must have a citation from a real filing. Never guess or hallucinate data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-PAGS",
+          "prompt": "SEC EDGAR DATA VALIDATION — PAGS (PagSeguro Digital Ltd.)\n\nValidating investment thesis. Scored 58/B. Rated CAUTIOUS GO (7.5/10). Planned allocation: $200.\n\nOUR THESIS CLAIMS:\n- P/E ratio 6.5x\n- NPL (non-performing loan) rate 3.05%\n- 17.1M banking clients\n- Better than STNE on every metric\n- Brazil fintech, Cayman incorporated\n- Strong operating margins >25%\n- FCF yield >200% (this seems extreme — verify carefully)\n- Revenue growth ~1.5% (low — verify)\n\nVALIDATE against SEC 20-F:\n1. Revenue (total, by segment), last 4 quarters\n2. Net income, EPS\n3. Total Payment Volume (TPV)\n4. Banking clients (PagBank active users)\n5. NPL rate (90+ day delinquency)\n6. Cash, debt, net cash/debt position\n7. Operating margin, net margin\n8. FCF (verify the 200%+ yield claim — this is suspicious)\n9. Share count, buyback activity\n10. Incorporation: Cayman Islands confirmed?\n\nCite 20-F with dates and page numbers. Flag any metrics that seem implausible.",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Be especially skeptical of extreme metrics like 200%+ FCF yield. Every number must have a citation.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-STNE",
+          "prompt": "SEC EDGAR DATA VALIDATION — STNE (StoneCo Ltd.)\n\nValidating investment thesis. Scored 54/C (was 48, +6 from CN_ADR fix). Rated CAUTIOUS GO (7/10). Planned allocation: $600 (3x DCA). Price: $11.45.\n\nOUR THESIS CLAIMS:\n- Brazil fintech/payments\n- Revenue growth (verify exact %)\n- TPV (Total Payment Volume) growth\n- Cayman Islands incorporated (was incorrectly penalized CN_ADR -8, now CAYMAN_HOLDCO -2)\n- Banking segment growing\n- Better execution vs PAGS in some areas\n\nVALIDATE against SEC 20-F:\n1. Revenue last 4 quarters + YoY growth\n2. Net income, EPS\n3. TPV trend\n4. Active clients / merchant count\n5. Banking segment: deposits, loans, revenue\n6. Cash, debt, net position\n7. Operating/net margins\n8. FCF\n9. Incorporation jurisdiction (verify Cayman)\n10. Share count, insider ownership\n\nHead-to-head vs PAGS: which has better fundamentals? Cite specific numbers from both 20-F filings.",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Compare STNE vs PAGS objectively using only verified filing data. Never guess.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-IRWD",
+          "prompt": "SEC EDGAR DATA VALIDATION — IRWD (Ironwood Pharmaceuticals, Inc.)\n\nValidating investment thesis. Scored 56/B. Rated CONDITIONAL GO (7/10). Planned allocation: $100.\n\nOUR THESIS CLAIMS:\n- Linzess (linaclotide) is primary revenue driver\n- Generic exclusivity locked to 2029\n- Debt at 3.1x EBITDA\n- HIGH_DEBT -3 penalty but still Grade B\n- Price ~$4-5 range\n\nVALIDATE against SEC 10-K/10-Q:\n1. Linzess net revenue (last 4 quarters)\n2. Total revenue breakdown by product\n3. Patent/exclusivity expiration dates (verify 2029 claim)\n4. Total debt, cash, net debt\n5. EBITDA (calculate or verify 3.1x leverage)\n6. Pipeline: any drugs beyond Linzess?\n7. Royalty agreements / partner economics (AbbVie)\n8. Insider transactions last 90 days\n9. Going concern? Material weakness?\n10. FCF and dividend/buyback activity\n\nCite 10-K/10-Q filing dates and page numbers for every metric.",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Focus on patent cliff risk and debt sustainability. Every number must have a citation.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-PAYO",
+          "prompt": "SEC EDGAR DATA VALIDATION — PAYO (Payoneer Global Inc.)\n\nValidating investment thesis. Scored 50/C. Rated CAUTIOUS GO (7/10). BUY order planned: 50 shares @ ~$5.13 ($256.50).\n\nOUR THESIS CLAIMS:\n- B2B cross-border payments platform\n- B2B revenue growing +44%\n- OCC national bank charter obtained\n- 5x EV/EBITDA valuation\n- DCF fair value $12.37 (141% upside from ~$5.13)\n- Strong moat in cross-border payments (narrow, 5.5/10)\n\nVALIDATE against SEC 10-K/10-Q:\n1. Revenue (total and by segment: B2B, marketplace, etc.)\n2. Revenue growth rate (verify +44% B2B claim)\n3. Net income, adjusted EBITDA\n4. Cash, debt, net position\n5. OCC charter: verify status and what it enables\n6. Volume processed (total payment volume)\n7. Customer count and retention\n8. FCF\n9. Share count, insider ownership\n10. EV/EBITDA calculation verification\n\nThe DCF claim of $12.37 — is this from an analyst or our model? Verify inputs if possible.",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Be especially careful with DCF-derived price targets — verify the inputs, not just the output. Every number needs a citation.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-HNST",
+          "prompt": "SEC EDGAR DATA VALIDATION — HNST (The Honest Company, Inc.)\n\nValidating investment thesis. Scored 49/C. Rated CAUTIOUS GO (4/10 — low conviction). BUY order planned: 50 shares @ ~$3.60 ($180).\n\nOUR THESIS CLAIMS:\n- Turned profitable with $48.1M FCF\n- Fortress balance sheet (net cash)\n- Jessica Alba-founded consumer brand\n- Retail distribution expanding\n- Revenue growth positive\n\nVALIDATE against SEC 10-K/10-Q:\n1. Revenue last 4 quarters + YoY growth\n2. Net income (verify profitability claim)\n3. FCF (verify $48.1M — this is large for a ~$385M MCap company)\n4. Cash and equivalents, total debt\n5. Gross margin, operating margin\n6. Revenue by channel (DTC vs retail)\n7. Key retail partners and shelf space trends\n8. Insider ownership (Jessica Alba stake?)\n9. Share count and dilution\n10. Any material weaknesses or going concern?\n\n$48.1M FCF on a $385M MCap = 12.5% FCF yield. Verify this is real, not a one-time working capital swing.",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Be skeptical of high FCF yields that may be one-time working capital effects. Every number needs a filing citation.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-CCLD",
+          "prompt": "SEC EDGAR DATA VALIDATION — CCLD (CareCloud, Inc.)\n\nValidating investment thesis. Scored 60/B. Rated CAUTIOUS GO (5.5/10). Planned allocation: $50.\n\nOUR THESIS CLAIMS:\n- Healthcare IT / revenue cycle management\n- 0.8x EV/Revenue\n- 22% FCF yield\n- Breach risk (cybersecurity incident?)\n- 40% insider control\n\nVALIDATE against SEC 10-K/10-Q:\n1. Revenue last 4 quarters + trend\n2. Net income / EBITDA\n3. FCF (verify 22% yield claim)\n4. Cash, debt, net position\n5. Customer count and retention rate\n6. Any cybersecurity breaches disclosed (8-K filings)\n7. Insider ownership (verify 40% claim, check Form 4)\n8. Share structure (any preferred shares, multiple classes?)\n9. Operating margin\n10. Going concern / material weakness?\n\nA 22% FCF yield at 0.8x EV/Rev suggests either a dying business or genuinely cheap. Which is it?",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Focus on whether the cheap valuation is a value trap or genuine opportunity. Every number needs a citation.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-MAPS",
+          "prompt": "SEC EDGAR DATA VALIDATION — MAPS (WM Technology, Inc.)\n\nValidating investment thesis. Scored 59/B. Rated CAUTIOUS GO (5/10, tiny position). Planned allocation: $25.\n\nOUR THESIS CLAIMS:\n- Cannabis technology platform (Weedmaps)\n- OTC-listed (delisted from NASDAQ)\n- DEA rescheduling catalyst June 29\n- Low liquidity\n\nVALIDATE against SEC 10-K/10-Q:\n1. Revenue last 4 quarters + trend\n2. Net income / EBITDA\n3. FCF\n4. Cash, debt\n5. Active client/listing count\n6. Why delisted from NASDAQ? When?\n7. Current OTC trading venue and average volume\n8. DEA Schedule III rescheduling: actual status and timeline\n9. Insider ownership and transactions\n10. Going concern / auditor issues?\n\nThe DEA catalyst is critical — verify the actual regulatory timeline. Is June 29 a real date or speculation?",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Focus on exchange listing status and regulatory catalyst timeline accuracy. Every number needs a citation.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-TIGR",
+          "prompt": "SEC EDGAR DATA VALIDATION — TIGR (UP Fintech Holding Limited)\n\nValidating investment thesis. Scored 63/B (#1 by score). Currently HOLD (user override). Position: 39 shares @ $5.01 ($195).\n\nOUR THESIS CLAIMS:\n- Chinese cross-border brokerage\n- CSRC crackdown May 22, 2026: RMB 308.1M penalty + RMB 103.1M confiscated\n- CEO Tianhua Wu fined RMB 1.25M\n- 2-year rectification period\n- Class action lawsuits filed (Rosen Law, Frank R. Cruz)\n- No HK listing escape valve\n- Stock dropped -39% in single session, -54% YTD\n\nVALIDATE against SEC 20-F and 8-K filings:\n1. Revenue by geography (mainland China vs other)\n2. Net income, EPS last 4 quarters\n3. CSRC penalty: verify exact amounts from 8-K/6-K filing\n4. Cash, client assets, regulatory capital\n5. User count and trading volume trend\n6. Singapore/NZ/Australia license status\n7. Any going concern language in most recent filing?\n8. Share count, insider ownership\n9. Class action: verify law firms and case status\n10. Actual stock price impact dates and percentages\n\nThis is a HOLD position — verify whether the CSRC damage is truly existential or survivable.",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Focus on regulatory risk and whether the business can survive the CSRC crackdown. Every number needs a citation.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "val-TUYA",
+          "prompt": "SEC EDGAR DATA VALIDATION — TUYA (Tuya Inc.)\n\nValidating investment thesis. Scored 51/C. Currently HOLD. Position: 95 shares @ $2.10 ($200).\n\nOUR THESIS CLAIMS:\n- IoT cloud platform (smart home devices)\n- HK dual listing (2391.HK) = delisting protection\n- Chinese operations but HK escape valve\n- Net cash position\n\nVALIDATE against SEC 20-F:\n1. Revenue last 4 quarters + YoY trend\n2. Revenue by segment (IoT PaaS, SaaS, other)\n3. Net income / adjusted EBITDA\n4. Cash and equivalents (verify net cash)\n5. Total debt\n6. Customer count and retention\n7. Geographic revenue split (China vs international)\n8. HK listing: verify 2391.HK exists and is actively traded\n9. Share count, ADS ratio, insider ownership\n10. VIE structure details and risks\n\nKey question: Is Tuya growing or shrinking? IoT cloud platforms can be winner-take-all.",
+          "system_prompt": "You are an SEC EDGAR financial data validator. Focus on revenue trend direction and VIE structure risk. Every number needs a citation.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-GOTU",
+          "prompt": "DEEP DIVE RESEARCH — GOTU (Gaotu Techedu Inc.)\n\nGoldmine Score: Not scored or low. Watchlist entry: 'net cash $373M, blind spot + cash fortress.'\nPrice: ~$8-9 | MCap: Unknown\n\nRESEARCH MANDATE (SEC EDGAR citations required for every number):\n1. BUSINESS: What does Gaotu do post-China tutoring ban? Original K-12 tutoring was destroyed by Double Reduction policy (Jul 2021). What is the new business model?\n2. FINANCIALS (from 20-F): Revenue, net income, cash ($373M claim), debt, FCF, burn rate\n3. PIVOT: Has the pivot to non-academic education worked? Revenue from new vs old business\n4. REGULATORY: Any remaining regulatory risk from CSRC/MOE?\n5. VALUATION: If net cash $373M and MCap is ~$X, what is enterprise value?\n6. 1000x POTENTIAL: From current MCap, is 1000x realistic in 10 years? What would the business need to become?\n7. INSIDER ACTIVITY: Are insiders buying or selling?\n8. RED FLAGS: Going concern, material weakness, auditor changes?\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction score 1-10. Cite all data.",
+          "system_prompt": "You are a deep-dive equity research analyst. Every financial number must cite a specific SEC filing (form type, date, page). Never hallucinate data. If you can't verify something, say UNVERIFIED.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-PLTK",
+          "prompt": "DEEP DIVE RESEARCH — PLTK (Playtika Holding Corp.)\n\nWatchlist entry: 'FCF $77M, sector deep scan + cash fortress.'\nPrice: ~$7-8 | MCap: ~$3B\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Mobile gaming company. Key titles (Slotomania, Bingo Blitz, etc.). Revenue concentration by game.\n2. FINANCIALS (10-K/10-Q): Revenue trend (growing/declining?), net income, EBITDA, FCF ($77M claim), cash, debt\n3. MOAT: User retention, DAU/MAU, ARPU trends. Are gaming metrics declining?\n4. VALUATION: P/E, EV/EBITDA, FCF yield\n5. OWNERSHIP: Chinese ownership (Giant Interactive/Yuzhu Shi)? Any geopolitical risk?\n6. M&A: History of acquisitions. Integration success?\n7. 1000x POTENTIAL: $3B MCap → $3T? Impossible. What's realistic upside?\n8. RED FLAGS: Revenue decline, user churn, debt covenants\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Every financial number must cite a specific SEC filing. Never hallucinate data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-CVGI",
+          "prompt": "DEEP DIVE RESEARCH — CVGI (Commercial Vehicle Group, Inc.)\n\nGoldmine Score: 39/D. Watchlist: '$30.2M FCF, commercial vehicle supplier.'\nPrice: $5.15 | MCap: $173M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: What does CVGI make? (Cab systems, seats, electrical for trucks/military)\n2. FINANCIALS (10-K/10-Q): Revenue, net income, FCF ($30.2M claim), cash, debt (DEBT_BOMB -6 penalty)\n3. DEBT: Verify debt levels and covenants. Is DEBT_BOMB justified?\n4. CUSTOMERS: Who are the key OEM customers? Concentration risk?\n5. CYCLICALITY: Commercial vehicle cycle position. Are we at peak or trough?\n6. VALUATION: P/E, EV/EBITDA, P/S\n7. 1000x POTENTIAL: $173M → $173B? Need to become a major auto parts company.\n8. INSIDER: Ownership and recent transactions\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Every financial number must cite a specific SEC filing. Never hallucinate data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-CLAR",
+          "prompt": "DEEP DIVE RESEARCH — CLAR (Clarus Corporation)\n\nWatchlist: 'Outdoor leisure brand, net cash, P/S 0.46x, clean balance sheet.'\nPrice: Unknown | MCap: Unknown\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: What brands does Clarus own? (Black Diamond, Sierra, PIEPS, etc.)\n2. FINANCIALS (10-K/10-Q): Revenue by brand, net income, FCF, cash, debt\n3. NET CASH: Verify claim. What's the actual cash vs debt?\n4. VALUATION: P/S 0.46x claim — verify revenue and MCap\n5. GROWTH: Revenue trend. Is outdoor/adventure growing or post-COVID declining?\n6. BRAND MOAT: Are these brands #1 in their categories?\n7. 1000x POTENTIAL: Assess realistically\n8. INSIDER: Ownership and transactions\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Every financial number must cite a specific SEC filing. Never hallucinate data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-IQ",
+          "prompt": "DEEP DIVE RESEARCH — IQ (iQIYI, Inc.)\n\nWatchlist: 'Chinese video platform, $12.67B FCF claim, P/S 0.04x. Extreme metrics need verification.'\nPrice: ~$2-3 | MCap: ~$1-2B\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Chinese streaming (Netflix of China). Owned by Baidu.\n2. FINANCIALS (20-F): Revenue, net income, FCF — THE $12.67B FCF CLAIM IS ALMOST CERTAINLY WRONG. Verify carefully.\n3. SUBSCRIBER COUNT: Paying members trend\n4. DEBT: Total debt, maturity schedule\n5. OWNERSHIP: Baidu ownership %. Any going-private risk?\n6. REGULATORY: Chinese content regulations impact\n7. CN_ADR RISK: Delisting risk, VIE structure\n8. VALUATION: If FCF claim is wrong, what's real FCF? Real P/S?\n\nCRITICAL: The $12.67B FCF claim for a ~$2B MCap company is almost certainly a data error. Find the REAL FCF number from the 20-F.\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. The $12.67B FCF claim is almost certainly a data error — find the real number. Every metric must cite a specific SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-ALTO",
+          "prompt": "DEEP DIVE RESEARCH — ALTO (Alto Ingredients, Inc.)\n\nGoldmine Score: 39/D (DEBT_BOMB -6). Watchlist: 'turnaround + deep value.'\nPrice: $5.45 | MCap: $422M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: What does Alto do? (Ethanol production, specialty alcohols, essential ingredients)\n2. FINANCIALS (10-K/10-Q): Revenue, net income, EBITDA, FCF, cash, debt\n3. DEBT: Verify DEBT_BOMB penalty. What's the debt/equity ratio? Covenant risk?\n4. COMMODITY EXPOSURE: Ethanol price correlation, corn costs\n5. TURNAROUND: What's the thesis? Transitioning from commodity ethanol to specialty ingredients?\n6. MARGINS: Gross margin trend (commodity vs specialty)\n7. 1000x POTENTIAL: $422M → $422B? Unrealistic unless massive pivot.\n8. INSIDER: Ownership, transactions\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Every financial number must cite a specific SEC filing. Never hallucinate data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-PATH",
+          "prompt": "DEEP DIVE RESEARCH — PATH (UiPath, Inc.)\n\nGoldmine Score: 46/C. Price: $11.72 | MCap: $6,100M\n\nNOTE: This stock has MEGA_CAP characteristics ($6.1B) but is in the sub-$15 zone. The 1000x thesis requires $6.1B → $6.1T which is impossible. However, it could still be a strong investment.\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: RPA (Robotic Process Automation) + AI automation platform\n2. FINANCIALS (10-K/10-Q): Revenue (ARR), net income, FCF, cash, debt\n3. GROWTH: ARR growth rate, net revenue retention, customer count\n4. AI PIVOT: How is UiPath integrating AI/LLMs into its platform?\n5. COMPETITION: vs Microsoft Power Automate, Automation Anywhere, etc.\n6. VALUATION: P/S, EV/Rev, FCF yield at current price\n7. MOAT: Enterprise switching costs, platform stickiness\n8. 1000x POTENTIAL: Not possible at $6.1B. What's realistic 5-year return?\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Every financial number must cite a specific SEC filing. Focus on whether AI automation is a headwind or tailwind for UiPath.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-AFYA",
+          "prompt": "DEEP DIVE RESEARCH — AFYA (Afya Limited)\n\nGoldmine Score: 43/C. Watchlist: 'LatAm healthcare education.'\nPrice: $14.01 | MCap: $1,247M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Brazil's largest medical education company. How many medical school seats?\n2. FINANCIALS (20-F): Revenue, net income, EBITDA, FCF, cash, debt\n3. GROWTH: Student enrollment trend, revenue growth, new campus openings\n4. MOAT: Medical school licenses in Brazil are regulated/limited. How defensible?\n5. VALUATION: P/E, EV/EBITDA, comparison to global education companies\n6. INCORPORATION: Cayman Islands? Any ADR/structural risk?\n7. BRAZIL MACRO: Healthcare education demand vs economic cycle\n8. 1000x POTENTIAL: $1.2B → $1.2T? Needs to become global healthcare platform.\n\nPrice >$10 means this gets a -4 penalty. But if fundamentals are strong enough...\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Every financial number must cite a specific SEC filing (20-F for foreign private issuers). Never hallucinate data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-GHG",
+          "prompt": "DEEP DIVE RESEARCH — GHG (GreenTree Hospitality Group Ltd.)\n\nGoldmine Score: 43/C. Price: $1.28 | MCap: $129M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Chinese hotel franchiser. Economy/midscale hotels. Franchise-heavy model.\n2. FINANCIALS (20-F): Revenue, net income, EBITDA, FCF, cash, debt\n3. HOTEL COUNT: Total hotels, rooms, franchise vs managed split\n4. GROWTH: RevPAR trend, occupancy rates, new hotel openings\n5. CN_ADR RISK: Chinese company, likely CN_ADR -8 penalty. VIE structure?\n6. COVID RECOVERY: China domestic travel recovery status\n7. VALUATION: P/E, EV/room, comparison to Chinese hotel peers (Huazhu, Atour)\n8. 1000x POTENTIAL: $129M → $129B? Would need to become China's #1 hotel brand.\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Every financial number must cite a specific SEC filing. Focus on China hospitality recovery and franchise model economics.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-LIDR",
+          "prompt": "DEEP DIVE RESEARCH — LIDR (AEye, Inc.)\n\nGoldmine Score: 43/C. Price: $2.00 | MCap: $93M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: LiDAR sensors for automotive/industrial. What's the technology differentiation?\n2. FINANCIALS (10-K/10-Q): Revenue (likely minimal), net loss, cash burn rate, cash runway\n3. TECHNOLOGY: 4Sight intelligent sensing platform. How does it compare to Luminar, Velodyne, Innoviz?\n4. CUSTOMERS: Any automotive OEM design wins? Production contracts?\n5. CASH: How many quarters of runway remain at current burn?\n6. GOING CONCERN: Check auditor opinion carefully\n7. REVERSE SPLIT: Has this stock reverse-split? Check share count history.\n8. 1000x POTENTIAL: $93M → $93B? LiDAR market size would need to be enormous.\n\nLiDAR companies have been notorious capital destroyers. Is AEye different?\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. LiDAR companies have poor track records — be especially critical. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-BLNK",
+          "prompt": "DEEP DIVE RESEARCH — BLNK (Blink Charging Co.)\n\nGoldmine Score: 42/C. Price: $0.83 | MCap: $119M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: EV charging network. How many chargers deployed? L2 vs DC fast charging split.\n2. FINANCIALS (10-K/10-Q): Revenue, net loss, cash burn, cash remaining\n3. REVENUE MODEL: Hardware sales vs charging revenue vs network fees\n4. COMPETITION: vs ChargePoint, EVgo, Tesla Supercharger, Electrify America\n5. UNIT ECONOMICS: Revenue per charger? Are individual chargers profitable?\n6. GOING CONCERN: At $0.83 and $119M MCap, is there going concern risk?\n7. DILUTION: Share count history — has this been a serial diluter?\n8. 1000x POTENTIAL: $119M → $119B? Would need massive EV adoption + market share.\n\n$0.83 stock price is a major red flag. Check for reverse splits, continuous losses, and cash runway.\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Sub-$1 stocks with continuous losses need extreme scrutiny. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-YSG",
+          "prompt": "DEEP DIVE RESEARCH — YSG (Yatsen Holding Limited)\n\nGoldmine Score: 44/C. Price: $3.15 | MCap: $295M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Chinese beauty/cosmetics company (Perfect Diary brand). DTC model.\n2. FINANCIALS (20-F): Revenue, net income, EBITDA, FCF, cash, debt\n3. BRANDS: Perfect Diary, Little Ondine, Eve Lom, Galénic. Which are growing?\n4. GROWTH: Revenue trend — was growing fast pre-IPO but crashed. Has it stabilized?\n5. CHINA CONSUMER: Chinese consumer spending on beauty products trend\n6. CN_ADR RISK: Chinese company, VIE structure, delisting risk\n7. COMPETITION: vs Proya, Pechoin, international brands in China\n8. 1000x POTENTIAL: $295M → $295B? Would need to become a global beauty powerhouse.\n\nYatsen was a COVID-era IPO darling that crashed >90%. Is there a recovery thesis?\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Post-IPO crashes need careful analysis of whether the business has fundamentally changed. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-MGF",
+          "prompt": "DEEP DIVE RESEARCH — MGF (MFS Government Markets Income Trust)\n\nGoldmine Score: 44/C. Price: $2.86 | MCap: $93M\n\nRESEARCH MANDATE (SEC filings required):\n1. STRUCTURE: This is a closed-end fund (CEF), NOT an operating company. Verify.\n2. HOLDINGS: What does the fund hold? (US government bonds, MBS, agency securities)\n3. NAV: What's the NAV per share vs market price? Premium or discount?\n4. DISTRIBUTION: Dividend yield, distribution rate, return of capital %\n5. LEVERAGE: Does the fund use leverage? How much?\n6. MANAGEMENT: MFS Investment Management. Fee structure.\n7. 1000x POTENTIAL: A bond fund CANNOT 1000x. This should be EXCLUDED from the pipeline.\n8. INTEREST RATE SENSITIVITY: Duration, rate sensitivity\n\nCRITICAL: If this is a CEF/bond fund, it should be flagged as PIPELINE ERROR — not a growth stock.\n\nVerdict: Almost certainly NO-GO for 1000x pipeline.",
+          "system_prompt": "You are a deep-dive equity research analyst. Closed-end funds are NOT growth stocks and should be flagged as pipeline errors. Verify the fund structure.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-GMHS",
+          "prompt": "DEEP DIVE RESEARCH — GMHS (Gamehaus Holdings Inc.)\n\nGoldmine Score: 45/C. Price: $0.99 | MCap: $57M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: What does Gamehaus do? Gaming? Media? Verify actual business operations.\n2. FINANCIALS (10-K/10-Q): Revenue, net income, cash, debt, FCF\n3. HISTORY: Is this a name-change company? SPAC? Shell? Check SEC filing history.\n4. REVENUE: Is there REAL revenue or is this pre-revenue?\n5. GOING CONCERN: At $0.99 and $57M MCap, check for going concern opinion\n6. DILUTION: Share issuance history, warrants, convertible notes\n7. RED FLAGS: Related party transactions, management compensation vs revenue\n8. 1000x POTENTIAL: $57M → $57B? What would the business need to become?\n\nSub-$1 micro-cap stocks require maximum skepticism. Verify this is a real operating business.\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Micro-cap sub-$1 stocks need extreme due diligence. Look for shell company red flags. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-GDRX",
+          "prompt": "DEEP DIVE RESEARCH — GDRX (GoodRx Holdings, Inc.)\n\nGoldmine Score: 39/D (HIGH_DEBT -3). Price: $2.92 | MCap: $989M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Prescription drug price comparison platform. Revenue model (fees from PBMs/pharmacies).\n2. FINANCIALS (10-K/10-Q): Revenue, net income, EBITDA, FCF, cash, debt\n3. MOAT: Network effects? User switching costs? Monthly active users.\n4. COMPETITION: vs Amazon Pharmacy, RxSaver, other discount card programs\n5. REGULATORY: FTC action in 2023 re: data sharing. Current status?\n6. AMAZON THREAT: Amazon Pharmacy impact on business model\n7. DEBT: Verify HIGH_DEBT penalty. Debt/EBITDA ratio, maturity schedule\n8. 1000x POTENTIAL: $989M → $989B? Digital health platform thesis.\n\nGoodRx was a $30B+ company at IPO peak. Now $989M. What went wrong and can it recover?\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Focus on competitive moat durability vs Amazon Pharmacy. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-RR",
+          "prompt": "DEEP DIVE RESEARCH — RR (Richtech Robotics Inc.)\n\nGoldmine Score: 39/D (BLEED -4). Price: $3.02 | MCap: $675M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Service robots for hospitality (ADAM bartender robot, etc.). What products are shipping?\n2. FINANCIALS (10-K/10-Q): Revenue (likely small), net loss, cash, debt, burn rate\n3. DEPLOYMENT: How many robots deployed? In which venues?\n4. TECHNOLOGY: What's proprietary? AI, hardware, software?\n5. COMPETITION: vs Bear Robotics, Pudu Robotics, other service robot companies\n6. BLEED: Verify BLEED -4 penalty (continuous losses). How long can they survive at current burn?\n7. VALUATION: $675M MCap for a pre/early-revenue robotics company. Revenue multiple?\n8. 1000x POTENTIAL: $675M → $675B? Would need to dominate global service robotics.\n\nService robotics is exciting but most companies fail. Verify revenue is real and growing.\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Pre-revenue robotics companies need extreme scrutiny on unit economics and deployment velocity. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-INCR",
+          "prompt": "DEEP DIVE RESEARCH — INCR (Intercure Ltd.)\n\nGoldmine Score: 39/D. Price: $1.20 | MCap: $66M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Israeli medical cannabis company. Operations in Israel, what international expansion?\n2. FINANCIALS (20-F): Revenue, net income, EBITDA, FCF, cash, debt\n3. MARKET: Israeli medical cannabis market size and Intercure's share\n4. REGULATORY: Israel cannabis regulation framework\n5. PRODUCTS: Brands, patient count, pharmacy distribution\n6. COMPETITION: vs other Israeli cannabis companies (RLTY, etc.)\n7. INTERNATIONAL: Any exports? EU GMP certification?\n8. 1000x POTENTIAL: $66M → $66B? Would need global cannabis legalization and massive share.\n\nCannabis stocks have been terrible investments. Is Intercure different?\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Cannabis companies have poor track records. Focus on profitability and cash flow, not just revenue growth. Every number must cite a filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-MDAI",
+          "prompt": "DEEP DIVE RESEARCH — MDAI (Spectral AI, Inc.)\n\nGoldmine Score: 39/D. Price: $2.07 | MCap: $66M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: AI-powered wound care diagnostics (DeepView system). Medical device.\n2. FINANCIALS (10-K/10-Q): Revenue (likely minimal), net loss, cash, burn rate\n3. FDA STATUS: DeepView regulatory pathway. 510(k)? De novo? PMA? Current status.\n4. CLINICAL: Clinical trial results, published studies\n5. MARKET: Wound care diagnostics TAM. Who's the buyer? (Hospitals, burn centers, military)\n6. COMPETITION: vs standard wound assessment methods\n7. MILITARY: DoD contracts? BARDA funding?\n8. 1000x POTENTIAL: $66M → $66B? Medical AI platform expansion thesis.\n\nPre-revenue medical device companies are high risk. Verify FDA pathway and cash runway.\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Pre-revenue medical device companies need scrutiny on FDA timeline, cash runway, and clinical evidence. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-CHPT",
+          "prompt": "DEEP DIVE RESEARCH — CHPT (ChargePoint Holdings, Inc.)\n\nGoldmine Score: 39/D. Price: $7.59 | MCap: $197M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: EV charging network operator. Hardware + software + network services.\n2. FINANCIALS (10-K/10-Q): Revenue, gross margin, net loss, EBITDA, cash, debt, FCF\n3. NETWORK: How many charging ports? Utilization rate? Geographic split.\n4. REVENUE MODEL: Hardware vs subscription vs network fees breakdown\n5. COMPETITION: vs Tesla Supercharger, EVgo, Blink, Electrify America\n6. PATH TO PROFITABILITY: When does management expect breakeven? Is it credible?\n7. CASH: Runway at current burn rate. Dilution risk.\n8. 1000x POTENTIAL: $197M → $197B? EV infrastructure is massive but commoditized.\n\nChargePoint was a $12B+ SPAC darling. Now $197M. What caused the 98% decline?\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Former SPAC companies that crashed 98% need extreme scrutiny. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-BDCO",
+          "prompt": "DEEP DIVE RESEARCH — BDCO (Blue Dot Corp / Blade Communications?)\n\nWatchlist entry: 'Profitable refiner with P/E 9.3x, high insider ownership, and strong cash flow.'\n\nRESEARCH MANDATE:\n1. IDENTIFY: First, determine what company BDCO actually is. Search SEC EDGAR for the ticker BDCO.\n2. BUSINESS: What does this company do? (Refining? Which type?)\n3. FINANCIALS: Revenue, net income, P/E (verify 9.3x), FCF, cash, debt\n4. INSIDER: Verify 'high insider ownership' claim\n5. COMMODITY RISK: If refiner, crack spread exposure\n6. VALUATION: P/E, EV/EBITDA vs refining peers\n7. 1000x POTENTIAL: Assess realistically\n8. RED FLAGS: Any concerns?\n\nStart by confirming what company trades under ticker BDCO on US exchanges.\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. First verify the company identity, then analyze. Every number must cite a SEC filing. Never guess.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-SPWH",
+          "prompt": "DEEP DIVE RESEARCH — SPWH (Sportsman's Warehouse Holdings, Inc.)\n\nGoldmine Score: 38/D (DEBT_BOMB -6). Price: $1.32 | MCap: $51M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Outdoor sporting goods retailer. How many stores? Geographic focus.\n2. FINANCIALS (10-K/10-Q): Revenue, net income, EBITDA, FCF, cash, debt\n3. DEBT: Verify DEBT_BOMB penalty. Total debt, maturity, covenants. Bankruptcy risk?\n4. COMPETITION: vs Bass Pro/Cabela's, Academy Sports, Dick's, REI\n5. SAME-STORE SALES: Trend over last 8 quarters\n6. GOING CONCERN: At $1.32/$51M MCap with DEBT_BOMB, check auditor opinion\n7. FIREARMS: % of revenue from firearms/ammo. Political/regulatory risk.\n8. 1000x POTENTIAL: $51M → $51B? Would need to become dominant outdoor retailer.\n\nSmall-cap retailer with heavy debt = high bankruptcy risk. Verify survival.\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Heavily indebted small retailers are bankruptcy candidates. Focus on covenant compliance and liquidity. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-QTRX",
+          "prompt": "DEEP DIVE RESEARCH — QTRX (Quanterix Corporation)\n\nGoldmine Score: 37/D (BLEED -4, DATA_CONFLICT -5). Price: $3.06 | MCap: $144M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Ultra-sensitive biomarker detection (Simoa platform). Life sciences tools.\n2. FINANCIALS (10-K/10-Q): Revenue, net loss, cash, burn rate, FCF\n3. TECHNOLOGY: Simoa (Single Molecule Array) platform. What makes it unique?\n4. CUSTOMERS: How many Simoa instruments installed? Consumable revenue vs instrument?\n5. APPLICATIONS: Neurology (Alzheimer's biomarkers), oncology, infectious disease\n6. COMPETITION: vs Meso Scale Diagnostics, Luminex, standard ELISA\n7. BLEED: Verify continuous losses. Path to profitability?\n8. 1000x POTENTIAL: $144M → $144B? Would need Simoa to become standard of care.\n\nLife sciences tools can be great businesses (Illumina model). Is Simoa adoption accelerating?\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Life sciences tools companies need evaluation on installed base growth and consumable revenue. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "new-POCI",
+          "prompt": "DEEP DIVE RESEARCH — POCI (Precision Optics Corporation, Inc.)\n\nGoldmine Score: 38/D (DATA_CONFLICT -5). Price: $5.44 | MCap: $60M\n\nRESEARCH MANDATE (SEC EDGAR citations required):\n1. BUSINESS: Precision optical components and medical endoscopes. Defense/medical optics.\n2. FINANCIALS (10-K/10-Q): Revenue, net income, EBITDA, FCF, cash, debt\n3. CUSTOMERS: Medical device OEMs, defense contractors. Customer concentration?\n4. TECHNOLOGY: What's proprietary? Micro-optics, endoscope assemblies?\n5. BACKLOG: Order backlog if disclosed\n6. DEFENSE: % of revenue from defense contracts\n7. DATA_CONFLICT: What caused the -5 penalty? Verify data integrity.\n8. 1000x POTENTIAL: $60M → $60B? Niche optics company would need massive expansion.\n\nSmall precision manufacturing companies can be acquired. M&A upside?\n\nVerdict: GO / CAUTIOUS GO / NO-GO with conviction 1-10.",
+          "system_prompt": "You are a deep-dive equity research analyst. Small precision manufacturing companies need evaluation on customer concentration and technology moat. Every number must cite a SEC filing.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "sector-GOLD",
+          "prompt": "SECTOR ANALYSIS — GOLD MINING THESIS VALIDATION\n\nWe hold/plan positions in two gold miners: GAU (Galiano Gold, 62/B) and BTG (B2Gold, 58/B).\n\nVALIDATE THE MACRO THESIS:\n1. GOLD PRICE: Current spot price. 12-month trend. Analyst consensus for next 2 years.\n2. SUPPLY: Global mine production trend. New mine supply coming online?\n3. DEMAND: Central bank buying (China, India, others). ETF flows. Jewelry demand.\n4. INFLATION/RATES: How does current macro environment support gold?\n5. COST CURVE: Industry average AISC. Where do GAU and BTG sit on the cost curve?\n6. GEOPOLITICAL: What geopolitical risks support gold as safe haven?\n7. SMALL-CAP MINERS: Historical performance of sub-$10 gold miners in bull markets\n8. RISK: What could kill the gold thesis? (Rate hikes, crypto competition, mine accidents)\n\nCite real data sources: World Gold Council, USGS, central bank reports, LBMA.\n\nOutput: GOLD THESIS INTACT / WEAKENING / STRENGTHENING with evidence.",
+          "system_prompt": "You are a commodities sector analyst. Focus on verifiable data from industry sources (World Gold Council, USGS, central bank reports). No speculation — only data-backed analysis.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "sector-LATAM-FINTECH",
+          "prompt": "SECTOR ANALYSIS — LATAM FINTECH COMPARISON (PAGS vs STNE vs PAYO)\n\nWe have positions/plans in three fintech companies:\n- PAGS (PagSeguro): 58/B, CAUTIOUS GO, $200 planned. Brazil payments.\n- STNE (StoneCo): 54/C, CAUTIOUS GO, $600 planned (3x DCA). Brazil payments.\n- PAYO (Payoneer): 50/C, CAUTIOUS GO, $257 planned. Global cross-border payments.\n\nHEAD-TO-HEAD COMPARISON using verified SEC filings:\n1. Revenue and growth rate (each company)\n2. Net income and margins\n3. TPV or volume processed\n4. Customer count and growth\n5. FCF and FCF yield\n6. Valuation multiples (P/E, P/S, EV/EBITDA)\n7. Balance sheet strength (cash, debt, net position)\n8. Competitive advantages and risks\n9. Regulatory environment (Brazil Central Bank, PIX impact on PAGS/STNE)\n10. Which offers the best risk/reward for a 10-year hold?\n\nRank them: #1 best investment, #2, #3. Cite all numbers from 20-F/10-K filings.\n\nOutput: Ranked comparison table with verified data points.",
+          "system_prompt": "You are a fintech sector analyst. Compare companies using only verified SEC filing data. Every number must have a citation. Rank by investment merit for long-term holding.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "sector-CN-ADR",
+          "prompt": "REGULATORY ANALYSIS — CHINESE ADR RISK UPDATE (Jun 2026)\n\nWe hold/plan positions in Chinese-connected companies: TIGR (HOLD), TUYA (HOLD), GRAB (GO but Singapore-based).\n\nUPDATE THE REGULATORY LANDSCAPE:\n1. HFCAA STATUS: Latest PCAOB inspection results. Any companies flagged for delisting?\n2. CSRC: Latest cross-border data/securities regulations. Impact on TIGR specifically.\n3. US-CHINA RELATIONS: Current political climate. Trade tensions. Tech restrictions.\n4. DELISTING TIMELINE: If HFCAA triggers, what's the actual delisting process and timeline?\n5. HK DUAL LISTING: Which Chinese ADRs have HK listings as protection? Does TUYA's 2391.HK work?\n6. VIE RISK: Any changes to VIE structure legality in China?\n7. PRECEDENT: Any Chinese ADRs actually delisted in 2025-2026? What happened to shareholders?\n8. GRAB: As Singapore-based, does it face any Chinese ADR risk? Verify.\n\nCite specific regulations, PCAOB reports, CSRC announcements. No speculation.\n\nOutput: RISK LEVEL for each stock (LOW/MEDIUM/HIGH/CRITICAL) with evidence.",
+          "system_prompt": "You are a regulatory affairs analyst specializing in US-China cross-border securities issues. Cite specific regulations, PCAOB reports, and government announcements. No speculation.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        }
+      ]
+    }
+  ]
+}

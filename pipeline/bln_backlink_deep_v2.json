@@ -1,0 +1,148 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "deep-01",
+          "prompt": "CONTEXT: BeLikeNative (belikenative.com) is a Chrome extension for AI writing help. We built an automated backlink pipeline. Current stats: 17 Dev.to backlinks (DA 62, canonical_url), 16 Telegraph backlinks (DA 90, dofollow embedded), 2,199 WordPress articles queued. Previous research found: canonical tags pass ~0% link equity, GitHub Pages (DA 97) is #1 untapped platform, Telegraph dofollow > Dev.to canonical for SEO value.\n\nTASK: Create a COMPLETE step-by-step implementation guide for publishing to GitHub Pages via the GitHub API for automated backlink building. Include: (1) exact API endpoints with curl examples, (2) how to create a repo programmatically, (3) how to push HTML content via the Contents API (PUT /repos/{owner}/{repo}/contents/{path}), (4) Base64 encoding requirements, (5) how to set up GitHub Pages via API, (6) HTML template with canonical meta tag and dofollow backlink, (7) sitemap.xml generation and submission, (8) rate limiting strategy for 5000 req/hr, (9) how to handle multiple repos/sites, (10) complete bash script skeleton.",
+          "system_prompt": "You are a senior developer who has built GitHub API integrations. Provide exact, working code examples. Every curl command must be copy-pasteable.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-02",
+          "prompt": "CONTEXT: Building automated backlink pipeline for belikenative.com. Need to add Write.as platform.\n\nTASK: Create a COMPLETE implementation guide for Write.as API integration. Include: (1) account creation process, (2) API token generation, (3) exact API endpoints (POST /api/posts), (4) request/response format with canonical_url field, (5) authentication headers, (6) how to create collections/blogs, (7) content formatting requirements (Markdown? HTML?), (8) rate limits and how to handle them, (9) how links work (dofollow confirmed?), (10) complete bash script for automated publishing similar to publish-telegraph.sh. Provide working curl examples for every step.",
+          "system_prompt": "You are an API integration specialist. Provide exact, tested API calls with real response examples.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-03",
+          "prompt": "CONTEXT: BeLikeNative has 2,199 articles on WordPress. We need to identify the 50-100 best articles to target with backlinks for maximum SEO impact.\n\nTASK: Design a scoring algorithm to identify 'Quick Win' articles from a WordPress site. The algorithm should: (1) pull data from WordPress REST API (what fields?), (2) estimate keyword difficulty from title/content, (3) score articles by: traffic potential, topic relevance to 'AI writing tools', keyword competitiveness, content depth (word count), existing backlink count proxy, (4) how to cross-reference with Google Search Console API for actual ranking data, (5) implement the scoring formula, (6) output a ranked list. Provide the complete Python script that takes a WordPress API URL and outputs the top 100 articles to prioritize.",
+          "system_prompt": "You are an SEO data scientist. Provide a working Python script with clear scoring methodology.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-04",
+          "prompt": "CONTEXT: We use Claude ($0.03/article) for content rewrites and want to add DeepSeek ($0.001/article) for bulk platforms.\n\nTASK: Create a complete DeepSeek content rewriting pipeline that applies HUMANIZE-CONTENT rules. The rules include: (1) 70+ banned words (seamlessly, delve, leverage, utilize, etc.), (2) no bold markup, no emoji, no em-dashes, (3) sentence rhythm: vary between 5-25 words, (4) no transition words at paragraph starts (Additionally, Furthermore, Moreover), (5) conversational first-person tone, (6) 800-1200 word target. Create a Python script that: takes an article title + content + canonical URL, calls DeepSeek API, applies banned word post-processing, outputs platform-ready markdown with frontmatter. Include the full banned word list and mechanical cleanup pipeline.",
+          "system_prompt": "You are a content pipeline engineer. The script must be production-ready with error handling and rate limiting.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-05",
+          "prompt": "CONTEXT: BeLikeNative backlink pipeline publishes to Dev.to and Telegraph. Previous research says anchor text distribution should be: 60-70% branded, 20-25% generic, 8-12% partial match, 2-5% exact match.\n\nTASK: Design and implement an anchor text rotation system for the backlink pipeline. (1) Define the full anchor text vocabulary: branded variants ('BeLikeNative', 'belikenative.com', 'the BeLikeNative extension'), generic ('read more', 'check this out', 'this tool', 'learn more'), partial match ('AI writing assistant BeLikeNative', 'grammar tool for Chrome'), exact match ('AI writing tool', 'grammar checker', 'Chrome writing extension'). (2) Implement a deterministic rotation algorithm based on article slug hash to ensure consistent distribution. (3) Create the Python/bash function that picks anchor text given a slug and platform. (4) How to integrate this into Telegraph publisher (modify the 'Originally published at' and 'Read the full version at' sections). (5) Track actual distribution in a log file.",
+          "system_prompt": "You are a technical SEO engineer. The rotation algorithm must be deterministic and maintain the target distribution across 2000+ articles.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-06",
+          "prompt": "CONTEXT: BeLikeNative has 2,199 WordPress articles about AI writing, language learning, grammar, multilingual communication.\n\nTASK: Analyze belikenative.com's content architecture for internal linking optimization. (1) What WordPress plugins are best for automated internal linking? Compare Link Whisper, Internal Link Juicer, Yoast, Rank Math. (2) How to identify topical clusters from 2,199 articles automatically (NLP clustering, keyword grouping). (3) Design 5-10 pillar topics for BeLikeNative based on common article themes: AI writing, grammar tools, multilingual communication, language learning, Chrome extensions, translation, etc. (4) Hub-and-spoke implementation in WordPress: how many internal links per article? Where to place them? (5) How to measure internal linking health with Screaming Frog. (6) Expected SEO impact of fixing internal linking on a 2,199-article site.",
+          "system_prompt": "You are a WordPress SEO architect. Provide specific plugin recommendations with configuration details.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-07",
+          "prompt": "CONTEXT: Building backlink pipeline. Need to monitor effectiveness.\n\nTASK: Design a backlink monitoring and measurement system. (1) How to use Google Search Console API to track: referring pages, backlink indexing, canonical recognition, ranking changes. (2) Free alternatives to Ahrefs/Semrush for backlink monitoring: GSC, Bing Webmaster, MOZ free tools. (3) Key metrics to track weekly: new referring domains, total backlinks, DR/DA changes, organic traffic delta, keyword position changes. (4) How to detect Google penalties early: GSC warnings, traffic drops, indexing issues. (5) Create a simple Python script that pulls GSC data and generates a weekly report. (6) Dashboard metrics: what should we add to our HTML dashboard for ongoing monitoring? (7) How long before backlinks show measurable ranking impact?",
+          "system_prompt": "You are an SEO analytics expert. Focus on free/low-cost monitoring solutions with API access.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-08",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension. 10,000+ daily users. belikenative.com WordPress site.\n\nTASK: Research the Google Blogger API v3 for automated backlink publishing. Provide: (1) Complete OAuth 2.0 setup for Blogger API — desktop app flow vs service account, (2) Creating a blog programmatically, (3) POST /blogs/{blogId}/posts — exact request body format, (4) How to inject canonical link tag in post HTML (not template), (5) Inserting custom HTML in blog posts (for dofollow links), (6) Multiple blogs under one account — limits and best practices, (7) Template customization via API for SEO meta tags, (8) Google indexing speed for Blogspot vs other platforms, (9) Complete bash/python publish script, (10) How to avoid spam detection with multiple blogs.",
+          "system_prompt": "You are a Google API expert. Provide working OAuth setup instructions and API call examples.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-09",
+          "prompt": "CONTEXT: Currently publishing humanized articles to Dev.to and Telegraph for backlinks.\n\nTASK: Analyze the actual content quality of AI-rewritten articles for SEO. (1) How does Google's Helpful Content Update detect AI-generated content in 2026? (2) What specific patterns trigger AI content detection: paragraph structure, vocabulary distribution, sentence length uniformity, transition patterns. (3) How do our HUMANIZE-CONTENT rules compare to what Google looks for? (4) Content differentiation strategies: how to make each platform version genuinely different (not just word substitution). (5) Adding unique value per platform: Dev.to-specific code examples, Telegraph visual elements, Blogger personal stories. (6) E-E-A-T signals to embed in cross-published content. (7) What percentage of content MUST be unique per platform to avoid thin content penalties? (8) Case studies of sites penalized for scaled content abuse.",
+          "system_prompt": "You are a content quality and AI detection specialist. Base answers on confirmed Google documentation and real penalty case studies.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-10",
+          "prompt": "CONTEXT: BeLikeNative pipeline with 33 backlinks live. Target: 2,500 backlinks in 90 days.\n\nTASK: Design a comprehensive content velocity and scheduling strategy. (1) What is the maximum safe publishing velocity per platform per day in 2026? (2) How to calculate per-platform rate limits: Dev.to API limits, Telegraph practical limits, GitHub Pages limits, Blogger limits, Write.as limits. (3) Design an optimal schedule: which platforms publish at what times? Spread across time zones? Weekend vs weekday differences? (4) Gradual ramp-up schedule: day 1-7, week 2, week 3, week 4, month 2, month 3. (5) How to detect and respond to velocity-triggered spam filters. (6) Parallel publishing across platforms vs sequential — which is safer? (7) Create a cron-compatible schedule file in JSON format.",
+          "system_prompt": "You are a content operations engineer. Focus on maximizing throughput while staying under spam detection thresholds.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-11",
+          "prompt": "CONTEXT: BeLikeNative (belikenative.com) builds an AI Chrome extension for writing assistance.\n\nTASK: Competitive backlink intelligence on the top 5 AI writing tool competitors. For each of Grammarly, QuillBot, LanguageTool, ProWritingAid, and Wordtune: (1) How many referring domains do they have? (2) What types of backlinks dominate their profile (editorial, content syndication, directories, PR)? (3) What platforms do they syndicate content to? (4) Do they use Dev.to, Medium, Telegraph, Blogger, or GitHub Pages? (5) What is their Domain Rating / Domain Authority? (6) What content types generate the most backlinks for them? (7) What can BeLikeNative replicate from their strategies? (8) Gap analysis: what link sources do they have that BeLikeNative doesn't?",
+          "system_prompt": "You are a competitive SEO analyst. Use publicly available data. Be specific about numbers even if estimated.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-12",
+          "prompt": "CONTEXT: Want to maximize Telegraph backlinks since they are dofollow and $0 cost.\n\nTASK: Deep dive into Telegraph (telegra.ph) for maximum SEO extraction. (1) Does Google actually index telegra.ph pages? How quickly? (2) Are Telegraph links actually dofollow? How to verify with DevTools. (3) Does Telegraph pass PageRank? Any evidence? (4) What is telegra.ph's actual DA/DR in 2026? (5) Can you create multiple Telegraph accounts for link diversity? (6) Telegraph content guidelines and limits: max article length, content types allowed, image support. (7) Do Telegraph articles appear in Google News? (8) Telegraph vs instant articles on other platforms for link equity. (9) Are there any Telegraph SEO case studies? (10) Maximum number of links per Telegraph article before it looks spammy. (11) Do Google crawlers follow Telegraph embedded links?",
+          "system_prompt": "You are a technical SEO researcher focused on link equity verification. Distinguish between confirmed data and speculation.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-13",
+          "prompt": "CONTEXT: Building a multi-platform content syndication pipeline.\n\nTASK: Research Ghost CMS self-hosted deployment for backlink building. (1) Cheapest hosting options for Ghost in 2026: DigitalOcean, Hetzner, Railway, Fly.io, VPS providers. (2) One-click Ghost install scripts. (3) Ghost Admin API: JWT token generation, POST /ghost/api/admin/posts — exact request format. (4) How canonical_url works in Ghost API. (5) Custom themes for SEO: canonical tags, schema markup, dofollow links. (6) Ghost + custom domain setup for growing your own DA. (7) Maintenance requirements: updates, backups, SSL renewal. (8) Can Ghost run on a $4/mo VPS? Memory requirements. (9) Content import/export API. (10) Ghost vs WordPress self-hosted for a pure backlink satellite site — which is better?",
+          "system_prompt": "You are a DevOps engineer who has deployed Ghost in production. Provide real costs and performance data.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-14",
+          "prompt": "CONTEXT: BeLikeNative currently rewrites content with Claude via 'claude -p' CLI. Each rewrite takes ~2 minutes and costs ~$0.03.\n\nTASK: Design a parallel content adaptation pipeline that maximizes throughput. (1) How to run multiple Claude CLI instances in parallel safely (won't hit API rate limits?). (2) DeepSeek parallel API calls — asyncio with httpx. (3) Optimal batch sizes for each platform. (4) Pipeline architecture: fetch from WP → parallel rewrite (5 workers) → parallel publish (10 workers per platform). (5) Error handling and retry logic for failed publishes. (6) Queue management: how to track which articles are in-flight vs completed. (7) Complete Python async pipeline script that processes N articles through M workers. (8) Expected throughput: articles per hour with 5 Claude workers vs 20 DeepSeek workers.",
+          "system_prompt": "You are a pipeline engineer specializing in high-throughput async systems. Provide working Python asyncio code.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-15",
+          "prompt": "CONTEXT: We identified that we need 50-100 'Quick Win' articles to target with backlinks. BeLikeNative.com is on WordPress.\n\nTASK: Research how to extract actual SEO performance data from Google Search Console for belikenative.com to identify Quick Win pages. (1) GSC API setup: OAuth 2.0, service account, scopes needed. (2) Query API: searchAnalytics.query — how to get page-level data with clicks, impressions, CTR, position. (3) Identifying Quick Win pages: position 4-10, impressions > 100/mo, CTR < 3%. (4) How to get query-level data per page. (5) Python script to pull GSC data and score pages. (6) Combining GSC data with WordPress REST API data for a complete picture. (7) How often does GSC data update? (8) Bulk data export options. (9) Alternative: using Google Analytics 4 API. (10) Output: ranked JSON of pages sorted by Quick Win score.",
+          "system_prompt": "You are a GSC API expert. Provide working Python code with OAuth setup.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-16",
+          "prompt": "CONTEXT: Our content pipeline uses HUMANIZE-CONTENT v2.0 rules. We want to verify articles pass AI detection.\n\nTASK: Research AI content detection tools and how to test our pipeline output. (1) What detection tools exist in 2026: Originality.ai, GPTZero, Copyleaks, Winston AI, ZeroGPT, Turnitin. (2) Which ones have APIs for automated testing? (3) How do they work technically: perplexity analysis, burstiness measurement, n-gram patterns. (4) What specific patterns trigger detection: uniform sentence length, predictable paragraph structure, vocabulary distribution. (5) How to create a testing pipeline: take our adapted articles, run through detectors, report pass/fail rates. (6) What scores do we need to aim for? (7) Human writing patterns that our HUMANIZE rules should enforce but might miss. (8) Provide a Python script that checks an article against free detection APIs.",
+          "system_prompt": "You are an AI content detection researcher. Be objective about what actually works vs what is marketing hype.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-17",
+          "prompt": "CONTEXT: Building backlinks for belikenative.com, which is a Chrome extension for AI writing.\n\nTASK: Research programmatic link building strategies beyond content syndication. (1) HARO/Connectively/Terkel — can responses be automated? API access? (2) Podcast directories: can you submit your podcast/brand via APIs? (3) Tool directories and aggregators: AlternativeTo API, Product Hunt API, G2 API, Capterra submissions. (4) Chrome extension directories beyond CWS: are there third-party extension directories that accept submissions? (5) Free tool/resource pages: how to find 'best AI writing tools' listicles and get included? (6) Niche edit/link insertion services: how do they work? Worth it? (7) Scholarship link building: still effective in 2026? (8) Testimonial link building: automatable? (9) Broken link building with automation. (10) Rank each by: effort, cost, link quality, scalability.",
+          "system_prompt": "You are a link building strategist who has tested every major approach. Be honest about what works and what's a waste of time in 2026.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-18",
+          "prompt": "CONTEXT: Current pipeline: WordPress REST API → Claude rewrite → publish to Dev.to + Telegraph. Want to add 3-5 more platforms.\n\nTASK: Design the ideal multi-platform orchestrator architecture for 5-8 publishing platforms. (1) Platform adapter pattern: how to abstract platform-specific logic. (2) Config-driven platform registration (JSON). (3) Dependency management: publish to Dev.to first (for Claude rewrite), then parallel publish to Telegraph, GitHub Pages, Write.as, Blogger (reusing adapted content). (4) Rate limit management across platforms. (5) State tracking: per-article-per-platform status. (6) Retry and error handling with exponential backoff. (7) Monitoring and alerting. (8) Cron-based scheduling vs event-driven. (9) Complete bash orchestrator script that handles 8 platforms. (10) How to handle platform-specific content requirements (different word counts, formatting).",
+          "system_prompt": "You are a systems architect specializing in content distribution pipelines. Design for reliability and extensibility.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-19",
+          "prompt": "CONTEXT: BeLikeNative backlink pipeline with 33 backlinks from Dev.to (DA 62) and Telegraph (DA 90). 2,199 articles available. Previous research: canonical tags pass ~0% equity, need dofollow links.\n\nTASK: Calculate the exact expected SEO impact of this backlink campaign. (1) Given 33 backlinks at current mix (17 canonical DA 62 + 16 dofollow DA 90), what is the estimated current link equity? (2) Model the impact of scaling to 100, 500, 1000, 2500 backlinks with the proposed platform mix (Dev.to, Telegraph, GitHub Pages, Blogger, Write.as, Ghost). (3) What DR/DA can belikenative.com realistically reach from each milestone? (4) How does this translate to organic traffic growth? Use industry benchmarks. (5) Time-to-impact models: when will backlinks from week 1 show ranking changes? (6) Diminishing returns curve: at what point do more backlinks stop helping? (7) Compare automated backlinks vs 10 manual guest posts on DA 80+ sites.",
+          "system_prompt": "You are an SEO forecasting specialist. Use industry benchmarks and link equity models. Show your math.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-20",
+          "prompt": "CONTEXT: BeLikeNative backlink dashboard at BLN-BACKLINK-DASHBOARD.html. 9 tabs: Overview, Dev.to, Telegraph, Queue, Published Log, Research, Improvements, Wins, Commands.\n\nTASK: Design the ideal metrics and visualizations for a backlink pipeline dashboard. (1) What metrics matter most for weekly tracking: referring domains, total backlinks, DR trajectory, organic traffic delta, keyword rankings, CTR changes. (2) What charts/visualizations: backlink growth over time (area chart), platform distribution (donut), DA distribution of backlinks (histogram), weekly velocity (bar), ranking position changes (sparklines). (3) Alerting thresholds: what triggers a warning? (4) Data sources: how to pull live data from GSC API, Ahrefs/MOZ free API, platform APIs. (5) Design a simple JS chart library recommendation for a static HTML dashboard (no build step). (6) What KPIs should be on the overview page vs in detail tabs? (7) Color coding: what numbers should be green/yellow/red?",
+          "system_prompt": "You are a data visualization specialist focused on SEO dashboards. Recommend specific chart types and metrics.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "nvidia_anatomy",
+          "prompt": "Dissect NVIDIA's journey from $1 to $1,000. Exact data only.\n\n1. NVIDIA's share price (split-adjusted) by year from 1999-2024. Give exact prices Jan 1 each year.\n2. Revenue by fiscal year from FY2005-FY2024 (exact, from 10-K filings).\n3. What was NVIDIA's market cap when it was trading at $5/share? At $10?\n4. At what revenue level did NVIDIA's stock 10x? 100x? 1000x?\n5. What was the EXACT catalyst that transformed NVIDIA from a $10B company to a $100B company? Date, event, revenue inflection.\n6. What was NVIDIA's gross margin trajectory? When did it cross 60%? 70%?\n7. When did NVIDIA's data center revenue surpass gaming? Exact quarter.\n8. How many analysts covered NVIDIA when it was at $5? At $50? At $500?\n9. What was the insider buying/selling pattern at $5-10 range?\n10. What was the CUDA ecosystem size (developers, papers) at key inflection points?",
+          "system_prompt": "You are a financial historian specializing in multi-bagger stocks. Provide EXACT numbers from SEC filings and company reports. If you cannot verify a number, write UNVERIFIED. Never round. Never estimate without labeling it ESTIMATE. Cite the specific 10-K filing year for every revenue figure.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tesla_anatomy",
+          "prompt": "Dissect Tesla's journey from $1.50 (split-adjusted) to $400+. Exact data only.\n\n1. Tesla's share price (split-adjusted) by year from 2010-2024. Exact Jan 1 prices.\n2. Revenue by year from 2010-2024 (exact, from 10-K filings).\n3. When did Tesla first achieve GAAP profitability? Exact quarter.\n4. What was Tesla's market cap at $5/share? At $20? At $100?\n5. What was the EXACT inflection point that took Tesla from $20 to $200? Date, catalyst.\n6. Gross margin trajectory by year.\n7. Vehicle deliveries by year from 2012-2024.\n8. How many analysts covered Tesla when it was sub-$10?\n9. At what price did institutional ownership cross 50%?\n10. What was the bear thesis that kept Tesla cheap, and when did it break?",
+          "system_prompt": "You are a financial historian specializing in multi-bagger stocks. Provide EXACT numbers from SEC filings. If you cannot verify, write UNVERIFIED. Never fabricate data.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "monster_anatomy",
+          "prompt": "Dissect Monster Beverage (MNST) — the greatest 1000x stock in US history (from ~$0.05 to $55+). Exact data only.\n\n1. Share price (split-adjusted) by year from 2000-2024.\n2. Revenue by year from 2000-2024 (from 10-K filings).\n3. When Monster was at $0.50, what was the market cap? Revenue? Gross margin?\n4. What were the EXACT financial characteristics at the 10x, 100x, and 1000x marks?\n5. When did revenue growth first exceed 30%? 50%? 100%?\n6. Gross margin trajectory — when did it cross 50%? 60%?\n7. What was the competitive moat? How did Coca-Cola distribution deal change things?\n8. Insider ownership at early stages vs later.\n9. How many analysts covered it at $1? At $10? At $50?\n10. What was the key financial metric that predicted the 1000x?",
+          "system_prompt": "You are a financial historian specializing in multi-bagger stocks. Provide EXACT numbers from SEC filings. If you cannot verify, write UNVERIFIED. This is the most important 1000x case study in history — be precise.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "pattern_1000x",
+          "prompt": "Analyze ALL stocks that achieved 1000x returns from sub-$10 starting price in the last 30 years. Create a pattern library.\n\n1. List every US-listed stock that went from <$10 to >$1,000 (split-adjusted) or achieved 1000x+ return. Include: ticker, starting price, peak price, years to 1000x, sector.\n2. What financial characteristics did they ALL share at the $1-5 price point?\n   - Revenue growth rate?\n   - Gross margin?\n   - Market cap?\n   - Analyst coverage?\n   - Insider ownership?\n3. What SECTOR patterns emerge? Which sectors produced the most 1000x stocks?\n4. What was the average TAM expansion factor? (TAM at purchase vs TAM at peak)\n5. What was the median time from $5 to 1000x?\n6. What was the failure rate? For every 1000x stock, how many similar-looking stocks went to zero?\n7. What are the 5 strongest predictive signals for a 1000x stock at the $1-5 stage?",
+          "system_prompt": "You are a quantitative analyst studying extreme outlier returns. Only cite verifiable stocks with real ticker symbols and real return data. If a claim is uncertain, mark it UNVERIFIED. Be rigorous about the failure rate — survivorship bias is the enemy.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "anti_patterns",
+          "prompt": "What kills 1000x potential? Analyze the most common failure modes for stocks that LOOKED like 1000x candidates but went to zero or stayed flat.\n\n1. List 10 specific stocks from 2010-2024 that had 1000x-looking characteristics but failed. Give ticker, peak thesis, what happened, final outcome.\n2. What are the 5 most common 'thesis killers'?\n3. What percentage of sub-$5 stocks with >50% revenue growth actually achieve 10x? 100x? 1000x?\n4. Chinese ADR risk: how many Chinese sub-$10 stocks achieved 1000x? What's the VIE structure risk?\n5. Dilution: what annual dilution rate kills 1000x potential? Give examples.\n6. Customer concentration: at what level does it become fatal?\n7. What does insider SELLING at the early stage signal vs insider BUYING?\n8. Competitive moat durability: what types of moats survive 10 years vs collapse?\n9. What sectors have NEVER produced a 1000x stock?\n10. What's the single best red flag that eliminates a 1000x candidate?",
+          "system_prompt": "You are a skeptical risk analyst. Your job is to identify what kills outlier returns. Use real examples with real tickers. Never be optimistic — be brutally honest. If you cannot verify a failure case, mark UNVERIFIED.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_ai_edge",
+          "prompt": "AI Edge Computing / On-Device AI sector TAM analysis. Hard numbers only.\n\n1. Current TAM (2024) for edge AI inference chips. Source: which research firm?\n2. Projected TAM for 2030. Source?\n3. TAM expansion factor (2024 vs 2030).\n4. List EVERY publicly traded sub-$10 company in this space. Include ticker, price, market cap, revenue, product.\n5. Who are the dominant players? Can a sub-$10 company compete?\n6. What regulatory or technological catalyst could expand this TAM 10-100x?\n7. Are there any sub-$10 companies with patents in this space? How many?\n8. Revenue growth rates for each sub-$10 company.\n9. Gross margins for each.\n10. Which sub-$10 company has the strongest moat in edge AI?",
+          "system_prompt": "You are a semiconductor industry analyst. Provide exact TAM figures with source citations (Gartner, IDC, McKinsey, etc). List real companies with real tickers. If price data may be stale, note PRICE UNVERIFIED. Never invent companies.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_quantum",
+          "prompt": "Quantum Computing sector TAM analysis. Hard numbers only.\n\n1. Current TAM (2024) for quantum computing (hardware + software + QCaaS). Source?\n2. Projected TAM for 2030, 2035. Source?\n3. TAM expansion factor.\n4. List EVERY publicly traded sub-$10 quantum computing company. Ticker, price, market cap, revenue, technology approach (superconducting, trapped ion, photonic, etc).\n5. Which sub-$10 company has the most patents?\n6. Which is closest to commercial revenue?\n7. What's the 'iPhone moment' catalyst for quantum? When could it happen?\n8. Revenue (or lack thereof) for each sub-$10 company.\n9. Cash runway for each (cash on hand vs burn rate).\n10. Is quantum computing a realistic 1000x sector or pure hype?",
+          "system_prompt": "You are a quantum computing industry analyst. Be brutally honest about commercial viability timelines. Cite specific research firms for TAM figures. Real companies only. If pre-revenue, state clearly. Mark any uncertain data UNVERIFIED.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_nuclear_smr",
+          "prompt": "Small Modular Reactor (SMR) / Nuclear Renaissance sector TAM analysis.\n\n1. Current TAM (2024) for SMR and advanced nuclear. Source?\n2. Projected TAM for 2030, 2035. Source?\n3. List EVERY publicly traded sub-$10 nuclear/SMR company. Ticker, price, market cap, revenue, reactor design.\n4. Also list sub-$20 companies if the sub-$10 universe is too small.\n5. What regulatory catalysts exist? (NRC approvals, DOE funding, international orders)\n6. Which company has the most advanced NRC approval status?\n7. Data center power demand as a nuclear catalyst — quantify the TWh gap.\n8. Revenue and cash runway for each company.\n9. Gross margins (or expected margins at scale).\n10. Which company has the strongest moat (IP, regulatory approval, fuel supply)?",
+          "system_prompt": "You are a nuclear energy industry analyst. Cite specific NRC filings, DOE awards, and industry reports. Real companies and real tickers only. Note that many nuclear companies are pre-revenue. Be clear about timelines to commercialization.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_robotics",
+          "prompt": "Robotics / Humanoid Robots / Industrial Automation sector TAM analysis.\n\n1. Current TAM (2024) for robotics (industrial + service + humanoid). Source?\n2. Projected TAM for 2030. Source? Break down by sub-sector.\n3. List EVERY publicly traded sub-$10 robotics/automation company. Ticker, price, market cap, revenue, product focus.\n4. Tesla Optimus, Figure AI, Agility — what's the competitive landscape?\n5. Which sub-$10 company supplies components to humanoid robot makers?\n6. Revenue growth rates for each sub-$10 company.\n7. Gross margins.\n8. What's the 'ChatGPT moment' for robotics? What needs to happen?\n9. Chinese robotics companies under $10 (listed in US)?\n10. Which sub-$10 company has the strongest IP portfolio?",
+          "system_prompt": "You are a robotics industry analyst. Cite IFR (International Federation of Robotics), McKinsey, and company filings. Real companies with real tickers only. Many may be Chinese ADRs — flag VIE risk. Mark uncertain data UNVERIFIED.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_solid_state_battery",
+          "prompt": "Solid-State Battery / Next-Gen Energy Storage sector TAM analysis.\n\n1. Current TAM (2024) for solid-state batteries. Source?\n2. Projected TAM for 2030. Source?\n3. List EVERY publicly traded sub-$10 solid-state battery / advanced battery company. Ticker, price, market cap, revenue, technology.\n4. QuantumScape (QS), Solid Power (SLDP), etc — current status of each.\n5. Which company is closest to commercial production? Timeline?\n6. What energy density improvements are proven vs theoretical?\n7. Revenue for each (most are pre-revenue — state clearly).\n8. Cash runway for each company.\n9. OEM partnerships (Toyota, BMW, Ford, etc) — which sub-$10 company has the strongest partner?\n10. Is solid-state battery a realistic 1000x opportunity or a 'fusion energy' forever-promise?",
+          "system_prompt": "You are a battery technology analyst. Be brutally honest about commercialization timelines. Cite company filings and DOE reports. Real companies only. Most are pre-revenue — say so clearly. Mark any uncertain data UNVERIFIED.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_biotech_platform",
+          "prompt": "Biotech Platform Technology sector — CRISPR, gene therapy, mRNA, cell therapy. TAM analysis.\n\n1. Current TAM (2024) for gene/cell therapy. Source?\n2. Projected TAM for 2030. Source?\n3. List EVERY publicly traded sub-$10 biotech with PLATFORM technology (not single-drug). Ticker, price, market cap, pipeline stage, technology.\n4. Which sub-$10 biotech has FDA-approved products already?\n5. Which has the broadest pipeline (most indications)?\n6. Cash runway for each (critical for pre-revenue biotechs).\n7. Patent portfolio size for each.\n8. Partnership/licensing deals with big pharma?\n9. Which sub-$10 biotech has the strongest clinical data?\n10. Historical: which sub-$10 biotechs achieved 100x+? (e.g., Regeneron at $1?)",
+          "system_prompt": "You are a biotech industry analyst. Cite FDA filings, ClinicalTrials.gov data, and company 10-K filings. Real companies with real tickers. Be clear about pipeline stage (preclinical, Phase 1, 2, 3, approved). Cash runway is critical — calculate months remaining. Mark any uncertain data UNVERIFIED.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_space",
+          "prompt": "Space Economy sector TAM analysis — launch, satellites, space infrastructure, Earth observation.\n\n1. Current TAM (2024) for commercial space economy. Source?\n2. Projected TAM for 2030, 2040. Source?\n3. List EVERY publicly traded sub-$10 space company. Ticker, price, market cap, revenue, focus area.\n4. Which sub-$10 space company has actual revenue (not just contracts)?\n5. Rocket Lab (RKLB), Virgin Orbit (failed), Astra (failed) — lessons learned.\n6. Space SPACs: how many sub-$10 space companies came via SPAC? What's the SPAC discount factor?\n7. Revenue growth for each sub-$10 company.\n8. Government vs commercial revenue mix.\n9. Which company has the strongest backlog?\n10. Starlink impact on sub-$10 satellite companies — threat or opportunity?",
+          "system_prompt": "You are a space industry analyst. Cite Morgan Stanley space economy reports, company filings, and government contract databases. Real companies only. Many space SPACs have crashed 80%+ — note this context. Mark UNVERIFIED if unsure.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_cybersecurity",
+          "prompt": "AI-Native Cybersecurity sector TAM analysis.\n\n1. Current TAM (2024) for cybersecurity. Source?\n2. Projected TAM for 2030. Source?\n3. List EVERY publicly traded sub-$10 cybersecurity company. Ticker, price, market cap, revenue, product focus.\n4. Which sub-$10 cybersecurity company has >30% revenue growth?\n5. Which has the highest gross margin?\n6. AI-native vs legacy cybersecurity — what's the structural shift?\n7. Customer retention rates (net revenue retention) for each.\n8. Competitive positioning vs CrowdStrike, Palo Alto, Fortinet.\n9. Government cybersecurity spending trends.\n10. Which sub-$10 cybersecurity company has the best chance of being acquired?",
+          "system_prompt": "You are a cybersecurity industry analyst. Cite Gartner, IDC, and company filings. Real companies with real tickers. Focus on companies with real revenue, not pre-revenue. Mark any uncertain data UNVERIFIED.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_synbio",
+          "prompt": "Synthetic Biology / Industrial Biotech sector TAM analysis.\n\n1. Current TAM (2024) for synthetic biology. Source?\n2. Projected TAM for 2030. Source?\n3. List EVERY publicly traded sub-$10 synthetic biology company. Ticker, price, market cap, revenue, application area.\n4. Ginkgo Bioworks (DNA), Amyris (bankrupt) — lessons from failures.\n5. Which sub-$10 synbio company has actual product revenue?\n6. Which is closest to GAAP profitability?\n7. What applications have the shortest path to revenue? (food, materials, pharma, agriculture)\n8. Revenue for each sub-$10 company.\n9. Cash runway.\n10. Is synbio a realistic 1000x sector or is it 'always 10 years away'?",
+          "system_prompt": "You are a synthetic biology industry analyst. Be honest about the sector's poor stock performance history (Amyris, Zymergen failures). Cite real companies. Focus on path to profitability. Mark any uncertain data UNVERIFIED.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_ar_spatial",
+          "prompt": "AR/Spatial Computing / Mixed Reality sector TAM analysis.\n\n1. Current TAM (2024) for AR/MR hardware and software. Source?\n2. Projected TAM for 2030. Source?\n3. List EVERY publicly traded sub-$10 AR/MR company. Ticker, price, market cap, revenue.\n4. Apple Vision Pro impact — who benefits in the supply chain?\n5. Which sub-$10 company makes components for AR headsets?\n6. Meta Quest, Apple Vision Pro, Microsoft HoloLens — supply chain under $10.\n7. Revenue growth for each.\n8. Which has actual consumer/enterprise revenue vs R&D only?\n9. Waveguide, display, sensor companies under $10?\n10. Is AR a realistic 1000x opportunity or another Google Glass?",
+          "system_prompt": "You are an AR/MR industry analyst. Cite IDC, Counterpoint, and company filings. Be skeptical — the sector has a history of hype. Real companies only. Mark any uncertain data UNVERIFIED.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_rev_growth_100",
+          "prompt": "Screen ALL US-listed stocks under $10/share with revenue growth >100% year-over-year (latest annual filing). This is the #1 signal for 1000x potential.\n\n1. List every stock meeting criteria: price <$10, revenue growth >100% YoY, market cap >$50M.\n2. For each: ticker, price, market cap, TTM revenue, YoY revenue growth %, sector, gross margin.\n3. Sort by revenue growth rate (highest first).\n4. Flag any that also have: positive FCF, insider buying, <5 analyst coverage.\n5. Exclude: blank check companies, SPACs pre-merger, Chinese ADRs with VIE risk.\n6. How many total stocks pass this screen?\n7. What sectors are most represented?\n8. Which have gross margins >50%?\n9. Which have been public <3 years?\n10. Which have the smallest market cap (most room to grow)?",
+          "system_prompt": "You are a quantitative stock screener. Use data from the most recent annual filings (10-K) available in your training data. Provide exact numbers. If you cannot verify a specific figure, write UNVERIFIED. Real tickers only. Do not invent companies.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_rev_growth_50",
+          "prompt": "Screen ALL US-listed stocks under $10/share with revenue growth >50% YoY AND gross margins >50%. This combination signals a high-quality growth company.\n\n1. List every stock meeting ALL criteria: price <$10, rev growth >50% YoY, gross margin >50%, market cap $50M-$5B.\n2. For each: ticker, price, market cap, TTM revenue, YoY growth, gross margin, net income, FCF.\n3. Sort by gross margin (highest first).\n4. Which of these are software/SaaS companies? (Software has the best 1000x track record)\n5. Which have net revenue retention >120%?\n6. Which have insider buying in last 12 months?\n7. Which have <5 analyst coverage?\n8. Which are in sectors with TAM >$50B?\n9. Exclude Chinese ADRs and biotech (separate analysis).\n10. Your top 5 most promising and why.",
+          "system_prompt": "You are a growth equity analyst specializing in small-cap stocks. Use data from the most recent available filings. If a number is estimated or uncertain, mark UNVERIFIED. Real companies only.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_insider_buying",
+          "prompt": "Screen for sub-$10 US-listed stocks with the LARGEST insider buying (by dollar amount) in the last 12 months. Insider buying at low prices is the strongest 1000x signal.\n\n1. List the top 20 sub-$10 stocks by insider purchase dollar amount (Form 4 filings).\n2. For each: ticker, price, insider name, title (CEO/CFO/Director), purchase amount, purchase price, date.\n3. Distinguish between open-market purchases (bullish) vs option exercises or grants (neutral).\n4. Which insiders bought >$1M worth?\n5. Which had CLUSTER buying (3+ insiders buying within 30 days)?\n6. Cross-reference with revenue growth — which have both insider buying AND >30% rev growth?\n7. Historical: what's the average 1-year return after cluster insider buying at sub-$10 stocks?\n8. Any recent IPOs (<2 years) with insider buying? (Usually insiders sell post-IPO, so buying is extremely bullish)\n9. Exclude: routine programmatic purchases, 10b5-1 plans.\n10. Your top 5 most bullish insider buying signals.",
+          "system_prompt": "You are an insider trading analyst using SEC Form 4 data. Only cite real insiders at real companies. If you cannot verify a specific Form 4 filing, mark UNVERIFIED. Open-market purchases are the strongest signal — flag these clearly.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_fcf_inflection",
+          "prompt": "Screen for sub-$10 US-listed stocks that just turned FREE CASH FLOW positive for the first time. FCF inflection is a key 1000x signal — the company has proven its business model.\n\n1. List every sub-$10 stock (market cap $50M-$5B) that was FCF-negative in FY2022 but FCF-positive in FY2023 or TTM.\n2. For each: ticker, price, market cap, FY2022 FCF, FY2023 FCF, TTM FCF, revenue, gross margin.\n3. Which of these have accelerating revenue growth?\n4. Which have >50% gross margins?\n5. Which are in high-TAM sectors (>$50B addressable market)?\n6. What's the historical average return for stocks in the first year after FCF inflection?\n7. Which still trade below 5x TTM revenue?\n8. Which have the strongest competitive moat?\n9. Exclude: one-time FCF from working capital changes or asset sales.\n10. Your top 5 FCF inflection candidates for 1000x potential.",
+          "system_prompt": "You are a fundamental analyst specializing in FCF inflection points. Use 10-K filing data. Be careful to distinguish sustainable FCF from one-time items. If a number is uncertain, mark UNVERIFIED. Real companies only.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_zero_coverage",
+          "prompt": "Screen for sub-$10 US-listed stocks with ZERO or 1-2 analyst coverage AND positive revenue. Low analyst coverage = institutional blind spot = potential mispricing.\n\n1. List every sub-$10 stock with 0-2 analyst coverage, market cap $100M-$3B, and positive TTM revenue >$10M.\n2. For each: ticker, price, market cap, revenue, analyst count, sector.\n3. Which of these have >30% revenue growth?\n4. Which have positive earnings?\n5. Which are profitable on a FCF basis?\n6. What percentage of 1000x stocks had <3 analysts at the early stage?\n7. Which of these are in growing sectors (not dying industries)?\n8. Which have institutional ownership >30%? (Smart money sees it even without analyst coverage)\n9. Which have been public >3 years? (More data to verify)\n10. Your top 5 'hidden gem' candidates with reasoning.",
+          "system_prompt": "You are an institutional equity research analyst. Focus on verifiable data from SEC filings. Analyst coverage counts may change — note this. Real companies only. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_patent_fortress",
+          "prompt": "Screen for sub-$10 US-listed stocks with large patent portfolios (>30 patents). Strong IP = durable moat = 1000x ingredient.\n\n1. List sub-$10 stocks with the most patents. For each: ticker, price, market cap, patent count, patent focus area.\n2. Which have patents in AI, semiconductor, biotech, or energy?\n3. Revenue from IP licensing for each?\n4. Which are actively enforcing patents (litigation)?\n5. Which have patents that major tech companies might want to license?\n6. R&D spending as % of revenue for each.\n7. Which have the highest patent-to-market-cap ratio (most undervalued IP)?\n8. Historical: did any 1000x stock have a patent fortress at the early stage?\n9. Which sub-$10 companies have been acquiring patents recently?\n10. Top 5 most undervalued patent portfolios.",
+          "system_prompt": "You are an IP valuation analyst. Use USPTO data and company filings. Patent counts should be from the most recent annual report. If uncertain, mark UNVERIFIED. Real companies only.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_saas_sub10",
+          "prompt": "Comprehensive list of ALL SaaS/cloud software companies trading under $10/share. SaaS has produced more 100x+ stocks than any other sector.\n\n1. List every SaaS/cloud company under $10. Include: ticker, price, market cap, ARR or TTM revenue, revenue growth, gross margin, net retention rate.\n2. Sort by revenue growth (highest first).\n3. Which have gross margins >70%? (Key SaaS threshold)\n4. Which have net revenue retention >110%?\n5. Which are FCF positive?\n6. Which serve enterprise customers (stickier revenue)?\n7. Rule of 40 score for each (growth % + FCF margin %).\n8. Which were formerly >$20 and have crashed to <$10? (Potential value plays)\n9. Which are growing ARR >40% with <$500M market cap?\n10. Top 5 SaaS companies with 100x potential and why.",
+          "system_prompt": "You are a SaaS industry analyst. Use company filings and earnings reports. ARR (Annual Recurring Revenue) is the key metric. If a company reports subscription revenue but not ARR, note this. Real companies only. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_emerging_fintech",
+          "prompt": "List ALL fintech companies under $10/share in emerging markets (LatAm, SE Asia, Africa, India). Emerging market fintech has massive TAM expansion potential.\n\n1. Every US-listed emerging market fintech under $10. Ticker, price, market cap, country, revenue, users/customers.\n2. Total addressable market for each geography.\n3. Revenue growth for each.\n4. Unit economics: take rate, ARPU, CAC, LTV.\n5. Regulatory status in each country.\n6. Which have >$100M revenue?\n7. Which are GAAP profitable?\n8. Which have the fastest user growth?\n9. Mobile penetration and banking penetration data for each market.\n10. Compare to early-stage Nubank, MercadoLibre, Sea Limited — are any at a similar stage?",
+          "system_prompt": "You are an emerging markets fintech analyst. Cite company filings, central bank data, and World Bank financial inclusion data. Real companies only. Currency conversion to USD for revenue figures. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_semi_sub10",
+          "prompt": "List ALL semiconductor/chip companies trading under $10/share. Semis produced NVIDIA — could produce another 1000x.\n\n1. Every US-listed semiconductor company under $10. Ticker, price, market cap, revenue, product focus.\n2. Fabless vs fab? (Fabless scales better — lower capex)\n3. Which serve AI/ML inference market?\n4. Which serve automotive/ADAS market?\n5. Revenue growth for each.\n6. Gross margins (key semi metric).\n7. Design wins with major OEMs?\n8. Which have the strongest patent portfolio?\n9. Which are Chinese companies (ADR risk)?\n10. At NVIDIA's current stage, who supplies NVIDIA? Any under $10?",
+          "system_prompt": "You are a semiconductor industry analyst. Cite company filings and industry reports. Real companies with real tickers. Distinguish between fabless, IDM, and foundry. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_energy_transition",
+          "prompt": "List ALL clean energy / energy transition companies under $10/share. Solar, wind, hydrogen, grid storage, EV charging.\n\n1. Every US-listed clean energy company under $10. Ticker, price, market cap, revenue, technology.\n2. Which have actual revenue >$50M?\n3. Which are profitable or FCF positive?\n4. IRA (Inflation Reduction Act) beneficiaries — which get direct subsidies?\n5. Revenue growth for each.\n6. Gross margins.\n7. Backlog / contracted revenue.\n8. Which were formerly >$20 and crashed? (Post-SPAC crashes)\n9. Which have the strongest competitive position?\n10. Hydrogen vs solar vs storage — which sub-sector has the best 1000x odds?",
+          "system_prompt": "You are a clean energy analyst. Be honest about the sector's poor stock performance since 2021. Many clean energy SPACs have crashed 80%+. Cite company filings. Focus on companies with real revenue. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_biotech_approved",
+          "prompt": "List ALL biotech/pharma companies under $10 that have at least ONE FDA-approved product. Approved products = real revenue = lower risk than typical biotech.\n\n1. Every sub-$10 biotech with an FDA-approved product. Ticker, price, market cap, product name, indication, approval date, revenue.\n2. Sort by revenue (highest first).\n3. Which have a pipeline of additional products?\n4. Which are profitable?\n5. Cash runway for each.\n6. Which have orphan drug designation (pricing power)?\n7. Which are targets for acquisition by big pharma?\n8. Patent expiry dates for approved products.\n9. Which have biosimilar risk?\n10. Historical: which sub-$10 biotechs with approved products achieved 10x+?",
+          "system_prompt": "You are a biotech analyst. Use FDA approval databases, company 10-K filings, and ClinicalTrials.gov. Real companies only. FDA-approved = lower risk but need to verify commercial success. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_autonomous",
+          "prompt": "Autonomous Systems sector — self-driving, drones, autonomous shipping, warehouse automation.\n\n1. Current TAM (2024) for autonomous systems (all sub-sectors). Source?\n2. Projected TAM for 2030. Source?\n3. List every sub-$10 autonomous systems company. Ticker, price, market cap, revenue, technology.\n4. Which have actual commercial deployments (not just pilots)?\n5. Revenue growth for each.\n6. Which have regulatory approval (FAA Part 107, NHTSA exemptions)?\n7. Cash runway.\n8. Which serve the defense/military market?\n9. Lidar companies under $10 — list all.\n10. Is autonomous systems a realistic 1000x opportunity?",
+          "system_prompt": "You are an autonomous systems analyst. Be skeptical about self-driving timelines. Cite company filings and regulatory data. Real companies only. Many autonomous SPACs have failed. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_defense_tech",
+          "prompt": "Defense Tech / GovTech sector — the LEAST talked about 1000x sector. Palantir went from $7 to $80+. Who's next?\n\n1. Current TAM (2024) for defense technology and government software. Source?\n2. Projected TAM for 2030 (with geopolitical tension rising). Source?\n3. List every sub-$10 defense tech / GovTech company. Ticker, price, market cap, revenue.\n4. Which have FedRAMP authorization?\n5. Which have existing DoD/IC contracts?\n6. Revenue growth for each.\n7. Gross margins.\n8. Contract backlog.\n9. Palantir pattern: what made PLTR go from $7 to $80? Which sub-$10 company looks similar?\n10. ITAR restrictions as a moat — which companies benefit?",
+          "system_prompt": "You are a defense technology analyst. Cite FPDS (Federal Procurement Data System), company filings, and DoD budget documents. Real companies only. FedRAMP and ITAR create moats. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_data_infrastructure",
+          "prompt": "Data Infrastructure / AI Infrastructure sector — picks and shovels for the AI gold rush.\n\n1. Current TAM for data infrastructure (databases, data pipelines, observability, MLOps). Source?\n2. Projected TAM for 2030. Source?\n3. List every sub-$10 data infrastructure company. Ticker, price, market cap, revenue, product.\n4. Which are in the 'AI infrastructure stack'? (Training data, vector DB, feature stores, inference serving)\n5. Revenue growth for each.\n6. Gross margins.\n7. Net revenue retention.\n8. Open-source vs proprietary — which model works better at scale?\n9. Which sub-$10 company is most likely to be acquired by a hyperscaler?\n10. Snowflake at $120 validates the TAM — who's the sub-$10 version?",
+          "system_prompt": "You are a data infrastructure analyst. Cite Gartner, IDC, and company filings. Real companies only. Focus on companies with real enterprise revenue. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_digital_health",
+          "prompt": "Digital Health / HealthTech sector TAM analysis.\n\n1. Current TAM (2024) for digital health (telehealth, remote monitoring, health AI, EHR). Source?\n2. Projected TAM for 2030. Source?\n3. List every sub-$10 digital health company. Ticker, price, market cap, revenue, product.\n4. Which have >30% revenue growth?\n5. Which are GAAP profitable?\n6. CMS reimbursement as a catalyst — which companies benefit?\n7. FDA-cleared digital therapeutics under $10?\n8. Revenue concentration risk (top customer as % of revenue).\n9. Which survived the post-COVID telehealth crash?\n10. Which sub-$10 company has the strongest moat in healthcare AI?",
+          "system_prompt": "You are a digital health analyst. Cite CMS, FDA, and company filings. Be honest about the sector crash post-COVID. Focus on companies with sustainable revenue. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_gross_margin_80",
+          "prompt": "Screen for sub-$10 stocks with gross margins >80%. Ultra-high margins signal massive pricing power — a 1000x requirement.\n\n1. List every sub-$10 stock with gross margin >80%, market cap >$50M, positive revenue >$10M.\n2. For each: ticker, price, market cap, revenue, gross margin, sector, revenue growth.\n3. Sort by gross margin (highest first).\n4. Which are software companies? (Expected)\n5. Which are NOT software? (Unusual — investigate)\n6. Which have revenue growing >20%?\n7. Which are FCF positive?\n8. Operating margins for each (how much falls to bottom line?).\n9. Which have the widest gap between gross margin and operating margin? (Opportunity to leverage)\n10. Top 5 candidates for 1000x potential based on margin quality.",
+          "system_prompt": "You are a margin quality analyst. Use 10-K filing data. Distinguish between GAAP and non-GAAP margins. 80%+ gross margin is rare and powerful. Real companies only. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_platform_shift",
+          "prompt": "Identify sub-$10 stocks positioned at PLATFORM SHIFTS — the single most important 1000x catalyst. A platform shift is when a new technology platform creates entirely new markets (PC→internet, internet→mobile, mobile→AI).\n\n1. What are the current platform shifts happening RIGHT NOW (2024-2025)?\n   - AI inference moving to edge devices?\n   - Spatial computing (AR/VR) becoming mainstream?\n   - Autonomous systems reaching commercial viability?\n   - Quantum computing achieving quantum advantage?\n   - Energy grid transformation (renewables + storage)?\n2. For EACH platform shift, list the sub-$10 stocks best positioned.\n3. Which platform shift has the highest probability of being real (not hype)?\n4. Which sub-$10 stock is most analogous to NVIDIA in 2012 (sitting on a platform shift before the world notices)?\n5. What's the 'tell' that a platform shift is real vs hype? Historical examples.\n6. Which sub-$10 companies have products already shipping for the next platform?\n7. Revenue traction as proof — which have >50% growth from platform shift products?\n8. Which have ecosystem lock-in starting to form?\n9. Patent moats around the platform shift.\n10. Your single best 1000x bet and why.",
+          "system_prompt": "You are a technology strategist specializing in platform shifts. This is the most important analysis — platform shifts created NVIDIA, Apple, Google, Amazon. Use real companies with real data. Be ruthlessly selective. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_china_adr_real",
+          "prompt": "Honest assessment of Chinese ADRs under $10 — can any realistically 1000x despite the risks?\n\n1. List the top 20 Chinese ADRs under $10 by market cap. Ticker, price, market cap, revenue, P/E, sector.\n2. VIE structure risk — which use VIE? What's the realistic probability of VIE invalidation?\n3. Which Chinese ADRs have REAL revenue >$500M and trade at <5x earnings?\n4. Delisting risk — which are on the SEC's HFCAA list?\n5. Which have dual listings in Hong Kong (risk mitigation)?\n6. PDD went from $20 to $200. What was the pattern? Any sub-$10 ADR showing similar signals?\n7. Which Chinese ADRs have >50% gross margins?\n8. Which are growing revenue >30%?\n9. Government intervention risk for each sector (tech, education, gaming, fintech, EV).\n10. Honest verdict: should a 1000x hunter even look at Chinese ADRs?",
+          "system_prompt": "You are a China/HK equity analyst. Be brutally honest about structural risks (VIE, delisting, government intervention). Use real data from SEC and HKEX filings. Mark UNVERIFIED where uncertain. Do not be blindly bearish or bullish — present facts.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_latam_fintech",
+          "prompt": "Deep dive: Latin American fintech and digital economy under $10. This sector produced Nubank (100x) and MercadoLibre (1000x+ from IPO). Who's next?\n\n1. List every US-listed LatAm fintech/digital economy stock under $10. Ticker, price, market cap, country, revenue.\n2. Banking penetration rates by country (Brazil, Mexico, Colombia, Argentina, Chile).\n3. Mobile payment adoption rates.\n4. Revenue growth for each company.\n5. Unit economics: take rate, ARPU, CAC payback.\n6. Which have >$50M revenue?\n7. Which are GAAP profitable or approaching profitability?\n8. Regulatory licenses held (banking, payments, lending).\n9. Total addressable market for financial services in each country (GDP, unbanked %).\n10. The Nubank pattern: what did NU look like at $3? Any sub-$10 stock matching that pattern now?",
+          "system_prompt": "You are a Latin American fintech analyst. Cite company filings, central bank data, and World Bank financial inclusion reports. Real companies only. PAGS, PAYO, StoneCo, dLocal — compare against these benchmarks. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_se_asia_digital",
+          "prompt": "Deep dive: Southeast Asian digital economy under $10. Sea Limited went from $10 to $350. Grab just turned profitable. Who's next?\n\n1. List every US-listed SE Asian digital economy stock under $10. Ticker, price, market cap, country, revenue.\n2. Internet penetration by country (Indonesia, Philippines, Vietnam, Thailand, Malaysia).\n3. E-commerce penetration rates.\n4. Revenue growth for each company.\n5. Path to profitability timeline.\n6. Total addressable market for digital services in ASEAN ($500M+ people).\n7. Which have >$100M revenue?\n8. Super-app model viability — who's building a super-app?\n9. Competitive landscape vs Grab, GoTo, Sea.\n10. The Sea Limited pattern: what did SE look like at $10? Any sub-$10 matching?",
+          "system_prompt": "You are a Southeast Asian digital economy analyst. Cite company filings and ASEAN economic data. Real companies only. Focus on sustainable unit economics. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "screen_india_digital",
+          "prompt": "Deep dive: Indian digital economy / tech companies under $10 listed in US. India is the next massive digital transformation.\n\n1. List every US-listed Indian tech/digital company under $10. Ticker, price, market cap, revenue.\n2. If <5 stocks, expand to $20.\n3. UPI payment volume growth data (monthly transaction volumes).\n4. India's digital services TAM.\n5. Revenue growth for each company.\n6. Which sectors in India are growing fastest? (Fintech, SaaS, e-commerce, EdTech)\n7. Jio and UPI as catalysts — who benefits in the public markets?\n8. Indian SaaS companies listed abroad?\n9. Indian IT services vs Indian product companies — which has 1000x potential?\n10. Freshworks went from $20 to $12 — is it a buy? Any other crashed Indian tech under $10?",
+          "system_prompt": "You are an Indian technology analyst. Cite company filings, RBI data, and NASSCOM reports. Real companies only. India's digital transformation is massive but many stocks are overvalued. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "moat_durability",
+          "prompt": "Rank these moat types by DURABILITY for producing 1000x returns over 10 years:\n\n1. Network effects (two-sided marketplace)\n2. Switching costs (enterprise software)\n3. Patent portfolio (biotech, semiconductor)\n4. Regulatory license (banking, defense clearance, FDA approval)\n5. Ecosystem lock-in (developer platform like CUDA)\n6. Brand (consumer)\n7. Cost advantage (manufacturing scale)\n8. Data advantage (proprietary data moat)\n\nFor each moat type:\na) Name 3 specific 100x+ stocks that used this moat\nb) Average durability (years before erosion)\nc) Which moat type is MOST common in 1000x stocks?\nd) Which is LEAST likely to be disrupted by AI?\ne) Examples of each moat type in current sub-$10 stocks\nf) Can a sub-$10 company realistically build this moat?",
+          "system_prompt": "You are a competitive strategy analyst. Use real examples of real companies. Moat durability is the KEY differentiator between 10x and 1000x outcomes. Be rigorous. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "dilution_screen",
+          "prompt": "CRITICAL: Screen sub-$10 stocks for DILUTION — the silent 1000x killer. Many small-caps dilute shareholders 10-20% per year, destroying returns.\n\n1. List sub-$10 stocks with the HIGHEST annual share dilution rate (shares outstanding growth). Top 20 worst offenders.\n2. For each: ticker, shares outstanding growth rate (1yr, 3yr), source of dilution (stock comp, convertible notes, ATM offerings).\n3. What annual dilution rate makes 1000x mathematically impossible? Show the math.\n4. Which sub-$10 stocks from earlier screens (SaaS, biotech, clean energy) have >5% annual dilution?\n5. Which have SHRINKING share counts (buybacks at sub-$10 = extremely bullish)?\n6. Stock-based compensation as % of revenue — what's the threshold for concern?\n7. Convertible note overhang — which sub-$10 stocks have large convertible positions?\n8. Warrant overhang from SPAC mergers?\n9. Historical: did any 1000x stock have >5% annual dilution during the early stage?\n10. Your dilution 'kill list' — which promising stocks are killed by dilution?",
+          "system_prompt": "You are a shareholder dilution analyst. Use proxy statements (DEF 14A) and 10-K filings for share count data. Dilution is the most overlooked risk in small-cap investing. Be precise with numbers. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "short_interest_anomaly",
+          "prompt": "Screen for sub-$10 stocks where short interest is DECLINING rapidly while fundamentals are improving. Short sellers covering = they've given up on the bear thesis.\n\n1. Top 20 sub-$10 stocks where short interest dropped >30% in the last 6 months.\n2. For each: ticker, price, short interest (% of float), 6-month change, days to cover.\n3. Cross-reference with revenue growth — which have improving fundamentals + declining shorts?\n4. Which had short interest >20% that's now below 10%? (Short squeeze unwound = bears capitulated)\n5. Which sub-$10 stocks with declining shorts also have insider buying?\n6. Historical: what's the average 12-month return when shorts capitulate at a sub-$10 stock?\n7. Compare with stocks where short interest is RISING — any surprising names?\n8. Cost to borrow data — which sub-$10 stocks are hardest to short? (Supply squeeze)\n9. Institutional ownership changes alongside short interest changes.\n10. Top 5 'shorts capitulating' candidates.",
+          "system_prompt": "You are a short interest analyst. Use FINRA/exchange short interest data and SEC filings. Short interest data is reported bi-monthly. Real companies only. Mark UNVERIFIED where data may be stale.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "etf_inclusion_catalyst",
+          "prompt": "Screen for sub-$10 stocks that are being ADDED to major ETFs or are likely to be added soon. ETF inclusion creates forced buying — a powerful catalyst.\n\n1. Which sub-$10 stocks were added to major ETFs (Russell 2000, S&P SmallCap 600, sector ETFs) in the last 12 months?\n2. For each: ticker, ETF added to, date of inclusion, price impact (%).\n3. Which sub-$10 stocks are likely to be added in the next rebalance? (Based on market cap thresholds)\n4. Russell 2000 reconstitution (June annually) — which sub-$10 stocks are on the bubble?\n5. Sector-specific ETF additions (ARK funds, AI ETFs, clean energy ETFs).\n6. What's the average price impact of Russell 2000 inclusion for a sub-$10 stock?\n7. Which sub-$10 stocks are in ZERO ETFs currently? (Pre-inclusion opportunity)\n8. International index additions (MSCI, FTSE) — any sub-$10 stocks being added?\n9. ETF ownership concentration — which sub-$10 stocks have >15% ETF ownership?\n10. Top 5 'about to be included' candidates.",
+          "system_prompt": "You are an ETF analyst. Use Russell, MSCI, and S&P index methodology documents. ETF inclusion timelines are predictable. Real companies only. Mark UNVERIFIED where index changes are estimated.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tam_bci",
+          "prompt": "Brain-Computer Interface (BCI) / Neurotechnology sector TAM analysis. Neuralink + new FDA pathways = potential platform shift.\n\n1. Current TAM (2024) for BCI and neurotechnology. Source?\n2. Projected TAM for 2030, 2035. Source?\n3. List every publicly traded BCI/neurotech company (any price). Ticker, price, market cap, technology, stage.\n4. Which are under $10?\n5. FDA regulatory pathway for BCIs — current status.\n6. Neuralink's competitive impact on publicly traded companies.\n7. Medical device vs consumer BCI — which has the closer path to revenue?\n8. Revenue for each company.\n9. Patent landscape.\n10. Is BCI a realistic 1000x opportunity or a 20+ year wait?",
+          "system_prompt": "You are a neurotechnology analyst. Be honest about the extremely early stage of this sector. Most companies are pre-revenue. Cite FDA and company filings. Real companies only. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "project": "API Cost Optimization — Find Best Verified Providers to Cut Costs",
+  "description": "35 agents to research verified AI API providers, grey market alternatives, consolidation strategies, and produce actionable cost-cutting recommendations with real website links",
+  "model": "deepseek-chat",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Official AI API Provider Research",
+      "tasks": [
+        {
+          "task_id": "p1_openai_pricing",
+          "prompt": "Research OpenAI's CURRENT pricing as of 2025-2026 in detail.\n\nFor EACH model provide:\n- Model name and version\n- Input price per 1M tokens\n- Output price per 1M tokens\n- Context window\n- Rate limits by tier\n- Any batch/volume discounts\n- Commitment pricing if available\n\nModels to cover: GPT-4o, GPT-4o-mini, GPT-4 Turbo, GPT-3.5 Turbo, o1, o1-mini, DALL-E 3, Whisper, TTS, Embeddings (text-embedding-3-small, text-embedding-3-large).\n\nAlso research: OpenAI's enterprise tier pricing, Microsoft Azure OpenAI pricing differences, any recent price cuts or changes.\n\nProvide the OFFICIAL pricing page URL: https://openai.com/api/pricing/",
+          "system_prompt": "You are a cloud pricing analyst. Provide exact pricing figures from official sources. Include the official URL for every pricing claim.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_anthropic_pricing",
+          "prompt": "Research Anthropic's CURRENT Claude API pricing as of 2025-2026.\n\nFor EACH model:\n- Model name (Claude 3.5 Sonnet, Claude 3.5 Haiku, Claude 3 Opus, Claude 4 Sonnet, etc.)\n- Input price per 1M tokens\n- Output price per 1M tokens\n- Context window\n- Rate limits by tier\n- Batch API pricing (50% discount?)\n- Any volume discounts\n\nAlso research: Anthropic's enterprise pricing, AWS Bedrock Claude pricing (is it cheaper or more expensive than direct?), Google Cloud Vertex AI Claude pricing.\n\nProvide the OFFICIAL pricing page URL: https://www.anthropic.com/pricing\n\nKey question: What is the cheapest way to access Claude models?",
+          "system_prompt": "You are a cloud pricing analyst. Provide exact pricing from official sources. Compare direct API vs cloud marketplace pricing.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_google_pricing",
+          "prompt": "Research Google's AI API pricing as of 2025-2026.\n\nCover:\n- Gemini 1.5 Pro pricing (input/output per 1M tokens)\n- Gemini 1.5 Flash pricing\n- Gemini 2.0 pricing if available\n- Google Cloud Vertex AI pricing for Gemini\n- Any free tiers (AI Studio gives free Gemini access?)\n- Rate limits and quotas\n- Batch processing discounts\n\nAlso research: How does Gemini pricing compare to GPT-4o and Claude 3.5 Sonnet for equivalent capability? What are the actual cost savings?\n\nProvide URLs: https://ai.google.dev/pricing, https://cloud.google.com/vertex-ai/generative-ai/pricing",
+          "system_prompt": "You are a cloud pricing analyst. Compare Google's AI pricing to competitors. Note any significant cost advantages or disadvantages.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_alternative_providers",
+          "prompt": "Research ALL alternative AI API providers that offer cheaper access than OpenAI/Anthropic/Google.\n\nProviders to research:\n1. Mistral AI (mistral.ai) — pricing for Mistral Large, Medium, Small\n2. Together AI (together.ai) — pricing for hosted open-source models\n3. Groq (groq.com) — pricing for fast inference\n4. Fireworks AI (fireworks.ai) — pricing\n5. Deepseek (deepseek.com) — pricing for DeepSeek V3\n6. Perplexity API (docs.perplexity.ai) — pricing\n7. Cohere (cohere.com) — pricing for Command R+\n8. Replicate (replicate.com) — pricing for open-source models\n9. Anyscale/Endpoints — pricing\n10. OpenRouter (openrouter.ai) — aggregator pricing\n\nFor EACH: exact pricing per 1M tokens (input/output), models available, free tiers, website URL, quality vs GPT-4o.\n\nKey question: Which provider gives the best quality-per-dollar for each use case (chat, coding, analysis, embeddings)?",
+          "system_prompt": "You are a cost optimization analyst. Rank providers by cost-effectiveness. Provide exact pricing with URLs.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p1_open_source_self_host",
+          "prompt": "Research the ACTUAL cost of self-hosting open-source models as an alternative to paid APIs.\n\nModels to analyze:\n1. Llama 3.1 405B, 70B, 8B — what hardware needed? Monthly cost on cloud GPU?\n2. Mistral Large — self-hosting cost\n3. DeepSeek V3 — self-hosting cost\n4. Qwen 2.5 72B — self-hosting cost\n5. Command R+ — self-hosting cost\n\nFor each, calculate:\n- Minimum GPU requirements (A100, H100, RTX 4090?)\n- Cloud GPU rental cost (RunPod, Lambda, Vast.ai)\n- Tokens per second throughput\n- Cost per 1M tokens when self-hosted\n- Break-even point vs API pricing\n\nAlso research: vLLM, TGI, Ollama deployment costs. What's the REALISTIC monthly cost for a self-hosted setup that replaces a $500/mo API bill?\n\nProvide URLs for GPU pricing: runpod.io, lambdalabs.com, vast.ai",
+          "system_prompt": "You are a cloud infrastructure cost analyst. Calculate realistic self-hosting costs including all hidden costs (storage, bandwidth, maintenance). Provide URLs.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_proxy_aggregator_research",
+          "prompt": "Research ALL AI API proxy/aggregator services that consolidate multiple providers and offer cost savings.\n\nServices to research:\n1. OpenRouter (openrouter.ai) — How does it work? Pricing markup? Which models?\n2. LiteLLM (litellm.ai) — Self-hosted proxy, no markup? Features?\n3. Portkey (portkey.ai) — Gateway features, pricing?\n4. Helicone (helicone.ai) — Observability + gateway, pricing?\n5. Martian (withmartian.com) — Smart routing, pricing?\n6. Braintrust Proxy — Features?\n7. AI Gateway by Cloudflare — Features, pricing?\n\nFor EACH: How much money can it actually save? Does it add latency? What's the markup? Can it auto-route to cheapest model?\n\nKey question: What is the BEST way to consolidate multiple AI API providers into one gateway to minimize costs?",
+          "system_prompt": "You are an API infrastructure analyst. Focus on actual cost savings achievable through each aggregator. Provide exact pricing and URLs.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_cost_cutting_strategies",
+          "prompt": "Research ALL proven strategies for cutting AI API costs without sacrificing quality.\n\nStrategies to investigate:\n1. Prompt caching (Anthropic, OpenAI) — how much does it save? How to implement?\n2. Batch API (OpenAI, Anthropic) — 50% savings? Tradeoffs?\n3. Model cascading — use cheap model first, escalate to expensive model only when needed\n4. Semantic caching — cache similar prompts, serve cached responses\n5. Prompt compression — reduce token count without losing quality\n6. Fine-tuning smaller models — when is it cheaper than using GPT-4o?\n7. Token optimization — reduce input/output tokens\n8. Commitment discounts — AWS Savings Plans, Azure Reserved Capacity\n9. Multi-provider arbitrage — switch providers based on real-time pricing\n10. Embedding optimization — use smaller embedding models for most tasks\n\nFor EACH strategy: estimated cost reduction (%), implementation complexity, quality impact, and a real example.\n\nKey question: What combination of strategies can reduce a $1,000/mo AI API bill to $200/mo or less?",
+          "system_prompt": "You are an AI cost optimization expert. Provide specific, actionable strategies with realistic savings estimates. Back up claims with evidence.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        }
+      ],
+      "synthesis_prompt": "Synthesize ALL pricing research into:\n1. A comprehensive PRICE COMPARISON TABLE of all AI API providers (input/output per 1M tokens for comparable models)\n2. The TOP 5 cheapest providers for each use case (chat, coding, embeddings, image gen)\n3. The BEST cost-cutting strategies ranked by savings potential\n4. A DECISION FRAMEWORK: when to use which provider\n5. The MINIMUM viable cost for different usage levels ($100/mo, $500/mo, $1,000/mo, $5,000/mo)\n6. All URLs for pricing pages"
+    },
+    {
+      "phase": 2,
+      "name": "Grey Market & Unauthorized Access Research",
+      "tasks": [
+        {
+          "task_id": "p2_grey_market_current",
+          "prompt": "Research the CURRENT state of AI API grey market/proxy services as of 2025-2026.\n\nWhat actually exists today:\n1. What services offer discounted access to OpenAI/Anthropic/Google APIs?\n2. How do they work technically? (API key reselling? Reverse proxy? Token pooling?)\n3. What are the ACTUAL prices being charged? (not the inflated 96-98% discount claims)\n4. What are the REAL risks? (key revocation, data privacy, ToS violation, legal)\n5. Are there any LEGITIMATE discount programs? (startup credits, academic pricing, non-profit discounts)\n\nDo NOT fabricate services or prices. Only report what you can verify.\n\nKey question: Is using grey market APIs actually worth the risk, or are there LEGITIMATE ways to get similar discounts?",
+          "system_prompt": "You are a procurement analyst. Focus on verifiable facts. Clearly distinguish between legitimate discounts and grey market risks. Do not fabricate services.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_legitimate_discounts",
+          "prompt": "Research ALL legitimate discount programs for AI APIs.\n\n1. OpenAI:\n- Startup Fund / Startup program — how to apply? How much credit?\n- Microsoft for Startups (includes Azure OpenAI credits) — requirements?\n- Academic/research pricing — available?\n- Non-profit pricing — available?\n- Volume discounts — at what spend level?\n\n2. Anthropic:\n- Anthropic for Startups — exists? Requirements?\n- AWS Activate credits (usable for Bedrock Claude) — how much?\n- Google Cloud credits (usable for Vertex Claude) — how much?\n\n3. Google:\n- Google Cloud credits for startups — how much?\n- AI Studio free tier — limits?\n- Google for Education — AI pricing?\n\n4. Others:\n- Y Combinator deal (gives cloud credits including AI)\n- Microsoft for Startups Founders Hub\n- AWS Activate\n- GitHub Student Developer Pack\n\nFor EACH: exact credit amount, eligibility requirements, application URL, time to approval.",
+          "system_prompt": "You are a startup finance advisor. Research all legitimate ways to get free or discounted AI API access. Provide exact URLs and application links.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_aws_bedrock_analysis",
+          "prompt": "Deep analysis of AWS Bedrock as a cost optimization strategy for AI APIs.\n\n1. Which models are available on Bedrock? (Claude, Llama, Mistral, Cohere, etc.)\n2. How does Bedrock pricing compare to direct API pricing for EACH model?\n3. Can you use AWS Savings Plans or Reserved Capacity for Bedrock?\n4. Provisioned Throughput pricing — when does it make sense?\n5. On-Demand vs Provisioned — break-even analysis\n6. Cross-region pricing differences\n7. Data transfer costs\n8. Bedrock Batch pricing (if available)\n\nKey calculation: At $1,000/mo spend, how much can you save using Bedrock vs direct API? At $5,000/mo? At $10,000/mo?\n\nProvide URL: https://aws.amazon.com/bedrock/pricing/",
+          "system_prompt": "You are an AWS cost optimization specialist. Calculate exact savings for different usage levels. Provide the Bedrock pricing page URL.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_azure_openai_analysis",
+          "prompt": "Deep analysis of Azure OpenAI as a cost optimization strategy.\n\n1. How does Azure OpenAI pricing compare to direct OpenAI pricing?\n2. Azure Committed Use Discounts — how much savings at each tier?\n3. Provisioned Throughput Units (PTUs) — pricing and when they make sense\n4. Azure Savings Plans applicable to AI workloads?\n5. Azure Dev/Test pricing — can it be used for AI development?\n6. Microsoft for Startups credits — how much is applicable to Azure OpenAI?\n7. Cross-region pricing differences\n8. Azure OpenAI data residency benefits\n\nKey calculation: At what monthly spend does Azure OpenAI become cheaper than direct OpenAI? What's the maximum discount achievable?\n\nProvide URL: https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/",
+          "system_prompt": "You are an Azure cost optimization specialist. Compare Azure OpenAI to direct OpenAI pricing at different usage levels.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_deepseek_analysis",
+          "prompt": "Deep analysis of DeepSeek as the leading cost-effective alternative to GPT-4o and Claude.\n\n1. DeepSeek V3 / DeepSeek Chat — exact current pricing\n2. DeepSeek Coder — pricing and capabilities\n3. How does DeepSeek quality compare to GPT-4o on benchmarks?\n4. DeepSeek API reliability — uptime, latency, rate limits\n5. Data privacy concerns — where is data processed? Chinese company implications?\n6. Can DeepSeek replace GPT-4o for most use cases?\n7. DeepSeek R1 (reasoning model) — pricing vs o1?\n8. Self-hosting DeepSeek models — is it possible? Cost?\n\nKey question: For someone spending $500/mo on OpenAI, how much could they save by switching appropriate workloads to DeepSeek? What are the risks?\n\nProvide URL: https://platform.deepseek.com/api-docs/pricing",
+          "system_prompt": "You are an AI model evaluation analyst. Compare DeepSeek to GPT-4o/Claude objectively. Highlight both cost savings AND risks.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_openrouter_analysis",
+          "prompt": "Deep analysis of OpenRouter as an API aggregator for cost optimization.\n\n1. How does OpenRouter work? What's their business model?\n2. What markup do they charge vs direct API pricing?\n3. Which models are available and at what prices?\n4. Can you use OpenRouter to automatically route to cheapest model?\n5. What's their uptime and reliability?\n6. Do they offer any cost optimization features? (caching, batching, routing)\n7. Privacy — do they store/log prompts?\n8. How does OpenRouter compare to LiteLLM (self-hosted)?\n\nKey question: Is OpenRouter actually cheaper than direct API access for any provider, or is the convenience worth the markup?\n\nProvide URL: https://openrouter.ai/docs",
+          "system_prompt": "You are an API infrastructure analyst. Provide exact pricing comparison. Calculate the actual markup for popular models.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_real_world_cost_cases",
+          "prompt": "Research REAL-WORLD cost optimization case studies for AI API usage.\n\nFind actual examples of:\n1. Companies that reduced AI API costs by 50%+ — how did they do it?\n2. Startups that switched from GPT-4 to cheaper alternatives — what happened to quality?\n3. Teams that implemented model cascading — actual cost savings?\n4. Prompt engineering reducing token usage — real examples with numbers\n5. Semantic caching implementations — actual hit rates and savings\n6. Fine-tuned smaller models replacing GPT-4 — when did it work?\n7. Multi-provider strategies — companies using 3+ providers for different tasks\n\nFor EACH: company name (or anonymous), monthly spend before/after, strategy used, quality impact.\n\nKey question: What's the most realistic cost reduction someone can achieve without sacrificing quality?",
+          "system_prompt": "You are a cost optimization consultant. Provide real examples. Do not fabricate case studies. If examples are anonymous, note that.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "Synthesize ALL research into:\n1. VERIFIED TOP 5 PROVIDERS ranked by cost-effectiveness with exact pricing and URLs\n2. The BEST legitimate discount programs with application links\n3. Cloud marketplace comparison (Bedrock vs Azure OpenAI vs direct)\n4. DeepSeek as a GPT-4o replacement — honest assessment\n5. OpenRouter/LiteLLM as aggregation strategy\n6. Real-world cost reduction strategies ranked by ROI\n7. RISK ASSESSMENT for each cost-cutting approach\n8. The single BEST recommendation for someone spending $500/mo on AI APIs"
+    },
+    {
+      "phase": 3,
+      "name": "Architecture & Implementation Planning",
+      "tasks": [
+        {
+          "task_id": "p3_pipeline_architecture",
+          "prompt": "Design a COST-OPTIMIZED AI API pipeline architecture for someone currently spending $500-$1,000/mo on AI APIs.\n\nThe architecture should:\n1. Use LiteLLM or OpenRouter as a unified gateway\n2. Route different request types to different providers based on cost/quality\n3. Implement prompt caching (Anthropic native + semantic caching)\n4. Implement model cascading (cheap model first → expensive only when needed)\n5. Track costs per request, per model, per task type\n6. Auto-failover between providers\n7. Log all requests for optimization analysis\n\nProvide:\n- Architecture diagram (ASCII)\n- Component list with verified tools and pricing\n- Routing rules (which requests go to which provider)\n- Expected cost reduction vs current single-provider setup\n- Implementation timeline\n\nUse ONLY verified tools — no fabricated products.\n\nContext from Phase 1-2: {previous_synthesis}",
+          "system_prompt": "You are a solutions architect. Design a practical, implementable architecture. Use only tools that actually exist. Provide setup instructions.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p3_routing_strategy",
+          "prompt": "Design the optimal MODEL ROUTING STRATEGY for cost optimization.\n\nFor each use case, which provider/model should be used:\n\n1. Simple chat/Q&A → cheapest model that works\n2. Complex reasoning → best model at reasonable cost\n3. Code generation → best coding model per dollar\n4. Embeddings → cheapest embedding model that's good enough\n5. Image generation → cheapest option\n6. Translation → cheapest option\n7. Summarization → cheapest option\n8. Data extraction → cheapest option\n\nFor EACH use case:\n- Recommended provider + model\n- Cost per 1M tokens\n- Quality tier (A/B/C)\n- Why this is the optimal choice\n- Fallback if primary is unavailable\n\nProvide a routing table that can be implemented in LiteLLM config.\n\nContext from Phase 1-2: {previous_synthesis}",
+          "system_prompt": "You are an AI systems architect. Optimize for cost while maintaining acceptable quality. Provide actionable routing rules.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_caching_strategy",
+          "prompt": "Design the optimal CACHING STRATEGY for AI API cost reduction.\n\n1. Anthropic Prompt Caching:\n- How does it work? Setup instructions\n- Expected savings for different workloads\n- Limitations and gotchas\n\n2. Semantic Caching:\n- What tools exist? (GPTCache, Redis + embeddings, custom)\n- Expected cache hit rates for different use cases\n- Quality impact of serving cached responses\n- Implementation complexity\n\n3. Response Caching:\n- When is it safe to cache AI responses?\n- Cache invalidation strategy\n- Storage costs\n\n4. KV-Cache Reuse:\n- Provider support (OpenAI, Anthropic, Google)\n- Expected savings\n\nFor the overall strategy:\n- What percentage of requests can typically be cached?\n- Expected cost reduction from caching alone\n- Implementation timeline and tools needed\n\nContext from Phase 1-2: {previous_synthesis}",
+          "system_prompt": "You are a caching systems engineer. Provide practical implementation details with realistic savings estimates.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_monitoring_setup",
+          "prompt": "Design the MONITORING & COST TRACKING setup for the optimized pipeline.\n\nTools to evaluate:\n1. Helicone ($20/mo) — real-time cost tracking, anomaly alerts\n2. Langfuse ($59/mo) — LLM observability, cost per trace\n3. Portkey — gateway + analytics\n4. Custom Grafana + Prometheus setup (free)\n5. LiteLLM built-in analytics\n\nThe monitoring should track:\n- Cost per request, per model, per task type\n- Latency per provider\n- Cache hit rates\n- Quality scores (if applicable)\n- Budget alerts and auto-shutoff\n- Provider availability/uptime\n\nKey question: What's the MINIMUM monitoring setup to ensure you're actually saving money?\n\nContext from Phase 1-2: {previous_synthesis}",
+          "system_prompt": "You are a DevOps engineer specializing in AI infrastructure monitoring. Design a practical setup with verified tools.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_migration_plan",
+          "prompt": "Create a STEP-BY-STEP migration plan for someone currently using OpenAI directly to move to the optimized multi-provider setup.\n\nPhase 1 (Week 1): Quick wins\n- Set up LiteLLM proxy\n- Enable Anthropic prompt caching\n- Switch embeddings to cheapest model\n- Expected savings: ?%\n\nPhase 2 (Week 2-3): Model routing\n- Configure routing rules\n- Add DeepSeek for appropriate workloads\n- Add Gemini for high-volume/low-complexity\n- Expected savings: ?%\n\nPhase 3 (Week 4-6): Caching & optimization\n- Implement semantic caching\n- Fine-tune routing based on logs\n- Set up cost alerts\n- Expected savings: ?%\n\nPhase 4 (Month 2-3): Advanced\n- Consider self-hosting for high-volume workloads\n- Evaluate fine-tuning smaller models\n- Negotiate volume discounts\n- Expected savings: ?%\n\nProvide realistic timeline and expected cumulative savings at each phase.\n\nContext from Phase 1-2: {previous_synthesis}",
+          "system_prompt": "You are a technical project manager. Provide realistic timelines with concrete steps. Include rollback plans.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_risk_assessment",
+          "prompt": "Assess ALL risks associated with AI API cost optimization strategies.\n\nFor each strategy, evaluate:\n\n1. Using DeepSeek as GPT-4o replacement:\n- Data privacy (Chinese company)\n- Reliability/uptime risk\n- Quality degradation risk\n- Vendor lock-in risk\n\n2. Multi-provider setup:\n- Integration complexity\n- Inconsistent responses\n- Support fragmentation\n\n3. Self-hosting:\n- Maintenance burden\n- GPU cost volatility\n- Security responsibility\n\n4. Grey market proxies:\n- Legal risk (ToS violation)\n- Data privacy risk\n- Key revocation risk\n- No support/SLA\n\n5. Aggressive caching:\n- Stale response risk\n- Quality degradation\n- Storage costs\n\n6. Using smaller/cheaper models:\n- Quality degradation\n- User experience impact\n- Edge case failures\n\nFor EACH: risk level (1-5), mitigation strategy, worst case scenario.\n\nContext from Phase 1-2: {previous_synthesis}",
+          "system_prompt": "You are a risk management consultant. Be honest about risks. Provide specific mitigation strategies.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_final_recommendation",
+          "prompt": "Produce the FINAL RECOMMENDATION for the optimal AI API cost-cutting strategy.\n\nFor someone spending $500/mo on OpenAI APIs, provide:\n\n1. THE TOP 5 PROVIDERS with exact pricing and website links:\n   - Rank by cost-effectiveness for their primary use case\n   - Include ONLY verified providers with real URLs\n   - Note the best plan/tier at each provider\n\n2. THE OPTIMAL MULTI-PROVIDER SETUP:\n   - Which provider for which task\n   - Expected monthly cost after optimization\n   - Expected savings percentage\n\n3. THE 3-STEP QUICK WIN PLAN:\n   - Step 1: What to do this week (biggest immediate savings)\n   - Step 2: What to do this month\n   - Step 3: What to do in 3 months\n\n4. WHAT TO AVOID:\n   - Strategies that aren't worth the effort\n   - Providers to avoid (including grey market)\n   - Common mistakes\n\nThis must be ACTIONABLE with real URLs that the user can click and verify.\n\nContext from Phase 1-2: {previous_synthesis}",
+          "system_prompt": "You are a senior AI advisor. Provide a clear, actionable recommendation. Only include verified data with real URLs.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        }
+      ],
+      "synthesis_prompt": "Produce the FINAL DELIVERABLE:\n\n1. TOP 5 VERIFIED PROVIDERS with website links, exact pricing, and best-for use case\n2. OPTIMAL PIPELINE ARCHITECTURE (ASCII diagram + component list)\n3. ROUTING TABLE (which model for which task)\n4. MIGRATION PLAN (4 phases with timelines)\n5. EXPECTED SAVINGS: From $500/mo → $X/mo (with breakdown)\n6. RISK MATRIX (for each strategy)\n7. QUICK WIN: What to do TODAY to start saving immediately\n8. ALL URLs compiled for easy access"
+    },
+    {
+      "phase": 4,
+      "name": "Verification & Consolidation",
+      "tasks": [
+        {
+          "task_id": "p4_verify_pricing",
+          "prompt": "VERIFY all pricing claims from previous phases. For each provider mentioned, confirm:\n1. The exact current pricing from their official website\n2. Whether the pricing page URL is correct and accessible\n3. Any pricing changes in the last 3 months\n4. Hidden costs not mentioned (data transfer, fine-tuning, storage)\n\nProviders to verify: OpenAI, Anthropic, Google/Gemini, DeepSeek, Mistral, Together AI, Groq, Fireworks, Cohere, OpenRouter, AWS Bedrock, Azure OpenAI.\n\nFor EACH: exact URL to their pricing page.\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a pricing verification analyst. Only state what you can confirm. Provide exact URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_verify_tools",
+          "prompt": "VERIFY all tools recommended for the pipeline. For each:\n1. Does it exist? Website URL?\n2. Is it currently maintained? Last update?\n3. Is the pricing still current?\n4. Are there any known issues or limitations not mentioned?\n\nTools to verify: LiteLLM, Helicone, Langfuse, Portkey, GPTCache, OpenRouter, vLLM.\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a technical verification analyst. Confirm tool existence and pricing. Provide URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_verify_savings",
+          "prompt": "VERIFY the savings claims from previous phases. For someone spending $500/mo on OpenAI:\n\n1. Is the claimed savings from switching to DeepSeek realistic?\n2. Is the claimed savings from prompt caching realistic?\n3. Is the claimed savings from model cascading realistic?\n4. Is the claimed savings from cheaper embeddings realistic?\n5. Is the total claimed savings realistic?\n\nDo the MATH: If someone sends X requests/month at Y tokens each:\n- Current cost with GPT-4o\n- Cost with optimized multi-provider setup\n- Actual savings\n\nBe conservative in estimates.\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a financial analyst. Verify all savings calculations. Be conservative. Show your math.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_competitive_update",
+          "prompt": "Check for any RECENT (2025-2026) changes in AI API pricing or new providers:\n\n1. Have OpenAI, Anthropic, or Google cut prices recently?\n2. Are there any NEW providers not covered in earlier phases?\n3. Any provider shutdowns or significant issues?\n4. New features affecting cost (longer context windows, native tool use, etc.)?\n5. Any new self-hosting options (Apple MLX, NVIDIA NIM, etc.)?\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a market analyst tracking AI API pricing. Report on recent changes.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_top5_final",
+          "prompt": "Produce the DEFINITIVE TOP 5 AI API PROVIDERS for cost optimization.\n\nFor EACH provider:\n1. Company name\n2. EXACT website URL (the user will click and verify)\n3. EXACT pricing per 1M tokens (input/output)\n4. Best model for the money\n5. Free tier details\n6. Best use case\n7. Risk level (1-5)\n8. One-line verdict\n\nThe ranking must be based on VERIFIED pricing only. No fabricated providers.\n\nAlso include: The #1 RECOMMENDATION for someone who wants to cut costs immediately.\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a senior procurement advisor. Only recommend providers you can verify. Provide clickable URLs.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p4_consolidated_action",
+          "prompt": "Produce the CONSOLIDATED ACTION PLAN combining all findings.\n\nFormat as a checklist the user can execute TODAY:\n\n□ Step 1: [Action] — [Expected savings] — [URL]\n□ Step 2: [Action] — [Expected savings] — [URL]\n□ Step 3: [Action] — [Expected savings] — [URL]\n...\n\nAlso produce:\n- Total expected monthly savings\n- Timeline to achieve full savings\n- What NOT to do (grey market warnings, quality traps)\n- Break-even analysis for each major change\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are an executive advisor. Produce a clear, actionable checklist. Only include verified actions.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_dashboard_data",
+          "prompt": "Produce STRUCTURED DATA for a dashboard visualization:\n\n1. PROVIDER COMPARISON TABLE: Name, URL, Input$/1MT, Output$/1MT, Free Tier, Best For\n2. SAVINGS CALCULATOR: Current spend → Optimized spend for $100, $500, $1K, $5K levels\n3. ROUTING TABLE: Use case → Provider → Model → Cost\n4. RISK MATRIX: Strategy → Risk Level → Mitigation\n5. TIMELINE: Phase → Week → Action → Savings\n6. TOP 5 PROVIDERS: Final ranking with all details\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a data analyst. Produce structured, dashboard-ready data. Use consistent formatting.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        }
+      ],
+      "synthesis_prompt": "Produce the FINAL VERIFIED REPORT:\n\n1. TOP 5 PROVIDERS — verified with URLs, exact pricing, recommendations\n2. PIPELINE ARCHITECTURE — verified tools, routing strategy, caching strategy\n3. SAVINGS ESTIMATE — conservative, with math shown\n4. MIGRATION PLAN — 4 phases with timeline\n5. RISK ASSESSMENT — for each strategy\n6. ACTION CHECKLIST — what to do TODAY\n7. ALL URLs — compiled and verified\n8. WHAT TO AVOID — grey market risks, quality traps\n\nThis must be the SINGLE DOCUMENT the user needs to start cutting costs immediately."
+    },
+    {
+      "phase": 5,
+      "name": "Final Dashboard Package",
+      "tasks": [
+        {
+          "task_id": "p5_executive_summary",
+          "prompt": "Write the EXECUTIVE SUMMARY (300 words max) for the cost optimization dashboard.\n\nInclude:\n1. Current state: What most people spend on AI APIs\n2. The opportunity: How much can be saved\n3. The top 5 providers with one-line descriptions\n4. The single best immediate action\n5. Total expected savings range\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a CTO advisor. Be concise, direct, and actionable.",
+          "temperature": 0.3,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "p5_provider_cards",
+          "prompt": "Produce detailed PROVIDER CARDS for the Top 5 providers.\n\nFor EACH provider:\n- Name\n- Website URL (MUST be real and clickable)\n- Logo description\n- Pricing table (model → input → output per 1M tokens)\n- Free tier details\n- Best for (use case)\n- Risk level\n- Pros (3 bullet points)\n- Cons (3 bullet points)\n- Verdict (one sentence)\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a product analyst. Provide balanced, honest assessments. Only include verified URLs.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_savings_calculator",
+          "prompt": "Produce a SAVINGS CALCULATOR showing before/after costs.\n\nFor monthly spend levels of $100, $500, $1,000, $5,000:\n\nCurrent (single provider — OpenAI GPT-4o):\n- Cost: $X\n\nOptimized (multi-provider):\n- Simple chat: [provider] @ [price] = $X\n- Complex reasoning: [provider] @ [price] = $X\n- Embeddings: [provider] @ [price] = $X\n- Code generation: [provider] @ [price] = $X\n- Total: $X\n- Savings: $X (X%)\n\nShow the math for each level.\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a financial analyst. Show clear before/after calculations. Be conservative.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p5_implementation_guide",
+          "prompt": "Produce the IMPLEMENTATION GUIDE — step-by-step instructions to set up the optimized pipeline.\n\nStep 1: Install LiteLLM proxy\n- Commands to run\n- Config file structure\n\nStep 2: Configure providers\n- How to add each provider API key\n- Routing rules config\n\nStep 3: Set up monitoring\n- Helicone or Langfuse setup\n- Cost tracking dashboard\n\nStep 4: Enable caching\n- Prompt caching setup\n- Semantic caching setup\n\nProvide actual code/config snippets that work.\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a DevOps engineer. Provide copy-paste-ready setup instructions.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_url_directory",
+          "prompt": "Compile the COMPLETE URL DIRECTORY — every verified link the user needs.\n\nOrganize by category:\n\n1. PROVIDER PRICING PAGES:\n- OpenAI pricing: [URL]\n- Anthropic pricing: [URL]\n- Google AI pricing: [URL]\n- DeepSeek pricing: [URL]\n- Mistral pricing: [URL]\n- Together AI pricing: [URL]\n- Groq pricing: [URL]\n- Fireworks pricing: [URL]\n- Cohere pricing: [URL]\n\n2. AGGREGATORS:\n- OpenRouter: [URL]\n- LiteLLM docs: [URL]\n- Portkey: [URL]\n\n3. MONITORING TOOLS:\n- Helicone: [URL]\n- Langfuse: [URL]\n\n4. CLOUD MARKETPLACES:\n- AWS Bedrock pricing: [URL]\n- Azure OpenAI pricing: [URL]\n- Google Vertex AI pricing: [URL]\n\n5. DISCOUNT PROGRAMS:\n- Microsoft for Startups: [URL]\n- AWS Activate: [URL]\n- Google Cloud credits: [URL]\n\nEvery URL must be real and verified.\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a research librarian. Compile exact, verified URLs only. If a URL cannot be verified, note it.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p5_risk_matrix",
+          "prompt": "Produce the RISK MATRIX for the cost optimization dashboard.\n\nFor each strategy:\n| Strategy | Risk Level (1-5) | Quality Impact | Effort | Savings Potential | Verdict |\n\nStrategies to rate:\n1. Switch to DeepSeek for simple tasks\n2. Use Gemini Flash for high-volume\n3. Multi-provider routing via LiteLLM\n4. Anthropic prompt caching\n5. Semantic caching\n6. Model cascading\n7. Self-hosting open-source models\n8. AWS Bedrock for committed use\n9. Grey market proxy services\n10. Fine-tuning smaller models\n\nFor each: honest assessment of whether it's worth doing.\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a risk analyst. Be honest about trade-offs. Not every strategy is worth it.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p5_pipeline_stats",
+          "prompt": "Produce the PIPELINE STATISTICS for this run.\n\n- Total agents: 35\n- Phases: 5\n- Focus: AI API cost optimization\n- Key outputs: Top 5 providers, savings calculator, implementation guide\n- Confidence level: based on verification in Phase 4\n\nAlso produce a brief 'methodology' section explaining how the research was conducted and verified.\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a research methodology analyst. Document the process clearly.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        }
+      ],
+      "synthesis_prompt": "Produce the FINAL DASHBOARD DATA PACKAGE:\n\n1. EXECUTIVE SUMMARY (300 words)\n2. TOP 5 PROVIDERS with cards (name, URL, pricing, best-for, verdict)\n3. SAVINGS CALCULATOR (before/after for 4 spend levels)\n4. IMPLEMENTATION GUIDE (step-by-step with code)\n5. URL DIRECTORY (all verified links)\n6. RISK MATRIX (10 strategies rated)\n7. PIPELINE STATS\n\nThis is the SINGLE SOURCE OF TRUTH for AI API cost optimization."
+    }
+  ]
+}

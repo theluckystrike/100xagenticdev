@@ -1,0 +1,148 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "upst_financials",
+          "prompt": "Deep dive UPST (Upstart Holdings) — AI lending platform.\n\nCRITICAL CONTEXT: Stock crashed from $401 (Oct 2021) to ~$14 low, now ~$34 (Jun 2026). Market cap ~$3.2B. Gross margins 83%. Revenue growth 45% YoY.\n\nAnalyze using SEC filings (10-K, 10-Q):\n1. Revenue trajectory by quarter (Q1 2022 through latest). Show the crash AND the recovery.\n2. Loan origination volume by quarter. How many loans does UPST originate vs facilitate?\n3. Contribution margin (revenue per loan - cost per loan). Is it expanding or contracting?\n4. AI model performance: How does UPST's default prediction compare to FICO? What data do they have?\n5. Revenue mix: Fee revenue vs interest income vs servicing. What % is platform fee?\n6. Funding sources: How many lending partners? Institutional capital committed?\n7. Cash position, debt, burn rate, runway.\n8. Share count history (IPO to now). Annual dilution rate. SBC as % of revenue.\n9. Insider ownership. Has CEO Dave Girouard been buying or selling? At what prices?\n10. What caused the crash? (Rate hikes? Funding crisis? Model performance?)\n11. What's driving the recovery?\n12. What would need to happen for UPST to reach $100B market cap (30x from here)?\n\nSay UNVERIFIED if any number is estimated. Cite SEC filings.",
+          "system_prompt": "You are a forensic financial analyst. Use only SEC filings (10-K, 10-Q, DEF 14A) and verified data. Say UNVERIFIED if estimating. No fabrication.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_moat_1000x",
+          "prompt": "UPST (Upstart) moat and 1000x analysis.\n\nCRITICAL: UPST has 83% gross margins, 45% revenue growth, $3.2B market cap. Stock crashed 92% from $401 to $33.\n\n1. MOAT ANALYSIS: Does UPST have a durable competitive advantage?\n   - AI model: How many variables does UPST use vs FICO's 5? Data moat from 5M+ loans?\n   - Network effects: More loans -> better model -> more partners -> more loans?\n   - Switching costs: Once a bank integrates UPST API, how hard to switch?\n   - Regulatory moat: Does UPST have any regulatory advantage?\n\n2. COMPETITION: Who competes with UPST?\n   - Zest AI, Pagaya, LendingClub, SoFi, traditional banks with in-house AI\n   - Can JPMorgan or Goldman build this in-house?\n   - What's UPST's actual win rate vs competitors?\n\n3. TAM ANALYSIS: UPST currently does personal loans + auto loans + HELOC.\n   - US consumer lending TAM: $4.7T outstanding\n   - How much is addressable? (Only unsecured? Or mortgages too?)\n   - If UPST captures 5% of addressable market at 5% take rate = how much revenue?\n\n4. 1000x MATH: From $3.2B to $3.2T.\n   - Is this possible? What would the lending market need to look like?\n   - What about 100x ($320B)? Is that more realistic?\n   - Compare to Visa ($560B) — UPST could be 'Visa of AI lending'?\n\n5. BEAR CASE: What kills UPST?\n   - Interest rate sensitivity\n   - Model failure in recession\n   - Regulatory crackdown on AI lending\n   - Funding partners pulling out\n\nBe honest. Say UNVERIFIED for estimates.",
+          "system_prompt": "You are a forensic financial analyst. Use only verifiable data. Say UNVERIFIED if estimating. No fabrication.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "sofi_deep_dive",
+          "prompt": "Deep dive SOFI (SoFi Technologies) — digital banking platform.\n\nCRITICAL CONTEXT: Price ~$18.22, MCap $23.4B, GM 84%, Revenue growth 42%.\n\nAnalyze:\n1. Revenue by segment: Lending, Technology Platform, Financial Services. Quarterly trajectory.\n2. Member growth: How many members? Growth rate? ARPU?\n3. Banking charter advantage: What does the bank charter give SoFi that competitors don't have?\n4. Net interest margin: What's SoFi Bank's NIM? Deposits? Cost of funding?\n5. Galileo/Technisys platform: Revenue? Clients? Growth? Is this the 'CUDA' of fintech?\n6. Cash, debt, profitability. Is SoFi GAAP profitable?\n7. Dilution history. SBC as % of revenue.\n8. Insider ownership. CEO Anthony Noto — buying or selling?\n9. Competition: How does SoFi compare to traditional banks + fintechs?\n10. What's the bull case for $100B+ market cap (5x from here)?\n11. What's the bear case?\n12. Does SoFi have ANY of the 7 signals of a 1000x stock?\n\n7 signals: (1) Rev growth >30% (2) GM >60% (3) Insider >20% (4) Dilution <5% (5) 0-5 analysts (6) TAM expanding 10x (7) Ecosystem moat\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a forensic financial analyst. Use only SEC filings and verified data. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "rcat_defense_deep",
+          "prompt": "Deep dive RCAT (Red Cat Holdings) — defense drone company.\n\nCRITICAL CONTEXT: Price ~$14.50, MCap $2.2B, Revenue growth 849% (from tiny base), GM only 7%. Defense AI was identified as the #1 sector for 1000x probability.\n\n1. What does RCAT actually make? Teal drones? What military contracts?\n2. Revenue history: Show the trajectory. Is 849% growth sustainable or one-time contract?\n3. Backlog: How much in military contracts? DOD programs?\n4. Competition: vs Kratos (KTOS), AeroVironment (AVAV), Skydio, Shield AI, Anduril\n5. Gross margin 7% is terrible — why so low? Can it improve?\n6. Cash position, burn rate, dilution history.\n7. Insider ownership and activity.\n8. What's the TAM for military drones? How much of DOD budget?\n9. Is RCAT a platform company or a hardware vendor? Does it have software/autonomy IP?\n10. 1000x math: $2.2B to $2.2T — is this even remotely possible?\n11. Realistic best case: What's the maximum market cap RCAT could achieve?\n12. Compare RCAT to where AeroVironment was at a similar stage.\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a defense industry analyst. Use verifiable data from SEC filings and DOD contract databases. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "ktos_defense_deep",
+          "prompt": "Deep dive KTOS (Kratos Defense & Security Solutions) — defense AI/drones/targets.\n\nCRITICAL CONTEXT: Price ~$64, MCap $12B. Revenue growth 23%, GM 23%.\n\n1. Revenue breakdown: Drone Systems vs Training Systems vs Engineering vs Satellite\n2. Valkyrie (XQ-58A) program status. Is it in production? How many ordered?\n3. Collaborative Combat Aircraft (CCA) program: Is KTOS in the running? vs Boeing, Lockheed?\n4. Revenue trajectory quarterly.\n5. Gross margins by segment. Why is overall GM only 23%?\n6. What's the autonomous drone TAM? DOD spending on CCA/drones?\n7. Competitive moat: Does KTOS have anything others don't?\n8. Cash, debt, dilution.\n9. Insider activity.\n10. At $12B market cap, how much upside is left? Can KTOS 10x from here ($120B)?\n11. Is KTOS already too expensive for 1000x?\n12. What would need to happen for KTOS to reach $50B? $100B?\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a defense industry analyst. Use verifiable data. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "rgti_quantum_deep",
+          "prompt": "Deep dive RGTI (Rigetti Computing) — quantum computing.\n\nCRITICAL CONTEXT: Price ~$25.54, MCap $8.5B, Revenue growth 199%, GM 30%. Quantum was identified as #2 sector for 1000x probability.\n\n1. What quantum technology does Rigetti use? Superconducting qubits?\n2. Revenue history: What are they selling? Quantum cloud access? Hardware?\n3. Is 199% revenue growth real and sustainable?\n4. Qubit count: How many qubits? Roadmap? Error rates?\n5. How does Rigetti compare to IonQ, IBM Quantum, Google Quantum, D-Wave?\n6. Cash position, burn rate, dilution history.\n7. When will quantum computing have real commercial applications? 2030? 2035?\n8. TAM: What's the realistic quantum computing market in 2030? 2035?\n9. Can RGTI survive until quantum becomes commercial? Cash runway?\n10. Insider ownership and activity.\n11. 1000x math: $8.5B to $8.5T — impossible? What about 100x ($850B)?\n12. Is RGTI the NVIDIA of quantum, or is IBM/Google going to win?\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a quantum computing analyst. Use verifiable data. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "joby_deep_dive",
+          "prompt": "Deep dive JOBY (Joby Aviation) — eVTOL.\n\nCRITICAL CONTEXT: Price ~$11.90, MCap $11.7B, 33% insider ownership (highest in expanded universe), 9 analysts.\n\n1. How far ahead is Joby vs Archer (ACHR)? Test flights, certification status?\n2. FAA certification timeline: What stage? When is TIA? When is full certification?\n3. Revenue: Any revenue? Government/military contracts?\n4. Cash position and burn rate. How long can Joby survive?\n5. Manufacturing: Where? Capacity? Cost per aircraft?\n6. Toyota partnership: How much has Toyota invested? What do they get?\n7. Insider ownership: Who holds the 33%? Founder JoeBen Bevirt?\n8. Dilution history and SBC.\n9. Delta Airlines partnership status.\n10. TAM for urban air mobility. What's realistic by 2030? 2035?\n11. What makes Joby different from every other eVTOL (Archer, Lilium bankrupt, Wisk, Eve)?\n12. 1000x from $11.7B = $11.7T. Impossible. But can Joby 10x? 100x? At what revenue?\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are an aerospace analyst. Use verifiable data. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "pins_deep_dive",
+          "prompt": "Deep dive PINS (Pinterest) — visual discovery platform.\n\nCRITICAL CONTEXT: Price ~$20, MCap $11.2B, GM 80%, Revenue growth 18%, 35 analysts.\n\n1. MAU trajectory: global and by region. Growing or declining?\n2. ARPU by region. US vs international gap.\n3. Shopping/commerce revenue: How much of revenue comes from shopping ads?\n4. AI integration: Visual search, shopping recommendations. How is AI improving monetization?\n5. Competition: vs TikTok Shop, Instagram Shopping, Google Shopping.\n6. Profitability: GAAP profitable? FCF?\n7. Dilution and SBC.\n8. Why is Pinterest at $20 when it was at $85? What would drive re-rating?\n9. Could Pinterest be acquired? By whom? At what price?\n10. TAM: Visual commerce is $500B+. Can Pinterest capture meaningful share?\n11. Does Pinterest have any of the 7 1000x signals?\n12. What's the realistic best case in 5 years?\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a digital advertising analyst. Use verifiable data. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "unity_deep_dive",
+          "prompt": "Deep dive U (Unity Technologies) — game engine and 3D platform.\n\nCRITICAL CONTEXT: Price ~$30.47, MCap $13.3B, GM 75%, Revenue growth 17%, 23 analysts.\n\n1. Revenue by segment: Create Solutions vs Grow Solutions vs Strategic Partnerships.\n2. The pricing controversy (Runtime Fee): What happened? How did they resolve it?\n3. What % of mobile games use Unity? What about console/PC?\n4. Competitive position vs Unreal Engine (Epic). Who's winning?\n5. Non-gaming applications: Architecture, film, automotive, digital twins. Revenue from these?\n6. AI integration: How is Unity using AI? Asset generation? Coding assistance?\n7. Cash, debt, profitability trajectory.\n8. Dilution and SBC history.\n9. CEO change impact (John Riccitiello fired). Who's running it now?\n10. 'CUDA of 3D' thesis: Could Unity become the dominant platform for spatial computing?\n11. If Apple Vision Pro, Meta Quest succeed, does Unity win? What about WebXR?\n12. 1000x from $13.3B = $13.3T. Not possible. But could Unity 10x ($130B)? At what revenue?\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a gaming/tech platform analyst. Use verifiable data. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "smci_deep_dive",
+          "prompt": "Deep dive SMCI (Super Micro Computer) — AI server infrastructure.\n\nCRITICAL CONTEXT: Price ~$46, MCap $27.7B, Revenue growth 123%, GM only 8%, 14% insider.\n\nThis stock went from $8 to $120 to $46. The audit controversy nearly killed it.\n\n1. Revenue trajectory quarterly. Show the AI-driven explosion.\n2. Why is gross margin only 8%? Can it improve? Or is SMCI a commodity hardware assembler?\n3. The accounting controversy: What happened with Ernst & Young? Is it resolved?\n4. Are they still NASDAQ listed? Delisting risk?\n5. Competitive position vs Dell, HPE, Lenovo in AI servers.\n6. What's their relationship with NVIDIA? Is SMCI a preferred partner?\n7. Cash, debt, profitability.\n8. Insider ownership 14% — who? Charles Liang (founder/CEO)?\n9. AI server TAM: How big? Growing how fast? SMCI market share?\n10. The 'Intel inside' model: Can SMCI become essential infrastructure?\n11. Bear case: Margin compression, competition, accounting risk.\n12. Bull case: Can SMCI reach $100B? What revenue/margin is needed?\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a hardware/infrastructure analyst. Use verifiable data. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "crashed_stocks_screen",
+          "prompt": "SCREEN: Find stocks that crashed 80%+ from all-time highs but still have strong fundamentals.\n\nThese are 'fallen angels' — companies that were once $50-400+ and crashed to $10-50 due to macro, sentiment, or temporary issues.\n\nFor each, provide: ticker, ATH price, current price, crash %, market cap, gross margin, revenue growth, FCF, insider ownership.\n\nCategories to search:\n1. SaaS that crashed (Twilio, Fastly, Cloudflare, Datadog, ZScaler, Confluent, HashiCorp)\n2. E-commerce that crashed (Shopify, Etsy, Chewy, Poshmark)\n3. Fintech that crashed (Upstart, Affirm, Marqeta, Payoneer, Green Dot)\n4. Biotech platforms that crashed (CRISPR, Editas, Intellia, Beam)\n5. Clean energy that crashed (Enphase, Plug Power, ChargePoint, Bloom Energy)\n6. Any other category with 80%+ crash and 50%+ gross margins\n\nOnly include stocks that STILL HAVE:\n- Gross margins >50%\n- Revenue growth >15%\n- Not bankrupt\n- Market cap $1-20B\n\nRank by 'recovery potential' (highest GM + highest growth + smallest market cap = best).\n\nSay UNVERIFIED if data is estimated.",
+          "system_prompt": "You are a quantitative screener. Use only verifiable financial data. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "ipo_pipeline_2025_2026",
+          "prompt": "IPO PIPELINE ANALYSIS for 2026-2027.\n\nThe 'Next NVIDIA' profile requires: $200-800M market cap, 40-80% revenue growth, 55-70% gross margins, full-stack hardware+software, ecosystem lock-in moat, >20% insider ownership, 0-3 analysts.\n\nWhich private companies could IPO in 2025-2027 and potentially match this profile?\n\n1. AI HARDWARE: Groq, Cerebras, SambaNova, d-Matrix, Tenstorrent — which has the strongest CUDA-like ecosystem play?\n2. DEFENSE TECH: Anduril, Shield AI, Skydio — which is closest to the NVIDIA pattern?\n3. SPACE: Relativity Space, Rocket Lab (already public), Firefly Aerospace\n4. BIOTECH PLATFORMS: Any platform companies with 1000x potential?\n5. QUANTUM: PsiQuantum, IQM, Alice & Bob — any pre-IPO plays?\n6. AI INFRASTRUCTURE: CoreWeave (recently IPO'd?), Lambda, Together AI\n7. ROBOTICS: Figure AI, 1X Technologies, Covariant\n\nFor each company:\n- Estimated revenue and growth rate\n- Last known valuation\n- Gross margins if known\n- Founder ownership\n- Why it could be the 'Next NVIDIA'\n- Why it probably won't be\n\nBe HONEST about what's known vs speculated. Say UNVERIFIED for any estimated data.\n\nNOTE: Your training data may not have the most recent IPO information. Please clearly state your knowledge cutoff and flag any data that may be stale.",
+          "system_prompt": "You are a venture capital analyst specializing in pre-IPO companies. Clearly distinguish between verified data and speculation. Say UNVERIFIED for estimates.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "nvidia_exact_entry",
+          "prompt": "NVIDIA ENTRY POINT AUTOPSY: When EXACTLY should an investor have bought NVIDIA for maximum return?\n\nUsing SEC filings and verified historical data:\n\n1. NVIDIA IPO (January 22, 1999): Price $12, split-adjusted ~$0.38. Revenue? Margins? What was the thesis?\n2. The 2002 crash: NVIDIA went from ~$5 (split-adj) to ~$1. What happened? Why did it crash?\n3. The 2008 crash: Another 80%+ decline. What happened?\n4. The CUDA inflection (2007-2012): When did GPU computing become the thesis? What was the stock doing?\n5. The crypto mining boom (2017-2018): Revenue spike then crash.\n6. The AI inflection (2022-2023): ChatGPT/GPT-4 moment. What was NVIDIA's price when the AI thesis became clear?\n7. The key question: At what price/market cap did NVIDIA have ALL 7 signals?\n   Signals: (1) Rev>30% (2) GM>60% (3) Insider>20% (4) Dilution<5% (5) 0-5 analysts (6) TAM expanding 10x (7) Ecosystem moat\n8. Was there EVER a time when NVIDIA was sub-$10 AND had all 7 signals? Or did the signals develop after the stock left $10?\n\nThe honest answer may be: NVIDIA was never identifiable as a 1000x at sub-$10. The moat (CUDA) only became apparent after the stock was $50+.\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a financial historian. Use only verified SEC filings and historical data. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tesla_exact_entry",
+          "prompt": "TESLA ENTRY POINT AUTOPSY: When EXACTLY should an investor have bought Tesla for maximum return?\n\n1. Tesla IPO (June 29, 2010): Price $17, split-adjusted ~$1.13. Revenue? Margins? What was the thesis?\n2. The 2013 inflection: Model S success. What were the financials? Stock went from $5 to $30 (split-adj).\n3. The 2016-2019 production hell: Model 3 ramp. Stock crashed ~50% multiple times.\n4. The 2020 explosion: Stock went from $5 to $140 (split-adj). What changed?\n5. The key question: At what price/market cap did Tesla have ALL 7 signals?\n   Signals: (1) Rev>30% (2) GM>60% (3) Insider>20% (4) Dilution<5% (5) 0-5 analysts (6) TAM expanding 10x (7) Ecosystem moat\n6. Tesla's gross margins were NEVER >60% in auto. Does this mean the 7-signal framework doesn't apply?\n7. Was Elon's insider ownership the key differentiator? (He held ~22% at IPO)\n8. When did Tesla become identifiable as a 1000x? Was it at $5 or $50 or $500?\n\nThe honest answer may be: Tesla was identifiable early, but the signals were different from NVIDIA's. Capital-intensive hardware rarely follows the same pattern.\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a financial historian. Use only verified SEC filings and historical data. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "micro_cap_screen_10_50",
+          "prompt": "MICRO-CAP SCREEN: Find stocks in the $10-50 price range with market cap $500M-$5B that match 4+ of the 7 NVIDIA signals.\n\n7 Signals:\n1. Revenue growth >30% YoY\n2. Gross margins >60%\n3. Insider ownership >20%\n4. Annual dilution <5%\n5. 0-5 analyst coverage\n6. TAM expanding 10x in next decade\n7. Ecosystem lock-in or switching cost moat\n\nSearch across ALL sectors:\n- AI/ML infrastructure and applications\n- Defense technology\n- Quantum computing\n- Robotics and automation\n- Synthetic biology\n- Space technology\n- Cybersecurity\n- Energy technology\n- Medical devices\n- Semiconductor equipment\n- Enterprise software\n\nFor each candidate that passes 4+ signals, provide:\n- Ticker, name, price, market cap\n- Revenue, revenue growth, gross margin\n- Insider ownership %\n- Number of analysts\n- TAM and penetration rate\n- Moat type\n- Which signals it passes\n- Why it could be a 1000x\n- Why it probably won't be\n\nBe EXHAUSTIVE in your search. Check every sector. The 'Next NVIDIA' is hiding where nobody is looking.\n\nSay UNVERIFIED if data is estimated.",
+          "system_prompt": "You are a quantitative screener with deep sector knowledge. Be exhaustive. Use verifiable data. Say UNVERIFIED if estimating.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "hood_deep_dive",
+          "prompt": "Deep dive HOOD (Robinhood Markets) — retail brokerage/fintech.\n\nCRITICAL CONTEXT: Price ~$94, MCap $84.9B, GM 92%, Revenue growth 15%. Stock went from $8 to $94.\n\nHOOD was recently sub-$10. Now it's 10x'd. What can we learn about identifying the entry point?\n\n1. When was HOOD at $8? What were the fundamentals at that time?\n2. What signals existed at $8 that would have identified it as a 10x?\n3. Revenue trajectory by quarter during the recovery.\n4. What changed? Crypto revenue? Options? Cash management?\n5. Insider activity: Did executives buy at $8?\n6. Short interest: Was there a squeeze component?\n7. User metrics: DAU/MAU at $8 vs now.\n8. HOOD at $8 had which of the 7 signals?\n9. Can HOOD still 10x from $94 ($850B)? What would that require?\n10. Lessons learned: What pattern from HOOD's $8-to-$94 move can be applied to current sub-$10 stocks?\n\nThis is PATTERN RECOGNITION research. We want to find the 'tells' that predict a 10x recovery.\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a financial analyst specializing in turnaround stories. Use verifiable data. Say UNVERIFIED if estimating.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "convergence_expanded",
+          "prompt": "CONVERGENCE SCORING for the EXPANDED $10-50 universe.\n\nScore these stocks against the 7 NVIDIA signals (0-7):\n\n1. UPST ($34, $3.2B, GM 83%, growth 45%)\n2. SOFI ($18, $23.4B, GM 84%, growth 42%)\n3. RCAT ($14.50, $2.2B, GM 7%, growth 849%)\n4. RGTI ($25, $8.5B, GM 30%, growth 199%)\n5. JOBY ($12, $11.7B, pre-revenue, 33% insider)\n6. PINS ($20, $11.2B, GM 80%, growth 18%)\n7. U ($30, $13.3B, GM 75%, growth 17%)\n8. SMCI ($46, $27.7B, GM 8%, growth 123%)\n9. QBTS ($30, $11.2B, GM 66%, growth -81%)\n10. HOOD ($94, $84.9B, GM 92%, growth 15%) -- already above $50 but for comparison\n\n7 Signals:\n1. Revenue growth >30% YoY\n2. Gross margins >60%\n3. Insider ownership >20%\n4. Annual dilution <5%\n5. 0-5 analyst coverage\n6. TAM expanding 10x in next decade\n7. Ecosystem lock-in or switching cost moat\n\nFor each:\n- Score each signal YES/NO with justification\n- Calculate total score\n- Compare to NVIDIA at equivalent market cap stage\n- Give honest 1000x probability\n\nNOTE: Some financial data provided above is from June 2026 live feeds. Your training data may differ. Use the numbers I've provided as the current state.\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a quantitative analyst. Be rigorous and honest. No optimism bias. Say UNVERIFIED if estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "final_expanded_rank",
+          "prompt": "FINAL RANKING: Combined sub-$10 + $10-50 universe.\n\nRank ALL candidates from highest to lowest 1000x probability. Include both price ranges.\n\nSub-$10:\n- TIGR ($5.14, $0.9B, GM 88%, growth 46%, insider 25%, 10 analysts)\n- GRAB ($3.54, $14.5B, GM 40%, growth 24%, insider 22%, 26 analysts)\n- PAYO ($5.20, $1.7B, GM 85%, growth 6%, insider 3%, 8 analysts)\n- BTG ($4.76, $6.3B, GM 65%, growth 118%)\n- GAU ($2.32, $0.6B, GM 51%, growth 89%, 1 analyst)\n- TUYA ($2.12, $1.3B, GM 48%, negative EV)\n- SNAP ($5.71, $9.5B, GM 56%, growth 12%, insider 23%)\n- PAGS ($9.35, $2.6B, GM 51%, growth 2%)\n\n$10-50:\n- UPST ($34, $3.2B, GM 83%, growth 45%, insider 13%)\n- SOFI ($18, $23.4B, GM 84%, growth 42%)\n- RCAT ($14.50, $2.2B, GM 7%, growth 849%, 5 analysts)\n- RGTI ($25, $8.5B, GM 30%, growth 199%)\n- JOBY ($12, $11.7B, 33% insider, pre-revenue)\n- PINS ($20, $11.2B, GM 80%, growth 18%)\n- U ($30, $13.3B, GM 75%, growth 17%)\n- SMCI ($46, $27.7B, GM 8%, growth 123%, insider 14%)\n\nFor each, score 1000x probability, 100x probability, 10x probability, bankruptcy risk.\n\nThen: If you had $2,500 to allocate across this COMBINED universe for maximum 1000x potential (not risk-adjusted, pure moonshot), how would you allocate it?\n\nBe honest. The answer may be 'don't invest in any of these.'\n\nNOTE: These are June 2026 live prices. Use these numbers.\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a quantitative portfolio manager. Be brutally honest about probabilities. No optimism. Say UNVERIFIED if estimating.",
+          "temperature": 0.15,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "pattern_matching_recovery",
+          "prompt": "PATTERN RECOGNITION: Which current stocks are exhibiting the SAME pattern as NVIDIA in 2015-2016 (just before the AI explosion)?\n\nNVIDIA in 2015-2016:\n- Stock price: ~$5-8 (split adjusted)\n- Market cap: ~$10-15B\n- Revenue: ~$5B, growing 12%\n- Gross margins: 57% and EXPANDING\n- Key catalyst coming: Deep learning demand for GPU computing\n- Market narrative: 'gaming graphics card company'\n- Moat: CUDA ecosystem already in place but not yet monetized for AI\n- Insider ownership: Jensen Huang ~4% but NEVER SOLD\n\nThe key pattern:\n1. Product already exists and works\n2. Revenue is growing but market doesn't understand WHY\n3. New use case emerging that will 10x demand\n4. Ecosystem lock-in already built but not yet priced in\n5. Market narrative is WRONG (sees it as legacy business)\n6. Gross margins expanding (shows pricing power)\n\nSearch across ALL current stocks ($5-50 range) for this pattern. Which stocks:\n- Have a product that works but is being used for a NEW purpose the market doesn't appreciate?\n- Have an ecosystem or developer platform that's growing but not yet monetized?\n- Are being mispriced because the market sees them as 'old business' when they're becoming 'new business'?\n- Have gross margins expanding while revenue accelerates?\n\nBe creative. Think laterally. The next NVIDIA won't be in AI — that thesis is already played. It will be in a sector that seems boring today.\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a pattern recognition specialist in equity markets. Think creatively across sectors. Say UNVERIFIED if estimating.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "anti_consensus_screen",
+          "prompt": "ANTI-CONSENSUS SCREEN: Find stocks where the market consensus is WRONG.\n\nThe 'Next NVIDIA' will be:\n1. HATED or IGNORED by analysts\n2. Down 50%+ from highs\n3. In a sector nobody is excited about\n4. Having its narrative change from 'dying' to 'transforming'\n5. Generating expanding margins despite revenue headwinds\n\nSearch for stocks where:\n- Analyst consensus is SELL or HOLD, but fundamentals are improving\n- Short interest >20% but company is cash-flow positive\n- Stock is down >50% from ATH but revenue is growing >20%\n- P/E ratio is below sector average but margins are expanding\n- Insider BUYING while analysts say SELL\n\nProvide 10-15 candidates with:\n- Ticker, price, market cap\n- Why market hates it\n- Why market might be wrong\n- Fundamental data (GM, growth, FCF, insider)\n- Which of the 7 1000x signals it has\n\nThe best investments are where the consensus is wrong. Where is consensus most wrong today?\n\nSay UNVERIFIED if estimating.",
+          "system_prompt": "You are a contrarian analyst. Find where the market is wrong. Use verifiable data. Say UNVERIFIED if estimating.",
+          "temperature": 0.25,
+          "max_tokens": 4000
+        }
+      ]
+    }
+  ]
+}

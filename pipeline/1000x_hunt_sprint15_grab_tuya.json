@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "s15_t01_grab_revenue_trajectory",
+          "prompt": "GRAB REVENUE TRAJECTORY: Quarterly revenue: Q1'25 $773M, Q2'25 $819M, Q3'25 $873M, Q4'25 $906M, Q1'26 $955M. YoY growth Q1'26 was +24%. Full year 2025 revenue $3.37B (+21% YoY). Revenue forecast to grow 15.6% p.a. next 3 years. Management targets >20% revenue CAGR through 2028. Questions: 1) Is the growth ACCELERATING or DECELERATING? Calculate sequential QoQ growth rates. 2) What's driving the growth? Which segments (mobility, deliveries, financial services) are growing fastest? 3) At 15.6% p.a. for 3 years, what's 2029 revenue? 4) Is the >20% CAGR target credible given the quarterly trajectory? 5) Compare to Uber's growth trajectory at a similar stage. Be specific with numbers.",
+          "system_prompt": "You are a revenue analyst specializing in Southeast Asian platform companies. Use only the data provided. Show all calculations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t02_grab_profitability",
+          "prompt": "GRAB PROFITABILITY INFLECTION: Net Income trajectory: Q1'25 $24M, Q2'25 $35M, Q3'25 $37M, Q4'25 $172M, Q1'26 $136M. Full year 2025 net income $268M (first full-year profit ever, up from -$105M loss in 2024). Profit margin expanding: 3.1% Q1'25 → 14% Q1'26. Gross margin 40.17%. Operating margin 2.72%. Net margin 10.7%. Earnings grew 1552.2% past year. EPS: $0.033 Q1'26 (up from $0.006). Questions: 1) Is the Q4'25 $172M spike one-time or sustainable? What drove it? 2) At current trajectory, what's annualized 2026 earnings? 3) The gap between gross margin (40%) and operating margin (2.7%) shows massive opex — what's consuming the 37%? 4) Is there operating leverage here? Can opex grow slower than revenue? 5) When does GRAB become a consistent $500M+ net income company?",
+          "system_prompt": "You are a profitability analyst. Focus on margin expansion trajectory and operating leverage. Use only the data provided.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t03_grab_cashflow_volatile",
+          "prompt": "GRAB CASH FLOW VOLATILITY: Quarterly OCF: Q1'25 $73M, Q2'25 $63M, Q3'25 -$127M, Q4'25 $69M, Q1'26 -$59M. Quarterly FCF: Q1'25 $47M, Q2'25 $51M, Q3'25 -$159M, Q4'25 $17M, Q1'26 -$72M. Annual FCF from yfinance: $329.5M. CRITICAL: The quarterly numbers are WILDLY volatile and don't add up to $329.5M annual. Q3 was deeply negative. Q1'26 negative again. Questions: 1) Why is cash flow so volatile quarter-to-quarter? Is this working capital swings, driver incentives, or something structural? 2) Is the $329.5M annual FCF real or an artifact? Calculate TTM FCF from quarterlies. 3) Why was Q3'25 so negative (-$159M FCF)? 4) For a company with $955M quarterly revenue, is -$72M quarterly FCF acceptable? 5) Compare to Uber's FCF trajectory at similar revenue scale.",
+          "system_prompt": "You are a cash flow forensic analyst. Identify the true recurring cash generation. Flag any discrepancies between reported and calculated figures.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t04_grab_valuation_deep",
+          "prompt": "GRAB VALUATION: Price $3.60, MCap $14.7B. Revenue $3.55B. Net Income $380M. P/E 90x (trailing), 26.2x (forward). P/S 4.15x. P/B 2.26x. EV $10.2B (because $4.5B net cash). EV/Revenue 2.88x. EV/EBITDA 32.3x. SimplyWallSt fair value $5.97 (39.7% undervalued). Community fair value $5.66-$5.94. Analyst consensus target $5.91. 52-week range $3.39-$6.62. DOWN 27.9% past year despite 24% revenue growth and 467% earnings growth. Questions: 1) Why is a 24% revenue grower trading at 2.88x EV/Revenue? Uber trades at ~4-5x. Is the discount justified? 2) The $4.5B net cash = 31% of market cap. What's the ex-cash P/E? 3) Is $5.97 DCF fair value realistic? What growth assumptions are needed? 4) At 15.6% revenue growth and expanding margins, what's fair value in 3 years? 5) Why did the stock fall 27.9% while earnings grew 1552%? What is the market seeing that the numbers don't show?",
+          "system_prompt": "You are a valuation specialist. Compare to Uber, Lyft, DoorDash, and SE Asian peers. Quantify the discount with precise numbers.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t05_grab_superapp_moat",
+          "prompt": "GRAB SUPERAPP COMPETITIVE MOAT: Grab operates in Cambodia, Indonesia, Malaysia, Myanmar, Philippines, Singapore, Thailand, Vietnam. Services: GrabCar, GrabTaxi, GrabFood, GrabMart, GrabExpress, GrabAds, GrabKios, GrabPay, GXS Bank, Superbank (Indonesia). 12,012 employees. Founded 2012 by Anthony Tan. Questions: 1) How strong are Grab's network effects? Does adding more riders help drivers and vice versa? 2) What's the competitive landscape in each major market? Who is Grab losing to? 3) How does GrabPay/GXS Bank create lock-in? What's the fintech revenue contribution? 4) The Superbank consolidation (majority stake, 6M customers, first profit 2025) — is this a meaningful growth vector? 5) Can a SE Asian superapp become a $50B+ company? What's the precedent (WeChat, Alipay, GoTo)?",
+          "system_prompt": "You are a Southeast Asian technology analyst. Focus on market-by-market competitive dynamics and network effects. Be specific about market share data.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t06_grab_management",
+          "prompt": "GRAB MANAGEMENT ASSESSMENT: CEO Anthony Tan, founded 2012, 14.4 year tenure, owns 1.87% ($277M). Management avg tenure 3.3 years. Board avg tenure 1.6 years (LOW). Insider selling: Chief Org Officer selling 48k shares ($171k) — tiny. Insiders collectively sold $1.5M more than bought in last 12 months. New board member Laura Franco (ex-Bumble General Counsel, ex-Paramount). $500M buyback announced Feb 2025. Total CEO compensation unknown (not disclosed). Questions: 1) Is Anthony Tan a strong founder-CEO? What's his track record on execution and capital allocation? 2) Board tenure 1.6 years is very low — is this turnover a red flag? 3) The $1.5M net insider selling — is this meaningful relative to $14.7B market cap? 4) Is the $500M buyback ($3.4% of mcap) aggressive enough? 5) What does the ex-Bumble lawyer joining the board signal?",
+          "system_prompt": "You are a corporate governance analyst. Assess management quality, capital allocation, and insider alignment. Be specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t07_grab_balance_sheet",
+          "prompt": "GRAB BALANCE SHEET FORTRESS: Total Cash $6.47B. Total Debt $1.95B. Net Cash $4.52B. Equity $6.53B. Total Assets $11.7B. Total Liabilities $5.17B. Debt/Equity 29.8%. Interest coverage -3.6x (NEGATIVE — why?). Financial health: 5/6 on SimplyWallSt. Questions: 1) With $6.47B cash, what's the cash runway if losses resume? 2) Why is interest coverage NEGATIVE despite being profitable? What's the interest expense structure? 3) $4.52B net cash = 31% of market cap. Is this lazy capital? Should Grab return more? 4) What are the debt maturities? When do they need to refinance? 5) How does this compare to Uber's balance sheet at a similar stage? 6) Is $1.95B debt appropriate for a company with $3.55B revenue and $380M net income?",
+          "system_prompt": "You are a credit analyst. Focus on the balance sheet strength and capital structure. Identify any hidden risks in the liability structure.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t08_grab_vs_uber",
+          "prompt": "GRAB vs UBER COMPARISON: GRAB: Price $3.60, MCap $14.7B, Rev $3.55B, NI $380M, P/S 4.1x, EV/Rev 2.9x, Growth 24%, GM 40%, Net Cash $4.5B. UBER: Price ~$80, MCap $150B, Rev ~$42B, NI ~$10B, P/S ~3.5x, Growth ~15%, GM ~32%, Net Debt. Questions: 1) GRAB is growing FASTER (24% vs 15%) but trades at a LOWER P/S. Why? 2) Uber has lower gross margin (32%) than GRAB (40%). Why is Uber valued 10x more? 3) At what revenue/earnings level does GRAB deserve an Uber-like multiple? 4) If GRAB's market (SE Asia 680M population) is half of Uber's addressable market, shouldn't GRAB be ~$75B at maturity? 5) Is GRAB essentially Uber 5 years ago? What was Uber's stock price trajectory from 2019-2024?",
+          "system_prompt": "You are a comparative equity analyst. Provide specific numerical comparisons. Focus on what explains the valuation gap.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t09_grab_se_asia_macro",
+          "prompt": "SOUTHEAST ASIA MACRO THESIS FOR GRAB: Grab operates across 8 SE Asian countries. Total population ~680 million. Questions: 1) What's the GDP growth forecast for SE Asia vs US vs Europe? 2) What's smartphone penetration and digital payments adoption trajectory? 3) What's the ride-hailing and food delivery TAM in SE Asia? How penetrated is it? 4) How does rising middle class in Indonesia, Vietnam, Philippines benefit Grab? 5) What's the regulatory environment? Any risk of Grab being banned or forced to divest? 6) Currency risk: most revenues in local currencies (IDR, PHP, THB, MYR) vs USD listing. How does this affect returns? 7) What's the demographic advantage (median age ~30) vs aging markets?",
+          "system_prompt": "You are a Southeast Asian macroeconomist. Focus on structural growth drivers and risks for a platform company operating across the region.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t10_grab_why_falling",
+          "prompt": "GRAB: WHY IS IT FALLING? The stock is DOWN 27.9% over the past year ($6.62 → $3.60) DESPITE: Revenue growing 24% YoY, earnings up 1552%, first full-year profit ($268M), Q1'26 beat (EPS $0.033 vs $0.015 est, revenue 3.8% beat), $500M buyback, and $6.47B cash fortress. EPS has grown 127% per year for 3 years but stock only up 6% per year. Questions: 1) What is causing this massive disconnect between fundamentals and stock price? 2) Is this SPAC overhang? (GRAB went public via SPAC in Dec 2021 at ~$11). Are original SPAC holders still selling? 3) Is the SE Asia/China discount (geopolitical risk) responsible? 4) Is SoftBank/other major holders selling? Who are the big sellers? 5) Is this a buying opportunity or is the market pricing in something the numbers don't show? 6) Has ANY analyst downgraded recently? What are the bear arguments?",
+          "system_prompt": "You are a market microstructure analyst. Focus on flow dynamics, holder composition, and what could explain the price-fundamental disconnect. This is critical analysis.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t11_grab_fintech",
+          "prompt": "GRAB FINTECH STRATEGY: GrabPay (digital payments), GXS Bank (digital bank in Singapore with Singtel), Superbank (Indonesia, 6M customers, first profit 2025, now >50% owned by Grab). GrabKios (agent network). Questions: 1) What percentage of Grab's revenue comes from financial services? Is it growing faster than mobility/delivery? 2) GXS Bank — what's the status? Revenue? Loans outstanding? Path to profitability? 3) Superbank consolidation — what does majority ownership mean for Grab's financials? Will they consolidate $XX in revenue? 4) How does fintech create a moat? Can Grab become the 'Alipay of SE Asia'? 5) What's the revenue potential of financial services in SE Asia's underbanked population? 6) How does GrabPay adoption correlate with ride-hailing and delivery usage?",
+          "system_prompt": "You are a fintech analyst specializing in Southeast Asia. Focus on the financial services revenue contribution and growth trajectory.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t12_grab_1to10_rating",
+          "prompt": "RATE GRAB 1-10 FOR BUY-AND-HOLD 10 YEARS. Using ALL verified data: Price $3.60. MCap $14.7B. Revenue $3.55B (+24% YoY). Net Income $380M (first full-year profit). P/S 4.1x. Forward P/E 26.2x. EV/Rev 2.9x. Net cash $4.52B. FCF $329M (but volatile quarterly). 52w low $3.39. SimplyWallSt fair value $5.97. Analyst target $5.91. $500M buyback. CEO 14.4yr tenure. SE Asia superapp with 680M population TAM. Down 27.9% past year despite 1552% earnings growth. Rate across 5 dimensions: 1) Value (1-10), 2) Growth Potential (1-10), 3) Safety (1-10), 4) Catalyst (1-10), 5) Management (1-10). Provide average and final verdict. Compare to BMBL (which we rated 7/10).",
+          "system_prompt": "You are a 10-year investment analyst. Be honest and data-driven. Score each dimension with justification. Show the math.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t13_grab_1000x_test",
+          "prompt": "GRAB 1000x TEST: Price $3.60, MCap $14.7B. For 1000x ($3,600/share, $14.7T mcap) — impossible, that's bigger than Apple. For 100x ($360/share, $1.47T) — extremely unlikely, that's Uber+DoorDash+Lyft+more. For 10x ($36/share, $147B) — possible, that would be roughly Uber-sized. For 5x ($18/share, $73.5B) — achievable with strong execution. For 3x ($10.80/share, $44B) — realistic bull case. Calculate: 1) What revenue/earnings at each level? 2) Is 10x possible in 10 years given SE Asia growth? 3) What multiple expansion is needed? 4) Compare to Uber's journey from $40 IPO to $80. 5) What's the realistic maximum upside?",
+          "system_prompt": "You are a long-term equity strategist. Be brutally honest about probability at each level. Show the revenue and earnings needed to justify each valuation.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t14_grab_risk_matrix",
+          "prompt": "GRAB COMPREHENSIVE RISK MATRIX: Assess each risk on Probability (1-5) and Impact (1-5): 1) Regulatory risk (ride-hailing regulations, banking licenses, data privacy across 8 countries). 2) Competition (GoTo/Gojek merger, Uber re-entry, local players). 3) Macro risk (SE Asia recession, currency devaluation). 4) Execution risk (12,012 employees, expanding into banking). 5) SoftBank/major holder selling pressure. 6) SPAC dilution overhang. 7) Profitability sustainability (Q4 $172M spike, FCF volatility). 8) Geopolitical (US-China tensions affecting SE Asia). 9) Technology disruption (autonomous vehicles making ride-hailing commodity). 10) Capital allocation (is $500M buyback optimal vs. investing in growth?)",
+          "system_prompt": "You are a risk analyst. Rate each risk on probability (1-5) and impact (1-5). Calculate risk score = probability * impact for each.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t15_grab_scenario_matrix",
+          "prompt": "GRAB 5-SCENARIO MATRIX with probability-weighted expected value. Current price $3.60. Use verified data: Rev $3.55B growing 24%, NI $380M, net cash $4.5B, $500M buyback, SE Asia superapp, first full-year profit. Scenarios: 1) BULL: Revenue compounds 20%+ p.a., fintech takes off, operating leverage kicks in. Price target? Probability? 2) UBER PARITY: GRAB achieves Uber-like margins and growth, trades at similar multiple. Price? Probability? 3) BASE: Revenue grows 12-15% p.a., margins expand slowly. Price? Probability? 4) BEAR: Growth slows to single digits, competition intensifies. Price? Probability? 5) DEATH: Business unviable, equity wiped out. Price? Probability? Calculate weighted EV. Compare to current $3.60.",
+          "system_prompt": "You are a scenario analyst. Assign specific probability and price targets to each scenario. Calculate the probability-weighted expected value. Be data-driven.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t16_grab_entry_strategy",
+          "prompt": "GRAB ENTRY STRATEGY: We already own 150 shares at $3.54 avg cost ($531 position). Current price $3.60. Account equity ~$2,473. Cash ~$1,062. Questions: 1) Should we ADD to our GRAB position at $3.60? What size? 2) Is now a good entry given 52w low is $3.39 (only 6% below)? 3) If we set a limit order, what price? $3.40? $3.00? $3.20? 4) What's the risk of GRAB going below $3.39 (new 52w low)? 5) Given $500M buyback, is there a floor near current price? 6) What's the optimal position size for a $2,473 account? 7) Should we add to GRAB or allocate capital to BMBL/PAGS/PAYO instead? 8) Next earnings date?",
+          "system_prompt": "You are a portfolio strategist managing a small retail account. Focus on position sizing, risk management, and opportunity cost. Be practical and specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t17_grab_kill_test",
+          "prompt": "GRAB KILL TEST: Apply kill criteria ruthlessly. Kill if: 1) Chronic dilution >10%/yr — Grab has 3.96B shares, check dilution rate from SPAC/SBC. 2) CEO selling at bottom — Anthony Tan holds $277M, is he selling? 3) Reverse split history — any? 4) Negative unit economics — gross margin 40%, is this real unit economics? 5) Fraud/SEC history — any issues? 6) Zombie company — generating $380M net income, $329M FCF. For each criterion: PASS or FAIL with evidence.",
+          "system_prompt": "You are a forensic kill screener. Apply each criterion strictly. Provide evidence for each determination.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "s15_t18_grab_swot",
+          "prompt": "GRAB SWOT ANALYSIS using all verified data. Strengths: $6.47B cash, 40% gross margin, 24% revenue growth, 8-country superapp, first profit. Weaknesses: 2.7% operating margin, volatile FCF, high SBC, SPAC legacy. Opportunities: Fintech in underbanked SE Asia, Superbank consolidation, AI/autonomous, $500M buyback. Threats: GoTo merger, Uber re-entry, regulation, macro slowdown. Weight each factor by strategic impact (high/medium/low). Do strengths + opportunities outweigh weaknesses + threats?",
+          "system_prompt": "You are a strategic analyst. Weight each SWOT factor by impact and urgency. Provide a final verdict on whether bull or bear case dominates.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t19_grab_ads_growth",
+          "prompt": "GRAB ADS & ENTERPRISE: GrabAds (online advertising on the platform), Grab for Business (corporate booking portal). Questions: 1) How big is GrabAds revenue? Growth rate? 2) What's the ad load potential? Can Grab monetize like Uber's advertising business? 3) What's Grab for Business contribution? 4) How does advertising margin compare to ride-hailing margin? 5) Is there a path to $500M+ in advertising revenue? 6) What does Uber's advertising business ($1B+ run rate) tell us about Grab's potential?",
+          "system_prompt": "You are a digital advertising analyst. Focus on the advertising revenue opportunity for platform companies. Use Uber Advertising as a benchmark.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "s15_t20_grab_definitive_rating",
+          "prompt": "GRAB DEFINITIVE 1-10 RATING. After full analysis across 20 agents: Revenue $3.55B growing 24%. Net income $380M (first full year profit). Net cash $4.52B (31% of mcap). EV/Rev 2.9x (cheaper than Uber 4-5x). Forward P/E 26.2x. SimplyWallSt $5.97. Analysts $5.91. Down 27.9% despite 1552% earnings growth. $500M buyback. CEO 14.4yr founder. SE Asia 680M pop superapp. Questions: Is this stock BETTER or WORSE than we expected when we bought at $3.54? Rate 1-10 as a 10-year hold. Factor in that we already own 150 shares. What single number captures the conviction?",
+          "system_prompt": "You are the definitive rating agent. Synthesize all analysis into a single 1-10 rating. Be honest, not promotional. Compare to BMBL (7/10) and the rest of our portfolio.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "s15_t21_tuya_deep_dive",
+          "prompt": "TUYA DEEP DIVE: IoT/AI cloud platform. Price $2.09, MCap $1.28B. Revenue $328M (+8.3%). Net Income $62.6M. P/E 20.9x. P/S 3.9x. P/B 1.28x. ZERO DEBT. Cash $951M (74% of market cap!). EV only $345M. EV/Revenue 1.05x. EV/Earnings 5.5x. FCF $21.2M (low). Dividend yield 5.48%. CEO Jerry Wang, 12.4yr tenure, 19.36% ownership. SimplyWallSt fair value $3.43 (39% undervalued). Valuation score 6/6. Questions: 1) TUYA is essentially trading at CASH VALUE. The market values the entire business at ~$345M for $328M revenue and $63M earnings. Why? 2) What's the CN_ADR risk? Is this company at risk of delisting? 3) CEO owns 19.4% — extremely high insider alignment. But is this a US-listed Chinese company where insiders can't be trusted? 4) 5.48% dividend on a growth company is unusual. Are they returning capital because they can't grow? 5) Revenue growth 8.3% is modest. Is this a growth stock or value stock?",
+          "system_prompt": "You are a Chinese tech equity analyst. Focus on the extreme valuation discount, cash position, and CN_ADR risks. Be specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t22_tuya_iot_thesis",
+          "prompt": "TUYA IoT/AI PLATFORM THESIS: Tuya provides AI cloud platform for smart home and IoT devices. PaaS + SaaS model. Customers are OEMs/brands who use Tuya to make their devices 'smart'. 1,441 employees. Revenue segments: PaaS (IoT connectivity), SaaS (cloud services), Smart Solutions. Questions: 1) What is Tuya's moat? Why can't OEMs build their own IoT cloud? 2) How many devices are connected to Tuya's platform? 3) Who are the biggest customers? Are they sticky? 4) How does AI integration change the value proposition? 5) What's the TAM for IoT cloud platforms globally? 6) How does Tuya compete with AWS IoT, Google Cloud IoT, Azure IoT? 7) Is Tuya essentially an infrastructure play on the smart home revolution?",
+          "system_prompt": "You are an IoT industry analyst. Focus on the platform business model, switching costs, and competitive dynamics against cloud hyperscalers.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t23_tuya_financials",
+          "prompt": "TUYA FINANCIAL ANALYSIS: Quarterly revenue: Q1'25 $74.7M, Q2'25 $80.1M, Q3'25 $82.5M, Q4'25 $84.5M, Q1'26 $80.9M. Quarterly NI: Q1'25 $11M, Q2'25 $12.6M, Q3'25 $15M, Q4'25 $19.3M, Q1'26 $15.8M. Gross margin 47.8%. Operating margin 9.2%. Net margin 19.1%. ROE 6.2%. Cash $951M. ZERO debt. FCF only $21.2M (vs $62.6M net income — where's the cash going?). Dividend $0.121/share (5.48% yield). Payout ratio 112% (paying more than earnings!). Questions: 1) Why is FCF ($21.2M) so much lower than net income ($62.6M)? Is there heavy SBC or capex? 2) Payout ratio 112% means dividend is NOT covered by earnings. Is this sustainable? 3) Revenue trajectory is FLAT (Q1'26 $80.9M vs Q4'25 $84.5M down). Is growth stalling? 4) Why does net margin (19.1%) exceed operating margin (9.2%)? What's in 'other income'? 5) Is TUYA a value trap or genuinely cheap?",
+          "system_prompt": "You are a forensic financial analyst. Focus on cash flow quality, dividend sustainability, and the gap between net income and FCF.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t24_tuya_china_risk",
+          "prompt": "TUYA CHINA ADR RISK: Tuya Inc. is listed on NYSE as an ADR. Headquarters in Hangzhou, China. CN_ADR penalty in our scoring system is -10 points. Questions: 1) What is the VIE structure risk? Could Chinese government seize the business? 2) Is TUYA on any US delisting watchlist? When is the next HFCAA audit? 3) Has TUYA been audited by a PCAOB-inspected firm? 4) What's the political risk of US-China tensions for a Chinese IoT company? 5) Could TUYA be targeted by export controls or sanctions? 6) What happened to other Chinese ADRs (BABA, PDD, NIO)? Is TUYA exposed to the same risks? 7) Why would an American investor accept this risk when comparable US companies exist?",
+          "system_prompt": "You are a Chinese regulatory risk analyst. Be comprehensive about all ADR-specific risks. This is critical for investment decision.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t25_tuya_1to10_rating",
+          "prompt": "RATE TUYA 1-10 FOR BUY-AND-HOLD 10 YEARS. We own 95 shares at $2.10 avg ($200 position). Verified data: Price $2.09. MCap $1.28B. Revenue $328M (+8.3%). NI $62.6M. P/E 20.9x. P/B 1.28x. ZERO debt. Cash $951M (74% of mcap). EV/Rev 1.05x. EV/Earnings 5.5x. Dividend 5.48%. CEO owns 19.4%. SimplyWallSt fair value $3.43. Analyst target $3.23. CN_ADR risk. Rate: 1) Value, 2) Growth Potential, 3) Safety, 4) Catalyst, 5) Management. Provide average and verdict. Compare to GRAB (our #1 position) and BMBL (7/10).",
+          "system_prompt": "You are a 10-year investment analyst. Score honestly. Factor in the CN_ADR discount and the extreme cash position.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t26_tuya_scenario_matrix",
+          "prompt": "TUYA 5-SCENARIO MATRIX: Current price $2.09. Cash $951M (74% of mcap). EV only $345M for $328M revenue and $63M earnings. Scenarios: 1) BULL: IoT explosion, AI integration drives 20%+ growth, market recognizes cash position. Price? 2) PRIVATIZATION: CEO (19.4% owner) takes company private at a premium using the $951M cash pile. Price? 3) BASE: 10% revenue growth, dividends continue, slow re-rating. Price? 4) BEAR: Smart home slowdown, competition from hyperscalers, revenue stagnates. Price? 5) DELIST/ADR CRISIS: US-China tensions force delisting, shares become illiquid. Price? Calculate probability-weighted EV.",
+          "system_prompt": "You are a scenario analyst. Assign probabilities and price targets. The privatization scenario is critical given the massive cash position and CEO ownership.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t27_btg_consulting_analysis",
+          "prompt": "BTG CONSULTING PLC (AIM:BTG) — NEW FIND ANALYSIS. This is NOT B2Gold (our portfolio holding). BTG Consulting is a UK insolvency/business recovery firm. Price £1.24. MCap £199M. Revenue £159M (+12% YoY). Net Income £9.9M. P/E 20.1x. P/S 1.2x. Gross margin 46%. Net margin 6.2%. Debt/Equity 13.6%. Cash £5.3M. Dividend 3.56% yield. CEO Mark Fry (tenure <1yr). Board avg 11.9 years. SimplyWallSt fair value £1.55 (20.3% undervalued). Earnings growth 22.9% forecast. Revenue guidance: £169M for FY2026 (above market expectations). Questions: 1) Is the insolvency business counter-cyclical? Does it benefit from recessions? 2) At P/S 1.2x and P/E 20.1x for 22.9% earnings growth, is this cheap? 3) Compare to US competitors (Alvarez & Marsal, FTI Consulting). 4) Is AIM listing a liquidity risk? 5) Is this a 1000x candidate or a steady dividend grower?",
+          "system_prompt": "You are a UK small-cap analyst. Focus on the insolvency business model and counter-cyclical properties. Note this is a potential new find, not an existing position.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "s15_t28_btg_consulting_vs_b2gold",
+          "prompt": "BTG CONSULTING PLC vs B2GOLD CORP — COMPARISON. Our portfolio holds B2Gold Corp (NYSE:BTG, gold miner) at $4.64. The user also found BTG Consulting plc (AIM:BTG, UK insolvency firm) at £1.24. These are DIFFERENT companies that share the same ticker. Compare: 1) B2Gold: Gold mining, $4.64, ~$5B mcap, commodity exposure, LatAm/Africa operations. 2) BTG Consulting: UK insolvency services, £1.24, £199M mcap, counter-cyclical, UK domestic. Questions: 1) Which has more 10-year upside? 2) Which is safer? 3) Do they provide portfolio diversification (commodity vs services)? 4) Should we consider adding BTG Consulting to the portfolio for sector diversification? 5) Can a £199M AIM company be a 1000x candidate?",
+          "system_prompt": "You are a portfolio diversification analyst. Compare these two completely different companies that happen to share a ticker symbol.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "s15_t29_portfolio_scorecard",
+          "prompt": "FULL PORTFOLIO SCORECARD — UPDATE WITH SIMPLYWALL ST DATA. Current positions: 1) GRAB 150 shares @ $3.54 ($531) — SimplyWallSt fair value $5.97, 39.7% undervalued, earnings growing 23.2% p.a. 2) BTG (B2Gold) 50 shares @ $4.64 ($234) — gold miner, commodity play. 3) GAU 100 shares @ $2.29 ($225) — gold streamer. 4) TUYA 95 shares @ $2.10 ($200) — SimplyWallSt fair value $3.43, 39% undervalued, 5.48% dividend, valuation 6/6. 5) TIGR 39 shares @ $5.01 ($202) — KILLED but still held. Pending: PAGS 50 @ $9.22 limit, PAYO 50 @ $5.12 limit. Watchlist: SMWB $3.00, VFF $2.00, OGI $0.80, TASK $5.00, BMBL $2.50. Cash ~$1,062. Total equity ~$2,473. Questions: Rate each position 1-10 for 10-year hold. Which should we ADD to? Which should we SELL? What's the optimal allocation?",
+          "system_prompt": "You are a portfolio manager for a small retail account. Rate each position and provide allocation recommendations. Be specific about dollar amounts.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t30_grab_sbc_dilution",
+          "prompt": "GRAB STOCK-BASED COMPENSATION AND DILUTION: GRAB has 3.96B shares outstanding. It went public via SPAC in Dec 2021. Questions: 1) How much SBC does GRAB issue annually? What percentage of revenue is SBC? 2) How has share count changed since IPO? Is dilution >5% per year? 3) Are there significant warrants or convertible notes outstanding? 4) Given SBC, what's the 'true' P/E adjusting for SBC expense? 5) With the $500M buyback, does that offset SBC dilution? 6) Compare SBC/revenue ratio to Uber and other tech peers. 7) Is the 22.2% insider ownership real ownership or are these unvested options?",
+          "system_prompt": "You are a dilution analyst. Focus on actual share count changes, SBC as percentage of revenue, and whether buybacks offset dilution.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t31_grab_technical",
+          "prompt": "GRAB TECHNICAL ANALYSIS: Current $3.60. 52w low $3.39 (near!). 52w high $6.62. Down 27.9% past year. RSI? MACD? Volume trends? Questions: 1) Is GRAB forming a bottom near $3.39? Or will it break lower? 2) What does volume look like at this level — accumulation or distribution? 3) Where are key support levels below $3.39? 4) For a stock at -45% from 52w high, where is the typical bounce zone? 5) Is there a falling wedge or other reversal pattern forming? 6) At what price does the SPAC floor of ~$10 become irrelevant (already is, it IPO'd at $11 in 2021)?",
+          "system_prompt": "You are a technical analyst. Focus on price action near 52-week lows and potential reversal patterns. This stock is very near its 52-week low.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "s15_t32_tuya_cash_fortress",
+          "prompt": "TUYA CASH FORTRESS: Cash $951M. Market cap $1.28B. Cash = 74% of market cap. ZERO debt. Total assets $1.16B. Total liabilities $156.6M. Equity $1.01B. Questions: 1) TUYA is trading at 1.28x book value. If you subtract cash, the market values the business at $329M for $328M revenue and $63M earnings. That's essentially 1x revenue and 5.2x earnings for the operating business. Why so cheap? 2) Could the cash be trapped in China and inaccessible? 3) The $37M dividend ($0.06/share) is being paid from cash reserves, not earnings. Is this a capital return or a slow liquidation? 4) Why isn't an activist investor demanding a special dividend or buyback? 5) Is this a 'cash box' that could be privatized?",
+          "system_prompt": "You are a special situations analyst. Focus on the extreme cash position and whether it represents real shareholder value or trapped capital.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t33_grab_buyback_impact",
+          "prompt": "GRAB $500M BUYBACK ANALYSIS: Announced Feb 2025. $500M = 3.4% of $14.7B market cap. At $3.60/share, that's 138.9M shares = 3.5% of 3.96B outstanding. Questions: 1) How much has Grab actually bought back so far? Any 10-Q or 8-K filings showing progress? 2) At current prices, $500M buys more shares than at higher prices — is this accretive? 3) $500M vs $6.47B cash = only 7.7% of cash. Is this too small? Should Grab do $2B? 4) How does the buyback affect EPS? If they retire 139M shares, what's the new EPS? 5) Is the buyback creating a price floor? 6) Compare to Uber's buyback history and impact on stock price.",
+          "system_prompt": "You are a capital allocation analyst. Focus on buyback mechanics and impact on per-share metrics.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "s15_t34_tuya_dividend_sustainability",
+          "prompt": "TUYA DIVIDEND DEEP DIVE: Current yield 5.48%. Dividend $0.121/share ($37M annual). Payout ratio 112% (exceeds earnings!). Cash payout ratio 90.2%. FCF only $21.2M (dividend is $37M, so dividend > FCF). But company has $951M cash so it can pay dividends for 25+ years from cash alone. Questions: 1) Is this dividend sustainable? It exceeds both earnings AND FCF. 2) Are they paying dividends from cash reserves rather than operations? Is this value-destructive? 3) Special dividend of $0.054 in Aug 2025 PLUS regular $0.0608 — are they aggressively returning cash? 4) For a CN_ADR, is the dividend a signal that cash is real and accessible? 5) At 5.48% yield, is TUYA better than a bond for income investors? 6) Will the dividend be cut if earnings don't grow?",
+          "system_prompt": "You are a dividend analyst. Focus on sustainability, coverage ratios, and whether the dividend signals cash accessibility for a Chinese company.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "s15_t35_grab_vs_goto",
+          "prompt": "GRAB vs GOTO (GOJEK-TOKOPEDIA): GoTo is Grab's biggest competitor in Indonesia (largest SE Asian market). Questions: 1) How does Grab's Indonesia market share compare to GoTo? 2) GoTo went public via SPAC too — how has it performed vs Grab? 3) Which company is winning in food delivery, ride-hailing, and payments in Indonesia? 4) Could GoTo and Grab merge? What would that mean for shareholders? 5) How does competition in Indonesia affect Grab's margins? 6) Is GoTo's fintech (GoPay, GoFinance) ahead of or behind GrabPay?",
+          "system_prompt": "You are a Southeast Asian competitive analyst. Focus on market share dynamics in Indonesia and the broader competitive landscape.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "s15_t36_tuya_kill_test",
+          "prompt": "TUYA KILL TEST: Apply kill criteria. Kill if: 1) Chronic dilution >10%/yr — check share count trends. 2) CEO selling at bottom — Jerry Wang owns 19.4%, is he selling? 3) Reverse split history — any? 4) Negative unit economics — 47.8% GM, 19.1% net margin, positive. 5) Fraud/SEC — any VIE risks, delisting threats? 6) Zombie company — generating $62.6M net income, paying dividends. 7) CN_ADR penalty: -10 points in our scoring system. Does the China risk alone warrant a KILL? For each: PASS or FAIL.",
+          "system_prompt": "You are a kill screener for Chinese ADRs. Apply criteria strictly but account for the unique CN_ADR context.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "s15_t37_grab_earnings_quality",
+          "prompt": "GRAB EARNINGS QUALITY: SimplyWallSt flagged 'High level of non-cash earnings' as a risk. Net income $380M but FCF is volatile ($329M annual, but quarterly swings from -$159M to +$69M). Questions: 1) What portion of net income is non-cash (SBC, deferred tax, mark-to-market on investments)? 2) The Q4'25 $172M net income spike — was this driven by investment gains or one-time items? 3) Reconcile: If NI is $380M and annual FCF is $329M, what's the $51M gap? Is it capex, SBC, or other? 4) Would you say GRAB's earnings are 'high quality' (backed by cash) or 'low quality' (accounting profits)? 5) What's the 'adjusted' or 'normalized' earnings power?",
+          "system_prompt": "You are an earnings quality analyst. Focus on cash conversion, non-cash items, and the gap between reported and economic earnings.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s15_t38_portfolio_vs_simplywall",
+          "prompt": "PORTFOLIO HOLDINGS vs SIMPLYWALL ST FAIR VALUES: 1) GRAB: Current $3.60, Fair Value $5.97 (66% upside). 2) TUYA: Current $2.09, Fair Value $3.43 (64% upside). 3) BMBL: Current $3.04, Fair Value $9.00 (196% upside) [but our analysis says $5.95 EV]. Questions: 1) Are SimplyWallSt fair values reliable? What's their track record? 2) All three are ~40-60% undervalued per SimplyWallSt. Is this a coincidence or a structural bias in their model? 3) Which of our holdings has the most REALISTIC path to fair value? 4) If all three reached SimplyWallSt fair value, what would our portfolio be worth? 5) SimplyWallSt gives TUYA 6/6 valuation (perfect) and GRAB 4/6. Why the difference when both are ~40% undervalued?",
+          "system_prompt": "You are a model validation analyst. Assess the reliability of DCF-based fair value estimates from SimplyWallSt. Compare to analyst consensus and our own analysis.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "s15_t39_grab_conviction",
+          "prompt": "GRAB CONVICTION ASSESSMENT after analyzing all data. Rate your conviction (1-10) on each thesis: 1) Revenue will compound 15%+ for 5 years. 2) Profitability is sustainable and will expand. 3) The SE Asia superapp model creates a durable moat. 4) Fintech will become a major revenue driver. 5) The stock will be higher in 5 years. 6) The stock will be higher in 10 years. 7) The $500M buyback will support the price. 8) GRAB is better than holding cash for 10 years. Calculate average conviction. Compare to BMBL conviction (4.9/10).",
+          "system_prompt": "You are a conviction analyst. Be honest. Use only verified data. Rate each thesis independently. This determines portfolio allocation.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "s15_t40_final_verdict",
+          "prompt": "SPRINT 15 FINAL VERDICT — GRAB + TUYA + BTG CONSULTING. After 40 agents of analysis: GRAB: $3.60, $14.7B mcap, 24% growth, first profit, net cash $4.5B, SE Asia superapp, down 27.9%. TUYA: $2.09, $1.28B mcap, 8.3% growth, $951M cash (74% of mcap), 5.48% dividend, CN_ADR risk. BTG Consulting: £1.24, £199M mcap, UK insolvency firm, 22.9% earnings growth, 3.56% dividend, different from our B2Gold position. Questions: 1) How does GRAB compare to our original expectations when we bought at $3.54? Better or worse? 2) Is TUYA a HOLD, ADD, or SELL at current price? 3) Is BTG Consulting worth adding to our watchlist? 4) What's the single best use of our ~$1,062 cash right now? 5) Rank all positions from strongest to weakest conviction. 6) Overall portfolio rating 1-10.",
+          "system_prompt": "You are the final synthesis agent. Combine all 40 agents' analysis into actionable recommendations. Be specific about dollar amounts and position sizes.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

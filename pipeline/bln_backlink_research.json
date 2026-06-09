@@ -1,0 +1,152 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "backlink-01",
+          "prompt": "CONTEXT: BeLikeNative (belikenative.com) is a Chrome extension for AI writing help. We're building backlinks via cross-publishing articles to high-DA platforms with canonical URLs pointing back to belikenative.com. Currently live: Dev.to (DA 62, canonical_url field) and Telegraph/telegra.ph (DA 90, embedded backlinks). 2,199 WordPress articles available. Hashnode API died (301), Medium blocked new tokens since Jan 2025.\n\nTASK: Research ALL publishing platforms with free APIs that support creating articles/posts programmatically in 2026. For each platform: (1) Domain Authority score, (2) whether canonical_url is supported, (3) API complexity (trivial/moderate/hard), (4) signup requirements, (5) rate limits, (6) content restrictions, (7) link attributes (dofollow vs nofollow). Include lesser-known platforms. Rank by backlink value = DA x canonical_support x ease_of_automation.",
+          "system_prompt": "You are an SEO and API integration specialist. Focus on platforms with working APIs in 2026. Verify API endpoints are current. Provide specific URLs for API documentation.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "backlink-02",
+          "prompt": "CONTEXT: Building automated backlink pipeline for belikenative.com. Need platforms with APIs.\n\nTASK: Deep dive into Google Blogger/Blogspot API for automated publishing. (1) Current API endpoints and authentication (OAuth 2.0 flow), (2) Can you set canonical URLs in the HTML template? (3) What's the exact API call to create a post? (4) Rate limits, (5) Can you create multiple blogs under one account? (6) Is the link dofollow? (7) What's blogspot.com's current DA? (8) Step-by-step setup guide for automated publishing. (9) Any anti-spam detection? (10) Template customization for SEO meta tags.",
+          "system_prompt": "You are a Google API integration expert. Provide exact API endpoints, authentication flows, and code examples.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "backlink-03",
+          "prompt": "CONTEXT: Building automated backlink pipeline. Need to understand GitHub Pages for SEO backlinks.\n\nTASK: Analyze GitHub Pages (github.io) as a backlink platform. (1) Current DA of github.io, (2) Can you set canonical URLs via HTML meta tags? (3) Automated publishing via GitHub API (create/update files), (4) Jekyll vs static HTML — which is better for SEO? (5) Can you have multiple repos = multiple github.io sites? (6) Are links dofollow? (7) How does Google treat github.io pages for indexing? (8) Rate limits for GitHub API, (9) Best practices for maximizing SEO value from GitHub Pages. (10) Can you use custom domains with GitHub Pages for even more backlink diversity?",
+          "system_prompt": "You are a technical SEO expert specializing in developer platforms. Provide specific technical details and API endpoints.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "backlink-04",
+          "prompt": "CONTEXT: Cross-publishing articles from belikenative.com to build backlinks.\n\nTASK: Research WordPress.com free tier API for automated publishing. (1) Can free-tier blogs set canonical URLs? (2) REST API endpoints for creating posts, (3) Authentication (OAuth, application passwords), (4) DA of wordpress.com subdomains, (5) Are links dofollow? (6) Content restrictions on free tier, (7) Rate limits, (8) Can you create multiple free blogs? (9) Does WordPress.com penalize duplicate content? (10) Jetpack vs REST API differences. Also research WordPress.org self-hosted as comparison — what's the cheapest hosting for a WP install just for backlinks?",
+          "system_prompt": "You are a WordPress ecosystem expert. Distinguish clearly between WordPress.com and WordPress.org. Provide current 2026 API details.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "backlink-05",
+          "prompt": "CONTEXT: Building backlink pipeline for a Chrome extension website.\n\nTASK: Research niche publishing platforms with APIs that most people overlook for backlinks. Investigate: (1) Write.as / WriteFreely API, (2) Notion public pages, (3) Bear Blog, (4) Svbtle, (5) Typefully, (6) Read.cv, (7) Polywork, (8) Hackmd.io / HedgeDoc, (9) GitBook, (10) Docusaurus deployed sites, (11) Discourse forums with API, (12) Lemmy instances, (13) Mastodon long-form posts, (14) Cohost (if still alive), (15) micro.blog. For each: DA, API availability, canonical support, automation difficulty, link type.",
+          "system_prompt": "You are a link building specialist who knows obscure but high-value platforms. Focus on platforms with programmatic access.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "backlink-06",
+          "prompt": "CONTEXT: We have 2,199 articles about AI writing, language learning, grammar, multilingual communication on belikenative.com.\n\nTASK: Research article submission APIs for tech/writing content. Investigate: (1) freeCodeCamp — can you submit via API or only editorial? (2) HackerNoon — submission process and API, (3) DZone — article submission, (4) SitePoint, (5) Smashing Magazine, (6) CSS-Tricks, (7) A List Apart, (8) The Practical Dev (is this just Dev.to?), (9) InfoQ, (10) TechCrunch contributor program. For each: DA, acceptance rate, canonical policy, automation potential, content guidelines. Which ones accept 'AI writing tools' content?",
+          "system_prompt": "You are a tech content distribution specialist. Focus on editorial standards and automation potential.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "backlink-07",
+          "prompt": "CONTEXT: Building backlinks for belikenative.com, an AI writing Chrome extension.\n\nTASK: Research social bookmarking and content aggregation platforms with APIs for backlink building. (1) Reddit API — can posts include links? nofollow? DA? rate limits? (2) Hacker News API — submission automation possible? (3) Product Hunt — can you post articles? (4) Lobsters, (5) Flipboard, (6) Mix.com (formerly StumbleUpon), (7) Pocket — do saved articles create backlinks? (8) Digg, (9) Slashdot submission, (10) Quora Spaces API. For each: DA, link value (follow/nofollow), automation potential, community guidelines about self-promotion, ban risk.",
+          "system_prompt": "You are a community marketing and link building expert. Be honest about ban risks and nofollow policies.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "backlink-08",
+          "prompt": "CONTEXT: Running automated cross-publishing pipeline. Currently Dev.to + Telegraph. Want to scale to 10+ platforms.\n\nTASK: Research international publishing platforms with APIs. (1) Qiita (Japan, DA?), (2) Habr/Habr.com (Russia, DA?), (3) Juejin (China), (4) CSDN (China), (5) Zenn.dev (Japan), (6) Velog.io (Korea), (7) Medium-like platforms in non-English markets, (8) IndieHackers — article posting API? (9) Dev.to in other languages — is content accepted in non-English? (10) Are there platforms specifically for language learning content? For each: DA, API, canonical support, language requirements.",
+          "system_prompt": "You are an international content distribution specialist. Focus on platforms with high DA and working APIs accessible from outside their home country.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "backlink-09",
+          "prompt": "CONTEXT: Cross-publishing 2,199 articles with canonical URLs to belikenative.com.\n\nTASK: Analyze the SEO impact and risks of large-scale cross-publishing. (1) Does Google penalize cross-posting the same content to 5-10 platforms? (2) How does canonical_url affect duplicate content penalties? (3) What's the optimal publication velocity (articles per day per platform) to avoid spam detection? (4) Do search engines devalue backlinks from mass cross-publishing? (5) What's the difference between syndication and spam in Google's eyes? (6) Case studies of sites that successfully used cross-publishing for SEO, (7) Warning signs that you're over-doing it, (8) How to vary content per platform to maximize value.",
+          "system_prompt": "You are a technical SEO strategist. Provide evidence-based answers about Google's syndication policies. Reference Google documentation and real case studies.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "backlink-10",
+          "prompt": "CONTEXT: BeLikeNative has 2,199 articles about AI writing, language learning, Chrome extensions, productivity.\n\nTASK: Research web 2.0 blog platforms that still work for backlinks in 2026. (1) Blogger/Blogspot, (2) WordPress.com free, (3) Wix free blogs, (4) Weebly free, (5) Sites.google.com, (6) Notion public sites, (7) Carrd.co, (8) Strikingly, (9) Yola, (10) Jimdo. For each: current DA, free tier capabilities, API or automation method, canonical tag support, indexing speed, link juice quality. Which web 2.0 platforms still pass meaningful link value? Which ones are penalized by Google as link schemes?",
+          "system_prompt": "You are a link building expert who has tested web 2.0 strategies extensively. Be honest about what still works in 2026 vs what Google has devalued.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        }
+      ]
+    },
+    {
+      "tasks": [
+        {
+          "task_id": "strategy-01",
+          "prompt": "CONTEXT: BeLikeNative backlink pipeline currently has: Dev.to (DA 62, canonical, REST API, LIVE) and Telegraph (DA 90, embedded links, LIVE). 12 backlinks created so far. 2,199 articles in queue. Articles are about AI writing, language learning, multilingual communication, grammar tools, Chrome extensions.\n\nTASK: Design the optimal multi-platform backlink strategy for belikenative.com. Given the platforms researched, create a tiered plan: Tier 1 (deploy this week, highest ROI), Tier 2 (deploy in 2 weeks), Tier 3 (month-long projects). For each tier: which platforms, expected DA range, estimated backlinks per month, implementation effort, cost. Calculate the expected DR (Domain Rating) improvement from 100, 500, and 1000 backlinks across these platforms.",
+          "system_prompt": "You are a backlink strategist. Create an actionable deployment plan with specific timelines, costs, and expected outcomes.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "strategy-02",
+          "prompt": "CONTEXT: Using Claude Code + DeepSeek for automated content adaptation. Dev.to articles cost ~$0.03 per Claude rewrite. Telegraph reuses Dev.to content for $0.\n\nTASK: Design cost-optimized content adaptation strategies for maximum platform coverage. (1) Which platforms can share the same adapted content? (2) How to minimize Claude API calls — can one rewrite serve 3-4 platforms? (3) DeepSeek vs Claude for content rewriting — quality comparison for SEO content, (4) Can DeepSeek handle the humanization rules (banned words, sentence rhythm, no bold)? (5) Cost modeling: what's the total cost to create 1000 backlinks across 5 platforms? (6) Template-based adaptation vs full AI rewrite — when is each appropriate?",
+          "system_prompt": "You are an AI pipeline optimization expert. Focus on minimizing cost while maintaining content quality.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "strategy-03",
+          "prompt": "CONTEXT: BeLikeNative has 1.9M SEO impressions, 10,000+ daily extension users, belikenative.com WordPress site.\n\nTASK: Beyond cross-publishing, what other automated backlink strategies work in 2026? Research: (1) HARO/Connectively — journalist query responses via API, (2) Podcast guest databases with APIs, (3) Directory submission automation, (4) Broken link building automation tools, (5) Resource page outreach at scale, (6) Guest posting networks with APIs, (7) Press release distribution APIs (PRWeb, PR Newswire, etc.), (8) Digital PR tools with APIs, (9) Scholarship link building, (10) Tool/resource page submissions. For each: effort level, link quality, scalability, automation potential.",
+          "system_prompt": "You are a link building automation expert. Focus on strategies that can be fully or mostly automated with APIs.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "strategy-04",
+          "prompt": "CONTEXT: Running a backlink pipeline that publishes articles to multiple platforms with canonical URLs.\n\nTASK: Research the exact mechanics of how canonical URLs transfer SEO value. (1) How much link juice does a canonical tag actually pass? (Is it 100% like 301? Less?) (2) Does Google always respect canonical_url on third-party sites? (3) Dev.to canonical_url — has Google confirmed it respects this? Evidence? (4) Embedded backlinks (like Telegraph) vs canonical tags — SEO value comparison, (5) How long does it take for a new backlink to affect rankings? (6) Does anchor text in embedded backlinks matter? (7) How to measure backlink impact with Google Search Console, (8) Are there diminishing returns from same-domain backlinks (e.g., 100 links from dev.to)?",
+          "system_prompt": "You are a technical SEO researcher. Cite Google documentation, patents, and industry studies. Distinguish between confirmed facts and SEO folklore.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "strategy-05",
+          "prompt": "CONTEXT: BeLikeNative WordPress site with 2,199 articles. Building backlink pipeline.\n\nTASK: What are the most effective internal linking and on-page SEO improvements that amplify the value of incoming backlinks? (1) Internal linking structure to distribute link juice, (2) Topical cluster/pillar page strategy, (3) Which pages should receive the most backlinks? (4) How to prioritize articles for cross-publishing (by traffic potential, keyword difficulty, current ranking), (5) Should every article get backlinks or focus on 50-100 key pages? (6) Hub-and-spoke vs flat internal linking, (7) How to identify pages that would benefit most from one additional backlink.",
+          "system_prompt": "You are an on-page SEO strategist. Focus on maximizing the ROI of incoming backlinks through site architecture.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "strategy-06",
+          "prompt": "CONTEXT: BeLikeNative cross-publishing pipeline. HUMANIZE-CONTENT v2.0 rules applied to all content (banned words, sentence rhythm, no bold/emoji).\n\nTASK: Research content quality signals that affect backlink value. (1) Does content quality on the linking page affect link juice transfer? (2) Google's helpful content update — impact on cross-published content, (3) E-E-A-T signals in cross-published articles, (4) Word count sweet spots for different platforms (Dev.to vs Telegraph vs Blogger), (5) Does engagement (comments, likes) on cross-published articles affect backlink value? (6) How to add unique value to each platform version to avoid thin content penalties, (7) Schema markup opportunities on publishing platforms.",
+          "system_prompt": "You are a content quality and SEO expert. Focus on how content quality affects link value transfer.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "strategy-07",
+          "prompt": "CONTEXT: Automated pipeline publishing to Dev.to and Telegraph. Want to add more platforms.\n\nTASK: Create a competitive analysis of automated backlink building tools and services. (1) What tools exist for automated cross-publishing (Missinglettr, CoSchedule, etc.)? (2) What do professional link building agencies charge? (3) How do competitors build backlinks for similar Chrome extensions (Grammarly, QuillBot, LanguageTool)? (4) What's Grammarly's backlink profile look like? How many referring domains? (5) SEO tool comparison for backlink monitoring (Ahrefs, Moz, Semrush, Ubersuggest), (6) How much would an equivalent manual backlink campaign cost?",
+          "system_prompt": "You are a competitive intelligence analyst specializing in SEO. Provide specific data about competitor backlink profiles.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "strategy-08",
+          "prompt": "CONTEXT: Building backlinks for a Chrome extension (belikenative.com). Extension is in Chrome Web Store.\n\nTASK: Research Chrome Web Store SEO and its relationship with website backlinks. (1) Does belikenative.com's domain authority affect Chrome Web Store ranking? (2) How does CWS ranking algorithm work in 2026? (3) Do backlinks to the website improve extension discovery? (4) Chrome Web Store listing optimization best practices, (5) Are there backlink opportunities FROM Chrome Web Store (does the listing link to your site with dofollow?), (6) Can you cross-link between extension listing and website for mutual SEO benefit? (7) Impact of CWS reviews and ratings on SEO.",
+          "system_prompt": "You are a Chrome Web Store optimization expert. Focus on the intersection of traditional SEO and CWS ranking factors.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "strategy-09",
+          "prompt": "CONTEXT: Publishing articles with embedded backlinks to belikenative.com. Using Telegraph (DA 90) which embeds links in content body.\n\nTASK: Research anchor text optimization for backlinks. (1) What anchor text distribution looks like natural to Google? (2) Optimal ratio of branded (BeLikeNative) vs generic (click here) vs keyword-rich (AI writing tool) anchors, (3) How to vary anchor text across 2,199 articles, (4) Penalty risks from over-optimized anchor text, (5) Do canonical_url platforms (Dev.to) count as their own anchor text or pass the original page's? (6) Best anchor text strategies for embedded content links (Telegraph-style), (7) How to audit and fix toxic anchor text profiles.",
+          "system_prompt": "You are an anchor text and link profile specialist. Provide data-driven anchor text distribution recommendations.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "strategy-10",
+          "prompt": "CONTEXT: BeLikeNative backlink pipeline with 12 backlinks live, 2,199 articles queued, Dev.to + Telegraph platforms.\n\nTASK: Create a 90-day backlink building roadmap with specific milestones. Week by week: (1) Which platforms to add, (2) How many articles to publish per day per platform, (3) Expected total backlinks at each milestone, (4) Expected Domain Rating improvement timeline, (5) Cost projections (Claude API, hosting, tools), (6) Risk mitigation checkpoints, (7) When to measure results in Google Search Console, (8) Success metrics and KPIs to track, (9) When to adjust strategy based on data, (10) The final target: how many quality backlinks does belikenative.com need to compete with Grammarly/QuillBot for target keywords?",
+          "system_prompt": "You are a project manager and SEO strategist. Create a detailed, actionable 90-day plan with weekly milestones and measurable outcomes.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        }
+      ]
+    }
+  ]
+}

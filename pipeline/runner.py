@@ -2,12 +2,13 @@
 from __future__ import annotations
 
 """
-Pipeline Runner — CLI entry point for the 20-agent DeepSeek pipeline.
+Pipeline Runner — CLI entry point for the 35-agent pipeline.
 
 Usage:
-    python3 runner.py --tasks tasks.json --agents 20 --budget 10.0
-    python3 runner.py --preset crypto_research --agents 20
-    python3 runner.py --prompt "Research X" --fan-out 20
+    python3 runner.py --preset llm_model_intel --agents 35 --anti-hallucination
+    python3 runner.py --preset crypto_research --agents 35 --model flash
+    python3 runner.py --prompt "Research X" --fan-out 35
+    python3 runner.py --tasks my_tasks.json --model mimo --provider openrouter
 """
 
 import argparse
@@ -24,20 +25,35 @@ from task_templates import PRESETS, build_preset_tasks
 
 
 def parse_args():
-    p = argparse.ArgumentParser(description="100x DeepSeek Pipeline Runner")
-    p.add_argument("--tasks", type=str, help="Path to tasks JSON file")
-    p.add_argument("--preset", type=str, choices=list(PRESETS.keys()), help="Use a built-in task preset")
-    p.add_argument("--prompt", type=str, help="Single prompt to fan out across N agents")
-    p.add_argument("--fan-out", type=int, default=20, help="Number of parallel agent variants for --prompt mode")
-    p.add_argument("--agents", type=int, default=20, help="Max concurrent agents (default: 20)")
-    p.add_argument("--model", type=str, default="deepseek-chat", help="DeepSeek model (default: deepseek-chat)")
-    p.add_argument("--budget", type=float, default=10.0, help="Budget limit in USD (default: 10.0)")
-    p.add_argument("--output", type=str, default="", help="Output directory (auto-generated if empty)")
-    p.add_argument("--temperature", type=float, default=0.7, help="Sampling temperature (default: 0.7)")
-    p.add_argument("--max-tokens", type=int, default=4096, help="Max tokens per response (default: 4096)")
-    p.add_argument("--json-mode", action="store_true", help="Request JSON output from model")
-    p.add_argument("--dry-run", action="store_true", help="Show tasks without executing")
-    p.add_argument("--topic", type=str, default="", help="Topic override for presets")
+    p = argparse.ArgumentParser(
+        description="100x Agentic Pipeline — 35 agents, MiMo V2.5 Pro, anti-hallucination"
+    )
+    p.add_argument("--tasks",   type=str, help="Path to tasks JSON file")
+    p.add_argument("--preset",  type=str, choices=list(PRESETS.keys()),
+                   help="Use a built-in task preset")
+    p.add_argument("--prompt",  type=str, help="Single prompt to fan out across N agents")
+    p.add_argument("--topic",   type=str, default="", help="Topic override for presets")
+    p.add_argument("--fan-out", type=int, default=35,
+                   help="Parallel agent variants for --prompt mode (default: 35)")
+    p.add_argument("--agents",  type=int, default=35,
+                   help="Max concurrent agents (default: 35)")
+    p.add_argument("--model",   type=str, default="deepseek-chat",
+                   help="Model alias or ID. Aliases: mimo, flash, pro, sonnet, haiku "
+                        "(default: deepseek-chat)")
+    p.add_argument("--provider", type=str, choices=["deepseek", "openrouter"], default=None,
+                   help="API provider. Auto-detected from model if not set.")
+    p.add_argument("--anti-hallucination", action="store_true",
+                   help="Enable AH mode: MiMo V2.5 Pro, temp=0.1, citation required, "
+                        "[UNVERIFIED] stripped")
+    p.add_argument("--budget",      type=float, default=10.0,
+                   help="Budget limit USD (default: 10.0)")
+    p.add_argument("--output",      type=str,   default="",
+                   help="Output directory (auto-generated if empty)")
+    p.add_argument("--temperature", type=float, default=0.7)
+    p.add_argument("--max-tokens",  type=int,   default=4096)
+    p.add_argument("--json-mode",   action="store_true")
+    p.add_argument("--dry-run",     action="store_true",
+                   help="Preview tasks without executing")
     return p.parse_args()
 
 
@@ -109,8 +125,30 @@ def print_task_summary(phases_data: list, dry_run: bool = False):
     print()
 
 
+def _build_dry_run_phases(args) -> list:
+    """Build task list from args for dry-run preview without initializing client."""
+    from task_templates import build_preset_tasks
+    if args.preset:
+        return build_preset_tasks(args.preset, num_agents=args.agents, topic=args.topic or None)
+    if args.prompt:
+        tasks = build_fan_out_tasks(args.prompt, args.fan_out, args.temperature, args.max_tokens)
+        return [(tasks, None)]
+    return []
+
+
 async def main():
     args = parse_args()
+
+    # Dry-run: preview tasks without initializing API client
+    if args.dry_run:
+        phases = _build_dry_run_phases(args)
+        print_task_summary([{"tasks": t} for t, _ in phases], dry_run=True)
+        print(f"  Model: {args.model} | Agents: {args.agents} | Budget: ${args.budget}")
+        print(f"  Anti-hallucination: {args.anti_hallucination} | Provider: {args.provider or 'auto'}")
+        return
+
+    if args.anti_hallucination:
+        print("[AH mode] MiMo V2.5 Pro • temp=0.1 • citations required • [UNVERIFIED] stripped")
 
     orch = Orchestrator(
         max_agents=args.agents,
@@ -118,6 +156,8 @@ async def main():
         budget_limit_usd=args.budget,
         output_dir=args.output,
         verbose=True,
+        anti_hallucination=args.anti_hallucination,
+        provider=args.provider,
     )
 
     if args.tasks:
@@ -166,13 +206,6 @@ async def main():
     else:
         print("Error: Must provide --tasks, --preset, or --prompt")
         sys.exit(1)
-
-    if args.dry_run:
-        print_task_summary(
-            [{"tasks": p.tasks} for p in orch.phases],
-            dry_run=True,
-        )
-        return
 
     report = await orch.run()
 

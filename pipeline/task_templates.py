@@ -10,14 +10,15 @@ from orchestrator import Task
 
 # ── Available Presets ───────────────────────────────────────────────────────
 PRESETS = {
-    "crypto_research": "Deep research on crypto tokens/protocols",
-    "market_scan": "Broad market opportunity scanning",
-    "competitive_intel": "Competitive intelligence gathering",
-    "sec_audit_recon": "Security audit reconnaissance",
-    "code_review": "Distributed code review and analysis",
-    "seo_research": "SEO and content strategy research",
-    "domain_research": "Domain/asset research and valuation",
-    "tech_deep_dive": "Technical deep dive on a topic",
+    "crypto_research":  "Deep research on crypto tokens/protocols",
+    "market_scan":      "Broad market opportunity scanning",
+    "competitive_intel":"Competitive intelligence gathering",
+    "sec_audit_recon":  "Security audit reconnaissance",
+    "code_review":      "Distributed code review and analysis",
+    "seo_research":     "SEO and content strategy research",
+    "domain_research":  "Domain/asset research and valuation",
+    "tech_deep_dive":   "Technical deep dive on a topic",
+    "llm_model_intel":  "LLM model rankings, pricing, hallucination — web-grounded, MiMo V2.5 Pro",
 }
 
 SYSTEM_PROMPT_RESEARCH = (
@@ -47,14 +48,15 @@ def build_preset_tasks(preset: str, num_agents: int = 20, topic: str = None) -> 
     Returns: list of (list[Task], synthesis_prompt) tuples.
     """
     builders = {
-        "crypto_research": _build_crypto_research,
-        "market_scan": _build_market_scan,
-        "competitive_intel": _build_competitive_intel,
-        "sec_audit_recon": _build_sec_audit_recon,
-        "code_review": _build_code_review,
-        "seo_research": _build_seo_research,
-        "domain_research": _build_domain_research,
-        "tech_deep_dive": _build_tech_deep_dive,
+        "crypto_research":  _build_crypto_research,
+        "market_scan":      _build_market_scan,
+        "competitive_intel":_build_competitive_intel,
+        "sec_audit_recon":  _build_sec_audit_recon,
+        "code_review":      _build_code_review,
+        "seo_research":     _build_seo_research,
+        "domain_research":  _build_domain_research,
+        "tech_deep_dive":   _build_tech_deep_dive,
+        "llm_model_intel":  _build_llm_model_intel,
     }
 
     builder = builders.get(preset)
@@ -437,5 +439,116 @@ def _build_tech_deep_dive(n: int, topic: str = None) -> list:
         "4. PRODUCTION READINESS SCORE (1-10)\n"
         "5. RECOMMENDED ADOPTION STRATEGY"
     )
+
+    return [(tasks, synthesis)]
+
+
+# ── System prompt for LLM Intel — strict citation, no fabrication ────────────
+_SYSTEM_LLM_INTEL = (
+    "You are an LLM market analyst. STRICT RULES: "
+    "Only cite data you received in the CONTEXT block or are 100% certain of. "
+    "If you lack data, write [UNVERIFIED: <claim>]. "
+    "Never invent model names, prices, benchmark scores, or release dates. "
+    "Cite every number with its source (e.g. 'Artificial Analysis, June 2026'). "
+    "Structure: bullet points, source tags, no filler."
+)
+
+
+def _build_llm_model_intel(n: int, topic: str = None) -> list:
+    """
+    35-agent LLM model intelligence pipeline.
+    Phase 1 (25 agents): Research specific dimensions in parallel.
+    Phase 2 (10 agents): Synthesize into sections.
+    Designed for --anti-hallucination mode (MiMo V2.5 Pro, temp=0.1).
+    """
+    focus = topic or "frontier and cost-effective LLM models (June 2026)"
+
+    phase1_prompts = [
+        # Pricing tier
+        f"List exact input/output/cache-hit prices for these models: Claude Opus 4.8, Claude Sonnet 4.6, Claude Haiku 4.5, GPT-5.5, GPT-5.4, GPT-4o, Gemini 3.1 Pro, Gemini 3.5 Flash. Topic: {focus}",
+        f"List exact prices for: DeepSeek V4 Pro, DeepSeek V4 Flash, MiMo V2.5 Pro, MiMo V2.5, Qwen 3.7 Max, MiniMax M3, Kimi K2.6. Note any active discounts and expiry dates.",
+        f"List exact prices for budget/open-source models via inference providers: Llama 3.3 70B (Groq, Together), Qwen3 32B (Groq), gpt-oss-120B (Cerebras), Mercury 2 (Inception). Include tokens/sec speed.",
+        # Benchmarks
+        f"Report Intelligence Index scores (Artificial Analysis composite) for top 15 models. Include pass@1 methodology note. Topic: {focus}",
+        f"Report SWE-bench Verified scores for top 10 models. Who leads? What is the gap between Claude and DeepSeek on real-world software engineering?",
+        f"Report LiveCodeBench scores for top 10 models. Note: DeepSeek-V4-Pro-Max vs standard variant difference.",
+        f"Report MATH-500 scores for top 10 models. Compare DeepSeek vs Claude performance on math.",
+        f"Report HumanEval / HumanEval+ scores for coding. Top 10 models.",
+        # Hallucination
+        f"Report AA-Omniscience miscalibration rates (hallucination proxy) for all available models. Lower = better. Source: BenchLM AA-Omniscience leaderboard.",
+        f"What is MiMo V2.5 Pro's hallucination rate vs DeepSeek V4 Pro? What tasks show the biggest difference? Cite specific studies.",
+        f"What mitigation strategies reduce DeepSeek hallucination most effectively? Compare: RAG retrieval, tool grounding, CoT, multi-sample, structured output.",
+        # New models
+        f"What new models were released or announced in May-June 2026? Include: Claude Opus 4.8, GPT-5.5, Gemini 3.1 Pro, MiMo V2.5 Pro, Kimi K2.6, MiniMax M3. Release dates and key capabilities.",
+        f"What is MiMo V2.5 Pro? Who makes it, what benchmarks does it excel at, what is its architecture, what is its pricing via OpenRouter?",
+        f"What is the status of Claude Opus 4.8 and Claude Mythos Preview? What SWE-bench scores do they achieve?",
+        f"Compare Kimi K2.6 vs MiMo V2.5 Pro vs Qwen 3.7 Max on coding benchmarks and price.",
+        # Cost optimization
+        f"What is the optimal model routing strategy for an agentic dev pipeline that runs: web scraping, code generation, complex reasoning, final verification? Give model + cost per MTok for each.",
+        f"How does Anthropic Batch API (50% off) compare to real-time API for pipeline workloads? What are the latency and delivery window tradeoffs?",
+        f"How do DeepSeek cache hit rates affect real-world costs? Example: 88.6% cache hit rate on a 1B token/day pipeline — what is the effective price per token?",
+        # Market
+        f"What are the major LLM API pricing changes in May-June 2026? Which providers cut prices? Which raised prices?",
+        f"Compare Claude Max subscription (1x $200/mo, 20x) vs Anthropic API Sonnet 4.6 Batch for pipeline automation workloads. When does API win?",
+        f"What is the competitive position of DeepSeek V4 Pro vs Claude Sonnet 4.6 for agentic workloads: speed, quality, cost, reliability?",
+        # Pipeline-specific
+        f"For a 35-agent parallel intel pipeline, what model mix minimizes cost while keeping hallucination below 30%? Give a concrete routing table.",
+        f"What OpenRouter models offer the best quality/price ratio for research agents? Compare top 5 options with prices.",
+        f"What rate limits do DeepSeek API and OpenRouter impose on concurrent requests? How to handle 429s in a 35-agent pipeline?",
+        f"What is the current state of MiMo model availability? Direct API, OpenRouter, Together.ai, HuggingFace inference endpoints?",
+    ]
+
+    phase1_tasks = [
+        Task(
+            task_id=f"intel-{i+1:02d}",
+            prompt=p,
+            system_prompt=_SYSTEM_LLM_INTEL,
+            temperature=0.1,
+            max_tokens=3000,
+        )
+        for i, p in enumerate(phase1_prompts[:min(n, 25)])
+    ]
+
+    phase1_synthesis = (
+        "You are synthesizing raw LLM intelligence from 25 research agents.\n"
+        "Build a structured report with these sections:\n"
+        "1. FRONTIER MODEL PRICING TABLE (input/output/cache, USD per MTok)\n"
+        "2. COST-EFFECTIVE MODEL TABLE (same format)\n"
+        "3. BENCHMARK RANKINGS (Intelligence Index, SWE-bench, LiveCodeBench, MATH-500)\n"
+        "4. HALLUCINATION RATES (AA-Omniscience, by model, lower=better)\n"
+        "5. NEW MODELS (June 2026 releases, key specs)\n"
+        "6. PIPELINE ROUTING TABLE (task → model → cost → why)\n"
+        "7. COST OPTIMIZATION ACTIONS (top 5 by savings)\n"
+        "Rules: Only include claims from agent outputs. Mark gaps as [NEEDS VERIFICATION]. "
+        "No invented data. Every number needs a source citation."
+    )
+
+    phase2_prompts = [
+        "From the synthesized intel, extract and format the complete pricing table as JSON.",
+        "From the synthesized intel, identify the top 5 models for agentic pipelines by quality/price/hallucination triad.",
+        "From the synthesized intel, write the definitive comparison: MiMo V2.5 Pro vs DeepSeek V4 Pro for intel pipelines.",
+        "From the synthesized intel, build the optimal model routing table for a 35-agent pipeline.",
+        "From the synthesized intel, list all [NEEDS VERIFICATION] items and their confidence level.",
+    ]
+
+    phase2_tasks = [
+        Task(
+            task_id=f"synth-{i+1:02d}",
+            prompt=p,
+            system_prompt=_SYSTEM_LLM_INTEL,
+            temperature=0.05,
+            max_tokens=4096,
+        )
+        for i, p in enumerate(phase2_prompts[:min(n, 5)])
+    ]
+
+    phase2_synthesis = (
+        "Combine all section outputs into a single executive-grade LLM Intelligence Report.\n"
+        "Format: markdown with tables. Include: date (June 2026), source citations, "
+        "confidence levels, and a pipeline upgrade recommendation section.\n"
+        "Flag all [NEEDS VERIFICATION] items in a dedicated appendix."
+    )
+
+    return [(phase1_tasks, phase1_synthesis), (phase2_tasks, phase2_synthesis)]
 
     return [(tasks, synthesis)]

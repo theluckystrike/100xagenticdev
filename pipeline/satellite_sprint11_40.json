@@ -1,0 +1,275 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "bbr-01",
+          "prompt": "Write a complete HTML page for bugbountyreality.com titled 'Bug Bounty Platforms Compared 2026 — HackerOne vs Bugcrowd vs Immunefi'. Create an interactive comparison table with vanilla JS that lets users filter by: payout range, response time, program type (web/mobile/smart contract/AI), and platform fees. Include real data: HackerOne (>$300M paid, 3000+ programs), Bugcrowd (>$100M paid), Immunefi ($100M+ paid, DeFi focus), huntr (OSS focus, $1.5K-$4K MFV tiers), Intigriti, YesWeHack, 0din.ai. Interactive features: sort by column, filter chips, side-by-side compare mode. Schema: FAQPage (5 FAQs about choosing platforms) + BreadcrumbList + Article. Meta title <60ch, meta desc <155ch. Self-contained HTML, zero external deps, dark theme matching bugbountyreality.com style.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "bbr-02",
+          "prompt": "Write a complete HTML page for bugbountyreality.com titled 'CVSS Score Calculator — Interactive Vulnerability Severity Rating'. Build a fully interactive CVSS v3.1 calculator with vanilla JS. Users select: Attack Vector (Network/Adjacent/Local/Physical), Attack Complexity (Low/High), Privileges Required (None/Low/High), User Interaction (None/Required), Scope (Unchanged/Changed), CIA Impact (None/Low/High each). Calculate base score in real-time with color-coded severity (Critical 9.0-10.0 red, High 7.0-8.9 orange, Medium 4.0-6.9 yellow, Low 0.1-3.9 green). Show the CVSS vector string. Include 10 example vulnerabilities with pre-filled scores. Schema: WebApplication + FAQPage + BreadcrumbList. Dark theme.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "bbr-03",
+          "prompt": "Write a complete HTML page for bugbountyreality.com titled 'Bug Bounty Earnings Calculator — Realistic Income Estimator'. Interactive calculator: inputs are skill level (beginner/intermediate/advanced/elite), hours per week, focus area (web/mobile/API/smart contract/AI-ML), platform choice. Calculate realistic monthly/yearly earnings based on public data: median payouts by severity ($50-150 low, $500-1500 medium, $2000-5000 high, $5000-25000 critical), acceptance rates (15-30%), time per valid finding. Show breakdown: gross finds, valid rate, average severity distribution, total payout. Compare to employed pentester salaries. Include a 'reality check' section showing that top 1% earn >$500K while median is <$20K. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "bbr-04",
+          "prompt": "Write a complete HTML page for bugbountyreality.com titled 'Vulnerability Report Template Generator'. Interactive tool: user selects vulnerability type (XSS, SQLi, SSRF, IDOR, Auth Bypass, RCE, CSRF, Info Disclosure, Logic Bug, Smart Contract), severity, and platform (HackerOne, Bugcrowd, Immunefi). Auto-generates a professional markdown report template with: Title, Severity, CVSS, Summary, Steps to Reproduce (numbered), Impact, Affected Endpoint, Proof of Concept, Remediation, References. Copy-to-clipboard button. Include tips for each vulnerability type. Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "bbr-05",
+          "prompt": "Write a complete HTML page for bugbountyreality.com titled 'Scope Parser — Analyze Bug Bounty Program Scope'. Interactive tool where users paste a bug bounty program's scope text and the tool parses it into: in-scope domains/URLs, out-of-scope items, allowed vulnerability types, severity ratings accepted, special rules. Highlight wildcards (*.example.com), API endpoints, mobile apps. Show a visual scope map. Include common scope patterns from top programs. Let users save/export parsed scope as JSON. Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ht-01",
+          "prompt": "Write a complete HTML page for heytensor.com titled 'PyTorch Memory Calculator — Estimate GPU VRAM Usage'. Interactive calculator: user enters model parameters (millions), batch size, sequence length, precision (fp32/fp16/bf16/int8/int4), optimizer (Adam/SGD/AdamW). Calculate: model memory, gradient memory, optimizer state memory, activation memory, total VRAM. Show which GPUs can fit (A100 80GB, H100 80GB, RTX 4090 24GB, RTX 3090 24GB, T4 16GB, V100 16GB). Include gradient checkpointing toggle, mixed precision toggle, DeepSpeed ZeRO stages. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive tool pages for a PyTorch/deep learning audience. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ht-02",
+          "prompt": "Write a complete HTML page for heytensor.com titled 'CUDA Error Decoder — Fix GPU Errors Fast'. Interactive tool: user pastes a CUDA/PyTorch error message and the tool identifies the error type and provides the fix. Support 30+ common errors: CUDA out of memory, CUBLAS_STATUS_ALLOC_FAILED, NCCL errors, device-side assert, illegal memory access, driver version mismatch, CUDA_ERROR_NO_DEVICE, cuDNN errors. For each: cause, one-line fix, detailed explanation, code example. Search/filter by error text. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive tool pages for a PyTorch/deep learning audience. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ht-03",
+          "prompt": "Write a complete HTML page for heytensor.com titled 'Training Time Estimator — How Long Will Your Model Take'. Interactive calculator: inputs are dataset size (samples), model parameters, GPU type (dropdown of 15+ GPUs with TFLOPS specs), batch size, epochs, precision. Calculate: time per step, steps per epoch, total training time, estimated cost (cloud GPU hourly rates). Show comparisons: single GPU vs multi-GPU (2,4,8), estimated scaling efficiency. Include presets for popular models (ResNet-50, BERT-base, GPT-2, LLaMA-7B, Stable Diffusion). Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive tool pages for a PyTorch/deep learning audience. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ic-01",
+          "prompt": "Write a complete HTML page for ingredientcalculator.com titled 'Sourdough Calculator — Hydration, Flour & Starter Ratios'. Interactive sourdough bread calculator: inputs are target dough weight, desired hydration % (65-85%), starter percentage (15-25%), salt percentage (1.8-2.2%). Calculate: flour weight, water weight, starter weight, salt weight. Show baker's percentages table. Include presets: basic country loaf, high-hydration ciabatta, whole wheat, rye. Fermentation schedule calculator based on room temperature (slider 65-85°F). Warm cookbook aesthetic with oklch palette, serif typography matching ingredientcalculator.com style. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive cooking/baking tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Warm editorial design with oklch color palette, serif display typography ('Georgia', serif). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ic-02",
+          "prompt": "Write a complete HTML page for ingredientcalculator.com titled 'Canning & Preserving Calculator — Processing Times & Ratios'. Interactive tool for home canning: select method (water bath/pressure canner), food type (fruits, jams, pickles, vegetables, meats, soups), jar size (half-pint, pint, quart), altitude (0-10,000ft). Calculate: processing time adjusted for altitude, headspace, acidification needs (pH). Include safety warnings, vinegar ratio calculator for pickling, sugar ratio for jams. Preset recipes: strawberry jam, dill pickles, salsa, applesauce, bone broth. Warm cookbook design. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive cooking/baking tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Warm editorial design with oklch color palette, serif display typography ('Georgia', serif). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ic-03",
+          "prompt": "Write a complete HTML page for ingredientcalculator.com titled 'Smoking & BBQ Calculator — Time, Temp & Wood Guide'. Interactive BBQ calculator: select meat type (brisket, pork shoulder, ribs, chicken, turkey, salmon), weight, smoker temperature (200-300°F). Calculate: estimated cook time, internal temp target, rest time. Wood pairing recommendations (hickory, mesquite, applewood, cherry, oak, pecan) with flavor profiles. Spritz/mop schedule. Stall temperature warning (brisket 150-170°F). Include Texas Crutch calculator. Warm design. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive cooking/baking tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Warm editorial design with oklch color palette, serif display typography ('Georgia', serif). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "kl-01",
+          "prompt": "Write a complete HTML page for kickllm.com titled 'LLM Context Window Visualizer — See What Fits'. Interactive visualization tool: user enters text and sees how much of a context window it fills across models. Show fill bars for: GPT-4o (128K), Claude 3.5 (200K), Gemini 1.5 Pro (2M), LLaMA 3 (128K), Mistral Large (128K), DeepSeek V3 (128K). Token counter (approximate). Features: paste text → count tokens → show % of each model's context used. Include common document sizes: email (500 tokens), blog post (2K), research paper (8K), book chapter (15K), full book (100K+). Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive LLM/AI tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg, purple accent). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "kl-02",
+          "prompt": "Write a complete HTML page for kickllm.com titled 'AI API Playground — Test Prompts Before You Pay'. Interactive mock API playground: user writes a system prompt and user message, selects a model (GPT-4o, Claude 3.5, Gemini, LLaMA, Mistral, DeepSeek), and sees: estimated input tokens, output tokens, cost per request. Show equivalent curl command, Python code (openai/anthropic SDK), and JavaScript code. Include preset prompts: summarize, translate, code review, data extraction, creative writing. Cost comparison table across all providers. Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive LLM/AI tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg, purple accent). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "rt-01",
+          "prompt": "Write a complete HTML page for recipetool.net titled 'Bread Baker Calculator — Hydration & Flour Blend Tool'. Interactive bread calculator for all bread types: user selects bread type (white, whole wheat, rye, sourdough, brioche, focaccia, bagels, ciabatta), enters target weight. Calculate: flour blend ratios, water, yeast/starter, salt, enrichments (butter, eggs, sugar, milk). Hydration slider (55-90%). Show baker's percentages. Autolyse and bulk ferment timing. Include altitude adjustment. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive cooking tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Clean modern design with green accent (#10b981). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "rt-02",
+          "prompt": "Write a complete HTML page for recipetool.net titled 'Cocktail Recipe Scaler — Batch Size Calculator'. Interactive cocktail scaling tool: user selects cocktail (20+ classic recipes: Margarita, Old Fashioned, Manhattan, Negroni, Mojito, Daiquiri, etc.), enters number of servings (1-50). Calculate ingredient amounts scaled accordingly. Show: single serving, pitcher (8), party batch (25). Include garnish quantities, ice needed, prep time estimate. Spirit substitution suggestions. Unit toggle (oz/ml/cl). Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive cooking tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Clean modern design with green accent (#10b981). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "g0-01",
+          "prompt": "Write a complete HTML page for gpt0x.com titled 'AI Model Release Timeline — Every Major LLM Launch'. Interactive timeline visualization: chronological display of major LLM releases from GPT-1 (2018) to present (mid-2026). For each model: release date, parameter count, context window, key capability, benchmark scores (MMLU, HumanEval). Filter by: company (OpenAI, Anthropic, Google, Meta, Mistral, others), model size (small/medium/large), open/closed source. Zoomable timeline. Click model for details card. Include GPT-4o, Claude 3.5/4, Gemini 2, LLaMA 3, DeepSeek V3/R1, Mistral Large. Schema: Article + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive AI/LLM tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with purple accent (#8b5cf6). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "g0-02",
+          "prompt": "Write a complete HTML page for gpt0x.com titled 'Prompt Engineering Cheat Sheet — 30 Techniques That Work'. Interactive reference page with 30 prompt engineering techniques organized by category: Zero-shot, Few-shot, Chain-of-Thought, Self-consistency, Tree-of-Thought, ReAct, Reflexion, Role-based, Format control, Output structuring. Each technique: name, one-line description, example prompt, when to use, effectiveness rating. Filterable by category and difficulty. Copy-to-clipboard for examples. Schema: Article + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive AI/LLM tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with purple accent (#8b5cf6). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ab-01",
+          "prompt": "Write a complete HTML page for abwex.com titled 'Confidence Interval Calculator — Mean, Proportion & Difference'. Interactive calculator with 3 modes: (1) CI for mean: enter sample mean, std dev, sample size, confidence level → calculate CI. (2) CI for proportion: enter successes, sample size, confidence level → Wilson score interval. (3) CI for difference of means: enter two groups' stats → calculate CI for difference. Show: point estimate, margin of error, lower/upper bounds. Visual number line with CI displayed. Confidence level selector: 90%, 95%, 99%. Interpretation in plain English. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive statistics tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with indigo accent (#6366f1). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ml0-01",
+          "prompt": "Write a complete HTML page for ml0x.com titled 'Activation Function Visualizer — ReLU, GELU, Swish & 15 More'. Interactive chart tool: display activation functions with their derivatives. Include 18 functions: ReLU, Leaky ReLU, PReLU, ELU, SELU, GELU, Swish/SiLU, Mish, Sigmoid, Tanh, Softplus, Softsign, Hard Sigmoid, Hard Swish, Maxout, CELU, GLU, Softmax. For each: formula, derivative, pros/cons, when to use, PyTorch code. Interactive plot: hover to see exact values, toggle functions on/off, zoom. Comparison mode: overlay any 2-4 functions. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive machine learning tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with blue accent (#3b82f6). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "lk-01",
+          "prompt": "Write a complete HTML page for lockml.com titled 'AI Red Team Checklist — 50 Tests for LLM Security'. Interactive checklist tool for AI/ML security testing. 50 items organized by category: Prompt Injection (10), Data Extraction (8), Jailbreaking (8), Model Manipulation (6), API Abuse (6), Privacy Leakage (6), Supply Chain (6). Each item: test name, description, severity (Critical/High/Medium), example attack, detection method, mitigation. Interactive: check items as completed, progress bar, export as PDF/JSON, filter by severity/category. Schema: Article + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive AI security tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with red accent (#ef4444). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "cf-01",
+          "prompt": "Write a complete HTML page for claudflow.com titled 'AI Agent Architecture Patterns — 12 Production Designs'. Interactive reference showing 12 agent architecture patterns: ReAct, Plan-and-Execute, Tool-Use, Multi-Agent, Supervisor, Hierarchical, Debate, Reflection, Memory-Augmented, RAG Agent, Code Agent, Research Agent. Each pattern: visual diagram (CSS/SVG), description, when to use, pros/cons, example implementation (Python pseudocode), real-world examples. Filter by complexity, use case. Compare any 2 patterns side-by-side. Schema: Article + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive AI/Claude workflow tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with orange accent (#f97316). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ck-01",
+          "prompt": "Write a complete HTML page for claudkit.com titled 'Claude Model Comparison 2026 — Opus vs Sonnet vs Haiku'. Interactive comparison tool for all Claude models: Opus 4 (most capable), Sonnet 4 (balanced), Haiku 3.5 (fastest). Compare: pricing (input/output per MTok), speed (tokens/sec), context window, vision support, tool use, max output tokens, best use cases. Interactive cost calculator: enter daily requests + avg tokens → monthly cost per model. Include latency benchmarks, quality ratings per task type (coding, writing, analysis, creative). Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive Claude API tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with pink accent (#ec4899). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "en-01",
+          "prompt": "Write a complete HTML page for enhio.com titled 'Email Tone Analyzer — Check If Your Email Sounds Right'. Interactive tool: user pastes email text. Analyze: overall tone (formal/casual/aggressive/passive-aggressive/friendly/neutral), confidence level, politeness score (1-10), urgency level, sentiment (positive/negative/neutral). Highlight specific phrases that affect tone with color coding. Suggest rewrites for problematic phrases. Include before/after comparisons. Word count, reading time, grade level. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive writing/NLP tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with teal accent (#14b8a6). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "kp-01",
+          "prompt": "Write a complete HTML page for kappafy.com titled 'API Load Test Planner — Calculate Concurrent Users & RPS'. Interactive calculator: inputs are expected daily active users, peak hour multiplier (2-5x), average requests per session, session duration. Calculate: requests per second (RPS), concurrent connections, bandwidth needed, recommended server specs. Show scaling tiers: shared hosting, single VPS, load-balanced cluster, serverless. Cost estimation for AWS/GCP/Vercel. Include percentile calculations (p50, p95, p99 latency targets). Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive API/developer tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with purple accent (#a855f7). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ib-01",
+          "prompt": "Write a complete HTML page for invokebot.com titled 'Webhook Debugger — Inspect, Replay & Test Payloads'. Interactive webhook debugging tool: displays a unique endpoint URL (simulated), shows incoming payload visualization in pretty-printed JSON tree view. Features: payload history (stored in localStorage), replay button, header inspector, response code selector (200/201/400/401/403/404/500), response delay simulator (0-5000ms). Code generator for sending test webhooks in curl, Python, Node.js, Go. Include common webhook formats: GitHub, Stripe, Slack, Discord, Twilio. Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive webhook/API tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with green accent (#22c55e). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ml3-01",
+          "prompt": "Write a complete HTML page for ml3x.com titled 'SVD Calculator — Step-by-Step Singular Value Decomposition'. Interactive SVD calculator: user enters a matrix (up to 5x5), tool computes U, Σ, V^T step by step. Show: (1) compute A^T*A, (2) find eigenvalues, (3) compute singular values, (4) find V (right singular vectors), (5) find U (left singular vectors). Visual matrix displays with color-coded elements. Include applications: image compression demo (show rank-k approximations), PCA connection, LSA/topic modeling connection. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive linear algebra tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with yellow accent (#eab308). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "kr-01",
+          "prompt": "Write a complete HTML page for krzen.com titled 'CSS Grid Generator — Visual Layout Builder'. Interactive CSS Grid builder: visual grid editor where users click to create areas, set column/row counts, gap sizes, track sizes (fr, px, %, auto, minmax). Features: drag to create grid areas, name areas, responsive breakpoints, auto-placement toggle. Generate CSS code in real-time. Include presets: Holy Grail, Dashboard, Card Grid, Magazine, Sidebar+Content, Footer Layout. Export as CSS, Tailwind classes, or styled-components. Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive web development tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with cyan accent (#06b6d4). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "ep-01",
+          "prompt": "Write a complete HTML page for epochpilot.com titled 'Time Zone Meeting Planner — Find the Best Overlap'. Interactive tool: add participants from different time zones (searchable dropdown of all IANA timezones). Show 24-hour timeline for all participants color-coded: working hours (green), possible meeting time (yellow), sleeping/off hours (red). Find optimal meeting windows where all participants are in working hours. Support custom working hours per participant. Show current time in each zone. Export meeting invite text. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive time/date tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with pink accent (#f43f5e). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "g8-01",
+          "prompt": "Write a complete HTML page for gen8x.com titled 'Gradient Generator — CSS Linear, Radial & Conic'. Interactive gradient builder with 3 modes: Linear (angle slider, multi-stop), Radial (shape, position, size), Conic (rotation, center). Features: add/remove/drag color stops, opacity per stop, repeating gradients, blend mode preview. Show gradient over text, over image placeholder, over cards. Generate CSS code in real-time. Include 30 preset gradients (popular UI gradients). Copy CSS button. Export as SVG. Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive design tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with lime accent (#84cc16). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "lb-01",
+          "prompt": "Write a complete HTML page for lochbot.com titled 'LLM Jailbreak Database — 100 Known Attack Patterns'. Interactive database of 100 known LLM jailbreak techniques organized by category: DAN variants (15), Character roleplay (12), Encoding tricks (10), Context manipulation (10), Multi-turn attacks (10), System prompt extraction (8), Output format exploits (8), Language switching (7), Fictional scenarios (7), Token manipulation (5), Delimiter injection (5), Other (3). Each entry: name, description, example (redacted/safe), affected models, severity, detection difficulty, mitigation. Filter by category, severity, model. Search function. Schema: Article + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive AI security pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with amber accent (#f59e0b). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "vr-01",
+          "prompt": "Write a complete HTML page for viryd.com titled 'Solar Panel Output Calculator — Estimate Your System'. Interactive calculator: inputs are location (latitude slider or city search), roof area (sq ft/m²), panel wattage (250-500W), number of panels, roof tilt angle, azimuth angle. Calculate: daily kWh, monthly kWh, yearly kWh, system cost estimate, payback period, 25-year savings, CO2 offset. Include sun hours lookup for major cities. Compare: grid-tied vs off-grid vs hybrid. Battery storage calculator. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive renewable energy tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with green accent (#65a30d). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "pe-01",
+          "prompt": "Write a complete HTML page for pictureeditor.net titled 'Image Metadata Viewer — EXIF, IPTC & XMP Data'. Interactive tool: user drags and drops an image file. Tool reads and displays all metadata: EXIF (camera, lens, settings, GPS, date), IPTC (title, caption, keywords, copyright), XMP (editing software, history). All client-side using FileReader API and ArrayBuffer parsing. Features: map view for GPS data (CSS-only approximate), metadata comparison (drop 2 images), strip metadata button (create clean copy), export metadata as JSON. Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive image editing tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with cyan accent (#06b6d4). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "nv-01",
+          "prompt": "Write a complete HTML page for neovistainc.com titled 'Business Name Generator — AI-Powered Brand Ideas'. Interactive tool: user enters industry, keywords (up to 5), style (modern/classic/playful/professional/technical), length preference (short/medium). Generate 50 business name suggestions using combinatorial algorithms (prefix+suffix, portmanteau, abstract, acronym, alliterative). Show: name, available .com check hint, logo color suggestion, industry fit score. Filter by length, starting letter, style. Save favorites to localStorage. Export list. Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive business tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with purple accent (#7c3aed). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "dt-01",
+          "prompt": "Write a complete HTML page for dismissticket.com titled 'Traffic Ticket Cost Calculator — Fines, Points & Insurance'. Interactive calculator: select state (all 50 US states), violation type (speeding 1-15 over, speeding 16-25 over, speeding 26+ over, running red light, stop sign, illegal turn, reckless driving, DUI). Calculate: base fine, court costs, surcharges, total cost, points added, insurance increase (3-year projection), total 3-year cost. Compare: pay fine vs fight ticket vs traffic school. Include state-specific data. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive legal/traffic tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with red accent (#dc2626). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "b2b-01",
+          "prompt": "Write a complete HTML page for b2berp.com titled 'ERP Software Comparison 2026 — SAP vs Oracle vs Microsoft'. Interactive comparison tool for top 15 ERP systems: SAP S/4HANA, Oracle Cloud ERP, Microsoft Dynamics 365, NetSuite, Workday, Epicor, Infor, Sage, Acumatica, IFS, Odoo, ERPNext, Syspro, QAD, Plex. Compare by: company size fit (SMB/Mid/Enterprise), deployment (cloud/on-prem/hybrid), modules (finance, HR, SCM, manufacturing, CRM), pricing tier, implementation time, industry specialization. Interactive filter + sort. Side-by-side compare mode (select 2-3). Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive B2B software comparison pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme with emerald accent (#059669). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "bbr-06",
+          "prompt": "Write a complete HTML page for bugbountyreality.com titled 'XSS Payload Encoder — HTML Entity & URL Encode Tool'. Interactive encoding/decoding tool with multiple modes: HTML entity encoding, URL encoding, Base64, Unicode escaping, Hex encoding, double encoding. User enters payload text, select encoding type, see encoded output. Include 25 common XSS test payloads as presets (safe educational versions). Decode mode: paste encoded string → show decoded. Chain encodings (encode → re-encode). Copy to clipboard. Schema: WebApplication + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive security tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "bbr-07",
+          "prompt": "Write a complete HTML page for bugbountyreality.com titled 'Subdomain Enumeration Checklist — Manual Recon Guide'. Interactive checklist and reference for subdomain discovery techniques. 40 items across categories: DNS techniques (zone transfer, brute force, certificate transparency), OSINT (Wayback Machine, Shodan, SecurityTrails, crt.sh), Google dorking (site: searches, inurl:, intitle:), GitHub recon (search org repos, CI configs, .env files), cloud enumeration (S3, Azure Blob, GCP buckets). Each item: description, command/tool, example, check-off. Progress tracker. Export as markdown. Schema: Article + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive security tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "bbr-08",
+          "prompt": "Write a complete HTML page for bugbountyreality.com titled 'HTTP Security Headers Checker — Test Any URL'. Interactive tool: user enters a URL (client-side fetch with CORS proxy hint). Check for presence and correctness of security headers: Content-Security-Policy, Strict-Transport-Security, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy, X-XSS-Protection (deprecated), Cross-Origin-Opener-Policy, Cross-Origin-Resource-Policy. For each header: status (present/missing/misconfigured), severity, recommended value, explanation. Overall security grade (A-F). Include comparison: how top sites score. Schema: WebApplication + FAQPage + BreadcrumbList.",
+          "system_prompt": "You are an expert web developer creating SEO-optimized interactive security tool pages. Output COMPLETE, valid HTML files with embedded CSS and JavaScript. No placeholders. No CDN dependencies. Dark theme (#0a0a0a bg). Include structured data (JSON-LD). Every page must have: <title> under 60 chars, <meta name='description'> under 155 chars, canonical URL, BreadcrumbList schema, and at least one interactive JavaScript feature.",
+          "temperature": 0.6,
+          "max_tokens": 8192
+        }
+      ],
+      "synthesis_prompt": "Review all 40 generated HTML pages. For each, verify: (1) title under 60 characters, (2) meta description under 155 characters, (3) valid JSON-LD structured data, (4) at least one interactive JavaScript feature, (5) no CDN dependencies, (6) dark theme consistency. List any pages that need fixes with specific issues."
+    }
+  ]
+}

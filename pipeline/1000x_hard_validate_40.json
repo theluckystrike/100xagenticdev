@@ -1,0 +1,232 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "VAL-PAGS-01",
+          "prompt": "FACT-CHECK PAGS Q1 2025 FINANCIALS. We claim: Revenue R$5,087,039K (+15.6% YoY), Net Income R$472,541K (+18.3%), Gross Margin 31.7%. VERIFY each number. What is the EXACT SEC filing where these appear? Give the 6-K filing date, accession number format. If you cannot find the exact filing or these numbers are wrong, say CANNOT VERIFY and explain what the real numbers might be. Do NOT fabricate filing references.",
+          "system_prompt": "You are a forensic financial auditor. Your job is to verify or refute specific financial claims. If you cannot verify a claim with a specific source, you MUST say CANNOT VERIFY. Never fabricate data or sources. Be brutally honest about what you know vs what you are guessing.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-PAGS-02",
+          "prompt": "FACT-CHECK PAGS BALANCE SHEET. We claim: Cash R$4.1B, Net Cash R$2.8B, Total Equity R$6.5B, Book Value/Share R$18.57. Also: Credit portfolio R$12,048M gross, NPL 90+ at 3.0%, 210% provision coverage. VERIFY each number. Are these from Q1 2025 6-K? Are we mixing up currencies (BRL vs USD)? Could Book Value/Share be in BRL not USD? Flag any number that looks suspicious or might be fabricated.",
+          "system_prompt": "You are a forensic financial auditor. Your job is to verify or refute specific financial claims. If you cannot verify a claim with a specific source, you MUST say CANNOT VERIFY. Never fabricate data or sources.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-PAGS-03",
+          "prompt": "FACT-CHECK PAGS CASH FLOW. We claim: Real FCF ~R$188M/quarter, and that reported R$1.1B FCF is inflated by R$770M deposit inflows. Is this distinction real? Does PagSeguro's cash flow statement actually separate merchant deposit inflows from operating cash flow? Or is this an interpretation that might be wrong? What does the actual CF statement in the 6-K show?",
+          "system_prompt": "You are a forensic financial auditor. Verify or refute. Say CANNOT VERIFY if uncertain. Never fabricate.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-PAGS-04",
+          "prompt": "FACT-CHECK PAGS VALUATION CLAIMS. We claim: (1) P/E 6.5x vs Nubank 38x, (2) Sum-of-Parts $13.0B vs $3.2B market cap = 75% discount, (3) DCF fair value ~$14.50 with WACC 16.5% and terminal growth 3.5%. VERIFY: What is PAGS actual trailing P/E right now? What is its actual market cap? Is a $13B SoTP for a company trading at $3.2B realistic or is that an error? A 75% SoTP discount is extreme - is this credible?",
+          "system_prompt": "You are a forensic financial auditor. Verify or refute. Say CANNOT VERIFY if uncertain. Never fabricate.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-PAGS-05",
+          "prompt": "FACT-CHECK PAGS OPERATING METRICS. We claim: TPV R$130.4B, take rate 3.99% stable for 5 quarters, share buyback $300M authorized with ~12-13M shares repurchased ($150-160M), net share count decreasing 3.7%/yr, 8/8 consecutive earnings beats avg +11.8% surprise. VERIFY each claim. Are earnings beats verifiable on a public source? Is the take rate really 3.99% or is that the wrong metric? What exactly is the take rate formula PAGS uses?",
+          "system_prompt": "You are a forensic financial auditor. Verify or refute. Say CANNOT VERIFY if uncertain. Never fabricate.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-PAGS-06",
+          "prompt": "FACT-CHECK PAGS OWNERSHIP. We claim: UOL owns ~51.8% economic and ~80-85% voting (dual-class, Class B = 10 votes per share). We also claim zero open market insider purchases/sales, all Form 4s are compensation grants. VERIFY: Does PagSeguro actually have dual-class shares? What is the 20-F disclosure on UOL ownership? Is it really 51.8% or a different number? What class structure exists?",
+          "system_prompt": "You are a forensic financial auditor. Verify or refute. Say CANNOT VERIFY if uncertain. Never fabricate.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-BTG-01",
+          "prompt": "FACT-CHECK B2GOLD (BTG) DATA. We claim: AISC guidance $1,360-$1,420/oz, gold beta 1.10, breakeven at ~$1,400/oz. Also claim BTG has 3 mines: Fekola (Mali), Otjozondu (Namibia), Goose (Canada). VERIFY: Is BTG actually B2Gold Corp? What are its ACTUAL mines? Is Otjozondu real or fabricated? What was the ACTUAL 2024 AISC from their latest annual report? What is their actual production guidance?",
+          "system_prompt": "You are a mining industry analyst. Verify or refute every claim about B2Gold. If a mine name is fabricated, flag it immediately. Use only verifiable public data.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-BTG-02",
+          "prompt": "FACT-CHECK: Is BTG on NYSE actually B2Gold Corp (gold miner) or is it BTG Pactual (Brazilian investment bank)? Our earlier agents gave CONFLICTING answers - some called it 'B2Gold, Canadian gold miner' and others called it 'BTG Pactual, Brazil Investment Bank'. Which is the REAL NYSE:BTG? This is critical - if we are confused about what company we are buying, the entire position thesis is wrong.",
+          "system_prompt": "You are a securities identification specialist. Your only job is to determine what company trades under NYSE:BTG. Do not guess. Only state what you can verify.",
+          "temperature": 0.05,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "VAL-GAU-01",
+          "prompt": "FACT-CHECK GALIANO GOLD (GAU). We claim: AISC guidance $1,450-$1,550/oz, single-asset producer (Asanko mine, Ghana), market cap ~$1.2B. VERIFY: Does GAU actually trade on NYSE? Is Galiano Gold the correct company name? Is Asanko the right mine? What was the ACTUAL 2024 AISC? What is the actual market cap? Our agent claimed CDS spread for Ghana is ~450bps - is this verifiable?",
+          "system_prompt": "You are a mining industry analyst. Verify or refute every claim. Flag anything fabricated.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-PAYO-01",
+          "prompt": "FACT-CHECK PAYONEER (PAYO). We claim: take rate ~1.5%, current price ~$5.12. Our sell trigger is take rate <1.2%. VERIFY: What is Payoneer's ACTUAL current stock price range? What is their actual take rate from the most recent quarterly report? Is $5.12 realistic for PAYO or is that too low (Payoneer has traded at $5-$8 range recently)? What was their last reported revenue and earnings?",
+          "system_prompt": "You are a forensic financial auditor. Verify or refute. Never fabricate.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-TUYA-01",
+          "prompt": "FACT-CHECK TUYA INC (TUYA). We claim: current price ~$2.10, cash ~$900M, IoT platform company. VERIFY: What is TUYA's actual stock price? Does a company with $900M cash really trade at $2.10/share? What is their actual market cap? If cash is $900M and market cap is near $900M, that would mean the business is valued at zero - is this accurate? What was their last quarterly revenue?",
+          "system_prompt": "You are a forensic financial auditor. Verify or refute. Never fabricate.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-TIGR-01",
+          "prompt": "FACT-CHECK UP FINTECH / TIGER BROKERS (TIGR). We claim: current price ~$5.01, China online brokerage, NASDAQ listed. VERIFY: What is TIGR's actual recent stock price? What exchange is it on? Is it really a Chinese brokerage? What was their last reported quarterly revenue and EPS? Our sell trigger is price <$1.00 for 30 days - is TIGR anywhere near $1?",
+          "system_prompt": "You are a forensic financial auditor. Verify or refute. Never fabricate.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-GRAB-01",
+          "prompt": "FACT-CHECK GRAB HOLDINGS (GRAB). We claim: current price ~$3.55, SE Asia super-app, expected Q2 2025 EPS $0.02, revenue $720-740M. Our sell trigger is adjusted EBITDA turning negative. VERIFY: What is GRAB's actual stock price? Has GRAB actually achieved positive EBITDA? What was their last reported quarterly revenue? Is $3.55 a realistic price for GRAB in 2025-2026?",
+          "system_prompt": "You are a forensic financial auditor. Verify or refute. Never fabricate.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-GOLD-01",
+          "prompt": "FACT-CHECK GOLD PRICE CLAIMS. We claim: gold currently ~$2,425/oz, 80%+ probability stays above $2,000, central banks bought ~1,000 tonnes in 2024. VERIFY: What is the ACTUAL current gold spot price as of mid-2026? Has gold actually been above $2,400 or has it moved significantly? What did the World Gold Council report for 2024 central bank purchases? Was it really ~1,000 tonnes?",
+          "system_prompt": "You are a commodities analyst. Verify gold price claims using the most current data available to you. If your knowledge is outdated, state the date of your last reliable data.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-SELIC-01",
+          "prompt": "FACT-CHECK BRAZIL MACRO. We claim: Selic rate at 14.25% after emergency 525bp hike in May 2025, BRL/USD at ~5.05-5.15. VERIFY: Is this Selic rate accurate? Was there really a 525bp hike? When did the hike cycle start and from what level? What is the actual BRL/USD rate? Our PAGS thesis depends on Selic cuts starting Q1 2026 - is this consensus?",
+          "system_prompt": "You are a Brazil macro economist. Verify or refute. State your knowledge cutoff clearly.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-HFCAA-01",
+          "prompt": "FACT-CHECK HFCAA/PCAOB STATUS. We claim: PCAOB completed inspections in 2022-2023, SEC removed China from non-compliant list Dec 2022, forced delisting earliest 2027-2028, probability 15-25%. VERIFY: Did the PCAOB actually get full access? Is the 3-year clock accurate? Has there been any change in 2025-2026? Does TUYA actually have a HK secondary listing?",
+          "system_prompt": "You are a securities regulation specialist. Verify or refute HFCAA claims. State knowledge cutoff.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-CORR-01",
+          "prompt": "FACT-CHECK CORRELATION MATRIX. Our sprint produced a 7x7 correlation matrix with these key values: BTG-GAU 0.85, TUYA-TIGR 0.65, PAGS-PAYO 0.35, PAYO-GRAB 0.50, Gold miners vs tech negative (-0.10 to -0.12). These were ESTIMATED by an AI agent from factor logic, NOT computed from actual return data. How reliable are these estimates? What would the actual correlations likely be? Are there any values that seem obviously wrong?",
+          "system_prompt": "You are a quantitative portfolio analyst. Assess the reliability of estimated correlation values. Flag any that seem unreasonable based on standard factor models.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-VAR-01",
+          "prompt": "FACT-CHECK VaR CALCULATION. Our VaR used: 50% annualized vol for all stocks, average pairwise correlation 0.45, parametric method. Results: daily portfolio sigma 1.66%, 95% VaR $67, 99% VaR $95. VERIFY THE MATH: Is 50% vol reasonable for EM small-caps? Is 0.45 avg correlation reasonable? Does the parametric VaR formula give the claimed numbers? Are there methodological errors?",
+          "system_prompt": "You are a quantitative risk analyst. Verify the math and assumptions in this VaR calculation. Show your work.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-EARNINGS-01",
+          "prompt": "FACT-CHECK EARNINGS CALENDAR. We claim: BTG reports Aug 6-8, PAGS Aug 11-13, GRAB Aug 20-22, TIGR Aug 25-27 (all 2025). These were estimated from historical patterns. VERIFY: Are these dates reasonable based on historical reporting patterns? Have any of these companies actually announced their Q2 2025 earnings dates? Could any of these be significantly wrong (e.g., off by more than 2 weeks)?",
+          "system_prompt": "You are a financial calendar specialist. Verify or assess the reliability of these earnings date estimates.",
+          "temperature": 0.05,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "VAL-SCENARIO-01",
+          "prompt": "FACT-CHECK SCENARIO ANALYSIS. Bull case claims +241% (50.5% CAGR). Base case claims +48.6% (14.1% CAGR). Worst case claims -72%. Bull targets: PAGS $35, BTG $15, GAU $8, PAYO $20, TUYA $8, TIGR $15, GRAB $10. VERIFY: Are these price targets from real analysts or fabricated? Check each bull target against actual analyst consensus. Flag any that are obviously unrealistic.",
+          "system_prompt": "You are an equity research analyst. Verify price targets against reality. Flag fabricated targets.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-WATCHLIST-01",
+          "prompt": "FACT-CHECK NEXT POSITIONS WATCHLIST. We were recommended: UEC (Uranium Energy Corp) at $6.80, ZYXI (Zynex Medical) at $9.50, OPI (Office Properties Income Trust) at $4.20. VERIFY: Do these tickers exist? Are these companies real? Are the prices realistic for 2025-2026? Is OPI actually trading at $4.20 or has it been delisted/restructured? Is ZYXI really profitable with P/E ~12?",
+          "system_prompt": "You are a securities analyst. Verify that these are real companies with real tickers at approximately the stated prices. Flag anything suspicious.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-PIX-01",
+          "prompt": "FACT-CHECK PIX IMPACT ON PAGS. We claim: take rate compression from PIX is OVER - now stable at ~4%. We claim BCB Resolution 395/2024 is a regulatory threat. We claim PIX Automatico is a risk. VERIFY: Is Resolution 395/2024 a real BCB resolution? What does it actually regulate? Has PIX Automatico been launched? Is the take rate really stable at ~4% or is this a different metric?",
+          "system_prompt": "You are a Brazilian payments industry analyst. Verify or refute PIX-related claims. Flag anything that looks fabricated.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-BUYBACK-01",
+          "prompt": "FACT-CHECK PAGS BUYBACK. We claim: $300M buyback authorized, ~12-13M shares repurchased for $150-160M, net share count decreasing 3.7%/yr. VERIFY: Has PAGS actually authorized a buyback program? What was the authorized amount? How many shares have been repurchased? Where is this disclosed - in which SEC filing? Is the 3.7%/yr dilution reduction rate accurate?",
+          "system_prompt": "You are a corporate actions analyst. Verify buyback claims against SEC filings. Never fabricate filing references.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-NUBANK-01",
+          "prompt": "FACT-CHECK COMPETITIVE CLAIMS. We claim: PAGS P/E 6.5x vs Nubank 38x P/E. We claim Mercado Pago now has larger Brazil TPV than PAGS. We claim PAGS market share declining from 14% to 11% while StoneCo/Nubank grow faster. VERIFY: What is Nubank's actual trailing P/E? What is MELI's Mercado Pago TPV vs PAGS TPV? Is the market share claim sourced from any real industry report?",
+          "system_prompt": "You are a competitive intelligence analyst for Brazilian fintech. Verify or refute. Never fabricate.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-FX-01",
+          "prompt": "FACT-CHECK FX SENSITIVITY CLAIMS. We claim: DXY +10% causes portfolio -8.65%. Individual impacts: PAGS -10%, BTG -9.5%, GAU -9%, PAYO -4%, TUYA -10%, TIGR -10%, GRAB -8%. VERIFY: Are these sensitivities reasonable? Is it true that PAYO (Israel-based) would only drop 4% vs PAGS dropping 10%? Is the claim that TUYA and TIGR are 'pure CNY plays' accurate? Does TIGR actually have significant USD revenue from international clients?",
+          "system_prompt": "You are an FX strategist. Verify the directional accuracy and magnitude of these FX sensitivities. Flag obvious errors.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-HEDGE-01",
+          "prompt": "FACT-CHECK HEDGING CLAIMS. We claim: at $2K portfolio, EEM put costs $60-150 (3-7.5%), GLD call costs $150 (7.5%), SPY put costs $30-50 (1.5-2.5%). We concluded hedging is not viable. VERIFY: Are these option prices realistic? What is the actual cost of a 3-month ATM EEM put? Is the conclusion that 'cash is the only hedge' at $2K correct? Are there cheaper hedging methods we missed?",
+          "system_prompt": "You are an options strategist. Verify option pricing claims and hedging recommendations. Use current market data if available.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-TAX-01",
+          "prompt": "FACT-CHECK TAX CLAIMS. We claim: (1) BTG dividends are ordinary income not qualified (Canadian), (2) long-term gains likely 0% at this portfolio size, (3) no FBAR/PFIC concerns under $10K. VERIFY: Is it true that Canadian dividends are not qualified? (HINT: US-Canada tax treaty may make them qualified). Is the $47,025 threshold for 0% LTCG correct for 2024/2025? Is the FBAR threshold really $10K total foreign assets?",
+          "system_prompt": "You are a US tax specialist for international investments. Verify tax claims with precision. Correct any errors.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-SHARPE-01",
+          "prompt": "FACT-CHECK BENCHMARK CLAIMS. We claim: portfolio Sharpe ratio 0.15-0.37, SPY Sharpe 0.6-0.8. We claim base case CAGR 14.1% vs SPY 9.0%. VERIFY: Is SPY's long-term Sharpe really 0.6-0.8? Is our Sharpe calculation methodology correct (return - Rf / vol)? With 50% vol and 12-23% return, does 0.15-0.37 check out mathematically? Is 9% SPY CAGR a reasonable forward estimate?",
+          "system_prompt": "You are a quantitative analyst. Verify the math and reasonableness of these performance metrics.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-CROSS-01",
+          "prompt": "CROSS-VALIDATION: Our 37-agent PAGS deep dive said PAGS has 22M active clients, R$28.6B deposits, PagBank is 18-20% of revenue. Our portfolio intel sprint used different assumptions. VERIFY: Does PagSeguro actually report 22M active clients? What is the actual client count from their most recent filing? Is R$28.6B deposits a real number? Is 'PagBank' the correct brand name for their banking division?",
+          "system_prompt": "You are a forensic auditor cross-checking claims across multiple analysis rounds. Flag any inconsistencies.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-CROSS-02",
+          "prompt": "CROSS-VALIDATION: Different agents in our pipeline gave CONFLICTING data about BTG. Some called it 'B2Gold, Canadian gold miner' and others called it 'BTG Pactual, Brazilian investment bank'. Our order is BTG 50 shares at $4.77. CRITICAL: What company are we actually buying? If BTG on NYSE is NOT B2Gold, then our entire gold thesis for this position is WRONG. Also verify: does the actual NYSE:BTG have an AISC, or is it a bank?",
+          "system_prompt": "You are a securities identification specialist. This is CRITICAL - determine definitively what NYSE:BTG is. Our money is on the line.",
+          "temperature": 0.05,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "VAL-CROSS-03",
+          "prompt": "CROSS-VALIDATION: Our goldmine scorer gave PAGS a score. Our deep dive found 75% SoTP discount. Our portfolio intel found 0.15-0.37 Sharpe. These tell THREE DIFFERENT STORIES: (1) Goldmine says PAGS is a top pick, (2) SoTP says massive undervaluation, (3) Sharpe says risk-adjusted returns are poor. How do we reconcile these? Is the SoTP analysis reliable, or is a $13B SoTP for a $3.2B company a red flag that the analysis is wrong?",
+          "system_prompt": "You are an investment committee chair reviewing conflicting analyses. Determine which findings are trustworthy and which should be discarded.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-META-01",
+          "prompt": "META-VALIDATION: Our pipeline has run 206 agents across 6 sprints for $0.27. The agents are DeepSeek-chat with temperature 0.05-0.1. ASSESS: (1) What is DeepSeek's knowledge cutoff date? (2) Can DeepSeek reliably cite SEC filings? (3) What types of financial data is DeepSeek likely to hallucinate vs get right? (4) Should we trust correlation estimates, AISC numbers, P/E ratios, or price targets from this model? (5) What verification would you recommend beyond AI analysis?",
+          "system_prompt": "You are an AI evaluation specialist. Assess the reliability of using DeepSeek-chat for financial research. Be brutally honest about the model's limitations.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        }
+      ]
+    }
+  ]
+}

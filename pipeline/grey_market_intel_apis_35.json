@@ -1,0 +1,287 @@
+{
+  "project": "Grey Market Intelligence API Landscape",
+  "description": "35 parallel agents to find, evaluate, and rank the best APIs and platforms for grey market intelligence, monitoring, and detection",
+  "model": "deepseek-chat",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Market Landscape Discovery",
+      "tasks": [
+        {
+          "task_id": "p1_brand_protection",
+          "prompt": "Research ALL brand protection and anti-counterfeiting API providers. For EACH provider list: company name, API product name, website URL, what data they provide, pricing model (free tier? per-call? subscription?), key features, notable clients.\n\nSpecifically research: Red Points, MarqVision, BrandShield, Corsearch, Pointer Brand Protection, Incopro, Yellow Brand Protection, BrandMonitor, Huboo, TrackStreet, MUSO, OpSec Security, MarkMonitor (Clarivate), CSC Digital Brand Services.\n\nAlso search for: 'brand protection API', 'anti-counterfeiting API', 'grey market detection API', 'unauthorized reseller API', 'MAP monitoring API', 'minimum advertised price API'. List every provider found with their API capabilities.",
+          "system_prompt": "You are a market research analyst specializing in brand protection technology. Provide comprehensive, factual information about each provider. Include pricing where publicly available. Note which providers have public APIs vs enterprise-only access.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p1_price_monitoring",
+          "prompt": "Research ALL price monitoring and competitive intelligence API providers that can track pricing across marketplaces, detect arbitrage, and monitor grey market pricing.\n\nSpecifically research: Prisync, Competera, Intelligence Node, Price2Spy, Minderest, Dealavo, Sniffie, Omnia Retail, Informed (formerly Feedvisor), BlackCurve, Profitero, DataWeave, Skuuudle, NetRivals (Lengow), Pricefx, PriceGrid.\n\nFor EACH provider list: company name, API availability (REST/GraphQL/webhooks), data coverage (which marketplaces/regions), pricing tiers, real-time vs batch, accuracy claims, notable clients, free trial availability.\n\nAlso search for: 'price intelligence API', 'competitive pricing API', 'marketplace price tracking API', 'dynamic pricing API', 'price comparison API'.",
+          "system_prompt": "You are a market research analyst. Provide factual, detailed information about each provider's API capabilities. Focus on technical specifications and pricing. Note which have self-serve APIs vs enterprise-only.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p1_threat_intel",
+          "prompt": "Research ALL threat intelligence and dark web monitoring API providers relevant to grey market intelligence.\n\nSpecifically research: Recorded Future, Flashpoint, Intel 471, DarkOwl, Cybersixgill, SOCRadar, Flare (formerly Flare Systems), ZeroFox, Digital Shadows (now ReliaQuest), Group-IB, KELA, Constella Intelligence, SpyCloud, Hudson Rock, Webz.io (formerly Webhose), Have I Been Pwned API.\n\nFor EACH list: API name, endpoint types, data sources (dark web forums, paste sites, Telegram, marketplaces), pricing model, free tier, rate limits, data formats (JSON/CSV), authentication method, notable capabilities for grey market monitoring.\n\nAlso search for: 'dark web API', 'threat intelligence API', 'underground market API', 'leaked credentials API', 'stolen account monitoring API'.",
+          "system_prompt": "You are a cybersecurity analyst. Provide detailed technical information about each threat intelligence API. Focus on capabilities relevant to monitoring grey markets, unauthorized reselling, and underground commerce.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p1_marketplace_monitoring",
+          "prompt": "Research ALL marketplace monitoring and e-commerce intelligence API providers.\n\nSpecifically research: Jungle Scout API, Helium 10 API, Keepa API, CamelCamelCamel, Sellics/Perpetua, AMZScout, Marketplace Pulse, Algopix, SellerApp, DataHawk, SmartScout, SimilarWeb API, Semrush Marketplace data, Marketplace API direct access (Amazon SP-API, eBay Browse API, Walmart Marketplace API, AliExpress API, Taobao/Tmall API access).\n\nFor EACH list: API availability, data provided (prices, sellers, reviews, inventory), rate limits, pricing, authentication, coverage (which marketplaces/countries), historical data depth, real-time capabilities.\n\nSpecial focus on: APIs that can monitor Xianyu (闲鱼), Taobao (淘宝), Pinduoduo, and other Chinese marketplaces where grey market activity is concentrated.",
+          "system_prompt": "You are an e-commerce intelligence analyst. Provide detailed API specifications for each marketplace monitoring tool. Note which have direct marketplace API access vs scraping-based data.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p1_web_data",
+          "prompt": "Research ALL web scraping, data extraction, and web intelligence API providers relevant to grey market monitoring.\n\nSpecifically research: Bright Data (formerly Luminati), Oxylabs, Apify, ScrapingBee, ScraperAPI, Diffbot, Import.io, Zyte (formerly Scrapinghub/Crawlera), ParseHub, WebScraper.io, ScrapeOps, Crawlbase, PhantomBuster, ProxyCrawl, DataForSEO.\n\nFor EACH list: API type (proxy/scraping/structured data), pricing per request or per GB, free tier, residential vs datacenter proxies, success rates, supported sites, anti-bot bypass capabilities, structured data extraction, JavaScript rendering.\n\nAlso research SERP APIs: SerpApi, ValueSERP, Serper.dev, DataForSEO SERP — which can monitor grey market listings in search results.\n\nSpecial focus on: Which can reliably scrape Chinese marketplaces (Xianyu, Taobao, Pinduoduo, WeChat Mini Programs)?",
+          "system_prompt": "You are a web data specialist. Provide detailed technical and pricing information for each web scraping/data API. Focus on capabilities relevant to monitoring grey market activity across global and Chinese marketplaces.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p1_social_monitoring",
+          "prompt": "Research ALL social media monitoring, forum tracking, and messaging platform intelligence APIs relevant to grey market detection.\n\nSpecifically research: Brandwatch API, Meltwater API, Talkwalker API, Sprout Social API, Brand24 API, Mention API, Awario, BuzzSumo API, Telegram Bot API + channel monitoring tools, Discord API + server monitoring, Reddit API (pushshift replacement), Twitter/X API, Telemetr.io, TGStat, Social Searcher API.\n\nFor EACH list: API capabilities, pricing, rate limits, coverage (which platforms), sentiment analysis, keyword monitoring, alert capabilities.\n\nSpecial focus on:\n1. Telegram channel/group monitoring APIs (where proxy operators advertise)\n2. Discord server monitoring (where proxy communities exist)\n3. Reddit monitoring for r/ChatGPT, r/LocalLLaMA grey market discussions\n4. Chinese social media monitoring (Weibo, WeChat, Xiaohongshu/RED)\n5. Real-time alert capabilities for new grey market listings",
+          "system_prompt": "You are a social media intelligence analyst. Provide detailed API specifications focused on capabilities for monitoring underground/grey market commerce on social platforms and messaging apps.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p1_crypto_payments",
+          "prompt": "Research ALL cryptocurrency and payment tracking API providers relevant to grey market financial intelligence.\n\nSpecifically research: Chainalysis API (KYT, Reactor), Elliptic API, TRM Labs, Crystal Blockchain, CipherTrace (Mastercard), Merkle Science, Scorechain, Coinfirm, Blockseer, AnChain.AI, Nansen API, Dune Analytics API, Etherscan API, Blockchain.com API.\n\nAlso research payment fraud detection APIs: Stripe Radar API, Sift Science API, Riskified API, Forter API, Kount API, SEON API, Sardine API.\n\nFor EACH list: API capabilities, pricing, free tier, data coverage (which chains/payment methods), transaction tracing depth, risk scoring, compliance features.\n\nSpecial focus on: APIs that can trace USDT/Tether payments (primary grey market currency), Alipay transaction patterns, virtual prepaid card detection.",
+          "system_prompt": "You are a financial intelligence analyst. Provide detailed information about payment and cryptocurrency tracking APIs. Focus on capabilities relevant to monitoring grey market financial flows.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        }
+      ],
+      "synthesis_prompt": "Synthesize findings from 7 agents who researched the complete landscape of grey market intelligence APIs across: brand protection, price monitoring, threat intelligence, marketplace monitoring, web scraping, social media monitoring, and crypto/payment tracking. Create a MASTER PROVIDER LIST organized by category with: Provider Name | Category | API Type | Pricing | Free Tier | Key Capability | Best For. Identify the TOP 5 most relevant APIs for AI API grey market intelligence specifically. Note which categories have the most mature API ecosystems vs which are underserved."
+    },
+    {
+      "phase": 2,
+      "name": "Technical Deep Evaluation",
+      "tasks": [
+        {
+          "task_id": "p2_api_docs",
+          "prompt": "Evaluate the API documentation quality and developer experience for the TOP providers identified in grey market intelligence.\n\nFor each of these providers, research their API docs: Recorded Future, Flashpoint, DarkOwl, Bright Data, Diffbot, Keepa, Jungle Scout, Red Points, Prisync, Webz.io, Chainalysis, SEON, Brandwatch, SerpApi, Apify.\n\nFor EACH evaluate:\n1. Documentation quality (1-10): Interactive docs? OpenAPI spec? Code examples?\n2. SDK availability: Python, Node.js, Go, Java?\n3. Authentication: API key, OAuth2, JWT?\n4. Sandbox/test environment available?\n5. Quickstart time (minutes to first API call)\n6. Community: GitHub stars, Stack Overflow questions, Discord/Slack\n7. Rate limit transparency\n8. Error handling quality\n9. Changelog/versioning\n10. Overall developer experience (DX) score 1-10",
+          "system_prompt": "You are a developer experience analyst. Evaluate API documentation and DX from a developer's perspective. Be specific about what's good and bad. Provide actual URLs to documentation pages where possible.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p2_pricing_analysis",
+          "prompt": "Create a comprehensive pricing comparison for ALL grey market intelligence APIs.\n\nFor each provider, research EXACT pricing:\n1. Free tier: What's included? Requests/month? Data limits?\n2. Starter/developer tier: Price, limits\n3. Professional tier: Price, limits\n4. Enterprise tier: Price range (if known)\n5. Pay-per-call pricing\n6. Annual vs monthly discount\n7. Overage charges\n8. Hidden costs (setup fees, minimum commitments, data storage)\n\nOrganize by budget level:\n- $0/mo (free only): What can you get?\n- $50-100/mo: Best options?\n- $100-500/mo: Best options?\n- $500-2,000/mo: Best options?\n- $2,000-10,000/mo: Best options?\n- $10,000+/mo: Enterprise options?\n\nSpecifically price out: building a grey market monitoring dashboard that tracks AI API proxy pricing across Telegram, Xianyu, GitHub, and Discord. What would it cost using different API combinations?",
+          "system_prompt": "You are a procurement analyst. Research EXACT pricing from official pricing pages. If pricing is not public, note 'Contact sales' and estimate based on industry benchmarks. Be precise about what each tier includes.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p2_data_coverage",
+          "prompt": "Evaluate data coverage and accuracy for grey market intelligence APIs.\n\nFor the TOP 15 providers, research:\n1. Geographic coverage: Which countries/regions?\n2. Marketplace coverage: Which platforms monitored?\n3. Language support: English only? Chinese? Russian? Arabic?\n4. Data freshness: Real-time? Hourly? Daily? Weekly?\n5. Historical data: How far back?\n6. Data accuracy claims and independent verification\n7. Data completeness (what's missing?)\n8. Source diversity (how many data sources?)\n\nCRITICAL for AI grey market use case:\n- Can it monitor Chinese platforms (Xianyu, Taobao, Pinduoduo)?\n- Can it monitor Telegram groups/channels?\n- Can it monitor Discord servers?\n- Can it track USDT/crypto payments?\n- Can it monitor GitHub for proxy tools?\n- Can it detect AI API proxy advertisements?\n- Can it track pricing changes in real-time?",
+          "system_prompt": "You are a data quality analyst. Evaluate each provider's data coverage specifically for monitoring AI API grey market activity. Be honest about gaps — many providers won't cover Chinese platforms or Telegram.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p2_integration",
+          "prompt": "Evaluate integration complexity for grey market intelligence APIs.\n\nFor the TOP 15 providers, research:\n1. Time to first value: How long from signup to useful data?\n2. Integration methods: REST, GraphQL, WebSocket, webhooks, SDK?\n3. Data export formats: JSON, CSV, XML, Parquet?\n4. Webhook/streaming support for real-time alerts?\n5. Pre-built integrations: Slack, email, SIEM, Jira, Zapier?\n6. Custom dashboard/UI included?\n7. Bulk data export capability?\n8. ETL/data pipeline compatibility (Snowflake, BigQuery, S3)?\n9. Multi-tenancy support (for reselling/white-label)?\n10. API versioning and backward compatibility?\n\nAlso evaluate: Can these APIs be combined? What's the best STACK of 2-3 APIs that together cover the full grey market intelligence use case (monitoring + detection + alerting)?",
+          "system_prompt": "You are a solutions architect. Evaluate APIs from an integration perspective. Focus on practical considerations: what works well together, what's hard to integrate, what's the fastest path to a working system.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p2_reliability",
+          "prompt": "Evaluate reliability, SLAs, and uptime for grey market intelligence APIs.\n\nFor the TOP 15 providers, research:\n1. Published SLA (uptime guarantee)\n2. Status page URL and historical uptime\n3. Rate limits (requests/second, requests/day)\n4. Burst handling\n5. Latency (P50, P95, P99 response times)\n6. Error rates\n7. Support response times (by tier)\n8. Data delivery guarantees\n9. Incident history (major outages in last 12 months)\n10. Security certifications (SOC 2, ISO 27001, GDPR compliance)\n\nAlso research: Which providers have had data breaches, security incidents, or significant reliability issues? Which have the best track record?",
+          "system_prompt": "You are a reliability engineer. Evaluate each API's operational excellence. Check status pages, review sites (G2, Capterra), and incident history. Be specific about SLAs and uptime data.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p2_ai_specific",
+          "prompt": "Research APIs specifically designed for AI model/API monitoring, AI security, and AI usage detection.\n\nSpecifically research:\n1. AI security platforms: Robust Intelligence, HiddenLayer, Protect AI, CalypsoAI, Lakera, Rebuff\n2. AI observability: LangSmith, Helicone, Langfuse, PromptLayer, Weights & Biases, Arize AI\n3. AI gateway/proxy management: LiteLLM, Portkey, Martian, Unify AI, AI Gateway (Cloudflare)\n4. AI cost management: OpenMeter, TokenCost, LLMeter\n5. AI compliance/governance: Credo AI, Holistic AI, Fairly AI\n6. Model fingerprinting/watermarking: AI model identification APIs\n\nFor EACH: API capabilities, pricing, free tier, how it could be used for grey market AI API detection.\n\nKEY QUESTION: Is there ANY API that specifically detects unauthorized AI API proxy usage? Can any combination of existing APIs be used to build such a system?",
+          "system_prompt": "You are an AI security specialist. Research all APIs in the AI security, observability, and governance space. Focus on which could be repurposed or combined for grey market AI API detection.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p2_open_source",
+          "prompt": "Research ALL open-source tools and free APIs that can be used for grey market intelligence.\n\nSpecifically research:\n1. OSINT frameworks: SpiderFoot, Maltego CE, theHarvester, Recon-ng, Shodan (free tier), Censys (free tier)\n2. Web scraping: Scrapy, Playwright, Puppeteer, Selenium, crawlee (Apify OSS)\n3. Telegram monitoring: Telethon, Pyrogram, TelegramMonitorBot\n4. Discord monitoring: discord.py, Discord webhooks\n5. Reddit monitoring: PRAW, Pushshift alternatives\n6. Price tracking: camelcamelcamel (free), Keepa (free tier), Google Shopping scraping\n7. Dark web: Tor + custom crawlers, Ahmia search API\n8. GitHub monitoring: GitHub API (free tier), GitHub Actions for tracking repos\n9. Social listening: GDELT Project API (free), NewsAPI (free tier)\n10. Data analysis: pandas, DuckDB, Metabase (free), Grafana (free)\n\nFor EACH: capabilities, limitations, setup complexity, maintenance burden, and how to use it for AI grey market monitoring.\n\nDesign a COMPLETE free/OSS stack for monitoring the AI API grey market.",
+          "system_prompt": "You are an OSINT specialist. Research free and open-source tools for intelligence gathering. Be practical — focus on what actually works for grey market monitoring. Include setup complexity estimates.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        }
+      ],
+      "synthesis_prompt": "Synthesize technical evaluations from 7 agents covering: API documentation, pricing, data coverage, integration, reliability, AI-specific tools, and open-source alternatives. Create: 1) A RANKED comparison table of TOP 20 APIs with scores for DX, Pricing, Coverage, Reliability, and AI-Grey-Market Fit. 2) PRICING TIERS showing best options at each budget level. 3) RECOMMENDED STACKS (combinations of 2-3 APIs) for different use cases. 4) A complete FREE/OSS stack design. 5) Identify the single biggest GAP in the market — what API doesn't exist but should?"
+    },
+    {
+      "phase": 3,
+      "name": "Provider Deep Dives",
+      "tasks": [
+        {
+          "task_id": "p3_recorded_future",
+          "prompt": "DEEP DIVE: Recorded Future Intelligence Cloud API.\n\nResearch everything about Recorded Future's API for grey market intelligence:\n1. API endpoints and capabilities (Intelligence Cards, Connect API, Browser Extension API)\n2. Data sources: how many? Which dark web forums, paste sites, marketplaces?\n3. Pricing: enterprise only? Estimated annual cost?\n4. Free tier or academic access?\n5. API documentation quality and developer experience\n6. Python SDK (recordedfuture package)\n7. Rate limits and SLAs\n8. Integration with SIEM/SOAR platforms\n9. Specific capabilities for: Telegram monitoring, Chinese marketplace monitoring, crypto tracking\n10. Customer reviews (G2, Gartner) and satisfaction scores\n11. Alternatives: How does it compare to Flashpoint, Intel 471, Cybersixgill?\n\nAlso research: Can Recorded Future detect AI API grey market activity specifically? Does it monitor AI-related underground markets? Any published research on AI grey markets?",
+          "system_prompt": "You are a threat intelligence analyst evaluating Recorded Future. Be thorough and honest about strengths and limitations. Include specific pricing data if available.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_bright_data",
+          "prompt": "DEEP DIVE: Bright Data (formerly Luminati) Web Data Platform API.\n\nResearch everything about Bright Data for grey market intelligence:\n1. Product lineup: Web Scraper API, SERP API, Web Unlocker, Proxy Networks\n2. Pricing: per-request, per-GB, subscription tiers (exact $ amounts)\n3. Free trial and free tier details\n4. Residential proxy network: size (72M+ IPs?), countries, success rate\n5. Chinese marketplace scraping: Can it access Xianyu, Taobao, Pinduoduo, JD.com?\n6. Anti-bot bypass rate for major platforms\n7. Structured data products (datasets)\n8. API documentation and SDKs\n9. Compliance and ethics (legal controversies?)\n10. Rate limits, SLAs, uptime\n11. Pre-built scraping templates for marketplaces\n\nCompare to: Oxylabs, SmartProxy, NetNut, IPRoyal.\n\nDesign a grey market monitoring solution using Bright Data: What would it cost to monitor 50 Telegram channels + 100 Xianyu listings + 20 GitHub repos daily?",
+          "system_prompt": "You are a web data specialist. Provide detailed technical and pricing analysis of Bright Data. Be honest about what it can and cannot scrape. Include any legal/ethical concerns.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_darkweb_apis",
+          "prompt": "DEEP DIVE: Dark web and underground market monitoring APIs.\n\nCompare these providers head-to-head:\n1. DarkOwl Vision API\n2. Webz.io (Cyber API / Dark Web API)\n3. Cybersixgill DVE (Dynamic Vulnerability Exploit)\n4. Flare.io\n5. KELA DARKBEAST\n6. SOCRadar Dark Web Monitoring\n\nFor EACH provider:\n- API endpoints and capabilities\n- Data sources (which forums, markets, paste sites, Telegram channels)\n- Pricing (free tier? starter? enterprise?)\n- Coverage of AI-related underground markets\n- Telegram monitoring capabilities\n- Chinese language support\n- Historical data depth\n- Alert/webhook capabilities\n- SDK/integration options\n\nCRITICAL QUESTION: Which of these can monitor Telegram proxy seller channels, Xianyu AI API listings, and Chinese-language underground AI markets? Rate each 1-10 for AI grey market relevance.",
+          "system_prompt": "You are a dark web intelligence analyst. Compare these providers specifically for AI API grey market monitoring. Be honest about coverage gaps — most won't cover Chinese platforms.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_marketplace_apis",
+          "prompt": "DEEP DIVE: Marketplace monitoring APIs for grey market tracking.\n\nCompare these head-to-head for grey market intelligence:\n1. Keepa API (Amazon price tracking)\n2. Jungle Scout API (Amazon seller intelligence)\n3. DataWeave (multi-marketplace intelligence)\n4. Profitero (e-commerce analytics)\n5. TrackStreet (MAP monitoring & grey market detection)\n6. Amazon SP-API (direct marketplace access)\n7. eBay Browse/Finding API\n8. AliExpress/Alibaba API access\n\nFor EACH:\n- API capabilities for grey market detection\n- Pricing (exact tiers)\n- Seller identification features\n- Price history depth\n- Alert capabilities\n- Geographic coverage\n- Can it detect unauthorized resellers?\n- Can it track parallel imports?\n\nSPECIAL FOCUS: TrackStreet — this is one of the few platforms specifically designed for grey market detection. Deep dive into their API capabilities, pricing, and effectiveness.",
+          "system_prompt": "You are an e-commerce intelligence analyst. Provide detailed comparison focused on grey market and unauthorized reseller detection capabilities.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_ai_observability",
+          "prompt": "DEEP DIVE: AI observability and gateway APIs that could detect grey market AI API usage.\n\nCompare these head-to-head:\n1. Helicone (open-source AI observability)\n2. LangSmith (LangChain's observability platform)\n3. Langfuse (open-source LLM observability)\n4. Portkey AI Gateway\n5. LiteLLM (open-source proxy + observability)\n6. Cloudflare AI Gateway\n7. Martian (model router)\n8. OpenMeter (usage metering)\n\nFor EACH:\n- API capabilities\n- Pricing (free tier, paid tiers)\n- Open-source or proprietary?\n- Can it detect: unauthorized API usage, token abuse, proxy routing, model substitution?\n- Logging and analytics features\n- Integration complexity\n- Self-hosted option?\n\nKEY QUESTION: Could any of these be REPURPOSED to build a grey market AI API detection system? Design an architecture using these tools to detect if your users are routing through grey market proxies.",
+          "system_prompt": "You are an AI platform engineer. Evaluate AI observability tools for their potential use in detecting grey market API usage. Be creative about repurposing existing tools.",
+          "temperature": 0.4,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_osint_platforms",
+          "prompt": "DEEP DIVE: OSINT (Open Source Intelligence) platforms and APIs.\n\nCompare these for grey market intelligence:\n1. SpiderFoot (open-source OSINT automation)\n2. Maltego (link analysis + transforms)\n3. Shodan API (internet-connected device search)\n4. Censys API (internet asset discovery)\n5. GreyNoise API (internet background noise)\n6. SecurityTrails API (DNS/domain intelligence)\n7. VirusTotal API (file/URL analysis)\n8. URLScan.io API (website analysis)\n9. IntelX (Intelligence X) API\n10. Dehashed API (breach data search)\n\nFor EACH:\n- Free tier (requests/month, capabilities)\n- Paid pricing\n- API documentation quality\n- Relevance to grey market monitoring (1-10)\n- Specific use cases for AI grey market\n\nDesign an OSINT workflow: How would you use these tools together to identify, track, and monitor AI API proxy operators? Step-by-step process from discovery to ongoing monitoring.",
+          "system_prompt": "You are an OSINT practitioner. Evaluate these tools for practical grey market intelligence operations. Focus on free tiers and affordable options. Design a real workflow.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_payment_fraud",
+          "prompt": "DEEP DIVE: Payment intelligence and fraud detection APIs for grey market financial tracking.\n\nCompare these:\n1. Chainalysis KYT API (crypto transaction monitoring)\n2. Elliptic API (crypto compliance)\n3. SEON API (fraud detection + digital footprinting)\n4. Sardine API (fraud + compliance)\n5. Sift Science API (digital trust)\n6. Stripe Radar (payment fraud)\n7. Nansen API (on-chain analytics)\n8. Dune Analytics API (blockchain data)\n9. Etherscan/BscScan APIs (blockchain explorers)\n10. TRM Labs (blockchain intelligence)\n\nFor EACH:\n- Free tier and pricing\n- API capabilities\n- Can it trace USDT payments (primary grey market currency)?\n- Can it detect virtual prepaid card usage?\n- Can it identify payment clustering patterns?\n- Compliance features (SAR filing, risk scoring)\n\nKEY QUESTION: If grey market operators primarily use USDT (Tether) and Alipay, which APIs can monitor these payment flows? Design a payment intelligence pipeline.",
+          "system_prompt": "You are a financial crime analyst. Evaluate payment and crypto APIs for monitoring grey market financial flows. Focus on USDT tracking and pattern detection.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "Synthesize deep dives from 7 agents covering: Recorded Future, Bright Data, dark web APIs, marketplace APIs, AI observability, OSINT platforms, and payment APIs. For each provider create a SCORECARD: Provider | Category | API Quality (1-10) | Pricing Value (1-10) | AI Grey Market Fit (1-10) | Free Tier | Pricing | Top Use Case. Identify the TOP 3 providers in each category. Identify which provider has the BEST single API for AI grey market intelligence overall."
+    },
+    {
+      "phase": 4,
+      "name": "Solution Architecture",
+      "tasks": [
+        {
+          "task_id": "p4_free_stack",
+          "prompt": "Design a COMPLETE free/open-source grey market intelligence stack.\n\nRequirements:\n- $0/month budget\n- Monitor AI API proxy activity across: Telegram, Discord, GitHub, Reddit, Chinese marketplaces\n- Detect new proxy services, track pricing, alert on changes\n- Dashboard for visualization\n- Automated data collection\n\nDesign the stack:\n1. Data Collection: Which free tools/APIs? (Telegram Bot API, GitHub API, Reddit API, Discord webhooks, etc.)\n2. Data Storage: SQLite? PostgreSQL? DuckDB?\n3. Data Processing: Python scripts? Cron jobs? GitHub Actions?\n4. Analysis: pandas? SQL queries? Simple ML?\n5. Visualization: Grafana? Metabase? Custom HTML dashboard?\n6. Alerting: Email? Slack webhook? Telegram bot?\n\nProvide EXACT setup steps, estimated setup time, and maintenance burden. What's the daily operational cost (compute, storage)?",
+          "system_prompt": "You are a solutions architect. Design a practical, buildable system using only free tools. Be specific about implementation details — this should be a blueprint someone can follow.",
+          "temperature": 0.4,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p4_startup_stack",
+          "prompt": "Design an OPTIMAL grey market intelligence stack for a startup budget ($200-500/month).\n\nRequirements:\n- Comprehensive coverage of AI API grey market\n- Real-time alerting on new proxy services and price changes\n- Historical data for trend analysis\n- Dashboard for stakeholders\n- Minimal maintenance burden\n\nDesign the stack selecting from APIs researched in prior phases:\n1. Core monitoring API (pick 1-2): [justify selection]\n2. Web scraping/data (pick 1): [justify selection]\n3. Social/messaging monitoring (pick 1): [justify selection]\n4. Alerting and workflow: [justify selection]\n5. Storage and analytics: [justify selection]\n\nProvide:\n- Total monthly cost breakdown\n- What you get vs what you miss at this budget\n- Setup time estimate\n- Ongoing maintenance hours/week\n- Scaling path to enterprise",
+          "system_prompt": "You are a startup CTO. Design the most cost-effective grey market intelligence system. Optimize for value per dollar. Be specific about which API tiers to choose.",
+          "temperature": 0.4,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p4_enterprise_stack",
+          "prompt": "Design a COMPREHENSIVE enterprise grey market intelligence platform ($5,000-50,000/month budget).\n\nRequirements:\n- Complete coverage: dark web, surface web, social media, marketplaces, payments\n- Real-time monitoring with sub-minute alerting\n- Historical data going back 2+ years\n- Compliance-ready reporting (SOC 2, ISO 27001)\n- API for internal integration\n- Multi-user dashboard\n- ML-powered anomaly detection\n\nDesign the platform selecting BEST-IN-CLASS components:\n1. Threat intelligence: [selection + justification]\n2. Web data platform: [selection + justification]\n3. Marketplace monitoring: [selection + justification]\n4. Social/messaging intelligence: [selection + justification]\n5. Payment/crypto intelligence: [selection + justification]\n6. AI-specific monitoring: [selection + justification]\n7. Analytics/ML platform: [selection + justification]\n8. Dashboard/reporting: [selection + justification]\n\nProvide total cost breakdown and ROI justification.",
+          "system_prompt": "You are an enterprise solutions architect. Design the ultimate grey market intelligence platform. Justify every component selection. Include compliance and security considerations.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p4_build_vs_buy",
+          "prompt": "ANALYSIS: Build vs Buy for grey market intelligence.\n\nCompare three approaches:\n\nAPPROACH A: Buy existing platform (single vendor)\n- Which vendors offer the most complete grey market intelligence platform?\n- Total cost of ownership (license + integration + maintenance)\n- Time to value\n- Pros/cons\n\nAPPROACH B: Assemble from APIs (best-of-breed)\n- Pick 3-5 best APIs and integrate them\n- Total cost: API fees + development + maintenance\n- Time to value\n- Pros/cons\n\nAPPROACH C: Build custom (open-source + custom code)\n- Use free tools + custom scraping/monitoring code\n- Total cost: development + hosting + maintenance\n- Time to value\n- Pros/cons\n\nFor EACH approach, estimate:\n1. Setup cost (one-time)\n2. Monthly operating cost\n3. Time to first useful intelligence\n4. Coverage completeness (% of grey market activity captured)\n5. Maintenance burden (hours/week)\n6. Scalability\n7. Risk of platform lock-in\n\nRecommend: Which approach for which audience? (Solo researcher, startup, enterprise, government agency)",
+          "system_prompt": "You are a technology strategy consultant. Provide an honest build-vs-buy analysis. Include total cost of ownership for each approach over a 2-year period.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p4_gap_analysis",
+          "prompt": "MARKET GAP ANALYSIS: What grey market intelligence APIs DON'T exist but should?\n\nBased on the full landscape of APIs researched, identify:\n\n1. THE #1 MISSING API: Describe the API that would be most valuable but doesn't exist today. What would it do? What data would it provide? Who would buy it? What would they pay?\n\n2. TOP 5 GAPS in the current market:\n- Gap 1: [description, market size, difficulty to build]\n- Gap 2: [description, market size, difficulty to build]\n- Gap 3: [description, market size, difficulty to build]\n- Gap 4: [description, market size, difficulty to build]\n- Gap 5: [description, market size, difficulty to build]\n\n3. Specific gaps for AI grey market:\n- No API monitors AI proxy pricing in real-time\n- No API detects model substitution fraud\n- No API tracks AI proxy operator lifecycles\n- No API provides AI API usage compliance scoring\n- No API monitors Chinese AI marketplace activity\n\n4. For each gap: Could this be built as a startup? What would be the MVP? Estimated time and cost to build?",
+          "system_prompt": "You are a product strategist and market analyst. Identify genuine market gaps where there is unmet demand for grey market intelligence APIs. Be specific about what's missing and why it matters.",
+          "temperature": 0.4,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p4_api_comparison_matrix",
+          "prompt": "Create the DEFINITIVE comparison matrix of ALL grey market intelligence APIs.\n\nBuild a comprehensive comparison covering EVERY provider researched across all phases. For each provider include:\n\n1. Provider Name\n2. Category (Brand Protection / Price Intel / Threat Intel / Web Data / Marketplace / Social / Payment / AI-Specific / OSINT)\n3. API Type (REST / GraphQL / WebSocket / SDK)\n4. Free Tier (Yes/No + details)\n5. Starting Price ($/month)\n6. Enterprise Price ($/month estimate)\n7. Data Coverage Score (1-10)\n8. AI Grey Market Relevance (1-10)\n9. Developer Experience (1-10)\n10. Best For (one-line description)\n\nThen create THREE ranked lists:\nA. TOP 10 APIs for AI Grey Market Intelligence (ranked by relevance)\nB. TOP 10 APIs by Value (best capability per dollar)\nC. TOP 10 APIs by Developer Experience (easiest to use)\n\nThis should be the single most comprehensive comparison of grey market intelligence APIs ever compiled.",
+          "system_prompt": "You are a market research analyst creating a definitive industry comparison. Be comprehensive — include every provider discovered. Be precise about pricing and capabilities.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p4_emerging_apis",
+          "prompt": "Research EMERGING and NEW grey market intelligence APIs launched in 2025-2026.\n\nSearch for:\n1. New AI security startups with APIs (2025-2026 launches)\n2. New threat intelligence APIs\n3. New marketplace monitoring tools\n4. New social media intelligence APIs\n5. New crypto/payment tracking APIs\n6. APIs from major tech companies (Google, Microsoft, Amazon) for brand/market protection\n7. Government-backed intelligence APIs or databases\n8. Academic/research APIs for market intelligence\n\nAlso search for:\n- Recent ProductHunt launches in intelligence/monitoring category\n- YC-backed companies in this space (W25, S25, W26 batches)\n- Recent Series A/B funding in grey market intelligence\n- Acquisitions in this space (who's buying whom?)\n\nFor each new entry: Name, launch date, website, API status, funding, key differentiator, pricing.",
+          "system_prompt": "You are a venture analyst tracking emerging technology companies. Focus on NEW entrants in the grey market intelligence space. Include funding data and market positioning.",
+          "temperature": 0.4,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "Synthesize solution architecture and analysis from 7 agents covering: free stack, startup stack, enterprise stack, build-vs-buy, market gaps, API comparison matrix, and emerging providers. Create: 1) DEFINITIVE RANKED LIST of top 20 APIs for grey market intelligence. 2) THREE recommended stacks at different budgets ($0, $500/mo, $10K/mo). 3) TOP 5 MARKET GAPS with startup opportunity scores. 4) BUILD VS BUY decision matrix. 5) The single BEST API for someone starting grey market intelligence today."
+    },
+    {
+      "phase": 5,
+      "name": "Final Recommendations",
+      "tasks": [
+        {
+          "task_id": "p5_top_10",
+          "prompt": "Using all prior research, produce the DEFINITIVE TOP 10 Grey Market Intelligence APIs ranked by overall value.\n\nFor EACH of the top 10, provide:\n1. Rank and Provider Name\n2. Category\n3. Why it's in the top 10 (1-2 sentences)\n4. Best feature for grey market intel\n5. Pricing summary\n6. Free tier details\n7. AI grey market specific use case\n8. Limitations/weaknesses\n9. Best alternative\n10. Overall score (1-100)\n\nRanking criteria (weighted):\n- Data relevance for grey market (30%)\n- API quality and DX (20%)\n- Pricing value (20%)\n- Coverage breadth (15%)\n- Reliability (15%)\n\nInclude a mix of: threat intel, web data, marketplace monitoring, social monitoring, and AI-specific tools.",
+          "system_prompt": "You are the chief analyst producing the definitive ranking. Balance multiple criteria. Justify each ranking. This should be the single most useful output of the entire pipeline.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_quick_start",
+          "prompt": "Create a QUICK START GUIDE: How to set up grey market intelligence monitoring in 24 hours.\n\nProvide exact steps for three tracks:\n\nTRACK A: FREE (0 budget, ~4 hours setup)\n1. Step-by-step: Sign up for [specific free APIs]\n2. Code snippets: Python scripts for monitoring\n3. What you'll have after 24 hours\n4. What you'll miss\n\nTRACK B: STARTER ($100/month, ~2 hours setup)\n1. Step-by-step: Sign up for [specific paid APIs]\n2. Integration guide\n3. Dashboard setup\n4. What you'll have after 24 hours\n\nTRACK C: PROFESSIONAL ($1,000/month, ~1 hour setup)\n1. Step-by-step: Sign up for [enterprise-lite APIs]\n2. Full pipeline setup\n3. Alerting configuration\n4. What you'll have after 24 hours\n\nFor each track, provide EXACT API names, signup URLs, and code snippets.",
+          "system_prompt": "You are a developer advocate writing a quickstart guide. Be extremely specific and practical. Include exact URLs, API endpoints, and code examples. This should be immediately actionable.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_business_opp",
+          "prompt": "BUSINESS OPPORTUNITY ANALYSIS: Building a Grey Market Intelligence API product.\n\nBased on the market gaps identified, design a NEW API product:\n\n1. PRODUCT DEFINITION:\n- Name and positioning\n- Core API endpoints\n- Data sources\n- Unique value proposition\n- Target customer\n\n2. MARKET SIZING:\n- TAM (total addressable market)\n- SAM (serviceable addressable market)\n- SOM (serviceable obtainable market)\n- Pricing strategy\n- Revenue model\n\n3. TECHNICAL ARCHITECTURE:\n- Data collection pipeline\n- Storage and processing\n- API layer\n- ML/analytics\n- Estimated build cost and timeline\n\n4. GO-TO-MARKET:\n- First 10 customers (who and how)\n- Competitive positioning\n- Pricing tiers\n- Growth strategy\n\n5. FINANCIAL MODEL:\n- Estimated MRR at 6, 12, 24 months\n- CAC and LTV estimates\n- Break-even timeline\n- Funding requirements",
+          "system_prompt": "You are a startup strategist. Design a viable Grey Market Intelligence API business. Be realistic about market size, costs, and timelines. This should be a bankable pitch.",
+          "temperature": 0.4,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_use_cases",
+          "prompt": "Compile ALL use cases for grey market intelligence APIs, organized by industry.\n\n1. AI INDUSTRY:\n- Detecting unauthorized API proxy usage\n- Monitoring grey market AI pricing\n- Tracking model distillation/theft\n- Identifying proxy operators\n- Compliance monitoring for enterprises\n\n2. LUXURY GOODS / FASHION:\n- Detecting counterfeit listings\n- Tracking parallel imports\n- MAP enforcement\n- Unauthorized reseller identification\n\n3. ELECTRONICS / CONSUMER GOODS:\n- Grey market supply chain tracking\n- Warranty fraud detection\n- Regional pricing arbitrage detection\n\n4. PHARMACEUTICALS:\n- Counterfeit drug detection\n- Parallel import monitoring\n- Supply chain integrity\n\n5. SOFTWARE / DIGITAL GOODS:\n- License key resale monitoring\n- Subscription sharing detection\n- Piracy tracking\n\n6. FINANCIAL SERVICES:\n- Payment fraud detection\n- Crypto laundering monitoring\n- Sanctions compliance\n\nFor each use case: Which APIs are best? What's the ROI? Who is the buyer?",
+          "system_prompt": "You are a business analyst. Map every grey market intelligence use case to specific APIs. Quantify ROI where possible. This should help readers find exactly the API they need for their specific problem.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_china_focus",
+          "prompt": "SPECIAL REPORT: APIs for monitoring the Chinese grey market ecosystem.\n\nThe AI API grey market is concentrated on Chinese platforms. Research:\n\n1. CHINESE MARKETPLACE APIs:\n- Xianyu (闲鱼) API or scraping capabilities\n- Taobao/Tmall API access\n- Pinduoduo API\n- JD.com API\n- WeChat Mini Program monitoring\n- Baidu search monitoring\n\n2. CHINESE SOCIAL MEDIA MONITORING:\n- Weibo API\n- WeChat monitoring tools\n- Xiaohongshu/RED monitoring\n- Douyin (Chinese TikTok) monitoring\n- Bilibili monitoring\n\n3. PROVIDERS WITH CHINA COVERAGE:\n- Which grey market intelligence APIs actually cover Chinese platforms?\n- Which web scraping APIs can reliably access Chinese sites?\n- Which threat intel APIs monitor Chinese underground forums?\n\n4. CHALLENGES:\n- Great Firewall restrictions\n- Chinese-language NLP requirements\n- Alipay/WeChat Pay payment tracking\n- Legal considerations for foreign companies monitoring Chinese platforms\n\n5. RECOMMENDED APPROACH:\n- Best API stack for monitoring Chinese AI grey market\n- Cost estimate\n- Setup complexity\n- Legal/compliance considerations",
+          "system_prompt": "You are a China market intelligence specialist. Provide practical guidance on monitoring Chinese grey market platforms. Be honest about limitations — this is one of the hardest markets to monitor externally.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_api_directory",
+          "prompt": "Create a COMPLETE API DIRECTORY of every grey market intelligence API discovered in this research.\n\nFormat as a structured database with these fields for EVERY provider:\n\nProvider | Website | Category | API Docs URL | Free Tier (Y/N) | Free Tier Limits | Starter Price | Key Capability | Best For | AI Grey Market Score (1-10)\n\nOrganize by category:\n1. Brand Protection (all providers)\n2. Price Intelligence (all providers)\n3. Threat Intelligence (all providers)\n4. Web Data / Scraping (all providers)\n5. Marketplace Monitoring (all providers)\n6. Social Media Intelligence (all providers)\n7. Payment / Crypto Intelligence (all providers)\n8. AI Security / Observability (all providers)\n9. OSINT Tools (all providers)\n10. Open-Source Tools (all projects)\n\nThis should be the MOST COMPREHENSIVE directory of grey market intelligence APIs ever compiled. Include at minimum 80 entries.",
+          "system_prompt": "You are a research librarian building a definitive directory. Include EVERY provider mentioned in prior research. Be thorough — quantity matters here. Include exact URLs where possible.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_verdict",
+          "prompt": "FINAL VERDICT: The State of Grey Market Intelligence APIs in 2026.\n\nBased on all research from all phases, provide:\n\n1. EXECUTIVE SUMMARY (3 paragraphs):\n- Current state of the grey market intelligence API ecosystem\n- Biggest gaps and opportunities\n- Where the market is heading\n\n2. THE SINGLE BEST API for each need:\n- Best overall: [name + why]\n- Best free option: [name + why]\n- Best for AI grey market: [name + why]\n- Best for startups: [name + why]\n- Best for enterprise: [name + why]\n- Best developer experience: [name + why]\n- Best data coverage: [name + why]\n\n3. THE BIGGEST OPPORTUNITY:\n- What API product should someone build?\n- Estimated market size\n- Estimated build cost\n- Competitive moat\n\n4. PREDICTIONS:\n- Where will this market be in 2 years?\n- Which providers will consolidate?\n- What new categories will emerge?",
+          "system_prompt": "You are the chief intelligence analyst producing the final assessment. Be definitive in your recommendations. This is the most important output of the entire 35-agent pipeline.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        }
+      ],
+      "synthesis_prompt": "Produce the FINAL INTELLIGENCE REPORT on Grey Market Intelligence APIs. Using all 7 agents' findings, create:\n\n1. EXECUTIVE SUMMARY (2 paragraphs)\n2. TOP 10 RANKED APIs with scores and justifications\n3. RECOMMENDED STACKS at 3 budget levels ($0, $500/mo, $10K/mo)\n4. COMPLETE API DIRECTORY (every provider found, organized by category)\n5. QUICK START GUIDE (exact steps to begin monitoring in 24 hours)\n6. MARKET GAPS & BUSINESS OPPORTUNITIES (top 5)\n7. CHINA COVERAGE ASSESSMENT (which APIs actually work for Chinese markets)\n8. BUILD VS BUY DECISION MATRIX\n9. THE SINGLE BEST RECOMMENDATION for someone starting today\n10. PREDICTIONS for the grey market intelligence API space in 2027-2028"
+    }
+  ]
+}

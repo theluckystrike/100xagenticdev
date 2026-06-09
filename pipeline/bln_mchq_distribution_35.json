@@ -1,0 +1,279 @@
+{
+  "phases": [
+    {
+      "phase_id": "phase1_platform_intel",
+      "tasks": [
+        {
+          "task_id": "p1-01-mchq-architecture",
+          "prompt": "CONTEXT: BeLikeNative (BLN) is a Chrome extension for AI-powered text rewriting. 10K DAU, $135/mo MRR, 16 paying users, 0.16% conversion rate. Chrome Web Store + belikenative.com. Built with React 18 + TypeScript MV3. Pricing: $4.99/mo or $39.99/yr. BLN SEO is complete and solid.\n\nMissionControlHQ (MCHQ) is a $99/mo platform where you chat with a lead agent on Telegram, get a personalized squad of AI specialists, they claim tasks, talk to each other, and ship work autonomously 24/7. Dashboard shows all agent activity. Uses OpenClaw agents + BYOK (ChatGPT recommended). Built by Bhanu & Dheeraj of SiteGPT ($30K MRR). 3.9M impressions on X.\n\nThe owner already runs 7 AI agents: Tai (lead/coordinator), Nina (outreach), Jordan (conversion/funnels), Maya (growth/distribution), Alex (research/marketing), Iris (PR/media), Sam (content/copy). Prefers Hermes as lead agent name.\n\nTASK: Deep-dive into MissionControlHQ's actual architecture and capabilities. What can agents actually DO vs what's marketing? Map every concrete capability: can they send emails? Post on social? Access APIs? Run scripts? What are the real limitations? What integrations exist? How does the Telegram interface work for tasking? What's the 15-minute heartbeat system? How do agents coordinate and peer-review? Be brutally honest about what's real vs hype.",
+          "system_prompt": "You are a technical platform analyst who evaluates AI agent platforms. Focus on separating marketing claims from actual technical capabilities. Be skeptical but fair.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-02-sitegpt-case-study",
+          "prompt": "CONTEXT: BeLikeNative (BLN) is a Chrome extension for AI-powered text rewriting. 10K DAU, $135/mo MRR, 16 paying users. BLN SEO is complete.\n\nMissionControlHQ was built by SiteGPT founders (Bhanu & Dheeraj, $30K MRR). Their squad of 10 agents (Jarvis lead, Loki writer, Fury researcher, Vision SEO, Wanda designer, Friday engineer, Pepper email, Quill social, Shuri product, Wong docs) runs marketing, retention, and competitive intel 24/7. Bhanu went on vacation 3 days, told Jarvis 'you're the final call', came back to 97 things reviewed and approved. They gave Jarvis one mission: 'get SiteGPT to $1M ARR' and got 11 deliverables in 24 hours with zero additional prompts.\n\nTASK: Analyze the SiteGPT case study in detail. What specific outcomes did their agent squad produce? How did they go from $30K MRR with agent-driven growth? What were the 11 deliverables? How did agents like Fury (research), Vision (SEO), Pepper (email), and Wanda (activation) each contribute? What can BLN learn from their playbook? Map their agent roles to BLN's specific needs.",
+          "system_prompt": "You are a SaaS growth strategist who studies successful agent-driven operations. Extract actionable patterns from case studies.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-03-competitor-agent-setups",
+          "prompt": "CONTEXT: BeLikeNative (BLN) is a Chrome extension for AI text rewriting competing against Grammarly, QuillBot, Wordtune, LanguageTool, DeepL Write, Jasper, Copy.ai. 10K DAU, $135/mo MRR.\n\nMCHQ case studies show: GovPitch runs 650+ agents for UK government analysis. AI agency operators ship 5-agent squads per client. Nick Spisak runs 20 scheduled end-to-end workflows. Chinmaya Shankar runs 3 businesses with 10 agents. Ryan built a full agent team to get GeniusForms to $10K MRR.\n\nTASK: Research how other Chrome extension and SaaS companies use AI agent squads for distribution. What are the most successful agent configurations for products similar to BLN? How are solo founders and small teams using agent squads to compete with well-funded competitors? What distribution channels work best when automated by agents? Analyze the patterns across MCHQ users and broader agent-driven growth strategies.",
+          "system_prompt": "You are a competitive intelligence researcher specializing in AI-driven growth strategies for bootstrapped SaaS and browser extension companies.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-04-bln-distribution-gaps",
+          "prompt": "CONTEXT: BeLikeNative (BLN) is a Chrome extension for AI-powered text rewriting. 10K DAU, $135/mo MRR, 16 paying users, 0.16% conversion rate. Chrome Web Store + belikenative.com. SEO is complete and solid. Current channels: organic search, Chrome Web Store listing, some social media.\n\nThe owner already runs 7 AI agents: Tai (lead), Nina (outreach), Jordan (conversion/funnels), Maya (growth/distribution), Alex (research/marketing), Iris (PR/media), Sam (content/copy).\n\nTASK: Identify ALL distribution channels BLN is NOT currently exploiting. Map every possible distribution vector: Product Hunt, directories (AlternativeTo, G2, Capterra, etc.), Chrome extension review sites, Reddit communities, Twitter/X, LinkedIn, YouTube, TikTok, email outreach, partnership/integration opportunities, affiliate programs, browser extension aggregators, tech blogs, newsletter sponsorships, university/education channels, enterprise outreach, API/integration marketplaces. Rank by effort-to-impact ratio. Which ones can agents handle autonomously?",
+          "system_prompt": "You are a distribution strategist who maps every possible growth channel for software products. Focus on channels that can be automated by AI agents.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-05-hermes-template-analysis",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension, 10K DAU, $135/mo MRR. Owner prefers the Hermes template from MCHQ.\n\nMCHQ Hermes template (Indie B2B SaaS founder, 4 agents): Hermes (Squad Lead), Persephone (Customer success), Apollo (Content + SEO), Hephaestus (Engineering). Designed for two-person teams where 'squad fills the gaps a co-founder would.'\n\nOther templates: SiteGPT (10 agents), GovPitch (650+), Agency (5 per client).\n\nOwner's current 7 agents: Tai (lead), Nina (outreach), Jordan (conversion/funnels), Maya (growth/distribution), Alex (research/marketing), Iris (PR/media), Sam (content/copy).\n\nTASK: Compare the Hermes template (4 agents) vs the owner's current 7-agent setup vs SiteGPT's 10-agent setup. Which configuration maximizes distribution for a Chrome extension? Should the owner use Hermes as-is, customize it, or build a completely different squad? What's the optimal agent count and role distribution for BLN's specific needs (distribution-focused, SEO done, conversion optimization needed)? Design the ideal MCHQ squad for BLN.",
+          "system_prompt": "You are an AI operations architect who designs optimal agent team configurations. Focus on maximizing output per dollar spent.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-06-cost-roi-baseline",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension. 10K DAU, $135/mo MRR, 16 paying users at $4.99/mo or $39.99/yr. Current burn rate ~-$166/mo across all projects.\n\nMCHQ costs: $99/mo + ChatGPT subscription ($20-$200/mo recommended). So total $119-$299/mo for the agent squad platform.\n\nCurrent manual distribution efforts produce 10K DAU but only 0.16% conversion.\n\nTASK: Build a detailed ROI model for BLN investing in MCHQ. Calculate: What conversion rate improvement would break even? How many additional users/subscribers would the agent squad need to generate? What's the payback period at different growth scenarios (conservative: +5 users/mo, moderate: +15/mo, aggressive: +50/mo)? Factor in time savings for the founder. Compare $99/mo MCHQ vs hiring a VA ($500-1500/mo) vs freelancers vs doing it yourself. What's the true cost including ChatGPT tokens? When does it become profitable?",
+          "system_prompt": "You are a financial analyst specializing in SaaS unit economics and growth investment ROI. Be precise with numbers.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-07-autonomous-distribution-patterns",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension, 10K DAU, $135/mo MRR. Owner wants FULLY AUTONOMOUS distribution — minimal human intervention. The MCHQ model: give one mission, agents coordinate and ship.\n\nSiteGPT example: Bhanu said 'get to $1M ARR', agents produced 11 deliverables in 24 hours. Agents have 15-minute heartbeat cycles. They assign tasks to each other, debate approaches, peer-review work.\n\nTASK: Research and catalog every known pattern for autonomous AI agent distribution. How do you set up agents so they actually SHIP distribution work without hand-holding? What missions produce the best autonomous output? What are the failure modes (agents going in circles, producing low-quality work, wasting tokens)? How do you structure the initial briefing so agents stay productive for days/weeks? What guardrails prevent agents from going off-track? Map the 'set it and forget it' playbook for distribution specifically.",
+          "system_prompt": "You are an autonomous systems architect who designs self-running AI agent workflows. Focus on distribution automation that actually works without constant oversight.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Synthesize all Phase 1 findings into a comprehensive intelligence brief on MissionControlHQ's real capabilities, the SiteGPT playbook, BLN's distribution gaps, cost/ROI analysis, and autonomous agent patterns. Identify the top 5 highest-leverage opportunities for BLN to use MCHQ for distribution. Be specific about what's realistic vs aspirational."
+    },
+    {
+      "phase_id": "phase2_squad_design",
+      "tasks": [
+        {
+          "task_id": "p2-01-optimal-squad-architecture",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. 10K DAU, $135/mo MRR, 16 paying users. SEO complete. Now focused purely on distribution and conversion.\n\nPhase 1 found: MCHQ enables autonomous agent squads via Telegram. SiteGPT's 10-agent model produced 11 deliverables in 24 hours. Owner prefers Hermes as lead agent. Current agents: Tai, Nina, Jordan, Maya, Alex, Iris, Sam.\n\nThe owner wants to use MCHQ ($99/mo) with the Hermes-style lead. BLN's specific needs: cold outreach at scale, directory/listing submissions, social media presence, content distribution, partnership outreach, review generation, Chrome Web Store optimization.\n\nTASK: Design the OPTIMAL agent squad for BLN on MCHQ. Define each agent's name, role, specific responsibilities, tools they need access to, and how they coordinate. Use Hermes as lead. Design for DISTRIBUTION MAXIMIZATION. Include: what data sources each agent needs, what outputs they produce, how they hand off work, and what the daily/weekly rhythm looks like. Be extremely specific about each agent's mission statement.",
+          "system_prompt": "You are an AI team architect who designs agent squads optimized for specific business outcomes. Your configurations should be immediately actionable.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-02-mission-briefs",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension. 10K DAU, $135/mo MRR. Using MCHQ with Hermes as lead agent.\n\nSiteGPT's winning formula: One mission ('get to $1M ARR') → agents decompose into sub-tasks → ship 11 deliverables autonomously.\n\nBLN's mission: Maximize distribution to hit 50K DAU and $5K MRR within 90 days. SEO is done. Focus channels: directories, outreach, social, partnerships, content syndication, review sites, communities.\n\nTASK: Write the EXACT mission briefs you would give to the MCHQ lead agent (Hermes) via Telegram. Create 3 versions:\n1. The ONE-LINER mission (like SiteGPT's 'get to $1M ARR')\n2. The DETAILED brief (2-3 paragraphs with context, priorities, constraints)\n3. The FULL BRIEFING DOCUMENT (complete with metrics, channels, competitors, do's and don'ts)\n\nFor each, explain what the lead agent would likely decompose it into and what the first 24 hours of agent activity would look like.",
+          "system_prompt": "You are an expert at writing mission briefs for autonomous AI agent squads. You understand how agents decompose high-level missions into actionable tasks.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-03-outreach-agent-playbook",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. 10K DAU. Needs massive outreach for distribution.\n\nOn MCHQ, an outreach agent (like Nina in the current setup) can potentially: draft personalized cold emails, identify targets, prepare outreach sequences, write LinkedIn messages, create partnership pitches.\n\nBLN has a partnership deck (BeLikeNative-x-TalkPal). Past outreach targets: language learning apps, writing tools, education platforms, content agencies.\n\nTASK: Design the complete outreach agent playbook for BLN on MCHQ. Cover: target identification criteria, email templates for each segment (partnerships, integrations, reviews, guest posts, directory listings), LinkedIn outreach sequences, follow-up cadences, personalization frameworks, response handling protocols. How many outreach touches per day is realistic for an agent? What's the expected response rate? How does the agent learn and improve over time?",
+          "system_prompt": "You are an outreach automation specialist who designs AI-driven cold outreach systems. Focus on high-volume personalized outreach that converts.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-04-content-distribution-agent",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. 10K DAU, $135/mo MRR. SEO is done and solid.\n\nContent distribution channels: Twitter/X threads, LinkedIn posts, Reddit (r/languagelearning, r/writing, r/chrome, r/productivity, r/esl, r/TEFL), Quora answers, Medium articles, Dev.to posts, Hacker News, Product Hunt discussions, YouTube descriptions, newsletter mentions, blog comments, forum posts.\n\nTASK: Design the content distribution agent's complete playbook. What content does it create for each platform? How does it repurpose one piece of content across 10+ channels? What's the posting frequency per platform? How does it engage with communities without being spammy? What are the Reddit rules it must follow? How does it track which content drives installs? Create a weekly content calendar the agent would execute. Include specific post templates for each platform.",
+          "system_prompt": "You are a content distribution strategist who designs multi-platform content engines. Focus on organic distribution that doesn't feel automated.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-05-conversion-agent-playbook",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension. 10K DAU, 16 paying users, 0.16% conversion rate. Pricing: $4.99/mo or $39.99/yr. The conversion rate is the #1 revenue bottleneck.\n\nMCHQ agents can analyze user behavior, draft pricing page copy, design A/B tests, write onboarding emails, create upgrade prompts, design trial-to-paid flows.\n\nSiteGPT example: Agent Shuri signed up as a real user, filed a 12-point pricing page audit. Agent Pepper mined 90 days of emails and found 47 unused testimonials.\n\nTASK: Design the conversion optimization agent's playbook for BLN. What specific experiments should it propose and track? How does it analyze the free-to-paid funnel? What onboarding sequence should it design? How does it use social proof, urgency, and value demonstration to improve conversion? What pricing experiments should it run? What's a realistic path from 0.16% to 1% conversion? What's the agent's daily routine for conversion optimization?",
+          "system_prompt": "You are a conversion rate optimization specialist for freemium Chrome extensions. You design data-driven experiments that move conversion metrics.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-06-growth-hacking-agent",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. 10K DAU, $135/mo MRR. Competing against Grammarly (30M+ users), QuillBot, Wordtune.\n\nGrowth channels that agents can work: Chrome Web Store ASO, viral loops within the extension, referral programs, integration partnerships, browser extension aggregator sites, tech deal sites, student discounts, education partnerships, agency white-labeling.\n\nTASK: Design the growth hacking agent's playbook. What are the 20 highest-leverage growth tactics an agent can execute for a Chrome extension? Focus on tactics that are: (a) automatable by AI agents, (b) high-impact for browser extensions specifically, (c) low-cost or free. Include viral mechanics, referral system design, Chrome Web Store optimization tactics, cross-promotion strategies, community seeding approaches. What guerrilla marketing tactics work for extensions? How does the agent identify and exploit emerging distribution channels?",
+          "system_prompt": "You are a growth hacker specializing in browser extensions and freemium SaaS. You find unconventional high-leverage distribution channels.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-07-pr-media-agent",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. 10K DAU. Solo founder. $135/mo MRR.\n\nMedia/PR channels: tech blogs (TechCrunch, TheNextWeb, Mashable, Product Hunt), YouTube reviewers, newsletter features (TLDR, Ben's Bites, The Neuron, AI Tool Report), podcast appearances, journalist outreach, HARO/Connectively responses, social media influencer partnerships.\n\nTASK: Design the PR/media agent's complete playbook. How does it identify relevant journalists, bloggers, and influencers? What pitch templates work for Chrome extensions? How does it monitor for PR opportunities (HARO queries, trending topics, competitor news)? What's the media outreach cadence? How does it prepare press kits, product demos, and story angles? What's the agent's system for tracking and following up on pitches? Include specific pitch templates for different media types.",
+          "system_prompt": "You are a tech PR strategist who gets coverage for bootstrapped products. Focus on earned media strategies that AI agents can execute.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Synthesize all Phase 2 agent playbooks into a unified MCHQ Squad Operations Manual for BeLikeNative. Include: the optimal squad roster with exact roles, the mission brief for Hermes, each agent's specific playbook summary, coordination protocols between agents, and the expected first-week output. Make this immediately actionable — someone should be able to hand this to MCHQ and start."
+    },
+    {
+      "phase_id": "phase3_distribution_execution",
+      "tasks": [
+        {
+          "task_id": "p3-01-directory-blitz",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI-powered text rewriting. 10K DAU, belikenative.com. Needs to be listed on every relevant directory and aggregator.\n\nTASK: Create the COMPLETE directory submission list for BLN. For each directory: exact URL, submission process, whether it's free or paid, expected traffic/SEO value, priority (P0/P1/P2), and the exact listing copy (title, description, tags, category). Cover: AlternativeTo, G2, Capterra, Product Hunt, Chrome extension aggregators, SaaS directories, AI tool directories, writing tool directories, language learning directories, productivity directories, startup directories. Target: 100+ directory listings. Which ones can an MCHQ agent submit autonomously?",
+          "system_prompt": "You are a directory submission specialist who maximizes software product visibility across every relevant listing site. Be comprehensive and specific.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-02-social-media-engine",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. 10K DAU. Needs social media distribution engine.\n\nPlatforms: Twitter/X, LinkedIn, Reddit, TikTok, YouTube Shorts, Instagram Reels, Facebook Groups, Discord servers, Slack communities, Telegram groups.\n\nTASK: Design the complete social media distribution engine that MCHQ agents can run autonomously. For each platform: content format, posting frequency, engagement strategy, hashtag/keyword strategy, community rules to follow, growth tactics. Include: 20 tweet templates, 10 LinkedIn post templates, 10 Reddit post approaches (that won't get banned), video script outlines for TikTok/Shorts. How does the agent monitor engagement and adjust? What's the daily social media routine? How many posts/engagements per day across all platforms?",
+          "system_prompt": "You are a social media growth strategist for developer tools and productivity apps. You build content engines that scale without looking automated.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-03-partnership-pipeline",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. 10K DAU. Already has a TalkPal partnership deck. Targets: language learning platforms, writing tools, education platforms, content agencies, translation services.\n\nTASK: Design the complete partnership pipeline that MCHQ agents can manage. Identify the top 50 partnership targets with: company name, contact approach, partnership type (integration, cross-promotion, bundle, affiliate, white-label), expected value, outreach template. Include: language learning apps (Duolingo ecosystem, Babbel, Busuu, italki, Preply, HelloTalk), writing platforms (Notion, Google Docs ecosystem, Medium), education (Coursera, edX, university language departments), content agencies, translation companies. How does the agent manage the pipeline from outreach to close?",
+          "system_prompt": "You are a business development strategist who builds partnership pipelines for software products. Focus on partnerships that drive distribution.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-04-review-generation",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension on Chrome Web Store. 10K DAU but likely few reviews. Reviews are critical for Chrome Web Store ranking and social proof.\n\nTASK: Design the complete review generation strategy that MCHQ agents can execute. Cover: Chrome Web Store review solicitation (timing, triggers, in-extension prompts), G2/Capterra review campaigns, Trustpilot, Product Hunt upvotes, social proof collection from Twitter/Reddit mentions, testimonial mining from support emails, video testimonial outreach. How does the agent identify happy users and ask for reviews without being annoying? What's the optimal timing for review asks? What incentives work (and which violate platform policies)? Target: 100+ Chrome Web Store reviews in 90 days. Is that realistic?",
+          "system_prompt": "You are a review generation specialist for Chrome extensions and SaaS products. You know every platform's rules and design compliant review campaigns.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-05-community-seeding",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. 10K DAU. Targets: ESL learners, content writers, students, professionals who write in non-native languages.\n\nRelevant communities: Reddit (r/languagelearning 2.2M, r/ESL, r/TEFL, r/writing, r/chrome, r/productivity, r/artificial), Facebook Groups (ESL teachers, language exchange, digital nomads, content writers), Discord (AI tools, writing, language learning), Slack (indie hackers, SaaS), Quora (language learning, writing tools, Chrome extensions), Stack Exchange, specialized forums.\n\nTASK: Design the community seeding strategy. For each community: how to join and build credibility first, what value-add content to post, how to naturally mention BLN without self-promotion bans, engagement cadence, mod relationship building. How does an agent become a trusted community member before promoting? What's the 30-60-90 day community building plan? Which communities have the highest BLN user density?",
+          "system_prompt": "You are a community growth strategist who builds authentic presence in online communities. You never spam — you add value first, promote second.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-06-email-marketing-engine",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension. 10K DAU, 16 paying users. Has email drip system via Supabase + Resend. Stripe webhook enrolls paying customers in welcome sequence.\n\nTASK: Design the complete email marketing engine that MCHQ agents can manage. Cover: welcome sequence for free users (5-7 emails), upgrade nurture sequence, feature announcement emails, win-back campaigns for churned users, referral email campaigns, weekly tips/value emails, onboarding optimization emails. Write the actual email copy for the top 5 most important emails. What's the optimal email frequency? How does the agent A/B test subject lines and content? What metrics should the agent track and optimize? How does this integrate with the existing Supabase + Resend + Stripe stack?",
+          "system_prompt": "You are an email marketing specialist for freemium SaaS products. You design conversion-focused email sequences that turn free users into paying customers.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-07-chrome-web-store-aso",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. 10K DAU. Listed on Chrome Web Store. Competes with Grammarly, QuillBot, Wordtune, LanguageTool, DeepL Write.\n\nTASK: Design the complete Chrome Web Store ASO (App Store Optimization) strategy. Cover: keyword optimization for the listing title, description, and tags. What keywords should BLN target? How do top competitors structure their listings? What screenshots and promotional images work best? How often should the listing be updated? What's the impact of update frequency on ranking? How do reviews affect ranking? What are the Chrome Web Store's ranking factors? Design an A/B testing approach for the listing. Include the exact optimized listing copy (title, short description, long description) with keyword placement.",
+          "system_prompt": "You are a Chrome Web Store ASO specialist who optimizes extension listings for maximum visibility and install rate. Use data-driven approaches.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Synthesize all Phase 3 execution strategies into a unified 90-Day Distribution Execution Plan for BeLikeNative using MCHQ agents. Prioritize by impact and ease of automation. Include: week-by-week milestones, which agent handles what, expected metrics at 30/60/90 days, and the critical path to 50K DAU."
+    },
+    {
+      "phase_id": "phase4_automation_workflows",
+      "tasks": [
+        {
+          "task_id": "p4-01-daily-operations-rhythm",
+          "prompt": "CONTEXT: BeLikeNative (BLN) using MCHQ with an agent squad. Owner wants FULLY AUTONOMOUS operation — check dashboard once per day, agents handle everything else.\n\nMCHQ features: Telegram interface, live dashboard, shared task board, threads, @-mentions, activity feed, 15-minute heartbeat cycles, agent peer review.\n\nTASK: Design the exact daily operations rhythm for the BLN agent squad. Hour by hour, what does each agent do? When do they sync? How do they report progress? What triggers escalation to the human? What's the morning brief, midday check, and evening report format? How does the lead agent (Hermes) prioritize the day's work? What automated reports should be generated? Design the 'single daily review' dashboard view so the owner can assess everything in 5 minutes.",
+          "system_prompt": "You are an operations manager who designs autonomous agent workflows. Focus on minimizing human intervention while maximizing output quality.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-02-integration-stack",
+          "prompt": "CONTEXT: BeLikeNative (BLN) tech stack: Chrome extension (React 18, TypeScript, MV3), Supabase backend (42 edge functions, 44 tables), Stripe payments, Resend email, Cloudflare Workers, Vercel frontend, GitHub Actions CI/CD.\n\nMCHQ integrations: Telegram bot, BYOK (ChatGPT/Claude), dashboard. Can connect: email, docs, chat, custom APIs.\n\nTASK: Design the complete integration architecture connecting MCHQ agents to BLN's existing stack. How do agents access: Supabase analytics, Stripe revenue data, email engagement metrics, Chrome Web Store stats, Google Search Console data, social media analytics? What APIs need to be exposed? What read-only dashboards should agents see? How do you give agents enough access to be useful without security risks? Design the data flow diagram.",
+          "system_prompt": "You are a systems integration architect who connects AI agent platforms with existing SaaS infrastructure. Prioritize security and data access.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-03-kpi-tracking-system",
+          "prompt": "CONTEXT: BeLikeNative (BLN) targets: 50K DAU, $5K MRR, 1% conversion rate within 90 days. Current: 10K DAU, $135/mo MRR, 0.16% conversion.\n\nTASK: Design the complete KPI tracking system for MCHQ agents. What metrics should each agent own and report on? How do agents measure their own effectiveness? What are the leading indicators (not just lagging) that predict growth? Design the weekly scorecard format. What thresholds trigger agent strategy changes? How do agents A/B test and measure experiments? Create the exact dashboard metrics with targets at 30/60/90 days. Include: acquisition metrics, activation metrics, revenue metrics, distribution channel metrics, content performance metrics, outreach metrics.",
+          "system_prompt": "You are a growth analytics specialist who designs KPI frameworks for SaaS products. Focus on actionable metrics that agents can track and optimize.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-04-content-production-pipeline",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. MCHQ agents will produce content at scale for distribution.\n\nContent types needed: social media posts, blog articles, email newsletters, directory listings, outreach emails, partnership pitches, community responses, press releases, video scripts, case studies, comparison pages, how-to guides, use case stories.\n\nTASK: Design the content production pipeline. How does content flow from ideation → research → draft → review → publish → distribute? How do agents divide content work? What quality gates exist? How does the lead agent ensure brand consistency? What templates should be pre-loaded? How does the pipeline handle 50+ pieces of content per week without quality dropping? What's the agent peer-review process for content? Include specific templates for each content type.",
+          "system_prompt": "You are a content operations manager who designs high-volume content pipelines for SaaS marketing. Focus on quality at scale.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-05-outreach-automation-system",
+          "prompt": "CONTEXT: BeLikeNative (BLN) needs to run outreach at scale via MCHQ agents. Targets: bloggers, YouTubers, newsletter operators, potential partners, journalists, community managers, university departments, language schools.\n\nTASK: Design the complete outreach automation system. How does the agent: build prospect lists, research and personalize each outreach, manage email sequences, track responses, handle follow-ups, escalate warm leads? What CRM-like system does the agent maintain? How many outreach touches per day is realistic and effective? What response rate benchmarks should trigger strategy changes? Design the prospect scoring system. What tools/integrations does the outreach agent need? Create the 5 best outreach email templates for each target segment.",
+          "system_prompt": "You are an outreach automation specialist who builds scalable personalized outreach systems. Focus on high response rates through genuine personalization.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-06-competitive-monitoring",
+          "prompt": "CONTEXT: BeLikeNative (BLN) competes with: Grammarly, QuillBot, Wordtune, LanguageTool, DeepL Write, Jasper, Copy.ai, and dozens of smaller AI writing tools.\n\nTASK: Design the competitive monitoring system that MCHQ agents run continuously. How does the agent: track competitor feature releases, pricing changes, marketing campaigns, Chrome Web Store ranking changes, social media sentiment, new entrants, partnership announcements, funding rounds? What sources to monitor (Twitter, Product Hunt, Chrome Web Store, G2, LinkedIn, TechCrunch, blogs)? How does competitive intel feed into BLN's strategy? What weekly competitive brief should the agent produce? How does BLN find and exploit competitor weaknesses in real-time?",
+          "system_prompt": "You are a competitive intelligence analyst who designs automated monitoring systems. Focus on actionable intel that drives strategic decisions.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-07-scaling-playbook",
+          "prompt": "CONTEXT: BeLikeNative (BLN) on MCHQ. Starting with the initial squad. Goal: scale from 10K to 50K DAU, $135 to $5K MRR in 90 days.\n\nTASK: Design the scaling playbook. At what milestones should new agents be added? When should agent roles be split (e.g., one outreach agent becomes separate 'blogger outreach' and 'partnership outreach')? How does the squad evolve at 20K DAU vs 30K vs 50K? What new agent roles emerge as BLN grows? How do you prevent token cost explosion as the squad scales? What's the optimal squad size at each revenue milestone ($500 MRR, $1K, $5K, $10K)? When does MCHQ stop being cost-effective and you need real team members?",
+          "system_prompt": "You are a scaling strategist who helps bootstrapped SaaS founders grow from $0 to $1M ARR. Focus on efficient scaling with AI agent teams.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Synthesize all Phase 4 workflows into a complete MCHQ Operations Playbook for BeLikeNative. Include: the daily/weekly rhythm, integration architecture, KPI dashboard design, content pipeline, outreach system, competitive monitoring, and scaling milestones. This should be the definitive 'how to run BLN on autopilot with MCHQ' document."
+    },
+    {
+      "phase_id": "phase5_validation",
+      "tasks": [
+        {
+          "task_id": "p5-01-devils-advocate",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension, 10K DAU, $135/mo MRR, considering investing $99/mo in MissionControlHQ agent squad platform for autonomous distribution.\n\nThe plan: Set up a 7-agent squad on MCHQ with Hermes as lead, running distribution 24/7 — directories, outreach, social, partnerships, content, reviews, conversion optimization. Target: 50K DAU, $5K MRR in 90 days.\n\nTASK: Play devil's advocate. Why might this plan FAIL? What are the biggest risks? Is MCHQ actually capable of what's being planned or is it overhyped? Can AI agents really do cold outreach that converts? Will the $99/mo + ChatGPT costs eat into already thin margins? Is the 50K DAU / $5K MRR target realistic in 90 days? What happens when agents produce low-quality work that damages the brand? What are the hidden costs (time to manage, token costs, integration work)? Give the honest 'this might not work because...' analysis.",
+          "system_prompt": "You are a skeptical business advisor who stress-tests growth plans. Your job is to find every flaw, risk, and unrealistic assumption. Be brutally honest.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-02-alternative-approaches",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension, 10K DAU, $135/mo MRR. Considering MCHQ at $99/mo for distribution.\n\nAlternatives to MCHQ: (1) DIY with Claude Code + our own 100xagenticdev pipeline (already built, $0.60/run), (2) Hire a VA on Upwork ($500-1500/mo), (3) Use individual AI tools (ChatGPT + Zapier + social schedulers), (4) Focus entirely on product/conversion instead of distribution, (5) Build own agent system with OpenClaw for free, (6) Spend the $99/mo on paid ads instead, (7) Do manual outreach yourself.\n\nTASK: Compare ALL alternatives to MCHQ objectively. For each: cost, expected output, effort required, time to results, scalability, quality of output. Which approach gives the BEST distribution ROI for a solo founder with $135/mo MRR? Is MCHQ the right tool or is there a better path? Be honest about whether the 100xagenticdev pipeline we already built could do this better/cheaper.",
+          "system_prompt": "You are a strategic advisor who evaluates tool and platform choices for bootstrapped founders. Compare options dispassionately based on ROI.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-03-realistic-timeline",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension. 10K DAU, $135/mo MRR, 0.16% conversion. Planning MCHQ deployment for distribution.\n\nTarget: 50K DAU, $5K MRR in 90 days.\n\nTASK: Create a REALISTIC timeline assessment. Based on comparable Chrome extension growth rates, what's actually achievable in 90 days with AI agent-driven distribution? What did similar extensions achieve? How long does it take for directory submissions to drive traffic? For outreach to generate partnerships? For content to rank? For community building to produce results? Create three scenarios: pessimistic (what if half the plan works), realistic (what's probable), and optimistic (everything clicks). What's the honest expected outcome at 90 days?",
+          "system_prompt": "You are a growth forecasting analyst who creates evidence-based projections. Use comparable data points and be conservative in estimates.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-04-risk-mitigation",
+          "prompt": "CONTEXT: BeLikeNative (BLN) using MCHQ for distribution. Risks identified: brand damage from low-quality agent output, token cost overruns, agents going off-track, platform reliability, community bans from automated posting, email deliverability issues from mass outreach, wasted time on integration.\n\nTASK: For each risk, design a specific mitigation strategy. What guardrails prevent agents from: posting embarrassing content, sending bad outreach, spending too many tokens, going in circles? What's the kill switch if something goes wrong? What human review gates are non-negotiable even in an 'autonomous' system? How do you monitor agent quality without defeating the purpose of automation? Create the Risk Register with: risk, likelihood, impact, mitigation, owner, monitoring trigger.",
+          "system_prompt": "You are a risk management specialist for AI-driven operations. Design practical safeguards that don't kill productivity.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-05-quick-wins-first-week",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension. 10K DAU, $135/mo MRR. About to sign up for MCHQ at $99/mo.\n\nTASK: Design the FIRST WEEK playbook to show immediate ROI. What are the 10 highest-impact actions the agent squad should complete in days 1-7? Focus on: quick directory submissions that drive traffic within days, social posts that can go viral, outreach that gets fast responses, Chrome Web Store optimizations that improve ranking immediately, low-hanging fruit conversion improvements. The goal: visible results within 7 days to validate the $99/mo investment. Be specific about what 'success in week 1' looks like in terms of metrics.",
+          "system_prompt": "You are a launch strategist who designs high-impact first-week playbooks. Focus on quick wins that build momentum and validate the investment.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-06-token-cost-optimization",
+          "prompt": "CONTEXT: BeLikeNative (BLN) on MCHQ. MCHQ costs $99/mo + BYOK AI subscription. ChatGPT recommended ($20-200/mo). Agents have 15-minute heartbeat cycles and run 24/7.\n\nBLN's total revenue is $135/mo. Total cost with MCHQ: $119-299/mo. This could easily be net negative.\n\nTASK: Design the token cost optimization strategy. How do you minimize AI costs while maximizing agent output? Which tasks need GPT-4o vs which can use GPT-4o-mini? How do you prevent agents from wasting tokens on low-value tasks? What's the expected monthly token cost for a 7-agent distribution squad? How do you use caching, batching, and smart routing to reduce costs? Is MiniMax or Z.AI cheaper than ChatGPT for this use case? What's the absolute minimum viable AI spend to keep the squad productive? When should agents sleep vs run 24/7?",
+          "system_prompt": "You are an AI cost optimization specialist who minimizes token spend while maintaining output quality. Be precise about costs and trade-offs.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-07-final-recommendation",
+          "prompt": "CONTEXT: BeLikeNative (BLN) Chrome extension for AI text rewriting. 10K DAU, $135/mo MRR, 16 paying users, 0.16% conversion. Solo founder. SEO complete. Burn rate ~-$166/mo across all projects.\n\nConsidering: MissionControlHQ at $99/mo with Hermes-led squad for autonomous distribution. Has existing 100xagenticdev pipeline that runs 100 agents for $0.60.\n\nPrevious phases analyzed: platform capabilities, squad design, distribution execution, automation workflows, risks, alternatives, costs.\n\nTASK: Give the FINAL recommendation. Should BLN invest in MCHQ right now? If yes: exact configuration, day-1 actions, 90-day plan, expected outcomes. If no: what should they do instead? If 'it depends': what conditions need to be true? Consider the financial reality ($135 MRR vs $99-299/mo MCHQ cost). Is this the right time or should they hit a revenue milestone first? Give a clear YES/NO/CONDITIONAL recommendation with full reasoning.",
+          "system_prompt": "You are a seasoned startup advisor giving a final investment recommendation. Be direct, honest, and actionable. The founder needs a clear answer, not more analysis.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Synthesize all Phase 5 validation findings into a FINAL VERDICT on BeLikeNative investing in MissionControlHQ. Include: the honest assessment (will this work?), the biggest risks and mitigations, the realistic timeline and metrics, the optimal configuration if proceeding, the first-week quick wins, cost optimization strategy, and the clear GO/NO-GO/CONDITIONAL recommendation with specific conditions. End with the single most important action the founder should take tomorrow."
+    }
+  ]
+}

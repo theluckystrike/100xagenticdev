@@ -1,0 +1,244 @@
+{
+  "tasks": [
+    {
+      "task_id": "s7-01",
+      "prompt": "You are a backlink pipeline strategist. Current state: 966 backlinks logged, 923 verified live, 9 platforms (devto 127, telegraph 126, github 128, gitlab 127, cloudflare 128, vercel 127, surge 127, huggingface 20, firebase 13, netlify 43 DEAD). Sprint 6 deployed 300 links with diversified anchors (40% branded, 20% partial, 20% generic, 10% naked, 10% exact). 4 articles had zero BLN links. 20 HuggingFace spaces pending (20/day rate limit). Velocity risk rated 9/10 by intel agents. SpamBrain detection signals identified. TASK: Create a complete Sprint 7 deployment plan. How many new articles? Which platforms? What's the optimal pace to reduce velocity risk from 9/10 to under 5/10? Provide exact numbers, dates, and daily limits. Sprint 7 should run Jun 4 - Jun 17 (2 weeks).",
+      "temperature": 0.7,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-02",
+      "prompt": "Analyze HuggingFace Spaces as a backlink platform. DR 89, dofollow links from *.hf.space subdomains. Current: 20 spaces deployed (rate limit 20/day). 20 more pending. URL format: https://huggingface.co/spaces/theluckystrike/{name}. QUESTIONS: 1) What is the actual effective DA of subdomain pages vs root domain? 2) Are HF Space pages indexed by Google? How fast? 3) Is there a risk of mass Space creation being flagged? 4) What's the optimal deployment pace for remaining 20 + future spaces? 5) Should we consolidate into fewer spaces with multiple pages instead?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-03",
+      "prompt": "You are a Google SpamBrain expert. A site has 966 backlinks from 9 platforms in 8 days (May 26 - Jun 3). Platform breakdown: GitHub Pages 128, Cloudflare Pages 128, Dev.to 127, GitLab Pages 127, Vercel 127, Surge.sh 127, Telegraph 126, HuggingFace 20, Firebase 13. All links point to belikenative.com (Chrome grammar extension). TASK: 1) Rate the current SpamBrain detection probability (0-10). 2) What specific signals would trigger a penalty? 3) What is the recovery time if penalized? 4) What immediate actions reduce risk? 5) Should the next sprint PAUSE all automated deployment and focus on manual/organic links only? Provide a concrete risk mitigation plan for Sprint 7 (Jun 4-17).",
+      "temperature": 0.7,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-04",
+      "prompt": "Research: What are the top 15 platforms for building dofollow backlinks in 2025-2026 that are NOT static hosting (not GitHub, GitLab, Cloudflare, Vercel, Surge, Firebase, Netlify)? For each platform provide: 1) Domain Authority/Rating, 2) Link type (dofollow/nofollow), 3) Account creation difficulty, 4) Rate limits, 5) Automation potential (CLI/API available?), 6) Detection risk for mass posting. Focus on platforms suitable for a Chrome extension (grammar checker / writing tool). Current platforms already used: Dev.to, Telegraph, HuggingFace.",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-05",
+      "prompt": "You are an SEO link diversity expert. A site currently has 966 backlinks from only 9 referring domains (platforms). All links are from: dev.to, telegra.ph, github.io, gitlab.io, pages.dev, vercel.app, surge.sh, hf.space, web.app. PROBLEM: 100% of links are from platform-hosted subdomains. Zero editorial links, zero forum links, zero directory links, zero social profiles. TASK: Design a link diversity improvement plan for Sprint 7 (Jun 4-17). What percentage should be: editorial outreach, directories, forums, social profiles, guest posts, resource pages? How many of each type should be acquired in 2 weeks? Provide specific actionable targets.",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-06",
+      "prompt": "Research Substack as a backlink platform for 2025-2026. Questions: 1) What is Substack's current Domain Rating/Authority? 2) Are links from Substack posts dofollow or nofollow? 3) Can you publish via API or CLI (not just web UI)? 4) What are the rate limits for posting? 5) Can you set canonical URLs? 6) Is there a risk of account suspension for publishing SEO-optimized content? 7) What's the best strategy for using Substack for backlinks to a Chrome extension? Provide a complete publisher script strategy (like publish-substack.sh).",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-07",
+      "prompt": "Research Medium.com as a backlink platform. Questions: 1) Current DA/DR? 2) Are links dofollow or nofollow (specifically from custom domains vs medium.com)? 3) Medium API status in 2025-2026 \u2014 is it still available? What endpoints? 4) Rate limits for publishing? 5) Can you set canonical URLs? 6) Risk of content being flagged as spam? 7) Integration token vs OAuth \u2014 which is better for automation? 8) Does Medium still allow rel=canonical? Provide actionable steps to build a publish-medium.sh script.",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-08",
+      "prompt": "Research Google Blogger/Blogspot as a backlink platform. Questions: 1) Current DA/DR of blogspot.com? 2) Are links dofollow? 3) Blogger API v3 \u2014 is it still working in 2025-2026? 4) How to authenticate (OAuth2 scopes needed)? 5) Can you create multiple blogs per account? 6) Rate limits? 7) Can you set canonical URLs? 8) Risk of being flagged by Google for mass blog creation? 9) How many blogs + posts is safe? Provide a concrete automation strategy for Sprint 7.",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-09",
+      "prompt": "Research Hashnode as a backlink platform in 2025-2026. CRITICAL: The GraphQL API has moved to a PAID offering as of 2025. Questions: 1) Is there still a free tier for the API? What are the pricing tiers? 2) Are Hashnode blog links dofollow? 3) Can you still publish via API or is it web-only now? 4) Alternative: Can you use Hashnode's headless CMS mode? 5) Is the canonical_url feature still available? 6) What's the actual cost for API access for publishing 40+ articles? 7) Are there free alternatives that offer similar DA?",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-10",
+      "prompt": "Analyze anchor text distribution for optimal backlink profile. Current state: Sprint 6 used 40% branded ('BeLikeNative'), 20% partial match, 20% generic ('click here', 'learn more'), 10% naked URL, 10% exact match. Target site: belikenative.com (Chrome grammar/writing extension). TASK: 1) Is this distribution optimal or does it need adjustment? 2) What does a 'natural' anchor text profile look like for a Chrome extension? 3) Should Sprint 7 articles use different ratios? 4) What anchor texts specifically should be used? List 20 branded, 15 partial, 15 generic, 10 naked variations. 5) How many articles should have ZERO links (current: 10%)?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-11",
+      "prompt": "You are a content strategist. We've published 127 articles about grammar checking, writing tools, keyboard shortcuts, and language learning. All follow similar templates. TASK: 1) Analyze if 127 articles with similar themes creates a 'content farm' signal for Google. 2) What content diversification is needed for Sprint 7? 3) Should articles target different keyword clusters? Which ones? 4) Should article length vary more (currently 900-1400 words)? 5) Should we add images, code blocks, or interactive elements? 6) List 20 NEW article topic ideas that would naturally link to a grammar/writing Chrome extension without seeming spammy.",
+      "temperature": 0.85,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-12",
+      "prompt": "Research: IndexNow effectiveness for backlink indexation in 2025-2026. Current state: We've submitted URLs to Bing and Yandex via IndexNow API. Questions: 1) What percentage of IndexNow-submitted URLs actually get indexed? 2) Does Google honor IndexNow submissions (via Bing partnership)? 3) Is there a risk of over-submitting? 4) What's the optimal submission frequency? 5) Should we submit platform URLs or only canonical URLs? 6) Are there better indexing strategies (Google Search Console URL inspection, ping services, social signals)? 7) What's the average time-to-index for each platform type?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-13",
+      "prompt": "Analyze Cloudflare Pages project rotation strategy. Current: 128 projects logged, but CF has a 100 project limit per account. We deleted 40 old projects in Sprint 6 to make room. QUESTIONS: 1) What happens to SEO value when a CF Pages project is deleted? Does the backlink die? 2) If the page returns 404 after deletion, does Google remove link equity? 3) Should we set up redirects before deleting? 4) Is it better to create a second CF account? 5) What's the actual project limit \u2014 is it 100 free or can we get more? 6) Should Sprint 7 skip CF entirely and focus on platforms without limits?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-14",
+      "prompt": "Research: robots.txt blocking strategy for velocity mitigation. Current: 158 pages were blocked via robots.txt in Sprint 4.5 (May 28) to reduce SpamBrain velocity signals. Blocked: Surge 47, GitLab 27, Cloudflare 36, Vercel 35, Firebase 13. Questions: 1) After 1 week of robots.txt blocking, have crawlers respected the blocks? 2) When is it safe to start unblocking? 3) What's the optimal unblocking pace (pages per week)? 4) Should Sprint 7 unblock some pages to restore link equity? 5) Does robots.txt actually help with SpamBrain or only with crawling? 6) Alternative: should we use noindex meta tags instead? 7) Provide a specific unblocking schedule for Sprint 7 (Jun 4-17).",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-15",
+      "prompt": "Research Google Search Console monitoring strategy for a backlink campaign. Target: belikenative.com. Current: 966 backlinks from 9 platforms. Questions: 1) What GSC signals indicate a manual action is coming? 2) How often should we check GSC for 'Unnatural links' warnings? 3) What impression/click patterns suggest an algorithmic penalty? 4) Should we set up GSC alerts? How? 5) What's the typical timeline from detection to manual action? 6) If we see a drop, what's the emergency response plan? 7) Should we preemptively disavow some links? Which ones?",
+      "temperature": 0.7,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-16",
+      "prompt": "Design a SaaS directory listing strategy for BeLikeNative (Chrome grammar/writing extension). Target directories: AlternativeTo, Product Hunt, G2, Capterra, SaaSHub, BetaList, Crunchbase, StackShare, SaaSWorthy, GetApp, TrustRadius, ChromeStats. For each: 1) DA/DR, 2) Link type (dofollow/nofollow), 3) Free vs paid listing, 4) Effort to create listing, 5) Expected time to approval. TASK: Rank by ROI and create a Sprint 7 action plan. How many can be done in 2 weeks? What's the total new RD count expected?",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-17",
+      "prompt": "Research .edu backlink acquisition strategy for a Chrome grammar extension (BeLikeNative). Methods: 1) LibGuide submissions \u2014 how to find university LibGuides that accept tool submissions? 2) Student resource pages \u2014 how to get listed? 3) ESL/writing center resource lists \u2014 which universities maintain these? 4) Scholarship link building \u2014 is this still viable? 5) .edu blog comments \u2014 worth it? 6) Academic tool directories. TASK: Provide 10 specific .edu URLs that accept grammar/writing tool submissions. Estimate effort and timeline for Sprint 7.",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-18",
+      "prompt": "Research forum and community backlink strategy for a grammar/writing Chrome extension. Target communities: Reddit (r/grammar, r/writing, r/chrome_extensions, r/languagelearning, r/ESL), Quora, Stack Exchange (English Language Learners), HackerNews, IndieHackers, Discord servers. For each: 1) Link policy (dofollow/nofollow), 2) Self-promotion rules, 3) Risk of ban, 4) Best approach for natural promotion, 5) Expected traffic vs SEO value. TASK: Design a community engagement plan for Sprint 7 that builds links without getting banned.",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-19",
+      "prompt": "Analyze the cost-effectiveness of the BeLikeNative backlink pipeline. Current stats: 966 backlinks, $1.08 total cost (DeepSeek API), 8.5 hours of Claude agent time across 6 sprints. Questions: 1) What's the cost per backlink ($1.08/966)? 2) How does this compare to buying backlinks ($50-500 per link industry average)? 3) What's the estimated DA/traffic impact of 966 backlinks? 4) What would a link-building agency charge for equivalent work? 5) What's the ROI if BeLikeNative gains 1,000 organic visitors/month from these links? 6) Should Sprint 7 invest more in quality (fewer, better links) or continue quantity?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-20",
+      "prompt": "Research: What is the actual Google-crawled status of backlinks from different platforms? For each platform type, estimate crawl rate and indexation: 1) Dev.to articles \u2014 how fast does Google index them? 2) Telegraph posts \u2014 indexation rate? 3) GitHub Pages \u2014 crawl frequency? 4) GitLab Pages \u2014 crawl frequency? 5) Cloudflare Pages \u2014 crawl frequency? 6) Vercel deployments \u2014 crawl frequency? 7) Surge.sh sites \u2014 crawl frequency? 8) HuggingFace Spaces \u2014 crawl frequency? Use site: operator estimates and known data. Which platforms provide the fastest link equity transfer?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-21",
+      "prompt": "Design a link target diversification strategy. Currently ALL 966 backlinks point to belikenative.com homepage or /slug/ article pages. QUESTIONS: 1) What percentage should point to homepage vs inner pages? 2) Should we create dedicated landing pages as link targets? 3) What about linking to the Chrome Web Store listing? 4) Should some links point to social profiles (Twitter, GitHub)? 5) What's the ideal link target distribution for a Chrome extension? 6) For Sprint 7, list the exact URLs that should be used as link targets and in what proportions.",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-22",
+      "prompt": "Research Write.as as a backlink platform. Questions: 1) Current DA/DR? 2) Are links dofollow? 3) API availability \u2014 can you publish via API? 4) Rate limits? 5) Account limits (posts per blog, blogs per account)? 6) Can you set canonical URLs? 7) Custom domains available? 8) Cost (free tier limitations)? 9) How fast does Google index Write.as posts? 10) Is there automation potential (CLI/SDK)? Provide a complete assessment for Sprint 7 inclusion.",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-23",
+      "prompt": "Research Notion.so as a backlink platform. Questions: 1) What's the DA/DR of notion.so and notion.site? 2) Are public Notion pages indexed by Google? 3) Are links in Notion pages dofollow or nofollow? 4) Can you create public pages via API? 5) Rate limits for page creation? 6) Can you use canonical tags? 7) Is there a risk of account suspension? 8) Notion Sites vs Notion Pages \u2014 which is better for backlinks? 9) How to automate Notion page creation for backlinks?",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-24",
+      "prompt": "Research Render.com as a static site hosting platform for backlinks. Questions: 1) DA/DR? 2) Free tier capabilities? 3) Are links dofollow? 4) API for creating static sites? 5) Rate limits on site creation? 6) Custom subdomains? 7) How does it compare to Cloudflare Pages / Vercel / Surge for SEO? 8) Git-based deployment or direct upload? 9) Maximum number of free sites? 10) How fast does Google crawl .onrender.com subdomains?",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-25",
+      "prompt": "Research Railway.app as a backlink hosting platform. Questions: 1) DA/DR of railway.app? 2) Free tier \u2014 how many projects? 3) Static site deployment possible? 4) API for project creation? 5) Link type (dofollow/nofollow)? 6) Custom subdomains? 7) Rate limits? 8) Google indexation of .railway.app domains? 9) Comparison with Vercel/CF Pages for backlinks. 10) Automation potential?",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-26",
+      "prompt": "Research Fly.io as a backlink platform. Questions: 1) DA/DR? 2) Free tier capabilities for static sites? 3) Link type? 4) API/CLI for deployment? 5) Custom subdomains (.fly.dev)? 6) Rate limits on app creation? 7) Google indexation speed? 8) How many free apps allowed? 9) Static site deployment method? 10) Worth adding to the pipeline for Sprint 7?",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-27",
+      "prompt": "Analyze the effectiveness of canonical tags for backlink SEO. Current: All articles on platform-hosted sites include <link rel='canonical' href='https://belikenative.com/slug/'> pointing to the main site. Questions: 1) Does canonical consolidate link equity to the target URL? 2) Do all platforms respect canonical (Dev.to, Telegraph, GitHub, etc.)? 3) Does Google treat canonical as a hint or directive? 4) If the canonical target doesn't exist (404), what happens to link equity? 5) Should we ensure all canonical URLs return 200? 6) How many of our 127 canonical URLs actually exist on belikenative.com?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-28",
+      "prompt": "Design a guest post outreach strategy for BeLikeNative (grammar/writing Chrome extension). TASK: 1) Identify 15 blogs in the writing/productivity/EdTech space that accept guest posts. 2) For each: estimated DA, topic fit, submission process. 3) What's the typical acceptance rate for guest posts? 4) How long from pitch to publication? 5) Should we offer reciprocal content? 6) What topics would these blogs want? 7) Can we automate outreach (email templates)? 8) Expected new RDs from 2 weeks of outreach. Focus on realistic targets achievable in Sprint 7 (Jun 4-17).",
+      "temperature": 0.85,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-29",
+      "prompt": "Research Chrome Web Store backlink opportunities. BeLikeNative is a Chrome extension for grammar checking and writing improvement. Questions: 1) Does the Chrome Web Store listing itself pass link equity? 2) Are there Chrome extension directories/review sites that provide dofollow links? 3) What Chrome extension review sites exist (chrome-stats.com, crx4chrome, etc.)? 4) Can we get listed on browser extension comparison sites? 5) What about tech review sites that review Chrome extensions? 6) List 10 specific sites where we can get a backlink by being a Chrome extension.",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-30",
+      "prompt": "Create a Sprint 7 day-by-day execution calendar. Sprint runs Jun 4-17 (14 days). Available resources: 40 DeepSeek agents ($0.07 per batch), bash publisher scripts for 8 platforms, 20 pending HuggingFace spaces. CONSTRAINTS: Velocity risk must decrease (max 5-8 new automated links/day), prioritize link diversity, budget under $0.50. Design each day: what gets deployed, which platform, how many, what type of content. Include rest days. Include manual tasks (directory submissions, outreach emails). Make it executable \u2014 no vague steps.",
+      "temperature": 0.7,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-31",
+      "prompt": "Research: Social signal backlinks for SEO in 2025-2026. Platforms: Twitter/X, LinkedIn, Facebook, Pinterest, YouTube descriptions, Instagram. For a Chrome grammar extension (BeLikeNative): 1) Which social platforms pass link equity (even indirect)? 2) Which are dofollow vs nofollow? 3) How do social signals affect Google rankings? 4) Is it worth creating profiles on all platforms just for the profile backlink? 5) Should we share our published articles on social for crawl signals? 6) Pinterest pin strategy for articles? 7) YouTube video descriptions \u2014 worth creating simple videos? 8) Prioritize by effort:impact ratio.",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-32",
+      "prompt": "Analyze link velocity benchmarks for a new website. BeLikeNative acquired 966 backlinks in 8 days across 9 platforms. Industry context: 1) What's the normal link velocity for a new SaaS/Chrome extension? 2) What link velocity triggers Google suspicion? 3) Case studies: sites penalized for fast link building \u2014 what was their velocity? 4) Case studies: sites that built links fast WITHOUT penalty \u2014 what did they do differently? 5) What's the recommended velocity for Sprint 7 to stay under the radar? 6) Is there a difference between 'link burst then stop' vs 'steady drip' patterns?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-33",
+      "prompt": "Design an automated monitoring system for the backlink pipeline. Currently there's no automated monitoring \u2014 everything is manual. TASK: Design a monitoring script (monitor-backlinks.sh) that: 1) Checks HTTP status of all 966 backlinks daily, 2) Alerts on dead links (non-200), 3) Checks if robots.txt blocks are still in place, 4) Verifies canonical tags are correct, 5) Counts indexed backlinks via site: queries, 6) Logs results to state/monitor.log. Should run as a cron job. How complex to build for Sprint 7?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-34",
+      "prompt": "Research: Link reclamation and broken link building for BeLikeNative. Questions: 1) Are there broken links on writing/grammar resource pages that we could replace? How to find them? 2) Can we use Ahrefs/SEMrush free alternatives to find broken link opportunities? 3) What free tools identify broken links on competitor pages? 4) How to outreach for link reclamation \u2014 email templates? 5) What's the success rate for broken link building? 6) Is this worth prioritizing in Sprint 7 vs automated deployment? 7) How many broken link opportunities realistically exist in the grammar/ESL niche?",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-35",
+      "prompt": "Analyze the SEO impact of article quality on backlink effectiveness. Current articles: 900-1400 words, generated by DeepSeek, keyword-focused, about grammar/writing/keyboard shortcuts. Questions: 1) Does Google evaluate the content quality of the linking page? 2) Does thin/low-quality content on linking pages reduce link equity? 3) Should Sprint 7 articles be higher quality (2000+ words, original research, data)? 4) Does adding images, charts, or interactive elements to linking pages help? 5) Should we invest more per article ($0.10 instead of $0.002) for better quality? 6) Comparison: 40 low-quality articles vs 10 high-quality articles \u2014 which provides more SEO value?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-36",
+      "prompt": "Research: Competitor backlink analysis for grammar/writing Chrome extensions. Competitors: Grammarly, LanguageTool, ProWritingAid, Hemingway Editor, Ginger Software. For each: 1) Total backlinks (estimated), 2) Referring domains, 3) Top linking platforms, 4) Link acquisition strategy (can we infer from their profile?), 5) Do they use automated link building? 6) What types of links do they have that BeLikeNative doesn't? 7) What's the gap analysis \u2014 which link types should Sprint 7 target?",
+      "temperature": 0.8,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-37",
+      "prompt": "Design a tiered deployment strategy for the remaining 2,072 articles in the queue. Current: 127 articles deployed across 8 platforms = 966 backlinks. Queue: 2,072 undeployed articles. QUESTIONS: 1) Should all 2,072 be deployed eventually or is there a point of diminishing returns? 2) What's the optimal total number of backlinks for a Chrome extension? 3) At what pace should remaining articles be deployed (per week)? 4) Should different articles go to different platforms based on topic? 5) Should we create platform-specific content instead of one-size-fits-all? 6) Design a 3-month deployment roadmap (Jun - Aug 2026).",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-38",
+      "prompt": "Research: Google's link spam updates 2024-2026. What changes has Google made to link spam detection? 1) SpamBrain updates timeline, 2) New signals Google uses to detect link schemes, 3) Are platform-hosted backlinks (GitHub, Vercel, etc.) specifically targeted? 4) Has Google penalized sites using automated static hosting backlinks? 5) What's the latest on 'link velocity' as a ranking signal? 6) Are there any safe harbors (platforms Google trusts regardless)? 7) How does AI-generated content on linking pages affect link equity? 8) Sprint 7 implications \u2014 what to avoid?",
+      "temperature": 0.75,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-39",
+      "prompt": "Create a Sprint 7 success metrics framework. Current baseline (Jun 3): 966 backlinks, 923 live, 9 platforms, velocity risk 9/10, $1.08 cost. TASK: Define Sprint 7 KPIs: 1) Target backlink count (be conservative), 2) Target platform diversity (new RDs), 3) Target velocity risk score, 4) Target link type diversity (% automated vs manual vs directory), 5) Monitoring frequency, 6) Budget limit, 7) Go/No-Go criteria for Sprint 8, 8) Emergency stop triggers (what signals mean 'stop everything'). Make these specific, measurable, and trackable on the dashboard.",
+      "temperature": 0.7,
+      "max_tokens": 4096
+    },
+    {
+      "task_id": "s7-40",
+      "prompt": "Create a comprehensive Sprint 7 checklist with exact deadlines. Sprint: Jun 4-17. MUST include: 1) Deploy 20 remaining HuggingFace spaces (Jun 4, rate limit resets), 2) Directory submissions (which ones, which day), 3) Community engagement plan (Reddit, forums \u2014 when), 4) New platform testing (which platforms to test first), 5) Content generation (how many articles, when), 6) Monitoring tasks (daily/weekly), 7) robots.txt unblocking schedule, 8) GSC check dates, 9) Dashboard update dates. Format as: [Date] [Task] [Platform] [Expected outcome] [Deadline]. Make it copy-paste ready for the dashboard.",
+      "temperature": 0.7,
+      "max_tokens": 4096
+    }
+  ]
+}

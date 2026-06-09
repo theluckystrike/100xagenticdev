@@ -1,0 +1,148 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "s10_t01_vff_deep",
+          "prompt": "Deep dive on Village Farms International (VFF) at $2.50. Cannabis and produce company. Live yfinance data: Revenue $226M (+26.6%), Gross Margin 41.7%, Operating Margin 10.0%, Net Income $25.9M PROFITABLE, FCF $13.8M, P/E 11.4x, P/S 1.26x, Cash $50M, Debt $40M, Insider 10.4%. What makes VFF different from every other cannabis company? How are they profitable when CGC/TLRY/ACB are losing billions? What is their greenhouse produce business (tomatoes, cucumbers, peppers)? What is Pure Sunfarms? Revenue breakdown by segment?",
+          "system_prompt": "You are a forensic equity research analyst specializing in agriculture and cannabis. Be brutally honest. Explain WHY this company is profitable when peers are not.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t02_vff_moat",
+          "prompt": "MOAT ANALYSIS: Village Farms (VFF). They operate large-scale greenhouse facilities in Texas and British Columbia. Pure Sunfarms is their cannabis brand in Canada. They also grow tomatoes, peppers, and cucumbers. What is the competitive advantage of their greenhouse infrastructure? Can they convert greenhouse capacity between produce and cannabis? Is this a structural advantage? Who competes with them in greenhouse cannabis? What is their cost-per-gram vs peers?",
+          "system_prompt": "You are a competitive strategy analyst. Identify durable competitive advantages, not marketing narratives.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t03_vff_us_entry",
+          "prompt": "US CANNABIS MARKET ENTRY: Village Farms (VFF) has massive greenhouse infrastructure in Texas. If US federal legalization happens, can they convert Texas greenhouses to cannabis? What is the realistic timeline for US legalization? SAFE Banking Act status? What states are most likely to benefit? Does VFF have any US cannabis operations currently? How does their position compare to MSOs (multi-state operators) like CURA, GTII, TRUL?",
+          "system_prompt": "You are a cannabis industry analyst. Assess the US legalization thesis with current political realities. Be specific about probability and timeline.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t04_vff_financials",
+          "prompt": "FINANCIAL FORENSIC: Village Farms (VFF). Live data: Revenue $226M (+26.6%), NI $25.9M, FCF $13.8M, P/E 11.4x. But the insider (Bovenschen) SOLD 50K shares at $2.89 in March 2026. Other insiders received stock awards in April but no open-market buying. Is the profitability sustainable or was 2025 a one-time event? What drove the turnaround from unprofitable to profitable? Is there risk of goodwill impairment? What is the Canadian cannabis market outlook (oversupply, price compression)?",
+          "system_prompt": "You are a forensic equity research analyst. Investigate whether profitability is sustainable or a one-time event. Be skeptical of cannabis accounting.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t05_ogi_deep",
+          "prompt": "Deep dive on Organigram (OGI) at $1.09. Canadian cannabis company. Live yfinance: Revenue $274M (-8.9% declining), GM 35.6%, Op Margin -16.4%, NI -$25.2M LOSS, FCF $17M, Cash $5M, ZERO DEBT, Insider 30.3%. CRITICAL: British American Tobacco (BAT) bought 2.1M shares at $2.18 ($4.6M) in private placement (April 2026). Two other insiders bought in public market in May 2026. Why is BAT investing? What is BAT's total stake? Is OGI an acquisition target for BAT? What is Organigram's product portfolio?",
+          "system_prompt": "You are a forensic equity research analyst. Focus on the BAT strategic investment angle and what it means for the company's future.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t06_ogi_bat",
+          "prompt": "BAT (British American Tobacco) AND ORGANIGRAM: BAT has been investing in OGI. What is BAT's total ownership stake in OGI? Has BAT invested before (history of the relationship)? What is BAT's cannabis strategy? Are they building a position to acquire OGI entirely? What premium would BAT pay in a takeout? BAT's market cap is ~$80B — OGI at $153M is trivial for them. Compare to Altria's 42% stake in Cronos (CRON). Is this the same playbook?",
+          "system_prompt": "You are a tobacco industry M&A analyst. Assess the probability and terms of a potential BAT acquisition of OGI.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t07_curv_trap",
+          "prompt": "VALUE TRAP TEST: Torrid Holdings (CURV) at $1.54. $1B revenue but $153M market cap = 0.15x P/S. Sounds incredible. BUT: $436M debt vs $20M cash. Revenue declining -14.3%. Insiders SELLING (CEO sold $88K, CFO sold $59K in April 2026). 16.5% short interest. Is this the classic leveraged retail death spiral? When does the debt mature? Can they refinance? What happens if revenue keeps declining 14%/year? Is the brand (Torrid — plus-size fashion) worth anything in bankruptcy?",
+          "system_prompt": "You are a distressed debt and credit analyst. Assess bankruptcy probability and whether the equity has any value. Be ruthless.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t08_plby_kill",
+          "prompt": "KILL CONFIRMATION: Playboy (PLBY) at $1.40. 70.9% gross margin looks great. BUT: 5 different insiders sold aggressively in May 2026 — $1.4M+ in total insider selling. $178M debt vs $30M cash. Operating loss. Net loss. Is this a dead brand? What are they actually selling (licensing, direct-to-consumer, OnlyFans competitor)? Is the brand worth anything? Or is this a zombie company where insiders are cashing out before collapse?",
+          "system_prompt": "You are a forensic analyst. Investigate whether coordinated insider selling indicates imminent problems. Be direct.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t09_cannabis_thesis",
+          "prompt": "CANNABIS SECTOR THESIS 2026: We've now looked at CRON (Sprint 8 - AVOID, legalization binary), VFF (Sprint 10 - profitable, P/E 11.4x), OGI (Sprint 10 - BAT backing, FCF positive), CGC ($1.06, -$327M NI), TLRY ($5.38, -$1.3B NI). Key question: Is there a PROFITABLE cannabis play that doesn't depend on US legalization? VFF is profitable NOW. OGI has FCF NOW. Are these better than the pure-play legalization bets? What is the Canadian cannabis market doing (growing, shrinking, consolidating)?",
+          "system_prompt": "You are a cannabis sector analyst. Compare the profitable operators (VFF, OGI) vs the money-losing giants (CGC, TLRY, ACB). Which model wins?",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t10_vff_vs_ogi",
+          "prompt": "HEAD TO HEAD: VFF ($2.50) vs OGI ($1.09). Both are sub-$5 cannabis companies. VFF: profitable, +26.6% growth, 41.7% GM, P/E 11.4x, $10M net cash. OGI: losing money, -8.9% growth, 35.6% GM, no P/E, zero debt, BAT backing, FCF $17M. Which is the better investment and why? Consider: 1) Profitability trajectory, 2) Strategic value (BAT for OGI, US entry for VFF), 3) Downside protection, 4) Upside potential, 5) Management quality, 6) Brand strength.",
+          "system_prompt": "You are a portfolio manager choosing between two cannabis investments. Pick one and defend your choice with specific reasoning.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t11_invz_deep",
+          "prompt": "Deep dive on Innoviz Technologies (INVZ) at $0.78. LiDAR company. Revenue $55M (+110.3% growth!), GM 23.4%, but massive losses (-$67.8M NI), cash burning (-$26.7M FCF). Is LiDAR a viable long-term technology or will camera-only solutions (Tesla approach) win? Who are INVZ's customers? What is their design win pipeline? How much runway do they have? Compare to Luminar (LAZR - delisted?), Ouster (OUST), Aeva (AEVA).",
+          "system_prompt": "You are an autonomous vehicle technology analyst. Assess whether LiDAR has a future and whether INVZ is a winner or loser in the space.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t12_quick_kills",
+          "prompt": "RAPID KILL SCREEN: For each stock below, determine if it should be KILLED (never touch) or kept on WATCH list. Apply kill criteria: chronic dilution >10%/yr, CEO selling at bottom, reverse split history, negative unit economics, fraud/SEC history, zombie company. Stocks: 1) ARBE ($1.13, -$42M NI, -43.6% GM), 2) GOSS ($0.20, -$180M NI, biotech), 3) AITX ($0.02, penny stock), 4) PRPL ($0.41, Purple Innovation mattress, -$63M NI), 5) CGC ($1.06, Canopy Growth, -$327M NI), 6) ZH ($3.04, Zhihu China Q&A, -$193M NI, -25% rev decline), 7) MDXH ($0.64, diagnostics, -$33M NI, $106M debt).",
+          "system_prompt": "You are a kill-list analyst. Be ruthless. If it fails any kill criterion, KILL it immediately. Do not give benefit of the doubt.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t13_vff_1000x",
+          "prompt": "1000x TEST: Village Farms (VFF) at $2.50, market cap $286M. For 1000x ($2,500/share, $286B market cap) — impossible, would be larger than Philip Morris. For 100x ($250/share, $28.6B) — would need to become a top-5 cannabis company globally with massive US operations. For 10x ($25/share, $2.86B) — needs to 10x revenue to ~$2B+ OR get acquired at premium. What is the REALISTIC maximum upside in 10 years? Is this a 1000x candidate or a solid 3-10x compounder?",
+          "system_prompt": "You are a return-potential analyst. Be honest about realistic upside. Most stocks fail the 1000x test and that's OK.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t14_portfolio_fit",
+          "prompt": "PORTFOLIO FIT: Current portfolio: GRAB (150 shr, $540), BTG (50, $234), GAU (100, $225), TUYA (95, $210), TIGR (39, $202). Cash ~$1,062. Total ~$2,473. Watchlist: SMWB @ $3.00 alert. We want buy-and-hold 10 years, no trading. If VFF or OGI make sense, what position size? Current sector exposure: SE Asia fintech 22%, gold miners 18%, China ADR 16%, cash 43%. Would cannabis add diversification? What is the correlation between cannabis stocks and our existing holdings?",
+          "system_prompt": "You are a portfolio construction analyst. Assess whether cannabis adds genuine diversification to this portfolio. Consider correlation and concentration risk.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t15_v3_scoring",
+          "prompt": "V3 FRAMEWORK SCORING: Score VFF and OGI using v3 (100 pts): A(20) Growth — revenue growth rate + acceleration. B(15) Margin — gross margin + operating margin + path to profitability. C(15) Insider — insider ownership % + buying activity + no selling. D(15) Capital — FCF yield + cash position + debt safety. E(10) Moat — competitive advantage + switching costs + brand. F(10) TAM — total addressable market + penetration. G(10) Catalyst — near-term catalysts (legalization, M&A, earnings inflection). H(5) Anti-Fragility — benefits from chaos/volatility. Penalties: CN_ADR -15, >10% dilution -20, reverse split -25, CEO selling -15, zero rev -10.",
+          "system_prompt": "You are a quantitative scorer. Apply the framework rigorously with specific point allocations and reasoning for each category.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t16_convergence",
+          "prompt": "SPRINT 10 CONVERGENCE: Rank ALL Sprint 10 candidates from best to worst. VFF (profitable cannabis, P/E 11.4x, insider sold), OGI (BAT backing, FCF+, zero debt, rev declining), CURV (0.15x P/S but $436M debt, insiders selling), INVZ (110% growth but massive losses), PLBY (70% GM but insiders dumping), MDXH (cheap diagnostics but burning cash). Use 50-point scale: Moat(10) + TAM(10) + Anti-consensus(10) + Catalyst(10) + Management(10). Give a SINGLE definitive ranking.",
+          "system_prompt": "You are a convergence analyst. Rank definitively. No ties. Be direct about which is the best opportunity and which should be avoided.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t17_insider_forensic",
+          "prompt": "INSIDER ACTIVITY CROSS-CHECK: Compare insider behavior across Sprint 10 candidates. VFF: insider SOLD 50K shares at $2.89 (Bovenschen, March 2026). CURV: CEO SOLD at $2.06, CFO SOLD at $1.98 (April 2026). PLBY: 5 insiders sold $1.4M+ total in May 2026. OGI: BAT BOUGHT $4.6M privately at $2.18 (April 2026), two insiders bought publicly in May. Which insider signal is most informative? Does selling always mean avoid? Is BAT's buying the strongest signal?",
+          "system_prompt": "You are an insider activity forensic analyst. Rank the insider signals from most bullish to most bearish. Distinguish between routine sales and conviction moves.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t18_entry_price",
+          "prompt": "OPTIMAL ENTRY POINTS: If we decide to buy VFF or OGI, what is the right entry price? VFF: current $2.50, 52w low $0.98, 52w high $4.99, P/E 11.4x. OGI: current $1.09, 52w low $1.04, 52w high $2.24. For each: 1) What is fair value based on earnings/FCF? 2) What price gives 30% margin of safety? 3) Should we buy at current price or wait? 4) GTC limit order price recommendation.",
+          "system_prompt": "You are a value investor. Calculate fair value using multiple methods and recommend specific entry points with margin of safety.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t19_final_action",
+          "prompt": "SPRINT 10 FINAL ACTION: Based on all analysis, what should the investor DO? Options: A) BUY VFF now at $2.50. B) BUY OGI now at $1.09. C) WATCHLIST both — set alerts. D) AVOID cannabis entirely. E) Set limit orders at specific prices. Portfolio has ~$1,062 cash. Maximum position $200-300. Investor values time — buy and hold 10 years, no trading. Account converting to cash only.",
+          "system_prompt": "You are the chief investment officer making the final call. Use ONLY the verified data provided. State confidence level. This is a REAL investment decision.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s10_t20_risk_matrix",
+          "prompt": "RISK MATRIX for VFF and OGI. Categories: 1) Regulatory Risk (cannabis legalization, licensing, border issues), 2) Market Risk (cannabis price compression, oversupply, competition), 3) Financial Risk (cash burn, debt, dilution), 4) Operational Risk (crop failure, quality issues, recalls), 5) Political Risk (changes in government policy, local opposition), 6) Concentration Risk (Canada-heavy, single crop dependency). Rate each 1-5 for probability and impact. Total score /25.",
+          "system_prompt": "You are a risk analyst specializing in regulated industries. Create a structured risk assessment for cannabis investments.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

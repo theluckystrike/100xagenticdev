@@ -1,0 +1,217 @@
+{
+  "name": "EarlyThunder 250-Token Expansion",
+  "description": "Expand scorecard from 151 to 250+ tokens with verified data. Focus on FACTUAL data only — no price predictions.",
+  "model": "deepseek-chat",
+  "phases": [
+    {
+      "name": "Token Discovery & Data Collection",
+      "tasks": [
+        {
+          "id": "discover-01",
+          "prompt": "List exactly 15 DeFi protocol tokens NOT in this list that have REAL on-chain revenue (>$1M annualized). For EACH token give: symbol, full name, blockchain (Ethereum/Solana/Arbitrum/etc), token standard (ERC-20/SPL/native coin/BEP-20/etc), top 3 exchanges where tradeable, category (lending/DEX/derivatives/yield/CDP/insurance), 1-sentence description of what protocol does. Tokens already covered (DO NOT repeat): ETH,HYPE,WSTETH,BTC,AAVE,UNI,MKR,SOL,SYRUP,GEOD,KMNO,ETHFI,RETH,CBETH,AERO,MORPHO,LINK,VIRTUAL,LQTY,COW,FLUID,JUP,RUNE,CETUS,SUI,LDO,BNB,GMX,DRIFT,CRV,AR,INJ,SKY,ENS,ACX,AVAX,NEAR,BANANA,ARB,JTO,PENDLE,SAFE,SNX,RAY,OLAS,AKT,GNO,TAO,RENDER,BERA,TRX,OP,POL,CAKE,HNT,TON,GRT,XRP,VELO,ENA,TIA,COMP,STX,IMX,APT,GNS,ONDO,KAS,ADA,GRASS,YFI,FET,DYDX,IO,EIGEN,PYTH,SSV,ZRO,THETA,FXS,RPL,DOT,CVX,ICP,FIL,ATOM,DOGE,LTC. Format as structured list with | separators.",
+          "agent": "agent-expand-01"
+        },
+        {
+          "id": "discover-02",
+          "prompt": "List exactly 15 Layer-1 and Layer-2 blockchain tokens NOT in this list that have meaningful ecosystems (>$100M TVL or >50 active dApps). For EACH token give: symbol, full name, blockchain type (L1/L2/sidechain), consensus mechanism, token standard of the native token, top 3 exchanges, whether it has EVM compatibility, 1-sentence description. Already covered: ETH,SOL,BNB,AVAX,NEAR,SUI,TRX,OP,ARB,DOT,ADA,APT,TON,ICP,FIL,BERA,STX,KAS,SEI,CORE,SCROLL,BLAST,MANTA,MODE,S. Format as structured list.",
+          "agent": "agent-expand-02"
+        },
+        {
+          "id": "discover-03",
+          "prompt": "List exactly 15 infrastructure/middleware tokens NOT already listed that provide critical crypto infrastructure (oracles, indexing, bridges, RPCs, storage, compute, identity, messaging). For EACH give: symbol, full name, what infrastructure it provides, blockchain it runs on, token standard (ERC-20/native/etc), top 3 exchanges, whether token has utility (staking/fee payment/governance), annual protocol revenue if known. Already covered: LINK,GRT,AR,THETA,PYTH,SSV,ZRO,API3,ANKR,BAND,LRC,IOTA. Format as structured list.",
+          "agent": "agent-expand-03"
+        },
+        {
+          "id": "discover-04",
+          "prompt": "List exactly 15 AI/DePIN/compute tokens NOT already listed. For EACH give: symbol, full name, what it does (AI inference/training/GPU/storage/wireless/sensor), blockchain, token standard, top 3 exchanges, number of active nodes/GPUs if known, whether revenue is organic or subsidized by emissions, 1-sentence description. Already covered: RENDER,FET,TAO,AKT,IO,GRASS,HNT,MOBILE,OLAS,VIRTUAL. Format as structured list.",
+          "agent": "agent-expand-04"
+        },
+        {
+          "id": "discover-05",
+          "prompt": "List exactly 10 RWA (Real World Asset) tokens NOT already listed that tokenize real-world assets (treasuries, real estate, commodities, credit, equities). For EACH give: symbol, full name, what asset it tokenizes, blockchain, token standard, top 3 exchanges, total value of assets tokenized, regulatory status (SEC registered? MiCA compliant?), 1-sentence description. Already covered: ONDO,MKR/SKY,SYRUP,GEOD. Format as structured list.",
+          "agent": "agent-expand-05"
+        },
+        {
+          "id": "discover-06",
+          "prompt": "List exactly 10 gaming/metaverse/NFT tokens NOT already listed that have >10,000 monthly active users OR >$50M market cap. For EACH give: symbol, full name, game/platform name, blockchain, token standard, top 3 exchanges, monthly active users if known, whether game is live or in development, 1-sentence description. Already covered: AXS,SAND,MANA,GALA,IMX,SUPER,FLOW. Format as structured list.",
+          "agent": "agent-expand-06"
+        },
+        {
+          "id": "discover-07",
+          "prompt": "List exactly 10 exchange/CeFi tokens NOT already listed (CEX tokens, lending platforms, payment tokens). For EACH give: symbol, full name, what exchange/platform, blockchain, token standard, whether it has buyback/burn mechanism, top 3 exchanges, market cap tier (>$1B, $100M-1B, <$100M), 1-sentence description. Already covered: BNB,CAKE. Format as structured list.",
+          "agent": "agent-expand-07"
+        },
+        {
+          "id": "discover-08",
+          "prompt": "List exactly 10 privacy/payments/utility tokens NOT already listed. For EACH give: symbol, full name, primary use case (privacy/payments/utility), blockchain type (own chain/ERC-20/etc), top 3 exchanges, circulating supply percentage, whether it has a max supply cap, 1-sentence description. Already covered: XRP,LTC,ZEC,DOGE,XTZ,ALGO,MINA. Format as structured list.",
+          "agent": "agent-expand-08"
+        },
+        {
+          "id": "discover-09",
+          "prompt": "List exactly 10 Solana ecosystem tokens NOT already listed (DEXs, lending, liquid staking, NFT marketplaces, tools on Solana). For EACH give: symbol, full name, what it does on Solana, token standard (SPL), top 3 exchanges, TVL or volume if known, 1-sentence description. Already covered: JUP,RAY,DRIFT,KMNO,JTO,PYTH,BONK,WIF,POPCAT,MOBILE. Format as structured list.",
+          "agent": "agent-expand-09"
+        },
+        {
+          "id": "discover-10",
+          "prompt": "List exactly 10 Ethereum DeFi tokens NOT already listed (any ERC-20 DeFi protocol token with >$10M TVL). For EACH give: symbol, full name, DeFi category, top 3 exchanges, TVL, whether it has fee switch or revenue sharing, 1-sentence description. Already covered: AAVE,UNI,MKR,CRV,COMP,SNX,SUSHI,BAL,YFI,CVX,LDO,RPL,PENDLE,ENS,1INCH,MORPHO,FLUID,LQTY,COW,GNO,SAFE,FXS,ACX,ENA. Format as structured list.",
+          "agent": "agent-expand-10"
+        },
+        {
+          "id": "data-11",
+          "prompt": "For each of these tokens, provide FACTUAL on-chain data ONLY (do not estimate or guess): HYPE, AAVE, UNI, GMX, DRIFT, PENDLE, MORPHO, FLUID, CRV, SNX, COMP, DYDX, SUSHI, BAL, YFI, CVX, 1INCH, CAKE. For each: (1) Has fee switch been activated? Yes/No/Proposed. (2) What % of protocol revenue goes to token holders? (3) Does the protocol buy back and burn tokens? (4) Annual protocol revenue (from DeFiLlama/Token Terminal). (5) Current TVL. Format as table.",
+          "agent": "agent-data-11"
+        },
+        {
+          "id": "data-12",
+          "prompt": "For each token below, provide the EXACT circulating supply, total supply, max supply (or 'uncapped'), and FDV. Cross-check with CoinGecko and CoinMarketCap. Flag any where the two sources disagree. Tokens: HYPE, AAVE, UNI, LINK, MKR, SOL, GMX, PENDLE, ONDO, NEAR, TON, SUI, INJ, TIA, ARB, OP, DRIFT, AKT, ACX, FXS, MORPHO, FLUID, KMNO, ENA, JUP. Format as table.",
+          "agent": "agent-data-12"
+        },
+        {
+          "id": "data-13",
+          "prompt": "List the top 50 crypto tokens by REAL PROTOCOL REVENUE (annualized, from DeFiLlama or Token Terminal data). For each: symbol, annualized revenue, TVL, P/S ratio (market cap / revenue). Only include protocols with >$1M annual revenue. Sort by revenue descending. This must be factual DeFiLlama data, not estimates.",
+          "agent": "agent-data-13"
+        },
+        {
+          "id": "data-14",
+          "prompt": "For the following tokens, identify EXACTLY which exchanges they are listed on (Binance, Coinbase, Bybit, OKX, Kraken, Gate.io, KuCoin, Bitget, MEXC, HTX). Only list exchanges where the token is CURRENTLY tradeable in spot markets. Tokens: HYPE, DRIFT, ACX, FLUID, KMNO, MORPHO, ETHFI, COW, CETUS, AERO, VIRTUAL, SAFE, JTO, PYTH, SSV, EIGEN, PENGU, BERA, SCROLL, BLAST, MODE, OLAS, IO, GRASS. Format as table with checkmarks.",
+          "agent": "agent-data-14"
+        },
+        {
+          "id": "data-15",
+          "prompt": "Classify the following 151 tokens by their TOKEN STANDARD (ERC-20, SPL, native L1 coin, BEP-20, Cosmos SDK, etc). For L1 coins, specify if wrapped versions exist as ERC-20. For tokens on multiple chains, list all chains. Tokens: ETH,HYPE,WSTETH,BTC,AAVE,UNI,MKR,SOL,SYRUP,GEOD,KMNO,ETHFI,RETH,CBETH,AERO,MORPHO,LINK,VIRTUAL,LQTY,COW,FLUID,JUP,RUNE,CETUS,SUI,LDO,BNB,GMX,DRIFT,CRV,AR,INJ,SKY,ENS,ACX,AVAX,NEAR,BANANA,ARB,JTO,PENDLE,SAFE,SNX,RAY,OLAS,AKT,GNO,TAO,RENDER,BERA,TRX,OP,POL,CAKE,HNT,TON,GRT,XRP,VELO,ENA,TIA,COMP,STX,IMX,APT,GNS,S,ONDO,KAS,ADA,GRASS,YFI,MATIC,FET,DYDX,IO,EIGEN,PYTH,SSV,ZRO,THETA,FXS,RPL,PENGU,DOT,CVX,LTC,SCROLL,ICP,FIL,ZEC,VET,SEI,CORE,USUAL,API3,CFX,MINA,ALGO,ORDI,ANKR,ZK,BAL,CELO,CKB,STRK,1INCH,BONK,OSMO,MOBILE,W,PEPE,ATOM,WLD,DOGE,XTZ,FLOKI,WIF,BLAST,EGLD,ROSE,BLUR,MASK,KAVA,FLOW,LRC,IOTA,MANTA,AXS,SUSHI,NOT,BAND,POPCAT,MODE,SHIB,NEO,RBN,SAND,SUPER,MOVE,JASMY,MANA,ZIL,SPELL,DOGS,QTUM,MEME,NEIRO,GALA,KDA,ONE,DRIFT,ACX,FXS,AKT. Format as 3 columns: Symbol | Standard | Chain(s).",
+          "agent": "agent-data-15"
+        },
+        {
+          "id": "data-16",
+          "prompt": "For each of the following tokens, provide their STAKING YIELD (real yield from protocol revenue, not inflationary rewards). Distinguish between: (a) real yield from fees, (b) inflationary staking rewards, (c) total APY. Tokens: ETH, HYPE, AAVE, GMX, PENDLE, SNX, DRIFT, FLUID, CRV, COMP, CAKE, JUP, KMNO, MORPHO, ENA, ONDO, FXS, ACX, RUNE, INJ, TIA, ATOM, OSMO, SEI. Format as table: Symbol | Real Yield % | Inflation Yield % | Total APY %.",
+          "agent": "agent-data-16"
+        },
+        {
+          "id": "data-17",
+          "prompt": "List ALL major token unlock events from June 2026 through December 2026 with >$50M in value unlocking. For each: token symbol, unlock date, number of tokens unlocking, estimated dollar value, what percentage of circulating supply this represents, who is receiving (team/investors/ecosystem). Source from Token Unlocks or CryptoRank data. Sort by date ascending.",
+          "agent": "agent-data-17"
+        },
+        {
+          "id": "data-18",
+          "prompt": "For each of these 25 tokens, rate each of these 5 VERIFIABLE metrics on a 1-10 scale with JUSTIFICATION: (1) Developer Activity (GitHub commits last 90d), (2) Active Users (daily unique addresses), (3) TVL trend (growing/flat/declining over 90d), (4) Market Share in its category (%, name competitors), (5) Institutional Adoption (ETF exposure, fund holdings, custody solutions). Tokens: ETH, SOL, AAVE, UNI, LINK, HYPE, GMX, ONDO, MKR, NEAR, TON, SUI, INJ, ARB, OP, PENDLE, DRIFT, AKT, MORPHO, FLUID, KMNO, ACX, FXS, ENA, RENDER. Format as table.",
+          "agent": "agent-data-18"
+        },
+        {
+          "id": "data-19",
+          "prompt": "Identify all tokens in the top 200 by market cap that have activated or announced BUYBACK AND BURN mechanisms or FEE SWITCHES that return revenue to token holders. For each: symbol, mechanism type (buyback/burn/fee switch/revenue share/staking rewards from fees), date activated, what percentage of revenue is distributed, annual distribution amount if known. This is critical factual data — only include confirmed, live mechanisms.",
+          "agent": "agent-data-19"
+        },
+        {
+          "id": "data-20",
+          "prompt": "Create a MASTER EXCHANGE LISTING table for the top 100 tokens by market cap. For each token, indicate whether it is listed on these 10 exchanges: Binance, Coinbase, Bybit, OKX, Kraken, Gate.io, KuCoin, Bitget, MEXC, HTX. Also note if the token is available on any US-regulated exchange (Coinbase, Kraken, Gemini). Format as table with Y/N for each exchange.",
+          "agent": "agent-data-20"
+        }
+      ]
+    },
+    {
+      "name": "Scoring & Verification",
+      "tasks": [
+        {
+          "id": "score-01",
+          "prompt": "Based on the Phase 1 discovery data, score the first batch of NEW tokens (from agent-expand-01 DeFi protocols) on ALL 25 variables (1-10 each): protocol_revenue, revenue_trend, ps_multiple, supply_inflation, unlock_schedule, circ_fdv_ratio, buyback_burn, smart_money, insider_selling, holder_concentration, staking_yield, tvl_trend, active_users, developer_activity, ecosystem_growth, market_share, competitive_moat, institutional_adoption, exchange_depth, regulatory_safety, catalyst_calendar, btc_alpha, team_execution, treasury_runway, social_mindshare. For EACH score provide a 1-sentence justification. Output as JSON array.",
+          "agent": "agent-score-01"
+        },
+        {
+          "id": "score-02",
+          "prompt": "Based on the Phase 1 discovery data, score the L1/L2 tokens (from agent-expand-02) on ALL 25 variables (1-10 each): protocol_revenue, revenue_trend, ps_multiple, supply_inflation, unlock_schedule, circ_fdv_ratio, buyback_burn, smart_money, insider_selling, holder_concentration, staking_yield, tvl_trend, active_users, developer_activity, ecosystem_growth, market_share, competitive_moat, institutional_adoption, exchange_depth, regulatory_safety, catalyst_calendar, btc_alpha, team_execution, treasury_runway, social_mindshare. Output as JSON array.",
+          "agent": "agent-score-02"
+        },
+        {
+          "id": "score-03",
+          "prompt": "Based on the Phase 1 discovery data, score the infrastructure/middleware tokens (from agent-expand-03) on ALL 25 variables (1-10 each). Output as JSON array with symbol, name, scores object (25 keys), total_score, and a 1-liner summary.",
+          "agent": "agent-score-03"
+        },
+        {
+          "id": "score-04",
+          "prompt": "Based on the Phase 1 discovery data, score the AI/DePIN tokens (from agent-expand-04) on ALL 25 variables (1-10 each). Output as JSON array with symbol, name, scores object (25 keys), total_score, and a 1-liner summary.",
+          "agent": "agent-score-04"
+        },
+        {
+          "id": "score-05",
+          "prompt": "Based on the Phase 1 discovery data, score the RWA tokens (from agent-expand-05) on ALL 25 variables (1-10 each). Output as JSON array with symbol, name, scores object (25 keys), total_score, and a 1-liner summary.",
+          "agent": "agent-score-05"
+        },
+        {
+          "id": "score-06",
+          "prompt": "Based on the Phase 1 discovery data, score the gaming/metaverse tokens (from agent-expand-06) on ALL 25 variables (1-10 each). Output as JSON array with symbol, name, scores object (25 keys), total_score, and a 1-liner summary.",
+          "agent": "agent-score-06"
+        },
+        {
+          "id": "score-07",
+          "prompt": "Based on the Phase 1 discovery data, score the exchange/CeFi tokens (from agent-expand-07) on ALL 25 variables (1-10 each). Output as JSON array with symbol, name, scores object (25 keys), total_score, and a 1-liner summary.",
+          "agent": "agent-score-07"
+        },
+        {
+          "id": "score-08",
+          "prompt": "Based on the Phase 1 discovery data, score the privacy/payments tokens (from agent-expand-08) on ALL 25 variables (1-10 each). Output as JSON array with symbol, name, scores object (25 keys), total_score, and a 1-liner summary.",
+          "agent": "agent-score-08"
+        },
+        {
+          "id": "score-09",
+          "prompt": "Based on the Phase 1 discovery data, score the Solana ecosystem tokens (from agent-expand-09) on ALL 25 variables (1-10 each). Output as JSON array with symbol, name, scores object (25 keys), total_score, and a 1-liner summary.",
+          "agent": "agent-score-09"
+        },
+        {
+          "id": "score-10",
+          "prompt": "Based on the Phase 1 discovery data, score the Ethereum DeFi tokens (from agent-expand-10) on ALL 25 variables (1-10 each). Output as JSON array with symbol, name, scores object (25 keys), total_score, and a 1-liner summary.",
+          "agent": "agent-score-10"
+        },
+        {
+          "id": "verify-11",
+          "prompt": "Based on ALL Phase 1 data, cross-check and verify the exchange listing data. Create a DEFINITIVE exchange listing table for all 151 existing tokens PLUS all newly discovered tokens. For each: symbol, exchanges (comma-separated list of confirmed listings), token standard (ERC-20/SPL/native/etc), blockchain. Output as structured table.",
+          "agent": "agent-verify-11"
+        },
+        {
+          "id": "verify-12",
+          "prompt": "Based on ALL Phase 1 data, create a master list of ALL tokens with confirmed buyback/burn/fee-switch mechanisms. For each: symbol, mechanism type, % of revenue distributed, date activated, annual value. Cross-reference between agent-data-11, agent-data-19, and agent-data-16. Resolve any contradictions.",
+          "agent": "agent-verify-12"
+        },
+        {
+          "id": "verify-13",
+          "prompt": "Based on ALL Phase 1 data, create a MASTER SUPPLY TABLE for all 250+ tokens. For each: symbol, circulating supply, total supply, max supply (or uncapped), FDV, circ/FDV ratio %. Flag any tokens with circ/FDV ratio below 30% (high dilution risk). Flag any with impossible data (circ > total > max).",
+          "agent": "agent-verify-13"
+        },
+        {
+          "id": "verify-14",
+          "prompt": "Based on ALL Phase 1 scoring data, perform a CONSISTENCY CHECK on all new token scores. For each new token: verify the total score matches the sum of 25 variables. Check that no variable exceeds 10 or is below 1. Verify the verdict assignment: HOLD CORE (>=173), HOLD (140-169), CAUTIOUS HOLD (120-139), WATCH (100-119), PASS (<100). Flag any inconsistencies.",
+          "agent": "agent-verify-14"
+        },
+        {
+          "id": "verify-15",
+          "prompt": "Based on ALL Phase 1 revenue data (agent-data-13), cross-reference the top 50 revenue protocols against the scores given by scoring agents. Check if protocol_revenue scores are consistent with actual revenue rankings. Flag any scoring agent that gave high protocol_revenue scores (7+) to tokens NOT in the top 50 revenue list, or low scores (4-) to tokens that ARE in the top 50.",
+          "agent": "agent-verify-15"
+        },
+        {
+          "id": "verify-16",
+          "prompt": "Based on ALL Phase 1 data, identify any tokens that appear in MULTIPLE discovery lists (duplicates across agents). Create a deduplicated master list of all NEW tokens discovered (not in the original 151). For each: symbol, name, category, blockchain, token standard, top exchanges. Target: exactly 100 unique new tokens.",
+          "agent": "agent-verify-16"
+        },
+        {
+          "id": "synthesis-17",
+          "prompt": "Create the FINAL SYNTHESIS: a complete ranked list of ALL ~250 tokens sorted by total score. For each token include: rank, symbol, name, score, verdict (HOLD CORE/HOLD/CAUTIOUS HOLD/WATCH/PASS), category, blockchain, token standard, top 3 exchanges, 1-liner description. Include both existing 151 tokens and all new additions.",
+          "agent": "agent-synthesis-17"
+        },
+        {
+          "id": "synthesis-18",
+          "prompt": "Based on ALL Phase 1 and Phase 2 data, identify the TOP 20 tokens most likely to outperform BTC over the next 12 months. For each: symbol, score, key thesis (1 sentence), primary risk, primary catalyst, category. Rank by conviction level. Only include tokens with verified revenue data or strong on-chain metrics.",
+          "agent": "agent-synthesis-18"
+        },
+        {
+          "id": "synthesis-19",
+          "prompt": "Create a SECTOR BREAKDOWN showing how many tokens are in each category, with average scores per category. Categories: DeFi Lending, DEX/AMM, Derivatives/Perps, Yield/CDP, L1, L2, Infrastructure, AI/DePIN, RWA, Gaming/NFT, Memecoins, Privacy/Payments, Exchange/CeFi, Stablecoins, Bridges, Insurance, Other. Which sectors have the highest average scores? Which are overrepresented in PASS verdicts?",
+          "agent": "agent-synthesis-19"
+        },
+        {
+          "id": "synthesis-20",
+          "prompt": "Final quality check: Review ALL new tokens being added to the scorecard. For each batch of new tokens, answer: (1) Are all 25 variable scores between 1-10? (2) Does the total match the sum? (3) Is the verdict correct for the score? (4) Is the token standard correct? (5) Are the exchange listings plausible? Output a quality report with pass/fail for each token and overall quality score (% passing all checks).",
+          "agent": "agent-synthesis-20"
+        }
+      ]
+    }
+  ]
+}

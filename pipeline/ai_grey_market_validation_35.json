@@ -1,0 +1,287 @@
+{
+  "project": "AI Grey Market Report Validation & Citation",
+  "description": "35 parallel agents to validate every claim in the AI API Grey Market intelligence report and provide citations",
+  "model": "deepseek-chat",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Price & Market Data Validation",
+      "tasks": [
+        {
+          "task_id": "p1_official_pricing",
+          "prompt": "VALIDATION TASK: Verify the following official AI API pricing claims from an intelligence report. For EACH claim, state: CONFIRMED, PARTIALLY CONFIRMED, UNCONFIRMED, or FALSE. Provide the exact source URL or document for each.\n\nClaims to validate:\n1. GPT-4o pricing: $5.00/M input, $15.00/M output\n2. GPT-4 Turbo pricing: $10.00/M input, $30.00/M output\n3. GPT-4 pricing: $30.00/M input, $60.00/M output\n4. Claude 3.5 Sonnet pricing: $3.00/M input, $15.00/M output\n5. Claude Opus pricing: $15.00/M input, $75.00/M output\n6. DeepSeek V3 pricing: $0.27/M input, $1.10/M output\n7. GPT-4o-mini pricing: $0.15/M input, $0.60/M output\n\nSearch the official pricing pages of OpenAI (platform.openai.com/pricing), Anthropic (anthropic.com/pricing), and DeepSeek (platform.deepseek.com/api-docs/pricing). Note if prices have changed since Q4 2024. Provide EXACT URLs for every data point.",
+          "system_prompt": "You are a fact-checking analyst specializing in AI industry data. Your job is to verify claims with primary sources. Always provide specific URLs and dates for your evidence. If a claim cannot be verified, say so explicitly. Never fabricate citations.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_grey_market_pricing",
+          "prompt": "VALIDATION TASK: Verify grey market AI API pricing claims. For EACH claim, provide evidence status and sources.\n\nClaims to validate:\n1. GPT-4o proxied: $0.15-$0.40/M tokens (96-97% discount)\n2. GPT-4 Turbo proxied: $0.30-$0.80/M tokens (96-97% discount)\n3. GPT-4 proxied: $1.00-$8.00/M tokens (93% discount)\n4. Claude Opus proxied: $0.50-$1.50/M tokens (96-98% discount)\n5. Claude 3.5 Sonnet proxied: $0.12-$0.35/M tokens (96-98% discount)\n6. Grey market median price for GPT-4o is $1.20/M\n\nSearch for: grey market AI API pricing, proxy AI API prices, cheap GPT-4 API access, Telegram AI proxy pricing, gpt4free pricing, OpenRouter alternative pricing, cheap Claude API access. Check Reddit threads (r/ChatGPT, r/LocalLLaMA, r/artificial), Telegram channel screenshots, HackerNews discussions, Twitter/X posts about proxy pricing. Provide ALL sources found.",
+          "system_prompt": "You are a fact-checking analyst. Search for evidence of grey market AI API pricing. Focus on publicly available evidence: forum posts, social media, news articles, research papers. Always provide URLs. Distinguish between primary evidence (direct screenshots, marketplace listings) and secondary evidence (news reports, analyst estimates).",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_deepseek_validation",
+          "prompt": "VALIDATION TASK: Verify all DeepSeek-related claims from an intelligence report.\n\nClaims to validate:\n1. DeepSeek V3 achieves 85-90% of GPT-4 quality on benchmarks\n2. DeepSeek's pricing at $0.27-1.10/M tokens is not a temporary promotion but reflects architectural innovation\n3. DeepSeek uses Mixture of Experts (MoE) and Multi-head Latent Attention (MLA) architectures\n4. DeepSeek's cost structure is 10-20x lower than OpenAI's for comparable quality\n5. DeepSeek V3 has 99% reliability\n6. By Q4 2027, open-source models will match GPT-4 Turbo on 80% of benchmarks\n\nSearch for: DeepSeek V3 benchmarks, DeepSeek technical paper, DeepSeek architecture, DeepSeek vs GPT-4 comparison, DeepSeek pricing history, published benchmark results (MMLU, HumanEval, MATH, etc). Check arxiv.org, DeepSeek blog, independent benchmark sites. Provide ALL source URLs.",
+          "system_prompt": "You are a technical AI analyst. Verify claims about DeepSeek with published benchmarks, technical papers, and pricing data. Provide exact benchmark scores where available. Always cite specific papers (arxiv IDs), blog posts (URLs), or benchmark databases.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_market_size",
+          "prompt": "VALIDATION TASK: Verify AI API grey market size estimates.\n\nClaims to validate:\n1. Grey market annual revenue: $2-5B (base case), $150-300M (conservative from different section)\n2. Grey market represents 20-30% of total API traffic\n3. Active grey market users: 1-2.5M globally\n4. 500K-2M individual developers use grey market\n5. 200K-500K students/researchers use grey market\n6. 300-500 proxy operators globally, top 5 control 90%+ of traffic\n7. Official AI API market size: $8-12B in 2024\n8. Grey market share declines to 10-15% by 2028\n9. Total daily grey market volume: 5-15 trillion tokens\n10. Grey market processes 50-100x more tokens than legitimate API usage\n\nNote: The report itself contains CONTRADICTORY estimates ($150-300M vs $2-5B). Flag all contradictions.\n\nSearch for: AI API market size, AI industry revenue reports, OpenAI revenue, Anthropic revenue, grey market estimates, analyst reports from Goldman Sachs, Morgan Stanley, a16z on AI market. Check The Information, Bloomberg, Reuters, Semafor for AI market reporting.",
+          "system_prompt": "You are a market research analyst. Verify market size claims with published data. Flag internal contradictions in the report. Distinguish between verified data (audited financials, SEC filings) and estimates (analyst reports, extrapolations). Always provide source URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_user_estimates",
+          "prompt": "VALIDATION TASK: Verify user and operator estimates for the AI API grey market.\n\nClaims to validate:\n1. Active proxy operators: 8,000-12,000 globally (Phase 1 claim) vs 300-500 (Phase 5 claim) — CONTRADICTORY\n2. Active users in China: ~960K students + 480K professionals\n3. 15,000-25,000 startups globally depend on grey market\n4. 60-80% of Indian AI startups use grey market (from survey of 200 developers)\n5. 80-95% of Chinese AI startups use grey market\n6. 70-90% of African AI startups use grey market\n7. Tier 1 operators: 10+ employees, $1M+/month revenue\n8. GPT-API-China on Telegram: 50K+ users, 500M tokens/day\n9. AIProxy on Xianyu: 100K+ transactions, 8 stores\n10. ClaudeMax on Telegram: 30K users\n\nSearch for: AI proxy Telegram channels, AI API reseller statistics, AI startup surveys in India/China/Africa, developer surveys on AI API usage. Check TechCrunch, Rest of World, KrASIA, The Ken for emerging market AI startup reporting.",
+          "system_prompt": "You are a market research analyst. Verify user and operator statistics. Flag contradictions between different sections. Distinguish between primary data (surveys, platform data) and extrapolations. Most of these numbers are likely unverifiable — say so clearly if that's the case.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_regional_pricing",
+          "prompt": "VALIDATION TASK: Verify regional pricing arbitrage claims.\n\nClaims to validate:\n1. ChatGPT Plus costs $20/month in the US\n2. ChatGPT Plus costs $1.50-2.00/month in Turkey (90-92.5% discount)\n3. ChatGPT Plus costs $2.00/month in Argentina (90% discount)\n4. ChatGPT Plus costs $2.50/month in India (87.5% discount)\n5. ChatGPT Plus costs $6.00/month in Philippines (70% discount)\n6. India has 50-70% PPP discount on AI services\n7. Argentina has 60-80% discount due to currency controls\n8. ChatGPT Plus is 8% of median monthly income in Nigeria ($250 median)\n9. ChatGPT Plus is 3% of median monthly income in India ($650 median)\n10. ChatGPT Plus is 0.05% of median monthly income in US ($5,000+ median)\n\nSearch for: ChatGPT Plus pricing by country, OpenAI regional pricing, PPP-adjusted AI pricing, median income by country (World Bank data), ChatGPT subscription costs Turkey/Argentina/India/Philippines. Check OpenAI help center, Reddit discussions about regional pricing, World Bank income data.",
+          "system_prompt": "You are an economics analyst. Verify pricing and income claims with primary sources. For income data, use World Bank, IMF, or national statistics offices. For subscription pricing, check OpenAI's official pricing and regional user reports. Provide specific URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_operator_economics",
+          "prompt": "VALIDATION TASK: Verify proxy operator economics claims.\n\nClaims to validate:\n1. Operators achieve 6,000-18,000% margins through subscription quota abuse\n2. A Philippine ChatGPT Plus subscription (~$8/month) provides unlimited Codex access\n3. Free trial credits of $5-18 provide 500+ requests at infinite margin\n4. Educational discounts of 90%+ reduce cost to $2-5/month\n5. Stolen/compromised accounts cost $5-20 each with $200+ value\n6. Subscription sharing is a loss leader with negative margins ($20 sub generates $3.60 in proxy revenue)\n7. Operator operational costs for 100B tokens/month: $617K-$2.31M\n8. Account replenishment cost: ~$50 per account\n9. Account break-even: 24-48 hours of operation\n10. Ban rate: OpenAI bans ~10K keys/month\n11. 20-40% monthly ban rate for operators\n12. Major operator average lifespan: 12-18 months; small: 3-6 months\n\nNote the CONTRADICTION: claim 1 says 6,000-18,000% margins, but claim 6 says negative margins on subscription sharing. Flag this.\n\nSearch for: AI proxy economics, ChatGPT account costs, OpenAI ban statistics, proxy operator business model analysis. Check security research papers, blog posts from AI security researchers.",
+          "system_prompt": "You are a business analyst. Verify economic claims about proxy operations. Flag contradictions. Most operator economics are not publicly disclosed — clearly state which claims are verifiable and which are speculative. Provide sources for everything you can verify.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "You have received validation results from 7 agents checking pricing, market data, user estimates, and operator economics from an AI API grey market intelligence report. Create a MASTER VALIDATION TABLE with columns: Claim | Status (CONFIRMED/PARTIALLY CONFIRMED/UNCONFIRMED/CONTRADICTED/FALSE) | Evidence Quality (PRIMARY SOURCE/SECONDARY/ANECDOTAL/NONE) | Source URLs | Notes. Group by category. Highlight ALL contradictions found within the report. Count total claims checked and provide a credibility score for this section (0-100%)."
+    },
+    {
+      "phase": 2,
+      "name": "Technical & Security Claims Validation",
+      "tasks": [
+        {
+          "task_id": "p2_proxy_architecture",
+          "prompt": "VALIDATION TASK: Verify technical proxy architecture claims.\n\nClaims to validate:\n1. Proxy systems use FastAPI/Express.js servers with Lua scripting for protocol translation\n2. Key rotation cycles of 10-60 seconds\n3. Redis clusters provide 40-60% cost reduction through caching\n4. Operators use the endpoint chatgpt.com/backend-api/conversation\n5. Proxies use Server-Sent Events with JSON payloads for streaming\n6. Seven distinct proxy architecture patterns exist (Web Scraping, Mobile API RE, Desktop Interception, API Reselling, Session Pooling, Hybrid Orchestration, Subscription Sharing)\n7. Industry is converging on Hybrid Orchestration\n8. Mid-to-large operators require multi-layer stateless design with Cloudflare Workers, HAProxy, Go/Rust proxy services\n9. PostgreSQL sharded databases for account pool management\n\nSearch for: gpt4free source code architecture, AI proxy technical analysis, ChatGPT reverse engineering, OpenAI API proxy implementation, chatgpt-api GitHub repository code. Check GitHub repositories directly (gpt4free, chatgpt-api, Pandora), security research blogs, technical write-ups.",
+          "system_prompt": "You are a security engineer. Verify technical architecture claims by examining open-source code, security research, and technical documentation. Cite specific GitHub repos, commit hashes, or code files where possible. Distinguish between documented techniques and speculative architecture descriptions.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_detection_evasion",
+          "prompt": "VALIDATION TASK: Verify detection and evasion dynamics claims.\n\nClaims to validate:\n1. Asymmetric cost: developing detection model costs $500K-2M vs $10K-50K for operator evasion (20-40:1 ratio)\n2. Deploying countermeasure costs $100K-500K vs $1K-10K for operator adaptation (50-100:1 ratio)\n3. Investigating single account costs $50-200 vs $0.50-2 for operator\n4. Net advantage: operators have 20-100x advantage in adaptation cost\n5. Account lifespan by volume: Low (14-30 days), Medium (3-10 days), High (12-48 hours), Ultra-high (2-6 hours)\n6. Phone verification effectiveness: 2/10 (virtual numbers cost $0.10-0.50)\n7. Email verification effectiveness: 1/10\n8. IP reputation blocking: 4/10 (40M+ residential IPs available)\n9. ML-based pattern analysis: 6/10\n10. CAPTCHA solving costs $1/1000 via CAPTCHA farms\n11. Residential proxy networks like BrightData and Oxylabs are used for evasion\n12. OpenAI reduced session token expiration from 30 days to 24 hours\n\nSearch for: AI API abuse detection research, CAPTCHA farm pricing, residential proxy market size, BrightData/Oxylabs pricing, virtual phone number costs (SMS-activate, 5sim pricing), OpenAI security measures, cybersecurity research on API abuse.",
+          "system_prompt": "You are a cybersecurity researcher. Verify security and detection claims with published research, tool pricing pages, and industry reports. Many cost estimates are speculative — identify which ones are verifiable. Cite specific sources.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_oss_tools",
+          "prompt": "VALIDATION TASK: Verify open-source tool ecosystem claims.\n\nClaims to validate:\n1. gpt4free: 58K GitHub stars, multi-source aggregation, active status\n2. chatgpt-api: 8.5K stars, web scraping + session hijacking, active\n3. Pandora: 8.2K stars, browser automation + API interception, active (forked)\n4. CLIProxyAPI: 1.2K stars, Codex reverse-engineering, active\n5. ChatGPT-to-API: 1.8K stars, Puppeteer/Playwright automation, active\n6. OpenAI has issued DMCA takedowns against gpt4free and Pandora\n7. Commercial operators started as OSS contributors\n8. Commercial proxies use OSS codebases with added obfuscation\n\nDIRECTLY CHECK: Go to github.com and verify current star counts, last commit dates, repository status (active/archived/removed), and any DMCA notices. Provide exact URLs for each repository. Check GitHub DMCA repository (github/dmca) for takedown notices related to these projects.",
+          "system_prompt": "You are a software analyst. Verify GitHub repository claims with CURRENT data. Star counts change over time — note the date of your check. Check if repos have been taken down, archived, or forked. Look for DMCA notices in github/dmca repo. Provide exact GitHub URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_model_substitution",
+          "prompt": "VALIDATION TASK: Verify model substitution and quality degradation claims.\n\nClaims to validate:\n1. 30-50% of grey market requests receive different models than requested\n2. GPT-4-turbo requests often served by GPT-3.5-turbo\n3. Claude 3.5 Sonnet requests served by Claude 3 Haiku\n4. Grey market uptime: 85-92% (vs official 99.5-99.9%)\n5. Grey market P95 latency: 800-3000ms (vs official 200-800ms)\n6. Grey market error rate: 5-15% (vs official <0.5%)\n7. Grey market request success rate: 80-90% (vs official 99.8%)\n8. Context window degraded to 8K-32K (vs official 128K)\n9. System prompts often stripped by proxies\n10. Effective cost per usable token is 2-3x MORE expensive on grey market when accounting for failures\n\nSearch for: AI proxy quality testing, model verification tools, grey market AI reliability reports, user complaints about AI proxy quality, Reddit/HackerNews discussions about proxy model substitution. Check r/ChatGPT, r/LocalLLaMA for user reports.",
+          "system_prompt": "You are a quality assurance analyst. Verify quality and reliability claims. Most of these metrics are not publicly audited — distinguish between anecdotal user reports and systematic testing. Cite specific forum posts, blog articles, or research papers.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_data_privacy",
+          "prompt": "VALIDATION TASK: Verify data privacy and breach claims.\n\nClaims to validate:\n1. Proxy operators have full visibility into complete prompt/response payloads\n2. 2023 Proxy Service Breach: 50,000+ API keys exposed through misconfigured logging\n3. Data Aggregation Incident: proxy stored prompts in plaintext for 'quality analysis'\n4. Reseller Data Leak: 2M+ prompt-response pairs on unsecured Elasticsearch instance\n5. Prompt-response pairs are worth $0.01-0.10 per pair to AI labs\n6. Competitive intelligence datasets worth $1,000-50,000\n7. Corporate espionage data worth $10,000-100,000+\n8. PII leakage worth $0.50-5.00 per record\n9. Chinese AI labs documented to use distillation: Baichuan, Zhipu AI (GLM), MiniMax, 01.AI (Yi), Alibaba Tongyi Qianwen, ByteDance Doubao\n10. Using grey market proxies violates SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS\n\nSearch for: AI API data breaches, proxy service security incidents, AI training data market pricing, dark web AI data sales, Chinese AI lab distillation papers, compliance frameworks for AI API usage. Check HaveIBeenPwned, security advisories, published research on AI data markets.",
+          "system_prompt": "You are a data privacy and security analyst. Verify breach claims with published incident reports, news articles, or security advisories. For distillation claims, check published papers by the named labs. For compliance claims, check the actual framework requirements. Cite everything.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_distillation",
+          "prompt": "VALIDATION TASK: Verify model distillation pipeline claims.\n\nClaims to validate:\n1. 48 trillion tokens/day flowing through proxies provides enough data to train a frontier-class model in weeks\n2. Collecting 500B tokens (enough for GPT-4 scale distillation) takes only 25 minutes at claimed throughput\n3. Distilled models can reach 70-80% of original on general knowledge, 75-85% on code, 60-70% on reasoning\n4. Published papers from Qwen (Alibaba), Baichuan 2, InternLM, Yi (01.AI) acknowledge distillation from advanced models\n5. Chinese models show GPT-4-like response patterns on coding tasks (technical indicator of distillation)\n6. Reuters, The Information, Wired documented proxy-to-lab pipelines\n7. Full distillation cycle takes 6-12 months for a competitive model\n8. The grey market represents $35-95B/year implicit technology transfer\n9. Chinese military-linked AI research (PLA, CASIC, CETC) has documented access to US models through proxies\n\nSearch for: AI model distillation research, Qwen technical report, Baichuan 2 paper, InternLM paper, Yi technical report, knowledge distillation from LLMs, Reuters AI distillation reporting, The Information AI proxy articles, Chinese military AI access reports.",
+          "system_prompt": "You are an AI research analyst. Verify distillation claims against published papers and news reports. Check arxiv.org for technical papers by named labs. Verify media reporting claims by searching Reuters, The Information, Wired archives. Distinguish between documented distillation (from published papers) and alleged unauthorized distillation. Provide arxiv IDs and article URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_emerging_vectors",
+          "prompt": "VALIDATION TASK: Verify emerging threat vector claims.\n\nClaims to validate:\n1. Cursor, Claude Code, GitHub Copilot session hijacking techniques are emerging\n2. Codebase-level data theft risk through compromised IDE integrations\n3. Unified multimodal proxies accepting any input (image, video, voice)\n4. Fine-tuning endpoint proxies enable model customization without official access\n5. 'Fine-tuned model marketplaces' selling stolen enterprise models at 90% discounts exist\n6. Agent frameworks multiply API usage 10-100x per task\n7. 'Agent proxy SDKs' becoming default infrastructure for agent development\n8. GPU compute grey markets resell cloud instances at 50-70% discounts\n9. Safety evaluation proxies strip safety filters ('jailbroken model access')\n10. Pre-release access to unreleased models (GPT-5, Claude 4) sold for $5,000-50,000/month\n\nSearch for: Cursor proxy hack, Claude Code session hijacking, coding tool API abuse, AI agent proxy infrastructure, GPU reselling marketplace, jailbroken AI model access, pre-release model access dark web, fine-tuning proxy service. Check security advisories, dark web monitoring reports, HackerNews discussions.",
+          "system_prompt": "You are a threat intelligence analyst. Verify emerging threat claims with published evidence. Many of these are forward-looking and may be speculative — clearly distinguish between documented threats and theoretical/predicted threats. Cite specific incidents, advisories, or reports.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "You have received validation results from 7 agents checking technical architecture, security, OSS tools, quality metrics, privacy, distillation, and emerging threats from an AI API grey market report. Create a MASTER VALIDATION TABLE with columns: Claim | Status | Evidence Quality | Source URLs | Notes. Count total claims checked. Calculate credibility score for technical/security section (0-100%). Highlight claims that are CONFIRMED with strong sources vs claims that are SPECULATION presented as fact."
+    },
+    {
+      "phase": 3,
+      "name": "Financial & Business Claims Validation",
+      "tasks": [
+        {
+          "task_id": "p3_openai_financials",
+          "prompt": "VALIDATION TASK: Verify OpenAI financial claims.\n\nClaims to validate:\n1. OpenAI has $5B+ annual losses\n2. OpenAI's valuation is $300B\n3. OpenAI's reported revenue is $3.7B (referenced in report)\n4. OpenAI raised $40B at $300B valuation\n5. Grey market creates negative unit economics — compute cost $5-8/M tokens while receiving $0.15-0.40/M\n6. OpenAI's true inference cost is $0.50-1.00/M tokens\n7. OpenAI annual revenue leakage from grey market: $1.5-6B\n8. OpenAI bans ~10K keys/month\n9. OpenAI has issued DMCA takedowns and lawsuits against proxy operators\n10. OpenAI's official API pricing has 97% margin above estimated inference costs\n\nSearch for: OpenAI revenue 2024 2025, OpenAI valuation, OpenAI funding round, OpenAI losses, OpenAI inference costs, OpenAI financial reports, OpenAI SEC filings. Check The Information, Bloomberg, Reuters, NYT, WSJ for OpenAI financial reporting. Check for the SoftBank funding round details.",
+          "system_prompt": "You are a financial analyst. Verify all financial claims about OpenAI with published sources. Use SEC filings, credible financial journalism (Bloomberg, WSJ, The Information, Reuters), and official announcements. Distinguish between confirmed financials and estimates. Provide exact source URLs and dates.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_anthropic_financials",
+          "prompt": "VALIDATION TASK: Verify Anthropic financial and security claims.\n\nClaims to validate:\n1. Anthropic's annual revenue is approximately $1B\n2. Anthropic's grey market leakage is $50-200M annually\n3. Anthropic's grey market commands 10-20% of official price (vs OpenAI's 3%)\n4. Anthropic has 2-3x better security effectiveness than OpenAI\n5. Anthropic uses Cloudflare Turnstile for bot detection\n6. Anthropic has sent C&D letters to gpt4free maintainers\n7. Anthropic could charge 15-25% enterprise security premium\n8. Anthropic is less aggressive in legal enforcement than OpenAI\n\nSearch for: Anthropic revenue 2024 2025, Anthropic valuation, Anthropic funding, Anthropic security measures, Anthropic API abuse prevention, Anthropic vs OpenAI security comparison. Check financial journalism, Anthropic blog, security research.",
+          "system_prompt": "You are a financial and security analyst. Verify Anthropic-specific claims with published sources. Distinguish between confirmed data and estimates. Provide exact source URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_historical_precedents",
+          "prompt": "VALIDATION TASK: Verify historical market precedent claims used as analogies.\n\nClaims to validate:\n1. Cloud storage price declined 99.3% from 2008-2023 with 40x volume expansion and 30x revenue growth\n2. Bandwidth price declined 99.5% from 1995-2020 with 150,000x volume expansion and 30x revenue growth\n3. Music streaming price declined 99.6% from 2000-2020 with 333x volume expansion but -16% revenue (shift to subscription)\n4. Music industry lost 16 years of growth and $8B in revenue during piracy era\n5. Music industry eventually gained 500M+ paying subscribers\n6. Napster launched in 1999\n7. RIAA lawsuits ran 2000-2005\n8. Pirate Bay peak was 2005-2008\n9. Spotify launched in 2008\n10. Music industry revenue recovered by 2015\n11. Microsoft tolerated Windows piracy in China, converting 5-10% of pirates to paying customers\n12. Pharmaceutical companies that accepted 50% price cuts in developing countries retained market share\n\nSearch for: cloud storage price history, bandwidth cost decline history, music industry revenue history RIAA data, Napster timeline, Spotify launch date, music piracy economic impact, Microsoft piracy China strategy, pharmaceutical parallel import pricing. Check RIAA annual reports, Cisco bandwidth studies, cloud pricing archives, published economic research.",
+          "system_prompt": "You are an economic historian. Verify all historical precedent claims with published data. Use primary sources: RIAA reports, ITU bandwidth data, cloud provider pricing archives, published economic research. Provide specific data points and source URLs. Flag claims that oversimplify complex historical dynamics.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_investment_thesis",
+          "prompt": "VALIDATION TASK: Verify investment and valuation claims.\n\nClaims to validate:\n1. $200-240B of OpenAI's valuation depends on pricing power that 'doesn't exist'\n2. OpenAI valuation scenarios: $300B (current path 10%), $120-180B (gradual erosion 50%), $60-100B (pricing reset 30%), $20-40B (commoditization 10%)\n3. The Uber analogy: subsidized rides below cost parallels subsidized API access via stolen credentials\n4. The key difference from Uber: AI API subsidies are structural (true marginal cost is low), Uber's were temporary\n5. Short opportunities: OpenAI private secondary, Anthropic private secondary, AI infrastructure companies\n6. Long opportunities: residential proxy networks (BrightData, Oxylabs), detection tools, alternative pricing (Together AI, Fireworks, Groq)\n7. The 'AWS of AI' opportunity is $50-100B at 5-10x revenue\n8. Revenue per token collapses 10x but TAM expands 100-1000x for net 5-30x growth\n\nSearch for: OpenAI valuation analysis, AI API market projections, AI pricing power analysis, Together AI funding/valuation, Fireworks AI funding, Groq funding, BrightData revenue, residential proxy market size, AI market TAM estimates. Check a16z, Sequoia, venture capital research reports.",
+          "system_prompt": "You are an investment analyst. Verify financial projections and valuation claims. Most forward-looking projections are inherently unverifiable — clearly distinguish between data-backed analysis and speculation. Check for published analyst reports, venture capital research, and market sizing studies. Provide sources.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_geopolitical",
+          "prompt": "VALIDATION TASK: Verify geopolitical and national security claims.\n\nClaims to validate:\n1. US restricts hardware (chips) to slow Chinese AI via export controls\n2. Grey market provides Chinese developers with direct, near-free access to advanced US AI models\n3. The grey market represents a $35-95B/year implicit technology transfer to Chinese AI labs\n4. Chinese military-linked AI research (PLA, CASIC, CETC) has documented access to US models through proxies\n5. No criminal prosecutions have occurred against proxy operators\n6. Chinese operators are protected by jurisdictional barriers\n7. The Chinese government tolerates the market as it supports national AI strategy\n8. Before Q4 2027, OFAC will sanction specific proxy operators\n9. Before Q3 2027, a jailbroken proxy will cause a real-world incident leading to Congressional hearings\n10. The US will respond with a National Security Memorandum mandating 'Verified API Access'\n\nSearch for: US AI chip export controls China, CHIPS Act, AI export controls, Chinese military AI access, PLA AI research, CASIC AI programs, CFAA AI cases, DOJ AI enforcement, AI proxy criminal cases, OFAC AI sanctions. Check DOJ press releases, BIS Entity List, CSIS reports, think tank publications on AI geopolitics.",
+          "system_prompt": "You are a geopolitical analyst specializing in AI policy. Verify policy and national security claims with official government documents, think tank reports, and credible journalism. Distinguish between documented facts (export controls exist), documented concerns (think tank reports), and speculative predictions. Provide specific source URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_enterprise_compliance",
+          "prompt": "VALIDATION TASK: Verify enterprise and compliance claims.\n\nClaims to validate:\n1. Using grey market proxies violates SOC 2 because data processed without security guarantees\n2. Using grey market proxies violates ISO 27001 because no information security management\n3. Using grey market proxies violates GDPR because no DPA (Data Processing Agreement)\n4. Using grey market proxies violates HIPAA because no BAA (Business Associate Agreement)\n5. Using grey market proxies violates PCI-DSS because no data security controls\n6. Shadow AI detection is a $3-5B TAM by 2027\n7. Compliance & auditing tools for AI are a $2-4B TAM by 2027\n8. Netskope and Zscaler are adjacent to shadow AI detection\n9. Vanta and Drata are adjacent to AI compliance tools\n\nSearch for: SOC 2 AI requirements, ISO 27001 AI processing, GDPR AI data processing requirements, HIPAA AI compliance, PCI-DSS AI requirements, shadow AI enterprise market, AI governance tools market size, Netskope AI features, Zscaler AI features, Vanta AI compliance, Drata AI features. Check compliance framework official documents, Gartner/Forrester market reports.",
+          "system_prompt": "You are a compliance and governance analyst. Verify compliance violation claims against actual framework requirements. Check the actual SOC 2 Trust Services Criteria, ISO 27001 controls, GDPR articles, HIPAA rules, and PCI-DSS requirements. For market size claims, check analyst reports. Provide specific regulatory references and source URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_competitive_dynamics",
+          "prompt": "VALIDATION TASK: Verify competitive dynamics claims.\n\nClaims to validate:\n1. Grey market acts as developer lock-in for OpenAI API format\n2. Switching costs for AI APIs are near-zero (one line of code to change providers)\n3. Grey market suppresses price-driven switching to Claude, Gemini, or open-source\n4. Grey market destroys economic incentive for self-hosting open-source models\n5. GPT-4 at $0.15/M (grey market) vs Llama-3 at $0.40/M (self-hosted) — price comparison\n6. OpenAI API format has become de facto standard\n7. 60% of grey market users eventually migrate to open-source for production\n8. Grey market is a funnel, not a destination — experimentation → prototyping → migration trigger → open-source evaluation → production\n9. Cloud providers (Azure, AWS, GCP) are 'silent enablers' paid for compute consumed by grey market\n10. No single party has strong incentive to shut market down completely\n\nSearch for: OpenAI API compatibility, AI API switching costs, AI API standardization, Llama 3 self-hosting costs, open-source LLM adoption rates, developer surveys on AI API usage, cloud provider AI compute revenue. Check developer surveys (Stack Overflow, GitHub), AI industry reports, cloud provider earnings calls.",
+          "system_prompt": "You are a competitive strategy analyst. Verify competitive dynamics claims with market data, developer surveys, and industry analysis. Distinguish between well-established market dynamics and speculative competitive theories. Provide sources.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "You have received validation results from 7 agents checking financial data, historical precedents, investment claims, geopolitical assertions, compliance requirements, and competitive dynamics. Create a MASTER VALIDATION TABLE with columns: Claim | Status | Evidence Quality | Source URLs | Notes. Calculate credibility score for business/financial section (0-100%). Highlight the most and least credible claims. Flag any claims presented as fact that are actually predictions or estimates."
+    },
+    {
+      "phase": 4,
+      "name": "Cross-Validation & Contradiction Analysis",
+      "tasks": [
+        {
+          "task_id": "p4_contradictions",
+          "prompt": "CRITICAL TASK: Identify ALL internal contradictions in the AI API grey market report.\n\nKnown contradictions to verify:\n1. Market size: Phase 1 says $150-300M/year vs Phase 5 says $2-5B/year — 10-17x discrepancy\n2. Proxy operators: Phase 1 says 8,000-12,000 vs Phase 5 says 300-500 — 16-40x discrepancy\n3. Traffic share: Phase 1 says 95-99% of API traffic vs Phase 5 says 20-30% — massive discrepancy\n4. Token volume: Phase 1 says 5-15 trillion tokens daily, 50-100x legitimate traffic vs Phase 5 shows much more conservative estimates\n5. Operator margins: Phase 1 says 6,000-18,000% margins vs Phase 5 says subscription sharing has negative margins\n6. Revenue leakage: Phase 1 says $15-150M from OpenAI vs Phase 2 says $1.5-6B from OpenAI\n\nFor each contradiction, determine:\n- Which estimate is more likely correct and why\n- Whether the contradiction undermines the report's credibility\n- What the actual evidence supports\n\nAlso search for any OTHER contradictions not listed above by comparing all numerical claims across the phases.",
+          "system_prompt": "You are a quality assurance analyst for intelligence reports. Your job is to find every internal contradiction and inconsistency. Be ruthless and thorough. For each contradiction, assess which figure is more defensible and why. This is critical for the report's credibility.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_source_quality",
+          "prompt": "CRITICAL TASK: Assess the overall source quality and methodology of the AI API grey market report.\n\nAnalyze:\n1. What percentage of claims are backed by primary sources (official pricing pages, SEC filings, published papers)?\n2. What percentage rely on secondary sources (news articles, analyst reports)?\n3. What percentage are based on anecdotal evidence (Reddit posts, Telegram screenshots, individual reports)?\n4. What percentage are extrapolations or estimates with no cited source?\n5. What percentage are predictions presented as facts?\n\nAlso assess:\n- Does the report clearly distinguish between confirmed facts and estimates?\n- Does it acknowledge uncertainty appropriately?\n- Are confidence levels assigned to claims, and are they reasonable?\n- Does the report show selection bias (cherry-picking evidence that supports its thesis)?\n- Are alternative explanations considered?\n\nBased on Phase 5's own admitted confidence levels: the report itself rates many key claims as 'Very Low' or 'Low' confidence. How does this affect the overall report credibility?",
+          "system_prompt": "You are a research methodology expert. Assess the evidential rigor of the intelligence report. Be critical but fair. Grade the report's methodology on a scale of A-F for: source diversity, evidence quality, uncertainty acknowledgment, internal consistency, and balanced analysis.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_bias_check",
+          "prompt": "CRITICAL TASK: Check for systematic biases in the AI API grey market report.\n\nAnalyze for the following biases:\n1. SENSATIONALISM BIAS: Does the report use alarming language to overstate the grey market's impact? (e.g., 'largest infrastructure failure in startup history', '$35-95B technology transfer')\n2. CONFIRMATION BIAS: Does the report only present evidence supporting the thesis that the grey market is large and significant?\n3. ANCHORING BIAS: Are extreme numbers used as anchors that make moderate estimates seem reasonable?\n4. AVAILABILITY BIAS: Does the report overweight easily-found evidence (Reddit posts, Telegram channels) while underweighting hard-to-find contradicting evidence?\n5. NARRATIVE BIAS: Is the Napster/music piracy parallel overfitted? What aspects of AI APIs DON'T match the music piracy story?\n6. SURVIVORSHIP BIAS: Does the report only look at successful proxy operations, ignoring the many that failed quickly?\n7. GEOGRAPHIC BIAS: Is the report overly focused on China and underrepresenting other markets?\n\nFor each bias found, provide specific examples from the report and assess severity (LOW/MEDIUM/HIGH).",
+          "system_prompt": "You are a cognitive bias analyst. Examine the report for systematic analytical biases. Be thorough and specific — quote exact claims that demonstrate bias. Rate each bias on severity. This analysis is essential for the report's credibility assessment.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_alternative_explanations",
+          "prompt": "CRITICAL TASK: Develop alternative explanations for the grey market phenomenon that challenge the report's thesis.\n\nThe report's core thesis: 'The grey market is a price discovery mechanism revealing that AI inference should cost $0.20-0.50/M tokens. Pricing will collapse to this level by 2028.'\n\nDevelop and evaluate these counter-arguments:\n1. PREMIUM PRICING IS SUSTAINABLE: AI models are not commodities — they have significant differentiation (safety, reliability, ecosystem). Premium pricing may hold like Apple hardware.\n2. THE GREY MARKET IS SMALLER THAN CLAIMED: The 20-30% traffic figure is from a single anonymous source. Actual grey market could be <5%.\n3. ENFORCEMENT CAN WIN: Unlike music piracy, AI companies control the servers. They can implement hardware-level attestation, making proxying technically impossible.\n4. VOLUME EXPANSION WON'T COMPENSATE: Price drops may not drive 100-1000x volume because demand for AI inference may be more inelastic than assumed.\n5. OPEN-SOURCE WON'T MATCH: The gap between proprietary and open-source may widen, not narrow, as frontier models require increasingly massive compute.\n6. THE ANALOGY IS WRONG: Music piracy involved copying a finished product. AI inference is a service requiring ongoing compute. The economics are fundamentally different.\n\nFor each counter-argument, rate its strength (WEAK/MODERATE/STRONG) and provide supporting evidence.",
+          "system_prompt": "You are a contrarian analyst. Your job is to challenge the report's conclusions with the strongest possible counter-arguments. Rate each counter-argument fairly. The best analysis considers both sides. Provide evidence for counter-arguments where available.",
+          "temperature": 0.4,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_prediction_track_record",
+          "prompt": "VALIDATION TASK: Check whether any of the report's predictions have already been confirmed or falsified (the report appears to have been originally researched around Q2-Q4 2024, and it's now May 2026).\n\nPredictions to check against reality:\n1. 'By Q2 2027, official cost for GPT-4-class inference will fall below $0.50/M' — Has pricing already dropped significantly by May 2026?\n2. 'OpenAI introduces GPT-4o Lite at $1.00/M tokens by 2025' — Did this happen?\n3. 'Google Gemini Pro drops to $0.50/M tokens by 2026' — Current Gemini pricing?\n4. 'All major players converge at $0.20-0.50/M by 2027' — Trend direction?\n5. 'Open-source models will match GPT-4 Turbo on 80% of benchmarks by Q4 2027' — Current state of Llama, Qwen, Mistral vs GPT-4?\n6. 'Agent Proxy SDKs used by >50% of agent developers by Q3 2027' — Any evidence?\n7. 'Grey market shifts to premium/unreleased model access' — Happening?\n8. Has OpenAI introduced any 'developer tier' pricing?\n9. Have there been any major proxy breaches or national security incidents?\n10. Have any OFAC sanctions been issued against proxy operators?\n\nSearch for the LATEST pricing from OpenAI, Anthropic, Google, and major open-source model benchmarks as of early-mid 2026.",
+          "system_prompt": "You are a forecast analyst. Check predictions against current reality (May 2026). For each prediction, determine if it's ON TRACK, PARTIALLY CONFIRMED, WRONG, or TOO EARLY TO TELL. Use the latest available data. This is the most valuable validation — it tests the report's analytical framework against reality.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_tam_validation",
+          "prompt": "VALIDATION TASK: Verify the business opportunity TAM (Total Addressable Market) estimates.\n\nClaims to validate:\n1. Legitimate Low-Cost API Provider: $50-100B TAM by 2027\n2. Anti-Fraud & Detection Tools: $2-5B TAM by 2027\n3. Shadow AI Detection (Enterprise): $3-5B TAM by 2027\n4. Cost Optimization Platform: $1-2B TAM by 2027\n5. Compliance & Auditing Tools: $2-4B TAM by 2027\n6. Total AI API market: $30-50B by 2028\n7. Total AI API market: $8-12B in 2024\n8. Volume expansion of 100-1000x by 2028\n9. Daily tokens increase from 150-300B to 15-300T\n10. The 'AWS of AI' opportunity at $50-100B valuation\n\nSearch for: AI market size reports, Gartner AI market forecast, IDC AI spending forecast, AI API market size, AI security tools market, AI governance market, cloud API market comparisons. Check Gartner, IDC, Forrester, Grand View Research, Markets and Markets for AI market sizing.",
+          "system_prompt": "You are a market research analyst. Verify TAM estimates against published market research from Gartner, IDC, Forrester, and other analysts. Note that market size estimates vary widely between sources — provide ranges from multiple sources. Flag any estimates that seem significantly inflated or deflated compared to analyst consensus.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_custom_silicon",
+          "prompt": "VALIDATION TASK: Verify custom silicon and infrastructure cost claims.\n\nClaims to validate:\n1. Custom AI chips (Google TPU v6, AWS Trainium 3, Microsoft Maia) will reduce inference costs by 10x by 2027\n2. Current compute cost: $0.50-1.00/M tokens\n3. Projected 2028 compute cost: $0.05-0.10/M tokens\n4. Current energy cost: $0.05-0.10/M tokens\n5. Projected 2028 energy cost: $0.01-0.02/M tokens\n6. R&D amortization drops from $0.50-1.00/M to $0.10-0.20/M by 2028\n7. Total marginal cost drops from $1.05-2.10/M to $0.16-0.32/M by 2028\n8. Google TPU v6 exists or is planned\n9. AWS Trainium 3 exists or is planned\n10. Microsoft Maia exists or is planned\n\nSearch for: Google TPU v6 announcement, AWS Trainium 3 specs, Microsoft Maia chip, AI inference cost analysis, AI compute cost trends, custom AI silicon roadmap, NVIDIA H100 vs custom chip cost comparison. Check Google Cloud blog, AWS announcements, Microsoft Azure blog, semiconductor industry reports.",
+          "system_prompt": "You are a semiconductor and infrastructure analyst. Verify chip roadmap and cost projection claims with official announcements and industry analysis. Distinguish between announced products, rumored products, and speculative projections. Provide specific source URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "You have received results from 7 cross-validation agents examining contradictions, source quality, biases, alternative explanations, prediction accuracy, TAM estimates, and silicon claims. Produce a CREDIBILITY ASSESSMENT with:\n1. OVERALL CREDIBILITY SCORE (0-100%) with justification\n2. List of CONFIRMED claims (high confidence, strong sources)\n3. List of UNVERIFIED claims (no primary sources found)\n4. List of CONTRADICTED claims (internal contradictions or external evidence contradicts)\n5. List of BIASES DETECTED with severity\n6. PREDICTION SCORECARD (which predictions are on track vs wrong)\n7. RECOMMENDATION: Should a reader trust this report's conclusions? What caveats are essential?"
+    },
+    {
+      "phase": 5,
+      "name": "Citation Compilation & Final Assessment",
+      "tasks": [
+        {
+          "task_id": "p5_pricing_citations",
+          "prompt": "CITATION COMPILATION: Compile a comprehensive, verified citation list for ALL pricing-related claims in the AI API grey market report.\n\nFor each citation provide:\n- Claim it supports\n- Source title\n- Source URL\n- Date accessed/published\n- Source type (PRIMARY: official pricing page, SEC filing / SECONDARY: news article, analyst report / TERTIARY: forum post, social media)\n- Reliability rating (HIGH/MEDIUM/LOW)\n\nCover ALL of these topics:\n1. Official API pricing (OpenAI, Anthropic, Google, DeepSeek)\n2. Grey market pricing evidence\n3. Regional subscription pricing\n4. Inference cost estimates\n5. Historical price trends\n6. Price projection methodologies\n\nUse prior phase results showing: Phase 1 validated official pricing, Phase 2 found grey market pricing evidence is mostly anecdotal, Phase 3 confirmed some financial data but flagged extrapolations. Build on those findings.\n\nSearch for the most authoritative sources for each claim. Prioritize primary sources over secondary.",
+          "system_prompt": "You are a research librarian compiling an authoritative citation database. Every citation must be real and verifiable. Never fabricate URLs. If you cannot find a citation for a claim, explicitly note 'NO CITATION FOUND'. Format citations in a consistent, professional manner.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_market_citations",
+          "prompt": "CITATION COMPILATION: Compile verified citations for ALL market size and user estimate claims.\n\nCover:\n1. AI API total market size ($8-12B in 2024, $30-50B by 2028)\n2. Grey market size estimates ($150M-$5B range)\n3. User count estimates (1-2.5M)\n4. Operator count estimates\n5. Startup dependency estimates\n6. Regional breakdown percentages\n7. Revenue leakage figures\n8. Traffic share estimates\n\nUse prior phase results showing: massive contradictions in market size (Phase 1 vs Phase 5), user estimates are largely unverifiable, regional percentages have no primary source.\n\nFor each claim, find the BEST available source. If no good source exists, say 'UNVERIFIABLE — no primary source found'.\n\nSearch for: AI market reports, Gartner/IDC AI forecasts, OpenAI revenue reports, developer survey data, emerging market AI startup surveys.",
+          "system_prompt": "You are a research librarian. Compile real, verifiable citations. Never fabricate URLs. Clearly note which claims have no supporting citation. Rate each source's reliability.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_technical_citations",
+          "prompt": "CITATION COMPILATION: Compile verified citations for ALL technical and security claims.\n\nCover:\n1. Proxy architecture (gpt4free repo, chatgpt-api repo, Pandora repo — exact GitHub URLs)\n2. Detection and evasion techniques (security research papers, blog posts)\n3. CAPTCHA farm pricing (actual service pricing pages)\n4. Residential proxy services (BrightData, Oxylabs — pricing/capability pages)\n5. Virtual phone number services (SMS-activate, 5sim — pricing)\n6. Model distillation research (arxiv papers from Qwen, Baichuan, Yi, InternLM)\n7. Data breach incidents (security advisories, news reports)\n8. Compliance framework requirements (SOC 2, ISO 27001, GDPR, HIPAA official docs)\n9. Countermeasure effectiveness studies\n10. Emerging threat documentation\n\nUse prior phase results showing: OSS tool stars need current verification, some breach claims are unverifiable, distillation papers exist but may not explicitly acknowledge grey market sourcing.\n\nProvide EXACT URLs for every citation. Check that GitHub repos still exist.",
+          "system_prompt": "You are a technical research librarian. Compile citations for technical claims. Verify GitHub repo URLs are current. Find arxiv paper IDs for academic claims. Locate actual pricing pages for services mentioned. Never fabricate URLs.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_geopolitical_citations",
+          "prompt": "CITATION COMPILATION: Compile verified citations for ALL geopolitical and policy claims.\n\nCover:\n1. US AI chip export controls (BIS rules, Entity List additions)\n2. Chinese AI lab capabilities and funding\n3. PLA/CASIC/CETC AI research programs\n4. CFAA and wire fraud statutes relevant to proxy operation\n5. DMCA takedowns against AI proxy projects\n6. Jurisdictional barriers to enforcement against Chinese operators\n7. Chinese government policy on AI development\n8. OFAC sanctions framework\n9. Congressional AI hearings and proposed legislation\n10. Think tank reports on AI geopolitics (CSIS, Brookings, RAND)\n\nSearch for: BIS AI export control rules, Entity List AI additions, CFAA 18 USC 1030, AI DMCA cases, Chinese AI policy documents, CSIS AI reports, RAND AI reports, Brookings AI policy papers.",
+          "system_prompt": "You are a policy research librarian. Compile citations for geopolitical claims using official government documents, think tank publications, and credible journalism. Provide specific regulatory references (CFR sections, executive orders). Never fabricate URLs.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_historical_citations",
+          "prompt": "CITATION COMPILATION: Compile verified citations for ALL historical parallel claims.\n\nCover:\n1. Napster launch date and timeline\n2. RIAA lawsuit campaign timeline and outcomes\n3. Music industry revenue data (1999-2015) — RIAA annual reports\n4. Spotify launch date and subscriber growth\n5. Music industry subscriber count (500M+ claim)\n6. Cloud storage price decline data (2008-2023)\n7. Bandwidth cost decline data (1995-2020)\n8. Microsoft Windows piracy in China strategy\n9. Pharmaceutical parallel import economics\n10. Piracy-era revenue loss figures ($8B claim)\n\nSearch for: RIAA year-end revenue statistics, IFPI Global Music Report, Napster Wikipedia/history, Spotify subscriber data, S3 pricing history, bandwidth cost Nielsen's law, Microsoft piracy China strategy articles.",
+          "system_prompt": "You are a historical research librarian. Compile citations for all historical claims. Use primary data sources (RIAA reports, IFPI reports) over news articles. Provide specific data points that confirm or contradict the claims. Never fabricate URLs.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_news_citations",
+          "prompt": "CITATION COMPILATION: Find ALL published news articles and investigative journalism about the AI API grey market.\n\nSearch for articles from:\n1. Reuters — AI proxy market, AI technology transfer China\n2. The Information — AI API grey market, proxy operators\n3. Wired — AI proxy operations, AI API abuse\n4. Bloomberg — AI API pricing, grey market\n5. TechCrunch — AI API startups, proxy services\n6. Rest of World — AI access emerging markets, grey market\n7. The Verge — AI API abuse, proxy services\n8. Ars Technica — AI API security, proxy techniques\n9. Vice/Motherboard — AI underground market\n10. Academic papers on AI API abuse or proxy markets\n\nFor each article found, provide:\n- Title\n- Author\n- Publication\n- Date\n- URL\n- Key claims that the article supports or contradicts from the report\n\nSearch for: 'AI API grey market', 'AI proxy market', 'ChatGPT proxy China', 'AI API abuse', 'GPT API resale', 'AI grey market pricing', 'AI model distillation grey market', 'unauthorized AI API access'.",
+          "system_prompt": "You are a news research librarian. Find all published journalism about the AI API grey market. Only cite articles that actually exist — never fabricate titles, authors, or URLs. If you're unsure whether an article exists, say so. Rate each source's credibility.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_final_assessment",
+          "prompt": "FINAL CREDIBILITY ASSESSMENT: Based on all prior validation phases, produce the definitive assessment of the AI API grey market intelligence report.\n\nUsing results from all prior phases, create:\n\n1. OVERALL CREDIBILITY SCORE (0-100%) with detailed justification\n\n2. CLAIM TIERS:\n- TIER 1 (HIGH CONFIDENCE — multiple primary sources): List all claims\n- TIER 2 (MEDIUM CONFIDENCE — secondary sources or single primary): List all claims  \n- TIER 3 (LOW CONFIDENCE — anecdotal or extrapolated): List all claims\n- TIER 4 (UNVERIFIABLE — no sources found): List all claims\n- TIER 5 (CONTRADICTED — internal or external contradictions): List all claims\n\n3. CRITICAL CONTRADICTIONS SUMMARY: The report contains major internal contradictions (market size differs by 10-17x, operator counts by 16-40x, traffic share by 3-5x). How does this affect credibility?\n\n4. STRONGEST CLAIMS: What is the report most right about?\n\n5. WEAKEST CLAIMS: What is the report most wrong about or most uncertain about?\n\n6. OVERALL VERDICT: Is this report trustworthy enough to act on? What should a reader believe and what should they discount?\n\n7. KEY CAVEATS: What must a reader understand before acting on this report's recommendations?",
+          "system_prompt": "You are the chief analyst producing a final credibility assessment. Be balanced, rigorous, and honest. Acknowledge what the report gets right while being clear about its limitations. The goal is to help readers make informed decisions about which conclusions to trust.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        }
+      ],
+      "synthesis_prompt": "You are producing the FINAL VALIDATION REPORT for an AI API grey market intelligence report. Using all 7 agents' citation compilations and the final credibility assessment, create:\n\n1. EXECUTIVE VALIDATION SUMMARY (2 paragraphs)\n2. OVERALL CREDIBILITY SCORE with letter grade\n3. COMPLETE CITATION DATABASE organized by topic (Pricing, Market Size, Technical, Geopolitical, Historical, News/Journalism) — include ALL verified URLs\n4. CONTRADICTION REGISTER — every internal inconsistency found\n5. CLAIM CONFIDENCE TIERS (Tier 1-5 as defined above)\n6. PREDICTION SCORECARD (which predictions are on track as of May 2026)\n7. BIAS ASSESSMENT (which biases were detected and their severity)\n8. FINAL VERDICT: What should a reader trust and what should they discount?\n\nThis is the definitive document that determines whether the original report's conclusions are actionable."
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "ht-01",
+          "prompt": "Write a complete, self-contained HTML page for heytensor.com titled 'Distributed Training Cost Calculator — Estimate Multi-GPU Training Expenses'. Build an interactive calculator where users: 1) Select GPU type (A100 40GB, A100 80GB, H100, L4, T4, V100) with $/hr rates, 2) Enter number of GPUs (1-512), 3) Enter estimated training hours, 4) Select cloud provider (AWS, GCP, Azure) with provider-specific multipliers, 5) Toggle spot vs on-demand pricing. Calculate and display: total cost, cost per GPU-hour, potential spot savings (60-70% discount), and a cost breakdown table. Include a visual bar chart comparing providers. Use dark theme (#0f172a background), modern CSS, mobile-responsive. NO external dependencies — everything inline. Include SEO meta tags, Open Graph tags, JSON-LD FAQ schema with 3 questions about distributed training costs. Add a canonical URL: https://heytensor.com/tools/distributed-training-cost-calculator. Footer: '© 2025 heytensor.com — Free ML Engineering Tools'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ht-02",
+          "prompt": "Write a complete, self-contained HTML page for heytensor.com titled 'Model Quantization Size Estimator — Calculate Compressed Model Size'. Build an interactive tool where users: 1) Enter model parameter count (in millions or billions), 2) Select original precision (FP32, FP16, BF16), 3) Select target quantization (INT8, INT4, GPTQ-4bit, AWQ-4bit, GGUF Q4_K_M, GGUF Q5_K_M, GGUF Q8_0), 4) Click Calculate. Show: original model size, quantized size, compression ratio, memory savings %, and a comparison table of all quantization formats. Formula: size = params × bytes_per_param. Include visual size comparison bars. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta tags, JSON-LD FAQ schema (3 Qs about model quantization). Canonical: https://heytensor.com/tools/model-quantization-estimator. Footer: '© 2025 heytensor.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ht-03",
+          "prompt": "Write a complete, self-contained HTML page for heytensor.com titled 'Data Loader Throughput Calculator — Optimize PyTorch DataLoader'. Build an interactive calculator where users: 1) Enter dataset size (number of samples), 2) Enter batch size, 3) Enter number of workers (num_workers), 4) Enter average sample load time (ms), 5) Toggle pin_memory and persistent_workers. Calculate: total batches, theoretical throughput (samples/sec), estimated epoch time, GPU idle time estimate, recommended num_workers (2× CPU cores). Show PyTorch DataLoader code snippet with optimal settings. Dark theme, mobile-responsive, inline CSS/JS. SEO meta tags, JSON-LD FAQ schema. Canonical: https://heytensor.com/tools/dataloader-throughput-calculator. Footer: '© 2025 heytensor.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ht-04",
+          "prompt": "Write a complete, self-contained HTML page for heytensor.com titled 'Mixed Precision Training Estimator — FP16/BF16 Memory & Speed Calculator'. Build an interactive tool where users: 1) Enter model parameter count, 2) Enter batch size, 3) Enter sequence length (for transformers), 4) Select precision mode (FP32 baseline, FP16 mixed, BF16 mixed, TF32), 5) Select optimizer (SGD, Adam, AdamW). Calculate: model memory, optimizer states memory, activation memory, gradient memory, total VRAM needed, estimated speedup vs FP32, memory savings %. Show a comparison table across all precision modes. Include PyTorch amp.autocast code snippet. Dark theme, mobile-responsive, inline CSS/JS. SEO meta tags, JSON-LD FAQ schema. Canonical: https://heytensor.com/tools/mixed-precision-estimator. Footer: '© 2025 heytensor.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ht-05",
+          "prompt": "Write a complete, self-contained HTML page for heytensor.com titled 'Weight Decay Scheduler Calculator — Optimize Regularization'. Build an interactive tool where users: 1) Enter initial weight decay (e.g., 0.01), 2) Enter total training steps, 3) Enter warmup steps, 4) Select schedule type (constant, linear decay, cosine decay, step decay), 5) For step decay: enter decay factor and step interval. Render an interactive chart (using canvas) showing weight decay value over training steps. Display: final weight decay value, effective average weight decay, recommended ranges by model type (CNN: 1e-4, Transformer: 0.01-0.1, fine-tuning: 0.01). Include PyTorch code snippet for implementing the schedule. Dark theme, mobile-responsive, inline CSS/JS. SEO meta tags, JSON-LD FAQ schema. Canonical: https://heytensor.com/tools/weight-decay-scheduler. Footer: '© 2025 heytensor.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kl-01",
+          "prompt": "Write a complete, self-contained HTML page for kickllm.com titled 'RAG Chunk Size Optimizer — Find the Best Chunk Size for Your Data'. Build an interactive tool where users: 1) Paste sample text or enter average document length, 2) Select embedding model (text-embedding-3-small: 1536d, text-embedding-3-large: 3072d, ada-002: 1536d, cohere-embed-v3: 1024d), 3) Adjust chunk size slider (100-2000 tokens), 4) Adjust overlap slider (0-50%), 5) Enter total document count. Calculate: total chunks generated, estimated embedding cost, storage size, average retrieval relevance score (simulated), and recommended chunk sizes for different use cases (Q&A: 256-512, summarization: 1000-2000, code: 500-1000). Show a visual preview of how text gets chunked. Dark theme (#0f172a), mobile-responsive. SEO meta, JSON-LD FAQ. Canonical: https://kickllm.com/tools/rag-chunk-optimizer. Footer: '© 2025 kickllm.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kl-02",
+          "prompt": "Write a complete, self-contained HTML page for kickllm.com titled 'Embedding Dimension Calculator — Compare Vector Sizes & Costs'. Build an interactive tool where users: 1) Select embedding model from dropdown (OpenAI ada-002, text-embedding-3-small/large with dimension selection, Cohere v3, BGE, E5), 2) Enter number of documents, 3) Enter average tokens per document. Calculate: total vectors, storage size in MB/GB (float32 vs float16), estimated Pinecone/Weaviate storage cost, embedding API cost, and query latency estimates. Show comparison table across all models. Include a visual bar chart of dimension sizes. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://kickllm.com/tools/embedding-dimension-calculator. Footer: '© 2025 kickllm.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kl-03",
+          "prompt": "Write a complete, self-contained HTML page for kickllm.com titled 'Prompt Template Builder — Create Structured Prompts Visually'. Build an interactive builder where users: 1) Select template type (system+user, few-shot, chain-of-thought, ReAct, structured output), 2) Add/remove/reorder sections with drag handles (simulated with up/down buttons), 3) Each section has: role selector (system/user/assistant), content textarea, optional name field, 4) Toggle XML tags wrapping, 5) Add few-shot examples (input/output pairs). Generate: formatted prompt text, token count estimate, copy-to-clipboard button, and export as JSON (messages array format). Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://kickllm.com/tools/prompt-template-builder. Footer: '© 2025 kickllm.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kl-04",
+          "prompt": "Write a complete, self-contained HTML page for kickllm.com titled 'Function Calling Schema Generator — Build Tool Definitions for LLMs'. Build an interactive tool where users: 1) Enter function name, description, 2) Add parameters with: name, type (string, number, integer, boolean, array, object, enum), description, required toggle, 3) For enum type: add allowed values, 4) For array: select items type, 5) Preview generated JSON schema in real-time. Generate: OpenAI function calling format, Anthropic tool use format, and generic JSON Schema. Include copy buttons for each format. Validate schema in real-time with error highlighting. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://kickllm.com/tools/function-calling-schema-generator. Footer: '© 2025 kickllm.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kl-05",
+          "prompt": "Write a complete, self-contained HTML page for kickllm.com titled 'LLM Throughput Calculator — Tokens Per Second & Latency Estimator'. Build an interactive calculator where users: 1) Select model size (7B, 13B, 34B, 70B, 405B, or custom parameter count), 2) Select hardware (A100 40GB, A100 80GB, H100, L4, T4, M1 Max, M2 Ultra, M3 Max), 3) Select quantization (FP16, INT8, INT4), 4) Enter batch size (1-128), 5) Enter average output tokens (1-4096). Calculate: estimated tokens/second, time to first token (TTFT), time per output token (TPOT), total generation time, requests/minute capacity. Show comparison across hardware. Formula based on memory bandwidth and compute FLOPS. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://kickllm.com/tools/llm-throughput-calculator. Footer: '© 2025 kickllm.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "gx-01",
+          "prompt": "Write a complete, self-contained HTML page for gpt0x.com titled 'AI Inference Cost Calculator — Compare Cloud GPU Pricing'. Build an interactive calculator where users: 1) Enter requests per day, 2) Enter average input tokens per request, 3) Enter average output tokens per request, 4) Select model category (GPT-4 class, GPT-3.5 class, Claude Opus class, Claude Sonnet class, open-source self-hosted). For API models: calculate monthly cost using per-token pricing. For self-hosted: select GPU type and calculate hourly cost vs throughput. Show comparison table with all options. Calculate: cost per request, daily cost, monthly cost, cost per 1M tokens. Include a break-even analysis (API vs self-hosted). Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://gpt0x.com/tools/ai-inference-cost-calculator. Footer: '© 2025 gpt0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "gx-02",
+          "prompt": "Write a complete, self-contained HTML page for gpt0x.com titled 'Model Size Converter — Parameters to GB Calculator'. Build an interactive converter where users: 1) Enter model parameters (M or B), 2) Select precision (FP32 4 bytes, FP16/BF16 2 bytes, INT8 1 byte, INT4 0.5 bytes), 3) Toggle 'include optimizer states' (Adam: 12 bytes/param, SGD: 8 bytes/param), 4) Toggle 'include gradients' (+bytes equal to model). Instantly calculate: model weight size, optimizer memory, gradient memory, total training memory, minimum GPU VRAM needed, recommended GPU. Show quick-reference table for common model sizes (1B, 3B, 7B, 13B, 34B, 70B, 405B). Include unit conversion (bytes, KB, MB, GB, TB). Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://gpt0x.com/tools/model-size-converter. Footer: '© 2025 gpt0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "gx-03",
+          "prompt": "Write a complete, self-contained HTML page for gpt0x.com titled 'GPU VRAM Requirements Calculator — Will Your Model Fit?'. Build an interactive calculator where users: 1) Enter model parameter count (B), 2) Select precision (FP32, FP16, INT8, INT4), 3) Enter batch size, 4) Enter sequence length, 5) Select framework (PyTorch, TensorFlow, vLLM, llama.cpp). Calculate: model weights VRAM, KV cache VRAM (for transformers), activation VRAM, framework overhead, total VRAM needed. Compare against GPU options: T4(16GB), L4(24GB), A10G(24GB), A100-40GB, A100-80GB, H100(80GB), RTX 3090(24GB), RTX 4090(24GB). Show green/yellow/red indicator for each GPU. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://gpt0x.com/tools/gpu-vram-calculator. Footer: '© 2025 gpt0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "gx-04",
+          "prompt": "Write a complete, self-contained HTML page for gpt0x.com titled 'AI Batch Processing Calculator — Optimize Bulk API Calls'. Build an interactive calculator where users: 1) Enter total items to process, 2) Enter tokens per item (input + output), 3) Select API provider and model, 4) Enter rate limit (requests/min), 5) Enter concurrent connections (1-100). Calculate: total tokens, total API cost, estimated processing time, optimal batch size, requests needed. Show a timeline visualization of batch progress. Include strategies section: chunking, retry logic, exponential backoff formula. Add cost optimization tips (batch API discounts, caching). Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://gpt0x.com/tools/ai-batch-calculator. Footer: '© 2025 gpt0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "gx-05",
+          "prompt": "Write a complete, self-contained HTML page for gpt0x.com titled 'Temperature & Top-P Playground — Visualize LLM Sampling Parameters'. Build an interactive playground where users: 1) Adjust temperature slider (0.0-2.0), 2) Adjust top_p slider (0.0-1.0), 3) Adjust top_k slider (1-100), 4) See a real-time probability distribution visualization (canvas bar chart) showing how tokens get sampled, 5) Show example output characteristics for each setting (creative, balanced, deterministic). Include preset buttons: 'Creative Writing' (t=0.9, p=0.95), 'Code Generation' (t=0.2, p=0.1), 'Factual Q&A' (t=0.0, p=1.0), 'Brainstorming' (t=1.2, p=0.95). Visualize the softmax distribution with temperature scaling. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://gpt0x.com/tools/temperature-playground. Footer: '© 2025 gpt0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ck-01",
+          "prompt": "Write a complete, self-contained HTML page for claudkit.com titled 'Claude Prompt Caching Calculator — Estimate Cache Savings'. Build an interactive calculator where users: 1) Enter system prompt token count, 2) Enter number of conversation turns, 3) Enter average user message tokens, 4) Enter average assistant response tokens, 5) Select model (Claude Opus, Sonnet, Haiku). Calculate: total tokens without caching, total tokens with caching (system prompt cached after first call), cost without caching, cost with caching, savings amount and percentage. Show cost breakdown per turn. Include code example for enabling prompt caching. Explain cache TTL (5 min) and minimum cacheable size (1024 tokens). Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://claudkit.com/tools/prompt-caching-calculator. Footer: '© 2025 claudkit.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ck-02",
+          "prompt": "Write a complete, self-contained HTML page for claudkit.com titled 'Claude Batch API Cost Estimator — Calculate Bulk Processing Savings'. Build an interactive calculator where users: 1) Enter number of requests, 2) Enter average input tokens per request, 3) Enter average output tokens per request, 4) Select model (Claude Opus, Sonnet, Haiku), 5) Toggle batch mode (50% discount on input tokens). Calculate: standard API cost, batch API cost, savings, cost per request, processing time estimate (batch has 24hr SLA). Show comparison table. Include code example for Claude Batch API. Add break-even analysis: at what volume does batch become worthwhile. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://claudkit.com/tools/batch-api-cost-estimator. Footer: '© 2025 claudkit.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ck-03",
+          "prompt": "Write a complete, self-contained HTML page for claudkit.com titled 'Claude XML Tag Builder — Structure Prompts with XML Tags'. Build an interactive tool where users: 1) Select from common XML tag templates (instructions, context, examples, output_format, constraints, persona), 2) Add custom tags with name and content, 3) Nest tags with drag-to-reorder (simulated with up/down/indent buttons), 4) Preview the formatted XML prompt in real-time, 5) Copy to clipboard. Include best practices panel: when to use XML tags, naming conventions, common patterns (few-shot with <example>, role-play with <persona>). Show token count estimate. Generate both XML-wrapped and plain text versions. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://claudkit.com/tools/xml-tag-builder. Footer: '© 2025 claudkit.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ck-04",
+          "prompt": "Write a complete, self-contained HTML page for claudkit.com titled 'Claude Streaming Response Simulator — Test SSE Event Handling'. Build an interactive simulator where users: 1) Enter a sample response text, 2) Adjust streaming speed (tokens/second: 10-100), 3) Click Start to see text appear token-by-token with a typing cursor, 4) See raw SSE events in a side panel (event: content_block_delta, data: {type, delta}), 5) Toggle between text and JSON view. Include timing metrics: time to first token, tokens/sec, total time. Show code examples for handling Claude streaming in Python (anthropic SDK) and JavaScript (fetch + ReadableStream). Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://claudkit.com/tools/streaming-simulator. Footer: '© 2025 claudkit.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ck-05",
+          "prompt": "Write a complete, self-contained HTML page for claudkit.com titled 'Claude Token Budget Planner — Optimize Context Window Usage'. Build an interactive planner where users: 1) Select model and its context window (Claude Opus: 200K, Sonnet: 200K, Haiku: 200K), 2) Add budget sections: system prompt, few-shot examples, user context, retrieved documents (RAG), conversation history, reserved for output. Each section has a token count input. 3) Show a visual stacked bar showing context window usage with color-coded sections. 4) Show remaining tokens and warnings when >90% full. 5) Calculate cost per request. Include optimization tips: truncation strategies, summarization, sliding window. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://claudkit.com/tools/token-budget-planner. Footer: '© 2025 claudkit.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kf-01",
+          "prompt": "Write a complete, self-contained HTML page for kappafy.com titled 'API Rate Limit Calculator — Plan Request Budgets'. Build an interactive calculator where users: 1) Enter rate limit (requests per minute/second/hour), 2) Enter expected daily requests, 3) Enter peak multiplier (1x-10x), 4) Enter average response time (ms). Calculate: requests per second capacity, daily budget, time until limit hit at peak, recommended retry interval, exponential backoff schedule (attempt 1-5 with delays). Show a visual timeline of request distribution. Include code snippets for rate limiting in Python (time.sleep, token bucket) and JavaScript (setTimeout, queue). Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://kappafy.com/tools/rate-limit-calculator. Footer: '© 2025 kappafy.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kf-02",
+          "prompt": "Write a complete, self-contained HTML page for kappafy.com titled 'REST API Endpoint Builder — Design & Document Endpoints'. Build an interactive tool where users: 1) Select HTTP method (GET, POST, PUT, PATCH, DELETE), 2) Build URL path with segments (add path params like /users/:id), 3) Add query parameters (key, type, required, description), 4) Add request body fields (for POST/PUT/PATCH) with JSON schema types, 5) Define response schema (status code, body fields). Generate: OpenAPI 3.0 YAML snippet, curl command, fetch/axios JavaScript code, Python requests code. Preview formatted with syntax highlighting. Copy-to-clipboard for each format. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://kappafy.com/tools/rest-endpoint-builder. Footer: '© 2025 kappafy.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kf-03",
+          "prompt": "Write a complete, self-contained HTML page for kappafy.com titled 'HTTP Status Code Reference — Quick Lookup & Search'. Build an interactive reference tool: 1) Search/filter status codes by number or keyword, 2) Group by category (1xx Informational, 2xx Success, 3xx Redirection, 4xx Client Error, 5xx Server Error), 3) Each code shows: number, name, description, common use case, example response. Include ALL standard HTTP status codes (100-511). Add a 'Random Status Code' quiz mode: show description, user guesses the code. Collapsible categories with count badges. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://kappafy.com/tools/http-status-codes. Footer: '© 2025 kappafy.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kf-04",
+          "prompt": "Write a complete, self-contained HTML page for kappafy.com titled 'API Key Generator — Create Secure Random Keys & Tokens'. Build an interactive generator: 1) Select key format (hex, base64, base64url, alphanumeric, UUID v4), 2) Adjust length slider (16-128 characters), 3) Add optional prefix (e.g., 'sk_live_', 'pk_test_'), 4) Toggle: include uppercase, lowercase, numbers, special chars, 5) Generate multiple keys at once (1-10). For each generated key: show entropy bits, estimated brute-force time, copy button. Include best practices section: storage (hash, don't store plaintext), rotation schedule, scoping, prefix conventions. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://kappafy.com/tools/api-key-generator. Footer: '© 2025 kappafy.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kf-05",
+          "prompt": "Write a complete, self-contained HTML page for kappafy.com titled 'Request/Response Size Calculator — Estimate API Payload Sizes'. Build an interactive calculator where users: 1) Paste JSON payload or build one with a form (add fields: string with char count, number, boolean, array with item count, nested object), 2) See real-time size calculation in bytes/KB/MB, 3) Toggle compression (gzip ~70% reduction, brotli ~75% reduction, none), 4) Compare: JSON vs MessagePack vs Protobuf estimated sizes. Show bandwidth cost at scale: enter requests/day, calculate daily/monthly data transfer, estimated CDN cost. Include optimization tips: field name shortening, pagination, sparse fieldsets. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://kappafy.com/tools/payload-size-calculator. Footer: '© 2025 kappafy.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "cf-01",
+          "prompt": "Write a complete, self-contained HTML page for claudflow.com titled 'Agent Loop Cost Calculator — Estimate Multi-Turn Agent Expenses'. Build an interactive calculator where users: 1) Enter average tools/actions per loop iteration, 2) Enter average tokens per tool call (input + output), 3) Enter expected loop iterations (1-50), 4) Select model (Claude Opus, Sonnet, Haiku, GPT-4, GPT-4o-mini), 5) Enter system prompt size (tokens). Calculate: total tokens consumed across all iterations (accumulating context), total cost, cost per iteration (showing how cost increases as context grows), optimal iteration limit (where cost/value ratio degrades). Show a chart of cumulative cost over iterations. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://claudflow.com/tools/agent-loop-cost-calculator. Footer: '© 2025 claudflow.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "cf-02",
+          "prompt": "Write a complete, self-contained HTML page for claudflow.com titled 'Multi-Agent Pipeline Designer — Visual Workflow Builder'. Build an interactive designer where users: 1) Add agent nodes (name, role/description, model selection), 2) Connect agents with arrows showing data flow (sequential, parallel, conditional), 3) Define input/output schemas for each agent, 4) Set execution order. Render the pipeline as a visual flowchart using HTML/CSS (flexbox-based boxes with connecting lines). Generate: pipeline config JSON, estimated total cost per run, execution time estimate. Include preset templates: 'Research → Analyze → Summarize', 'Generate → Review → Refine', 'Extract → Transform → Load'. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://claudflow.com/tools/multi-agent-pipeline-designer. Footer: '© 2025 claudflow.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "cf-03",
+          "prompt": "Write a complete, self-contained HTML page for claudflow.com titled 'Prompt Chain Builder — Design Sequential Prompt Workflows'. Build an interactive tool where users: 1) Add chain steps (each with: name, prompt template with {{variable}} placeholders, model selection), 2) Define variables that pass between steps (output of step N → input of step N+1), 3) Add conditional branches (if output contains X, go to step Y), 4) Preview the chain execution flow. Generate: chain config JSON, total token estimate, cost estimate. Include example chains: 'Summarize → Translate → Format', 'Extract entities → Classify → Generate report'. Show execution preview with sample data. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://claudflow.com/tools/prompt-chain-builder. Footer: '© 2025 claudflow.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "cf-04",
+          "prompt": "Write a complete, self-contained HTML page for claudflow.com titled 'Tool Use Cost Estimator — Calculate Function Calling Overhead'. Build an interactive calculator where users: 1) Enter number of tools defined (1-50), 2) Enter average tool schema size (tokens, auto-estimated from parameter count), 3) Enter calls per conversation, 4) Enter average tool result size (tokens), 5) Select model. Calculate: tool definition overhead per request, total tool-related tokens, cost of tool definitions vs conversation content, percentage overhead. Show recommendations: when to use tool_choice=auto vs required, optimal number of tools, schema optimization tips (shorter descriptions save tokens). Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://claudflow.com/tools/tool-use-cost-estimator. Footer: '© 2025 claudflow.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "cf-05",
+          "prompt": "Write a complete, self-contained HTML page for claudflow.com titled 'Context Window Budget Planner — Allocate Tokens Wisely'. Build an interactive planner where users: 1) Select model context window (4K, 8K, 16K, 32K, 128K, 200K), 2) Allocate budget sections with sliders: system prompt, tools/functions, RAG context, conversation history, few-shot examples, output reservation. 3) Real-time pie chart showing allocation. 4) Warning indicators when any section is too large. 5) Auto-suggest optimal allocation based on use case presets (chatbot, RAG, code generation, data extraction). Calculate: cost per request at full context, cost savings from trimming. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://claudflow.com/tools/context-window-budget-planner. Footer: '© 2025 claudflow.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "lk-01",
+          "prompt": "Write a complete, self-contained HTML page for lockml.com titled 'Differential Privacy Budget Calculator — Epsilon & Delta Planner'. Build an interactive calculator where users: 1) Enter privacy budget epsilon (0.01-10), 2) Enter delta (1e-10 to 1e-3), 3) Enter number of queries/compositions, 4) Select composition theorem (basic, advanced, Rényi). Calculate: per-query epsilon, total privacy cost, privacy-utility tradeoff score, recommended noise scale (Laplace or Gaussian mechanism). Visualize: privacy budget depletion over queries, noise distribution curves at different epsilon values. Include explanation of what epsilon means intuitively. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://lockml.com/tools/differential-privacy-calculator. Footer: '© 2025 lockml.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "lk-02",
+          "prompt": "Write a complete, self-contained HTML page for lockml.com titled 'Data Anonymization Tool — K-Anonymity & L-Diversity Checker'. Build an interactive tool where users: 1) Paste CSV data or enter sample records (up to 20 rows), 2) Mark columns as: quasi-identifier, sensitive attribute, or insensitive, 3) Set k value for k-anonymity (2-100), 4) Set l value for l-diversity (2-10). Analyze: check if data meets k-anonymity, check l-diversity, identify violating groups, suggest generalizations (age ranges, zip code truncation). Show: violation count, anonymization score, re-identification risk percentage. Include techniques reference: generalization, suppression, perturbation. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://lockml.com/tools/data-anonymization-tool. Footer: '© 2025 lockml.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "lk-03",
+          "prompt": "Write a complete, self-contained HTML page for lockml.com titled 'Adversarial Perturbation Calculator — FGSM & PGD Attack Estimator'. Build an interactive tool where users: 1) Select attack type (FGSM, PGD, CW, DeepFool), 2) Enter epsilon (perturbation budget, 0.001-0.5), 3) Enter image dimensions (width × height × channels), 4) For PGD: enter number of steps and step size. Calculate: maximum pixel change, L2 and Linf norm bounds, perturbation visibility estimate (imperceptible <0.03, noticeable 0.03-0.1, visible >0.1), total modified parameters. Show a visual grid simulating perturbation on a pixel sample. Include defense recommendations for each attack type. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://lockml.com/tools/adversarial-perturbation-calculator. Footer: '© 2025 lockml.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "lk-04",
+          "prompt": "Write a complete, self-contained HTML page for lockml.com titled 'Federated Learning Round Estimator — Plan Distributed Training'. Build an interactive calculator where users: 1) Enter number of clients (2-10000), 2) Enter local dataset size per client, 3) Enter local epochs per round, 4) Enter total target rounds, 5) Enter communication bandwidth (Mbps), 6) Enter model size (MB). Calculate: total training time, communication overhead per round, bandwidth cost, convergence estimate (rounds to target accuracy), computation vs communication ratio. Compare strategies: FedAvg, FedProx, FedMA. Show timeline of federated rounds. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://lockml.com/tools/federated-learning-estimator. Footer: '© 2025 lockml.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "lk-05",
+          "prompt": "Write a complete, self-contained HTML page for lockml.com titled 'Model Watermark Generator — Embed & Detect Ownership Markers'. Build an interactive tool where users: 1) Enter a secret key string, 2) Select watermark method (weight perturbation, trigger-based, feature-based), 3) Enter model parameter count, 4) Enter watermark strength (1-10, tradeoff accuracy vs detectability). Generate: watermark hash (SHA-256 of key), number of parameters to modify, expected accuracy impact (estimated), detection threshold, watermark verification code snippet (Python). Include explanation of each method's pros/cons. Show robustness estimates against: fine-tuning, pruning, distillation. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://lockml.com/tools/model-watermark-generator. Footer: '© 2025 lockml.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "gn-01",
+          "prompt": "Write a complete, self-contained HTML page for gen8x.com titled 'Box Shadow Generator — Visual CSS Shadow Builder'. Build an interactive tool where users: 1) Adjust horizontal offset (-50 to 50px), 2) Adjust vertical offset (-50 to 50px), 3) Adjust blur radius (0-100px), 4) Adjust spread radius (-50 to 50px), 5) Pick shadow color with opacity, 6) Toggle inset shadow, 7) Add multiple shadow layers (up to 5). Show real-time preview on a card element. Generate CSS code with copy button. Include preset shadows: 'Material Design', 'Soft UI/Neumorphism', 'Sharp', 'Layered Depth', 'Neon Glow'. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://gen8x.com/tools/box-shadow-generator. Footer: '© 2025 gen8x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "gn-02",
+          "prompt": "Write a complete, self-contained HTML page for gen8x.com titled 'Border Radius Visualizer — Design Rounded Corners & Shapes'. Build an interactive tool where users: 1) Adjust each corner radius independently (top-left, top-right, bottom-right, bottom-left, 0-200px), 2) Toggle 'link all corners' for uniform radius, 3) Switch between px and % units, 4) Adjust element width and height (50-500px), 5) Pick background color. Show real-time preview of the shape. Generate CSS border-radius shorthand code with copy button. Include presets: 'Pill', 'Circle', 'Squircle', 'Leaf', 'Blob', 'Message Bubble'. Show the full 8-value syntax for complex shapes. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://gen8x.com/tools/border-radius-visualizer. Footer: '© 2025 gen8x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "gn-03",
+          "prompt": "Write a complete, self-contained HTML page for gen8x.com titled 'Flexbox Playground — Interactive CSS Flex Layout Builder'. Build an interactive tool where users: 1) Set container properties: flex-direction (row/column/row-reverse/column-reverse), justify-content (6 options), align-items (5 options), flex-wrap, gap, 2) Add/remove flex items (1-12), 3) Set per-item properties: flex-grow, flex-shrink, flex-basis, order, align-self. Show real-time visual preview with numbered colored boxes. Generate clean CSS code for container and items. Include challenge mode: 'Match this layout' with 5 puzzle layouts to solve. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://gen8x.com/tools/flexbox-playground. Footer: '© 2025 gen8x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "gn-04",
+          "prompt": "Write a complete, self-contained HTML page for gen8x.com titled 'CSS Animation Builder — Create Keyframe Animations Visually'. Build an interactive tool where users: 1) Add keyframe stops (0%, 25%, 50%, 75%, 100%), 2) At each keyframe: set transform (translateX/Y, rotate, scale), opacity, background-color, 3) Adjust timing: duration (0.1-10s), delay, iteration count (1-infinite), direction (normal/reverse/alternate), easing function (linear, ease, ease-in, ease-out, cubic-bezier with custom control points), 4) Preview animation in real-time on a box element, 5) Play/pause/reset controls. Generate @keyframes CSS code and animation shorthand property. Include presets: 'Bounce', 'Fade In', 'Slide', 'Spin', 'Pulse', 'Shake'. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://gen8x.com/tools/css-animation-builder. Footer: '© 2025 gen8x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "gn-05",
+          "prompt": "Write a complete, self-contained HTML page for gen8x.com titled 'SVG Path Builder — Draw & Edit Vector Paths Visually'. Build an interactive tool where users: 1) Click on a canvas to add path points, 2) Select path command type: M (move), L (line), C (cubic bezier), Q (quadratic bezier), A (arc), Z (close), 3) Drag control points for curves, 4) Adjust stroke width, color, fill color, 5) See SVG path d attribute update in real-time. Include: undo/redo, clear canvas, export SVG code, copy path d attribute. Show the SVG coordinate system with grid lines. Add preset shapes: star, heart, arrow, checkmark, speech bubble. Dark theme, mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://gen8x.com/tools/svg-path-builder. Footer: '© 2025 gen8x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "tigr_financials",
+          "prompt": "Deep dive on UP Fintech (TIGR) financials. This is a Chinese online brokerage. Verify every number from SEC 20-F filings.\n\n1. Revenue by year from 2019-2023 (exact, from 20-F). Break down by: commissions, interest income, other.\n2. Gross margin by year.\n3. Operating margin by year.\n4. Net income by year.\n5. Total registered users by year.\n6. Funded accounts by year.\n7. Client assets by year.\n8. Revenue per funded account (ARPU).\n9. Geographic revenue breakdown (Singapore, US, HK, China).\n10. Cash and equivalents, total debt, shares outstanding.\n11. Stock-based compensation as % of revenue.\n12. What is the annual share dilution rate? (Critical: >5% kills 1000x potential)\n13. Who are the main shareholders? Wu Tianhua (CEO) ownership %?\n14. Does TIGR use a VIE structure? What's the exact legal structure?\n15. What regulatory licenses does TIGR hold? (Singapore MAS, HK SFC, US SEC, etc.)",
+          "system_prompt": "You are a forensic financial analyst specializing in Chinese ADRs. Use SEC 20-F filings only. If you cannot verify a number, write UNVERIFIED. The VIE structure and dilution rate questions are CRITICAL — answer these precisely. Never fabricate data.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tigr_moat_risk",
+          "prompt": "Analyze UP Fintech (TIGR) competitive moat and risk factors.\n\n1. What is TIGR's competitive moat? (Switching costs? Network effects? Regulatory license?)\n2. Who are the direct competitors? (Futu/MOMO, Webull, Interactive Brokers, Moomoo)\n3. How does TIGR's take rate compare to competitors?\n4. What is the TAM for international Chinese retail brokerage?\n5. Singapore expansion — how much revenue comes from Singapore now vs China?\n6. VIE invalidation risk: what happens to US shareholders if China invalidates VIE?\n7. HFCAA audit status — has TIGR passed PCAOB inspection?\n8. What happened to TIGR's stock during the 2021 China tech crackdown?\n9. Is there a dual listing in Hong Kong as risk mitigation?\n10. Xiaomi ownership stake in TIGR — exact percentage and strategic implications.\n11. Could TIGR be delisted from NASDAQ? What's the probability?\n12. What's the bear case for TIGR? The strongest argument AGAINST 1000x.\n13. What's the bull case? Under what scenario could TIGR 10x from current levels?\n14. Has any Chinese brokerage ever achieved 100x+ returns for US investors?",
+          "system_prompt": "You are a China equity risk analyst. Be brutally honest about VIE risk and regulatory risks. Use SEC filings, CSRC announcements, and Singapore MAS data. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "soun_deep_dive",
+          "prompt": "Deep dive on SoundHound AI (SOUN) — the voice AI platform company.\n\n1. Revenue by quarter from Q1 2023 to latest available. Exact figures from 10-Q/10-K.\n2. Revenue growth rate trend (accelerating or decelerating?).\n3. Gross margin by quarter (CRITICAL: currently at 41%, needs >60% for 1000x).\n4. Is gross margin improving? What's the trajectory?\n5. Customer count and top customers. Customer concentration risk?\n6. Annual recurring revenue (ARR) vs one-time revenue?\n7. Net revenue retention rate?\n8. Total addressable market for voice AI — cite source.\n9. Patent portfolio — how many patents? What do they cover?\n10. Cash on hand, burn rate, cash runway (months).\n11. Stock-based compensation as % of revenue. Annual dilution rate.\n12. Short interest history — why is it at 38%?\n13. Insider ownership and recent insider transactions (buying or selling?).\n14. Competitive position vs Google, Amazon Alexa, Apple Siri, OpenAI.\n15. What needs to happen for SOUN to reach 60% gross margins?",
+          "system_prompt": "You are a technology analyst specializing in AI companies. Use SEC filings only. The gross margin trajectory is the CRITICAL question — if it can't reach 60%, 1000x is impossible. Be honest about competition from big tech. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "frsh_deep_dive",
+          "prompt": "Deep dive on Freshworks (FRSH) — the SaaS company challenging Salesforce, ServiceNow, and Zendesk.\n\n1. Revenue by quarter from Q1 2023 to latest. Exact from 10-Q.\n2. Annual Recurring Revenue (ARR) and growth rate.\n3. Net Revenue Retention (NRR) rate by quarter.\n4. Free cash flow by quarter.\n5. Number of customers >$5K ARR, >$50K ARR. Growth in each cohort.\n6. Gross margin trajectory (currently 85% — is this sustainable?).\n7. Rule of 40 score (growth rate + FCF margin).\n8. Total addressable market — cite source.\n9. Competitive positioning vs Salesforce (CRM), ServiceNow (NOW), Zendesk (acquired).\n10. What is Freshworks' moat? Switching costs? Lower price point?\n11. Insider ownership — founder Girish Mathrubootham's stake.\n12. Stock-based compensation as % of revenue. Dilution rate.\n13. India-based engineering cost advantage — how does this affect margins?\n14. Why has the stock crashed from $50+ to $9.71? What went wrong?\n15. Under what scenario could FRSH 10x? 100x?",
+          "system_prompt": "You are a SaaS industry analyst. Use SEC 10-K/10-Q filings. Focus on NRR and large customer growth — these predict SaaS company trajectories. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "snap_deep_dive",
+          "prompt": "Deep dive on Snap Inc (SNAP) — the AR/social platform.\n\n1. Revenue by quarter from Q1 2023 to latest. From 10-Q.\n2. Daily Active Users (DAU) by quarter and growth rate.\n3. Average Revenue Per User (ARPU) by geography.\n4. Gross margin trajectory (currently 56%).\n5. Free cash flow by quarter.\n6. AR revenue specifically — Snap's AR try-on, lenses revenue.\n7. Spectacles/AR glasses — development status and investment.\n8. What is Snap's moat? Why can't Instagram/TikTok kill it?\n9. Insider ownership — Evan Spiegel's voting control.\n10. Stock-based compensation as % of revenue. Dilution rate.\n11. Why did SNAP crash from $80 to $5.71? What structural change?\n12. Total addressable market for AR advertising.\n13. Snap Map, My AI (ChatGPT integration) — any monetization progress?\n14. Under what scenario could SNAP 10x from $5.71? What needs to happen?\n15. Is SNAP a 1000x candidate or a dying platform?",
+          "system_prompt": "You are a social media and AR analyst. Use SEC filings. Be honest about competitive threats from Meta, TikTok, and Apple. The AR thesis is the key bull case — evaluate it rigorously. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "sens_deep_dive",
+          "prompt": "Deep dive on Senseonics Holdings (SENS) — maker of Eversense implantable CGM.\n\n1. Revenue by quarter from Q1 2023 to latest. From 10-Q.\n2. Revenue growth trajectory (72% growth is exceptional for medtech).\n3. Gross margin trajectory.\n4. Number of Eversense sensors implanted to date.\n5. FDA approval status: Eversense 365 (1-year implant) — approved?\n6. Insurance coverage/reimbursement status — CMS, private payers.\n7. Competitive landscape: DexCom G7, Abbott Libre, Medtronic Guardian.\n8. What is SENS's moat? (Only FDA-approved implantable CGM?)\n9. Patent portfolio.\n10. Cash on hand, burn rate, cash runway.\n11. Dilution rate — shares outstanding growth.\n12. Ascensia (Bayer) partnership details.\n13. Total addressable market for CGM (diabetes Type 1 and Type 2).\n14. CGM TAM expansion from obesity drugs (GLP-1s create MORE CGM demand?).\n15. Under what scenario could SENS 100x? Is it an acquisition target?",
+          "system_prompt": "You are a medtech analyst specializing in diabetes technology. Use FDA databases, SEC filings, and company presentations. The Eversense 365 approval status is CRITICAL. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "achr_deep_dive",
+          "prompt": "Deep dive on Archer Aviation (ACHR) — the eVTOL / flying taxi company.\n\n1. Current stage: has Midnight received FAA type certification?\n2. Revenue (currently $2M — what was this from?).\n3. Cash on hand and burn rate. Cash runway in months.\n4. Order backlog / letters of intent — from which airlines/companies?\n5. United Airlines deal specifics.\n6. FAA certification timeline — what milestones remain?\n7. Manufacturing facility status.\n8. Competitive landscape: Joby (JOBY), Lilium (bankrupt), Beta Technologies, Vertical Aerospace.\n9. How many test flights completed?\n10. What's the realistic commercial launch date?\n11. Annual dilution rate (CRITICAL for pre-revenue company).\n12. Insider ownership and recent transactions.\n13. Total addressable market for urban air mobility.\n14. Stock-based compensation as % of spending.\n15. Is ACHR a realistic 1000x candidate or a SPAC zombie?",
+          "system_prompt": "You are an aerospace analyst specializing in eVTOL. Be brutally honest about FAA timelines — they ALWAYS take longer than promised. Use SEC filings and FAA records. Compare to Joby's progress. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "bb_deep_dive",
+          "prompt": "Deep dive on BlackBerry (BB) — QNX automotive OS and cybersecurity.\n\n1. Revenue breakdown by segment: QNX (IoT), Cybersecurity, Licensing.\n2. QNX market share in automotive infotainment/ADAS.\n3. Design wins — how many OEMs use QNX? (Toyota, BMW, Ford, etc.)\n4. QNX revenue growth rate.\n5. Total vehicles with QNX embedded (current and projected).\n6. Cybersecurity revenue (Cylance) — growing or shrinking?\n7. Patent licensing revenue — how many patents? Key licensees.\n8. Gross margin by segment.\n9. Free cash flow trajectory.\n10. John Chen's turnaround — has it worked? When does he leave as CEO?\n11. Could QNX be spun off? What would it be worth standalone?\n12. Dilution rate.\n13. Competitive position: QNX vs Android Automotive vs Linux-based systems.\n14. TAM for automotive software.\n15. Under what scenario could BB 10x? Is QNX a 1000x moat?",
+          "system_prompt": "You are an automotive technology analyst. QNX is the key asset — evaluate its moat durability. Use SEC filings and IHS Markit automotive data. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "grab_moat_analysis",
+          "prompt": "Deep analysis of Grab Holdings (GRAB) as a potential 10-50x play (not 1000x given $14.5B market cap).\n\n1. Revenue breakdown by segment: Deliveries, Mobility, Financial Services, Enterprise.\n2. Monthly transacting users (MTU) by segment.\n3. Financial services — GrabPay, lending, insurance. Revenue growth?\n4. GrabFin banking license status in each market.\n5. When did GRAB achieve GAAP profitability? Exact quarter.\n6. GRAB vs GoTo (GOTO) — market share comparison in Indonesia.\n7. GRAB vs Sea Limited (SE) — how does GRAB avoid SE's mistakes?\n8. Total addressable market for SE Asian super-app.\n9. Is GRAB's moat sustainable? Network effects, regulatory licenses.\n10. Cash on hand and financial fortress status.\n11. Revenue per user trajectory (increasing = monetization working).\n12. Insider ownership — Anthony Tan's stake and voting control.\n13. What's the realistic upside? Can GRAB reach $50B market cap?\n14. What are the biggest risks? Competitor from China (Meituan)?\n15. Compare GRAB today to Uber in 2019 or MercadoLibre in 2015.",
+          "system_prompt": "You are a Southeast Asian technology analyst. Use SEC 20-F filings and ASEAN economic data. Be honest about the competitive landscape. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "payo_deep_dive",
+          "prompt": "Deep dive on Payoneer Global (PAYO) — cross-border payments.\n\n1. Revenue by quarter from Q1 2023 to latest. From 10-Q.\n2. Revenue breakdown: Transaction fees, Interest income, Other.\n3. Take rate (transaction revenue / volume) by quarter.\n4. Total payment volume by quarter.\n5. Number of customers / active users.\n6. Interest income — how much comes from customer float? At what interest rate?\n7. Gross margin trajectory (currently 85% — is this real?).\n8. Free cash flow trajectory.\n9. Customer concentration — any customer >10% of revenue?\n10. Geographic breakdown of revenue.\n11. Competitive landscape: PayPal, Wise, Stripe, dLocal.\n12. Regulatory licenses held (money transmitter, e-money, banking).\n13. What's the trust charter that PAYO has? Not a full bank?\n14. Dilution rate.\n15. Under what scenario could PAYO 10x? 100x?",
+          "system_prompt": "You are a payments industry analyst. The take rate is CRITICAL — verify it exactly. Use SEC 10-Q filings. Be clear about what's sustainable revenue vs interest income. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "tuya_deep_dive",
+          "prompt": "Deep dive on Tuya Inc (TUYA) — IoT cloud platform.\n\n1. Revenue by quarter from Q1 2023 to latest. From 20-F.\n2. Revenue breakdown: IoT PaaS, Smart Solutions, SaaS.\n3. Number of developers on platform.\n4. Number of IoT devices powered by Tuya.\n5. Customer count and geographic breakdown.\n6. Gross margin by segment.\n7. Cash on hand ($1,024M reported — verify this).\n8. Cash vs market cap ratio (extraordinary if cash > market cap).\n9. Is TUYA GAAP profitable? How many consecutive quarters?\n10. Stock-based compensation trend.\n11. VIE structure details.\n12. HFCAA/PCAOB audit status.\n13. Competitive landscape: AWS IoT, Google Cloud IoT, Azure IoT.\n14. What's the moat? Developer ecosystem? Device integration?\n15. Under what scenario could TUYA 10x? What needs to happen?",
+          "system_prompt": "You are an IoT industry analyst specializing in Chinese tech. Use SEC 20-F filings. The cash-to-market-cap ratio is extraordinary and needs verification. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "recent_ipos_sub10",
+          "prompt": "List ALL companies that IPO'd or direct-listed on US exchanges from June 2024 to May 2025 that currently trade under $10/share.\n\nFor each:\n1. Ticker, company name, IPO date, IPO price, current approximate price.\n2. Sector and business description.\n3. Revenue at IPO.\n4. Revenue growth rate.\n5. Gross margin.\n6. Key investors / VC backers.\n7. Why did it crash below $10? (If IPO was higher)\n8. Is the business model viable?\n\nThis is critical because DeepSeek's training data ends May 2024, so these companies are INVISIBLE to earlier analysis. Look for potential 1000x candidates that nobody is analyzing.",
+          "system_prompt": "You are an IPO analyst. If your training data doesn't include a specific IPO, state CANNOT VERIFY. List only companies you have data on. Do NOT fabricate IPO data.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "crashed_from_highs",
+          "prompt": "List US-listed technology/growth stocks that crashed from >$30 to under $10 between June 2024 and May 2025. These 'fallen angels' could be 1000x candidates if the business is intact.\n\nFor each:\n1. Ticker, company name, 52-week high, current approximate price, % decline.\n2. Why did it crash?\n3. Is the decline fundamental (broken business) or sentiment (fixable)?\n4. Revenue growth — still growing?\n5. Gross margin — still high?\n6. Cash position — can it survive?\n7. Is the thesis still intact despite the stock price crash?\n\nFocus on companies where: the STOCK crashed but the BUSINESS is fine (revenue growing, margins stable, cash sufficient).",
+          "system_prompt": "You are a deep value analyst. If your training data doesn't include recent price action, state UNVERIFIED. Focus on fundamental analysis. The best 1000x candidates are often stocks that crashed 80%+ with intact businesses.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "best_1000x_sectors_2025",
+          "prompt": "Given that gold miners max at 5-12x, and that the PLTR/RKLB/AMBA/IONQ/OKLO cohort has already 5-30x'd from sub-$10, which sectors CURRENTLY (2025) offer the best chance of producing a 1000x stock from sub-$10?\n\nRank the following by 1000x probability:\n1. Voice AI / conversational AI (SOUN, etc.)\n2. eVTOL / flying cars (ACHR, JOBY)\n3. Autonomous driving components (lidar, sensors)\n4. Small modular nuclear reactors\n5. Quantum computing (post-IONQ era)\n6. AR/VR components\n7. Defense AI / autonomous weapons\n8. Emerging market fintech (LatAm, SE Asia)\n9. Gene therapy / cell therapy (approved products)\n10. Cybersecurity AI\n11. Automotive software (QNX-style)\n12. IoT platforms\n13. Precision agriculture\n14. Brain-computer interfaces\n15. Satellite communications\n\nFor each sector: what's the TAM expansion factor needed, what's the realistic probability, and what's the most likely sub-$10 beneficiary?",
+          "system_prompt": "You are a technology strategist. Be brutally honest about probability. Most of these sectors have a <1% chance of producing a 1000x stock. Identify the ONE or TWO with the highest odds. Use real data.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "dilution_check_top10",
+          "prompt": "Check the annual share dilution rate for these 10 sub-$10 stocks. Dilution >5% kills 1000x potential.\n\nFor each stock, provide:\n1. Shares outstanding as of latest filing.\n2. Shares outstanding 1 year ago.\n3. Annual dilution rate (%).\n4. Source of dilution: SBC, convertible notes, ATM offerings, warrants.\n5. Stock-based compensation as % of revenue.\n\nStocks to check: SOUN, BBAI, ACHR, SNAP, FRSH, SENS, GRAB, QS, DNA, SPT\n\nIf dilution >5%, mark as KILLED for 1000x purposes.",
+          "system_prompt": "You are a dilution analyst. Use proxy statements (DEF 14A) and 10-K filings for share count data. This is the most important risk check. Be precise. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "insider_check_top10",
+          "prompt": "Check insider buying/selling for these 10 stocks over the last 12 months. CEO selling = death signal.\n\nFor each stock:\n1. Has the CEO bought or sold shares? Amount, date.\n2. Has the CFO bought or sold?\n3. Any board member buying?\n4. Was it open-market purchase (bullish) or option exercise (neutral)?\n5. Net insider activity: buying or selling?\n\nStocks: SOUN, BBAI, TIGR, SNAP, FRSH, SENS, GRAB, ACHR, BB, TUYA",
+          "system_prompt": "You are an insider trading analyst using SEC Form 4 data. Open-market purchases at the current price level are the strongest bullish signal. If CEO is selling at sub-$10, flag as major red flag. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "convergence_score",
+          "prompt": "Create a 1000x CONVERGENCE SCORE for each of these 15 sub-$10 stocks based on how many 1000x pattern signals they match.\n\nThe 7 signals (from historical analysis of verified 1000x stocks):\n1. Revenue growth accelerating >30% YoY\n2. Gross margins >60% and expanding\n3. Insider ownership >20%, NOT selling\n4. Annual share dilution <5%\n5. Zero to 5 analyst coverage\n6. TAM expanding >10x in next decade\n7. Building ecosystem lock-in or switching cost moat\n\nStocks to score: TIGR, SOUN, FRSH, SNAP, SENS, BBAI, GRAB, ACHR, BB, TUYA, PAYO, PAGS, SPT, BTG, GAU\n\nFor each stock:\n- Score each signal 0 (fail) or 1 (pass) with brief justification\n- Total convergence score out of 7\n- Rank from highest to lowest\n- Highlight any stock scoring 5/7 or higher as a STRONG 1000x CANDIDATE",
+          "system_prompt": "You are a quantitative analyst applying a rigorous scoring framework. Use the most recent data available. Be honest — most stocks will score 2-3/7. A score of 5+ is extremely rare. Mark UNVERIFIED where data is uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "momo_deep_dive",
+          "prompt": "Deep dive on Hello Group (MOMO) — Chinese social/dating platform.\n\n1. Revenue by segment: Live streaming, Value-added services, Mobile marketing, Mobile games.\n2. Monthly active users (MAU) for Momo app and Tantan app.\n3. Revenue trend — why is revenue declining?\n4. Gross margin by segment.\n5. Is the cash position ($5.3B FCF reported) real? Verify from 20-F.\n6. Cash to market cap ratio.\n7. Dividend policy.\n8. VIE structure risk.\n9. Chinese regulatory risk for social/dating apps.\n10. Insider ownership and recent transactions.\n11. Why does MOMO trade at 8.5x PE with $5B+ cash? What's the market pricing in?\n12. Could MOMO be taken private?\n13. Compare to Match Group (MTCH) valuation.\n14. Is the business in terminal decline or is revenue stabilizing?",
+          "system_prompt": "You are a Chinese internet analyst. The massive cash pile vs tiny market cap needs explanation. Use SEC 20-F filings. Be honest about the structural risks. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "ymm_deep_dive",
+          "prompt": "Deep dive on Full Truck Alliance (YMM) — China's dominant freight matching platform ('Uber for trucks').\n\n1. Revenue by quarter from Q1 2023 to latest. From 20-F.\n2. Revenue breakdown: Freight matching, Transaction commissions, Value-added services.\n3. Gross margin trajectory (currently 85% — verify).\n4. Number of shippers and truckers on platform.\n5. Market share in Chinese freight matching.\n6. Competitive landscape: who competes with YMM?\n7. Network effects: is the moat strengthening?\n8. Free cash flow trajectory.\n9. VIE structure details.\n10. HFCAA/PCAOB audit status.\n11. Why did YMM trade at $20+ and crash to $8.82?\n12. Insider ownership.\n13. Is YMM the 'MercadoLibre of Chinese logistics'?\n14. Compare YMM to Uber Freight or C.H. Robinson.\n15. Under what scenario could YMM 10x? What about 100x?",
+          "system_prompt": "You are a Chinese logistics analyst. YMM's 85% gross margin is exceptional — verify it. Use SEC 20-F filings. The freight matching business model is proven (Uber, DoorDash). Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "bmbl_deep_dive",
+          "prompt": "Deep dive on Bumble (BMBL) — dating app.\n\n1. Revenue by quarter from Q1 2023 to latest. From 10-Q.\n2. Paying users trend — growing or shrinking?\n3. ARPU trend.\n4. Revenue per paid user by app (Bumble, Badoo, Fruitz).\n5. Gross margin trajectory (currently 72%).\n6. Why is revenue DECLINING (-14%)? What happened?\n7. Competitive position vs Tinder/Hinge (Match Group), Grindr.\n8. Is the dating app TAM saturated?\n9. Free cash flow trajectory.\n10. Stock-based compensation and dilution rate.\n11. Why did BMBL crash from $70+ to $3.17?\n12. New CEO (Lidiane Jones) — turnaround strategy?\n13. Under what scenario could BMBL recover? Is it a turnaround play?\n14. Could Bumble be acquired? By whom? At what premium?\n15. Is BMBL a 1000x candidate or a value trap?",
+          "system_prompt": "You are a consumer internet analyst. Be honest about the dating app market headwinds. Revenue decline is a serious red flag. Use SEC filings. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "cdxs_deep_dive",
+          "prompt": "Deep dive on Codexis (CDXS) — enzyme engineering / synthetic biology.\n\n1. Revenue by quarter from Q1 2023 to latest. From 10-Q.\n2. Revenue breakdown: Product revenue, R&D services, Licensing.\n3. Why did revenue grow 102%? Is this sustainable or one-time?\n4. Key customers — who are the pharma/industrial partners?\n5. Patent portfolio — how many patents on engineered enzymes?\n6. Competitive landscape: who else does enzyme engineering?\n7. Gross margin trajectory.\n8. Cash position and burn rate.\n9. CodeEvolver platform — what is it and what's the moat?\n10. TAM for engineered enzymes (pharma, food, industrial chemicals).\n11. Revenue concentration risk.\n12. Insider ownership.\n13. Under what scenario could CDXS 10x? 100x?\n14. Is enzyme engineering a real platform technology or a niche?\n15. How does CDXS compare to Ginkgo Bioworks (DNA)?",
+          "system_prompt": "You are a synthetic biology analyst. The 102% revenue growth is exceptional but needs verification — is it sustainable or a one-time license deal? Use SEC filings. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "snap_ar_thesis",
+          "prompt": "Evaluate Snap Inc's AR platform thesis specifically — is this the next platform shift that could create a 1000x opportunity?\n\n1. Snap's AR lens engagement metrics — how many people use AR features daily?\n2. Snap's AR commerce (try-on) — any revenue data?\n3. Spectacles (AR glasses) — latest generation, pricing, availability.\n4. Developer ecosystem around Snap's AR platform — how many developers?\n5. Compare Snap's AR approach to: Apple Vision Pro, Meta Quest, Google AR.\n6. What would it take for AR advertising to replace traditional digital ads?\n7. Snap's camera platform thesis — explain how Snap is positioned.\n8. Enterprise AR applications using Snap's platform?\n9. If AR replaces smartphone interfaces, what's Snap's position?\n10. Revenue from AR-specific products (sponsored lenses, AR try-on).\n11. R&D spending on AR as % of total R&D.\n12. Snap Map platform — any location-based commerce revenue?\n13. Snap vs Meta in AR: who has better technology? More patents?\n14. Under what scenario does Snap become the 'operating system of AR'?\n15. If AR is the next platform shift (like smartphone was in 2007), what's Snap worth?",
+          "system_prompt": "You are an AR/spatial computing analyst. Snap's AR thesis is the bull case for a 1000x from $5.71. Evaluate it honestly — is this real or is Snap fighting a losing battle against Apple and Meta? Use company filings and industry data.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "dna_recovery",
+          "prompt": "Deep dive on Ginkgo Bioworks (DNA) — can the synbio platform company recover from $0.30?\n\n1. Revenue by quarter from Q1 2023 to latest. From 10-Q.\n2. Why did revenue decline 49%? What segment collapsed?\n3. Biosecurity (government contracts) — how much revenue?\n4. Cell programming platform revenue vs biosecurity.\n5. Cash burn rate — how many months of runway?\n6. Has management taken any cost-cutting actions?\n7. Customer count and pipeline.\n8. Patent portfolio.\n9. Is the platform technology real? Has it produced commercial success for any customer?\n10. Stock-based compensation as % of revenue (likely astronomical).\n11. Dilution rate — shares outstanding growth.\n12. Could DNA go bankrupt?\n13. Cathie Wood / ARK Invest — is ARK still holding? How much?\n14. Under what scenario could DNA survive and recover?\n15. Is DNA the 'Theranos of synbio' or a real platform with bad timing?",
+          "system_prompt": "You are a synthetic biology analyst with a skeptical lens. DNA has lost 97% of its value — be honest about whether the business can recover. Use SEC filings. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "open_deep_dive",
+          "prompt": "Deep dive on Opendoor Technologies (OPEN) — the iBuying platform.\n\n1. Revenue by quarter from Q1 2023 to latest.\n2. Homes purchased and sold per quarter.\n3. Contribution profit per home (unit economics).\n4. Revenue decline (-38%) — is iBuying dead or just paused?\n5. Gross margin (currently 8% — can this ever reach 60%? NO for iBuying. So why is it in the sub-$10 list?)\n6. Cash position and financial health.\n7. Competitive landscape: Zillow (exited iBuying), Offerpad (OPAD).\n8. Total addressable market for home transactions.\n9. Is Opendoor a technology company or a real estate company?\n10. Under what scenario could OPEN 10x?\n11. Could Opendoor pivot to a different business model (marketplace fees)?\n12. Insider ownership.\n13. Dilution rate.\n14. Why did OPEN crash from $34 to $5?\n15. Is OPEN a 1000x candidate? (BE HONEST — likely NO with 8% gross margins)",
+          "system_prompt": "You are a real estate technology analyst. Be honest: iBuying has 8% gross margins and is not a 1000x business model. If there's a path to higher margins, explain it. If not, say so clearly.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "grab_vs_early_uber",
+          "prompt": "Precise comparison: Where is Grab today vs where Uber was at a comparable stage?\n\n1. Uber at $14.5B market cap (when?) — what were Uber's metrics: revenue, trips, markets, margins?\n2. Grab today at $14.5B market cap — what are Grab's metrics?\n3. Uber's financial services revenue at the same market cap stage.\n4. Grab's financial services revenue today.\n5. Uber's geographic expansion trajectory.\n6. Grab's geographic position (8 countries in SE Asia).\n7. Uber from $14.5B to $100B+ — what drove the multiple expansion?\n8. Could Grab follow the same path? What's different?\n9. Uber's profitability timeline vs Grab's.\n10. If Grab reaches Uber-like scale in SE Asia, what's the fair value?\n11. Is 'SE Asian Uber' a $50B company? $100B? Or capped at $30B?\n12. What's the realistic 10-year return for Grab from $3.54?",
+          "system_prompt": "You are a ride-hailing analyst. Use SEC filings for both Uber and Grab. The comparison must be apples-to-apples at the same market cap stage. Be honest about the differences (SE Asian TAM is smaller). Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "curi_hidden_gem",
+          "prompt": "Deep dive on CuriosityStream (CURI) — a potential hidden gem at $2.86, $200M market cap.\n\n1. Revenue by quarter from Q1 2023 to latest. From 10-Q.\n2. Subscribers count — paid vs free.\n3. Revenue mix: subscriptions, content licensing, advertising.\n4. Gross margin (reported 57% — but was claimed 81% in screen. Verify which is correct).\n5. Free cash flow ($33M reported — verify).\n6. Content library — how many titles? Original vs licensed?\n7. Is CURI profitable? GAAP and adjusted.\n8. Competitive landscape: Netflix, YouTube, Disney+, Discovery.\n9. Insider ownership (31% reported — who?).\n10. Market cap vs cash on hand.\n11. Could CURI be acquired? By whom?\n12. Under what scenario could CURI 10x? 100x?\n13. Is CURI just a niche documentary streamer or a real business?\n14. Analyst coverage (3 analysts reported).\n15. What's the bear case? Could CURI go to zero?",
+          "system_prompt": "You are a media analyst. CuriosityStream is tiny ($200M mcap) with high insider ownership (31%). Investigate whether this is a hidden gem or a value trap. Use SEC filings. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "qs_dilution_death",
+          "prompt": "Analyze whether QuantumScape (QS) is already dead from dilution despite being a real technology.\n\n1. Shares outstanding by year from 2020 to 2024.\n2. Annual dilution rate.\n3. Stock-based compensation by year.\n4. Cash burn rate by quarter.\n5. Cash on hand and runway.\n6. Solid-state battery technology status — has QS made a working cell?\n7. OEM partnerships (Volkswagen) — status.\n8. Timeline to commercial production — realistic estimate.\n9. Revenue (currently $0 — when will it be >$0?).\n10. At current dilution rate, what revenue level is needed for the stock to work?\n11. Could QS be acquired by VW or another OEM?\n12. Compare QS dilution to SLDP (Solid Power).\n13. Is QS a 'zombie company' — alive but incapable of returning capital to shareholders?\n14. Under what scenario could QS OVERCOME dilution and 10x?\n15. Math: If QS dilutes 20%/yr for 5 more years, what market cap is needed for today's shareholders to 10x?",
+          "system_prompt": "You are a dilution analyst. Show the math on how dilution destroys shareholder value. Use SEC filings for share count data. Be brutal. Mark UNVERIFIED where uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "sector_heatmap",
+          "prompt": "Create a SECTOR HEATMAP for 1000x potential across ALL sub-$10 stocks we've analyzed. This is the synthesis of Sprint 1 + Sprint 2.\n\nRank these sectors by 1000x probability (be honest — most have <0.1% chance):\n\n1. Voice AI (SOUN)\n2. SE Asian Super-App (GRAB)\n3. Chinese Brokerage (TIGR)\n4. SaaS Mid-Market (FRSH, SPT)\n5. Gold Miners (BTG, GAU)\n6. Silver Miners (EXK)\n7. AR/Social Platform (SNAP)\n8. eVTOL (ACHR)\n9. Implantable Medical Devices (SENS)\n10. LatAm Fintech (PAGS, PAYO)\n11. IoT Platform (TUYA)\n12. Automotive Software (BB)\n13. Synthetic Biology (DNA, CDXS)\n14. Solid-State Battery (QS)\n15. Dating App (BMBL)\n16. Chinese Freight Platform (YMM)\n17. Chinese Social (MOMO)\n18. Streaming/Content (CURI)\n19. iBuying (OPEN)\n20. Defense AI (BBAI)\n\nFor each: probability of 1000x, probability of 10x, probability of bankruptcy, and best case scenario.",
+          "system_prompt": "You are a cross-sector strategist. 1000x is EXTREMELY RARE — maybe 1 in 500 stocks at any given time. Be honest. Most sectors have 0% chance. The goal is to find the 1-2 sectors with the highest probability. Use real data and historical base rates.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "final_portfolio_rank",
+          "prompt": "Create a FINAL RANKING of the best risk-adjusted investments from the entire sub-$10 universe we've analyzed. This is not just about 1000x — it's about the best risk-adjusted returns.\n\nRank these 20 stocks from 1 (best) to 20 (worst):\nTIGR, SOUN, FRSH, SNAP, SENS, BBAI, GRAB, ACHR, BB, TUYA, PAYO, PAGS, SPT, BTG, GAU, YMM, MOMO, BMBL, CDXS, DNA\n\nFor each, provide:\n1. Risk-adjusted return score (expected return / risk)\n2. Time horizon needed (1yr, 3yr, 5yr, 10yr)\n3. Conviction level (1-10)\n4. Key catalyst\n5. Key risk\n6. Position sizing recommendation (% of $2,500 portfolio)\n\nConstraints:\n- Total portfolio should be $2,500\n- Max 10 positions\n- Min position size $100\n- Must account for: China ADR risk, dilution, competitive moat, TAM, and current valuation",
+          "system_prompt": "You are a portfolio strategist for a concentrated small-cap portfolio. $2,500 total capital. Be ruthlessly selective — cut anything without conviction. Focus on asymmetric risk/reward. Mark any uncertain assumptions.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "next_nvidia_profile",
+          "prompt": "Based on everything we've learned, create the EXACT PROFILE of the 'Next NVIDIA' — what would it look like TODAY if it existed in the sub-$10 universe?\n\n1. Market cap range.\n2. Revenue range.\n3. Revenue growth rate.\n4. Gross margin.\n5. Sector.\n6. Moat type.\n7. TAM.\n8. Insider ownership.\n9. Analyst coverage.\n10. Dilution rate.\n11. Key catalyst that hasn't happened yet.\n12. Why the market is ignoring it.\n\nThen: does ANY current sub-$10 stock match this profile? If not, what comes closest? Be honest — it's possible that the 'Next NVIDIA' simply isn't public yet at sub-$10.\n\nAlso answer: Should a 1000x hunter be in stocks at ALL right now, or should they wait for the next cohort of sub-$10 companies to emerge from future IPOs?",
+          "system_prompt": "You are a technology investment strategist. The honest answer may be 'there is no Next NVIDIA in the current sub-$10 universe.' If that's the case, say it. Don't force-fit a narrative. Use real data.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        }
+      ]
+    }
+  ]
+}

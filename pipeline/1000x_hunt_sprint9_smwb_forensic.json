@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "s9_t01_smwb_business",
+          "prompt": "Deep dive on Similarweb (SMWB). What exactly does Similarweb sell? Who are the actual customers (name 10+ real customers)? What products do they offer? What is the pricing model (per seat, per query, enterprise license)? What is their competitive advantage vs Semrush, Ahrefs, Google Analytics, SimilarTech, SpyFu? How differentiated is their data? What would happen if Google decided to offer similar data for free?",
+          "system_prompt": "You are a forensic equity research analyst. Be brutally honest. Do NOT sugarcoat. Separate facts from speculation. Flag any claim you are not 100% certain about.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t02_smwb_revenue_quality",
+          "prompt": "REVENUE QUALITY ANALYSIS: Similarweb (SMWB). Live data shows: Revenue 2023 $218M, 2024 $250M (+14.6%), 2025 $283M (+13.1%). Quarterly: Q2'25 $71.0M, Q3'25 $71.8M, Q4'25 $72.8M, Q1'26 $73.9M. Growth decelerating from 14.6% to 13.1% to 10.1% latest YoY. They spent $15.4M on acquisitions in 2024 and $15.8M in 2025. Goodwill jumped $38.8M to $55.8M in Q1'26. How much of their revenue growth is ORGANIC vs acquisition-driven? Is this a compounder or a roll-up?",
+          "system_prompt": "You are a forensic equity research analyst. Be brutally honest. Separate organic from inorganic growth. Flag any claim you are not certain about.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t03_smwb_fcf_reality",
+          "prompt": "FCF REALITY CHECK: Similarweb (SMWB). Sprint 8 claimed FCF was $25M. LIVE DATA SHOWS: Annual FCF: 2023 -$5.4M, 2024 $27.4M, 2025 $13.0M. Quarterly: Q2'25 $2.7M, Q3'25 $3.0M, Q4'25 $3.0M, Q1'26 -$0.3M. FCF is DECLINING from $27.4M to $13.0M and trending toward $8M annualized. Meanwhile SBC: 2023 $18.1M, 2024 $17.6M, 2025 $21.2M. SBC exceeds operating CF ($14.6M in 2025). True cash generation after SBC is NEGATIVE. Is this company actually generating cash or is it a mirage funded by dilution?",
+          "system_prompt": "You are a forensic equity research analyst focused on cash flow quality. Be brutally honest. Do NOT accept management's adjusted metrics. Focus on what cash actually flows to shareholders.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t04_smwb_sbc_dilution",
+          "prompt": "DILUTION FORENSIC: Similarweb (SMWB). Share count: Q1'25 83.1M, Q2'25 84.0M, Q3'25 85.5M, Q4'25 86.6M, Q1'26 87.3M, current 87.6M. That is +5.4% dilution in 15 months (~4.3% annualized). SBC: $17.6M (2024), $21.2M (2025, +20% increase). Against market cap of $384M, that is 5.5% annual SBC yield being taken from shareholders. Stock option exercises generated $6.9M in 2025 financing CF. What is the total dilution picture? How many options/RSUs outstanding? What is the overhang? At what rate is this destroying per-share value?",
+          "system_prompt": "You are a forensic equity research analyst. Calculate the real dilution impact. Be brutally honest about per-share value destruction.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t05_smwb_opex_leverage",
+          "prompt": "OPERATING LEVERAGE ANALYSIS: Similarweb (SMWB). Revenue grew from $250M to $283M (+13.1% in 2025). But opex grew FASTER: R&D $56M to $73M (+30%), S&M $105M to $124M (+18%), G&A $44M to $52M (+19%). Operating loss went from -$9.7M to -$23.6M. Net loss from -$11.5M to -$32.9M. The company is spending MORE per dollar of revenue growth. Why? Is this temporary investment or structural inefficiency? When does SMWB reach profitability? What would revenue need to be at current spending rates?",
+          "system_prompt": "You are a forensic equity research analyst. Analyze unit economics and operating leverage. Be brutally honest about path to profitability.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t06_smwb_data_moat",
+          "prompt": "DATA MOAT DEEP DIVE: Similarweb collects web traffic data via browser extensions, ISP partnerships, and scraping. How defensible is this in 2026? Key questions: 1) How many users have their browser extension? Is it growing or shrinking? 2) Are ISP data partnerships exclusive? 3) Can AI companies like OpenAI, Perplexity, or Google replicate this data set? 4) Apple's Intelligent Tracking Prevention and browser privacy changes — does this degrade their data? 5) EU GDPR implications for panel-based data collection? 6) Has any major competitor successfully replicated Similarweb's dataset?",
+          "system_prompt": "You are a data privacy and competitive intelligence expert. Analyze the actual defensibility of web analytics data assets. Be specific about technical threats.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t07_smwb_insider_deep",
+          "prompt": "INSIDER BUYING FORENSIC: Similarweb (SMWB). Live SEC Form 4 data confirms 4 open-market PURCHASES in May 2026: CEO Or Offer bought 56,105 shares at $3.20-3.58 ($199,586). Harel Beit-On bought 75,000 at $3.89 ($291,750). Barak Eilam bought 50,000 at $3.86 ($193,000). Tamar Rapaport Dagim bought 40,000 at $3.22 ($128,880). Total $813,216. Who are these people (roles, tenure, track record)? Is this coordinated buying or independent? Have they bought before and were they right? What is their total ownership?",
+          "system_prompt": "You are a forensic analyst specializing in insider activity patterns. Assess whether this buying is genuine conviction or window dressing.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t08_smwb_competitors",
+          "prompt": "COMPETITIVE LANDSCAPE: Similarweb (SMWB) vs its actual competitors. For each competitor, compare: revenue, growth rate, gross margin, market cap, P/S ratio, data sources. Competitors: 1) Semrush (SEMR), 2) Ahrefs (private), 3) Google Analytics (free), 4) Comscore (SCOR), 5) Cloudflare Radar (free), 6) SpyFu, 7) Sensor Tower (acquired by Zynga? or independent?). Is SMWB the best-in-class or a second-tier player? Who is winning enterprise deals?",
+          "system_prompt": "You are a competitive intelligence analyst. Compare factually. Do NOT favor SMWB. Identify who is actually winning.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t09_smwb_naspers",
+          "prompt": "NASPERS/PROSUS OWNERSHIP: Naspers Ltd holds 12.8% of Similarweb (11.17M shares, ~$49M value). Viola Ventures holds 12.3%. Together they control 25.1% of the company. Why does Naspers own this? Is it a legacy investment from their portfolio or active conviction? Has Naspers been buying more or selling? What is Naspers' track record with small SaaS investments (do they nurture to exit or dump)? Is there acquisition optionality — could Naspers/Prosus acquire SMWB outright?",
+          "system_prompt": "You are a forensic analyst specializing in institutional ownership dynamics. Analyze whether large holder presence is bullish or bearish.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t10_smwb_acquisitions",
+          "prompt": "ACQUISITION STRATEGY FORENSIC: Similarweb (SMWB) spent $15.4M on acquisitions in 2024 and $15.8M in 2025, and $6.5M in Q1 2026 alone. Goodwill jumped from $38.8M (Q4'25) to $55.8M (Q1'26), a +$17M increase in one quarter. What did they acquire? Name the specific companies and dates. Were these acqui-hires, technology tuck-ins, or customer base acquisitions? Is this a sustainable M&A strategy or are they papering over organic growth deceleration with bought revenue? What is the impairment risk on $55.8M of goodwill?",
+          "system_prompt": "You are a forensic M&A analyst. Identify what was acquired and whether it created or destroyed value. Be skeptical of goodwill.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t11_smwb_deferred_rev",
+          "prompt": "DEFERRED REVENUE ANALYSIS: Similarweb (SMWB) has $117.5M in current deferred revenue and $1.9M non-current = $119.4M total. Against quarterly revenue of $73.9M, this is 1.6 quarters of pre-paid revenue. Current deferred revenue trend: Q2'25 $114.2M, Q3'25 $104.1M, Q4'25 $112.2M, Q1'26 $117.5M. Is deferred revenue growing faster or slower than revenue? What does this say about booking quality, contract terms (annual vs monthly), and churn risk? Calculate the implied billings growth vs revenue growth.",
+          "system_prompt": "You are a SaaS financial analyst. Analyze billings, deferred revenue, and booking quality. Calculate remaining performance obligation if possible.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t12_smwb_israel_risk",
+          "prompt": "GEOPOLITICAL RISK: Similarweb is headquartered in Tel Aviv, Israel. Most of its R&D team is in Israel. Assess: 1) Impact of ongoing Israel-Gaza conflict on operations, employee retention, and customer perception. 2) Israeli tech talent exodus — are engineers leaving for US? 3) Shekel-USD FX exposure (R&D costs in shekels, revenue in USD). 4) Israel corporate tax implications. 5) US listing as Israeli company — any disadvantages vs US-domiciled SaaS? 6) Military reserve duty (miluim) impact on workforce availability.",
+          "system_prompt": "You are a geopolitical risk analyst for technology investments. Assess real operational impacts, not just headlines. Be specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t13_smwb_tam",
+          "prompt": "TOTAL ADDRESSABLE MARKET: Similarweb operates in web analytics, competitive intelligence, digital market research. What is the actual TAM? Is it $5B, $10B, $50B? Who says so and what methodology? How much can SMWB realistically capture at its current growth rate? Compare their revenue ($289M) against the TAM. Are they a $500M revenue company or a $2B revenue company at maturity? What would that imply for the stock price at current multiples?",
+          "system_prompt": "You are a market sizing analyst. Be realistic about TAM, not aspirational. Use bottom-up sizing where possible.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t14_smwb_churn",
+          "prompt": "CUSTOMER RETENTION DEEP DIVE: Similarweb (SMWB). What are the actual Net Revenue Retention (NRR) and Gross Revenue Retention (GRR) numbers? Live data shows deferred revenue is stable/growing and revenue is growing sequentially. But the company loses -$33M/year. Key questions: 1) What is the customer churn rate? 2) What is the average contract value? 3) How many customers do they have (total, enterprise, mid-market)? 4) What is the NRR/NDR? Industry standard for good SaaS is >120% NDR. 5) How many customers pay >$100K/year?",
+          "system_prompt": "You are a SaaS unit economics expert. Analyze retention, expansion, and customer economics. Use disclosed metrics where available.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t15_smwb_bull_case",
+          "prompt": "STRONGEST POSSIBLE BULL CASE for Similarweb (SMWB) at $4.38. You MUST steelman this investment. Assume everything goes right. Revenue $289M, 80% GM, P/S 1.33x, 4 insiders buying $813K in May 2026, post-cookie tailwind, AI data licensing opportunity, serial acquirer building a data platform. What is the realistic upside in 3 years? 5 years? What would the stock price be if they hit $500M revenue at 5x P/S? At $1B revenue at 8x P/S? What catalysts could trigger a re-rating?",
+          "system_prompt": "You are a growth investor analyzing deep-value SaaS opportunities. Make the strongest possible case for the investment. But mark any speculative assumptions clearly.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t16_smwb_bear_case",
+          "prompt": "STRONGEST POSSIBLE BEAR CASE for Similarweb (SMWB) at $4.38. You MUST steelman the short thesis. Live data: Net loss -$33M/yr getting worse (-$11.5M in 2024 to -$32.9M in 2025). FCF declining ($27.4M to $13.0M). SBC exceeds OCF ($21M SBC vs $15M OCF). Dilution 4.3%/yr. R&D spending +30% but growth decelerating. Serial acquirer with growing goodwill ($55.8M). Analysts see zero upside (mean target $4.25 vs current $4.38). What is the realistic downside? Could this go to $1? What breaks the thesis?",
+          "system_prompt": "You are a short-seller researching SMWB. Make the strongest possible bear case. Be ruthless but factual. What would make insiders wrong?",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t17_smwb_peers_valuation",
+          "prompt": "RELATIVE VALUATION: Compare SMWB ($4.38, $384M MCap, 1.33x P/S, 80% GM, -$33M NI) against actual peers: 1) Semrush (SEMR) — public SaaS competitor, what is their P/S, growth, margins? 2) Comscore (SCOR) — older web analytics, what is their valuation? 3) ZoomInfo (ZI) — data-as-a-service company. 4) Integral Ad Science (IAS) — digital advertising analytics. 5) DoubleVerify (DV). Is SMWB cheap vs peers or cheap for a reason? What is the median P/S for profitable SaaS with 80% GM? What is the median for unprofitable SaaS?",
+          "system_prompt": "You are a quantitative equity research analyst. Compare valuations factually. Use current multiples. Flag if SMWB is a true bargain or a value trap.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t18_smwb_management",
+          "prompt": "MANAGEMENT QUALITY: Similarweb CEO is Or Offer (co-founder). What is his track record? How long has he been CEO? Has the company met its own guidance? Key leadership: CFO, CTO, CRO — who are they, tenure, background? Any C-suite departures in last 2 years (red flag)? Board composition — is it truly independent or founder-controlled? Any legal issues, SEC filings, shareholder lawsuits? Israel military intelligence (Unit 8200) connections — is this relevant to data collection capabilities?",
+          "system_prompt": "You are a corporate governance analyst. Assess management quality objectively. Flag any governance red flags.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t19_smwb_ai_opportunity",
+          "prompt": "AI OPPORTUNITY: Can Similarweb's web traffic data become a valuable AI training/inference dataset? They have data on website traffic patterns, user behavior, competitive intelligence across millions of sites. Could they license this data to AI companies (OpenAI, Anthropic, Google) for training? Is anyone already doing this? How much could this be worth? Also: is AI a THREAT (AI agents replacing the need for human competitive intelligence analysis)? Could ChatGPT/Claude make Similarweb's product obsolete?",
+          "system_prompt": "You are an AI industry analyst. Assess both the AI opportunity and AI threat to Similarweb's business model. Be realistic about both.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t20_smwb_takeout",
+          "prompt": "ACQUISITION TARGET ANALYSIS: Is Similarweb (SMWB) a takeout candidate? $384M market cap, 80% GM, $289M revenue, growing 10%, data moat. Who would buy them and why? Potential acquirers: 1) Naspers/Prosus (already 12.8% owner), 2) Private equity (Thoma Bravo, Vista, Silver Lake), 3) Strategic (Google, Adobe, Salesforce, Oracle). What would the acquisition price be? At 5x revenue = $1.45B ($16.50/share = 3.8x from current). At 3x revenue = $867M ($9.90/share = 2.3x). What is the probability of takeout within 3 years?",
+          "system_prompt": "You are an M&A analyst. Assess takeout probability realistically. Consider both strategic and financial buyer interest.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t21_smwb_browser_extension",
+          "prompt": "BROWSER EXTENSION DEEP DIVE: Similarweb's core data collection relies heavily on browser extensions that track user browsing behavior. How many installs does the Similarweb extension have on Chrome, Firefox, Edge? What permissions does it request? Has Google ever threatened to remove it from the Chrome Web Store? Are there privacy lawsuits against Similarweb for data collection practices? What happened when Google removed similar extensions (Stylish, Web of Trust)? Is this a single point of failure for the business?",
+          "system_prompt": "You are a privacy and technology analyst. Assess the regulatory and platform risk of browser extension-based data collection. Be specific about precedents.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t22_smwb_1000x_test",
+          "prompt": "1000x POTENTIAL TEST: Similarweb (SMWB) at $4.38, market cap $384M. For 1000x return ($4,380/share, $383B market cap), SMWB would need to become larger than Salesforce is today. Is this REMOTELY possible? For 100x ($438/share, $38B), it would need to become a major enterprise software company. For 10x ($43.80/share, $3.8B), it needs to grow revenue to ~$500-700M at SaaS multiples. Which scenario is realistic? What is the MAXIMUM realistic upside in 10 years? Be honest about whether this fits a 1000x framework or is just a decent value investment.",
+          "system_prompt": "You are a venture-scale return analyst. Apply the 1000x test rigorously. Most stocks will fail this test and that is OK — be honest about realistic return potential.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t23_smwb_vs_portfolio",
+          "prompt": "PORTFOLIO FIT: Current holdings are GRAB (150 shr, $540), BTG (50 shr, $234), GAU (100 shr, $225), TUYA (95 shr, $210), TIGR (39 shr, $202). Cash ~$1,062. Total equity ~$2,473. If we add SMWB, what position size makes sense? $200? $400? $600? What is the correlation between SMWB and existing holdings? Does SMWB add diversification or just more risk? Should we ADD SMWB or is the cash better deployed watching for dips in existing positions?",
+          "system_prompt": "You are a portfolio construction analyst. Optimize for risk-adjusted returns with a $2,473 portfolio. Consider correlation, concentration risk, and transaction costs on small positions.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t24_smwb_short_squeeze",
+          "prompt": "SHORT INTEREST ANALYSIS: SMWB short interest is 1.3% of float. This is VERY low. Institutional ownership is 60.5%. Insider ownership is 17.1%. Float calculation: 87.6M shares - 17.1% insider - restricted? What is the actual free float? Is there any short squeeze potential? How many days to cover? What could cause a sudden short increase? Are there any convertible notes or warrants that could dilute? What is the options market saying about SMWB (implied volatility, put/call ratio)?",
+          "system_prompt": "You are a quantitative analyst specializing in market microstructure. Analyze the float, short interest, and options dynamics.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t25_smwb_sector_rotation",
+          "prompt": "SECTOR ROTATION: SMWB is at $4.38, near its 52-week low of $2.22. It peaked at $10.75 in the last 52 weeks. What caused the 59% drop from the 52-week high? Was it company-specific or sector-wide? Compare SMWB's price action against SaaS ETFs (WCLD, IGV, CLOU) and the broader market. Is small-cap SaaS in a bear market? Is money rotating out of B2B SaaS? What macro conditions would cause a sector re-rating?",
+          "system_prompt": "You are a macro and sector rotation analyst. Identify whether SMWB's price decline is company-specific or sector-driven.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t26_smwb_product_reviews",
+          "prompt": "PRODUCT QUALITY: What do actual Similarweb users say? Check G2, Capterra, TrustRadius reviews. What is the G2 rating? How does it compare to Semrush, Ahrefs, Google Analytics on G2? What are the most common complaints? Is the product improving or degrading? Are enterprise customers satisfied? What features do users love? What features are missing? Is there a pattern of churn-driving complaints?",
+          "system_prompt": "You are a product analyst. Assess product-market fit through real user feedback. Do not rely on marketing claims.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t27_smwb_debt_structure",
+          "prompt": "DEBT AND LIQUIDITY: SMWB balance sheet shows Total Debt $39.4M (all lease obligations — $33M long-term lease, $6.4M current lease). Cash $65.3M. No bank debt. No convertible notes. But stockholders equity is only $20.8M and tangible book value is NEGATIVE -$35M. Working capital is -$54.6M (though $117.5M is deferred revenue). At current burn rate (-$33M NI/yr), how long before they need to raise capital? Can they survive on operating cash flow alone? What are the lease obligations (offices? data centers?)?",
+          "system_prompt": "You are a credit analyst. Assess bankruptcy risk and liquidity runway. Focus on cash burn vs cash generation.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t28_smwb_similar_patterns",
+          "prompt": "PATTERN MATCHING: What public companies had a similar profile to SMWB (80% GM SaaS, $300M revenue, unprofitable, 1.3x P/S, insider buying, decelerating growth) and what happened to them? Did they: A) Get acquired at a premium (like Qualtrics, Mailchimp, Slack)? B) Eventually reach profitability and re-rate (like HubSpot, Datadog early days)? C) Stagnate and become permanent value traps (like Box, Domo)? D) Go bankrupt? Which scenario is most likely for SMWB?",
+          "system_prompt": "You are a SaaS investment historian. Find actual comparable precedents. Use real examples with real outcomes.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t29_smwb_customer_concentration",
+          "prompt": "CUSTOMER CONCENTRATION RISK: Does Similarweb have customer concentration risk? Who are their top 5-10 customers by revenue? Do they disclose this in their 20-F (Israeli company filing)? Key institutional investors like Naspers (12.8%) — are they also customers? What percentage of revenue comes from the top 10 customers? What is the typical contract length? How much comes from SMB (self-serve) vs enterprise (sales-driven)?",
+          "system_prompt": "You are a risk analyst. Assess customer concentration and revenue quality. Use 20-F disclosures where available.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t30_smwb_gov_contracts",
+          "prompt": "GOVERNMENT AND INTELLIGENCE CONTRACTS: Similarweb was founded by veterans of Israeli military intelligence (Unit 8200). Do they have government contracts (US DoD, intelligence agencies, Israeli military)? Is their data used for OSINT (open source intelligence)? Could this be a hidden revenue stream or competitive advantage? What percentage of revenue comes from government/public sector? Are there ITAR or export control implications?",
+          "system_prompt": "You are an intelligence community and government contracting analyst. Assess the government/intelligence market opportunity for web analytics data.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t31_smwb_price_action",
+          "prompt": "TECHNICAL AND PRICE ANALYSIS: SMWB IPO'd in 2021. What was the IPO price? What was the all-time high? What is the current 52-week range ($2.22-$10.75)? Where is it relative to VWAP? What does the volume profile look like (is there a volume shelf)? How does the current price relate to the IPO price? Has this been a permanent value destroyer since IPO? What price would represent good entry for a long-term holder?",
+          "system_prompt": "You are a technical analyst. Analyze price history and identify key levels. Focus on value creation/destruction since IPO.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t32_smwb_unit8200",
+          "prompt": "UNIT 8200 FOUNDER ADVANTAGE: Many Israeli tech successes (Check Point, CyberArk, Waze, Mobileye, Cellebrite, NSO Group, Palo Alto Networks founders) came from Unit 8200. Is Similarweb's founding team from Unit 8200? Does this provide actual technical advantages in data collection and analysis? Or is it just marketing? Compare Similarweb's trajectory to other Unit 8200 alumni companies. What is the typical outcome for Unit 8200 companies?",
+          "system_prompt": "You are a technology historian and Israeli tech ecosystem analyst. Assess whether Unit 8200 origin is a real competitive advantage or marketing.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t33_smwb_margins_path",
+          "prompt": "PATH TO PROFITABILITY MODEL: SMWB has 80% GM but -8.3% operating margin. Opex breakdown (2025): R&D $73M (26% of rev), S&M $124M (44% of rev), G&A $52M (18% of rev). Total opex/rev = 88% vs 80% GM = -8% operating margin. For profitability, they need opex/rev < 80%. If revenue grows 10%/yr and opex grows 5%/yr, when do they break even? Model 3 scenarios: 1) Current trajectory, 2) Aggressive cost cuts, 3) Revenue acceleration to 15%+. Show the math.",
+          "system_prompt": "You are a financial modeler. Build a realistic path-to-profitability model. Show your assumptions and math clearly.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t34_smwb_cookie_thesis",
+          "prompt": "POST-COOKIE THESIS VALIDATION: Similarweb's bull case includes 'post-cookie tailwind' — the idea that as third-party cookies die, companies need alternative data sources like Similarweb's panel. But: 1) Google has DELAYED cookie deprecation multiple times. Latest status? 2) Is cookie deprecation actually happening? 3) Does Similarweb's panel data actually replace cookie-based analytics? 4) Who benefits most from cookie death — Similarweb, Semrush, or first-party data companies? 5) Is this thesis already priced in?",
+          "system_prompt": "You are a digital advertising and privacy technology analyst. Assess whether the post-cookie thesis for Similarweb is real or hopeful. Use current 2025-2026 data.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t35_smwb_convergence_bull",
+          "prompt": "SPRINT 9 BULL CONVERGENCE: Synthesize all Sprint 9 analyses. What are the TOP 5 reasons to BUY SMWB at $4.38? Weight each reason by confidence level (HIGH/MED/LOW). Consider: insider buying $813K, 80% GM, 1.3x P/S, data moat, post-cookie, AI opportunity, takeout potential, deferred revenue strength, Israeli tech pedigree. Rank them. What is the expected return in 1 year? 3 years? 5 years? What probability-weighted return justifies the position?",
+          "system_prompt": "You are a conviction investor. Make the strongest possible buy case using ONLY verified data. Separate fact from speculation. Assign probabilities.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t36_smwb_convergence_bear",
+          "prompt": "SPRINT 9 BEAR CONVERGENCE: Synthesize all Sprint 9 analyses. What are the TOP 5 reasons to AVOID SMWB at $4.38? Weight each reason by confidence level (HIGH/MED/LOW). Consider: declining FCF ($27M to $13M to $8M trend), SBC > OCF, 4.3% annual dilution, net loss tripling (-$11M to -$33M), opex growing faster than revenue, growth decelerating, serial acquirer inflating growth, goodwill risk, negative tangible book value, analyst targets at current price. Rank them. What is the downside risk?",
+          "system_prompt": "You are a short-seller analyzing SMWB. Make the strongest possible avoid case using ONLY verified data. Be ruthless. Assign probabilities to each risk.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t37_smwb_entry_price",
+          "prompt": "OPTIMAL ENTRY POINT: If we decide to buy SMWB, what is the RIGHT price? Current: $4.38. 52w low: $2.22. 52w high: $10.75. Analyst mean target: $4.25 (below current!). Consider: 1) DCF-based fair value (assume 10% growth, path to 5% FCF margin in 3 years), 2) Comparable valuation (vs SEMR, SCOR, ZI), 3) Takeout floor (what would PE pay?), 4) Technical support levels. Should we buy NOW at $4.38 or set a limit order at $3.50? $3.00? $2.50? What is the margin of safety at each price?",
+          "system_prompt": "You are a value investor. Calculate fair value using multiple methodologies. Recommend specific entry points with margin of safety.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t38_smwb_final_verdict",
+          "prompt": "FINAL VERDICT: Based on ALL Sprint 9 analysis (40 agents), give a definitive recommendation on SMWB. Options: A) BUY NOW at $4.38 — full conviction, add to portfolio immediately. B) WATCHLIST — interesting but needs more catalysts, set price alert at $X. C) AVOID — risks outweigh rewards, move on. D) LIMIT ORDER — set a GTC buy at $X for margin of safety. For each option, state the probability you assign. Account for: insider buying, FCF decline, SBC dilution, data moat durability, 1000x potential, portfolio fit, transaction costs on small positions ($200-400).",
+          "system_prompt": "You are the chief investment officer making the final call. Use ONLY verified data from the Sprint 9 analyses. Do NOT hallucinate numbers. State your confidence level explicitly. This is a REAL investment decision with REAL money.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t39_smwb_risk_matrix",
+          "prompt": "RISK MATRIX: Create a comprehensive risk matrix for SMWB. Categories: 1) Business Risk (competition, customer churn, product obsolescence), 2) Financial Risk (cash burn, dilution, goodwill impairment), 3) Technical Risk (data collection disruption, browser extension removal, regulatory), 4) Market Risk (sector rotation, interest rates, valuation compression), 5) Geopolitical Risk (Israel, war, sanctions), 6) Execution Risk (management, M&A integration, hiring). Rate each 1-5 (5=highest risk). Calculate overall risk score.",
+          "system_prompt": "You are a risk management analyst. Create a structured risk assessment. Be specific about probability and impact for each risk.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s9_t40_smwb_position_sizing",
+          "prompt": "POSITION SIZING AND EXECUTION PLAN: Portfolio is $2,473. Cash is ~$1,062. We value our time — buy and hold 10 years, no trading. If we decide to buy SMWB, what is the optimal position size and execution plan? Consider: 1) Transaction costs (IBKR commissions on <$400 positions), 2) Tax lot efficiency, 3) Dollar-cost averaging vs lump sum at this price, 4) Position sizing as % of portfolio (should any single stock be >15%?), 5) What price alert to set for adding more, 6) What would trigger a SELL in the future. Give a specific, actionable plan: number of shares, limit price, and monitoring cadence.",
+          "system_prompt": "You are a portfolio manager for a small-account buy-and-hold investor. Create a specific, actionable execution plan. Account for the fact that the investor values their time over micro-optimizing $200-400 positions.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

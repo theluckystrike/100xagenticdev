@@ -1,0 +1,239 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "LIVE-PAGS",
+          "prompt": "What is the CURRENT stock price of PagSeguro Digital (PAGS) as of the most recent trading session (June 2025)? Also provide: 52-week high/low, market cap, average daily volume, bid/ask spread, and whether the stock is trading in the first or last 30 minutes of the day (when spreads widen). What was the closing price on May 30, 2025?",
+          "system_prompt": "You are a market data provider. Provide the most recent stock price data available to you. State your data date clearly.",
+          "temperature": 0.1,
+          "max_tokens": 1500
+        },
+        {
+          "task_id": "LIVE-GAU",
+          "prompt": "What is the CURRENT stock price of Galiano Gold (GAU) as of the most recent trading session (June 2025)? Also provide: 52-week high/low, market cap, average daily volume, bid/ask spread. What was the closing price on May 30, 2025?",
+          "system_prompt": "You are a market data provider. Provide the most recent stock price data available to you. State your data date clearly.",
+          "temperature": 0.1,
+          "max_tokens": 1500
+        },
+        {
+          "task_id": "LIVE-BTG",
+          "prompt": "What is the CURRENT stock price of B2Gold Corp (BTG) as of the most recent trading session (June 2025)? Also provide: 52-week high/low, market cap, average daily volume. What was the closing price on May 30, 2025? Has BTG gone ex-dividend recently?",
+          "system_prompt": "You are a market data provider. Provide the most recent stock price data available to you. State your data date clearly.",
+          "temperature": 0.1,
+          "max_tokens": 1500
+        },
+        {
+          "task_id": "LIVE-PAYO",
+          "prompt": "What is the CURRENT stock price of Payoneer Global (PAYO) as of the most recent trading session (June 2025)? Also provide: 52-week high/low, market cap, average daily volume. What was the closing price on May 30, 2025?",
+          "system_prompt": "You are a market data provider. Provide the most recent stock price data available to you. State your data date clearly.",
+          "temperature": 0.1,
+          "max_tokens": 1500
+        },
+        {
+          "task_id": "LIVE-TUYA",
+          "prompt": "What is the CURRENT stock price of Tuya Inc (TUYA) as of the most recent trading session (June 2025)? Also provide: 52-week high/low, market cap, average daily volume. What was the closing price on May 30, 2025?",
+          "system_prompt": "You are a market data provider. Provide the most recent stock price data available to you. State your data date clearly.",
+          "temperature": 0.1,
+          "max_tokens": 1500
+        },
+        {
+          "task_id": "LIVE-TIGR",
+          "prompt": "What is the CURRENT stock price of UP Fintech (TIGR) as of the most recent trading session (June 2025)? Also provide: 52-week high/low, market cap, average daily volume. What was the closing price on May 30, 2025?",
+          "system_prompt": "You are a market data provider. Provide the most recent stock price data available to you. State your data date clearly.",
+          "temperature": 0.1,
+          "max_tokens": 1500
+        },
+        {
+          "task_id": "LIVE-GRAB",
+          "prompt": "What is the CURRENT stock price of Grab Holdings (GRAB) as of the most recent trading session (June 2025)? Also provide: 52-week high/low, market cap, average daily volume. What was the closing price on May 30, 2025? Has GRAB reported any earnings since Q4 2024?",
+          "system_prompt": "You are a market data provider. Provide the most recent stock price data available to you. State your data date clearly.",
+          "temperature": 0.1,
+          "max_tokens": 1500
+        },
+        {
+          "task_id": "LIVE-STNE",
+          "prompt": "What is the CURRENT stock price of StoneCo (STNE) as of the most recent trading session (June 2025)? Also provide: 52-week high/low, market cap, average daily volume. What was the closing price on May 30, 2025?",
+          "system_prompt": "You are a market data provider. Provide the most recent stock price data available to you. State your data date clearly.",
+          "temperature": 0.1,
+          "max_tokens": 1500
+        },
+        {
+          "task_id": "LIVE-GOLD",
+          "prompt": "What is the CURRENT gold spot price (XAU/USD) as of the most recent trading session (June 2025)? Also provide: 1-month, 3-month, and 12-month gold price history. What was the gold price on May 30, 2025?",
+          "system_prompt": "You are a precious metals market data provider. Provide the most recent gold price data.",
+          "temperature": 0.1,
+          "max_tokens": 1500
+        },
+        {
+          "task_id": "EXEC-CURRENT-HOLDINGS",
+          "prompt": "Based on the 1000x NVIDIA pipeline, here are the CURRENT IBKR holdings (account U16408149) as of May 31, 2025. Reconstruct the exact portfolio state:\n\nKNOWN POSITIONS (from DCA plan and prior execution):\n- TIGR: 39 shares (bought ~$5.01)\n- GRAB: ~50 shares (bought ~$3.55)\n- STNE: Position exists (to be sold)\n- PAGS: Existing position (size unknown, ~$200 invested)\n- GAU: Existing position (~$234 invested, ~100 shares @ ~$2.34)\n- BTG: Existing position (~$199 invested, ~42 shares @ $4.75)\n- PAYO: 50 shares (bought ~$5.13)\n- TUYA: ~95 shares (bought ~$2.12)\n\nQUESTION: What is the EXACT current cost basis and share count for each position? I need the precise starting point to calculate the trades needed.\n\nNote: Some positions may have been added in tranches. The total account equity is approximately $2,000.",
+          "system_prompt": "You are a portfolio accountant. Reconstruct the exact portfolio state from the available data.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "EXEC-SELL-STNE",
+          "prompt": "IBKR ORDER GENERATION: SELL STNE\n\nContext: We are selling our entire STNE position to free up capital. STNE was originally purchased as a Brazil fintech play but our 109-agent validation pipeline confirmed PAGS is superior on P/E (6.5x vs ~10.5x), margins (19% vs 13.5%), and balance sheet.\n\nGenerate the EXACT IBKR order:\n1. Order type: MARKET or LIMIT? (For a small position in a liquid stock)\n2. What is the expected fill price?\n3. Time in force: DAY or GTC?\n4. Any tax implications of selling at current price vs cost basis?\n5. Expected proceeds?\n6. Should we sell pre-market, at open, or during regular hours?\n\nProvide the exact order parameters for IBKR.",
+          "system_prompt": "You are an IBKR trading specialist. Generate exact order parameters.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "EXEC-REDUCE-GRAB",
+          "prompt": "IBKR ORDER GENERATION: REDUCE GRAB POSITION\n\nContext: We originally planned to reduce GRAB from ~50 shares to ~28 shares (sell ~22 shares). However, our 41-agent validation found that GRAB achieved GAAP profitability in Q4 2024 and the 'cash incinerator' thesis is outdated. GRAB has $2.9B net cash.\n\nREVISED QUESTION: Should we still reduce GRAB? Or should we KEEP the full position given the profitability inflection?\n\nIf we should still reduce:\n1. How many shares to sell?\n2. Order type: MARKET or LIMIT?\n3. Expected proceeds?\n\nIf we should keep:\n1. What is the new thesis?\n2. What price would be a 'sell' trigger?\n\nConsider: GRAB has MEGA_CAP penalty (-10) in our scorer. MCap ~$14.7B.",
+          "system_prompt": "You are a portfolio manager. Make a clear recommendation with exact order parameters.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "EXEC-BUY-PAGS",
+          "prompt": "IBKR ORDER GENERATION: ADD TO PAGS POSITION\n\nContext: PAGS is our #1 conviction pick (9/10). Validated: R$8.1B net cash, $176M buyback remaining, R$598M Q1 net income, P/E ~6.5x.\n\nWe want to add $100 to our existing PAGS position.\n\nGenerate the exact IBKR order:\n1. LIMIT or MARKET? (What limit price if LIMIT?)\n2. How many shares at current price?\n3. Time in force?\n4. Should we wait for a dip or buy immediately?\n5. Any upcoming catalysts that might move the price (earnings date, ex-dividend)?\n\nIMPORTANT: The current price may be ~$10-12 (verify). Our allocation model assumed $10.00 but validation showed it may be higher.",
+          "system_prompt": "You are an IBKR trading specialist. Generate exact order parameters.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "EXEC-BUY-GAU",
+          "prompt": "IBKR ORDER GENERATION: ADD TO GAU POSITION\n\nContext: GAU is our #2 gold pick (8/10). Validated: single-asset Asanko mine (NOT Aris merger), $117.6M cash, zero debt, AISC $1,354/oz FY2024, reserves 2.4M oz P&P.\n\nWe want to add $100 to our existing GAU position.\n\nGenerate the exact IBKR order:\n1. LIMIT or MARKET?\n2. How many shares at ~$2.34-2.38?\n3. Time in force?\n4. GAU trades on NYSE American — any liquidity concerns?\n5. Average daily volume?\n\nIMPORTANT: GAU is a small-cap gold miner. Spreads may be wide.",
+          "system_prompt": "You are an IBKR trading specialist for small-cap miners.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "EXEC-BUY-BTG",
+          "prompt": "IBKR ORDER GENERATION: ADD TO BTG POSITION\n\nContext: BTG is our top gold allocation (largest $). Validated: $387M cash, $10.5M lease debt (essentially zero), dividend $0.04/quarter (3.4% yield), Goose first gold Q3 2025 (not Q2), AISC $1,370/oz.\n\nCORRECTED ALLOCATION: We reduced BTG from $400 to $280 after validation found Goose AISC is $1,000-1,100/oz (not $800-900). We currently have ~$199 in BTG (~42 shares). We want to add ~$80 more.\n\nGenerate the exact IBKR order:\n1. LIMIT or MARKET?\n2. How many shares at ~$4.75-4.82?\n3. Time in force?\n4. When is the next ex-dividend date? Should we buy before or after?\n5. BTG trades on NYSE American — liquidity is good (5.5M avg volume).\n\nProvide exact order parameters.",
+          "system_prompt": "You are an IBKR trading specialist.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "EXEC-FINAL-CHECKLIST",
+          "prompt": "FINAL PRE-EXECUTION CHECKLIST for a $2,000 IBKR account.\n\n1. Account status: Is U16408149 a cash account or margin account? PDT rules apply?\n2. Settlement: T+1 for US stocks. If we sell STNE at 9:30 AM, when can we use the proceeds to buy PAGS/GAU/BTG?\n3. Buying power: If we sell STNE ($200) and reduce GRAB ($58-78), total proceeds ~$258-278. Can we immediately place buy orders?\n4. Order types: For sub-$5 stocks (GAU, TUYA), should we use LIMIT orders to avoid slippage?\n5. Commission impact: IBKR Lite = $0, IBKR Pro = $0.35 minimum. What plan is better for 5-6 trades?\n6. Wash sale warning: If we sell STNE at a loss and buy PAGS (similar sector), is this a wash sale? (Different ticker, different company — should be fine)\n7. Tax lot selection: FIFO, LIFO, or specific lot? Which minimizes taxes?\n8. After placing orders: What should we monitor? Stop-loss levels?\n\nGenerate a step-by-step execution protocol for Jun 2, 2025 market open.",
+          "system_prompt": "You are a brokerage operations specialist. Generate a complete execution protocol.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "EXEC-RISK-LIMITS",
+          "prompt": "POSITION RISK LIMITS for the final portfolio.\n\nFor each position, define:\n1. Stop-loss price (where do we cut losses?)\n2. Take-profit target (where do we trim?)\n3. Maximum position size (what % of portfolio is the ceiling?)\n4. Re-evaluation trigger (what event would change the thesis?)\n\nPositions:\n- PAGS ~$300 (15%) — 9/10 conviction\n- GAU ~$334 (17%) — 8/10 conviction\n- BTG ~$280 (14%) — 8/10 conviction\n- PAYO ~$257 (13%) — 8/10 conviction\n- TUYA ~$200 (10%) — 7/10 conviction\n- TIGR ~$195 (10%) — 6/10 (user override)\n- GRAB ~$120 (6%) — 6/10 conviction\n- Cash ~$314 (16%) — dry powder\n\nThis is a 10-year buy-and-hold strategy. Stop-losses should be WIDE but defined.",
+          "system_prompt": "You are a risk manager for a concentrated small-cap portfolio.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "INTEL-PAGS-Q2-preview",
+          "prompt": "PagSeguro (PAGS) Q2 2025 EARNINGS PREVIEW.\n\nQ1 2025 results: Revenue R$5,383M, NI R$598M, TPV R$133.3B, NPL 4.9%.\n\n1. When is Q2 2025 earnings expected? (exact date if known)\n2. Consensus estimates for Q2 2025 (revenue, EPS)\n3. Key metrics to watch: TPV growth, take rate, NPL, efficiency ratio\n4. Brazil Selic rate path — has BCB cut rates recently?\n5. Will Q2 results be a catalyst or headwind for the stock?\n6. What would make you more bullish? More bearish?\n\nWe have $300 allocated. This preview determines if we should add pre-earnings or wait.",
+          "system_prompt": "You are a LatAm equity analyst. Provide an earnings preview.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "INTEL-BTG-goose-update",
+          "prompt": "B2Gold (BTG) GOOSE PROJECT — LATEST STATUS (June 2025).\n\nOur hard validation confirmed Goose first gold pushed from Q2 to Q3 2025, capex increased to $1.0-1.1B, AISC $1,000-1,100/oz (not $800-900).\n\n1. Has B2Gold released any new Goose updates since March 2025?\n2. Is the Q3 2025 first gold timeline still on track?\n3. Any construction milestones achieved in April-May 2025?\n4. Ice road season: Did the 2025 ice road season succeed?\n5. Worker camp status: Is the camp fully operational?\n6. What is the NEXT expected update from B2Gold on Goose?\n\nThis is our largest position ($280). Goose is the #1 catalyst.",
+          "system_prompt": "You are a mining project analyst. Provide the latest available information on the Goose/Back River project.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "INTEL-TUYA-cash-unlock",
+          "prompt": "Tuya Inc (TUYA) — CASH UNLOCK CATALYST HUNT.\n\nValidation confirmed TUYA has $1,024M cash (Q1 2025, UP from $854M). MCap ~$1.1B. Cash = 93% of MCap. EV/Rev = 0.3x.\n\n1. Has TUYA announced any capital return program (buyback, dividend)?\n2. Has the board discussed capital allocation on recent earnings calls?\n3. What are the regulatory barriers to returning cash to US shareholders (VIE structure)?\n4. Could a privatization/MBO happen? At what price?\n5. Has any activist investor taken a position in TUYA?\n6. Is the HK dual listing (2391.HK) active? Volume?\n7. What would UNLOCK the cash value? Identify the 3 most likely catalysts.\n\nAt 93% cash/MCap, this is the most extreme valuation anomaly in our portfolio.",
+          "system_prompt": "You are a China ADR specialist focusing on capital allocation and value catalysts.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "INTEL-GOLD-jun-outlook",
+          "prompt": "Gold price outlook for June-August 2025.\n\n1. What is the current gold spot price?\n2. What are the key events in June-August that could move gold? (Fed meetings, CPI, geopolitics)\n3. Technical analysis: What are the key support/resistance levels?\n4. Central bank buying data — latest WGC report\n5. COMEX positioning — are speculators long or short?\n6. Gold ETF flows — GLD, IAU inflows/outflows\n7. Consensus forecast for gold year-end 2025\n\nOur portfolio is 31% gold miners. This outlook determines if we should add or hold.",
+          "system_prompt": "You are a gold market analyst. Provide a 3-month outlook.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "INTEL-MACRO-jun",
+          "prompt": "Global macro outlook June-August 2025.\n\n1. US recession probability — latest surveys and models\n2. Fed rate decision schedule (June, July FOMC dates)\n3. CPI trend — is inflation cooling?\n4. USD index (DXY) trend\n5. Emerging market fund flows\n6. China economic data — PMI, GDP growth\n7. Brazil macro — Selic rate path, GDP, fiscal\n8. Southeast Asia — GDP growth, digital economy trends\n\nOur portfolio is 100% international (Brazil, Ghana, Canada/Mali, China, Israel, SE Asia). Macro matters.",
+          "system_prompt": "You are a global macro strategist. Provide a concise 3-month outlook for emerging markets.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "INTEL-PAYO-lending",
+          "prompt": "Payoneer (PAYO) — LENDING RAMP & CHARTER MONETIZATION.\n\nOur hard validation confirmed: OCC charter is Trust Bank (NOT full commercial bank). Cannot take demand deposits.\n\n1. What SPECIFIC products can Payoneer offer under the Trust Charter?\n2. Has Payoneer launched any lending products in Q1 or Q2 2025?\n3. 'Payoneer Capital' — does this product exist? Any press releases?\n4. Revenue contribution from banking activities in Q1 2025?\n5. What is the path from Trust Charter to full bank charter? How long?\n6. What did management say about charter monetization on Q1 2025 earnings call?\n\nThis is critical — if the charter is less valuable than we assumed, PAYO's upside is limited.",
+          "system_prompt": "You are a bank regulatory analyst. Focus on the specific capabilities and limitations of a National Bank Trust Charter.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "INTEL-GAU-q2-production",
+          "prompt": "Galiano Gold (GAU) — Q2 2025 PRODUCTION EXPECTATIONS.\n\nQ1 2025 validated: 24,930 oz produced, AISC $1,472/oz (up from $1,354 FY2024), revenue $67.5M.\n\n1. Has GAU released Q2 2025 production results yet?\n2. 2025 guidance: 100,000-110,000 oz at $1,450-$1,550/oz — still on track?\n3. Any operational issues at Asanko in Q2 2025?\n4. Has GAU announced the mill expansion feasibility study results?\n5. What is the next scheduled data release from GAU?\n6. Ghana regulatory updates — any mining code changes?\n\nWe have $334 allocated to GAU. Need to confirm the thesis is still intact.",
+          "system_prompt": "You are a gold mining analyst. Provide the latest operational data for Galiano Gold.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "INTEL-GRAB-profitability",
+          "prompt": "Grab Holdings (GRAB) — PROFITABILITY INFLECTION DEEP DIVE.\n\nOur hard validation found: GRAB achieved GAAP net income $30M in Q4 2024. FY2024 Adj EBITDA $308M. Cash $4.1B, net cash $2.9B.\n\n1. Has GRAB reported Q1 2025 earnings yet? If so, was it GAAP profitable again?\n2. Revenue growth rate in Q1 2025?\n3. Has GRAB announced any capital return program (buyback, dividend)?\n4. Ride-hailing vs deliveries vs financial services — which segment is driving profitability?\n5. Indonesia commission cap — any resolution?\n6. What is the current analyst consensus price target?\n\nWe originally labeled GRAB a 'cash incinerator' and reduced to $100. Should we reverse course?",
+          "system_prompt": "You are a Southeast Asian tech analyst. Assess GRAB's profitability trajectory.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "INTEL-TIGR-jun",
+          "prompt": "UP Fintech (TIGR) — JUNE 2025 STATUS CHECK.\n\nUser override: HOLD at $195 (39 shares) despite agent EXIT recommendation.\n\n1. What is TIGR's current stock price?\n2. Has TIGR reported Q1 2025 earnings? Results?\n3. Any new CSRC regulatory actions against offshore brokerages?\n4. US-China tensions — any delisting threats?\n5. User growth metrics — new funded accounts?\n6. Revenue and profitability trend?\n7. Should the user continue to hold or has the risk profile changed?\n\nBe direct: Is the EXIT recommendation still valid?",
+          "system_prompt": "You are a Chinese fintech analyst. Provide an honest assessment.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "EXEC-ORDER-BOOK",
+          "prompt": "GENERATE THE FINAL IBKR ORDER BOOK for June 2, 2025.\n\nBased on all 109 agents of research, here is the FINAL execution plan:\n\nSELLS (execute first):\n1. SELL ALL STNE — Market order at open\n2. REDUCE GRAB — TBD (may keep full position given profitability)\n\nBUYS (execute after sells settle):\n3. BUY PAGS — Add $100 to existing position\n4. BUY GAU — Add $100 to existing position  \n5. BUY BTG — Add $80 to existing position\n\nHOLDS (no action):\n6. PAYO — Hold 50 shares\n7. TUYA — Hold ~95 shares\n8. TIGR — Hold 39 shares (user override)\n\nFor each order, specify:\n- Symbol\n- Action (BUY/SELL)\n- Quantity (shares)\n- Order Type (MKT/LMT)\n- Limit Price (if LMT)\n- Time in Force (DAY/GTC)\n- Special instructions\n\nFormat as a clean order table.",
+          "system_prompt": "You are a trade execution specialist. Generate a clean, executable order book.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "EXEC-DCA-SCHEDULE",
+          "prompt": "GENERATE THE DCA SCHEDULE for June-December 2025.\n\nAssumptions:\n- No new capital inflows (total $2,000 deployed)\n- Cash reserve: ~$314 (to be deployed on dips)\n- 10-year buy-and-hold strategy\n- Rebalance quarterly\n\nFor each month (Jun-Dec 2025), specify:\n1. What to BUY if any position drops 15%+\n2. What to SELL if any position hits 2x cost basis\n3. Dividend reinvestment plan (BTG pays quarterly)\n4. Earnings calendar (dates to watch for each stock)\n5. Key macro dates (Fed, CPI, etc.)\n\nAlso specify:\n- At what portfolio value should we add more capital? ($1,500? $2,500?)\n- Annual review criteria (score re-run, position cuts, etc.)\n\nThis should be a simple, automated plan that requires minimal monitoring.",
+          "system_prompt": "You are a wealth advisor for a concentrated small-cap portfolio. Create a simple DCA/monitoring plan.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "INTEL-STNE-urgency",
+          "prompt": "StoneCo (STNE) — SELL URGENCY CHECK.\n\nWe plan to sell our entire STNE position. But our validation found STNE wins on some metrics (revenue scale, client quality, banking). \n\n1. Are there any upcoming catalysts for STNE that would make it worth holding a few more days?\n2. When is STNE's next earnings date?\n3. Is STNE trading at a 52-week high (bad time to sell) or low (already priced in)?\n4. Tax loss harvesting opportunity? (Are we at a loss or gain on STNE?)\n5. Any M&A rumors involving STNE?\n6. If we sell STNE and it goes up 50%, would we regret it? What's the probability?\n\nBe direct: Sell today or wait?",
+          "system_prompt": "You are an equity trader. Provide timing advice for the sell.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "INTEL-WATCHLIST",
+          "prompt": "WATCHLIST CANDIDATES — What should we monitor for future buys?\n\nFrom our 109-agent pipeline, these stocks emerged as potential additions:\n1. GOTU (Gaotu Techedu) — 8/10 conviction, net cash > MCap, K-12 pivot working\n2. AFYA — LatAm education/health, strong margins\n3. MAPS — WM Technology, cannabis tech\n4. GHG — GreenTree Hospitality, China recovery play\n\nFor each: Current price, bull case, bear case, and at what price we should buy.\n\nAlso: Should we add ANY new positions with our $314 cash, or keep it as dry powder?",
+          "system_prompt": "You are a small-cap equity analyst. Evaluate watchlist candidates.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "EXEC-TAX",
+          "prompt": "TAX OPTIMIZATION for the $2,000 portfolio.\n\n1. If we sell STNE at current price (~$5.82), are we at a gain or loss from our cost basis?\n2. If we sell GRAB shares, same question.\n3. Short-term vs long-term capital gains: How long have we held each position?\n4. Tax loss harvesting: Can we offset any gains with losses?\n5. Wash sale rules: Does selling STNE and buying PAGS trigger a wash sale? (Different companies, but same sector)\n6. For a $2,000 portfolio, is the tax impact even material? (Probably <$50 in taxes)\n\nProvide a simple tax summary.",
+          "system_prompt": "You are a tax advisor for small investment accounts. Keep it practical.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "EXEC-MONITORING",
+          "prompt": "POST-EXECUTION MONITORING PLAN.\n\nAfter placing all orders on June 2, 2025, what should we monitor?\n\n1. Daily checks (takes 2 minutes):\n   - What to look at each morning?\n   - What price alerts to set?\n   - What news sources to follow?\n\n2. Weekly checks:\n   - Portfolio rebalancing triggers?\n   - Sector rotation signals?\n\n3. Monthly checks:\n   - Earnings calendar\n   - Gold price trends\n   - Macro data\n\n4. Quarterly checks:\n   - Full portfolio review\n   - Score re-run\n   - Position sizing review\n\n5. Annual review:\n   - Tax review\n   - Strategy assessment\n\nCreate a MINIMAL monitoring plan. This is buy-and-hold, not day trading.",
+          "system_prompt": "You are a portfolio monitoring specialist. Create a minimal, actionable plan for a buy-and-hold investor.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "SYNTHESIS-FINAL",
+          "prompt": "FINAL SYNTHESIS — THE 1000x NVIDIA PORTFOLIO.\n\nAfter 109 agents, 3 validation sprints, and $0.16 in total cost, synthesize the FINAL verdict:\n\n1. Is this portfolio worth executing? YES/NO with conviction level.\n2. What is the single biggest risk?\n3. What is the single biggest opportunity?\n4. Expected outcome in 1 year, 3 years, 10 years?\n5. What would change your mind? (What data would make you say 'don't do this'?)\n6. Confidence interval: What is the probability this portfolio beats the S&P 500 over 10 years?\n7. Any final warnings before execution?\n\nBe brutally honest. This is real money.",
+          "system_prompt": "You are a chief investment officer. Provide the final investment decision memo. Be brutally honest about risks and opportunities.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        }
+      ]
+    }
+  ]
+}

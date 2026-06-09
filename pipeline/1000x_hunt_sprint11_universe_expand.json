@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "s11_t01_task_deep",
+          "prompt": "Deep dive on TaskUs (TASK) at $6.47. BPO/digital outsourcing company. Live yfinance data: Revenue $1.2B (+10.3%), Gross Margin 39.2%, Operating Margin 11.5%, Net Income $105M PROFITABLE, FCF $81M, P/E 5.7x(!), P/S 0.49x, Cash $152M, Debt $548M, Insider 23.0%, Short 12.8%. What does TaskUs do? Who are their clients? What is their competitive advantage in AI-related outsourcing? Why is P/E so low — what is the market missing or pricing in?",
+          "system_prompt": "You are a forensic equity research analyst specializing in technology services. Investigate why this profitable, growing company trades at 5.7x earnings.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t02_task_moat",
+          "prompt": "MOAT ANALYSIS: TaskUs (TASK). They provide AI training data, content moderation, and digital customer experience for tech companies. Clients reportedly include major AI companies. What is their competitive advantage vs Concentrix, TELUS International, Appen, Accenture? Is AI training data annotation a growing market? Could AI replace their workers (they train AI that could replace them)? What is their client concentration risk?",
+          "system_prompt": "You are a competitive strategy analyst. Identify whether TASK has a durable moat or is a commodity services provider vulnerable to AI disruption.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t03_task_insider",
+          "prompt": "INSIDER FORENSICS: TaskUs (TASK). 23% insider ownership. All recent insider transactions (May 2026) are stock awards to directors — Greenthal, Tuminelli, Reses, Kumar, Gonzalez all received 12,491 shares each. NO open-market buying or selling detected. Short interest 12.8%. What does the insider pattern tell us? Are the founders still holding? Who owns the 23%? Is it founders or PE sponsors?",
+          "system_prompt": "You are an insider activity forensic analyst. Distinguish between meaningful insider ownership (founders holding) and PE sponsor lockup situations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t04_task_risk",
+          "prompt": "RISK ANALYSIS: TaskUs (TASK). $548M debt vs $152M cash = $396M net debt. Revenue $1.2B. Debt/Revenue ratio 0.46x. FCF $81M. Is the debt manageable? When does it mature? Philippines-based workforce — geopolitical risk? Client concentration (if top client is >20% revenue)? AI disruption risk — they train AI models but AI could replace their annotators. What happened to Appen (APX) — is TASK the same story?",
+          "system_prompt": "You are a risk analyst. Assess whether TASK's debt and AI disruption risks are manageable or fatal. Be specific about debt maturity and AI replacement timeline.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t05_prth_deep",
+          "prompt": "Deep dive on Priority Technology Holdings (PRTH) at $6.42. Payment processing company. Live yfinance: Revenue $978M (+11.1%), GM 39.5%, Op Margin 15.0%, NI $57M PROFITABLE, FCF $76M, P/E 9.2x, P/S 0.54x, Cash $92M, Debt $1.05B(!), Insider 59.4%(!). Why is 59.4% insider ownership? Who owns it — PE sponsor, founder? What does PRTH do exactly in payments? Is the $1.05B debt a dealbreaker?",
+          "system_prompt": "You are a fintech equity analyst. Investigate the unusual 59.4% insider ownership and whether the massive debt is structural (PE buyout leverage) or problematic.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t06_prth_debt",
+          "prompt": "DEBT FORENSIC: Priority Technology (PRTH). $1.05B debt vs $92M cash = $963M net debt. Revenue $978M. NI $57M. FCF $76M. Debt/EBITDA likely 5-7x. This looks like a leveraged buyout structure. Who owns PRTH? Is this a PE-backed company? When does the debt mature? What are the interest rates? Can they service the debt with $76M FCF? Is this a candidate for debt restructuring or refinancing? Compare to other levered payment companies.",
+          "system_prompt": "You are a leveraged finance analyst. Determine if PRTH's debt is sustainable or if this is a ticking time bomb. Be specific about maturity schedule.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t07_rent_deep",
+          "prompt": "Deep dive on Rent the Runway (RENT) at $3.72. Fashion rental subscription. Live yfinance: Revenue $330M (+20.0%), GM 73.2%, Op Margin -1.0%, NI $23M, FCF -$56M(!), P/E 2.0x(!), P/S 0.38x, Cash $50M, Debt $199M, Insider 73.8%(!). CRITICAL: P/E 2.0x seems impossibly low. Is NI real or includes one-time items? Why is FCF NEGATIVE if NI is positive? What is the 73.8% insider ownership — is it founder Jennifer Hyman? Insiders Hyman and Fleiss SOLD shares in Oct 2025.",
+          "system_prompt": "You are a forensic equity research analyst. Investigate the P/E 2.0x anomaly. Something doesn't add up between positive NI and negative FCF. Find the truth.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t08_rent_fcf",
+          "prompt": "FCF FORENSIC: Rent the Runway (RENT). NI $23M but FCF -$56M. This gap is ~$79M. Where does it go? RENT buys designer clothing as capex (they own the inventory they rent out). Is the 'capex' actually inventory purchases that should be COGS? What are the true unit economics of renting fashion? Depreciation on clothing? Is this a business model that can ever generate real FCF? What happened to Stitch Fix — is RENT the same trajectory?",
+          "system_prompt": "You are a forensic accountant. Explain the NI-FCF gap. Determine whether RENT is genuinely profitable or using accounting to mask cash burn.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t09_rere_deep",
+          "prompt": "Deep dive on ATRenew (RERE) at $4.58. China pre-owned consumer electronics recycling. Live yfinance: Revenue $22.6B(!) CNY (+32.4%), GM 20.6%, Op Margin 3.0%, NI $429M CNY, P/S 0.04x(!), Cash $1.26B, Debt $360M, Insider 2.7%. Revenue in CNY — convert to USD properly (~$3.1B USD). The P/S of 0.04x is among the lowest we've seen. Is this a real business or a marketplace with gross GMV reported as revenue? What is the take rate?",
+          "system_prompt": "You are a China tech analyst. Investigate whether RERE's massive revenue is genuine transactional revenue or inflated GMV. Explain the business model and why P/S is absurdly low.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t10_rere_china",
+          "prompt": "CHINA ADR RISK: ATRenew (RERE). It's a China-based ADR. Apply all standard China ADR discount factors: VIE structure risk, delisting risk (HFCAA compliance), government regulatory risk, capital controls, audit transparency. Has RERE passed PCAOB audits? What is the VIE structure? Is there a Hong Kong dual listing as insurance? Compare to JD.com (they have a JD partnership). What happened to Luckin Coffee, Pinduoduo regulatory issues?",
+          "system_prompt": "You are a China ADR risk analyst. Apply the standard -15 point China ADR penalty and explain whether RERE deserves additional discount or reprieve.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t11_intr_deep",
+          "prompt": "Deep dive on Inter & Co (INTR) at $6.00. Brazilian digital bank/fintech. Live yfinance: Revenue $6.3B BRL (+25.3%), Op Margin 29.9%, NI $1.42B BRL, P/E 9.5x, P/S 0.42x, Cash $6.95B, Debt $19.8B, Insider 18.6%. This is a Brazilian bank — $19.8B debt is customer deposits, not corporate debt. How many customers does Inter have? Growth trajectory? Compare to Nu Holdings (NU) which trades at much higher multiples. Is INTR the 'poor man's NU'?",
+          "system_prompt": "You are a Latin American fintech analyst. Compare INTR to NU — explain the valuation gap and whether INTR is genuinely undervalued or has structural issues NU doesn't.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t12_intr_vs_pags",
+          "prompt": "HEAD TO HEAD: INTR ($6.00, P/E 9.5x) vs PAGS ($9.22 limit order pending in our portfolio). Both are Brazilian fintech. INTR is a digital bank (Inter). PAGS is PagSeguro (payments). We already have a deep dive on PAGS. How do they compare? INTR has higher revenue growth (+25.3% vs PAGS), similar P/E range. Is INTR a better Brazilian fintech play than PAGS? Does owning both create concentration risk in Brazil?",
+          "system_prompt": "You are a Brazilian fintech portfolio analyst. Compare INTR and PAGS and determine if INTR should replace or complement PAGS in the portfolio.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t13_alit_deep",
+          "prompt": "Deep dive on Alight (ALIT) at $0.83. HR/benefits administration SaaS. Live yfinance: Revenue $2.2B (-2.6%), GM 38.5%, Op Margin -4.1%, NI -$3.08B(!) LOSS, FCF $140M, P/S 0.20x, Cash $183M, Debt $2.12B, Insider 4.6%, Short 11.0%. CRITICAL: -$3.08B loss on $2.2B revenue = massive goodwill impairment. What was the write-down? Is the underlying business healthy (FCF $140M suggests yes)? Was this a SPAC? Who owns it (PE sponsor Blackstone?)? Is the $2.12B debt from a leveraged buyout?",
+          "system_prompt": "You are a forensic equity research analyst specializing in PE-backed companies. Separate the one-time goodwill impairment from the underlying business economics.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t14_alit_trap",
+          "prompt": "VALUE TRAP TEST: Alight (ALIT) at $0.83. P/S 0.20x with $2.2B revenue and $140M FCF looks amazing. But: $2.12B debt, revenue DECLINING -2.6%, stock down from SPAC debut at $10 to $0.83 (92% decline). Insider stock awards at $0.58 (below current price). Is this a levered zombie or a genuine turnaround? What happened to other PE-backed HR SaaS companies (Ceridian, Paylocity, Paycom)? Is Blackstone exiting?",
+          "system_prompt": "You are a distressed equity analyst. Determine if ALIT is a value trap or a genuine deep-value opportunity. Focus on debt serviceability and PE sponsor intentions.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t15_sfix_trap",
+          "prompt": "VALUE TRAP TEST: Stitch Fix (SFIX) at $3.52. $1.3B revenue, GM 43.8%, FCF $47M, P/S 0.36x, Cash $228M > Debt $81M (net cash!). But: insiders SELLING — O'Connor sold $185K at $3.08, Aufderhaar sold $203K at $3.09 (April 2026). Short interest 15.8%. Revenue was declining but now +9.4% growth. Is this a turnaround or dead cat bounce? What happened to the original AI-styling thesis? Is Katrina Lake still involved? Compare to RENT.",
+          "system_prompt": "You are a retail/e-commerce analyst. Assess whether SFIX's turnaround is real or temporary. Insider selling at $3 is a yellow flag.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t16_evh_deep",
+          "prompt": "Deep dive on Evolent Health (EVH) at $3.96. Healthcare technology/value-based care. Live yfinance: Revenue $1.9B (+2.6%), GM 20.2%, NI -$534M LOSS, FCF $53M, P/S 0.24x, Cash $142M, Debt $985M, Short 13.4%. Revenue nearly $2B but -$534M loss and $985M debt. Is this another PE-levered healthcare play? What is value-based care and is it growing? Who are EVH's clients — health plans, providers? Why the massive loss?",
+          "system_prompt": "You are a healthcare technology analyst. Assess EVH's business model viability and whether the massive net loss is one-time or structural.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t17_kill_screen_1",
+          "prompt": "RAPID KILL SCREEN BATCH 1: Apply kill criteria to these stocks. Kill if: chronic dilution >10%/yr, CEO selling, reverse split history, negative unit economics, fraud/SEC, zombie, >5x debt/EBITDA with no path. 1) GPRO ($1.15, -$128M NI, rev -26.2%, insiders SELLING $127K), 2) SKIN ($0.67, -$7M NI, 34.8% short, $367M debt, massive SBC), 3) DBI ($8.58, $1.24B debt, 45.7% short!), 4) DCGO ($0.63, -$188M NI, rev -21.3%, insider sold), 5) SPCE ($4.59, $1M rev, -$259M NI, zero revenue company), 6) NFE ($0.52, -$2.1B NI, $149M mcap), 7) EOSE ($9.42, -$1B NI, -101.9% GM).",
+          "system_prompt": "You are a kill-list analyst. Be ruthless. If it fails ANY kill criterion, KILL immediately. No benefit of the doubt.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t18_kill_screen_2",
+          "prompt": "RAPID KILL SCREEN BATCH 2: 1) BKKT ($9.80, -$95M NI, rev -77.1%, -6.9% GM = NEGATIVE UNIT ECONOMICS), 2) CANG ($0.42, -$453M NI, 3.8% GM, China), 3) MAXN ($0.76, -$611M NI, -137.5% GM, $13M mcap), 4) REE ($0.43, $1M rev, -$56M NI, $12M mcap), 5) SGMO ($0.21, -$123M NI, -226% GM, $87M mcap), 6) CMTG ($2.46, -$465M NI, negative revenue), 7) HYLN ($6.79, $6M rev, -$52M NI, $1.2B mcap = 208x P/S), 8) ATAI ($4.81, $3M rev, -$663M NI, $1.8B mcap).",
+          "system_prompt": "You are a kill-list analyst. Be ruthless. These are likely all kills but document the specific kill reason for each.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t19_kill_screen_3",
+          "prompt": "RAPID KILL SCREEN BATCH 3: 1) IBRX ($7.23, $141M rev but -$855M NI, 62.5% insider, $7.6B mcap on biotech), 2) NUVB ($4.90, $143M rev at 2599% growth but -$146M NI, biotech), 3) SVRA ($5.25, no revenue, -$129M NI, biotech), 4) ORIC ($7.62, no revenue, -$135M NI, biotech), 5) RCKT ($2.89, no revenue, -$209M NI, biotech), 6) FATE ($2.57, $6M rev, -$130M NI, biotech), 7) VIR ($8.74, $65M rev, -$443M NI, biotech), 8) ZNTL ($3.95, no revenue, -$124M NI, biotech).",
+          "system_prompt": "You are a biotech kill-list analyst. Most pre-revenue biotechs should be killed unless they have Phase 3 data, FDA approval imminent, or massive insider buying. Be ruthless.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t20_watch_screen",
+          "prompt": "WATCHLIST CANDIDATES: These passed initial screen but need deeper analysis. Rate each 1-10 for investment potential: 1) ARHS ($6.53, furniture, $1.4B rev, P/E 13.9x, profitable), 2) GOOS ($9.89, Canada Goose, $1.5B rev, GM 69.7%, P/E 58.2x), 3) OLPX ($2.05, Olaplex haircare, $425M rev, GM 72.4%, FCF $65M), 4) PAYS ($7.40, Paysign payments, $91M rev +50.8% growth, profitable), 5) VTEX ($3.87, Brazil e-commerce SaaS, $247M rev, profitable, 44.8% insider), 6) COUR ($5.54, Coursera edtech, $774M rev, FCF $69M), 7) JMIA ($6.88, Africa e-commerce, $203M rev +39.4%), 8) XERS ($6.00, pharma, $315M rev +38.3% growth, 85.9% GM).",
+          "system_prompt": "You are a watchlist curator. Rate each stock 1-10. Only stocks scoring 7+ deserve a deeper sprint. Be selective.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t21_task_ai_thesis",
+          "prompt": "AI DISRUPTION THESIS: TaskUs (TASK) provides AI data annotation, content moderation, and trust & safety services. They literally train AI models for major tech companies. Question: Does AI create MORE demand for TASK (more models to train = more annotation needed) or does AI DESTROY TASK (automated annotation replaces human annotators)? What happened to Appen (collapsed)? Is TASK different? What percentage of TASK revenue is AI-related vs traditional BPO?",
+          "system_prompt": "You are an AI industry analyst. Assess whether AI is an existential threat or a growth driver for TASK. Be specific about timeline.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t22_task_1000x",
+          "prompt": "1000x TEST: TaskUs (TASK) at $6.47, market cap $593M. For 1000x ($6,470/share, $593B) — impossible, would be larger than Google. For 100x ($647/share, $59.3B) — would need to become Accenture-tier ($200B+). For 10x ($64.70/share, $5.93B) — needs revenue to reach $6B+ at 15-20% margins. BPO/outsourcing companies rarely command premium multiples. What is the realistic max upside? Compare to Accenture, Cognizant, Infosys growth trajectories.",
+          "system_prompt": "You are a return-potential analyst. Most BPO companies are 2-5x at best. Is TASK different? Be honest about realistic upside.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t23_prth_moat",
+          "prompt": "MOAT ANALYSIS: Priority Technology Holdings (PRTH). Payment processing company with 59.4% insider ownership. What exactly does PRTH do in payments? Who are their merchants? What is their competitive advantage vs Square, Stripe, Fiserv, Global Payments? Is there switching cost moat? What is their take rate and how does it compare? Is the 59.4% insider a PE sponsor (Apollo? Ares? Someone else)?",
+          "system_prompt": "You are a payments industry analyst. Determine if PRTH has any competitive advantage or if it's a commodity payment processor with PE leverage.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t24_universe_gaps",
+          "prompt": "UNIVERSE GAP ANALYSIS: Our 1000x pipeline has screened 564 unique stocks across 11 sprints. We have good coverage of: fintech (PAGS, STNE, GRAB, TIGR), gold (BTG, GAU), China ADR (TUYA), US SaaS (SMWB), cannabis (VFF, OGI), consumer (CURV, PLBY). What sectors are we MISSING? Specifically look for: 1) Profitable sub-$5 companies we haven't screened, 2) Sectors with structural tailwinds (aging population, energy transition, etc.), 3) International stocks underrepresented (India, Southeast Asia, LatAm, Africa). List 20 tickers we should screen next.",
+          "system_prompt": "You are a universe construction analyst. Identify gaps in the screening coverage and suggest specific tickers to fill them.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t25_rent_model",
+          "prompt": "BUSINESS MODEL ANALYSIS: Rent the Runway (RENT). Fashion rental subscription at $3.72. 73.8% insider ownership. P/E 2.0x. 73.2% gross margin. But FCF -$56M. The business model: buy designer clothing → rent to subscribers → depreciate clothing over time. Unit economics question: What is the average number of rentals per garment? What is the depreciation schedule? Is clothing capex treated as investment or expense? How does this compare to traditional retail? Why did RENT go public via IPO and then crash 90%+?",
+          "system_prompt": "You are a business model analyst specializing in subscription economics. Determine whether RENT's rental model is fundamentally viable or structurally broken.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t26_convergence_top5",
+          "prompt": "CONVERGENCE: Sprint 11 Top 5 ranking. Rank these candidates from best to worst investment opportunity: 1) TASK ($6.47, P/E 5.7, profitable BPO, AI exposure), 2) PRTH ($6.42, P/E 9.2, 59.4% insider, levered payments), 3) RENT ($3.72, P/E 2.0, 73.8% insider, fashion rental), 4) RERE ($4.58, P/S 0.04, China recycling, profitable), 5) INTR ($6.00, P/E 9.5, Brazilian bank, growing). Use 50-point scale: Moat(10) + TAM(10) + Anti-consensus(10) + Catalyst(10) + Management(10). Give SINGLE definitive ranking.",
+          "system_prompt": "You are a convergence analyst. Rank definitively. No ties. Best opportunity first, worst last.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t27_alit_business",
+          "prompt": "BUSINESS ANALYSIS: Alight (ALIT) at $0.83. HR/benefits administration platform. $2.2B revenue, $140M FCF, P/S 0.20x. But -$3.08B NI (goodwill impairment). Questions: 1) What exactly does Alight do — benefits administration, payroll, cloud? 2) Who are their clients (Fortune 500)? 3) What was the $3B write-down about? 4) Is Blackstone still a major shareholder? 5) Is revenue declining because clients are switching to Workday or other platforms? 6) Is the $2.12B debt manageable with $140M FCF?",
+          "system_prompt": "You are an HR technology analyst. Assess whether ALIT's underlying business is healthy despite the headline loss and stock price collapse.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t28_v3_scoring",
+          "prompt": "V3 FRAMEWORK SCORING: Score TASK, PRTH, RENT, RERE, INTR using v3 (100 pts): A(20) Growth — revenue growth rate + acceleration. B(15) Margin — gross margin + operating margin + path to profitability. C(15) Insider — insider ownership % + buying activity + no selling. D(15) Capital — FCF yield + cash position + debt safety. E(10) Moat — competitive advantage + switching costs + brand. F(10) TAM — total addressable market + penetration. G(10) Catalyst — near-term catalysts. H(5) Anti-Fragility — benefits from chaos/volatility. Penalties: CN_ADR -15, >10% dilution -20, reverse split -25, CEO selling -15, zero rev -10, DEBT_BOMB -6.",
+          "system_prompt": "You are a quantitative scorer. Apply the framework rigorously. Use LIVE data provided. Give specific point allocations for each category.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t29_dbi_short",
+          "prompt": "SHORT SQUEEZE OR DEATH SPIRAL: Designer Brands (DBI) at $8.58. 45.7% short interest(!). $2.9B revenue, GM 43.6%, NI -$8M, FCF $62M, $1.24B debt, 17.5% insider. 45.7% short is EXTREME. Is DBI a short squeeze candidate or are shorts right? What is the cost to borrow? What would trigger a squeeze? Or is this like Bed Bath & Beyond — a death spiral where shorts are right?",
+          "system_prompt": "You are a short squeeze analyst. Assess probability of squeeze vs probability shorts are correct. Be specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t30_olpx_deep",
+          "prompt": "Deep dive on Olaplex (OLPX) at $2.05. Premium haircare brand. Live data: Revenue $425M, GM 72.4%, FCF $65M, P/S 3.24x, Cash undisclosed, Short 0.6%. Olaplex was once a high-flying IPO ($30+). Now at $2.05 (93% decline). Is the brand dead or recovering? What happened — was it a pandemic bubble or structural decline? Hair bonding technology — is it still differentiated? Who are competitors (L'Oreal, etc.)? Is this a LBO candidate at 72% GM?",
+          "system_prompt": "You are a consumer brands analyst. Assess whether OLPX is a dead brand or a turnaround play at deep value.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t31_portfolio_fit",
+          "prompt": "PORTFOLIO FIT: Current portfolio: GRAB (150 shr, $540), BTG (50, $234), GAU (100, $225), TUYA (95, $210), TIGR (39, $202 — KILLED but still held?). Cash ~$1,062. Total ~$2,473. Pending: PAGS $9.22 limit, PAYO $5.12 limit. Watchlist: SMWB $3.00, VFF $2.00, OGI $0.80. If TASK or PRTH make sense, what position size? Current exposure: SE Asia 22%, Gold 18%, China 16%, Cash 43%. Would BPO (TASK), payments (PRTH), or Brazil (INTR) add genuine diversification?",
+          "system_prompt": "You are a portfolio construction analyst. Assess whether Sprint 11 candidates add diversification or concentration. Consider sector correlation.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t32_upwk_deep",
+          "prompt": "Deep dive on Upwork (UPWK) at $8.98. Freelance marketplace. Revenue $791M (+1.4%), GM 77.5%, NI $109M PROFITABLE, FCF $172M(!), P/E 11.1x, P/S 1.40x, Cash undisclosed, 5.0% insider. Upwork is the dominant freelance platform but growth has stalled at +1.4%. Is AI disrupting freelancers? Is the marketplace model still defensible? Why is P/E only 11.1x with $172M FCF? Compare to Fiverr (FVRR). What is Upwork's take rate?",
+          "system_prompt": "You are a marketplace analyst. Assess whether UPWK is a mature cash cow or a declining platform being disrupted by AI.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t33_tdoc_deep",
+          "prompt": "Deep dive on Teladoc (TDOC) at $7.54. Telehealth platform. Revenue $2.5B (-2.5% declining), GM 69.3%, NI -$171M LOSS, FCF $208M, P/S 0.54x, P/E N/A, Cash undisclosed. TDOC was the pandemic darling ($300+ in 2021). Now at $7.54 (97% decline). Is telehealth dead or is this the bottom? What happened to the Livongo acquisition ($18.5B)? Goodwill write-downs? $208M FCF on $2.5B revenue is decent. Is this a turnaround?",
+          "system_prompt": "You are a digital health analyst. Assess whether TDOC at $7.54 is a once-in-a-decade value opportunity or a dead business model.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t34_sector_thesis",
+          "prompt": "SECTOR THESIS: Sprint 11 has uncovered several themes: 1) AI-exposed services (TASK, UPWK) — is AI a tailwind or headwind? 2) Leveraged buyout survivors (PRTH, ALIT, EVH) — PE-loaded with debt but cash-flowing. 3) Fallen pandemic darlings (TDOC, SFIX, RENT) — 90%+ declines, some now FCF positive. 4) China/EM value (RERE, INTR) — ridiculously low P/S but structural discounts. Which THEME has the best risk/reward for a 10-year buy-and-hold investor?",
+          "system_prompt": "You are a thematic investment strategist. Rank the four themes and explain which offers the best asymmetric opportunity.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t35_insider_cross",
+          "prompt": "INSIDER ACTIVITY CROSS-CHECK Sprint 11: Compare insider behavior: TASK — stock awards only, no buys/sells. PRTH — stock awards only, 59.4% insider (PE?). RENT — 73.8% insider, founders SOLD in Oct 2025. SFIX — insiders SOLD at $3.08 in April 2026. GPRO — insiders SOLD $127K at $0.97. GOOS — insider sold $21K. PAYS — one insider sold $158K at $7.01. DBI — no open market sells. RERE — one insider bought 45K shares. INTR — no transactions. Rank from most bullish to most bearish.",
+          "system_prompt": "You are an insider forensic analyst. Rank insider signals. Distinguish between routine diversification and conviction moves.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t36_fallen_angels",
+          "prompt": "FALLEN ANGEL ANALYSIS: These were once high-flying stocks now down 90%+. Are any genuine turnarounds? 1) TDOC: $300 → $7.54 (97% decline), now FCF $208M. 2) SFIX: $100+ → $3.52 (96%), FCF $47M, revenue growing again. 3) RENT: $28 → $3.72 (87%), P/E 2.0x. 4) OLPX: $30 → $2.05 (93%), GM 72.4%, FCF $65M. 5) GPRO: $98 → $1.15 (99%), FCF $86M but dying brand. 6) SNAP: $83 → $5.76 (93%), still growing 12.1%. Which fallen angels are genuine turnarounds vs value traps?",
+          "system_prompt": "You are a turnaround analyst. Separate genuine turnarounds (Microsoft in 2013, Apple in 1997) from permanent decliners (BlackBerry, Kodak).",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t37_task_vs_all",
+          "prompt": "HEAD TO HEAD: TASK ($6.47, P/E 5.7x) vs all other Sprint 11 candidates AND previous sprint best finds. Compare TASK to: SMWB (Sprint 9, SaaS, watchlist $3.00), VFF (Sprint 10, cannabis, watchlist $2.00), OGI (Sprint 10, BAT-backed), PAGS (held position), BTG (held). Is TASK a BETTER opportunity than any of these? What makes TASK unique in the pipeline?",
+          "system_prompt": "You are a cross-sprint comparison analyst. Does TASK deserve to be promoted above current watchlist/positions? Be definitive.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t38_entry_prices",
+          "prompt": "OPTIMAL ENTRY POINTS for Sprint 11 candidates. For each: current price, fair value, 30% margin of safety price, GTC limit recommendation. 1) TASK: $6.47, P/E 5.7x, 2) PRTH: $6.42, P/E 9.2x, 3) RENT: $3.72, P/E 2.0x, 4) RERE: $4.58, P/S 0.04x, 5) INTR: $6.00, P/E 9.5x, 6) ALIT: $0.83, FCF $140M, 7) TDOC: $7.54, FCF $208M, 8) UPWK: $8.98, P/E 11.1x, 9) SFIX: $3.52, FCF $47M, 10) OLPX: $2.05, GM 72.4%.",
+          "system_prompt": "You are a value investor. Calculate fair value and entry prices. Be specific. Recommend GTC limit prices with margin of safety.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t39_final_action",
+          "prompt": "SPRINT 11 FINAL ACTION: Based on all analysis, what should the investor DO? We have $1,062 cash. Max position $200-300. Buy and hold 10 years. Options: A) BUY TASK now at $6.47. B) BUY INTR now at $6.00. C) WATCHLIST several — set alerts. D) Set limit orders at specific prices. E) Wait — none of these are compelling enough. Portfolio is converting to CASH ONLY. Current positions: GRAB, BTG, GAU, TUYA, TIGR. Pending limits: PAGS $9.22, PAYO $5.12. Existing watchlist: SMWB $3.00, VFF $2.00, OGI $0.80.",
+          "system_prompt": "You are the chief investment officer making the final call. Use ONLY verified data. State confidence level. This is a REAL investment decision.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s11_t40_master_ranking",
+          "prompt": "MASTER UNIVERSE RANKING: Rank ALL active investment candidates across ALL sprints. Include: HELD positions (GRAB, BTG, GAU, TUYA), PENDING orders (PAGS, PAYO), WATCHLIST (SMWB, VFF, OGI), and NEW Sprint 11 candidates (TASK, PRTH, RENT, RERE, INTR, ALIT, TDOC, UPWK, SFIX, OLPX). That's 19 stocks total. Rank 1-19 by OVERALL investment quality. Consider: profitability, growth, insider behavior, moat, valuation, risk. This is the master priority list for the portfolio.",
+          "system_prompt": "You are the chief investment strategist. This is the definitive cross-sprint ranking. Be ruthless. Rank 1-19 with brief justification for each position.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

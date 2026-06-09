@@ -1,0 +1,219 @@
+{
+  "phases": [
+    {
+      "phase_name": "PHASE 1: Deep Edge Hunt — 5 Stocks × 7 Angles = 35 Agents",
+      "tasks": [
+        {
+          "task_id": "PAGS-01-financials",
+          "prompt": "PAGS (PagSeguro Digital) — FINANCIAL DEEP DIVE\n\nPAGS is our #1 validated pick (9/10). Price ~$9.14, MCap ~$5.5B, P/E 6.5x, 17.1M banking clients.\n\nDig into the MOST RECENT financial data available:\n1. Q4 2024 and Q1 2025 earnings (20-F or 6-K filings). Revenue, net income, EPS. Quarter-over-quarter trend.\n2. TPV (Total Payment Volume) — exact number and growth rate for most recent quarter\n3. PagBank active clients — most recent number. Growth trajectory. ARPU if disclosed.\n4. Credit portfolio — total loans outstanding, NPL trend (90+ days), provision coverage ratio\n5. Operating expenses breakdown — are costs being cut? Efficiency ratio?\n6. Share buyback program — how many shares repurchased in 2024/2025? At what price? How many shares remain authorized?\n7. Net cash position — exact number as of most recent quarter end\n8. Management guidance for FY2025/2026 if any\n9. PIX impact — is PIX (Brazil instant payment) eating into PAGS revenue? Evidence from filings.\n10. R$ vs USD impact — how much of PAGS performance is FX-driven vs organic?\n\nCite specific SEC filings (20-F, 6-K) with dates and page numbers for EVERY number. If a number is from a press release, cite the exact date.",
+          "system_prompt": "You are a senior equity research analyst specializing in LatAm fintech. Provide institutional-grade analysis with full citations. Every number must reference a specific SEC filing.",
+          "temperature": 0.2,
+          "max_tokens": 6000
+        },
+        {
+          "task_id": "PAGS-02-insider",
+          "prompt": "PAGS (PagSeguro Digital) — INSIDER & INSTITUTIONAL OWNERSHIP ANALYSIS\n\nDig into who owns PAGS and what they're doing:\n1. Top 10 institutional holders (from most recent 13F filings). Who increased? Who decreased?\n2. Insider ownership — does management/board own meaningful shares? Who are the key insiders?\n3. Form 4 filings — any insider purchases in last 6 months? Insider purchases in sub-$10 stocks are EXTREMELY bullish signals.\n4. UOL Group (parent company) — what % does UOL/PagSeguro's parent own? Are they buying or selling?\n5. Short interest — current short interest %, days to cover. Is there short squeeze potential?\n6. Activist investors — any 13D filings? Any activist campaigns?\n7. Index inclusion — is PAGS in any major indices? If added/removed recently, what's the flow impact?\n8. ADR ratio — how many ordinary shares per ADR? Any recent ADR conversion activity?\n\nThis data can reveal whether smart money agrees with our 9/10 conviction. Cite specific 13F, Form 4, SC 13D/G filings.",
+          "system_prompt": "You are an institutional equity analyst focused on ownership structure and smart money flows. Cite specific SEC filings for all data.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "PAGS-03-catalyst",
+          "prompt": "PAGS (PagSeguro Digital) — CATALYST CALENDAR & EVENT-DRIVEN ANALYSIS\n\nIdentify every upcoming catalyst that could move PAGS stock price:\n1. Next earnings date — exact date if announced. Consensus estimates vs our view.\n2. Brazil Selic rate — current rate, next Copom meeting date, consensus for rate cuts. Rate cuts are MASSIVE catalyst for Brazilian fintechs.\n3. PIX regulatory changes — any new regulations coming that affect payments companies?\n4. PagBank banking license — any regulatory milestones pending?\n5. MSCI/index rebalancing — is PAGS being added to/removed from any indices?\n6. Analyst coverage — how many analysts cover PAGS? Consensus price target? Any recent upgrades/downgrades?\n7. M&A potential — has PAGS made acquisitions? Could they be an acquisition target? At what premium?\n8. Brazil elections/political calendar — any political events that could impact fintech regulation?\n9. Competition — is Nubank, Mercado Pago, or Stone making moves that threaten PAGS?\n10. Seasonality — does PAGS have seasonal patterns? Best/worst quarters historically?\n\nFor each catalyst, estimate the PROBABILITY and IMPACT (price move %) if it occurs.",
+          "system_prompt": "You are a catalyst-driven equity analyst. Identify actionable events with probability and impact estimates. Cite sources for dates and data.",
+          "temperature": 0.3,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "PAGS-04-valuation",
+          "prompt": "PAGS (PagSeguro Digital) — FAIR VALUE & PRICE TARGET ANALYSIS\n\nBuild a rigorous fair value estimate for PAGS:\n1. DCF Model: Use actual PAGS financials. Revenue growth assumptions (conservative/base/bull). Terminal growth rate. WACC for Brazilian fintech.\n2. Comparable company analysis — PAGS vs STNE vs MELI vs NU (Nubank). Show P/E, P/S, EV/EBITDA, P/B multiples.\n3. Sum-of-parts: Value the payments business and PagBank separately. What's each worth?\n4. Net cash per share — with $6.2B BRL net cash, how much of the share price is cash?\n5. Buyback-adjusted valuation — if PAGS continues buybacks at current pace, what's the implied IRR?\n6. Historical valuation range — what P/E has PAGS traded at historically? Where is it now vs 5-year range?\n7. Scenario analysis:\n   - BEAR ($X): Selic stays high, PIX kills margins, credit losses spike\n   - BASE ($X): Current trajectory continues, moderate growth\n   - BULL ($X): Rate cuts + PagBank growth + buybacks accelerate\n8. Margin of safety — at current price, how much downside protection from net cash?\n\nProvide specific price targets for each scenario with methodology shown.",
+          "system_prompt": "You are a senior equity valuation analyst. Build rigorous, multi-methodology price targets. Show your work. Use real financial data, not assumptions.",
+          "temperature": 0.2,
+          "max_tokens": 6000
+        },
+        {
+          "task_id": "PAGS-05-inefficiency",
+          "prompt": "PAGS (PagSeguro Digital) — MARKET INEFFICIENCY HUNT\n\nWhy is PAGS trading at 6.5x P/E when comparable companies trade at 15-30x? Find the SPECIFIC market inefficiency:\n1. Brazil discount — how much of the discount is 'Brazil risk premium'? Is this justified or excessive?\n2. ADR discount — does PAGS trade at a discount to its Brazilian listing (if any)? Arbitrage opportunity?\n3. Earnings quality — are PAGS earnings higher quality than the market gives credit for? Low accruals, high cash conversion?\n4. Hidden assets — does PAGS have assets the market ignores? (Banking license value, customer data, technology platform)\n5. Neglected coverage — how many sell-side analysts cover PAGS? Is it under-followed?\n6. ETF flow dynamics — is PAGS being sold mechanically by EM/LatAm ETF outflows? Is this creating a price/value gap?\n7. FX illusion — does PAGS look cheaper/more expensive when analyzed in BRL vs USD? Which currency reveals true value?\n8. Capital return yield — if you combine buybacks + any dividends, what's the total capital return yield? How does this compare to US megacap tech?\n9. Peer comparison anomaly — find ONE specific metric where PAGS is objectively better than a company trading at 3x its multiple.\n10. Why NOW? — What specific recent development makes the current price most attractive vs 6 months ago?\n\nThis is the most important analysis. We need to understand WHY this stock is cheap and whether the market is WRONG.",
+          "system_prompt": "You are a contrarian value investor hunting for market inefficiencies. Your job is to find why the market is wrong about PAGS. Provide evidence, not opinions.",
+          "temperature": 0.3,
+          "max_tokens": 6000
+        },
+        {
+          "task_id": "PAGS-06-risk",
+          "prompt": "PAGS (PagSeguro Digital) — COMPREHENSIVE RISK ANALYSIS\n\nIdentify every risk that could destroy the PAGS thesis:\n1. PIX cannibalization — exact data on how PIX is affecting payments revenue. Revenue per transaction trend.\n2. Credit risk — loan book growth vs provision growth. Are they growing loans too fast? What happens if Brazil enters recession?\n3. Regulatory risk — Brazilian Central Bank actions. New regulations on payments companies. Reserve requirements.\n4. Competition from Nubank — Nubank has 100M+ customers. Is PAGS losing market share? Evidence from filings.\n5. Interest rate risk — PAGS earns net interest income. If Selic drops sharply, does NII collapse?\n6. FX risk — BRL depreciation impact on USD-denominated ADR price\n7. Key person risk — who runs PAGS? Any succession concerns?\n8. Technology risk — legacy platform vs modern competitors? Any technology debt?\n9. Cayman structure risk — holding company in Cayman, operations in Brazil. Any structural risk?\n10. Maximum drawdown scenario — what's the worst case? Price target in a bear scenario. How much could you lose?\n\nFor each risk, rate PROBABILITY (Low/Med/High) and SEVERITY (Low/Med/High). Identify the single biggest risk.",
+          "system_prompt": "You are a risk analyst. Be pessimistic. Find every way this investment could fail. Rate each risk by probability and severity.",
+          "temperature": 0.3,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "PAGS-07-position",
+          "prompt": "PAGS (PagSeguro Digital) — OPTIMAL POSITION SIZING & EXECUTION\n\nGiven: Available capital ~$2,000. Current portfolio: TUYA (95 shares, $200), TIGR (39 shares, $195), pending orders for GAU ($234), GRAB ($178), BTG ($199), PAYO ($257). PAGS is planned at $200.\n\nOptimize the PAGS position:\n1. Kelly Criterion — given our edge (P/E 6.5x vs peers at 15-30x), win probability, and payoff ratio, what's the Kelly-optimal allocation?\n2. Entry strategy — should we buy all at once or DCA? If DCA, what intervals and price levels?\n3. Limit order vs market order — PAGS ADR average daily volume? Spread? Can we get a better fill with limit orders?\n4. Optimal entry price — support levels? Recent price action? Any technical levels worth waiting for?\n5. Position size relative to portfolio — PAGS at $200 would be ~10% of $2,000. Given 9/10 conviction, should it be larger?\n6. Correlation with other holdings — is PAGS correlated with STNE, GRAB, PAYO? Are we overexposed to EM fintech?\n7. Stop loss — where would the thesis be invalidated? What price = permanent capital loss?\n8. Scaling plan — if PAGS drops 20%, do we add? If it rises 50%, do we trim?\n9. Tax considerations — any tax optimization for holding ADRs? Foreign tax credit on Brazil dividends?\n10. Recommended allocation: Give EXACT dollar amount and share count at current price.\n\nBe specific. Give exact numbers, not ranges.",
+          "system_prompt": "You are a portfolio manager. Provide specific, actionable position sizing recommendations with exact dollar amounts and share counts.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "GAU-01-financials",
+          "prompt": "GAU (Galiano Gold) — FINANCIAL DEEP DIVE & PRODUCTION ANALYSIS\n\nGAU is our #2 pick (8/10). Price ~$2.34, MCap ~$525M. Gold miner with Asanko mine in Ghana.\n\nDig into the MOST RECENT financial data:\n1. Q4 2024 and Q1 2025 production results — ounces produced, AISC per oz, revenue\n2. Full-year 2024 production guidance vs actual — did they beat or miss?\n3. 2025 production guidance — ounces, AISC guidance range\n4. Asanko mine: Current mine life, reserve depletion rate, expansion plans\n5. Cash position — most recent quarter. FCF generation rate.\n6. Gold price sensitivity — for every $100/oz change in gold price, how much does EPS change?\n7. Exploration results — any new discoveries? Resource additions?\n8. Dividend or buyback — any capital return to shareholders?\n9. Cost structure — breakdown of AISC (mining, processing, G&A, sustaining capex)\n10. Ghana country risk — political stability, mining royalties, export taxes\n\nAt gold ~$2,650/oz and AISC ~$1,354/oz, GAU has ~$1,300/oz margin. This is exceptional. Verify and quantify.",
+          "system_prompt": "You are a mining equity analyst. Focus on production metrics, cost curves, and reserve life. Cite specific filings and press releases with dates.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "GAU-02-insider",
+          "prompt": "GAU (Galiano Gold) — INSIDER & INSTITUTIONAL OWNERSHIP\n\n1. Top 10 institutional holders from 13F filings. Gold-focused funds? Any major institutions adding?\n2. Insider ownership — CEO, CFO, directors. Any Form 4 purchases in last 12 months?\n3. Short interest — current %, days to cover. Short squeeze potential?\n4. Gold ETF holding — is GAU in GDX, GDXJ, or other gold ETFs? Weighting?\n5. Merger/acquisition — Galiano merged with AGI (Aris Mining). Any residual structural changes?\n6. Dual listing — does GAU trade in Canada (TSX) and US? Any listing arbitrage?\n7. Analyst coverage — how many analysts? Consensus target? Any recent initiations?\n\nInsider buying in small gold miners is one of the strongest signals in equity markets. Find any.",
+          "system_prompt": "You are an institutional ownership analyst. Focus on insider transactions and smart money positioning in small-cap miners.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "GAU-03-valuation",
+          "prompt": "GAU (Galiano Gold) — FAIR VALUE & GOLD PRICE SCENARIOS\n\nBuild a valuation framework for GAU at different gold prices:\n1. NAV model: Reserves (2.4Moz P&P) × in-situ value per oz. What discount to NAV does GAU trade at?\n2. P/NAV comparison — GAU vs peer gold miners (Dundee, Endeavour, IAMGOLD, etc.)\n3. Gold price scenarios:\n   - Gold $2,000: Revenue, earnings, FCF, implied share price\n   - Gold $2,500: Same\n   - Gold $3,000: Same\n   - Gold $3,500: Same\n   - Gold $4,000+: Same (current environment approaching this)\n4. Operating leverage — GAU has high operating leverage to gold. Quantify: for every 10% gold price increase, how much does EPS increase?\n5. Free cash flow yield at current gold prices — what % FCF yield does GAU generate?\n6. M&A value — what would an acquirer pay for GAU? $/oz in the ground. Recent gold M&A comps.\n7. Dividend potential — at current cash generation, could GAU initiate a dividend? What yield?\n8. 3-year price target — base case, with assumptions\n\nGold miners are EXTREMELY leveraged to gold price. If gold hits $3,000+, what does GAU look like?",
+          "system_prompt": "You are a gold mining valuation specialist. Build scenario-based valuations with clear assumptions. Show the math.",
+          "temperature": 0.2,
+          "max_tokens": 6000
+        },
+        {
+          "task_id": "GAU-04-inefficiency",
+          "prompt": "GAU (Galiano Gold) — MARKET INEFFICIENCY HUNT\n\nWhy is GAU trading at ~$2.34 when gold is at multi-decade highs?\n1. Small-cap neglect — is GAU too small for institutional investors? Market cap threshold issues?\n2. Ghana discount — how much is the market discounting for Ghana country risk? Is it justified?\n3. Gold miner discount — gold miners historically trade at 0.3-0.7x NAV. Where is GAU? Is this gap closing?\n4. Production profile — is the market worried about Asanko mine life? What's the reserve runway?\n5. Exploration upside — does GAU have exploration acreage not reflected in reserves? Free optionality?\n6. Peer comparison — find a directly comparable gold miner trading at a premium. Why the gap?\n7. Merger catalyst — the Galiano-AGI merger created value or destroyed it? Did it unlock or trap value?\n8. Retail vs institutional — who owns GAU? Is it primarily retail-held (bullish for re-rating)?\n9. Gold cycle positioning — where are we in the gold cycle? Early, mid, or late? What does this mean for junior miners?\n10. The edge — what is the SINGLE most important reason the market is mispricing GAU right now?\n\nGold at $2,650+ with AISC at $1,354 = $1,296/oz margin. At 103K oz/year, that's ~$134M operating cash flow on a $525M MCap. Why is this stock so cheap?",
+          "system_prompt": "You are a contrarian gold sector analyst. Find the specific market inefficiency in GAU's valuation. Provide data, not opinions.",
+          "temperature": 0.3,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "GAU-05-risk",
+          "prompt": "GAU (Galiano Gold) — RISK ANALYSIS & KILL CONDITIONS\n\n1. Single-asset risk — Asanko is the only mine. What if there's a pit wall failure, flooding, or community blockade?\n2. Ghana political risk — government stability, mining code changes, royalty increases\n3. Gold price crash — at what gold price does GAU become unprofitable? Break-even gold price.\n4. Reserve depletion — at current production rate, how many years until reserves are exhausted?\n5. Capex surprise — any major capex projects that could consume cash?\n6. Dilution risk — any convertible notes, warrants, or planned equity raises?\n7. Environmental/social — any ESG issues at Asanko? Community relations?\n8. Currency risk — Ghana cedi depreciation impact on costs (costs in cedi, revenue in USD)\n9. Management quality — track record of current management team\n10. Maximum loss scenario — what's the floor price? At what point is equity worth zero?\n\nRate each risk: Probability × Severity. What's the single biggest risk?",
+          "system_prompt": "You are a mining risk analyst. Be thorough and pessimistic. Identify every failure mode.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "GAU-06-position",
+          "prompt": "GAU (Galiano Gold) — POSITION SIZING & EXECUTION\n\nOrder placed: 100 shares @ $2.34 limit ($234 total).\n\n1. Is $234 enough? Given 8/10 conviction and gold tailwind, should we increase?\n2. Volume analysis — GAU average daily volume? Can we buy more without moving the price?\n3. TSX vs NYSE — does GAU trade on both? Better liquidity on which exchange?\n4. Gold price hedge — should we pair GAU with a gold price hedge (puts on GLD)? Or pure long?\n5. Correlation with portfolio — GAU is uncorrelated with fintech holdings. Diversification benefit.\n6. Entry timing — gold seasonal patterns? Best time of year to buy gold miners?\n7. Scale-in plan — if GAU drops to $2.00, $1.75, $1.50 — buy more at each level?\n8. Recommended final allocation — exact $ and shares, with reasoning.\n\nGive specific, actionable numbers.",
+          "system_prompt": "You are a portfolio manager specializing in commodity positions. Give specific allocation recommendations.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "GAU-07-catalyst",
+          "prompt": "GAU (Galiano Gold) — CATALYST & TIMING ANALYSIS\n\n1. Next earnings/production report date\n2. Gold price catalysts — Fed meetings, CPI data, geopolitical events that could push gold higher\n3. Mine expansion news — any pending announcements about Asanko expansion?\n4. Exploration drilling results — when are next results expected?\n5. Analyst initiations — any coverage initiations pending?\n6. Index inclusion — could GAU be added to GDXJ or other gold ETFs?\n7. Seasonal gold patterns — gold historically strongest in which months?\n8. Near-term price drivers — what could move GAU 20%+ in the next 3 months?\n9. Long-term re-rating — what needs to happen for GAU to be re-rated from $2.34 to $5+?\n\nFor each catalyst: probability, timeline, and estimated impact on stock price.",
+          "system_prompt": "You are an event-driven equity analyst. Map catalysts with probability, timeline, and price impact estimates.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "BTG-01-financials",
+          "prompt": "BTG (B2Gold Corp) — FINANCIAL DEEP DIVE\n\nBTG is #3 pick (8/10). Price ~$4.75, MCap ~$5.5B. Gold miner with Fekola (Mali), Masbate (Philippines), Otjikoto (Namibia).\n\nMost recent data:\n1. FY2024 full results — revenue $1.92B, production 804K oz. Q1 2025: 218K oz, AISC $1,370.\n2. FY2025 production guidance — total oz, AISC range. Are they on track?\n3. Fekola expansion — underground + Fekola North. Timeline, capex, expected production increase.\n4. Cash position and FCF — most recent quarter. Dividend sustainability.\n5. Dividend — current yield, payout ratio, growth history. Is BTG a dividend growth story?\n6. Mali political risk — junta government, mining code changes, export restrictions\n7. Goose Project (Canada) — status, expected first gold, capex, production profile\n8. Net cash — verify zero debt, total cash\n9. Gold price sensitivity — EPS and FCF per $100/oz gold price change\n10. Cost optimization — are they reducing AISC? Trend over 3 years.\n\nBTG has AISC $1,370-1,460 vs gold $2,650+. Massive margin. Quantify the upside.",
+          "system_prompt": "You are a senior mining equity analyst. Focus on multi-asset gold producers. Cite specific filings and press releases.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "BTG-02-valuation",
+          "prompt": "BTG (B2Gold Corp) — FAIR VALUE & SCENARIOS\n\n1. P/NAV — BTG's NAV per share. Current P/NAV vs peers.\n2. Gold price scenarios ($2,000 / $2,500 / $3,000 / $3,500 / $4,000): FCF, EPS, dividend capacity, implied share price\n3. Sum-of-parts: Fekola + Masbate + Otjikoto + Goose Project. What's each worth?\n4. Dividend discount model — at current dividend, what's the implied value assuming 5% growth?\n5. Peer comparison — BTG vs GOLD (Barrick), NEM (Newmont), AEM (Agnico Eagle). Valuation gap?\n6. FCF yield — at current gold prices, what's BTG's FCF yield?\n7. Buyback math — if BTG does buybacks instead of dividends, impact on EPS and price?\n8. M&A target value — what would Barrick or Newmont pay for BTG? Historical M&A multiples.\n9. 3-year price target — conservative, base, bull\n\nBTG zero debt + $434M cash + gold at $2,650+ = significant upside. Quantify it.",
+          "system_prompt": "You are a gold mining valuation specialist. Build multi-scenario valuations. Show the math clearly.",
+          "temperature": 0.2,
+          "max_tokens": 6000
+        },
+        {
+          "task_id": "BTG-03-inefficiency",
+          "prompt": "BTG (B2Gold Corp) — MARKET INEFFICIENCY & EDGE\n\n1. Mali discount — how much is the market discounting for Mali risk? Is it excessive? Mali = 57% of production.\n2. Dividend yield vs gold ETF — BTG yields ~4-5% plus gold exposure. GLD yields 0%. Why not own BTG over GLD?\n3. Goose Project optionality — is the market valuing Goose (Back River, Nunavut)? If not, free option.\n4. Cost curve position — where does BTG sit on the global gold cost curve? Bottom quartile?\n5. Production growth — is BTG growing production or declining? What does the 3-year profile look like?\n6. Institutional ownership gap — are major gold funds underweight BTG? Potential for re-weighting?\n7. The edge — what is the market MOST wrong about with BTG?\n\nFind the single most compelling reason to own BTG at $4.75.",
+          "system_prompt": "You are a contrarian gold sector analyst. Find specific market mispricing in BTG.",
+          "temperature": 0.3,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "BTG-04-risk",
+          "prompt": "BTG (B2Gold Corp) — RISK ANALYSIS\n\n1. Mali junta risk — 57% of production. What if Mali nationalizes or imposes punitive taxes? Precedent?\n2. Fekola underground — execution risk on underground development. Delays? Cost overruns?\n3. Goose Project — $800M+ capex. Financing risk? Arctic construction challenges?\n4. Gold price drop — at what gold price does BTG's dividend become unsustainable?\n5. Reserve replacement — is BTG replacing reserves faster than depleting them?\n6. Environmental — any tailings dam issues? Environmental compliance?\n7. Management — CEO Clive Johnson track record. Succession planning?\n8. Currency exposure — costs in CFA franc (Mali), Peso (Philippines), N$ (Namibia), CAD\n9. Worst case — BTG loses Fekola entirely. What are remaining assets worth?\n\nRate each risk. What's the single biggest risk? Is it priced in?",
+          "system_prompt": "You are a mining risk analyst focused on geopolitical and operational risks. Be thorough.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "BTG-05-position",
+          "prompt": "BTG (B2Gold Corp) — POSITION SIZING\n\nCurrent plan: ~42 shares @ $4.75 ($199). Available capital ~$2,000.\n\n1. Is $199 optimal? Given 8/10 conviction and gold tailwind, should we increase?\n2. BTG + GAU concentration — combined $433 in gold. Is this too much gold exposure?\n3. Dividend reinvestment — at ~4% yield, should we DRIP?\n4. Entry timing — BTG at $4.75. Support levels? Resistance? Better entry available?\n5. Scale-in plan — buy $199 now, add $199 if BTG drops below $4.25?\n6. Recommended allocation — exact $ and shares.\n\nThe gold thesis is STRENGTHENING (central bank buying, supply constrained, rate cuts). Factor this in.",
+          "system_prompt": "You are a portfolio manager. Give specific allocation numbers.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAYO-01-financials",
+          "prompt": "PAYO (Payoneer Global) — FINANCIAL DEEP DIVE\n\nPAYO is #4 pick (8/10). Price ~$5.13, MCap ~$1.7B. Cross-border B2B payments.\n\nMost recent data:\n1. Q4 2024 and Q1 2025 earnings — revenue, net income, adjusted EBITDA. Growth rates.\n2. B2B segment — verify most recent growth rate. Is the +44% sustained or decelerating?\n3. OCC national bank charter — what has changed since May 2024 charter? New products? Revenue from banking?\n4. Volume processed — total payment volume trend. Growth rate.\n5. Customer count — total customers, enterprise vs SMB split\n6. Take rate — revenue as % of volume. Is it expanding or compressing?\n7. Cash position — verify zero debt, exact cash\n8. Geographic revenue split — US vs international\n9. Management guidance for 2025\n10. Operating margin expansion — trend over last 4 quarters\n\nPAYO has a national bank charter + zero debt + B2B payments moat. This is a unique combination. Quantify the opportunity.",
+          "system_prompt": "You are a fintech equity analyst. Focus on B2B payments unit economics and bank charter monetization. Cite specific filings.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "PAYO-02-valuation",
+          "prompt": "PAYO (Payoneer Global) — FAIR VALUE & SCENARIOS\n\n1. DCF: Revenue growth assumptions (20/25/30% for B2B), margins expanding to 20%+, terminal multiple\n2. Comparable analysis: PAYO vs Wise (WISE.L), vs Remitly (RELY), vs Flywire (FLYW), vs Payoneer pre-charter\n3. Bank charter value: What is a national bank charter worth? Compare to neobank valuations (SoFi, etc.)\n4. Sum-of-parts: Payments business + bank charter + cross-border volume\n5. Net cash per share — how much of the $5.13 price is backed by cash?\n6. Revenue multiple: At current growth rates, what P/S is fair?\n7. Scenario analysis:\n   - BEAR ($X): B2B growth decelerates, bank charter underperforms\n   - BASE ($X): Current trajectory continues\n   - BULL ($X): Bank charter accelerates deposits, B2B wins enterprise accounts\n8. 3-year price target\n\nA cross-border payments company with a national bank charter at 7x P/E is anomalous. Is the market wrong?",
+          "system_prompt": "You are a fintech valuation analyst. Build multi-methodology valuations. Compare to relevant public comps.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "PAYO-03-inefficiency",
+          "prompt": "PAYO (Payoneer Global) — MARKET INEFFICIENCY HUNT\n\n1. Bank charter discount — why doesn't the market value the OCC charter? SoFi re-rated from $5 to $15+ after its charter. Will PAYO do the same?\n2. B2B vs B2C — the market treats PAYO like a consumer fintech, but B2B payments is stickier with higher margins. Misclassification?\n3. Hidden value in cross-border — PAYO holds customer funds (~$5.6B). Can they earn interest on this? Float value?\n4. Wise comparison — Wise trades at 30-40x earnings. PAYO at 7x. What justifies this gap?\n5. Enterprise wins — is PAYO signing large enterprise customers? Any recent wins that increase average deal size?\n6. Competitive moat — PAYO has 200+ country/currency coverage. How hard is this to replicate?\n7. The SoFi playbook — SoFi got a bank charter, then 3x'd. Could PAYO follow the same path?\n8. AI/automation — is PAYO using AI for compliance/KYC that gives it a cost advantage?\n9. Freelancer economy — remote work + global freelancing growing. PAYO is the infrastructure layer.\n10. The edge — what is the SINGLE most underappreciated aspect of PAYO?\n\nPAYO has characteristics of a $15+ stock trading at $5. Find why the market is wrong.",
+          "system_prompt": "You are a contrarian fintech analyst. Find specific market mispricing. Use comparable company data to demonstrate the gap.",
+          "temperature": 0.3,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "PAYO-04-risk",
+          "prompt": "PAYO (Payoneer Global) — RISK ANALYSIS\n\n1. Wise/Revolut competition — are they taking share in cross-border? Evidence?\n2. Regulatory risk — OCC charter comes with obligations. What are they? Cost of compliance?\n3. Geopolitical — PAYO had Russia/Ukraine impact (-15% volume). What other geopolitical exposures?\n4. Take rate compression — is pricing pressure emerging? Revenue/volume trend\n5. Customer concentration — any single customer >10% of revenue?\n6. Fraud/AML risk — cross-border payments are high-risk for AML. Any regulatory actions?\n7. Interest rate sensitivity — PAYO earns interest on customer float. Rate cut impact?\n8. Key person risk — CEO John Caplan. Tenure, track record.\n9. Maximum drawdown — worst case price target with reasoning\n\nRate each risk. Identify the single biggest threat to PAYO thesis.",
+          "system_prompt": "You are a risk analyst. Be pessimistic. Find every failure mode for PAYO.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAYO-05-position",
+          "prompt": "PAYO (Payoneer Global) — POSITION SIZING\n\nPlanned: 50 shares @ ~$5.13 ($256.50). Buy at Jun 1 market open.\n\n1. Market order vs limit — PAYO spread? Average volume? Best execution approach?\n2. Is $257 enough given 8/10 conviction? Should we increase?\n3. Correlation with PAGS/STNE — all fintech. Too much fintech concentration?\n4. Entry timing — any reason to wait? Or buy at open?\n5. DCA plan — buy $257 now, then add $257 in 30 days if thesis holds?\n6. Price levels — key support and resistance for PAYO\n7. Recommended allocation — exact $ and shares.\n\nGive specific, actionable numbers.",
+          "system_prompt": "You are a portfolio manager. Give exact position sizing recommendations.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "TUYA-01-financials",
+          "prompt": "TUYA (Tuya Inc) — FINANCIAL DEEP DIVE (UPGRADED TO 7/10)\n\nTUYA was upgraded after validation revealed: Revenue +25% TTM accelerating, net cash $854M on ~$1.3B MCap (65% cash-backed!), first GAAP profitable quarter Q3 2024, zero debt.\n\nThis is a potentially massive opportunity. Deep dive:\n1. Q4 2024 and Q1 2025 results — did profitability sustain? Revenue growth continued?\n2. Revenue breakdown: IoT PaaS vs SaaS vs Smart Solutions. Which is growing fastest?\n3. Customer metrics: Total customers, premium customers, dollar-based net retention rate\n4. SaaS transition — is TUYA moving from hardware-dependent PaaS to recurring SaaS? Margin improvement?\n5. Cash deployment — $854M cash on $1.3B MCap. Share buybacks? M&A? Special dividend?\n6. Smart home market — global IoT platform TAM. Where is TUYA positioned?\n7. China recovery — is China consumer/housing recovery driving TUYA growth?\n8. International expansion — % of revenue from outside China. Growing?\n9. Operating expense trend — are they cutting costs or investing in growth?\n10. Path to sustained profitability — is Q3 2024 the inflection point?\n\n$854M net cash on $1.3B MCap = you pay $446M for a business doing $290M revenue growing 25%. That's 1.5x EV/Revenue for a 25% grower. This is VERY cheap.",
+          "system_prompt": "You are an IoT/tech equity analyst. Focus on the cash-backed valuation anomaly and profitability inflection. Cite specific filings.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "TUYA-02-valuation",
+          "prompt": "TUYA (Tuya Inc) — FAIR VALUE & THE CASH DISCOUNT ANOMALY\n\nTUYA has one of the most extreme cash-to-market-cap ratios in US-listed tech:\n- Net cash: $854M\n- Market cap: ~$1.3B\n- Enterprise value: ~$446M\n- Revenue (TTM): ~$290M growing 25%\n- EV/Revenue: ~1.5x\n\nThis means you're buying a 25%-growing tech platform for 1.5x revenue + getting $854M in cash.\n\n1. Comparable IoT/smart home companies — what do they trade at? (P/S, EV/Rev)\n2. Cash discount: Why is the market valuing TUYA's cash at less than face value? VIE risk? Capital controls?\n3. If TUYA returned ALL cash to shareholders: Special dividend = ~$1.40/share on $2.12 stock. That's a 66% yield.\n4. Sum-of-parts: Cash ($854M) + Business at 3x EV/Rev = $870M + $854M = $1.7B = ~$2.80/share\n5. At 5x EV/Rev (standard SaaS multiple for 25% growth): $1.45B + $854M = $2.3B = ~$3.75/share (77% upside)\n6. Acquisition value: What would an acquirer pay? Chinese tech M&A comps.\n7. HK listing value: 2391.HK — does HK listing unlock value? Different valuation in HK vs US?\n8. Scenario analysis:\n   - BEAR: Revenue growth stalls, cash trapped in China. Price $1.50.\n   - BASE: 20% growth continues, gradual re-rating. Price $3.50 in 2 years.\n   - BULL: Profitability sustained, buybacks start, IoT cycle turns. Price $5+ in 2 years.\n\nThe core question: Why does the market value TUYA's $854M cash at only ~$446M? Is this VIE discount justified?",
+          "system_prompt": "You are a tech valuation analyst specializing in Chinese ADR cash discount anomalies. Quantify the mispricing precisely.",
+          "temperature": 0.2,
+          "max_tokens": 6000
+        },
+        {
+          "task_id": "TUYA-03-inefficiency",
+          "prompt": "TUYA (Tuya Inc) — MARKET INEFFICIENCY HUNT (THE BIG ONE)\n\nTUYA might be the single biggest market inefficiency in our portfolio. Here's why:\n- Net cash = 65% of market cap\n- Revenue growing 25% and ACCELERATING\n- First profitable quarter in Q3 2024\n- Zero debt\n- HK dual listing for delisting protection\n- EV/Revenue = 1.5x for a 25% SaaS-transitioning tech company\n\nFind the edge:\n1. VIE discount — quantify exactly how much the market discounts Chinese VIE structures. Is TUYA's discount excessive vs peers (BABA, PDD, etc.)?\n2. IoT platform economics — TUYA powers 1000+ brands globally. Network effects? Switching costs? Is this a platform play the market misunderstands?\n3. Matter protocol — Apple/Google/Amazon adopted Matter for smart home interoperability. Does this help or hurt TUYA?\n4. Cash optionality — $854M cash gives TUYA enormous M&A firepower. What acquisitions could transform the business?\n5. Profitability inflection — Q3 2024 was first GAAP profitable quarter. If sustained, when do growth investors notice?\n6. Institutional ownership — what % is institutional? If low, there's re-rating potential as institutions discover TUYA.\n7. China stimulus — any China housing/consumer stimulus that would directly boost smart home device sales?\n8. Revenue per customer — is ARPU increasing as TUYA upsells SaaS? Evidence from filings.\n9. Global IoT TAM — IoT market projected to be $X trillion by 2030. TUYA's market share?\n10. The play — is this a cash-backed call option on the IoT cycle? Heads you win (IoT grows), tails you don't lose much (cash protects downside)?\n\nMake the case that TUYA at $2.12 is a generational asymmetric opportunity.",
+          "system_prompt": "You are a deep value tech analyst. Find the specific market inefficiency that makes TUYA a potential multi-bagger. Use data, not hype.",
+          "temperature": 0.3,
+          "max_tokens": 6000
+        },
+        {
+          "task_id": "TUYA-04-risk",
+          "prompt": "TUYA (Tuya Inc) — RISK ANALYSIS\n\n1. VIE structure — exact details. Can Chinese government seize the operating company? Historical precedent?\n2. Capital controls — can TUYA actually return the $854M cash to US shareholders? Or is it trapped in China?\n3. China regulatory — any regulations targeting IoT platforms specifically?\n4. Competition — vs Alibaba Cloud IoT, Huawei, Xiaomi ecosystem. Is TUYA being squeezed?\n5. Customer concentration — any single customer >10% of revenue?\n6. Hardware dependency — IoT PaaS depends on device makers. Smart home market cyclicality.\n7. Technology risk — is TUYA's platform becoming commoditized? Open-source alternatives?\n8. ADS delisting — despite HK listing, any specific delisting risk?\n9. Currency — RMB depreciation impact on USD-denominated results?\n10. Worst case — what's the floor price if everything goes wrong? Is $854M cash truly accessible?\n\nThe KEY question: Is the $854M cash REAL and ACCESSIBLE to shareholders?",
+          "system_prompt": "You are a China risk analyst. Focus on VIE structure, capital controls, and cash accessibility. Be pessimistic.",
+          "temperature": 0.3,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "TUYA-05-position",
+          "prompt": "TUYA (Tuya Inc) — POSITION SIZING (UPGRADED)\n\nCurrent position: 95 shares @ $2.10 ($200). Upgraded from 5/10 to 7/10 conviction after validation.\n\n1. Should we ADD to TUYA? Given the cash discount and accelerating growth?\n2. If adding, how much? Another $200? $300?\n3. Average cost would change from $2.10 to what at current price ~$2.12?\n4. Portfolio concentration — TUYA at $400 would be 20% of $2,000 portfolio. Too much for a Chinese ADR?\n5. Hedge — should we pair with a short on Chinese tech ETF to isolate TUYA's alpha?\n6. HK listing play — should we buy TUYA in HK (2391.HK) instead for better liquidity?\n7. Time horizon — TUYA needs the IoT cycle and China recovery. Are we patient enough for 2-3 years?\n8. Recommended action — exact dollar amount and reasoning.\n\nTUYA at $2.12 with $854M net cash ($1.39/share in cash) means you pay $0.73/share for the business. Is this a no-brainer add?",
+          "system_prompt": "You are a portfolio manager. Give specific position sizing for a cash-heavy Chinese tech stock.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PORTFOLIO-allocation",
+          "prompt": "PORTFOLIO OPTIMIZATION — FINAL ALLOCATION MODEL\n\nAvailable capital: ~$2,000 total equity. Current deployed:\n- TUYA: 95 shares @ $2.10 = $200 (HOLD, upgraded to 7/10)\n- TIGR: 39 shares @ $5.01 = $195 (HOLD, user override, risk acknowledged)\n\nPending/planned:\n- GAU: 100 shares @ $2.34 = $234 (8/10, ORDER PLACED)\n- GRAB: 50 shares @ $3.55 = $178 (6/10, ORDER PLACED, weakened)\n- BTG: ~42 shares @ $4.75 = $199 (8/10, CONFIRM)\n- PAYO: 50 shares @ $5.13 = $257 (8/10, BUY Jun 1)\n- PAGS: $200 planned (9/10, INCREASE PRIORITY)\n- STNE: $200 (reduced from $600, 6/10)\n- HNST: CANCELLED (save $180)\n- IRWD: CANCELLED (save $100)\n\nTotal if fully deployed: $200+$195+$234+$178+$199+$257+$200+$200 = $1,663\nRemaining capital: ~$337\n\nOPTIMIZE:\n1. Should we add to TUYA ($200 more)? PAGS ($100 more)? GAU ($100 more)?\n2. Should we reduce GRAB to $100 (conviction dropped to 6/10)?\n3. Should we cut STNE entirely (PAGS is objectively better)?\n4. Concentration risk — how many positions is optimal for a $2,000 portfolio?\n5. Sector allocation: Fintech (PAGS+PAYO+STNE+GRAB), Gold (GAU+BTG), Chinese Tech (TUYA+TIGR). Balance?\n6. Risk-adjusted returns — rank all positions by Sharpe-like ratio (expected return / risk)\n7. Final recommended allocation — EXACT dollar amount per stock with reasoning\n8. Order of execution — which trades to place FIRST?\n\nConstraints: Cash-only account (IBKR U16408149). No margin. No options. Long-only. Buy and hold 10 years.",
+          "system_prompt": "You are a portfolio construction specialist. Optimize a concentrated sub-$10 stock portfolio for maximum risk-adjusted returns. Be specific with exact dollar amounts.",
+          "temperature": 0.2,
+          "max_tokens": 6000
+        }
+      ]
+    }
+  ]
+}

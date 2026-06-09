@@ -1,0 +1,328 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "intel-01",
+          "system_prompt": "You are an SEO backlink analyst. Provide detailed, data-driven analysis with specific numbers, URLs, and actionable recommendations. Output as structured JSON.",
+          "prompt": "Analyze the backlink velocity risk for belikenative.com. We deployed 386 backlinks on May 26-27 (2 days), then 280 more on June 3 (1 day). Total: 666 backlinks from 87 unique articles across 7 platforms (github.io DA95, cloudflare pages.dev DA85-90, gitlab.io DA85-88, telegraph DA90, dev.to DA62, vercel.app DA45-83, surge.sh DA65-70). Plus 43 dead Netlify and 13 Firebase.\n\nWhat is Google SpamBrain's likely assessment? What velocity thresholds trigger penalties? How does our link profile compare to natural link building patterns? What's the risk level (1-10) and what mitigation steps should we take before Sprint 6?",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-02",
+          "system_prompt": "You are an SEO backlink analyst. Provide detailed, data-driven analysis. Output as structured JSON.",
+          "prompt": "Analyze anchor text distribution best practices for belikenative.com backlink profile. We have 666 backlinks, all containing links to belikenative.com. Each article has ~3 embedded backlinks. The anchors include: 'BeLikeNative', 'belikenative.com', 'free Chrome extension for grammar checking', 'grammar checker Chrome extension', 'writing improvement tool', etc.\n\nWhat is the ideal anchor text ratio (branded vs exact match vs partial match vs generic vs naked URL)? What does a natural anchor profile look like? Are we over-optimized? Output JSON with: current_risk, ideal_ratios, recommended_changes.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-03",
+          "system_prompt": "You are a technical SEO analyst specializing in link equity and PageRank flow. Output as structured JSON.",
+          "prompt": "Calculate the estimated link equity flowing to belikenative.com from our backlink profile:\n- 88 GitHub Pages (DA 95, dofollow)\n- 88 Cloudflare Pages (DA 85-90, dofollow)\n- 87 GitLab Pages (DA 85-88, dofollow)\n- 86 Telegraph (DA 90, dofollow)\n- 87 Dev.to (DA 62, dofollow)\n- 87 Vercel (DA 45-83, dofollow)\n- 87 Surge.sh (DA 65-70, dofollow)\n- 13 Firebase (DA 85-90, dofollow)\n- 43 Netlify (DEAD, 503)\n\nEach page has 3 outbound links to belikenative.com + 1 canonical tag. Estimate the PageRank transfer, domain rating impact, and expected ranking improvement timeline. Compare to a site with 50 natural referring domains.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-04",
+          "system_prompt": "You are a Google Search Console analyst. Output as structured JSON.",
+          "prompt": "For a Chrome extension site (belikenative.com) with 666 backlinks from 87 unique articles across 7 hosting platforms, predict:\n1. How long until Google discovers and credits these backlinks?\n2. What GSC metrics should we monitor? (referring domains, impressions, position changes)\n3. Expected timeline for ranking improvements\n4. How does IndexNow submission (we submitted to Bing+Yandex on Jun 3) accelerate discovery?\n5. What's the typical lag between backlink discovery and ranking impact?\n6. Should we also submit via Google Search Console URL inspection API?\n\nOutput JSON with timeline_weeks, metrics_to_track, expected_impact.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-05",
+          "system_prompt": "You are a platform security analyst for web hosting services. Output as structured JSON.",
+          "prompt": "Analyze the risk of account/project termination on each platform we use for backlinks:\n1. GitHub Pages (88 repos, one account) — TOS on automated site creation?\n2. Cloudflare Pages (88 projects, free tier limit 100) — rate limits, abuse detection?\n3. GitLab Pages (87 repos) — CI/CD pipeline patterns that trigger flags?\n4. Dev.to (87 articles, one account) — spam detection, rate limits we already hit 429?\n5. Vercel (87 deployments) — hobby plan limits?\n6. Surge.sh (87 sites) — domain collision issues?\n7. Telegraph (86 pages) — any takedown patterns?\n8. Firebase (13 sites) — GCP quota patterns?\n\nFor each: risk_level (1-10), max_safe_count, warning_signs, mitigation.",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-06",
+          "system_prompt": "You are an SEO competitor analyst. Output as structured JSON.",
+          "prompt": "Analyze the competitive backlink landscape for Chrome extension grammar checkers. Compare typical backlink profiles for:\n1. Grammarly (market leader)\n2. LanguageTool\n3. ProWritingAid\n4. QuillBot\n5. Ginger Software\n6. BeLikeNative (us — 666 backlinks, ~87 referring domains, 7 platforms)\n\nFor each: estimated referring domains, domain rating, backlink velocity (links/month), platform diversity, anchor text patterns. How does belikenative.com compare? What gap exists? What would close the gap?",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.5
+        },
+        {
+          "task_id": "intel-07",
+          "system_prompt": "You are a dofollow backlink platform researcher. Output as structured JSON array.",
+          "prompt": "Research 20 NEW platforms (not in our current list) that provide dofollow backlinks from high-DA domains for free. We already use: GitHub Pages, Cloudflare Pages, GitLab Pages, Dev.to, Vercel, Surge.sh, Telegraph, Firebase, Netlify.\n\nFor each new platform provide: name, domain, DA/DR score, link_type (dofollow/nofollow), signup_required (bool), api_available (bool), automation_difficulty (1-10), monthly_limit, content_type (article/profile/comment), estimated_time_to_automate_hours.\n\nPrioritize: DA > 70, dofollow, API available, easy to automate. Include platforms like: Substack, Blogger/Blogspot, HuggingFace, Hashnode, Medium, Notion, Render, Fly.io, Railway, Deno Deploy, etc.",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.5
+        },
+        {
+          "task_id": "intel-08",
+          "system_prompt": "You are a dofollow backlink platform researcher. Output as structured JSON array.",
+          "prompt": "Research 20 MORE platforms for free dofollow backlinks, focusing on NICHE and UNCONVENTIONAL sources that SEO competitors typically miss. Categories to explore:\n1. Developer documentation platforms (ReadTheDocs, GitBook)\n2. Open source project pages\n3. Government/education (.gov, .edu) submission opportunities\n4. Forum/community profiles (Stack Overflow, Reddit profile)\n5. Business directories with dofollow\n6. Podcast directories\n7. Slide/presentation platforms (SlideShare, Speaker Deck)\n8. Code snippet platforms (CodePen, JSFiddle, Replit)\n9. Data/dataset platforms\n10. Academic/research platforms\n\nFor each: name, domain, DA, link_type, automation_difficulty (1-10), content_format, est_time_hours.",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.6
+        },
+        {
+          "task_id": "intel-09",
+          "system_prompt": "You are a web content strategist specializing in link-worthy content. Output as structured JSON.",
+          "prompt": "Analyze our current 87 article topics for belikenative.com backlinks. Sample titles:\n- 'How AI Adjusts Emotional Tone in Your Writing'\n- 'Grammar Feedback for Multilingual Students'\n- 'Top 5 Bulk Document Translation Tools'\n- 'BeLikeNative vs LanguageTool'\n- 'Academic Writing Tips'\n\nFor the next 40 articles (Sprint 6), what topics would:\n1. Generate the most organic secondary backlinks (linkbait)\n2. Rank for high-volume keywords independently\n3. Drive referral traffic back to belikenative.com\n4. Diversify our topical relevance signals\n\nOutput JSON with: recommended_topics (40), keyword_targets, estimated_search_volume, linkbait_score (1-10).",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.6
+        },
+        {
+          "task_id": "intel-10",
+          "system_prompt": "You are an SEO link building strategist. Output as structured JSON.",
+          "prompt": "Design the optimal Sprint 6 deployment strategy for belikenative.com backlinks. Current state:\n- 666 total backlinks (623 live)\n- 87 unique articles across 7 platforms\n- Sprint 1-4: May 26-27 (386 links)\n- Sprint 5: Jun 3 (280 links)\n- 2,112 articles remaining in queue\n\nOptions for Sprint 6:\nA) 40 new articles × 7 platforms = 280 links (same as Sprint 5)\nB) 20 articles × 7 platforms = 140 links (half speed)\nC) 40 articles × 10 platforms = 400 links (add 3 new platforms)\nD) Drip feed: 5 articles/day × 7 platforms over 8 days = 280 links\nE) Focus on platform expansion: 0 new articles, add 5 new platforms for existing 87 articles\n\nFor each option: risk_score, expected_impact, timeline, cost, recommendation. What's the optimal strategy?",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-11",
+          "system_prompt": "You are a Google algorithm analyst specializing in link spam detection. Output as structured JSON.",
+          "prompt": "Deep dive into Google SpamBrain December 2024 and March 2025 link spam updates. How do they detect PBN-like patterns?\n\nOur link network has these characteristics:\n- All sites hosted on legitimate platforms (GitHub, Cloudflare, etc.)\n- Each site has unique CSS/template per platform\n- Content is AI-generated but unique per article\n- All sites have only 1 page (index.html + sitemap)\n- All link to the same target (belikenative.com)\n- Deployed in bursts (386 in 2 days, then 280 in 1 day)\n- Same account per platform (e.g., one GitHub account, one Dev.to account)\n- 3 outbound links per page, all to belikenative.com\n\nWhat specific signals would SpamBrain flag? What patterns are we leaving that could be detected? How to reduce footprint?",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-12",
+          "system_prompt": "You are an SEO technical analyst. Output as structured JSON.",
+          "prompt": "Analyze the robots.txt and crawlability situation for our backlink pages.\n\nPreviously we deployed robots.txt blocks on 158 pages (Surge 47, GitLab 27, Cloudflare 36, Vercel 35, Firebase 13) to mitigate velocity risk. Then on Jun 3 we deployed 280 MORE links without blocking.\n\nQuestions:\n1. Are the old robots.txt blocks still active? Do they need refreshing?\n2. Should we block any of the new Sprint 5 pages?\n3. What's the optimal ratio of crawlable vs blocked pages?\n4. How does Google handle links from robots.txt-blocked pages? (Can it still pass PageRank?)\n5. Should we use noindex meta tags instead of robots.txt?\n6. X-Robots-Tag headers — any platforms support this?\n\nOutput: crawlability_strategy, pages_to_block, pages_to_keep, rationale.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-13",
+          "system_prompt": "You are a web performance and indexation analyst. Output as structured JSON.",
+          "prompt": "Analyze how Google indexes pages on each of these hosting platforms and what affects indexation speed:\n1. GitHub Pages (*.github.io)\n2. Cloudflare Pages (*.pages.dev)\n3. GitLab Pages (*.gitlab.io)\n4. Telegraph (telegra.ph/*)\n5. Dev.to (dev.to/*)\n6. Vercel (*.vercel.app)\n7. Surge.sh (*.surge.sh)\n\nFor each platform:\n- Average time to index new pages\n- Does Google treat subdomains as separate domains?\n- Crawl budget allocation\n- Impact of sitemap.xml on indexation\n- Impact of canonical tags pointing elsewhere\n- Does the platform's robots.txt affect individual project pages?\n- Any known indexation issues or delays\n\nOutput platform_indexation_profiles with estimated_index_days, crawl_priority, known_issues.",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-14",
+          "system_prompt": "You are a content diversity analyst. Output as structured JSON.",
+          "prompt": "Analyze whether our 87 articles are topically diverse enough or create a 'thin content farm' signal. All articles are about: grammar checking, multilingual writing, translation tools, ESL/EFL learning, AI writing assistants, Chrome extensions.\n\nSpamBrain looks for:\n- Topical clustering (all about same narrow niche)\n- Similar content structure across articles\n- Keyword stuffing patterns\n- Thin content (articles that don't provide real value)\n\nRecommendations:\n1. Should Sprint 6 articles branch into adjacent topics? Which ones?\n2. Optimal article length for backlink pages (our current: 800-1200 words)\n3. Should we add more content per page (images, tables, code examples)?\n4. Should some articles NOT link to belikenative.com to look more natural?\n\nOutput: diversity_score (1-10), recommendations, adjacent_topics list.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-15",
+          "system_prompt": "You are a link building ROI analyst. Output as structured JSON.",
+          "prompt": "Calculate the ROI of our backlink pipeline vs alternatives for belikenative.com.\n\nOur pipeline:\n- 666 backlinks, $0.98 total cost (DeepSeek API)\n- ~87 referring domains (one per platform subdomain)\n- Time: ~3 hours of development + 30 min per sprint\n- All dofollow, DA range 45-95\n\nAlternatives:\n1. Manual outreach (guest posts)\n2. HARO/journalist queries\n3. Broken link building\n4. Paid link building services (Fiverr, agencies)\n5. Content marketing + natural link acquisition\n6. Social media link building\n7. Directory submissions\n8. Scholarship/resource page link building\n\nFor each: cost_per_link, time_per_link, average_DA, link_type, sustainability_score, risk_score. How does our approach compare?",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-16",
+          "system_prompt": "You are a Google penalty recovery specialist. Output as structured JSON.",
+          "prompt": "Design a penalty prevention and recovery plan for belikenative.com's backlink profile.\n\nScenario planning:\n1. Manual action (link spam) — how to detect early via GSC?\n2. Algorithmic demotion (SpamBrain) — symptoms, detection, timeline\n3. Platform-level action (Google devalues all *.pages.dev links)\n4. Account termination on a platform (e.g., GitHub bans our account)\n\nFor each scenario:\n- Early warning signs\n- Detection method\n- Response time window\n- Recovery steps\n- Disavow file strategy\n- How many links would we lose\n- Impact on rankings\n\nAlso: should we preemptively create a disavow file for the dead Netlify links?",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-17",
+          "system_prompt": "You are a technical SEO analyst specializing in canonical tags and link signals. Output as structured JSON.",
+          "prompt": "Analyze how Google handles our canonical tag + backlink setup:\n\nEach of our 666 backlink pages has:\n- <link rel='canonical' href='https://belikenative.com/{slug}/'>\n- 3 <a href> links to belikenative.com pages in the body\n- Attribution line: 'Originally published on belikenative.com'\n\nQuestions:\n1. Does Google consolidate link equity from the backlink page to the canonical URL?\n2. Or does it treat them as separate — the canonical as a hint and the links as independent signals?\n3. Are we getting DOUBLE benefit (canonical + links) or does one cancel the other?\n4. Should we remove canonical tags so Google treats these as independent pages with outbound links?\n5. What's the optimal setup for maximum link equity transfer?\n6. Does having canonical + links look suspicious to SpamBrain?",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-18",
+          "system_prompt": "You are a domain authority analyst. Output as structured JSON.",
+          "prompt": "Research the actual Domain Authority/Domain Rating of each platform's subdomains (not the root domain):\n\nRoot domains vs subdomains:\n- github.io (DA 95) → Does bln-xxx.github.io inherit DA 95?\n- pages.dev (DA 85-90) → Does bln-xxx.pages.dev inherit the full DA?\n- gitlab.io (DA 85-88) → Same question for subdomains\n- telegra.ph (DA 90) → /path pages\n- dev.to (DA 62) → /username/article pages\n- vercel.app (DA 45-83) → project.vercel.app subdomains\n- surge.sh (DA 65-70) → project.surge.sh subdomains\n\nDoes Google treat subdomains as separate domains? How much DA/PageRank actually flows from the root? What's the EFFECTIVE DA of our backlink pages?",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-19",
+          "system_prompt": "You are an SEO monitoring and alerting specialist. Output as structured JSON.",
+          "prompt": "Design a monitoring dashboard and alerting system for the belikenative.com backlink pipeline. We need to track:\n\n1. Backlink health: which of our 666 links are still live (HTTP 200)?\n2. Indexation: which links has Google actually indexed?\n3. Link equity: are links passing PageRank? (check via site: operator, cache:)\n4. Ranking impact: keyword position tracking for belikenative.com\n5. Referring domain count: Ahrefs/Moz/Semrush vs our count\n6. Platform account health: any warnings/bans?\n7. SpamBrain signals: sudden ranking drops\n\nFor each metric: how to check (free tools/APIs), check frequency, alert threshold, automated vs manual. Design a bash script or cron job approach.",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-20",
+          "system_prompt": "You are a search engine indexation specialist. Output as structured JSON.",
+          "prompt": "Research all available methods to accelerate Google indexation of our 666 backlink pages:\n\n1. IndexNow (already submitted to Bing/Yandex Jun 3)\n2. Google Search Console URL Inspection API\n3. Google Indexing API (for job/event pages)\n4. Ping services (Pingomatic, etc.)\n5. Social sharing for crawl triggers\n6. Web 2.0 backlinks to our backlink pages (tier 2)\n7. RSS feed submission\n8. Sitemap submission to Google\n9. Google cache request\n10. Internal linking from indexed pages\n\nFor each: effectiveness (1-10), time_to_index, cost, risk, implementation_steps. Which combination maximizes indexation speed while minimizing risk?",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-21",
+          "system_prompt": "You are a Cloudflare Pages specialist. Output as structured JSON.",
+          "prompt": "Deep dive into Cloudflare Pages limits and optimization for our backlink pipeline:\n\n1. Free tier: 100 projects hard limit — we have 88. Can we get more? Paid plan pricing?\n2. Custom domains: can we point our own domains to CF Pages projects for better DA?\n3. Cloudflare Workers: can we serve multiple articles from ONE project? (routing by path)\n4. Build settings: any way to improve SEO (headers, redirects, etc.)?\n5. Analytics: does CF provide any crawl/bot data?\n6. Rate limits on project creation API\n7. Wrangler CLI optimizations for batch deployment\n8. Can we add multiple pages (not just index.html) to each project?\n\nOutput: limits, optimization_strategies, scaling_plan, cost_analysis.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-22",
+          "system_prompt": "You are a GitHub Pages specialist. Output as structured JSON.",
+          "prompt": "Deep dive into GitHub Pages limits and scaling for our backlink pipeline:\n\n1. We have 88 repos, each with one index.html. GitHub account limits?\n2. Can we consolidate multiple articles into ONE GitHub Pages site with multiple paths?\n3. GitHub Actions for automated deployment — any advantages?\n4. Soft/hard limits on repos per account (we're at 88)\n5. GitHub's abuse detection for automated repo creation\n6. Do GitHub Pages subdomains all share the same DA or are they separate in Google's eyes?\n7. Can we add a custom domain to increase link value?\n8. GitHub API rate limits for programmatic repo creation\n\nOutput: limits, consolidation_strategy, scaling_risks, recommendations.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-23",
+          "system_prompt": "You are a Dev.to platform specialist and SEO analyst. Output as structured JSON.",
+          "prompt": "Deep dive into Dev.to for backlink optimization:\n\n1. We have 87 articles on one account. Spam detection thresholds?\n2. Dev.to articles get indexed quickly — what's typical index time?\n3. Do Dev.to articles rank independently? Can they send referral traffic?\n4. Tag optimization — which tags have highest visibility?\n5. Can we create a second account safely? Or use Dev.to organizations?\n6. Rate limits: we hit 429 at 4 req/min. What's the actual limit?\n7. API capabilities — can we update existing articles?\n8. Dev.to's canonical_url handling — does Google respect it?\n9. Community engagement: do likes/comments improve article visibility?\n10. Listings/series features for better internal linking\n\nOutput: platform_analysis, optimization_tips, scaling_strategy, risk_assessment.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-24",
+          "system_prompt": "You are a Vercel platform specialist. Output as structured JSON.",
+          "prompt": "Deep dive into Vercel limits for our backlink pipeline:\n\n1. Hobby plan limits: 200 deployments/day, but total project limit?\n2. We have 87 deployments. Account warnings?\n3. Vercel's abuse/spam detection for automated deployments\n4. Can we consolidate into fewer projects with multiple routes?\n5. Vercel serverless functions: any SEO advantages?\n6. Custom domains on Vercel free tier\n7. Edge functions for dynamic content\n8. Vercel Analytics integration\n9. Deploy API v13 rate limits\n10. How does Google treat *.vercel.app subdomains?\n\nOutput: limits, risks, optimization_strategies, consolidation_options.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-25",
+          "system_prompt": "You are a web analytics and attribution specialist. Output as structured JSON.",
+          "prompt": "Design a referral traffic tracking system for belikenative.com's backlink pages.\n\nWe have 666 backlink pages across 7 platforms, all linking to belikenative.com. How to track:\n1. Which backlink pages send actual referral traffic?\n2. UTM parameter strategy for 666 links (without looking spammy)\n3. Google Analytics 4 setup for backlink attribution\n4. Which platforms drive the most referral visits?\n5. Conversion tracking: backlink visit → Chrome extension install\n6. Heatmap/scroll data on our backlink pages (do users actually click?)\n\nOutput: tracking_plan, utm_strategy, ga4_setup, expected_referral_volume, conversion_funnel.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-26",
+          "system_prompt": "You are a Chrome Web Store SEO specialist. Output as structured JSON.",
+          "prompt": "How do backlinks affect Chrome extension rankings in the Chrome Web Store? Analyze for belikenative.com:\n\n1. Does Google use web backlinks as a ranking signal for CWS?\n2. What ARE the main ranking factors for Chrome Web Store?\n3. How does website authority (from backlinks) affect extension discovery?\n4. Do CWS listings get indexed in Google Search? How?\n5. What's the correlation between website traffic and extension installs?\n6. Should we create backlinks directly to the CWS listing page?\n7. Any CWS-specific SEO tactics?\n8. How do competitors (Grammarly, LanguageTool) leverage backlinks for CWS ranking?\n\nOutput: cws_ranking_factors, backlink_impact, optimization_strategies, competitor_analysis.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-27",
+          "system_prompt": "You are an AI content detection specialist. Output as structured JSON.",
+          "prompt": "Analyze the AI content detection risk for our 87 DeepSeek-generated articles used as backlink pages.\n\n1. Can Google detect AI-generated content? What signals?\n2. Does AI detection affect link equity passing?\n3. Our articles are 800-1200 words, use contractions, no em dashes, no bold, include FAQ sections. Detection risk?\n4. How do AI content detectors (GPTZero, Originality.ai, Copyleaks) score DeepSeek output?\n5. Would mixing human edits into AI content reduce detection risk?\n6. Google's official stance on AI content for link building\n7. Should Sprint 6 articles use a different generation strategy?\n8. Does article quality/depth affect whether Google devalues the links?\n\nOutput: detection_risk (1-10), signals_detected, mitigation_strategies, recommended_changes.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-28",
+          "system_prompt": "You are a technical SEO crawler and HTTP header analyst. Output as structured JSON.",
+          "prompt": "Analyze the HTTP headers and technical SEO signals of our backlink pages across all 7 platforms. For each platform, what headers matter for SEO:\n\n1. X-Robots-Tag (noindex, nofollow)\n2. Link: rel=canonical header\n3. Cache-Control / CDN headers\n4. Content-Type and charset\n5. HSTS / security headers (do they affect crawling?)\n6. Server identification (does Google treat platform-hosted differently?)\n7. Response time / TTFB\n8. Compression (gzip/brotli)\n\nDesign a health check script that verifies all critical headers on a sample of our 666 pages. Which headers should we add/modify per platform?",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-29",
+          "system_prompt": "You are a link building automation specialist. Output as structured JSON.",
+          "prompt": "Analyze our current publisher scripts for optimization opportunities. We have 7 active publisher scripts:\n- publish-devto.sh (API, rate limit 429 at ~4/min)\n- publish-telegraph.sh (API, no issues)\n- publish-github-pages.sh (API, repo creation)\n- publish-gitlab.sh (API, CI/CD pipeline trigger)\n- publish-cloudflare.sh (Wrangler CLI, 100 project limit)\n- publish-vercel.sh (Deploy API v13)\n- publish-surge.sh (Surge CLI, domain collisions)\n\nFor Sprint 6, how to:\n1. Increase throughput (currently 280 links in ~30 min)\n2. Reduce failure rate (Sprint 5: 15 initial failures out of 280)\n3. Better error handling and retry logic\n4. Monitoring and logging improvements\n5. Can we parallelize MORE? Current: 40 concurrent processes\n6. Pre-flight checks before blast\n\nOutput: bottleneck_analysis, optimization_plan, estimated_improvement.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-30",
+          "system_prompt": "You are an SEO link profile diversification expert. Output as structured JSON.",
+          "prompt": "Our link profile is 100% from hosting platform subdomains. Analyze diversification needs:\n\nCurrent profile:\n- 100% hosting platforms (github.io, pages.dev, gitlab.io, vercel.app, surge.sh, telegra.ph, dev.to)\n- 0% editorial links\n- 0% social media links\n- 0% directory links\n- 0% .edu/.gov links\n- 0% forum/community links\n- 0% news/PR links\n\nWhat does a natural link profile look like by category? How suspicious is our 100% platform-hosted profile? What minimum diversification would make it look natural?\n\nDesign a 'link profile normalization' plan: what types of links to add, how many, from where, and in what order.",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-31",
+          "system_prompt": "You are a Substack platform analyst. Output as structured JSON.",
+          "prompt": "Research Substack as a backlink platform for belikenative.com:\n\n1. Substack domain authority (substack.com DA)\n2. Are links in Substack posts dofollow or nofollow?\n3. Free tier limitations\n4. API for automated publishing?\n5. Can we publish articles with embedded backlinks?\n6. Substack's content policies on promotional content\n7. SEO benefits: do Substack posts rank well?\n8. How quickly does Google index Substack posts?\n9. Custom subdomain or *.substack.com format?\n10. Can we create a newsletter-style series for our articles?\n\nOutput: platform_profile, link_type, automation_feasibility, publisher_script_plan, estimated_da_value.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-32",
+          "system_prompt": "You are a Hashnode platform analyst. Output as structured JSON.",
+          "prompt": "Research Hashnode as a backlink platform for belikenative.com:\n\n1. Hashnode domain authority\n2. Are links dofollow or nofollow?\n3. Hashnode API (GraphQL) for automated publishing\n4. Custom domain support on free tier\n5. Canonical URL support (like Dev.to)\n6. Content policies on promotional/SEO content\n7. Community features (likes, comments) that boost visibility\n8. How quickly does Google index Hashnode posts?\n9. Can we cross-post Dev.to articles to Hashnode?\n10. Rate limits and publishing constraints\n\nOutput: platform_profile, link_type, api_details, publisher_script_plan, risk_assessment.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-33",
+          "system_prompt": "You are a Blogger/Blogspot platform analyst. Output as structured JSON.",
+          "prompt": "Research Google Blogger/Blogspot as a backlink platform for belikenative.com:\n\n1. Blogspot.com domain authority (DA ~94, Google-owned)\n2. Are links dofollow? (historically yes, but any changes?)\n3. Blogger API v3 for automated publishing\n4. Free tier — any limits on blogs/posts?\n5. Custom domain support\n6. Content policies on SEO/promotional content\n7. Google's treatment of Blogspot links (same company = trusted?)\n8. How quickly are Blogspot pages indexed?\n9. Spam detection on Blogger platform\n10. Template customization for unique appearance\n\nOutput: platform_profile, link_type, api_details, publisher_script_plan, risk_level, google_trust_factor.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-34",
+          "system_prompt": "You are a HuggingFace platform analyst. Output as structured JSON.",
+          "prompt": "Research HuggingFace as a backlink platform for belikenative.com:\n\n1. HuggingFace.co domain rating (DR ~89)\n2. Spaces: can we deploy static HTML pages?\n3. Model cards and dataset cards: do they allow embedded links?\n4. Are links dofollow?\n5. API for automated Space creation\n6. HuggingFace organization accounts\n7. Content policies\n8. How quickly does Google index HF pages?\n9. Can we create AI writing/grammar demos that naturally link to belikenative?\n10. Community engagement features\n\nOutput: platform_profile, deployment_options, link_type, automation_plan, content_strategy.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-35",
+          "system_prompt": "You are a Render and Railway platform analyst. Output as structured JSON.",
+          "prompt": "Research Render.com and Railway.app as backlink platforms for belikenative.com:\n\nFor EACH platform:\n1. Domain authority\n2. Static site hosting on free tier\n3. Are links dofollow?\n4. API for automated deployment\n5. CLI tools available?\n6. Project/site limits on free tier\n7. Custom domain support\n8. Content policies\n9. Google indexation speed\n10. Subdomain format (*.onrender.com, *.railway.app)\n\nCompare both. Which is better for our use case? Can we add them to our blast pipeline?\n\nOutput: render_profile, railway_profile, comparison, publisher_script_feasibility.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-36",
+          "system_prompt": "You are a Notion and Medium platform analyst for SEO. Output as structured JSON.",
+          "prompt": "Research Notion (notion.site) and Medium as backlink platforms:\n\nNotion:\n1. notion.site domain authority\n2. Public page sharing — are links dofollow?\n3. Notion API for automated page creation\n4. Can we publish articles with embedded backlinks?\n5. How does Google treat notion.site pages?\n6. Limits on public pages\n\nMedium:\n1. medium.com domain authority (~95)\n2. Are links dofollow or nofollow? (Medium changed this multiple times)\n3. Medium API for publishing\n4. Canonical URL support\n5. Paywall impact on Google indexation\n6. Content policies on promotional content\n7. Rate limits\n\nOutput: notion_profile, medium_profile, link_types, automation_feasibility, recommendation.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-37",
+          "system_prompt": "You are a tier-2 link building strategist. Output as structured JSON.",
+          "prompt": "Design a tier-2 link building strategy to boost our existing 666 backlink pages.\n\nTier 1: Our 666 pages on 7 platforms → link to belikenative.com\nTier 2: New links pointing TO our tier 1 pages to boost their authority\n\nOptions for tier 2:\n1. Social bookmarking (Pinterest, Reddit, Twitter/X links to our articles)\n2. Web 2.0 properties linking to our articles\n3. Profile links on forums/communities pointing to our articles\n4. RSS aggregators that auto-discover our content\n5. Ping services to notify search engines\n6. Social sharing bots\n\nFor each: effectiveness (1-10), risk (1-10), cost, automation_difficulty, estimated_impact on tier 1 authority.\n\nIs tier 2 worth the effort or does it increase footprint risk?",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.4
+        },
+        {
+          "task_id": "intel-38",
+          "system_prompt": "You are a keyword ranking analyst. Output as structured JSON.",
+          "prompt": "Research the top 50 keywords belikenative.com should target with its backlink strategy. Categories:\n\n1. Brand keywords: 'belikenative', 'be like native', 'belikenative chrome extension'\n2. Product keywords: 'grammar checker chrome extension', 'free writing assistant', 'ESL grammar tool'\n3. Competitor keywords: 'grammarly alternative free', 'languagetool alternative', 'grammarly vs belikenative'\n4. Long-tail: 'best free grammar checker for non-native speakers', 'chrome extension for multilingual writing'\n5. Informational: 'how to improve English writing', 'grammar tips for ESL students'\n\nFor each keyword: estimated monthly search volume, keyword difficulty, current likely ranking position, backlinks needed to rank page 1, which of our article topics best targets it.\n\nOutput: keyword_targets sorted by impact_score.",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.5
+        },
+        {
+          "task_id": "intel-39",
+          "system_prompt": "You are a Google Search Console data analyst. Output as structured JSON.",
+          "prompt": "Design the optimal Google Search Console monitoring plan for belikenative.com after deploying 666 backlinks.\n\nWhat to check and when:\n1. Week 1 (Jun 3-10): What metrics should change first?\n2. Week 2-3 (Jun 10-24): Expected referring domain count in GSC?\n3. Month 1 (Jun-Jul): Position changes for target keywords?\n4. Month 2-3 (Jul-Sep): Full impact assessment\n\nSpecific GSC reports to monitor:\n- Links report (external links, top linking sites)\n- Performance report (impressions, clicks, CTR, position)\n- URL inspection (indexation status of canonical URLs)\n- Manual actions (link spam warnings)\n- Security issues\n\nDesign a weekly GSC audit checklist. What's the earliest we'd see manual action if SpamBrain flags us?\n\nOutput: monitoring_timeline, weekly_checklist, alert_thresholds, expected_metrics.",
+          "json_mode": true,
+          "max_tokens": 3000,
+          "temperature": 0.3
+        },
+        {
+          "task_id": "intel-40",
+          "system_prompt": "You are a strategic SEO consultant. Synthesize all available data into an actionable sprint plan. Output as structured JSON.",
+          "prompt": "Design the complete Sprint 6 plan for belikenative.com backlink pipeline.\n\nCurrent state (Jun 3):\n- 666 total backlinks (623 live, 43 dead Netlify)\n- 87 unique articles across 7 active platforms + Firebase 13\n- 2,112 articles remaining in queue\n- $0.98 total spent\n- IndexNow submitted Jun 3\n- No GSC manual actions (as of last check)\n\nSprint 6 should cover:\n1. TIMING: When to deploy? (immediate, wait for indexation data, or drip feed?)\n2. VOLUME: How many new articles? How many platforms?\n3. PLATFORMS: Add new platforms or scale existing?\n4. CONTENT: Same article generation approach or changes needed?\n5. MONITORING: What to check before, during, after\n6. RISK MITIGATION: velocity control, footprint reduction\n7. DIVERSIFICATION: non-platform links to add?\n8. METRICS: success criteria for Sprint 6\n9. BUDGET: any paid tools/services worth adding?\n10. TIMELINE: Sprint 6 start → end dates, milestones\n\nOutput: sprint6_plan with phases, tasks, timeline, risk_assessment, success_criteria.",
+          "json_mode": true,
+          "max_tokens": 4000,
+          "temperature": 0.4
+        }
+      ]
+    }
+  ]
+}

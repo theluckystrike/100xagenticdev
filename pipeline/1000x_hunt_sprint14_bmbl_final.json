@@ -1,0 +1,218 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "s14_t01_whitney_return",
+          "prompt": "BMBL CEO CHANGE: Whitney Wolfe Herd RETURNED as CEO in mid-March 2025 after Lidiane Jones resigned 'for personal reasons' in January 2025. Whitney was previously CEO from founding until Jan 2024 when she stepped down. Questions: 1) Why did Lidiane Jones resign after only ~1 year? 2) Is Whitney's return a sign of strength (founder returns to save company) or desperation (nobody else wants the job)? 3) Compare to other founder returns: Steve Jobs at Apple, Howard Schultz at Starbucks, Jack Dorsey at Twitter. 4) What has Whitney changed since returning? 5) She exercised options and sold $6.3M at $6.26 in Aug 2025 — is this a red flag?",
+          "system_prompt": "You are a corporate governance analyst. Founder returns are either the ultimate bull signal (Jobs/Apple) or a sign of chaos (multiple CEO changes = dysfunction). Determine which applies here.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t02_blackstone_22pct",
+          "prompt": "BLACKSTONE OWNS 22.93% OF BMBL (29.9M shares) as of Mar 31, 2026. This is HIGHER than previously reported estimates of 14-15%. Questions: 1) Has Blackstone been BUYING more shares or has their percentage increased due to buybacks reducing float? 2) At 22.93%, Blackstone is the single largest holder. Does this give them effective control? 3) Blackstone has $1T+ AUM — their $96M BMBL position is trivial. Why are they holding? 4) Could Blackstone orchestrate a take-private at these levels? 5) What is Blackstone's track record with distressed portfolio companies?",
+          "system_prompt": "You are a private equity analyst. A 22.93% stake is a controlling position. Determine Blackstone's likely strategy — hold, sell, or take private.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t03_q1_earnings_beat",
+          "prompt": "BMBL Q1 2026 EARNINGS BEAT: Revenue $212.4M (vs estimate $211.6M, slight beat). EPS $0.35 (vs estimate $0.27, 26% BEAT). Net income $45.2M (up 236% from Q1 2025 $13.4M). Profit margin 21% (up from 5.4%). Adjusted EBITDA $83M (+29.7% YoY). Gross margin expanded 300bps YoY. Questions: 1) How is EPS $0.35 when revenue declined 14%? Pure cost cutting? 2) Is the margin expansion sustainable or one-time? 3) BofA raised price target after this beat — to what? 4) Stock DROPPED 19% after the beat (from $4.25 to $3.43). Why sell after a beat?",
+          "system_prompt": "You are an earnings analysis expert. A stock dropping 19% after beating estimates means the market doesn't believe the beat is sustainable. Investigate why.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t04_q2_guidance",
+          "prompt": "BMBL Q2 2026 GUIDANCE: Revenue $205M-$213M. Q1 2026 actual was $212.4M. Q2 2025 was $248.2M. So Q2 2026 guidance implies -14% to -17% YoY decline, and potentially FLAT to SLIGHTLY DECLINING QoQ. Questions: 1) Is -14% to -17% YoY better or worse than Q1's -14.2%? 2) Midpoint $209M vs Q1 $212.4M = -1.4% QoQ — is the SEQUENTIAL decline slowing? 3) If Q2 prints $209M and Q3 guidance is similar, does that mean revenue stabilizes around $205-210M/quarter (~$830M annualized)? 4) Management also mentioned Bumble App Revenue guidance $171-174M — what is the Badoo implied revenue?",
+          "system_prompt": "You are a revenue forecasting analyst. The Q2 guidance is CRITICAL — it tells us if the revenue decline is decelerating. Analyze the implied trajectory.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t05_ai_platform",
+          "prompt": "BMBL AI PLATFORM LAUNCH: In Q1 2026 earnings call, CEO Whitney Wolfe Herd announced rollout of a new 'cloud-native, AI-enabled platform starting in coming weeks, with global expansion planned.' Questions: 1) What is this AI platform? AI matching? AI conversation starters? AI profile writing? 2) Is this a genuine product innovation or marketing buzzword? 3) How does this compare to Tinder's AI features? Hinge's AI? 4) Could an AI-powered dating experience actually improve retention and reduce churn? 5) What is the timeline for global rollout?",
+          "system_prompt": "You are a product strategy analyst specializing in AI consumer applications. Assess whether Bumble's AI platform is a real differentiator or vapor.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t06_analyst_consensus",
+          "prompt": "BMBL ANALYST RATINGS: 0 Buy, 15 Hold, 1 Sell (BofA at Sell, $3.50 target). Average target $4.34 (+42.8% upside). UBS Hold $4.50. Deutsche Bank Hold $4.00. BofA Sell $3.50. Questions: 1) Why zero Buy ratings? Is the consensus too bearish? 2) Average target $4.34 is 42.8% above current — why not Buy if they see 43% upside? 3) BofA is the lone Sell — what is their thesis? 4) SimplyWallSt fair value $9 (66% undervalued) — massive disconnect from analyst targets. Who is right? 5) Has any analyst upgraded recently?",
+          "system_prompt": "You are a sell-side research analyst. Zero Buys with 43% upside is unusual. Determine if analysts are wrong (contrarian opportunity) or if the risks justify Hold.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t07_margin_expansion",
+          "prompt": "BMBL MARGIN EXPANSION STORY: Q1 2026: Gross margin expanded 300bps YoY. Adjusted EBITDA $83M (+29.7%). Operating margin 31.5%. Only 580 employees. Revenue/employee $1.6M. Management is clearly cutting costs aggressively. Questions: 1) What costs have been cut? Marketing spend? Engineering? Content moderation? 2) Is the company now in 'harvest mode' — maximizing profit from declining revenue? 3) Can margins expand further even as revenue declines? 4) Is there a risk of cutting too deep — underinvesting in product leads to faster user decline? 5) What is the optimal margin vs growth tradeoff?",
+          "system_prompt": "You are a SaaS operations analyst. Companies can temporarily boost margins by cutting costs, but this accelerates revenue decline if underinvesting. Assess Bumble's balance.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t08_deepseek_errors",
+          "prompt": "DEEPSEEK ERROR AUDIT: Sprint 13 (40 agents analyzing BMBL) produced 3 VERIFIED ERRORS vs real data from Investing.com and SimplyWallSt: 1) DeepSeek said CEO is Lidiane Jones — WRONG, Whitney Wolfe Herd returned as CEO Mar 2025. 2) DeepSeek said Blackstone owns 14-15% — WRONG, actually 22.93%. 3) DeepSeek said $0 buybacks — WRONG, buyback yield is 1.5%. Why did DeepSeek get these wrong? Likely reasons: training data cutoff, hallucination, or outdated SEC filings. What other DeepSeek claims from Sprint 13 should we now treat as unverified?",
+          "system_prompt": "You are a data quality analyst. Three verified errors in 40 tasks = 7.5% error rate on factual claims. Assess which other Sprint 13 claims need SEC filing verification.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t09_simplywall_fair_value",
+          "prompt": "BMBL FAIR VALUE ANALYSIS: SimplyWallSt calculates fair value at $9.00 (66.2% undervalued). Community fair values range $8.65-$9.20. Investing.com analyst average target $4.34. Questions: 1) SimplyWallSt uses DCF model — what discount rate and growth assumptions produce $9? 2) Is $9 realistic given revenue is declining -14%? 3) The community/analyst gap ($9 vs $4.34) is massive — who is right? 4) SimplyWallSt gives 6/6 on valuation score — what criteria? 5) Forward ROE 17.1% in 3 years — is this achievable with declining revenue?",
+          "system_prompt": "You are a valuation model analyst. Determine whether the $9 DCF fair value is realistic or overly optimistic given the revenue decline trajectory.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t10_technical_analysis",
+          "prompt": "BMBL TECHNICAL ANALYSIS: Current $3.04. RSI(14d) 32.14 (near oversold). 50-day $3.61, 200-day $4.26. All timeframes showing 'Strong Sell' on technicals. Beta 2.00. 1-month -26.92%. 3-month +2.70%. 1-year -43.39%. Volume 2.8M vs avg 4.1M (below average). 52w range $2.61-$8.64. Questions: 1) RSI 32 — is this an oversold bounce setup? Historical bounces at RSI <30? 2) What support levels exist below $3.04? $2.61 (52w low), $2.00? 3) Is there a technical pattern forming (falling wedge, descending channel)? 4) Volume below average — capitulation not yet complete? 5) Where would a technical buy signal trigger?",
+          "system_prompt": "You are a technical analysis expert. The chart shows a sustained downtrend. Identify if there are any bullish reversal signals or if more downside is likely.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t11_earnings_growth",
+          "prompt": "BMBL EARNINGS GROWTH TRAJECTORY: Analysts forecast EPS growth 108.77% p.a. (losses shrinking rapidly). Q1'25 EPS $0.13, Q1'26 EPS $0.35 (+169%). Forward P/E 3.03x. Revenue declining but EPS growing = margin expansion story. Questions: 1) If EPS grows from $0.35/quarter to $0.50/quarter, annualized EPS = $2.00. At 10x P/E = $20. At 5x P/E = $10. Is this realistic? 2) What is the sustainable EPS power assuming revenue stabilizes at $830M? 3) Can EPS growth offset revenue decline for 3+ years? 4) At what revenue level does EPS growth stall (can't cut more)?",
+          "system_prompt": "You are an earnings power analyst. Model the EPS trajectory assuming continued cost cuts but declining revenue. Find the equilibrium point.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t12_whitney_selling",
+          "prompt": "WHITNEY WOLFE HERD INSIDER SELLING: In Aug 2025, Whitney exercised options to acquire 1M shares at no cost and sold them for $6.3M at $6.26/share. This was the ONLY insider transaction in 12 months. Questions: 1) She exercised free options and sold — is this normal executive compensation (take the free stock, sell for income) or a red flag? 2) She sold at $6.26 — stock is now $3.04. She timed the top well. Did she know something? 3) Her direct holding increased from 654.5K to 1.43M shares — so she kept some. 4) At 0.5% ownership, she has minimal skin in the game. Is that concerning for a founder-CEO?",
+          "system_prompt": "You are an insider trading pattern analyst. Distinguish between routine compensation sales and conviction selling. A founder selling at $6.26 who then watches stock fall to $3.04 — what does this tell us?",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t13_new_cfo",
+          "prompt": "BMBL NEW CFO: Kevin D. Cook appointed August 2025. Background: ex-Cloudera CFO (2021-2023), ex-Cloudera SVP Finance (2014-2021), ex-Barracuda Networks VP, ex-investment banker (Cowen, Credit Suisse, Wachovia, RBC). UCLA Economics-Business BA, Georgetown JD. Age 61. Questions: 1) Is this a strong hire? Cloudera was acquired by PE in 2021 and later went public again — relevant experience? 2) Investment banking background + PE experience = good for M&A? 3) Why did previous CFO (Ronald Fior) leave? 4) New CPO Michael Affronti also from Salesforce. Is there a Salesforce pipeline at Bumble?",
+          "system_prompt": "You are a CFO assessment analyst. Evaluate whether Kevin Cook is a turnaround CFO, an M&A-oriented CFO, or a harvest-mode CFO.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t14_mgmt_tenure",
+          "prompt": "BMBL MANAGEMENT TURNOVER: Average management tenure is only 1.2 YEARS. Board average tenure is 5.8 years. Multiple C-suite changes: CEO changed twice (Whitney → Jones → Whitney), CFO changed (Fior → Cook), CPO changed (Rayl → Affronti). Questions: 1) Is 1.2-year average tenure a red flag? Companies in turnaround often have high turnover, but stability is needed to execute. 2) Does Whitney's return provide stability or is she a placeholder? 3) Annual General Meeting is Jun 04, 2026 — any expected board changes? 4) Total CEO comp $7.62M (8.5% salary, 91.5% stock) — is this aligned with shareholders?",
+          "system_prompt": "You are an organizational behavior analyst. High executive turnover destroys strategy execution. Assess whether BMBL's leadership is stabilizing or still in flux.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t15_group_dating",
+          "prompt": "BMBL NEW PRODUCT: 'Bumble to launch paid group dating feature amid revenue decline.' This is a NEW product announced ~Jun 2026. Questions: 1) What is group dating? Is it like double dates, group activities, social events? 2) Is this a genuine product innovation or a desperate pivot? 3) Could group dating expand TAM beyond traditional 1:1 dating? 4) Revenue potential — would users pay extra for group features? 5) Competitors doing anything similar? 6) Is this Whitney's vision for reviving Bumble?",
+          "system_prompt": "You are a consumer product strategist. Assess whether group dating is a meaningful product innovation or a gimmick to slow revenue decline.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t16_revenue_floor",
+          "prompt": "BMBL REVENUE FLOOR ANALYSIS: Revenue trajectory: 2024 $1,071.6M → 2025 $965.7M (-9.9%) → Q1'26 annualized ~$850M. Analysts forecast -4.9% p.a. average decline. Q2 guidance $205-213M (midpoint $209M). Questions: 1) At -4.9% p.a. decline, revenue in 2029 = $850M * (0.951)^3 = ~$726M. Is this realistic? 2) What is the revenue FLOOR — at what level does Bumble's user base stabilize? 3) Badoo is dying — what is Bumble App-only revenue? If Bumble App is $171-174M/quarter = $688M annualized, is THAT the real floor? 4) Could Badoo be divested or shut down to stop the bleed?",
+          "system_prompt": "You are a revenue floor analyst. Every declining business has a natural floor where the core user base stabilizes. Find Bumble's.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t17_ebitda_valuation",
+          "prompt": "BMBL EBITDA VALUATION: EBITDA $284.9M. EV $866.3M. EV/EBITDA 3.04x. This is EXTREMELY cheap for a tech company. Questions: 1) What do comparable dating/social companies trade at on EV/EBITDA? MTCH? GRND? 2) If BMBL traded at 6x EV/EBITDA (still cheap), EV = $1,710M. Minus debt + cash = equity $1,358M / 130.4M shares = $10.42/share. 3) At 8x EV/EBITDA, stock = $14.81/share. 4) Is 3x EV/EBITDA pricing in bankruptcy risk? 5) PE firms typically buy at 8-12x EV/EBITDA for stable cash flows. Even at discount (6x), that's $10+ per share. Why is nobody bidding?",
+          "system_prompt": "You are an EV/EBITDA valuation analyst. 3x EV/EBITDA for a profitable tech company is almost unheard of. Calculate what the stock should trade at using peer multiples.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t18_price_action",
+          "prompt": "BMBL PRICE ACTION FORENSIC: Stock DROPPED 19% (from $4.25 to $3.43) after BEATING Q1 estimates on May 5, 2026. Then continued falling to $3.04. Questions: 1) Why does a stock drop after a beat? Usually means: a) guidance was weak, b) quality of beat was low, c) short-term holders exiting. 2) Q2 guidance was $205-213M — was this below expectations? 3) Is this a classic 'sell the news' pattern? 4) The stock went from $8.64 high to $3.04 in one year (-65%). Is this capitulation or is there more downside? 5) What happened to similar stocks after post-beat selloffs?",
+          "system_prompt": "You are a price action analyst. A -19% move after a beat is extremely bearish. Determine if this is final capitulation or a structural downtrend continuing.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t19_corrected_scenario",
+          "prompt": "BMBL CORRECTED SCENARIO MATRIX with VERIFIED data. Corrections from Sprint 13: Whitney IS CEO (not Jones), Blackstone owns 22.93% (not 14%), buybacks ARE happening (1.5% yield), Q1 beat estimates 26%, EBITDA $285M at 3x EV/EBITDA, AI platform launching, group dating feature coming, revenue decline SLOWING to -4.9% p.a. (analyst consensus). Using CORRECTED data, re-run scenarios: 1) Bull (30%): Whitney + AI + stabilize → $8-12. 2) PE takeout (20%): Blackstone at 22.93% orchestrates → $8-10. 3) Slow decline (25%): Revenue falls to $700M floor → $3-4. 4) Accelerated decline (15%): Dating disrupted → $1-2. 5) Death (10%): → <$1. Calculate probability-weighted EV.",
+          "system_prompt": "You are a scenario analyst. The CORRECTED data is MORE BULLISH than Sprint 13 assumed. Whitney back, Blackstone holding, buybacks happening, earnings beating. Recalculate.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t20_1to10_rating",
+          "prompt": "RATE BMBL 1-10 FOR BUY-AND-HOLD 10 YEARS. Using ALL verified data: Price $3.04. Revenue $931M declining but slowing (-4.9% p.a. forecast). FCF $271M REAL. EBITDA $285M at 3.04x EV/EBITDA. EPS $0.35 beat $0.27 (+26%). Forward P/E 3.03x. P/B 0.64x (below book). P/S 0.5x. Whitney back as CEO. Blackstone 22.93%. AI platform launching. Group dating feature. 580 employees. Debt Nov 2028. SimplyWallSt fair value $9. Analyst target $4.34. Score on: 1) Value (1-10), 2) Growth potential (1-10), 3) Safety (1-10), 4) Catalyst (1-10), 5) Management (1-10). Average = OVERALL RATING. Compare to our portfolio: GRAB, BTG, GAU, TUYA, TIGR.",
+          "system_prompt": "You are the final investment committee scorer. Rate BMBL on a 1-10 scale across 5 dimensions. Be data-driven and honest. 7+ = BUY. 5-6 = WATCHLIST. <5 = AVOID.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t21_final_action",
+          "prompt": "BMBL ULTIMATE FINAL ACTION. 80 agents across 3 sprints (12, 13, 14) have analyzed this stock. CORRECTED VERIFIED DATA: Price $3.04, MCap $461M, Rev $931M (-14.1% but slowing), FCF $271M REAL, EBITDA $285M, EV/EBITDA 3.04x, EPS beat 26%, Whitney CEO (returned), Blackstone 22.93%, 1.5% buyback yield, AI platform launching, P/B 0.64x, Forward P/E 3.03x, Fair Value $9 (SimplyWallSt), Analyst target $4.34, RSI 32.14 (near oversold), next earnings Aug 12. Portfolio cash $1,062. DECISION: A) BUY NOW 80 shares @ $3.04 = $243. B) GTC LIMIT 80 shares @ $2.50 = $200. C) SPLIT: 40 shares now + 40 @ $2.50. D) WATCHLIST ONLY. E) Other.",
+          "system_prompt": "You are the chief investment officer making the FINAL call. 80 agents have weighed in. Use ONLY verified data. State confidence 1-10. This is REAL money at stake.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t22_kill_test",
+          "prompt": "BMBL KILL TEST: Apply our kill criteria ruthlessly. Kill if: 1) Chronic dilution >10%/yr — BMBL shares outstanding 130.4M. Has this been increasing? SBC = dilution. 2) CEO selling at bottom — Whitney sold at $6.26, NOT at bottom. But no buying at $3.04 either. 3) Reverse split history — NONE. 4) Negative unit economics — NO, 71.9% GM, 31.5% OM, positive EBITDA. 5) Fraud/SEC history — NONE known. 6) Zombie company — NO, generating $271M FCF. Does BMBL pass or fail the kill test?",
+          "system_prompt": "You are a kill-list analyst. Apply kill criteria strictly. If it passes all criteria, it should NOT be on the kill list. Be objective.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t23_chart_pattern",
+          "prompt": "BMBL CHART ANALYSIS: IPO Jan 2021 at $43, opened $76. All-time high ~$76-83. Current $3.04 = -96% from peak. Key price points: IPO $43 (Jan 2021), Peak ~$76 (Feb 2021), $60 (Jun 2021), $40 (Dec 2021), $30 (Jun 2022), $25 (Nov 2022), $15 (Aug 2023), $20 (Dec 2023), $12 (Jul 2024), $8.64 (52w high), $3.04 (now). 52w low $2.61. Questions: 1) Is there a falling wedge or descending channel pattern? 2) Has the stock found a floor at $2.61? 3) Volume profile — where is the highest volume node? 4) Is this a classic SPAC/IPO bust (overhyped at $76, mean-reverting to fair value)? 5) At -96%, is the selling exhausted?",
+          "system_prompt": "You are a technical chart analyst. A -96% decline from $76 to $3.04 is a near-total destruction. Determine if the stock is basing or still falling.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t24_peer_valuation",
+          "prompt": "BMBL PEER VALUATION DEEP DIVE: Investing.com data — BMBL vs peers and sector: P/E: BMBL -0.7x vs Peers 10.0x vs Sector 7.1x. P/B: BMBL 0.7x vs Peers 3.5x vs Sector 1.8x. P/S: BMBL 0.5x vs Peers 1.4x vs Sector 1.3x. PEG: BMBL 0.07 vs Peers -0.22 vs Sector 0.01. Questions: 1) BMBL is cheaper than peers and sector on EVERY metric. By how much? 2) Is the discount justified (declining revenue) or excessive (FCF is massive)? 3) At peer P/S of 1.4x, BMBL would be $10.00/share. At sector P/S 1.3x, would be $9.30/share. 4) At peer P/B 3.5x, would be $16.60/share. Is any of this achievable?",
+          "system_prompt": "You are a relative valuation analyst. BMBL trades at 64-80% discount to peers on every metric. Determine if this is justified or if re-rating is inevitable.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t25_swot",
+          "prompt": "BMBL SWOT ANALYSIS using ALL verified data from 80+ agents across Sprints 12-14. STRENGTHS: $271M FCF, 71.9% GM, 580 employees ($1.6M/employee), brand recognition, women-first positioning, 22.93% Blackstone backing, EPS beating estimates, margin expansion. WEAKNESSES: Revenue declining -14.1%, management turnover (1.2yr avg), Whitney selling at $6.26, $597M debt, goodwill $733M > mcap, weak network effects, Badoo dying. OPPORTUNITIES: AI platform launch, group dating feature, international expansion, PE takeout, revenue stabilization. THREATS: Hinge competition, dating app fatigue, AI disruption, continued revenue decline, debt maturity 2028.",
+          "system_prompt": "You are a strategic analyst. Create the definitive SWOT. Weight each factor by importance. Overall: do strengths + opportunities outweigh weaknesses + threats?",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t26_vs_grab",
+          "prompt": "BMBL ($3.04) vs GRAB ($3.60) — Our two most comparable positions. Both are app-based platform companies. GRAB: SE Asia superapp, ride-hailing + delivery + fintech, turning profitable, growing market. BMBL: US dating app, $271M FCF, declining revenue, value play. Questions: 1) Which has more 10-year upside? GRAB in growing SE Asia or BMBL with M&A catalyst? 2) Which is safer? GRAB has lower FCF but growing. BMBL has massive FCF but declining. 3) Would adding BMBL make our portfolio too app-heavy? 4) Risk correlation — are GRAB and BMBL correlated or diversified?",
+          "system_prompt": "You are a portfolio comparison analyst. Should we add BMBL alongside GRAB or are they too similar (app-based platforms)?",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t27_aug_earnings",
+          "prompt": "BMBL NEXT EARNINGS AUG 12, 2026 — Strategy. If we set a GTC limit at $2.50, it might fill BEFORE earnings. If we wait, we get more data but might miss the bottom. Questions: 1) Historically, does BMBL stock go up or down into earnings? 2) Q2 guidance was $205-213M — if they beat again and guide Q3 flat, does the stock rally? 3) If revenue decline slows further (from -14% to -10%), does sentiment shift? 4) Should we wait for Aug 12 earnings BEFORE setting our limit order? 5) What if the stock hits $2.50 before Aug 12 — do we buy without earnings data?",
+          "system_prompt": "You are a tactical entry timing analyst. Should the investor buy before or after the Aug 12 earnings report? Consider the risk/reward of each approach.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t28_1000x_test",
+          "prompt": "BMBL 1000x TEST: Price $3.04, MCap $461M. For 1000x ($3,040/share, $396B mcap) — impossible, would be larger than Meta. For 100x ($304, $46.1B) — would need to become THE dominant global dating/social platform. Very unlikely given declining trajectory. For 10x ($30.40, $4.6B) — needs revenue to grow to $2-3B OR acquisition at 5x current EV. For 5x ($15.20, $2.3B) — needs revenue stabilization + re-rating to 2.5x P/S. For 3x ($9.12, $1.4B) — achievable if revenue stabilizes and market re-rates. REALISTIC MAXIMUM UPSIDE in 10 years?",
+          "system_prompt": "You are a return-potential analyst. Most stocks fail the 1000x test. BMBL is likely a 3-5x candidate, not 1000x. Be honest about realistic range.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t29_conviction_level",
+          "prompt": "BMBL CONVICTION ASSESSMENT: After 80+ agents across 3 sprints, rate your CONVICTION (1-10) on each thesis: 1) FCF is real and sustainable (1-10). 2) Revenue decline will slow and stabilize (1-10). 3) Management can execute a turnaround (1-10). 4) An acquisition will happen within 3 years (1-10). 5) The stock will be higher in 5 years (1-10). 6) The stock will be higher in 10 years (1-10). 7) Downside from here is limited to $1.50-2.00 (1-10). 8) BMBL is better than holding cash for 10 years (1-10). Average conviction = overall confidence level.",
+          "system_prompt": "You are a conviction rating analyst. Rate each thesis independently using ONLY verified data. Be honest — uncertain answers should get 5, not 8.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s14_t30_definitive_rating",
+          "prompt": "BMBL DEFINITIVE 1-10 RATING. This is the FINAL assessment after 120 agents across 3 sprints ($0.16 total cost). VERIFIED FACTS ONLY: Price $3.04 (-96% from $76 peak). Revenue $931M declining -14.1% (slowing to -4.9% forecast). FCF $271M REAL. EBITDA $285M. EV/EBITDA 3.04x. EPS $0.35 beat $0.27 (26% beat). P/B 0.64x. P/S 0.5x. Forward P/E 3.03x. Whitney CEO (returned). Blackstone 22.93%. 580 employees. Debt $597M due Nov 2028. RSI 32. Fair value $9 (SimplyWallSt). Analyst target $4.34. AI platform launching. Group dating feature. Rate: 1-3 = SELL/AVOID. 4-5 = HOLD/NEUTRAL. 6-7 = WATCHLIST/ACCUMULATE. 8-10 = BUY/STRONG BUY. Give SINGLE number with 1-paragraph justification.",
+          "system_prompt": "You are the final arbiter. One number. One paragraph. Be definitive. Use ONLY verified data. This rating will determine a real investment decision.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

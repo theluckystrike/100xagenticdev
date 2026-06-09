@@ -1,0 +1,295 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "VAL-BTG-01-balance-sheet",
+          "prompt": "B2Gold Corp (BTG) — BALANCE SHEET HARD VALIDATION.\n\nClaims to verify against actual SEC EDGAR / SEDAR filings:\n1. 'Zero debt' — Is BTG truly debt-free? Check 10-K/40-F for any long-term debt, credit facilities drawn, convertible notes, lease liabilities. Cite exact filing page.\n2. '$410M cash' as of Q1 2025 — Verify exact cash & equivalents from Q1 2025 MDA or financial statements. Cite exact line.\n3. Dividend $0.04/quarter ($0.16 annual) — Verify current quarterly dividend rate. Has it been cut or raised?\n4. Shares outstanding — Exact diluted share count from most recent filing.\n5. Market cap calculation at $4.75 — Is $4.75 the current price? What is actual current price?\n\nFor EACH claim, state: VERIFIED (with citation) or FALSE (with correct number).",
+          "system_prompt": "You are a forensic financial auditor. Every number must cite a specific SEC/SEDAR filing with exact page or exhibit number. If you cannot verify a number, mark it UNVERIFIED. Never guess. Never hallucinate data.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-BTG-02-goose-status",
+          "prompt": "B2Gold Corp (BTG) — GOOSE PROJECT STATUS VALIDATION.\n\nClaims to verify:\n1. 'Goose first gold Q2 2025' — What is the ACTUAL current status of the Goose (Back River) project? Has first gold been poured? If not, what is the latest timeline from official press releases?\n2. '$800M total capex' — Verify total capital cost estimate from feasibility study or latest guidance.\n3. 'AISC $800-900/oz' for Goose — Where does this number come from? Cite the technical report or feasibility study.\n4. '310,000 oz/year production' — Verify annual production target from official documents.\n5. 'Construction 75% complete as of Q1 2025' — Verify construction progress percentage.\n6. 'Mine life 15 years' — Verify from reserve/resource statement.\n\nFor EACH: VERIFIED or FALSE with correct data and citation.",
+          "system_prompt": "You are a mining project analyst. Verify every claim against official press releases, technical reports, and SEDAR filings. Cite exact sources.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-BTG-03-mali-production",
+          "prompt": "B2Gold Corp (BTG) — MALI/FEKOLA VALIDATION.\n\nClaims to verify:\n1. 'Fekola = 57% of production' — What % of BTG's total production comes from Fekola? Cite Q1 2025 or FY2024 production report.\n2. 'Q1 2025 production: 218,000 oz' — Verify total company production for Q1 2025.\n3. 'Q1 2025 AISC: $1,370/oz' — Verify from quarterly results.\n4. 'FY2025 guidance: 800,000-870,000 oz at $1,370-$1,460 AISC' — Verify current guidance.\n5. 'Fekola Underground first ore Q4 2025' — Verify timeline.\n6. 'Mali mining code 2023: 5% royalty + windfall tax + 30% state participation' — Are these the actual terms?\n7. 'FY2024 production: 804,000 oz at $1,410 AISC' — Verify.\n\nFor EACH: VERIFIED or FALSE.",
+          "system_prompt": "You are a mining sector analyst. Cross-check every claim against BTG's official press releases and SEDAR/SEC filings.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-BTG-04-fcf-valuation",
+          "prompt": "B2Gold Corp (BTG) — FCF & VALUATION VALIDATION.\n\nClaims to verify:\n1. '10.9% FCF yield' — Calculate: What is BTG's actual TTM free cash flow? What is the current market cap? Is 10.9% correct?\n2. '0.64x P/NAV' — What is BTG's actual NAV per share? How was it calculated? Is 0.64x correct at current price?\n3. 'Dividend yield 3.4%' — At current price, what is the actual dividend yield?\n4. '$1,280/oz margin at $2,650 gold' — Verify: gold price minus AISC = margin. Is this correct?\n5. 'P/E ~9x' — What is BTG's actual trailing P/E ratio?\n6. 'EV/EBITDA ~5x' — What is BTG's actual EV/EBITDA?\n7. Peer comparison: Barrick 0.85x, Newmont 0.90x, Agnico 1.10x P/NAV — Are these correct?\n\nShow your math for each calculation.",
+          "system_prompt": "You are a quantitative equity analyst. Show all calculations with sources. If a number cannot be independently verified, mark UNVERIFIED.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-GAU-01-financials",
+          "prompt": "Galiano Gold (GAU) — FINANCIAL HARD VALIDATION.\n\nClaims to verify against SEDAR/SEC filings:\n1. '$117.6M cash as of March 31, 2025' — Verify from Q1 2025 financials.\n2. 'Zero debt' — Is GAU truly debt-free? Check for credit facilities, leases.\n3. 'FY2024 AISC $1,354/oz' — Verify from annual results.\n4. 'Q1 2025 AISC $1,472/oz' — Verify from Q1 report.\n5. 'FY2024 production: 106,676 oz' — Verify.\n6. 'Q1 2025 production: 24,930 oz' — Verify.\n7. 'Q1 2025 revenue: $67.5M' — Verify.\n8. 'Q1 2025 FCF: $19.3M' — Verify (operating cash flow minus sustaining capex).\n\nFor EACH: VERIFIED or FALSE with citation.",
+          "system_prompt": "You are a forensic financial auditor for mining companies. Every number must have an exact filing citation. Mark anything unverifiable as UNVERIFIED.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-GAU-02-reserves-mine",
+          "prompt": "Galiano Gold (GAU) — RESERVES & MINE LIFE VALIDATION.\n\nClaims to verify:\n1. 'Proven & probable reserves: 2.2M oz' — Verify from latest reserve statement.\n2. 'Mine life ~20 years' at current production — Is this math correct? (reserves / annual production)\n3. 'Total M&I resources: ~4.5M oz' — Verify.\n4. 'Mill expansion study from 5.2 to 6.5 Mtpa expected H2 2025' — Verify this is real and current.\n5. 'Asanko mine ONLY asset' — Confirm GAU has no other producing mines.\n6. 'Abore South drill results: 12m @ 4.1 g/t, 8m @ 3.8 g/t (Nov 2024)' — Verify these specific drill results.\n7. 'Ghana 5% royalty, 35% corporate tax' — Verify current rates.\n\nCRITICAL: One agent said GAU merged with Aris Mining — another didn't mention it. WHICH IS TRUE? Clarify GAU's actual corporate structure.",
+          "system_prompt": "You are a mining reserves auditor. Verify all reserve/resource numbers against official NI 43-101 reports and SEDAR filings.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-GAU-03-valuation",
+          "prompt": "Galiano Gold (GAU) — VALUATION CLAIMS VALIDATION.\n\nClaims to verify:\n1. 'Market cap ~$525M' — Calculate: shares outstanding × current price. What is the actual current price?\n2. '20% FCF yield' — Calculate: annual FCF / market cap. Show the math.\n3. '0.45x P/NAV' — How was NAV calculated? What discount rate? Is 0.45x correct?\n4. 'Gold price sensitivity: $0.06 EPS per $100/oz change' — Verify from company disclosure.\n5. 'Operating leverage 3.8x' — Is this correctly calculated?\n6. 'Peer comparison: Endeavour 1.96x, IAMGOLD 1.73x P/NAV' — Verify these peer multiples.\n7. '14-16% FCF yield' — Which is it, 14-16% or 20%? Our agents gave different numbers.\n\nFlag any inconsistencies between our different agent reports.",
+          "system_prompt": "You are a quantitative equity analyst. Show all calculations. Flag any internal inconsistencies in our data.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-PAGS-01-q1-2025",
+          "prompt": "PagSeguro Digital (PAGS) — Q1 2025 EARNINGS HARD VALIDATION.\n\nClaims to verify against the 6-K filed 05/15/2025:\n1. 'Q1 2025 Revenue: R$5,383M ($938M)' — Verify exact number.\n2. 'Q1 2025 Net Income: R$598M ($104M)' — Verify exact number.\n3. 'Q1 2025 EPS: R$1.87 ($0.33)' — Verify.\n4. 'Q1 2025 TPV: R$133.3B' — Verify.\n5. 'Active Banking Clients: 17.1M' — Verify.\n6. 'NPL 90+ days: 4.9%' — Verify.\n7. 'Efficiency Ratio: 35.0%' — Verify.\n8. 'PIX-related revenue: R$187M (+32% YoY)' — Verify this specific line item exists.\n9. 'PIX transaction volume: R$48.2B (+25% YoY)' — Verify.\n\nAll numbers must cite Exhibit 99.2 page numbers from the 6-K.",
+          "system_prompt": "You are an SEC filing analyst. Verify every number against the actual 6-K filing. Cite exact exhibit and page number. If a number is not in the filing, mark it UNVERIFIED or FABRICATED.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-PAGS-02-cash-buyback",
+          "prompt": "PagSeguro Digital (PAGS) — CASH & BUYBACK VALIDATION.\n\nClaims to verify:\n1. 'Net cash position: R$8.1B ($1.4B)' — Verify from Q1 2025 filing. What are the exact cash and debt figures?\n2. 'Cash & equivalents: R$9.2B' — Verify.\n3. 'Total debt: R$1.1B' — Verify.\n4. 'Buyback: $176.4M remaining under $300M authorization' — Verify authorization details and remaining amount.\n5. 'Q1 2025: repurchased 2.5M shares at avg $9.14' — Verify.\n6. '2024: repurchased 10.2M shares at avg $9.87' — Verify from 20-F.\n7. 'Credit portfolio gross: R$3.4B' — Verify.\n8. 'Provision coverage ratio: 215%' — Verify.\n\nCite exact filing references for each.",
+          "system_prompt": "You are a forensic financial auditor. Every number must cite a specific SEC filing page.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-PAGS-03-guidance-price",
+          "prompt": "PagSeguro Digital (PAGS) — GUIDANCE & PRICE VALIDATION.\n\nClaims to verify:\n1. 'FY2025 revenue growth guidance: 10-14% YoY' — Verify from official guidance.\n2. 'FY2025 net income growth: 15-20% YoY' — Verify.\n3. 'FY2025 efficiency ratio target: below 34%' — Verify.\n4. 'P/E 8.5x' — What is actual trailing P/E? (need current price and TTM EPS)\n5. 'P/E 6.5x' — Our different agents gave 6.5x and 8.5x. WHICH IS CORRECT? Show the math.\n6. 'Current price ~$10.00' — What is PAGS actual current stock price?\n7. 'Shares outstanding: 320M (post-buyback)' — Verify actual diluted shares.\n8. 'Market cap ~$3.2B' — Verify.\n9. 'EV/EBITDA 4.5x' — Verify.\n\nFlag the P/E inconsistency — our agents disagree (6.5x vs 8.5x).",
+          "system_prompt": "You are a quantitative equity analyst. Show all calculations. Flag inconsistencies.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-PAGS-04-insider",
+          "prompt": "PagSeguro Digital (PAGS) — INSIDER/INSTITUTIONAL VALIDATION.\n\nCRITICAL CLAIMS TO VERIFY:\n1. 'UBS Group +1,200% position increase' — Is this real? Check most recent 13F filing. Our agent cited 'Q1 2024' data — is there newer data?\n2. 'Point72 (Steve Cohen) +200% new position' — Verify from 13F.\n3. 'Baillie Gifford 10.8M shares (+15%)' — Verify.\n4. 'Renaissance Technologies 5.2M shares (+10%)' — Verify.\n5. 'UOL Group owns ~52.3%' — Verify parent company ownership.\n6. 'Zero insider purchases in last 6 months' — Verify from Form 4 filings.\n7. 'Short interest 8.5%, 4.2 days to cover' — Verify current short interest.\n\nWARNING: Our agent's data may be stale (referenced Q1 2024). Check if more recent 13F data (Q4 2024 or Q1 2025) is available.",
+          "system_prompt": "You are an institutional ownership analyst. Verify all 13F and Form 4 data. Flag any data staleness issues — our prior analysis may have used outdated filings.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-PAYO-01-financials",
+          "prompt": "Payoneer Global (PAYO) — FINANCIAL HARD VALIDATION.\n\nClaims to verify:\n1. 'Q1 2025 Revenue: $258.1M (+16% YoY)' — Verify from earnings release or 10-Q.\n2. 'Q1 2025 Net Income: $38.2M (+62% YoY)' — Verify.\n3. 'Q1 2025 Adj EBITDA: $72.5M (28.1% margin)' — Verify.\n4. 'GAAP Operating Margin: 14.8%' — Verify.\n5. 'Q1 2025 TPV: $22.5B (+24% YoY)' — Verify.\n6. 'Take rate Q1 2025: 1.15%' — Calculate: revenue / TPV. Verify.\n7. 'Interest income on customer balances: $11.4M in Q1 2025' — Verify this specific line item.\n8. 'Active customers: 2.1 million' — Verify.\n9. 'B2B volume growth: +44% YoY' — Verify.\n\nCite exact filing references.",
+          "system_prompt": "You are a forensic financial auditor. Every number must cite a specific SEC filing. If unavailable, mark UNVERIFIED.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-PAYO-02-charter-cash",
+          "prompt": "Payoneer Global (PAYO) — OCC CHARTER & CASH VALIDATION.\n\nClaims to verify:\n1. 'OCC National Bank Charter received May 2024' — Verify. Is this a FULL national bank charter or a different type of license?\n2. '$1.1 Billion cash & equivalents' — Verify from Q1 2025 balance sheet.\n3. 'Zero long-term debt' — Verify. Any credit facilities, convertible notes?\n4. 'Net cash = 65% of market cap' — Calculate and verify.\n5. '$5.6B in customer funds' — Verify from filings. Is this held on balance sheet or off-balance sheet?\n6. 'Payoneer Capital (direct lending) launched Q1 2025' — Verify this product exists.\n7. '2025 guidance: $1.09-1.12B revenue, $310-330M adj EBITDA, $100M+ buybacks' — Verify.\n8. 'EV/EBITDA 2.1x' — Calculate: (market cap - net cash) / TTM EBITDA. Show math.\n\nCRITICAL: Is PAYO's cash TRULY zero-debt, or does the banking entity have deposits that are liabilities?",
+          "system_prompt": "You are a bank regulatory analyst. Verify all charter and balance sheet claims. Pay special attention to whether customer funds create offsetting liabilities.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-PAYO-03-take-rate",
+          "prompt": "Payoneer Global (PAYO) — TAKE RATE & COMPETITION VALIDATION.\n\nClaims to verify:\n1. Take rate trend: Q1 2024 1.23% → Q4 2024 1.09% → Q1 2025 1.15% — Are these exact numbers from filings?\n2. 'Take rate stabilizing around 1.10-1.15%' — Is this management's stated expectation?\n3. 'Wise trades at 35x P/E vs PAYO 7x' — Verify Wise's actual current P/E ratio.\n4. 'Revenue growth lagged volume growth for 6 consecutive quarters' — Verify this trend.\n5. 'B2B Enterprise customers grew +25% YoY' — Verify from filings.\n6. 'Geographic split: APAC ~40%, Europe ~25%' — Verify.\n7. Risk: 'If take rate falls below 1.2%, operating leverage breaks' — Is this analysis correct?\n\nAlso: What is PAYO's actual current stock price? Is $5.13 correct?",
+          "system_prompt": "You are a fintech equity analyst. Verify all competitive and financial metrics. Cite exact sources.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-TUYA-01-financials",
+          "prompt": "Tuya Inc (TUYA) — FINANCIAL HARD VALIDATION.\n\nClaims to verify against 6-K and 20-F filings:\n1. '$854M cash + short-term investments' — Verify exact breakdown from Q1 2025 filing.\n2. 'Zero debt' — Verify. Any convertible notes, lease obligations?\n3. 'Q1 2025 Revenue: $66.6M (+16% YoY)' — Verify.\n4. 'Q1 2025 GAAP Net Income: $4.2M' — Verify.\n5. 'Third consecutive GAAP profitable quarter' — Verify Q3 2024, Q4 2024, Q1 2025 were all GAAP profitable.\n6. 'Q4 2024 Revenue: $78.4M, Net Income: $5.6M' — Verify.\n7. 'Q3 2024 was first profitable quarter' — Verify. Was Q3 2024 actually GAAP profitable?\n8. 'Gross Margin: 47.8% in Q1 2025' — Verify.\n\nCite exact filings.",
+          "system_prompt": "You are a forensic financial auditor for Chinese ADRs. Every number must cite a specific 6-K or 20-F filing.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-TUYA-02-cash-vie",
+          "prompt": "Tuya Inc (TUYA) — CASH ACCESSIBILITY & VIE VALIDATION.\n\nClaims to verify:\n1. 'Market cap ~$1.3B' — What is TUYA's actual current stock price and shares outstanding? Calculate market cap.\n2. 'EV/Revenue 1.5x' — Verify: EV = MCap - Cash. Show math.\n3. 'Cash at $0.52 on the dollar' — Is this implicit discount correctly calculated?\n4. 'VIE structure' — Confirm TUYA uses VIE. Where is the cash held? China or offshore?\n5. 'HK dual listing (2391.HK)' — Verify this exists. What is the HK price vs US price?\n6. 'No buyback program announced' — Verify. Has TUYA ever announced or discussed buybacks?\n7. '70% of revenue is international' — Verify from filings.\n8. 'SaaS revenue +28% YoY, $10.2M in Q1 2025' — Verify this segment breakdown.\n9. 'IoT PaaS $49.1M, Smart Solutions $7.3M in Q1 2025' — Verify segment split.\n\nCRITICAL: What % of the $854M cash is held in CHINA vs OFFSHORE? This determines real accessibility.",
+          "system_prompt": "You are a China ADR specialist. Focus on VIE structure, cash location, and repatriation risk. Cite exact filings.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-TUYA-03-comps",
+          "prompt": "Tuya Inc (TUYA) — PEER COMPARISON VALIDATION.\n\nClaims to verify:\n1. 'Samsara (IOT) trades at 12x EV/Revenue' — Verify Samsara's actual current EV/Rev.\n2. 'C3.ai trades at 5x EV/Revenue' — Verify.\n3. 'PTC trades at 8x EV/Sales' — Verify.\n4. 'TUYA is #1 independent IoT platform' — Is this claim verifiable? What's the source?\n5. '1,200+ device categories, 1,000+ chipset SKUs' — Verify from TUYA's filings.\n6. 'Premium customers (>$100K LTM): 58 in Q1 2025' — Verify.\n7. 'Dollar-based net retention rate ~110%' — Verify from filings.\n8. Acquisition scenario: 'Chinese acquirer would pay 4x EV/Rev = $3.30/ADS' — Is this reasonable?\n\nAlso: What is TUYA's actual ADS ratio? (1 ADS = how many ordinary shares?)",
+          "system_prompt": "You are a tech equity analyst specializing in IoT and SaaS comparables. Verify all peer multiples against actual market data.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-STNE-01-sell-thesis",
+          "prompt": "StoneCo (STNE) — SELL THESIS VALIDATION.\n\nOur allocation model says 'ELIMINATE STNE — PAGS is superior in every metric.' Validate this claim:\n1. Compare STNE vs PAGS on: Revenue, Net Income, Revenue Growth, P/E, EV/EBITDA, Net Cash, Active Clients\n2. Is PAGS truly 'objectively better in every metric'? Any metric where STNE wins?\n3. What is STNE's current stock price?\n4. Does STNE have any competitive advantages PAGS lacks?\n5. What is STNE's current market cap and valuation?\n6. Management quality comparison — any recent executive changes at STNE?\n7. Is there a strategic reason to hold BOTH (diversification within Brazil fintech)?\n\nBe objective — we need to confirm the sell thesis before executing.",
+          "system_prompt": "You are a Latin American fintech analyst. Provide an objective comparison. Do not assume the sell thesis is correct — verify it.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-GRAB-01-reduce-thesis",
+          "prompt": "Grab Holdings (GRAB) — REDUCE THESIS VALIDATION.\n\nOur model says 'Reduce GRAB from $178 to $100. Cash incinerator.' Validate:\n1. What is GRAB's current stock price? Is $3.55 correct?\n2. Is GRAB actually a 'cash incinerator'? Check latest quarterly results — is GRAB profitable?\n3. What is GRAB's net cash position?\n4. Revenue growth rate?\n5. Path to profitability — has GRAB achieved GAAP profitability?\n6. What is GRAB's current market cap? Is MEGA_CAP penalty (-10) still applicable?\n7. Any recent positive catalysts we're missing?\n\nBe objective — confirm the reduce thesis.",
+          "system_prompt": "You are a Southeast Asian tech analyst. Verify all claims about GRAB's financial health.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-PRICE-01-live",
+          "prompt": "LIVE PRICE CHECK — ALL 8 STOCKS.\n\nVerify the current stock prices used in our allocation model. For each stock, provide:\n1. Current stock price (most recent close)\n2. 52-week high and low\n3. Current market cap\n4. Average daily volume (30-day)\n5. Year-to-date performance\n\nStocks: PAGS, GAU, BTG, PAYO, TUYA, TIGR, GRAB, STNE\n\nOur assumed prices: PAGS $10.00, GAU $2.34, BTG $4.75, PAYO $5.13, TUYA $2.12, TIGR $5.01, GRAB $3.55, STNE $5.40\n\nFlag any price that is materially wrong (>5% off).",
+          "system_prompt": "You are a market data analyst. Provide current stock prices from the most recent trading session. Flag any prices that differ materially from our assumptions.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-ALLOC-01-math",
+          "prompt": "ALLOCATION MODEL — MATH VALIDATION.\n\nVerify all arithmetic in our allocation model:\n1. Total allocation: $400 + $334 + $300 + $257 + $200 + $195 + $100 + $214 = $2,000? Verify.\n2. Share counts at given prices: BTG 84 shares × $4.75 = $399? GAU 143 × $2.34 = $334.62? PAGS 30 × $10.00 = $300? PAYO 50 × $5.13 = $256.50? TUYA 95 × $2.12 = $201.40? TIGR 39 × $5.01 = $195.39? GRAB 28 × $3.55 = $99.40?\n3. Portfolio percentages: Do all % add up to 100%?\n4. Sector allocations: Gold 37% (BTG 20% + GAU 17%), Fintech 28% (PAGS 15% + PAYO 13%), CN Tech 20% (TUYA 10% + TIGR 10%), SEA 5% (GRAB), Cash 11% — correct?\n5. Execution order: If we SELL STNE first ($200 freed) + REDUCE GRAB ($78 freed), do we have enough to BUY PAGS +$100, GAU +$100, BTG +$200?\n\nShow all arithmetic.",
+          "system_prompt": "You are a portfolio accountant. Check all arithmetic. Flag any rounding errors or impossible allocations.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-ALLOC-02-risk",
+          "prompt": "ALLOCATION MODEL — RISK VALIDATION.\n\nCritically evaluate our portfolio construction:\n1. Is 37% in gold miners (BTG + GAU) too concentrated? What if gold drops 30%?\n2. Is 20% in Chinese ADRs (TUYA + TIGR) appropriate given VIE + delisting risk?\n3. Is 28% in LatAm fintech (PAGS + PAYO) too much Brazil/emerging market exposure?\n4. Zero US domestic exposure — is this a concern?\n5. All 8 stocks are sub-$10 — what is the overall portfolio beta and volatility?\n6. Correlation matrix: How correlated are these positions? (gold vs fintech vs China)\n7. Maximum drawdown scenario: What happens if gold crashes to $1,800 AND Brazil enters recession AND China cracks down on ADRs simultaneously?\n8. Is $214 cash (11%) enough dry powder?\n\nProvide a brutally honest risk assessment.",
+          "system_prompt": "You are a risk manager. Evaluate portfolio construction for concentration risk, correlation, and tail risk. Be pessimistic.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-SCENARIO-01-bear",
+          "prompt": "BEAR CASE DEEP DIVE — WHAT IF EVERYTHING GOES WRONG?\n\nOur expected value is $3,955 (+98%). But the bear case is $1,130 (-44%). Validate the bear case:\n1. BTG at $3.00 (0.6x) — Is this realistic? What would cause BTG to drop to $3.00?\n2. GAU at $1.50 (0.6x) — Is this realistic?\n3. PAGS at $7.00 (0.7x) — Is this realistic? PAGS has $3.88/sh in net cash.\n4. PAYO at $2.50 (0.5x) — Is this realistic?\n5. TUYA at $1.50 (0.7x) — Is this realistic? TUYA has $1.40/sh in cash.\n\nCRITICAL: Can the portfolio actually go to zero? What is the ABSOLUTE worst case?\nWhat is the probability-weighted expected loss in the first year?\n\nAlso validate: 'Expected portfolio value $3,955 (+98%)' — Is the probability weighting (25% bear, 50% base, 25% bull) reasonable?",
+          "system_prompt": "You are a stress-testing analyst. Evaluate worst-case scenarios. Be brutally honest about downside risk.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-GOLD-01-price",
+          "prompt": "GOLD PRICE VALIDATION — Is $2,650/oz the right assumption?\n\n1. What is the CURRENT gold spot price (most recent)?\n2. Gold price 1-year ago vs today — trend.\n3. Key drivers of gold price (central bank buying, rates, geopolitics).\n4. Consensus forecast for gold in 2025-2026.\n5. Bear case for gold: What would cause gold to drop below $2,000?\n6. At $2,000 gold: What would BTG and GAU's AISC margins be? Would they survive?\n7. BTG break-even gold price: $1,370/oz AISC + sustaining capex + taxes = ?\n8. GAU break-even gold price: $1,472/oz AISC + sustaining capex + taxes = ?\n\nOur portfolio is 37% gold miners — validate the gold price assumption.",
+          "system_prompt": "You are a precious metals analyst. Verify gold price data and provide scenario analysis.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-FX-01-brl",
+          "prompt": "BRAZIL FX RISK — BRL/USD VALIDATION.\n\nOur PAGS analysis says '70% of USD revenue growth was organic, 30% FX-driven.'\n1. What is the current BRL/USD exchange rate?\n2. BRL 12-month trend — appreciating or depreciating?\n3. PAGS reports in both R$ and USD. If BRL depreciates 10%, what happens to PAGS's USD-reported financials?\n4. '10% BRL depreciation reduces USD net income by 9.5%' — Verify this sensitivity from the 20-F.\n5. Brazil Selic rate: What is the current rate? What is the consensus path?\n6. Impact of Selic cuts on PAGS: Does lower Selic help or hurt PAGS?\n7. PAYO also has LatAm exposure — what % of PAYO's volume is Brazil-denominated?\n\nQuantify the BRL/USD risk to our portfolio.",
+          "system_prompt": "You are an FX and emerging markets analyst. Verify currency data and quantify FX risk.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-PAGS-05-competition",
+          "prompt": "PAGS vs COMPETITION — MARKET SHARE VALIDATION.\n\nOur analysis assumes PAGS is undervalued relative to peers. Validate:\n1. PAGS P/E 6.5-8.5x vs StoneCo 12x — Is STNE really at 12x P/E? Verify.\n2. PAGS vs Nubank: Is Nubank really at 35x P/E? Verify NU's current valuation.\n3. Mercado Pago (MELI) — Is MELI gaining share in PAGS's POS market?\n4. PIX competitive threat — Is PIX actually HELPING or HURTING PAGS?\n5. Market share trend: Is PAGS gaining or losing TPV share?\n6. Acquirer risk: Is there real M&A interest in PAGS or is this speculation?\n7. Tax reform risk in Brazil — What is the current status of digital payments tax proposals?\n\nBe skeptical of the bull thesis.",
+          "system_prompt": "You are a LatAm payments analyst. Verify competitive dynamics. Be skeptical of the bull case.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-BTG-05-peer-nav",
+          "prompt": "BTG P/NAV vs PEERS — INDEPENDENT VERIFICATION.\n\nOur analysis claims BTG trades at 0.64x P/NAV while peers trade at 0.85-1.1x. Independently verify:\n1. BTG's NAV calculation — What reserves, gold price, discount rate were used?\n2. Barrick Gold (GOLD) current P/NAV — Calculate independently.\n3. Newmont (NEM) current P/NAV — Calculate independently.\n4. Agnico Eagle (AEM) current P/NAV — Calculate independently.\n5. Is the Mali discount (0.64x vs 0.85x+ peers) justified? What discount do other Mali miners trade at?\n6. What is the P/NAV for other single-asset miners? (e.g., Torex Gold, Dundee Precious)\n7. Is BTG's NAV calculation using $2,650 gold or a different assumption?\n\nShow all NAV calculations step by step.",
+          "system_prompt": "You are a mining equity analyst. Calculate P/NAV independently for each company. Show all assumptions.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-PAYO-04-wise-comp",
+          "prompt": "PAYO vs WISE — IS THE 5x VALUATION GAP REAL?\n\nOur analysis says 'Wise at 35x P/E vs PAYO 7x P/E — 5x gap.' Validate:\n1. What is Wise (WISE.L) actual current P/E ratio? Is it really 35x?\n2. What is PAYO's actual current P/E ratio? Is it really 7x?\n3. Revenue comparison: PAYO vs Wise — growth rates.\n4. Gross margin comparison: Our agent says PAYO 75% vs Wise 68% — verify.\n5. Take rate comparison: Our agent says PAYO 1.8% vs Wise 0.8% — verify.\n6. Are PAYO and Wise truly comparable? What are the key differences?\n7. Why might the market be RIGHT to value Wise at 5x PAYO's multiple?\n8. Flywire (FLYW) 35x P/E, SoFi (SOFI) 18x P/E — verify these peer multiples.\n\nBe skeptical — maybe the gap is justified.",
+          "system_prompt": "You are a cross-border payments analyst. Verify all peer comparisons. Challenge the assumption that the gap is unwarranted.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-GAU-04-aris-merger",
+          "prompt": "CRITICAL DISCREPANCY: Galiano Gold (GAU) — MERGER CONFUSION.\n\nOur agents produced CONFLICTING information:\n- Agent GAU-02-insider says: 'Galiano Gold merged with Aris Mining in November 2023. Combined entity retained GAU ticker. CEO Matt Badiali (ex-Aris).'\n- Agent GAU-01-financials says: GAU is a single-asset Asanko Gold Mine operator. No mention of Aris Mining.\n- Agent GAU-04-inefficiency says: 'Galiano-AGI merger (2020)' — references a DIFFERENT merger entirely.\n\nRESOLVE THIS DISCREPANCY:\n1. Did GAU merge with Aris Mining? If so, when?\n2. What assets does GAU currently own? Just Asanko? Or also Colombian mines (Marmato, Segovia)?\n3. Who is the current CEO of GAU?\n4. What is the current share count post-any-merger?\n5. Is the institutional ownership data (GDXJ ~12.5%, BlackRock ~8.2%) from pre or post-merger?\n6. Market cap: Is it $450M, $525M, or $1.2B? Our agents gave THREE different numbers.\n\nThis is CRITICAL — we have $334 allocated to GAU and our data is CONTRADICTORY.",
+          "system_prompt": "You are a corporate actions analyst. Resolve this merger confusion DEFINITIVELY. Check SEDAR, SEC EDGAR, and company press releases.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-INTERNAL-01-inconsistencies",
+          "prompt": "INTERNAL DATA CONSISTENCY AUDIT.\n\nOur 30-agent edge hunt produced several INTERNAL INCONSISTENCIES. Flag and resolve each:\n\n1. PAGS P/E: Agents gave BOTH 6.5x and 8.5x. Which is correct?\n2. GAU FCF yield: Agents gave BOTH 14-16% and 20%. Which is correct?\n3. GAU market cap: Agents gave $450M, $525M, and $1.2B. Which is correct?\n4. GAU reserves: One agent says 2.2M oz, another says 2.4M oz, another says 2.5M oz. Which is correct?\n5. GAU-Aris merger: One agent says merger happened Nov 2023, another says 2020, another doesn't mention it.\n6. PAYO customer funds: One says $5.6B, another says $2B. Which is correct?\n7. PAYO cash: One says $1.1B, another says $1.2B, another says $0.5B net cash. Which is correct?\n8. TUYA shares: One agent uses 610M ADS, are there more outstanding?\n9. BTG shares: One agent says 1.3B, another uses different number.\n10. Gold price assumption: Some agents use $2,350, others $2,650, others $2,000. Which is current?\n\nFor EACH inconsistency, determine the CORRECT answer.",
+          "system_prompt": "You are an internal audit analyst. Identify and resolve all contradictions in our research data. Determine which number is correct for each conflict.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "VAL-BTG-06-dividend",
+          "prompt": "B2Gold (BTG) — DIVIDEND SUSTAINABILITY DEEP DIVE.\n\nClaims to verify:\n1. Current dividend: $0.04/quarter ($0.16/year) — Verify.\n2. Dividend yield at $4.75: 3.4% — Verify math.\n3. 'Raised dividend every year since 2018' — Verify the dividend history year by year.\n4. At what gold price does BTG need to cut the dividend? Our agents said $1,400-1,600/oz.\n5. Payout ratio: What % of FCF goes to dividends?\n6. Has BTG EVER cut its dividend? Under what circumstances?\n7. Compare BTG dividend yield to Barrick, Newmont, Agnico Eagle.\n\nThe dividend is part of our thesis — validate it's sustainable.",
+          "system_prompt": "You are a dividend analyst. Verify all dividend data against official declarations.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-PAGS-06-pix",
+          "prompt": "PagSeguro (PAGS) — PIX IMPACT VALIDATION.\n\nCritical question: Is PIX HELPING or HURTING PAGS?\n\nOur agent claims:\n1. 'PIX-related revenue of R$187M in Q1 2025, +32% YoY' — Verify this specific line item.\n2. 'PIX QR code payments for merchants generate fees' — How much does PAGS charge for PIX?\n3. 'PIX transaction volume R$48.2B (+25% YoY)' — Verify.\n4. 'PIX is not eating into revenue; it is being monetized' — Is this true?\n\nCounter-argument to verify:\n5. Has PIX compressed PAGS's overall take rate?\n6. Are merchants switching from card payments to PIX (lower fees for merchants)?\n7. Net effect: Has PIX been net positive or net negative for PAGS revenue per transaction?\n\nThis is a key thesis point — PIX could be a headwind disguised as a tailwind.",
+          "system_prompt": "You are a Brazilian payments analyst. Verify PIX impact data from official filings.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-CATALYST-01-timeline",
+          "prompt": "CATALYST TIMELINE VALIDATION — Are the dates real?\n\nOur catalyst calendar claims:\n1. 'BTG Goose first gold Jun 2025' — Is this real? What is the actual latest timeline?\n2. 'BTG Goose commercial production Q3 2025' — Verify.\n3. 'BTG Fekola Underground first ore Q4 2025' — Verify.\n4. 'GAU mill expansion feasibility H2 2025' — Verify.\n5. 'PAGS next earnings: Jul 2025' — When is the actual Q2 2025 earnings date?\n6. 'PAYO bank charter lending ramp H2 2025' — Is this based on real guidance or speculation?\n7. 'Gold >$3,000 probability 40%' — What do analysts/forecasters actually predict?\n\nWARNING: Our previous sprint used agents trained on older data. Catalysts may have already occurred or been delayed.",
+          "system_prompt": "You are an event-driven analyst. Verify all catalyst dates against official company guidance and press releases.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-MACRO-01-recession",
+          "prompt": "MACRO RISK CHECK — Is a US recession coming?\n\nOur portfolio is 100% international stocks with no US domestic exposure. But macro affects everything:\n1. Current US recession probability (consensus)\n2. Impact of US recession on: gold price, Brazil equities, Chinese ADRs, SE Asian tech\n3. Fed rate path: What is the expected trajectory?\n4. USD strength/weakness trend — how does this affect our portfolio?\n5. Global trade tensions (US-China tariffs, etc.) — current status\n6. Emerging market fund flows — are investors moving into or out of EM?\n7. VIX level — current vs historical average\n\nAssess: Is the macro environment favorable or hostile for our portfolio?",
+          "system_prompt": "You are a global macro strategist. Assess the macro environment for emerging market equities, gold, and fintech.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-TIGR-01-hold",
+          "prompt": "TIGR (UP Fintech) — USER OVERRIDE VALIDATION.\n\nUser has overridden EXIT signal to HOLD at $195 (39 shares @ $5.01). Validate:\n1. What is TIGR's current stock price?\n2. Is TIGR profitable? Latest quarterly results.\n3. Revenue growth?\n4. User count / AUM growth?\n5. China regulatory status — any new crackdowns on offshore brokerages?\n6. CN_ADR penalty: Is TIGR still subject to delisting risk?\n7. Is there ANY bull case for TIGR at current valuation?\n8. What is TIGR's net cash position?\n\nBe honest: Should the user keep this position or is the EXIT signal correct?",
+          "system_prompt": "You are a Chinese fintech analyst. Provide an honest assessment of TIGR's prospects.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-BTG-07-goose-risk",
+          "prompt": "BTG GOOSE PROJECT — CONSTRUCTION RISK DEEP DIVE.\n\nGoose is BTG's #1 catalyst. If it fails, the thesis breaks. Validate:\n1. Arctic construction challenges — Has the ice road season been shortened by climate change?\n2. Actual capex spent vs budget — Is Goose on budget?\n3. Permitting: Any outstanding permits or legal challenges?\n4. Water license appeal mentioned by one agent — what is the status?\n5. Labor availability in Nunavut — Are there shortages?\n6. Community opposition — Any First Nations disputes?\n7. What percentage of Goose capex remains to be spent?\n8. If Goose is delayed by 1 year, what is the impact on BTG's share price?\n\nThis is a $400 position. Goose risk is the single biggest uncertainty.",
+          "system_prompt": "You are a mining project risk analyst specializing in Arctic construction. Be pessimistic.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-PAYO-05-aml",
+          "prompt": "PAYO AML/COMPLIANCE RISK — THE HIDDEN BOMB?\n\nOur risk agent rated AML/fraud risk 4/5 (High). Validate:\n1. Has PAYO ever received AML-related fines or sanctions?\n2. FinCEN enforcement actions against similar companies — any precedent?\n3. OFAC compliance: Does PAYO operate in sanctioned jurisdictions?\n4. Russia exposure: '15% volume hit confirmed' — Verify from filings.\n5. Israel/Hamas impact on operations (HQ in Israel)?\n6. OCC charter means higher compliance costs — quantify the additional cost.\n7. Any consent orders, MRAs (Matters Requiring Attention), or supervisory findings?\n\nA single AML scandal could destroy PAYO. How likely is this?",
+          "system_prompt": "You are a compliance and AML risk analyst. Assess regulatory risk for cross-border payment companies.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-GAU-05-ghana",
+          "prompt": "GAU — GHANA COUNTRY RISK DEEP DIVE.\n\nOur analysis rates Ghana political risk as C+. Validate:\n1. Ghana's current fiscal situation — IMF program status?\n2. Mining code changes — any proposals for higher royalties or windfall taxes?\n3. Ghana cedi depreciation trend — how much has it fallen vs USD?\n4. Community tensions around Asanko mine — any recent incidents?\n5. Has Ghana EVER expropriated a mining asset?\n6. Illegal mining (galamsey) near Asanko — is this a problem?\n7. Compare Ghana risk to Mali, DRC, Tanzania — where does Ghana rank?\n8. Environmental regulations — any tightening expected?\n\nGhana is our single-jurisdiction risk for a $334 position.",
+          "system_prompt": "You are an African mining jurisdiction risk analyst. Assess Ghana's political and regulatory risk for mining companies.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-FAIRVAL-01-dcf",
+          "prompt": "DCF VALIDATION — Are the discount rates and growth assumptions reasonable?\n\nOur agents used these DCF inputs. Validate each:\n\nPAGS DCF:\n- WACC 18.7% (including 6% Brazil ERP) — Is 18.7% reasonable for a Brazilian fintech?\n- Revenue growth 8% declining to 5% over 5 years — Too conservative? Too aggressive?\n- Terminal growth 3% — Reasonable for Brazil?\n- Result: $12.30 fair value\n\nBTG DCF:\n- Discount rate 8% — Is this too low for a gold miner?\n- Reserve-based NAV vs DCF — Which is more appropriate for miners?\n\nPAYO DCF:\n- WACC 10.5% — Reasonable for a US-listed fintech?\n- Terminal growth 3.5% — Too aggressive?\n- Result: $23.60 fair value — This seems wildly optimistic. Is the model reasonable?\n\nCritique each DCF model. Which fair values are most reliable?",
+          "system_prompt": "You are a valuation specialist. Critique the DCF assumptions and identify which models are most/least reliable.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "VAL-EXEC-01-ibkr",
+          "prompt": "EXECUTION PLAN VALIDATION — IBKR CONSTRAINTS.\n\nOur execution plan assumes ~$2,000 in an IBKR account. Validate:\n1. IBKR minimum order requirements — any minimums for these stocks?\n2. Commission costs: What does IBKR charge for US stock trades? Impact on $100-$400 positions?\n3. Can we place all orders (sell STNE, reduce GRAB, buy PAGS/GAU/BTG) simultaneously?\n4. Market hours for these stocks: PAGS (NYSE), GAU (NYSE American), BTG (NYSE American), PAYO (NASDAQ), TUYA (NYSE), TIGR (NASDAQ), GRAB (NASDAQ), STNE (NASDAQ)\n5. Pre-market or after-hours liquidity for these small caps?\n6. Tax implications: Selling STNE at a loss — can we harvest the tax loss?\n7. Settlement period: T+1 or T+2? Can we sell and buy on the same day?\n8. Pattern day trader rules — any restrictions with a $2,000 account?\n\nPractical execution matters.",
+          "system_prompt": "You are a brokerage operations specialist. Verify all execution constraints for an IBKR account.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "VAL-HALLUCINATION-01",
+          "prompt": "HALLUCINATION CHECK — MOST SUSPICIOUS CLAIMS.\n\nReview these specific claims from our 30-agent edge hunt. Flag LIKELY HALLUCINATIONS:\n\n1. PAGS: 'UBS Group +1,200% position increase' — This is an extraordinary claim. 1,200% = 13x increase. Is this plausible?\n2. PAGS: 'Point72 (Steve Cohen) 5.8M shares, +200% new position' — Hedge fund taking a massive new position in a $3B Brazilian stock?\n3. PAGS: 'PIX-related revenue R$187M, +32% YoY' — Does PAGS actually break out PIX-specific revenue?\n4. PAYO: 'Payoneer Capital (direct lending) launched Q1 2025' — Does this product actually exist?\n5. GAU: 'Drill hole ASD-24-001 returned 12m @ 4.1 g/t and 8m @ 3.8 g/t' — Very specific claim. Verify.\n6. BTG: 'Goose construction 75% complete as of Q1 2025' — Verify this exact number.\n7. TUYA: 'First GAAP profitable quarter was Q3 2024' — Which quarter was actually the first?\n8. PAYO: '$5.6B in customer funds' — Verify this specific number.\n9. BTG: '$1,280/oz margin' — Simple math: $2,650 - $1,370 = $1,280. But is $2,650 the right gold price assumption?\n10. 'Expected portfolio value $3,955 (+98%)' — The probability weighting seems optimistic.\n\nFor each: LIKELY REAL, LIKELY HALLUCINATED, or NEEDS VERIFICATION.",
+          "system_prompt": "You are an AI output auditor specializing in detecting LLM hallucinations in financial data. Be extremely skeptical of specific numbers, especially 13F ownership changes and revenue breakdowns.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

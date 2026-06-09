@@ -1,0 +1,392 @@
+[
+  {
+    "symbol": "BLNK",
+    "price": 0.84,
+    "mcap": 121181616,
+    "name": "Blink Charging Co.",
+    "revenue": 103581000,
+    "gm": 28.0,
+    "sector": "Industrials",
+    "industry": "Engineering & Construction"
+  },
+  {
+    "symbol": "ALIT",
+    "price": 0.95,
+    "mcap": 519209984,
+    "name": "Alight, Inc.",
+    "revenue": 2248000000,
+    "gm": 38.5,
+    "sector": "Technology",
+    "industry": "Software - Application"
+  },
+  {
+    "symbol": "GROV",
+    "price": 1.12,
+    "mcap": 47071444,
+    "name": "Grove Collaborative Holdings, I",
+    "revenue": 173716000,
+    "gm": 53.7,
+    "sector": "Consumer Defensive",
+    "industry": "Household & Personal Products"
+  },
+  {
+    "symbol": "IQ",
+    "price": 1.17,
+    "mcap": 1129078912,
+    "name": "iQIYI, Inc.",
+    "revenue": 26330605568,
+    "gm": 18.8,
+    "sector": "Communication Services",
+    "industry": "Entertainment"
+  },
+  {
+    "symbol": "BNGO",
+    "price": 1.25,
+    "mcap": 14343750,
+    "name": "Bionano Genomics, Inc.",
+    "revenue": 28738000,
+    "gm": 47.0,
+    "sector": "Healthcare",
+    "industry": "Medical Instruments & Supplies"
+  },
+  {
+    "symbol": "MVST",
+    "price": 1.46,
+    "mcap": 486409792,
+    "name": "Microvast Holdings, Inc.",
+    "revenue": 371636992,
+    "gm": 35.2,
+    "sector": "Consumer Cyclical",
+    "industry": "Auto Parts"
+  },
+  {
+    "symbol": "SNDL",
+    "price": 1.46,
+    "mcap": 380038016,
+    "name": "SNDL Inc.",
+    "revenue": 937393024,
+    "gm": 27.2,
+    "sector": "Consumer Defensive",
+    "industry": "Beverages - Wineries & Distilleries"
+  },
+  {
+    "symbol": "GOTU",
+    "price": 1.93,
+    "mcap": 460215744,
+    "name": "Gaotu Techedu Inc.",
+    "revenue": 6146771968,
+    "gm": 67.4,
+    "sector": "Consumer Defensive",
+    "industry": "Education & Training Services"
+  },
+  {
+    "symbol": "BITF",
+    "price": 1.98,
+    "mcap": 1199686528,
+    "name": "Bitfarms Ltd.",
+    "revenue": 0,
+    "gm": 0,
+    "sector": "Financial Services",
+    "industry": "Capital Markets"
+  },
+  {
+    "symbol": "BTBT",
+    "price": 2.11,
+    "mcap": 736791744,
+    "name": "Bit Digital, Inc.",
+    "revenue": 114780336,
+    "gm": 55.0,
+    "sector": "Financial Services",
+    "industry": "Capital Markets"
+  },
+  {
+    "symbol": "AMC",
+    "price": 2.12,
+    "mcap": 1598843904,
+    "name": "AMC Entertainment Holdings, Inc",
+    "revenue": 5031799808,
+    "gm": 16.0,
+    "sector": "Communication Services",
+    "industry": "Entertainment"
+  },
+  {
+    "symbol": "TUYA",
+    "price": 2.15,
+    "mcap": 1318188032,
+    "name": "Tuya Inc.",
+    "revenue": 327985984,
+    "gm": 47.8,
+    "sector": "Technology",
+    "industry": "Software - Infrastructure"
+  },
+  {
+    "symbol": "LX",
+    "price": 2.2,
+    "mcap": 362534208,
+    "name": "LexinFintech Holdings Ltd.",
+    "revenue": 13357125632,
+    "gm": 35.2,
+    "sector": "Financial Services",
+    "industry": "Credit Services"
+  },
+  {
+    "symbol": "LPRO",
+    "price": 2.21,
+    "mcap": 261259744,
+    "name": "Open Lending Corporation",
+    "revenue": 89315000,
+    "gm": 77.2,
+    "sector": "Financial Services",
+    "industry": "Credit Services"
+  },
+  {
+    "symbol": "GAU",
+    "price": 2.25,
+    "mcap": 587730944,
+    "name": "Galiano Gold Inc.",
+    "revenue": 431596992,
+    "gm": 50.7,
+    "sector": "Basic Materials",
+    "industry": "Gold"
+  },
+  {
+    "symbol": "EVGO",
+    "price": 2.43,
+    "mcap": 762678272,
+    "name": "EVgo Inc.",
+    "revenue": 418329984,
+    "gm": 38.7,
+    "sector": "Consumer Cyclical",
+    "industry": "Specialty Retail"
+  },
+  {
+    "symbol": "CRBU",
+    "price": 2.43,
+    "mcap": 241008800,
+    "name": "Caribou Biosciences, Inc.",
+    "revenue": 11203000,
+    "gm": 0,
+    "sector": "Healthcare",
+    "industry": "Biotechnology"
+  },
+  {
+    "symbol": "FATE",
+    "price": 2.74,
+    "mcap": 319372160,
+    "name": "Fate Therapeutics, Inc.",
+    "revenue": 6316000,
+    "gm": 0,
+    "sector": "Healthcare",
+    "industry": "Biotechnology"
+  },
+  {
+    "symbol": "UWMC",
+    "price": 3.01,
+    "mcap": 4863281664,
+    "name": "UWM Holdings Corporation",
+    "revenue": 3608553984,
+    "gm": 100.0,
+    "sector": "Financial Services",
+    "industry": "Mortgage Finance"
+  },
+  {
+    "symbol": "GDRX",
+    "price": 3.08,
+    "mcap": 1043120064,
+    "name": "GoodRx Holdings, Inc.",
+    "revenue": 787889024,
+    "gm": 91.8,
+    "sector": "Healthcare",
+    "industry": "Health Information Services"
+  },
+  {
+    "symbol": "BMBL",
+    "price": 3.22,
+    "mcap": 488408352,
+    "name": "Bumble Inc.",
+    "revenue": 930940032,
+    "gm": 71.9,
+    "sector": "Communication Services",
+    "industry": "Internet Content & Information"
+  },
+  {
+    "symbol": "PLTK",
+    "price": 3.61,
+    "mcap": 1373170176,
+    "name": "Playtika Holding Corp.",
+    "revenue": 2794099968,
+    "gm": 73.0,
+    "sector": "Communication Services",
+    "industry": "Electronic Gaming & Multimedia"
+  },
+  {
+    "symbol": "GRAB",
+    "price": 3.61,
+    "mcap": 14764899328,
+    "name": "Grab Holdings Limited",
+    "revenue": 3552000000,
+    "gm": 40.2,
+    "sector": "Technology",
+    "industry": "Software - Application"
+  },
+  {
+    "symbol": "ACB",
+    "price": 3.64,
+    "mcap": 215220848,
+    "name": "Aurora Cannabis Inc.",
+    "revenue": 373118016,
+    "gm": 36.0,
+    "sector": "Healthcare",
+    "industry": "Drug Manufacturers - Specialty & Generic"
+  },
+  {
+    "symbol": "WKHS",
+    "price": 3.75,
+    "mcap": 40850248,
+    "name": "Workhorse Group, Inc.",
+    "revenue": 24395000,
+    "gm": -58.4,
+    "sector": "Consumer Cyclical",
+    "industry": "Auto Manufacturers"
+  },
+  {
+    "symbol": "CLOV",
+    "price": 3.92,
+    "mcap": 2064602624,
+    "name": "Clover Health Investments, Corp",
+    "revenue": 2210365952,
+    "gm": 18.4,
+    "sector": "Healthcare",
+    "industry": "Healthcare Plans"
+  },
+  {
+    "symbol": "RENT",
+    "price": 3.97,
+    "mcap": 133180016,
+    "name": "Rent the Runway, Inc.",
+    "revenue": 329800000,
+    "gm": 73.2,
+    "sector": "Consumer Cyclical",
+    "industry": "Apparel Retail"
+  },
+  {
+    "symbol": "BIRD",
+    "price": 4.18,
+    "mcap": 36809292,
+    "name": "Allbirds, Inc.",
+    "revenue": 142671008,
+    "gm": 38.1,
+    "sector": "Consumer Cyclical",
+    "industry": "Apparel Retail"
+  },
+  {
+    "symbol": "JFIN",
+    "price": 4.35,
+    "mcap": 227633504,
+    "name": "Jiayin Group Inc.",
+    "revenue": 6222190080,
+    "gm": 80.1,
+    "sector": "Financial Services",
+    "industry": "Credit Services"
+  },
+  {
+    "symbol": "ATLX",
+    "price": 4.4,
+    "mcap": 129759912,
+    "name": "Atlas Lithium Corporation",
+    "revenue": 141702,
+    "gm": 53.1,
+    "sector": "Basic Materials",
+    "industry": "Other Industrial Metals & Mining"
+  },
+  {
+    "symbol": "DOMO",
+    "price": 4.53,
+    "mcap": 204513200,
+    "name": "Domo, Inc.",
+    "revenue": 318856992,
+    "gm": 75.0,
+    "sector": "Technology",
+    "industry": "Software - Application"
+  },
+  {
+    "symbol": "BTG",
+    "price": 4.66,
+    "mcap": 6209065984,
+    "name": "B2Gold Corp",
+    "revenue": 3687785984,
+    "gm": 65.5,
+    "sector": "Basic Materials",
+    "industry": "Gold"
+  },
+  {
+    "symbol": "NUVB",
+    "price": 4.96,
+    "mcap": 1727081856,
+    "name": "Nuvation Bio Inc.",
+    "revenue": 143046000,
+    "gm": 90.8,
+    "sector": "Healthcare",
+    "industry": "Biotechnology"
+  },
+  {
+    "symbol": "TIGR",
+    "price": 5.17,
+    "mcap": 922954432,
+    "name": "UP Fintech Holding Limited",
+    "revenue": 538709120,
+    "gm": 87.6,
+    "sector": "Financial Services",
+    "industry": "Capital Markets"
+  },
+  {
+    "symbol": "OPEN",
+    "price": 5.31,
+    "mcap": 5122751488,
+    "name": "Opendoor Technologies Inc",
+    "revenue": 3937999872,
+    "gm": 8.2,
+    "sector": "Real Estate",
+    "industry": "Real Estate Services"
+  },
+  {
+    "symbol": "FINV",
+    "price": 5.32,
+    "mcap": 1256020096,
+    "name": "FinVolution Group",
+    "revenue": 13606401024,
+    "gm": 74.0,
+    "sector": "Financial Services",
+    "industry": "Credit Services"
+  },
+  {
+    "symbol": "BBAI",
+    "price": 5.34,
+    "mcap": 2557590016,
+    "name": "BigBear.ai, Inc.",
+    "revenue": 127350000,
+    "gm": 25.8,
+    "sector": "Technology",
+    "industry": "Information Technology Services"
+  },
+  {
+    "symbol": "PAYO",
+    "price": 5.43,
+    "mcap": 1817848064,
+    "name": "Payoneer Global Inc.",
+    "revenue": 1067752000,
+    "gm": 84.9,
+    "sector": "Technology",
+    "industry": "Software - Infrastructure"
+  },
+  {
+    "symbol": "TLRY",
+    "price": 5.49,
+    "mcap": 656627136,
+    "name": "Tilray Brands, Inc.",
+    "revenue": 858275008,
+    "gm": 27.7,
+    "sector": "Healthcare",
+    "industry": "Drug Manufacturers - Specialty & Generic"
+  }
+]

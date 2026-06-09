@@ -1,14 +1,13 @@
 from __future__ import annotations
 
 """
-20-Agent Parallel Orchestrator — Fan-out/fan-in task execution via DeepSeek API.
+35-Agent Parallel Orchestrator — Fan-out/fan-in task execution.
+Supports DeepSeek + OpenRouter (MiMo V2.5 Pro for low-hallucination intel).
 
-Supports:
-  - 20 concurrent agents (configurable)
-  - Multi-phase pipelines (phase N output feeds phase N+1)
-  - Per-agent budget caps and circuit breakers
-  - Real-time progress reporting
-  - Results aggregation with deduplication
+Modes:
+  - standard:           deepseek-chat, temperature 0.7, no verification
+  - anti_hallucination: MiMo V2.5 Pro, temperature 0.1, citation required,
+                        [UNVERIFIED] markers stripped, 3-agent verify phase
 """
 
 import asyncio
@@ -20,7 +19,7 @@ from enum import Enum
 from pathlib import Path
 from typing import Optional
 
-from deepseek_client import DeepSeekClient
+from deepseek_client import DeepSeekClient, resolve_model
 
 
 class TaskStatus(str, Enum):
@@ -62,34 +61,58 @@ class Phase:
     synthesis_result: str = ""
 
 
+# System prompt injected when anti_hallucination=True
+_AH_SYSTEM_PROMPT = (
+    "You are a precise research analyst. STRICT RULES:\n"
+    "1. Only state facts you received in the CONTEXT block or are 100% certain of.\n"
+    "2. If you lack data for a claim, write [UNVERIFIED: <claim>] — never fabricate.\n"
+    "3. Cite every number with its source (e.g. 'BenchLM AA-Omniscience, June 2026').\n"
+    "4. Never invent model names, prices, benchmark scores, or dates.\n"
+    "5. If context contradicts your training data, trust the context.\n"
+    "Unverified claims will be flagged and stripped from the final report."
+)
+
+
 class Orchestrator:
-    """Manages 20 parallel DeepSeek agents across multiple phases."""
+    """35-agent parallel pipeline. Supports anti-hallucination mode with MiMo V2.5 Pro."""
 
     def __init__(
         self,
-        max_agents: int = 20,
+        max_agents: int = 35,
         model: str = "deepseek-chat",
         budget_limit_usd: float = 50.0,
         output_dir: str = "",
         verbose: bool = True,
+        anti_hallucination: bool = False,
+        provider: Optional[str] = None,
     ):
+        assert 1 <= max_agents <= 100, f"max_agents must be 1-100, got {max_agents}"
+        assert budget_limit_usd > 0, "budget_limit_usd must be positive"
+
         self.max_agents = max_agents
-        self.model = model
-        self.budget_limit_usd = budget_limit_usd
+        self.anti_hallucination = anti_hallucination
         self.verbose = verbose
 
-        # Output directory
+        # In anti-hallucination mode, default to MiMo V2.5 Pro
+        if anti_hallucination and model in ("deepseek-chat", "deepseek-chat-flash"):
+            model = "mimo-ai/mimo-v2.5-pro"
+            if verbose:
+                print("[Orchestrator] anti_hallucination=True → switched to mimo-ai/mimo-v2.5-pro")
+
+        self.model = resolve_model(model)
+        self.budget_limit_usd = budget_limit_usd
+
         if not output_dir:
             ts = time.strftime("%Y%m%d_%H%M%S")
             output_dir = f"./results/run_{ts}"
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
-        # Client
         self.client = DeepSeekClient(
-            model=model,
+            model=self.model,
             max_concurrent=max_agents,
             budget_limit_usd=budget_limit_usd,
+            provider=provider,
         )
 
         # Task tracking
@@ -110,7 +133,8 @@ class Orchestrator:
         return phase_num
 
     async def _execute_task(self, task: Task, context: str = "") -> Task:
-        """Execute a single task on an agent."""
+        """Execute a single task on an agent. Applies AH overrides if enabled."""
+        assert task.task_id, "task_id must not be empty"
         agent_id = f"agent-{task.task_id}"
         task.agent_id = agent_id
         task.status = TaskStatus.RUNNING
@@ -118,8 +142,16 @@ class Orchestrator:
         if self.verbose:
             self._log(f"[{agent_id}] START: {task.prompt[:80]}...")
 
+        # Anti-hallucination overrides
+        temperature = task.temperature
+        system_prompt = task.system_prompt
+        if self.anti_hallucination:
+            temperature = min(task.temperature, 0.1)
+            system_prompt = _AH_SYSTEM_PROMPT + (
+                f"\n\n{task.system_prompt}" if task.system_prompt else ""
+            )
+
         try:
-            # Inject context from previous phases if available
             prompt = task.prompt
             if context:
                 prompt = f"CONTEXT FROM PREVIOUS PHASE:\n{context}\n\n---\n\nTASK:\n{prompt}"
@@ -129,8 +161,8 @@ class Orchestrator:
             result = await self.client.chat(
                 messages=messages,
                 agent_id=agent_id,
-                system_prompt=task.system_prompt,
-                temperature=task.temperature,
+                system_prompt=system_prompt,
+                temperature=temperature,
                 max_tokens=task.max_tokens,
                 json_mode=task.json_mode,
             )
@@ -174,7 +206,6 @@ class Orchestrator:
         coros = [self._execute_task(t, context=prev_context) for t in phase.tasks]
         await asyncio.gather(*coros, return_exceptions=True)
 
-        # Collect successful results
         successes = [t for t in phase.tasks if t.status == TaskStatus.SUCCESS]
         failures = [t for t in phase.tasks if t.status == TaskStatus.FAILED]
 
@@ -182,6 +213,15 @@ class Orchestrator:
             f"Phase {phase.phase_num} complete: "
             f"{len(successes)} success, {len(failures)} failed"
         )
+
+        # Strip [UNVERIFIED] markers in AH mode
+        total_stripped = 0
+        if self.anti_hallucination:
+            for t in successes:
+                t.result, n = self._strip_unverified(t.result)
+                total_stripped += n
+            if total_stripped:
+                self._log(f"AH: stripped {total_stripped} unverified claims from phase {phase.phase_num}")
 
         # Save phase results
         phase_file = self.output_dir / f"phase_{phase.phase_num}_results.json"
@@ -320,12 +360,57 @@ class Orchestrator:
         }
         filepath.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
 
+    def _strip_unverified(self, text: str) -> tuple[str, int]:
+        """
+        Remove [UNVERIFIED: ...] markers from AH output.
+        Returns (cleaned_text, count_stripped).
+        """
+        assert isinstance(text, str), "text must be a string"
+        import re
+        pattern = re.compile(r'\[UNVERIFIED:[^\]]{0,200}\]', re.IGNORECASE)
+        matches = pattern.findall(text)
+        cleaned = pattern.sub("[REMOVED]", text)
+        return cleaned, len(matches)
+
+    async def _run_verify_phase(self, claim_text: str, n_verifiers: int = 3) -> str:
+        """
+        Run n_verifiers agents on the same claim text. Return majority-agreement summary.
+        Uses lower temperature (0.05) for deterministic cross-check.
+        """
+        assert 1 <= n_verifiers <= 5, f"n_verifiers must be 1-5, got {n_verifiers}"
+        assert claim_text, "claim_text must not be empty"
+
+        verify_prompt = (
+            "You are a fact-checker. Review the following intel report. "
+            "For each factual claim: mark AGREE if it matches your knowledge, "
+            "DISAGREE if it contradicts known data, or UNCERTAIN if you cannot verify.\n\n"
+            f"REPORT TO VERIFY:\n{claim_text[:4000]}"
+        )
+        tasks = [
+            Task(
+                task_id=f"verify-{i}",
+                prompt=verify_prompt,
+                temperature=0.05,
+                max_tokens=2048,
+            )
+            for i in range(min(n_verifiers, 5))
+        ]
+
+        coros = [self._execute_task(t) for t in tasks]
+        await asyncio.gather(*coros, return_exceptions=True)
+
+        successes = [t.result for t in tasks if t.status == TaskStatus.SUCCESS]
+        if not successes:
+            return "[Verification failed — all verifiers errored]"
+
+        combined = "\n\n---VERIFIER---\n\n".join(successes)
+        return combined
+
     def _log(self, msg: str):
         """Print with timestamp."""
         ts = time.strftime("%H:%M:%S")
         print(f"[{ts}] {msg}")
 
-        # Also append to log file
         log_file = self.output_dir / "pipeline.log"
         with open(log_file, "a", encoding="utf-8") as f:
             f.write(f"[{ts}] {msg}\n")

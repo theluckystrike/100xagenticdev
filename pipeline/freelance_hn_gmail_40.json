@@ -1,0 +1,341 @@
+{
+  "name": "Freelance HN Scrape + Gmail Personal Approach — 40 Agents",
+  "description": "Phase 1: 20 agents scrape HN 'Who is Hiring' June 2026 for Chrome extension, AI, language tech, writing tool opportunities. Phase 2: 20 agents research Gmail personal approach for top leads — founder emails, LinkedIn profiles, personalized outreach angles.",
+  "model": "deepseek-chat",
+  "budget_usd": 2.0,
+  "created": "2026-05-30",
+  "phases": [
+    {
+      "name": "Phase 1: HN Who is Hiring Scrape + Lead Discovery",
+      "synthesis_prompt": "Compile all leads into a single ranked JSON list. For each lead include: company_name, role_title, founder_name, email_guess, company_url, hn_username, why_bln_fits, estimated_reply_probability. Sort by reply probability descending. Remove duplicates. Output valid JSON only.",
+      "tasks": [
+        {
+          "id": "hn-chrome-ext-1",
+          "agent": "agent-01",
+          "prompt": "Search Hacker News 'Ask HN: Who is hiring? (June 2026)' for companies building Chrome extensions, browser extensions, or browser-based tools. List every company name, role, contact info, and why they might need a Chrome extension expert with 20 extensions and 57K users. Focus on startups with <50 employees. Return structured JSON.",
+          "system_prompt": "You are a lead generation researcher. Return only factual, structured data. No hallucination. If you cannot find real data, say so.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-ai-tools-2",
+          "agent": "agent-02",
+          "prompt": "Search Hacker News 'Ask HN: Who is hiring? (June 2026)' for companies building AI-powered writing tools, content tools, or language technology. List companies hiring for frontend, full-stack, or AI integration roles. Include company name, role, tech stack, funding stage. Return JSON.",
+          "system_prompt": "You are a lead generation researcher. Return only factual, structured data.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-edtech-3",
+          "agent": "agent-03",
+          "prompt": "Search Hacker News 'Ask HN: Who is hiring? (June 2026)' for EdTech companies, language learning platforms, and online education startups. Find companies that could partner with or hire a Chrome extension developer focused on writing tools. Return JSON with company, role, relevance score 1-10.",
+          "system_prompt": "You are a lead generation researcher. Return only factual, structured data.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-browser-auto-4",
+          "agent": "agent-04",
+          "prompt": "Search Hacker News 'Ask HN: Who is hiring? (June 2026)' for companies building browser automation, web scraping, RPA, or agentic AI tools that operate in browsers. These companies need Chrome extension expertise. List all matches with company, role, founder if known.",
+          "system_prompt": "You are a lead generation researcher. Return only factual, structured data.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-saas-5",
+          "agent": "agent-05",
+          "prompt": "Search Hacker News 'Ask HN: Who is hiring? (June 2026)' for SaaS companies building productivity tools, note-taking apps, or communication platforms that have Chrome extensions. Find roles where Chrome extension or frontend expertise is valued. Return JSON.",
+          "system_prompt": "You are a lead generation researcher. Return only factual, structured data.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-yc-batch-6",
+          "agent": "agent-06",
+          "prompt": "Search for YC W26 and S25 batch companies that are hiring and have a Chrome extension or browser-based product. Cross-reference with Hacker News hiring threads. List company name, YC batch, what they build, role they're hiring for, and founder contact info if available.",
+          "system_prompt": "You are a lead generation researcher specializing in YC startups. Return structured data.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-remote-contract-7",
+          "agent": "agent-07",
+          "prompt": "Search Hacker News 'Ask HN: Who is hiring? (June 2026)' specifically for REMOTE and CONTRACT/FREELANCE positions in frontend, Chrome extensions, AI tools, or browser-based products. These are highest-priority leads for a freelancer. Return JSON with company, role, compensation if listed, remote policy.",
+          "system_prompt": "You are a freelance lead researcher. Prioritize contract and remote roles.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-translation-8",
+          "agent": "agent-08",
+          "prompt": "Search Hacker News 'Ask HN: Who is hiring? (June 2026)' for companies in translation, localization, internationalization, or multilingual content. These companies are natural B2B partnership targets for a Chrome writing extension. Return JSON.",
+          "system_prompt": "You are a B2B partnership researcher. Focus on translation and localization companies.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-social-media-9",
+          "agent": "agent-09",
+          "prompt": "Search Hacker News 'Ask HN: Who is hiring? (June 2026)' for social media management tools, content scheduling platforms, and creator economy startups. Their users write content that could benefit from grammar and tone checking. Return JSON.",
+          "system_prompt": "You are a B2B partnership researcher for content and social media tools.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-email-tools-10",
+          "agent": "agent-10",
+          "prompt": "Search Hacker News 'Ask HN: Who is hiring? (June 2026)' for email productivity tools, CRM tools, sales enablement platforms, and communication tools. Their users compose text that could benefit from an AI writing Chrome extension. Return JSON.",
+          "system_prompt": "You are a B2B partnership researcher for email and communication tools.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-accessibility-11",
+          "agent": "agent-11",
+          "prompt": "Search for accessibility-focused companies and tools on HN, Product Hunt, and GitHub that could partner with a Chrome writing extension. Focus on companies serving non-native English speakers, people with dyslexia, or learning disabilities. Return JSON with company, users, contact info.",
+          "system_prompt": "You are an accessibility and inclusion tech researcher.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-dev-tools-12",
+          "agent": "agent-12",
+          "prompt": "Search Hacker News 'Ask HN: Who is hiring? (June 2026)' for developer tools companies building VS Code extensions, IDE plugins, or code collaboration tools. These share technical DNA with Chrome extension development. Return JSON with company, role, tech overlap score.",
+          "system_prompt": "You are a developer tools lead researcher.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "ph-launches-13",
+          "agent": "agent-13",
+          "prompt": "Search Product Hunt launches from May-June 2026 for Chrome extensions, AI writing tools, browser-based productivity tools, and language learning tools. Find companies that recently launched and might be open to cross-promotion partnerships. Return JSON with product name, maker name, email if available, upvotes, category.",
+          "system_prompt": "You are a Product Hunt lead researcher. Focus on recent launches.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "gh-trending-14",
+          "agent": "agent-14",
+          "prompt": "Search GitHub trending repositories from May-June 2026 for Chrome extension projects, browser automation tools, AI writing assistants, and language learning tools. Find maintainers who might be interested in a Chrome extension partnership or collaboration. Return JSON.",
+          "system_prompt": "You are a GitHub ecosystem researcher.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "linkedin-founders-15",
+          "agent": "agent-15",
+          "prompt": "Research Chrome extension founders and indie hackers who are active on Twitter/X and LinkedIn. Find people who build browser extensions with 10K+ users and might be open to cross-promotion. Focus on bootstrapped founders. Return JSON with name, product, user count, Twitter handle, estimated email.",
+          "system_prompt": "You are a founder network researcher.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-freelance-16",
+          "agent": "agent-16",
+          "prompt": "Search Hacker News 'Ask HN: Freelancer? Seeking freelancer? (June 2026)' thread for opportunities matching: Chrome extensions, browser automation, AI integration, TypeScript/React, writing tools. List every match with company, project description, budget if mentioned.",
+          "system_prompt": "You are a freelance opportunity researcher.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-show-ext-17",
+          "agent": "agent-17",
+          "prompt": "Search Hacker News 'Show HN' posts from May-June 2026 for new Chrome extensions and browser tools. Find makers who just launched and might be open to cross-promotion with another Chrome extension developer (20 extensions, 57K users). Return JSON.",
+          "system_prompt": "You are a Show HN researcher focusing on Chrome extensions.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-corp-training-18",
+          "agent": "agent-18",
+          "prompt": "Search for corporate language training companies that are NOT already in Sprint 6 targets (exclude: Talaera, Voxy, Gymglish, Fluency Corp, Langu, AmazingTalker, Engoo, Ringle, Twenix, Open English). Find 10 NEW corporate English training platforms that could partner with a Chrome writing extension. Return JSON.",
+          "system_prompt": "You are a B2B EdTech researcher. Find undiscovered corporate language training targets.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-university-19",
+          "agent": "agent-19",
+          "prompt": "Search for university ESL and English programs that are NOT in Sprint 6 targets (exclude: Stanford, UCLA, BU, NYU, Georgetown). Find 10 NEW universities with large international student populations and writing support programs. Focus on R1 universities with 5000+ international students. Return JSON with program name, contact email, international student count.",
+          "system_prompt": "You are a university ESL partnership researcher.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "hn-competitor-20",
+          "agent": "agent-20",
+          "prompt": "Research competitors of BeLikeNative in the Chrome extension writing tool space: Grammarly, LanguageTool, ProWritingAid, QuillBot, Wordtune, DeepL Write. For each, identify their partner programs, API partners, and companies they cross-promote with. These partners are warm leads for BeLikeNative. Return JSON.",
+          "system_prompt": "You are a competitive intelligence researcher for Chrome writing extensions.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        }
+      ]
+    },
+    {
+      "name": "Phase 2: Gmail Personal Approach + Contact Research",
+      "synthesis_prompt": "Compile the final outreach list. For each lead: company_name, founder_name, verified_email, linkedin_url, twitter_handle, personal_angle (what to say in the first line), email_subject (max 5 words, lowercase), priority (P1/P2/P3), estimated_reply_rate. Sort by priority then estimated reply rate. Output valid JSON array. Maximum 50 leads.",
+      "tasks": [
+        {
+          "id": "gmail-research-1",
+          "agent": "agent-21",
+          "prompt": "For the top Chrome extension cross-promotion leads from Phase 1, research their founders' Gmail addresses using common patterns: firstname@company.com, name@gmail.com, etc. Cross-reference with their GitHub profiles, Twitter bios, and personal websites. Return JSON with name, company, email candidates (ranked by confidence), source.",
+          "system_prompt": "You are a contact research specialist. Only return emails that can be verified through public sources. Never fabricate email addresses.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "gmail-research-2",
+          "agent": "agent-22",
+          "prompt": "For AI writing tool founders identified in Phase 1, find their personal email addresses and LinkedIn profiles. Look at their personal blogs, GitHub profiles, Twitter bios, and conference speaker pages. Return JSON with name, company, best_email, linkedin_url, personal_angle.",
+          "system_prompt": "You are a contact research specialist. Only use publicly available information.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "gmail-research-3",
+          "agent": "agent-23",
+          "prompt": "For EdTech and language learning company leads from Phase 1, research the decision-maker contacts. For startups, find the CEO/founder email. For larger companies, find the Head of Partnerships or BD lead. Return JSON.",
+          "system_prompt": "You are a B2B contact researcher specializing in EdTech.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "gmail-research-4",
+          "agent": "agent-24",
+          "prompt": "For browser automation and developer tool companies from Phase 1, find the technical co-founder or CTO email. These are the decision-makers for Chrome extension partnerships. Check GitHub profiles, npm package maintainers, and tech blog author pages. Return JSON.",
+          "system_prompt": "You are a technical contact researcher.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "personal-angle-5",
+          "agent": "agent-25",
+          "prompt": "For each lead from Phase 1, craft a personalized opening line for the email. Use their recent blog posts, tweets, product launches, or HN comments as the hook. The opening should reference something specific they did in the last 30 days. Return JSON with company, founder, personal_hook, source_url.",
+          "system_prompt": "You are a personalization specialist for cold email. Every hook must reference a real, verifiable event. Never fabricate events.",
+          "max_tokens": 4096,
+          "temperature": 0.5
+        },
+        {
+          "id": "personal-angle-6",
+          "agent": "agent-26",
+          "prompt": "For the top 20 leads from Phase 1, write a 50-word cold email body using the PAS framework (Problem-Agitate-Solve). The problem should be specific to their product. The solution is BeLikeNative (Chrome extension, 57K users, AI writing: grammar, paraphrase, translate, simplify). Return JSON with company, email_body, subject_line.",
+          "system_prompt": "You are a cold email copywriter. Max 50 words per email. No exclamation marks. No em dashes. Lowercase subjects. Contractions are OK.",
+          "max_tokens": 4096,
+          "temperature": 0.6
+        },
+        {
+          "id": "personal-angle-7",
+          "agent": "agent-27",
+          "prompt": "For the top 20 leads, write alternative email bodies using the Give-First framework: offer them something valuable before asking for anything. Ideas: feature their tool on chrome-extension-guide.com (1,387 articles), write a comparison article, offer a free API integration. Return JSON.",
+          "system_prompt": "You are a give-first outreach strategist. Lead with value, not asks.",
+          "max_tokens": 4096,
+          "temperature": 0.6
+        },
+        {
+          "id": "linkedin-prep-8",
+          "agent": "agent-28",
+          "prompt": "For the top 30 leads from Phase 1, find their LinkedIn profile URLs and prepare a LinkedIn connection request message (max 300 characters). The message should reference their product and mention BeLikeNative briefly. Return JSON with name, linkedin_url, connection_message.",
+          "system_prompt": "You are a LinkedIn outreach specialist. Keep messages under 300 chars.",
+          "max_tokens": 4096,
+          "temperature": 0.5
+        },
+        {
+          "id": "twitter-prep-9",
+          "agent": "agent-29",
+          "prompt": "For the top 20 leads from Phase 1 who are active on Twitter/X, prepare a warm-up engagement plan: 3 of their tweets to like/reply to before sending the cold email. This creates recognition before the outreach. Return JSON with name, twitter_handle, tweet_1_url, tweet_2_url, tweet_3_url, reply_ideas.",
+          "system_prompt": "You are a social selling strategist. Focus on genuine engagement, not spam.",
+          "max_tokens": 4096,
+          "temperature": 0.5
+        },
+        {
+          "id": "email-validation-10",
+          "agent": "agent-30",
+          "prompt": "For all email addresses found in Phase 1 and Phase 2 tasks, validate them using common patterns. Check if the domain has MX records, if the email pattern matches the company's standard (e.g., first@company.com vs first.last@company.com). Flag any that look like generic inboxes (info@, contact@, support@). Return JSON.",
+          "system_prompt": "You are an email validation specialist. Flag confidence levels: HIGH (verified pattern), MEDIUM (common pattern), LOW (guessed).",
+          "max_tokens": 4096,
+          "temperature": 0.2
+        },
+        {
+          "id": "crm-enrichment-11",
+          "agent": "agent-31",
+          "prompt": "For the top 30 leads, research company details: funding stage, team size, revenue estimate, tech stack, recent news. This data enriches the CRM and helps prioritize outreach. Return JSON with company, funding, team_size, revenue_estimate, tech_stack, latest_news, priority_score.",
+          "system_prompt": "You are a company intelligence researcher. Use publicly available data only.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "timing-research-12",
+          "agent": "agent-32",
+          "prompt": "Research the optimal send timing for each category of leads: Chrome extension founders (when do indie hackers check email?), EdTech decision-makers (academic calendar considerations), corporate training (fiscal quarter timing), university programs (enrollment cycles). Return recommendations.",
+          "system_prompt": "You are an email timing optimization researcher.",
+          "max_tokens": 4096,
+          "temperature": 0.4
+        },
+        {
+          "id": "objection-prep-13",
+          "agent": "agent-33",
+          "prompt": "For the top 20 leads, predict the most likely objection they'll raise and prepare a one-line response. Common objections: 'We already use Grammarly', 'Cross-promos don't work', 'We're too small/big', 'Not the right time'. Return JSON with company, likely_objection, response.",
+          "system_prompt": "You are a sales objection handler. Keep responses to one sentence.",
+          "max_tokens": 4096,
+          "temperature": 0.5
+        },
+        {
+          "id": "case-study-14",
+          "agent": "agent-34",
+          "prompt": "Research 5 successful Chrome extension cross-promotion case studies. Find real examples of extensions that partnered and both grew. Include metrics: installs before/after, CTR of cross-promo, how they implemented it. This data is used as social proof in outreach emails. Return JSON.",
+          "system_prompt": "You are a case study researcher. Only include real, verifiable examples with sources.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "segment-analysis-15",
+          "agent": "agent-35",
+          "prompt": "Analyze which segments from the 238 emails already sent have the highest reply rate and why. Segments: freelance engineering (Sprint 1-2A), B2B partnership (Sprint 2B), named founders (Sprint 5), high-leverage cross-promo (Sprint 6 A-C). Recommend which segment to double down on. Return analysis.",
+          "system_prompt": "You are a cold email analytics specialist.",
+          "max_tokens": 4096,
+          "temperature": 0.4
+        },
+        {
+          "id": "followup-templates-16",
+          "agent": "agent-36",
+          "prompt": "Write 5 follow-up email templates for Sprint 6 Touch 2 (the 20 emails being sent May 31). Each template should be 40-50 words, add ONE new value angle not in the original email. Templates: (1) case study angle, (2) free pilot offer, (3) competitor mention, (4) shared audience data, (5) feature-them-first offer. Return JSON.",
+          "system_prompt": "You are a follow-up email copywriter. Max 50 words. No exclamation marks. Lowercase subjects.",
+          "max_tokens": 4096,
+          "temperature": 0.6
+        },
+        {
+          "id": "sprint7-planning-17",
+          "agent": "agent-37",
+          "prompt": "Based on the pipeline data (238 sent, 2 replies from Sprint 2B partnership framing, 35 Sprint 6 targets), plan Sprint 7. Recommend: (1) number of emails, (2) target segments, (3) email framework to use, (4) key improvements over Sprint 6. Consider the 0.84% reply rate and the Go/No-Go gate results. Return a Sprint 7 plan.",
+          "system_prompt": "You are a cold email campaign strategist.",
+          "max_tokens": 4096,
+          "temperature": 0.5
+        },
+        {
+          "id": "ab-test-subjects-18",
+          "agent": "agent-38",
+          "prompt": "Generate 3 alternative subject lines for each of the 20 remaining Sprint 6 emails (Tracks D, E, F, Tutoring). Each subject should be 2-4 words, lowercase, specific to the recipient. Current subjects are 5-9 words which is too long. Return JSON with email_id, current_subject, alt_1, alt_2, alt_3.",
+          "system_prompt": "You are a subject line optimization specialist. Max 4 words, lowercase, no punctuation.",
+          "max_tokens": 4096,
+          "temperature": 0.7
+        },
+        {
+          "id": "deliverability-19",
+          "agent": "agent-39",
+          "prompt": "Research Gmail deliverability for personal Gmail accounts sending cold B2B emails in 2026. What's the current inbox rate? What triggers spam filters? What are the best practices for lipmichal@gmail.com sending partnership emails? Should we switch to Google Workspace? Return actionable recommendations.",
+          "system_prompt": "You are an email deliverability expert.",
+          "max_tokens": 4096,
+          "temperature": 0.3
+        },
+        {
+          "id": "roi-model-20",
+          "agent": "agent-40",
+          "prompt": "Build an ROI model for the BeLikeNative B2B partnership pipeline. Inputs: 238 sent, 2 replies (0.84%), 0 clients, $0 revenue. Model: if reply rate improves to 3% with better targeting, and 20% of replies convert to partnerships, and each partnership drives 500 installs, what's the projected user growth? What's the cost per install vs paid acquisition? Return the model.",
+          "system_prompt": "You are a growth marketing analyst. Build a realistic ROI model.",
+          "max_tokens": 4096,
+          "temperature": 0.4
+        }
+      ]
+    }
+  ]
+}

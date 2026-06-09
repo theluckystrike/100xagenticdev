@@ -1,0 +1,197 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "CORR-01-pags-btg",
+          "prompt": "CORRELATION ANALYSIS: PAGS (Brazil fintech) vs BTG (Canadian gold miner). What is the historical 1-year correlation between these two stocks? Are they correlated through: (1) commodity prices, (2) emerging market risk, (3) USD strength, (4) interest rates? What happens to EACH stock when: gold rises 10%, BRL falls 10%, US 10Y rises 50bp, S&P drops 10%? Quantify with data.",
+          "system_prompt": "You are a quantitative portfolio analyst. Use historical data and economic logic. Be specific with numbers. If you don't have exact correlation data, explain the theoretical relationship and estimate based on factor exposures.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "CORR-02-pags-payo",
+          "prompt": "CORRELATION ANALYSIS: PAGS (Brazil fintech) vs PAYO (Israel cross-border payments). Both are fintechs. What is the correlation? Do they move together on fintech sentiment days? What are the DIFFERENT factor exposures: PAGS = Brazil macro, PAYO = global e-commerce. When would PAGS go up but PAYO go down, and vice versa? Quantify.",
+          "system_prompt": "You are a quantitative portfolio analyst. Use historical data and economic logic. Be specific with numbers.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "CORR-03-gau-btg",
+          "prompt": "CORRELATION ANALYSIS: GAU (Galiano Gold, Ghana) vs BTG (B2Gold, Mali/Canada). Both are gold miners. What is the correlation? It should be HIGH because both are gold-price-driven. Quantify: (1) correlation coefficient estimate, (2) gold beta for each, (3) country risk differential (Ghana vs Mali vs Philippines vs Canada). Is holding BOTH redundant? Should we consolidate into one?",
+          "system_prompt": "You are a quantitative portfolio analyst specializing in mining equities. Be specific with numbers.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "CORR-04-tuya-tigr",
+          "prompt": "CORRELATION ANALYSIS: TUYA (China IoT ADR) vs TIGR (China fintech ADR). Both are China ADRs. What is the correlation? They should be HIGHLY correlated because: (1) same delisting risk, (2) same China macro, (3) same ADR sentiment. Quantify. Is holding BOTH redundant? If China ADR sentiment crashes, what % of our portfolio is at risk?",
+          "system_prompt": "You are a quantitative portfolio analyst. Focus on China ADR systemic risk. Be specific with numbers.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "CORR-05-grab-portfolio",
+          "prompt": "CORRELATION ANALYSIS: GRAB (SE Asia super-app) vs the rest of the portfolio (PAGS, BTG, GAU, PAYO, TUYA, TIGR). GRAB is the most geographically diverse holding (Vietnam/SE Asia). What is its correlation with each? Is GRAB a good DIVERSIFIER? Quantify factor exposures: SE Asia GDP, ride-hailing demand, digital banking, tourism.",
+          "system_prompt": "You are a quantitative portfolio analyst. Focus on diversification benefits. Be specific.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "RISK-01-concentration",
+          "prompt": "PORTFOLIO CONCENTRATION RISK for a $2,000 portfolio with 7 positions: PAGS $461 (18%), PAYO $256 (10%), BTG $239 (9%), GAU $234 (9%), TUYA $204 (8%), TIGR $201 (8%), GRAB $178 (7%), Cash $686 (26%). Calculate: (1) Herfindahl-Hirschman Index, (2) effective number of positions, (3) sector concentration (fintech 28%, gold 18%, China ADR 16%), (4) geographic concentration (Brazil 18%, Canada 9%, Ghana 9%, China 16%, Israel 10%, SE Asia 7%). What is the SINGLE BIGGEST RISK to this portfolio?",
+          "system_prompt": "You are a risk management analyst. Calculate concentration metrics precisely. Identify the #1 risk.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "RISK-02-stress-test",
+          "prompt": "STRESS TEST this portfolio under 5 scenarios: (1) GLOBAL RECESSION: S&P -30%, commodities -20%, EM currencies -15%. (2) CHINA ADR DELISTING: All China ADRs drop 80%. (3) GOLD CRASH: Gold drops to $1,800/oz. (4) BRAZIL CRISIS: BRL -30%, Selic to 18%. (5) FINTECH WINTER: All fintech stocks drop 40%. For EACH scenario, calculate the portfolio loss in $ and %, and identify which positions survive.",
+          "system_prompt": "You are a risk management analyst. Run precise stress tests. Show math for each scenario.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "RISK-03-correlation-matrix",
+          "prompt": "Build a FULL 7x7 CORRELATION MATRIX for: PAGS, PAYO, BTG, GAU, TUYA, TIGR, GRAB. Estimate the pairwise correlation coefficient for all 21 pairs. Group them: (1) HIGH correlation (>0.6), (2) MODERATE (0.3-0.6), (3) LOW (<0.3), (4) NEGATIVE (<0). What is the portfolio-level diversification benefit? What is the effective number of independent bets?",
+          "system_prompt": "You are a quantitative portfolio analyst. Build the full correlation matrix. Use your best estimates based on factor exposures, geography, and sector.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "RISK-04-var",
+          "prompt": "Calculate VALUE AT RISK (VaR) for this portfolio: PAGS $461, PAYO $256, BTG $239, GAU $234, TUYA $204, TIGR $201, GRAB $178, Cash $686. Total $2,459 invested. Calculate: (1) 1-day 95% VaR, (2) 1-day 99% VaR, (3) 1-week 95% VaR, (4) 1-month 95% VaR. Use appropriate volatility estimates for each stock (small-cap emerging market stocks are typically 40-60% annualized vol). Also calculate max drawdown probability over 1 year.",
+          "system_prompt": "You are a quantitative risk analyst. Calculate VaR using parametric method with correlation adjustments. Show all math.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "MACRO-01-usd-impact",
+          "prompt": "USD STRENGTH IMPACT on portfolio. If DXY rises 10% (strong dollar): What happens to each position? PAGS (BRL exposure), BTG (CAD + gold), GAU (USD-denominated gold but Ghana operations), PAYO (Israel but global revenue), TUYA (China ADR), TIGR (China ADR), GRAB (SGD/VND exposure). Quantify the portfolio-level impact. Is this portfolio a SHORT USD bet?",
+          "system_prompt": "You are a macro strategist. Quantify FX impacts precisely.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "MACRO-02-fed-rates",
+          "prompt": "FED RATE IMPACT on portfolio. If the Fed cuts 100bp vs hikes 100bp, what happens to each position? Consider: (1) PAGS benefits from lower rates (but Selic is independent), (2) BTG/GAU benefit from lower rates (gold rises), (3) TUYA/TIGR benefit from risk-on sentiment, (4) GRAB benefits from lower discount rate. Which positions have the HIGHEST rate sensitivity? Is this portfolio positioned for rate cuts or hikes?",
+          "system_prompt": "You are a macro strategist. Quantify rate sensitivity for each position.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "MACRO-03-recession",
+          "prompt": "RECESSION PROBABILITY and portfolio impact. If US enters recession in H2 2025: (1) Which positions are CYCLICAL (hurt by recession)? (2) Which are DEFENSIVE? (3) Gold miners are typically counter-cyclical — quantify the hedge. (4) What is the net portfolio beta to US GDP? (5) Is this portfolio recession-proof or recession-vulnerable?",
+          "system_prompt": "You are a macro strategist. Classify each position's cyclicality and quantify recession impact.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "OPTIMIZE-01-rebalance",
+          "prompt": "PORTFOLIO OPTIMIZATION: Given the current allocation (PAGS 18%, PAYO 10%, BTG 9%, GAU 9%, TUYA 8%, TIGR 8%, GRAB 7%, Cash 26%), is there a BETTER allocation? Consider: (1) Mean-variance optimization with estimated returns and correlations, (2) Equal risk contribution, (3) Kelly criterion for each position. Should we: (A) Add more to PAGS (highest conviction)? (B) Consolidate GAU+BTG into one gold position? (C) Reduce China ADR exposure (TUYA+TIGR = 16%)? (D) Deploy more cash? Recommend specific rebalancing trades.",
+          "system_prompt": "You are a portfolio optimizer. Use quantitative methods. Recommend specific actionable trades.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "OPTIMIZE-02-hedges",
+          "prompt": "HEDGING STRATEGY for a $2,000 small portfolio. Can we hedge cheaply? Options: (1) Buy puts on EEM (emerging market ETF) — cost? (2) Buy GLD calls to amplify gold exposure instead of holding 2 miners. (3) Short DXY via UUP puts. (4) Do NOTHING — at $2K, hedging costs eat into returns. What is the CHEAPEST way to protect this portfolio from a 30% drawdown? Or should we just hold cash (26% already)?",
+          "system_prompt": "You are a derivatives strategist. Consider the portfolio is tiny ($2K). Hedging must be cost-effective or not worth it.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "MONITOR-01-triggers",
+          "prompt": "MONITORING FRAMEWORK for 7-position portfolio. Define SPECIFIC sell triggers for each: PAGS (what NPL %, what P/E expansion kills thesis?), BTG (what gold price kills thesis?), GAU (what gold price, what operational failure?), PAYO (what take rate decline?), TUYA (what cash burn starts?), TIGR (what delisting signal?), GRAB (what profitability reversal?). Also define ADD triggers — when to deploy the $686 cash reserve. Be SPECIFIC with numbers.",
+          "system_prompt": "You are a portfolio monitor. Define precise, quantitative triggers. No vague language — specific prices, ratios, dates.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "EARNINGS-01-calendar",
+          "prompt": "Q2 2025 EARNINGS CALENDAR for all 7 positions: PAGS, PAYO, BTG, GAU, TUYA, TIGR, GRAB. For EACH: (1) Expected earnings date, (2) Consensus EPS estimate, (3) Consensus revenue estimate, (4) Key metric to watch (specific to each company), (5) What would be a POSITIVE surprise, (6) What would be a NEGATIVE surprise. Rank by importance to our portfolio.",
+          "system_prompt": "You are an earnings analyst. Provide specific dates and estimates. If exact dates unknown, estimate based on historical patterns.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "SECTOR-01-gold-thesis",
+          "prompt": "GOLD THESIS VALIDATION: We have 18% in gold miners (BTG + GAU). Current gold price ~$2,425/oz. For our thesis to work, gold needs to stay above $2,000. (1) What is the probability gold drops below $2,000 in the next 12 months? (2) What macro conditions would cause that? (3) At what gold price do BTG and GAU become unprofitable (below AISC)? (4) What is the upside if gold hits $3,000? $3,500? (5) Should we increase or decrease gold exposure?",
+          "system_prompt": "You are a commodities analyst specializing in gold. Use current macro data. Be quantitative.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "SECTOR-02-fintech-thesis",
+          "prompt": "FINTECH THESIS VALIDATION: We have 28% in fintech (PAGS 18% + PAYO 10%). Key risks: (1) PIX disruption for PAGS, (2) take rate compression industry-wide, (3) rising credit losses in Brazil, (4) competition from big banks and Nubank. For our thesis to work, what must remain TRUE? What would KILL the fintech thesis across all our holdings? Is 28% too much fintech?",
+          "system_prompt": "You are a fintech analyst. Challenge the thesis rigorously. Identify the kill condition.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "SECTOR-03-china-adr",
+          "prompt": "CHINA ADR RISK: We have 16% in China ADRs (TUYA 8% + TIGR 8%). (1) What is the current status of the Holding Foreign Companies Accountable Act (HFCAA)? (2) Has PCAOB completed inspections of Chinese audit firms? (3) What is the PROBABILITY of forced delisting in 2025-2026? (4) If delisting occurs, what happens to our shares? Can they convert to HK listings? (5) Should we REDUCE China ADR exposure from 16% to 8% (sell one)?",
+          "system_prompt": "You are a regulatory analyst specializing in US-China capital markets. Be specific about HFCAA status.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "TAX-01-strategy",
+          "prompt": "TAX STRATEGY for a small portfolio ($2,000 equity). (1) What is the US tax treatment of ADR dividends (BTG pays $0.04/Q)? (2) How are gains from foreign stocks taxed? (3) Can we tax-loss harvest with only 7 positions? (4) What is the wash sale rule impact for our strategy? (5) Should we hold these in a Roth IRA instead? (6) At what portfolio size does tax optimization become meaningful?",
+          "system_prompt": "You are a tax advisor for retail investors. Focus on US tax law for foreign stock holdings. Be practical for a small portfolio.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "LIQUIDITY-01-exit",
+          "prompt": "EXIT LIQUIDITY ANALYSIS for all 7 positions. For each stock: (1) Average daily volume, (2) typical bid-ask spread, (3) how long to liquidate our FULL position without moving price, (4) which positions would be HARDEST to sell in a panic. At our position sizes ($200-$461), is liquidity a real concern or irrelevant? Rank positions from most liquid to least liquid.",
+          "system_prompt": "You are a market microstructure analyst. Quantify liquidity for each position.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "BENCHMARK-01-performance",
+          "prompt": "BENCHMARK COMPARISON: Our portfolio is (PAGS 18%, PAYO 10%, BTG 9%, GAU 9%, TUYA 8%, TIGR 8%, GRAB 7%, Cash 26%). Compare expected returns vs: (1) S&P 500 (SPY), (2) Emerging Markets (EEM), (3) Gold (GLD), (4) Small-cap Value (IWN), (5) Equal-weight of our 7 stocks (no cash). What is our expected alpha? What is our expected Sharpe ratio? Are we taking enough risk for a 1000x strategy, or too much?",
+          "system_prompt": "You are a performance analyst. Compare risk-adjusted returns. Be honest about whether this portfolio can achieve 1000x.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "SCENARIO-01-best-case",
+          "prompt": "BEST CASE SCENARIO (3-year): All positions hit their bull case targets. PAGS $35 (from $9.22), BTG $15 (from $4.77), GAU $8 (from $2.34), PAYO $20 (from $5.12), TUYA $8 (from $2.10), TIGR $15 (from $5.01), GRAB $10 (from $3.55). Calculate: (1) portfolio value, (2) total return %, (3) CAGR. How realistic is this scenario? What probability would you assign?",
+          "system_prompt": "You are a portfolio strategist. Calculate returns and assign realistic probabilities.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "SCENARIO-02-worst-case",
+          "prompt": "WORST CASE SCENARIO (3-year): Everything goes wrong. PAGS: Brazil crisis, BRL -30%, NPL doubles → $3. BTG: gold crashes to $1,800, Goose delays → $2. GAU: mine accident, gold crash → $0.50. PAYO: competition kills margins → $2. TUYA: delisted → $0.50. TIGR: delisted → $0.50. GRAB: unprofitable again → $1.50. Calculate: (1) portfolio value, (2) total loss %, (3) max drawdown. Can we survive this?",
+          "system_prompt": "You are a risk analyst. Calculate worst case precisely. Be brutally honest.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "SCENARIO-03-base-case",
+          "prompt": "BASE CASE SCENARIO (3-year): Moderate outcome. PAGS to $16 (P/E re-rate to 12x), BTG to $8 (Goose production + gold $2,500), GAU to $4 (stable production), PAYO to $10 (growth continues), TUYA to $3.50 (slow recovery), TIGR to $7 (China stabilizes), GRAB to $5 (profitability scales). Calculate: (1) portfolio value, (2) total return, (3) CAGR. Is this portfolio worth the risk vs just buying SPY?",
+          "system_prompt": "You are a portfolio strategist. Compare base case returns vs index alternatives.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "NEXT-01-watchlist",
+          "prompt": "NEXT POSITIONS TO ADD: We have $686 cash (26% of portfolio). The user mentioned adding GRAB +100 shares ($354). After that, $332 remains. What should we buy next? Criteria: (1) must be sub-$10, (2) must DIVERSIFY (not more fintech or gold), (3) must have strong fundamentals. Consider sectors we're MISSING: healthcare, energy, real estate, consumer. Suggest 3 specific stocks with prices and thesis.",
+          "system_prompt": "You are a stock picker for a 1000x strategy. Sub-$10 stocks only. Focus on diversification gaps.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "SYNTH-01-portfolio-report",
+          "prompt": "PORTFOLIO INTELLIGENCE SYNTHESIS. Summarize the key findings from ALL other agents in this sprint. Format as a concise executive briefing: (1) PORTFOLIO GRADE (A/B/C/D), (2) TOP 3 STRENGTHS, (3) TOP 3 WEAKNESSES, (4) RECOMMENDED ACTIONS (max 5), (5) NEXT SPRINT PRIORITIES. Be decisive and actionable.",
+          "system_prompt": "You are the chief investment officer. Synthesize all analysis into a clear, actionable briefing. No fluff.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        }
+      ]
+    }
+  ]
+}

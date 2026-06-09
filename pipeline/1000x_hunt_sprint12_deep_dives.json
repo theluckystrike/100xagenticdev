@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "s12_t01_skin_deep",
+          "prompt": "Deep dive on SKIN (SkinHealth Systems / Beauty Health) at $0.67, market cap $86M. Revenue $296M, GM 64.9%, OM -2.8%, FCF $28M POSITIVE, but $367M debt vs $202M cash. They make HydraFacial machines and skincare. Why is a $296M revenue company with 65% margins trading at 0.29x P/S? Was there an accounting scandal? Rebranding from Beauty Health to SkinHealth? What happened to the stock (likely fell from much higher)? Is the debt manageable with $28M FCF? Is this a deep value opportunity or a melting ice cube?",
+          "system_prompt": "You are a forensic equity analyst specializing in consumer/beauty companies. Investigate why the stock is so cheap. Cite specific financial data.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t02_skin_moat",
+          "prompt": "MOAT ANALYSIS: SKIN (HydraFacial). They sell medical-aesthetic devices and consumables. Key questions: 1) Is HydraFacial a razor/blade model (sell device cheap, make money on tips/serums)? 2) What is the installed base of machines? 3) Is the consumables revenue recurring? 4) Who competes — Hydrafacial vs microdermabrasion vs chemical peels? 5) Is this a fad or durable trend? 6) Who are the customers (med spas, dermatologists, salons)? 7) What is the international expansion opportunity?",
+          "system_prompt": "You are a competitive strategy analyst specializing in aesthetics/beauty devices. Identify whether HydraFacial has a durable moat or is a commodity.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t03_skin_debt",
+          "prompt": "DEBT FORENSIC: SKIN at $0.67. Debt $367M vs Cash $202M = net debt $165M. Market cap only $86M. Enterprise value ~$251M. Revenue $296M. EV/Rev = 0.85x. FCF $28M. Questions: 1) When does the debt mature? 2) Can they refinance at $0.67/share? 3) What covenants exist? 4) At $28M FCF, debt is 13x FCF — is that sustainable? 5) Is there dilution risk (convertible notes)? 6) Could this be a bankruptcy candidate? 7) What happens to equity if they default?",
+          "system_prompt": "You are a distressed debt analyst. Assess bankruptcy probability and whether the equity has value above zero. Be brutally honest about downside.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t04_skin_1000x",
+          "prompt": "1000x TEST: SKIN at $0.67, mcap $86M. For 1000x ($670/share, $86B) — impossible, would be larger than Estee Lauder. For 100x ($67/share, $8.6B) — would need to be a dominant aesthetics platform, unlikely given debt. For 10x ($6.70/share, $860M) — need to grow revenue 50% or get acquired. HydraFacial was acquired by BWXT for $4.7B? Wait — was it Beiersdorf or another acquirer? What is realistic max upside in 10 years? Is debt restructuring or M&A the most likely path to value?",
+          "system_prompt": "You are a return-potential analyst. Be honest. A company with $367M debt and $86M mcap has specific risk/reward dynamics. Calculate realistic scenarios.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t05_irwd_deep",
+          "prompt": "Deep dive on IRWD (Ironwood Pharmaceuticals) at $3.57, market cap $588M. Revenue $362M (+158.9% GROWTH), GM 75.2%, OM 68.1%, P/E 5.8x, FCF $51M. This looks like a unicorn hiding in plain sight — profitable pharma with 159% revenue growth trading at 5.8x P/E? What drug generates this revenue (Linzess/linaclotide for IBS-C)? Is the 159% growth sustainable or was it a one-time event (drug launch, licensing deal)? What is the patent expiration for their key drug? What is the pipeline beyond Linzess? Why is a profitable pharma growing 159% trading at only $588M?",
+          "system_prompt": "You are a pharmaceutical equity analyst. Investigate whether the 159% growth is sustainable or a one-time licensing/milestone payment. Be skeptical of non-recurring revenue.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t06_irwd_patent",
+          "prompt": "PATENT CLIFF ANALYSIS: IRWD (Ironwood Pharma). Linzess (linaclotide) is their key drug for IBS-C and chronic constipation. Key questions: 1) When does the Linzess patent expire? 2) What is the generic competition timeline? 3) What is the Linzess revenue breakdown (US vs ex-US, royalties vs co-promotion)? 4) Partnership with AbbVie — what are the economics? 5) Pipeline: IW-3300 (next-gen), any other candidates? 6) Is there an acquisition angle (AbbVie buyout)?",
+          "system_prompt": "You are a pharma patent analyst. Identify the patent cliff timeline and whether there is pipeline to replace it. Patent cliffs kill pharma stocks.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t07_irwd_financials",
+          "prompt": "FINANCIAL FORENSIC: IRWD at $3.57, P/E 5.8x. Revenue $362M, NI presumably ~$100M (for 5.8x P/E at $588M mcap). But 159% revenue growth is suspicious for a mature pharma. Was there a one-time event? Check: 1) Quarterly revenue trend — is growth accelerating or was Q4 a spike? 2) Is NI real or boosted by tax benefit, asset sale, or licensing milestone? 3) FCF $51M vs NI ~$100M — big gap, why? 4) $597M debt vs $220M cash — net debt $377M, that's concerning for a $588M mcap company. 5) Insider activity — any buying or selling?",
+          "system_prompt": "You are a forensic financial analyst. The 159% growth and 5.8x P/E combination is too good — find out what's behind the numbers. Look for non-recurring items.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t08_irwd_1000x",
+          "prompt": "1000x TEST: IRWD at $3.57, mcap $588M. For 1000x ($3,570, $588B) — impossible. For 100x ($357, $58.8B) — would need to become a top-20 pharma, very unlikely for single-drug company. For 10x ($35.70, $5.88B) — need Linzess to keep growing + pipeline success + possible AbbVie acquisition at premium. Realistic max upside? Key question: Is this a compounder at 5.8x P/E or a patent cliff ticking time bomb? What would Warren Buffett do?",
+          "system_prompt": "You are a return-potential analyst for pharma stocks. Calculate realistic upside and downside scenarios with specific probabilities.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t09_bmbl_deep",
+          "prompt": "Deep dive on BMBL (Bumble) at $3.17, market cap $481M. Revenue $931M, GM 71.9%, OM 31.5%, FCF $235M. A dating app with $931M revenue and $235M FCF trading at 0.5x P/S??? This is absurd. Why is Bumble so cheap? Revenue declining -14.1% — is the dating app market shrinking? Is this a Tinder competitor losing share? What happened — user growth stalling, ARPU declining, or management problems? Who is the CEO? Was there a leadership change? Match Group (MTCH) comparison?",
+          "system_prompt": "You are a consumer internet analyst. Investigate why a $931M revenue, $235M FCF company trades at 0.5x P/S. There must be a reason — find it.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t10_bmbl_thesis",
+          "prompt": "BUMBLE (BMBL) BULL VS BEAR: BULL CASE: $931M revenue, 71.9% GM, $235M FCF at 0.5x P/S and 2x FCF yield = deep value. Dating apps have network effects. International expansion (Europe, Asia). BEAR CASE: Revenue declining -14.1%. Gen Z fatigue with dating apps. Hinge (Match) taking share. AI could disrupt dating. Management turnover. Debt $597M. KEY QUESTION: Is -14.1% decline the new normal or a trough? Can Bumble stabilize revenue? If they can, 0.5x P/S re-rates to 3x minimum = 6x upside.",
+          "system_prompt": "You are a tech investor weighing bull vs bear cases. Be honest about which case is stronger. Consider the FCF vs revenue decline tension.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t11_nuvb_deep",
+          "prompt": "Deep dive on NUVB (Nuvation Bio) at $4.90, market cap $1.7B. Revenue $143M (+2598% growth!), GM 90.8%, OM 4.7% (barely profitable), but FCF -$100M (burning cash). Cash $534M, Debt $217M. Founded by David Hung (same guy who founded Medivation, sold to Pfizer for $14B). What drugs does NUVB have? Why is revenue suddenly $143M with 2598% growth? Was this an acquisition (Anelixis, others)? Is this a platform company or single-drug? With $534M cash, how long is the runway?",
+          "system_prompt": "You are a biotech analyst. The 2598% revenue growth suggests an acquisition or drug approval event. Identify what happened and whether it's sustainable.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t12_nuvb_pipeline",
+          "prompt": "NUVB PIPELINE ANALYSIS: Nuvation Bio was a biotech SPAC that has been acquiring/developing oncology drugs. What is their drug pipeline? NUV-868 (BET inhibitor)? NUV-1511? Did they acquire Pyxis Oncology or another company? What Phase are their lead candidates? What is the David Hung track record (Medivation/Xtandi was a massive success — $14B buyout by Pfizer). Is NUVB Hung's second act? What is the probability of a Pfizer/Roche/Merck acquisition?",
+          "system_prompt": "You are a biotech pipeline analyst. Assess whether David Hung can repeat the Medivation playbook with Nuvation Bio.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t13_domo_deep",
+          "prompt": "Deep dive on DOMO (Domo Inc) at $4.28, market cap $193M. Revenue $319M, GM 75%, OM -9%, FCF $41M positive. SaaS BI/analytics platform competing with Tableau (Salesforce), Power BI (Microsoft), Looker (Google). At 0.6x P/S with 75% GM and positive FCF, why is this so cheap? Is DOMO losing to the hyperscaler BI tools? Revenue growing only +1.1%. Is this a dying SaaS company or an acquisition target? Josh James (founder) — what is his history (also founded Omniture, sold to Adobe)?",
+          "system_prompt": "You are a SaaS/enterprise software analyst. Assess whether DOMO has a viable path or is being killed by Microsoft Power BI and Salesforce Tableau.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t14_xos_deep",
+          "prompt": "Deep dive on XOS (Xos Inc) at $2.23, market cap $27M. Revenue $51M (+90.9% growth), GM 11.4%, OM -41.7%. They make electric commercial vehicles (step vans, last-mile delivery trucks). 62.6% insider ownership. FCF $23M positive? That seems wrong for a company burning on operations. Verify: Is the $23M FCF real or an accounting artifact (working capital, capex timing)? Who are their customers (UPS, FedEx, fleet operators)? Can they compete against Ford E-Transit, Rivian EDV, BrightDrop?",
+          "system_prompt": "You are an EV/commercial vehicle analyst. Verify the financials and assess competitive position against much larger EV truck makers.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t15_agen_deep",
+          "prompt": "Deep dive on AGEN (Agenus Inc) at $3.50, market cap $146M. Revenue $124M (+40.2% growth), GM 96.9%, OM 44.6%, P/E 1.7x. 96.9% GM and P/E 1.7x??? This is extremely suspicious. Is this revenue from licensing/milestones (non-recurring) or actual drug sales? What drugs does Agenus sell? They are an immuno-oncology company. Are they profitable from licensing or actual commercial sales? A P/E of 1.7x means NI ~$86M — is this a one-time milestone payment inflating earnings?",
+          "system_prompt": "You are a biotech forensic analyst. A 1.7x P/E in biotech always means something unusual happened. Find the non-recurring item that inflated earnings.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t16_dcgo_deep",
+          "prompt": "Deep dive on DCGO (DocGo) at $0.63, market cap $62M. Revenue $302M, GM 30.4%, OM -24.8%, FCF $44M. DocGo provides mobile health services, medical transport, and healthcare staffing. Revenue declining -21.3%. They had NYC migrant crisis contracts — is that winding down? Why is a $302M revenue company trading at 0.2x P/S? Government contract dependency? Accounting issues? Investigation? Is FCF $44M real or working capital unwinding?",
+          "system_prompt": "You are a healthcare services analyst. Investigate whether DCGO's revenue decline is secular or due to one-time contract expiration. Check for any fraud/investigation red flags.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t17_dsx_deep",
+          "prompt": "Deep dive on DSX (Diana Shipping) at $2.36, market cap $294M. Revenue $214M, GM 56.6%, OM 13.9%, P/E 6.7x, Insider 40.2%. Greek dry bulk shipping company. $636M debt vs $240M cash — heavily leveraged. Is this cyclical? Dry bulk rates (BDI - Baltic Dry Index) — where are we in the cycle? Is 40.2% insider ownership a sign of alignment or control? Dividend history? Fleet age and size? Compare to SBLK, GNK, GOGL. Is shipping ever a 1000x candidate or inherently cyclical?",
+          "system_prompt": "You are a shipping/maritime equity analyst. Assess whether DSX is cheap or a value trap in a cyclical industry. Shipping rarely creates permanent value.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t18_pvl_deep",
+          "prompt": "Deep dive on PVL (Permianville Royalty Trust) at $1.89, market cap $62M. Revenue $7M, GM 100%, OM 94.6%, P/E 12.6x, ZERO DEBT, 27.6% insider. This is a royalty trust on Permian Basin oil & gas. Revenue growth +8503% is misleading — this is likely commodity price driven. Key questions: 1) What assets are in the trust? 2) Is the trust depleting (finite oil reserves)? 3) Distributions vs price — yield? 4) What oil price is needed to break even? 5) Are royalty trusts ever 1000x candidates? Usually they are wasting assets.",
+          "system_prompt": "You are an energy royalty trust analyst. Be direct about whether PVL is a depleting asset with finite life or has upside. Most royalty trusts slowly die.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t19_kill_screen_1",
+          "prompt": "RAPID KILL SCREEN: Rate each stock KILL or WATCH. Kill criteria: chronic dilution >10%/yr, CEO selling at bottom, reverse split history, negative unit economics, fraud/SEC history, zombie company, no path to profitability. 1) GOOS ($9.89, Canada Goose, luxury jackets, P/E 58.2x), 2) NIU ($2.24, Chinese e-scooters, -11.5% OM, CN_ADR), 3) ZEPP ($7.60, Zepp Health wearables, -4.5% OM, CN_ADR, $117M debt), 4) RLX ($2.07, Chinese vaping, 107% growth but CN_ADR, $2.5B mcap), 5) WEAV ($6.03, Weave Communications, -8.8% OM, 72.3% GM), 6) SPT ($7.94, Sprout Social, -5.2% OM, 77.5% GM), 7) FBIO ($2.80, Fortress Biotech, 22.8% insider but -29.8% OM).",
+          "system_prompt": "You are a kill-list analyst. KILL if it fails any criterion. Do not give benefit of the doubt. Be ruthless.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t20_kill_screen_2",
+          "prompt": "RAPID KILL SCREEN BATCH 2: Rate each KILL or WATCH. 1) SFIX ($3.52, Stitch Fix, styling/fashion AI, rev +9.4%, 43.8% GM, 4.6% insider — was $100+ stock), 2) ALIT ($0.83, Alight Inc, HR cloud, $2.2B rev but $367M debt bomb), 3) RGP ($4.52, Resources Connection consulting, -16.6% rev decline), 4) TV ($2.66, Grupo Televisa, Mexican media, -3.1% rev, 0% insider), 5) UFI ($3.97, Unifi recycled fiber, -11.3% rev, 2.9% GM — nearly zero!), 6) DIBS ($4.52, 1stDibs luxury marketplace, -0.7% rev, 73.5% GM), 7) DEFT ($0.65, Definitive Healthcare, -74.4% rev decline, $100M GM).",
+          "system_prompt": "You are a kill-list analyst. Apply kill criteria ruthlessly. Revenue declines + low insider = likely kill.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t21_skin_insider",
+          "prompt": "INSIDER ACTIVITY FORENSIC: SKIN (SkinHealth/Beauty Health). At $0.67, this is a destroyed stock. Key questions: 1) Are insiders buying at these levels? Any open-market purchases? 2) Was there a CEO change? Who is running the company now? 3) Any activist investors involved? 4) Board composition — any notable directors? 5) Short interest — how much of float is shorted? 6) Have any hedge funds disclosed positions recently (13F filings)?",
+          "system_prompt": "You are an insider activity analyst. At $0.67 and $86M mcap, insider buying would be a strong signal. Insider silence is also informative.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t22_bmbl_acquisition",
+          "prompt": "M&A ANALYSIS: BMBL (Bumble) at $481M market cap, $931M revenue, $235M FCF. Potential acquirers: 1) Match Group (MTCH) — owns Tinder, Hinge, OkCupid. Would Bumble fill a gap? Antitrust concerns? 2) Meta — they tried Facebook Dating and failed. Would they buy Bumble? 3) Private equity — $235M FCF at 2x valuation = 49% FCF yield, PE firms love this. 4) Any previous acquisition rumors? 5) Bumble has dual-class shares — does Whitney Wolfe Herd still control voting? Can she block a deal?",
+          "system_prompt": "You are an M&A analyst. Assess acquisition probability and likely premium for Bumble at current levels.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t23_value_trap_test",
+          "prompt": "VALUE TRAP DETECTION: Three stocks look absurdly cheap but may be traps. Test each: 1) SKIN at 0.29x P/S — trap signals: declining revenue, heavy debt, potential covenant breach, management turnover. 2) BMBL at 0.5x P/S — trap signals: -14% revenue decline, dating app fatigue, dual-class shares, CEO drama. 3) DOMO at 0.6x P/S — trap signals: flat revenue, losing to MSFT/SFDC, SaaS deceleration. For each: Is the cheapness justified by fundamentals? Or is Mr. Market wrong?",
+          "system_prompt": "You are a value trap expert. Distinguish between genuinely cheap (market overreaction) and cheap for good reason (structural decline). Be specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t24_irwd_vs_agen",
+          "prompt": "HEAD TO HEAD: IRWD ($3.57, P/E 5.8x) vs AGEN ($3.50, P/E 1.7x). Both are sub-$5 pharma/biotech with suspiciously low P/E ratios. IRWD: $362M rev, 159% growth, 68% OM, $597M debt, Linzess (IBS-C). AGEN: $124M rev, 40% growth, 96.9% GM, 44.6% OM, P/E 1.7x (almost certainly non-recurring). Which has the more sustainable business? Which P/E is real? Which has better pipeline? Which is the better 10-year hold?",
+          "system_prompt": "You are a pharma portfolio manager choosing between two cheap pharma stocks. Determine which low P/E is real and sustainable.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t25_payo_fit",
+          "prompt": "PORTFOLIO FIT CHECK: PAYO (Payoneer) is already on our PENDING BUY list at $5.12 limit. Current price $5.20. Live data: Revenue $1.07B (+6.1%), GM 84.9%, OM 11.5%, P/E 26x, FCF -$39M. Compared to Sprint 12 finds: BMBL has $235M FCF at 0.5x P/S. IRWD has P/E 5.8x. Should we still buy PAYO at $5.12 or redirect that capital to BMBL or IRWD? PAYO is a fintech payments company — how does it compare on risk-adjusted return basis?",
+          "system_prompt": "You are a portfolio allocation analyst. Compare PAYO against the new Sprint 12 finds. Should the pending limit order be maintained or redirected?",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t26_convergence",
+          "prompt": "SPRINT 12 CONVERGENCE RANKING: Rank ALL Sprint 12 deep dive candidates from best to worst on 50-point scale: Moat(10) + TAM(10) + Anti-consensus(10) + Catalyst(10) + Management(10). Candidates: 1) SKIN ($0.67, HydraFacial, 0.29x P/S), 2) IRWD ($3.57, pharma, P/E 5.8x, 159% growth), 3) BMBL ($3.17, dating app, $235M FCF, 0.5x P/S), 4) NUVB ($4.90, biotech, David Hung), 5) DOMO ($4.28, SaaS BI, 75% GM), 6) XOS ($2.23, EV trucks, 91% growth), 7) AGEN ($3.50, pharma, P/E 1.7x), 8) DCGO ($0.63, mobile health, 0.2x P/S), 9) DSX ($2.36, shipping, P/E 6.7x), 10) PVL ($1.89, oil royalty trust).",
+          "system_prompt": "You are a convergence analyst. Give a SINGLE definitive ranking. No ties. Be direct.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t27_entry_prices",
+          "prompt": "OPTIMAL ENTRY POINTS for Sprint 12 TOP 5 (expected): SKIN ($0.67), IRWD ($3.57), BMBL ($3.17), NUVB ($4.90), DOMO ($4.28). For each: 1) Fair value estimate (DCF, multiples, comps), 2) Entry price with 30% margin of safety, 3) GTC limit order recommendation, 4) Position size ($200-300 max per position, $1,062 total cash available). Consider: account is converting to CASH ONLY (no margin), buy and hold 10 years, portfolio already has GRAB, BTG, GAU, TUYA, TIGR + pending PAGS/PAYO limits.",
+          "system_prompt": "You are a value investor. Calculate specific GTC limit order prices for each stock. Be conservative — margin of safety is critical.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t28_v3_scoring",
+          "prompt": "V3 FRAMEWORK SCORING: Score SKIN, IRWD, BMBL on 100-point scale. A(20) Growth — revenue growth rate + acceleration. B(15) Margin — gross margin + operating margin + path to profitability. C(15) Insider — insider ownership % + buying activity + no selling. D(15) Capital — FCF yield + cash position + debt safety. E(10) Moat — competitive advantage + switching costs + brand. F(10) TAM — total addressable market + penetration. G(10) Catalyst — near-term catalysts (earnings, M&A, product launch). H(5) Anti-Fragility — benefits from chaos/volatility. Penalties: CN_ADR -15, >10% dilution -20, reverse split -25, CEO selling -15, zero rev -10.",
+          "system_prompt": "You are a quantitative scorer. Apply framework rigorously. Data: SKIN ($0.67, $296M rev, -6.7% growth, 64.9% GM, $28M FCF, $367M debt). IRWD ($3.57, $362M rev, +159% growth, 75.2% GM, $51M FCF, $597M debt, P/E 5.8x). BMBL ($3.17, $931M rev, -14.1% growth, 71.9% GM, $235M FCF, $597M debt).",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t29_sector_gaps",
+          "prompt": "PORTFOLIO SECTOR GAP ANALYSIS: Current portfolio sectors: SE Asia fintech (GRAB), gold miners (BTG, GAU), China IoT (TUYA), China brokerage (TIGR), LatAm fintech (pending PAGS, PAYO). Sprint 12 candidates add: aesthetics/beauty (SKIN), pharma (IRWD), dating/social (BMBL), biotech (NUVB), SaaS (DOMO), EV trucks (XOS), healthcare services (DCGO). Which sector adds the MOST diversification to the existing portfolio? Which is most uncorrelated to existing holdings? Consider: gold miners are inflation hedge, SE Asia is growth, China is regulatory risk.",
+          "system_prompt": "You are a portfolio diversification analyst. Identify which Sprint 12 sector adds the most uncorrelated return to the existing portfolio.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t30_recession_test",
+          "prompt": "RECESSION STRESS TEST: If a US recession hits in 2026-2027, which Sprint 12 candidates SURVIVE and which DIE? Test each: SKIN (elective beauty procedures — discretionary?), IRWD (pharma — recession-resistant?), BMBL (dating — recession-proof or discretionary?), NUVB (biotech — funding dependent?), DOMO (SaaS — budget cuts?), XOS (EV trucks — capex dependent?), DCGO (healthcare — recession-resistant?). Rank from most recession-proof to most cyclically exposed.",
+          "system_prompt": "You are a macro strategist. Assess each company's vulnerability to recession. Companies with debt + cyclical revenue are most at risk.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t31_bmbl_financials",
+          "prompt": "BMBL FINANCIAL FORENSIC: Revenue $931M declining -14.1%. GM 71.9%, OM 31.5%. FCF $235M. Debt $597M. Cash $246M. Questions: 1) Is revenue decline accelerating or decelerating quarter over quarter? 2) MAU (monthly active users) trend — growing or shrinking? 3) ARPU trend — is ARPU up but users down? 4) What is driving OM of 31.5% — cost cuts or genuine efficiency? 5) Is the $235M FCF sustainable with declining revenue? 6) Whitney Wolfe Herd — did she step down as CEO? Who runs it now? 7) Buyback program?",
+          "system_prompt": "You are a forensic consumer internet analyst. Companies with declining revenue and high FCF are either in harvest mode or about to turn around. Determine which.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t32_domo_saas",
+          "prompt": "DOMO SaaS ANALYSIS: DOMO at $4.28, $319M ARR equivalent, 75% GM, FCF $41M. Founded by Josh James (sold Omniture to Adobe for $1.8B). Key questions: 1) Why is DOMO losing? Power BI is free with O365, Tableau is Salesforce-bundled. What is DOMO's differentiation? 2) Customer retention — net revenue retention rate? 3) Is James still CEO? What is the board situation? 4) Could this be an acquisition target for Salesforce, Oracle, SAP? At $193M mcap and $319M revenue, it's a 0.6x revenue takeout. 5) Is there a going-concern risk?",
+          "system_prompt": "You are a SaaS/enterprise software M&A analyst. Assess whether DOMO survives independently or gets acquired. Josh James track record matters.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t33_uroy_uranium",
+          "prompt": "URANIUM THESIS: UROY (Uranium Royalty Corp) at $3.87, market cap $567M. Revenue $55M, zero debt, $139M cash, FCF $38M. The 416,400% revenue growth is clearly a base effect (went from near-zero to $55M). Key questions: 1) Is the nuclear renaissance thesis real? 2) How many uranium royalties/streams does UROY own? 3) What is the uranium spot price outlook? 4) Compared to Cameco (CCJ), NexGen (NXE), Kazatomprom — is UROY the best way to play uranium? 5) What is the royalty model advantage vs miners?",
+          "system_prompt": "You are a uranium/nuclear energy analyst. Assess whether the nuclear renaissance thesis is real and whether UROY is the right vehicle to play it.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t34_fallen_angels",
+          "prompt": "FALLEN ANGEL SCREEN: Which Sprint 12 candidates were once high-flyers that have crashed? Check peak-to-current decline: 1) SKIN — peak price and when? (likely $30+ at SPAC peak), 2) BMBL — IPO at $76 in Feb 2021, now $3.17 = -96% crash, 3) DOMO — was $100+ in 2018, now $4.28 = -96%, 4) SFIX — was $113 in 2021, now $3.52 = -97%, 5) DCGO — peak? 6) XOS — SPAC peak? For each fallen angel: Is the business fundamentally broken or is this maximum fear/opportunity?",
+          "system_prompt": "You are a fallen angel investor. Distinguish between permanently broken businesses and temporarily hated stocks trading below intrinsic value.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t35_risk_matrix",
+          "prompt": "RISK MATRIX for Sprint 12 TOP 3 (SKIN, IRWD, BMBL). Rate each 1-5 for Probability and Impact. Categories: 1) Debt Risk — covenant breach, refinancing failure, 2) Revenue Risk — further decline, customer loss, 3) Competition Risk — being disrupted or out-competed, 4) Management Risk — CEO change, fraud, misalignment, 5) Regulatory Risk — FDA, antitrust, data privacy, 6) Macro Risk — recession, interest rates, consumer spending. Calculate total risk score /30 for each stock.",
+          "system_prompt": "You are a risk analyst. Create structured risk assessment. Higher score = higher risk. Flag any risk >4 probability AND >4 impact as CRITICAL.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t36_master_watchlist",
+          "prompt": "MASTER WATCHLIST UPDATE: Current watchlist: SMWB @ $3.00, VFF @ $2.00, OGI @ $0.80, TASK @ $5.00. Based on Sprint 12 analysis, should any new stocks be ADDED to watchlist with specific alert prices? Consider: 1) SKIN @ ??? (if debt risk manageable), 2) IRWD @ ??? (if growth is real), 3) BMBL @ ??? (if revenue stabilizes), 4) Any others from Sprint 12. Also: should any CURRENT watchlist names be REMOVED? Portfolio has ~$1,062 cash, $200-300 max per position.",
+          "system_prompt": "You are a portfolio manager updating the watchlist. Be selective — max 6-8 names on watchlist. Include specific GTC limit order prices.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t37_deepseek_verify",
+          "prompt": "DATA VERIFICATION: Cross-check these key numbers that seem too good to be true. For each, state whether the number is REAL, MISLEADING, or FAKE: 1) IRWD 159% revenue growth — real sustainable growth or one-time event? 2) AGEN P/E 1.7x — real earnings or non-recurring milestone? 3) BMBL $235M FCF at $481M mcap (49% FCF yield) — real or accounting artifact? 4) SKIN 0.29x P/S with 64.9% GM — justified by debt? 5) NUVB 2598% revenue growth — acquisition or drug launch? 6) XOS 90.9% growth with $23M FCF — real or working capital timing?",
+          "system_prompt": "You are a forensic data verification analyst. For each number, explain why it might be misleading. DeepSeek data is ZERO TRUST — cite sources.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t38_portfolio_action",
+          "prompt": "SPRINT 12 FINAL ACTION: What should the investor DO? Current portfolio: GRAB(150 shr, ~$540), BTG(50, ~$234), GAU(100, ~$225), TUYA(95, ~$210), TIGR(39, ~$202). Pending: PAGS 50 @ $9.22 limit, PAYO 50 @ $5.12 limit. Cash ~$1,062. Watchlist: SMWB @ $3.00, VFF @ $2.00, OGI @ $0.80, TASK @ $5.00. Sprint 12 finds: SKIN, IRWD, BMBL, NUVB, DOMO, XOS, AGEN, DCGO. OPTIONS: A) Add IRWD/BMBL to watchlist. B) Set new limit orders. C) Cancel PAGS/PAYO limits and redirect to Sprint 12 finds. D) Stay patient — wait for blood in streets. E) Specific action with prices.",
+          "system_prompt": "You are the chief investment officer. Make a SINGLE definitive recommendation with specific actions and prices. This is REAL money. State confidence level.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t39_insider_crosscheck",
+          "prompt": "INSIDER ACTIVITY CROSS-CHECK for Sprint 12 candidates. For each stock, what is the insider activity pattern (buying, selling, neutral)? 1) SKIN — any insider buying at $0.67 or just silence? 2) IRWD — are insiders buying at $3.57 with a 5.8x P/E? 3) BMBL — Whitney Wolfe Herd selling? Board buying? 4) NUVB — David Hung buying his own stock? 5) DOMO — Josh James activity? 6) XOS — 62.6% insider ownership — are they adding? 7) AGEN — activity? Rank from most bullish insider signal to most bearish.",
+          "system_prompt": "You are an insider activity forensic analyst. Check for recent SEC Form 4 filings. Insiders buying at lows = strongest signal. Silence at lows = concerning.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s12_t40_sprint_summary",
+          "prompt": "SPRINT 12 EXECUTIVE SUMMARY: Write a 500-word summary covering: 1) Top 3 findings from Sprint 12, 2) Which stocks passed the deep dive test, 3) Which stocks were killed and why, 4) Updated watchlist with specific prices, 5) Key risks identified, 6) Recommended next Sprint 13 priorities, 7) Overall portfolio positioning. Compare Sprint 12 quality to Sprints 10-11. Did we find any A-grade opportunities or mostly B/C mediocrity?",
+          "system_prompt": "You are a research director summarizing Sprint 12 for the investment committee. Be concise, data-driven, and honest about quality of findings.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

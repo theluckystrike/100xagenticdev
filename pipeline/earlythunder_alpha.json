@@ -1,0 +1,296 @@
+{
+  "phases": [
+    {
+      "name": "Alpha Scanning — 20 Agents",
+      "tasks": [
+        {
+          "task_id": "alpha-01",
+          "prompt": "You are analyzing the DeFi landscape as of May 2026. Identify the top 5 DeFi protocols with P/S ratio UNDER 10x that have at least $100M TVL and growing revenue. For each, provide: name, ticker, TVL, annualized revenue, P/S ratio, market cap, and the key bull thesis in 2 sentences. Focus on protocols most people are overlooking. Exclude ETH, AAVE, UNI, MKR, HYPE — those are already known. Look for hidden gems.",
+          "system_prompt": "You are an elite DeFi analyst with deep knowledge of Token Terminal, DeFiLlama, and on-chain data. You specialize in finding undervalued protocols before the market catches on. Be specific with numbers and cite data sources. No filler.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-02",
+          "prompt": "Research ALL crypto tokens that have activated or announced fee switches, revenue sharing, or buyback programs in the last 90 days (March-May 2026). For each: token name, ticker, date of activation, revenue being shared, mechanism (buyback vs burn vs direct distribution), and estimated annual yield to token holders. This is the single most alpha-generative catalyst in crypto right now.",
+          "system_prompt": "You are a crypto governance analyst who monitors every major DAO proposal and fee switch vote. You track Snapshot, Tally, and on-chain governance across all major protocols. Be exhaustive — miss nothing.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-03",
+          "prompt": "Analyze the Hyperliquid ecosystem as of May 2026. What protocols are building on HyperEVM? Which HYPE ecosystem tokens exist and what are their valuations? Is there a Hyperliquid DeFi ecosystem forming (lending, stablecoins, liquid staking)? What are the best ways to get exposure beyond HYPE itself? Include any upcoming token launches on Hyperliquid.",
+          "system_prompt": "You are a Hyperliquid ecosystem specialist. You track every protocol deploying on HyperEVM, every governance proposal, and every liquidity metric. Provide specific protocol names, TVL figures, and token details.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-04",
+          "prompt": "Research the Real World Asset (RWA) tokenization landscape in May 2026. Which protocols are seeing actual institutional adoption (not just announcements)? What's the total RWA TVL? Which tokens have the best P/S ratios? Focus on: ONDO, SYRUP/Maple, Centrifuge, Goldfinch, TrueFi, Securitize. Also check if BlackRock's BUIDL fund has expanded and what protocols it uses.",
+          "system_prompt": "You are an RWA tokenization analyst bridging TradFi and DeFi. You understand credit markets, tokenized treasuries, and institutional DeFi products. Be specific about AUM, yields, and institutional adoption metrics.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-05",
+          "prompt": "What are the top 10 crypto tokens by BUYBACK YIELD (annual buyback spend / market cap) as of May 2026? Calculate the exact buyback yield percentage for each. Include: HYPE, FLUID, GMX, UNI, AAVE, MKR/SKY, INJ, BNB, and any others with active buyback programs. Rank them strictly by buyback yield percentage. This is the most important metric for value investors.",
+          "system_prompt": "You are a quantitative crypto analyst who calculates financial ratios with precision. Show your math for each calculation. Use current market caps and annualized buyback data. No estimates — only verifiable numbers.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-06",
+          "prompt": "Analyze ALL major token unlock events happening from June 2026 through December 2026. For each: token name, unlock date, amount unlocking (in $ and % of circulating supply), who is receiving (team/VC/community), and historical price impact of similar unlocks for that token. Focus on the TOP 20 largest unlocks by dollar value. This is critical for timing entries and avoiding downside.",
+          "system_prompt": "You are a tokenomics analyst who tracks every vesting schedule across major crypto projects. Use data from Token Unlocks, DeFiLlama, and official documentation. Be precise with dates and amounts.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-07",
+          "prompt": "Research the AI x Crypto intersection as of May 2026. Which AI tokens have REAL revenue (not just narrative)? Analyze: RENDER, FET/ASI, TAO, AKT, AIOZ, GRASS, IO, and any new entrants. For each: actual compute revenue, P/S ratio, active GPU count or compute units, and whether the revenue is sustainable or subsidized. Separate real AI infrastructure from AI memecoins.",
+          "system_prompt": "You are an AI infrastructure analyst who understands both GPU compute economics and token value accrual. You can distinguish real compute revenue from token incentive recycling. Be ruthlessly honest about which projects have real traction.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-08",
+          "prompt": "Analyze the stablecoin wars as of May 2026. Market share changes for USDT, USDC, DAI/USDS, USDe (Ethena), GHO, FRAX, PYUSD, crvUSD. Which stablecoin issuers' governance tokens are the best investments? What are the yields on each? How does the stablecoin thesis translate to token alpha? Focus on ENA, MKR/SKY, CRV, AAVE (GHO), and FXS.",
+          "system_prompt": "You are a stablecoin analyst who tracks minting/burning flows, peg stability, yield sources, and market share dynamics. Provide specific market cap and yield data for each stablecoin.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-09",
+          "prompt": "Research the Ethereum restaking ecosystem as of May 2026. What's happened with EigenLayer since the EIGEN token launch? What are AVS revenues? Which restaking protocols (ETHFI, Renzo, Puffer, Kelp) have the best fundamentals? What is the actual yield from restaking vs native ETH staking? Has the restaking narrative played out or is there more alpha?",
+          "system_prompt": "You are a restaking ecosystem analyst who tracks every AVS, every restaking protocol, and yield dynamics across the stack. Distinguish between real yield and token-incentivized yield.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-10",
+          "prompt": "Identify the top 10 tokens with the HIGHEST REVENUE GROWTH (quarter-over-quarter) in Q1 2026 vs Q4 2025. For each: protocol name, Q4 2025 revenue, Q1 2026 revenue, growth %, current P/S ratio, and market cap. Revenue growth is the strongest leading indicator of price appreciation. Use Token Terminal, DeFiLlama, or protocol-reported data.",
+          "system_prompt": "You are a growth equity analyst applying traditional revenue growth screens to crypto protocols. You demand verifiable revenue data, not TVL or volume proxies. Show the numbers.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-11",
+          "prompt": "Research the Solana DeFi ecosystem health as of May 2026. After the memecoin mania cooled, what happened to: Jupiter (JUP), Raydium (RAY), Kamino (KMNO), Marinade (MNDE), Orca, Drift, Jito (JTO), and marginfi? Which Solana DeFi protocols still have growing TVL and revenue? Are any of them severely undervalued now that memecoin excitement has faded?",
+          "system_prompt": "You are a Solana ecosystem analyst who tracks every DeFi protocol on the chain. You understand the distinction between memecoin-driven metrics and organic DeFi growth. Provide specific TVL, volume, and revenue data.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-12",
+          "prompt": "Analyze the DEX landscape in May 2026. Market share by volume: Uniswap, Jupiter, Hyperliquid, PancakeSwap, Curve, Aerodrome, Raydium, 1inch, CoW Protocol. Which DEX tokens offer the best value? Focus on revenue-to-market-cap ratios. Has the Uniswap fee switch changed the game? What about new DEX models (intent-based, RFQ, hybrid)?",
+          "system_prompt": "You are a DEX specialist who tracks volume, fees, and market share across every chain. You understand the differences between AMM, CLMM, order book, and intent-based models. Provide specific volume and fee data.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-13",
+          "prompt": "Research crypto ETF flows and institutional positioning as of May 2026. Total AUM for: BTC ETFs, ETH ETFs, SOL ETFs (if approved), HYPE ETFs (BHYP). Net flows last 30 days. Which altcoins have ETF applications pending? What's the timeline for SOL ETF approval? Are there any new thematic crypto ETFs (DeFi basket, L1 basket)?",
+          "system_prompt": "You are an institutional crypto analyst who tracks ETF flows, 13F filings, and institutional adoption metrics. Provide specific AUM numbers, flow data, and regulatory timeline estimates.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-14",
+          "prompt": "Find the top 5 crypto protocols that are CASH FLOW POSITIVE (protocol revenue exceeds token emissions + operating costs) as of May 2026. For each: name, ticker, annual revenue, annual emissions cost (tokens emitted × price), operating costs if known, and net cash flow. True profitability is the rarest and most valuable trait in crypto.",
+          "system_prompt": "You are a fundamental crypto analyst who evaluates protocols like businesses. You understand the concept of 'real yield' vs 'emissions-funded yield' and can calculate net profitability. Be rigorous with the math.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-15",
+          "prompt": "Research the lending protocol landscape beyond Aave in May 2026. Analyze: Morpho Blue, Euler V2, Fluid/Instadapp, Compound V3, Spark (MakerDAO), Venus, Radiant, Silo, and any newer entrants. Which has the fastest TVL growth? Best interest rate efficiency? Most innovative features? Any protocols that could challenge Aave's dominance?",
+          "system_prompt": "You are a DeFi lending specialist who understands interest rate models, risk parameters, and liquidity dynamics. Compare protocols on capital efficiency, risk management, and fee structures.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-16",
+          "prompt": "Analyze the Layer 2 wars as of May 2026. Base vs Arbitrum vs OP Mainnet vs zkSync vs Starknet vs Scroll vs Linea. Which L2 has the most organic TVL growth? Most developer activity? Best revenue? Are any L2 tokens severely undervalued? What about the new 'based rollup' narrative? Which L2s actually return value to token holders?",
+          "system_prompt": "You are an Ethereum L2 analyst who tracks each rollup's TVL, transactions, fees, and developer ecosystem. You understand the difference between sequencer revenue and token holder value accrual.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-17",
+          "prompt": "Research the perpetual DEX landscape beyond Hyperliquid in May 2026. What percentage of perp volume does Hyperliquid control? Which competitors are growing? Analyze: dYdX, GMX, Vertex, Drift, Jupiter Perps, Aevo, Kwenta/SNX, and any new entrants. Are there any perp DEX tokens that are undervalued relative to their volume and revenue?",
+          "system_prompt": "You are a derivatives market analyst who tracks open interest, volume, funding rates, and protocol revenue across all perp DEXs. Provide specific volume and revenue comparisons.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-18",
+          "prompt": "Identify crypto tokens that have undergone SIGNIFICANT TOKENOMICS IMPROVEMENTS in the last 6 months (Dec 2025 - May 2026). Examples: supply burns, inflation reduction, fee switch activation, buyback programs, staking overhauls. For each: what changed, when, and the estimated impact on token value accrual. Tokenomics improvements are the most underappreciated catalyst.",
+          "system_prompt": "You are a tokenomics engineer who tracks governance proposals and token model changes across all major protocols. You can quantify the impact of tokenomics improvements on token value.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-19",
+          "prompt": "Research cross-chain bridge and interoperability protocols as of May 2026. Which bridge protocols have significant revenue? Analyze: LayerZero (ZRO), Wormhole (W), Across (ACX), Chainlink CCIP (LINK), Axelar (AXL), and Stargate (STG). Volume trends, revenue, security record, and token value accrual. Has the bridge landscape consolidated?",
+          "system_prompt": "You are a cross-chain infrastructure analyst. You track bridge volume, fees, security incidents, and protocol market share. Provide specific volume and revenue data.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "alpha-20",
+          "prompt": "Create a 'CONVICTION MATRIX' for May 2026 crypto investing. Score each sector on a 1-10 scale for: (1) Current Value (how cheap are tokens?), (2) Growth Trajectory (revenue/TVL growth), (3) Catalyst Density (upcoming events), (4) Risk Level (regulatory/technical/market risk). Sectors to score: DeFi Lending, DEXs, Perp DEXs, L1s, L2s, Restaking, RWA, AI Infra, Stablecoins, Bridges, Oracle, Gaming, Memecoins. Rank sectors by composite score.",
+          "system_prompt": "You are a crypto portfolio strategist who thinks in risk-adjusted terms. You combine fundamental analysis with market timing. Create a clear, actionable framework. No wishy-washy conclusions.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "You are the Chief Investment Officer synthesizing research from 20 parallel crypto analysts. Create a MASTER ALPHA REPORT with:\n\n1. TOP 10 ALPHA OPPORTUNITIES (ranked by expected return × probability of thesis playing out)\n   - For each: ticker, current price, target price, thesis in 2 sentences, key risk, timeline\n\n2. SECTOR HEAT MAP\n   - Which sectors are most/least attractive right now?\n\n3. NEW TOKENS TO ADD TO SCORECARD\n   - Tokens not in our 149-token universe that should be tracked\n\n4. CATALYST CALENDAR (June-December 2026)\n   - The 20 most important upcoming events for crypto investing\n\n5. PORTFOLIO REBALANCING RECOMMENDATIONS\n   - Given current holdings (ETH/HYPE/UNI/LINK/AAVE/SKY core, NEAR/ONDO/TON/ETHFI/FLUID/JUP/CRV/KMNO growth, ENA/PENDLE/LQTY/GMX/RAY spec)\n   - What should be added/removed/resized based on this research?\n\n6. RISK RADAR\n   - Top 5 risks to monitor in the next 90 days\n\nResolve contradictions between agents. Flag low-confidence findings. Be actionable — this goes directly into portfolio decisions."
+    },
+    {
+      "name": "Deep Alpha Validation — 20 Agents",
+      "tasks": [
+        {
+          "task_id": "deep-01",
+          "prompt": "Based on the Phase 1 synthesis, perform a deep financial analysis on the #1 alpha opportunity identified. Build a DCF or comparable valuation model with bull/base/bear scenarios. What's the realistic upside if the thesis plays out? What's the downside if it doesn't? Include entry price levels, position sizing, and stop-loss recommendations.",
+          "system_prompt": "You are a quantitative crypto analyst who builds financial models. Show all assumptions and calculations. Be conservative in base case, ambitious in bull case. No hype — just numbers.",
+          "temperature": 0.3,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "deep-02",
+          "prompt": "Based on the Phase 1 synthesis, validate the top 5 alpha opportunities by checking for RED FLAGS. For each: insider selling patterns, governance controversies, smart contract audit status, past exploits, team departures, VC unlock pressure, regulatory concerns. Kill any opportunity where risks outweigh rewards.",
+          "system_prompt": "You are a risk analyst whose job is to find reasons NOT to invest. You are the skeptic. If an opportunity survives your scrutiny, it deserves high conviction. Be thorough and merciless.",
+          "temperature": 0.3,
+          "max_tokens": 8192
+        },
+        {
+          "task_id": "deep-03",
+          "prompt": "Based on the Phase 1 synthesis, create a detailed DCA (Dollar-Cost Averaging) entry strategy for the top 5 opportunities. Include: optimal entry price zones, tranche sizes, timing between tranches, total position as % of portfolio, and conditions that would cause you to accelerate or pause the DCA. Factor in the current Fear & Greed Index and market structure.",
+          "system_prompt": "You are a portfolio execution specialist. You design entry strategies that optimize for both price and risk management. Consider liquidity, volatility, and upcoming catalysts when designing the DCA schedule.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-04",
+          "prompt": "Based on the Phase 1 synthesis, analyze which tokens in the current EarlyThunder portfolio should be SOLD or REDUCED. The current portfolio holds: Core(55%): ETH/HYPE/UNI/LINK/AAVE/SKY. Growth(25%): NEAR/ONDO/TON/ETHFI/FLUID/JUP/CRV/KMNO. Spec(10%): ENA/PENDLE/LQTY/GMX/RAY. Cash 5%. After data hardening: LINK dropped to HOLD(-17), PENDLE to CAUTIOUS(-15), TON(-11). What should change?",
+          "system_prompt": "You are a portfolio manager focused on risk-adjusted returns. You make hard decisions about selling underperforming positions. Don't be sentimental about past purchases. Focus on forward-looking expected value.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-05",
+          "prompt": "Based on the Phase 1 synthesis, identify the single biggest contrarian opportunity — a token that the market hates but fundamentals suggest is deeply undervalued. Build the bull case for this contrarian pick. What catalyst could re-rate it? What's the market missing? What would need to be true for this to work?",
+          "system_prompt": "You are a contrarian investor who profits from consensus being wrong. You look for maximum disagreement between price and fundamentals. The best investments are the ones that make you uncomfortable.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-06",
+          "prompt": "Analyze the macro environment for crypto as of May 2026. Fed rate path, US dollar strength, equity market correlation, political/regulatory landscape (post-election effects), institutional adoption trends. How should portfolio allocation shift based on macro? Are we in early/mid/late cycle? What macro scenario would be most bullish/bearish for our portfolio?",
+          "system_prompt": "You are a macro strategist who bridges traditional finance and crypto. You understand how interest rates, dollar strength, and risk appetite affect crypto valuations. Provide a framework for macro-adjusted crypto positioning.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-07",
+          "prompt": "Research the most important protocol upgrades happening in the next 6 months (June-December 2026). Focus on: Ethereum Glamsterdam/Pectra, Solana Firedancer, Hyperliquid HIP-4, any major DeFi protocol v2/v3 launches. For each upgrade: what changes, expected impact on token price, and timeline. Upgrades are one of the most reliable catalysts.",
+          "system_prompt": "You are a crypto protocol analyst who tracks development roadmaps across all major chains and protocols. You understand the technical significance of upgrades and can estimate their market impact.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-08",
+          "prompt": "Analyze the options and derivatives data for the top 10 crypto assets as of May 2026. What does the options market tell us about expected volatility? Are there any significant put/call ratio imbalances? Max pain levels? Open interest concentration at specific strikes? This data often predicts major moves before they happen.",
+          "system_prompt": "You are a derivatives market analyst who interprets options flow, funding rates, and futures basis to predict price movements. Provide specific data points and their implications.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-09",
+          "prompt": "Research which crypto tokens have the STRONGEST COMMUNITY GOVERNANCE and most active DAOs as of May 2026. Governance activity (proposal frequency, voter turnout, treasury management quality) is a leading indicator of protocol health. Rank the top 10 DAOs by governance quality. Which governance tokens are undervalued relative to their treasury and revenue?",
+          "system_prompt": "You are a DAO governance analyst who monitors Snapshot, Tally, and on-chain governance across all major protocols. You evaluate governance quality by participation rates, proposal quality, and treasury management.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-10",
+          "prompt": "Create a CORRELATION MATRIX analysis for May 2026. Which crypto tokens move independently of BTC? Which are pure BTC beta? Which have negative correlation during drawdowns? For an existing portfolio of 19 tokens (ETH/HYPE/UNI/LINK/AAVE/SKY/NEAR/ONDO/TON/ETHFI/FLUID/JUP/CRV/KMNO/ENA/PENDLE/LQTY/GMX/RAY), is there sufficient diversification or are all positions basically correlated BTC bets?",
+          "system_prompt": "You are a quantitative portfolio analyst who evaluates correlation structures, beta exposure, and diversification benefits in crypto portfolios. Provide specific correlation estimates based on recent market behavior.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-11",
+          "prompt": "Research the latest developments in crypto regulation globally as of May 2026. What happened with MiCA in Europe? US CLARITY Act status? SEC enforcement trends? Which tokens benefit most from regulatory clarity? Which are most at risk? Has any token been officially classified as a digital commodity or security?",
+          "system_prompt": "You are a crypto regulatory analyst who tracks legislation, enforcement actions, and regulatory guidance globally. Provide specific regulatory developments and their impact on specific tokens.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-12",
+          "prompt": "Analyze the LIQUID STAKING landscape as of May 2026. Lido (wstETH) vs EtherFi (weETH) vs Coinbase (cbETH) vs Rocket Pool (rETH) vs others. Market share changes, yield comparisons, and which liquid staking token is the best investment. Also: has liquid staking expanded beyond ETH to SOL, ATOM, or other chains?",
+          "system_prompt": "You are a liquid staking analyst who tracks staking ratios, protocol fees, and competitive dynamics across the LST landscape. Provide specific market share data and yield comparisons.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-13",
+          "prompt": "Find 5 tokens UNDER $200M market cap that have: (1) real revenue, (2) growing TVL, (3) active development, and (4) token buyback or burn mechanisms. These are the highest expected value opportunities in crypto — small caps with real fundamentals. Include current price, market cap, annualized revenue, P/S ratio, and TVL.",
+          "system_prompt": "You are a small-cap crypto analyst who specializes in finding micro/small-cap tokens with real fundamentals before they become large-cap. You ignore memecoins and focus only on protocols with verifiable revenue and growing metrics.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-14",
+          "prompt": "Analyze the POINTS and AIRDROP meta as of May 2026. Which protocols still have upcoming airdrops? Has the airdrop farming meta changed? Which protocols' tokens tanked after airdrop and are now undervalued? Sometimes the best alpha is buying tokens 6-12 months AFTER the airdrop dump when farmers have left and fundamentals reassert.",
+          "system_prompt": "You are an airdrop and points meta analyst. You track which protocols have distributed tokens, which are still accumulating points, and how post-airdrop price action creates value opportunities.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-15",
+          "prompt": "Research the DECENTRALIZED ORACLE landscape in May 2026. Chainlink (LINK) vs Pyth (PYTH) vs RedStone vs API3 vs UMA. Market share by number of integrations. Revenue to node operators. Which oracle network is growing fastest on which chains? Is LINK's 63-70% market share defensible or eroding?",
+          "system_prompt": "You are an oracle infrastructure analyst who tracks integration counts, data feed accuracy, uptime, and revenue across oracle networks. Provide specific market share data.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-16",
+          "prompt": "Analyze WHALE WALLET movements for the top 20 DeFi tokens in the last 30 days (April-May 2026). Which tokens are seeing the most accumulation by large wallets (>$1M)? Which are seeing distribution? Whale behavior is one of the strongest predictive signals in crypto. Use Nansen, Arkham, or similar data.",
+          "system_prompt": "You are an on-chain analyst who tracks whale wallets, smart money flows, and institutional accumulation patterns. Provide specific wallet data and flow analysis.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-17",
+          "prompt": "Research NEW BLOCKCHAIN LAUNCHES and ecosystems emerging in 2026. Monad, Berachain, MegaETH, Story Protocol, Movement, Initia, Sei V2, Eclipse. Which have the most developer traction? Which ecosystem tokens are tradeable? Any early-stage opportunities similar to where Solana or Sui were at comparable stages?",
+          "system_prompt": "You are a new ecosystem analyst who evaluates emerging Layer 1s and Layer 2s. You assess team quality, technology differentiation, ecosystem development, and investment timing.",
+          "temperature": 0.7,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-18",
+          "prompt": "Create a RISK DASHBOARD for the EarlyThunder portfolio (19 tokens). For each token, assign: (1) Technical Risk (smart contract, hack probability), (2) Regulatory Risk, (3) Market Risk (liquidity, correlation), (4) Team/Governance Risk, (5) Tokenomics Risk (inflation, unlocks). Composite risk score 1-10 for each. Which positions have the worst risk/reward?",
+          "system_prompt": "You are a risk manager who quantifies downside scenarios. You assign probabilities to tail risks and calculate expected loss. Be specific about risk factors for each token.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-19",
+          "prompt": "Analyze the GAMING and METAVERSE sector in May 2026. Has any crypto game achieved mainstream adoption? What happened to: IMX, GALA, AXS, SAND, MANA, FLOW, BEAM, PRIME, PIXEL? Are any gaming tokens worth investing in, or is the sector permanently dead? What about the intersection of gaming and AI?",
+          "system_prompt": "You are a gaming industry analyst who understands both traditional gaming economics and crypto gaming tokenomics. Be honest about which projects have traction and which are dead.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deep-20",
+          "prompt": "Final synthesis task: Given everything we know about the EarlyThunder portfolio and the current market, what are the TOP 3 TRADES to make RIGHT NOW? Each trade should include: (1) what to buy/sell, (2) exact position size as % of $100K portfolio, (3) entry price or current price, (4) target price and timeline, (5) stop-loss level, (6) the thesis in one sentence. These should be the highest-conviction, most actionable ideas.",
+          "system_prompt": "You are the Chief Investment Officer making final allocation decisions for a $100K crypto portfolio. You synthesize all research into 3 actionable trades. Be specific, be bold, be disciplined. Every trade needs a thesis, a target, and a stop-loss.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "You are the Chief Investment Officer producing the FINAL ALPHA REPORT for the EarlyThunder portfolio. This report will directly drive $100K in capital allocation decisions.\n\nSynthesize all 20 deep-dive research threads into:\n\n1. PORTFOLIO CHANGES (IMMEDIATE ACTION)\n   - SELL: tokens to exit completely, with reasoning\n   - REDUCE: tokens to trim, with target % reduction\n   - ADD: new tokens to buy, with target allocation %\n   - INCREASE: existing tokens to add to\n\n2. NEW SCORECARD ADDITIONS\n   - Tokens to add to the 149-token scorecard with estimated scores\n\n3. TOP 5 HIGHEST-CONVICTION ALPHA PLAYS\n   - Ranked by expected value (probability × magnitude)\n   - Each with: entry, target, stop, position size, timeline\n\n4. UPDATED DCA SCHEDULE\n   - Revised 4-tranche DCA plan for any new positions\n\n5. RISK ALERTS\n   - Positions to monitor closely in the next 30 days\n\n6. MACRO POSITIONING\n   - Overall crypto allocation recommendation (bullish/neutral/bearish)\n   - Cash % recommendation\n\nBe specific, be actionable, be bold where warranted and cautious where needed."
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "gold_price_history",
+          "prompt": "Gold price trajectory Jan 2024 to Jun 2026. Provide exact monthly closing prices from World Gold Council or LBMA. What drove gold from ~$2,050 to $4,500? List each major catalyst with dates. Central bank purchases by country (China PBOC, India RBI, Turkey, Poland — exact tonnes per quarter). De-dollarization thesis data points. If you don't know exact post-May 2024 prices, say UNKNOWN.",
+          "system_prompt": "You are a gold market analyst. Only cite data you are certain of. For anything after May 2024, explicitly mark as UNKNOWN or ESTIMATED. Never fabricate price data.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gold_supply_demand",
+          "prompt": "Gold supply/demand fundamentals 2024-2026. Mine production (top 10 countries, tonnes). Recycling supply. Total demand: jewelry, technology, investment, central banks. Supply deficit or surplus? COMEX inventory levels. ETF holdings (GLD, IAU tonnes). Physical vs paper gold ratio. Cite World Gold Council data only.",
+          "system_prompt": "You are a commodities research analyst. Cite only World Gold Council, USGS, or major mining company reports. Say CANNOT VERIFY for anything uncertain.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gold_miners_universe",
+          "prompt": "List ALL publicly traded gold mining companies under $10/share with market cap $200M-$5B. For each provide: ticker, exchange, share price, market cap, production (oz/year), AISC per oz, P/NAV ratio, net cash/debt, dividend yield. Rank by EV/EBITDA. Which are the cheapest relative to gold at $4,500/oz? Focus on companies with AISC under $2,000/oz — they have $2,500/oz margin.",
+          "system_prompt": "You are a mining equity analyst. List real tickers only. If unsure about a company's current price, say PRICE UNVERIFIED. Never invent companies.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "btg_financials_verify",
+          "prompt": "B2Gold Corp (NYSE: BTG). Verify from SEDAR+ and SEC filings: Q1 2025 revenue, net income, AISC, production oz, cash position, total debt, shares outstanding, dividend per share, FCF. What is BTG's all-in sustaining cost for 2024 full year and Q1 2025? What was their 2024 annual production? What is their 2025 production guidance? Cite filing dates and page numbers.",
+          "system_prompt": "You are a forensic financial auditor specializing in mining companies. Every number must have a filing citation. If you cannot find the exact number in a filing, say UNVERIFIED.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "btg_mines_verify",
+          "prompt": "B2Gold Corp mines inventory. List EVERY mine B2Gold operates or is developing. For each: name, country, type (open pit/underground), production (oz 2024), AISC, mine life remaining, reserves (proven+probable oz), resources (M+I oz). Verify: Fekola (Mali), Masbate (Philippines), Otjikoto (Namibia), Goose (Canada). Is there a mine called 'Otjozondu'? That name was previously flagged as FABRICATED.",
+          "system_prompt": "You are a mining engineer. Use NI 43-101 technical reports and SEDAR+ filings only. If a mine name doesn't exist in B2Gold's portfolio, say DOES NOT EXIST.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "btg_goose_project",
+          "prompt": "B2Gold Goose Project (Back River Gold District, Nunavut, Canada). Verify: construction status as of Q1 2025, first gold target date, total capex budget vs actual spend, expected annual production, expected AISC, mine life. Has there been a capex overrun? What is the latest construction update from B2Gold press releases? Cite specific dates.",
+          "system_prompt": "You are a mining project analyst. Use SEDAR+ filings and B2Gold press releases only. Mark any unverifiable claims clearly.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "btg_mali_risk",
+          "prompt": "Mali mining code and B2Gold Fekola risk analysis. What is the current Mali mining code? Has the junta changed it? What percentage of B2Gold's production comes from Fekola? What are the specific risks: nationalization, tax increases, export restrictions, security? Has B2Gold received any notices from the Mali government? What happened to other miners in Mali (Barrick, Resolute)? Cite news sources with dates.",
+          "system_prompt": "You are a geopolitical risk analyst specializing in West African mining. Cite specific news articles, government decrees, and corporate filings. If uncertain about recent developments, say CANNOT VERIFY.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gau_financials_verify",
+          "prompt": "Galiano Gold (NYSE: GAU, TSX: GAU). Verify from SEDAR+ and SEC filings: Q1 2025 revenue, net income, AISC, production oz, cash position, total debt, shares outstanding, FCF. What is GAU's 2024 full year production and AISC? What is 2025 guidance? What is the current market cap? Cite filing dates.",
+          "system_prompt": "You are a forensic financial auditor. Every number must have a filing citation. GAU operates the Asanko Gold Mine in Ghana. Do NOT confuse with Aris Mining or any other company.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gau_asanko_mine",
+          "prompt": "Galiano Gold Asanko Gold Mine (Ghana). Provide: mine location, type, current production rate, AISC, mine life, proven+probable reserves, measured+indicated resources, exploration upside, mill capacity, recovery rate. Is there an expansion study? What is the Nkran pit status? Any community or environmental issues? Cite NI 43-101 reports.",
+          "system_prompt": "You are a mining engineer. Use NI 43-101 technical reports filed on SEDAR+. Be precise about reserve categories. Do NOT confuse GAU with any other company.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gau_valuation",
+          "prompt": "Galiano Gold (GAU) valuation at gold $4,500/oz. Calculate: revenue at current production and $4,500 gold, EBITDA margin, FCF, EV/EBITDA, P/NAV, P/FCF. Compare to peer group (Dundee Precious, Torex Gold, Equinox Gold, Alamos Gold, OceanaGold). What is GAU's discount to peers? Is the market mispricing GAU? What is fair value at $4,500 gold?",
+          "system_prompt": "You are a mining equity analyst. Use real peer comparisons. Show your math. If you don't know GAU's exact current metrics, use the latest available from filings and clearly state the date.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gold_miners_etf_flows",
+          "prompt": "Gold miner ETF flows and composition. GDX and GDXJ: total AUM, YTD flows (inflows/outflows), top 10 holdings with weights. Has there been a rebalance recently? Which small-cap gold miners are being added? Are BTG and GAU in GDXJ? What weight? Passive flow impact on small-cap miners. Cite ETF provider data.",
+          "system_prompt": "You are an ETF analyst. Use VanEck (GDX/GDXJ provider) data. If you don't have current AUM figures, say UNVERIFIED.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_operating_leverage",
+          "prompt": "Gold miner operating leverage analysis. For BTG (AISC $1,478) and GAU (AISC ~$1,472): calculate exact margin per oz at gold prices of $2,000, $2,500, $3,000, $3,500, $4,000, $4,500, $5,000. What is the operating leverage multiple (% EPS change per 10% gold price change)? Compare to major miners (Newmont, Barrick, Agnico Eagle). Show the math for each price level.",
+          "system_prompt": "You are a quantitative mining analyst. Show all calculations. Use real AISC figures from the latest annual reports. Operating leverage = (Revenue - Cash Costs) / (Revenue - Total Costs).",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gold_silver_ratio",
+          "prompt": "Gold/silver ratio analysis. Current ratio, historical average (20yr, 50yr), extremes (highs and lows with dates). At gold $4,500, what does the historical ratio imply for silver price? Are silver miners even more underpriced than gold miners? List top silver miners under $10 with production data. Is there a silver squeeze thesis?",
+          "system_prompt": "You are a precious metals analyst. Use real historical data. For any price data after May 2024, mark as ESTIMATED or UNKNOWN.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_central_banks",
+          "prompt": "Central bank gold buying 2022-2026. Exact quarterly purchases by country: China, India, Turkey, Poland, Singapore, Czech Republic, others. Total tonnes per year. Why are central banks buying at record pace? De-dollarization evidence: BRICS settlement system, yuan-denominated gold contracts, sanctions impact. What percentage of global reserves is gold vs USD? Trend direction?",
+          "system_prompt": "You are a central banking and reserves analyst. Use World Gold Council, IMF COFER data. For 2025-2026 data, clearly mark what you can verify vs what you're estimating.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gold_vs_btc",
+          "prompt": "Gold vs Bitcoin as store of value in 2024-2026. Performance comparison. Correlation. Do they compete or complement? Institutional allocation trends. Gold ETF flows vs Bitcoin ETF flows. Which asset class is seeing more institutional adoption? Has the Bitcoin ETF approval impacted gold demand? Data from BlackRock, Fidelity, World Gold Council.",
+          "system_prompt": "You are an institutional asset allocation analyst. Use real data points. Mark post-May 2024 data as UNVERIFIED where applicable.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_geopolitics",
+          "prompt": "Geopolitical drivers of gold price 2024-2026. Ukraine-Russia war impact on gold. Middle East tensions. US-China relations. Taiwan risk. Sanctions and asset freezes driving gold demand. SWIFT alternatives (mBridge, CIPS). Tariff war impact on gold. Which geopolitical scenarios would push gold above $5,000? Which could crash it below $3,000?",
+          "system_prompt": "You are a geopolitical risk analyst. Focus on verifiable events and their measured impact on gold prices. Don't speculate without evidence.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_interest_rates",
+          "prompt": "Gold price vs interest rates analysis. Historical correlation between gold and real rates (TIPS yields). Current Fed funds rate, 10Y TIPS yield. If Fed cuts rates in 2025-2026, what is the expected gold price impact? Quantify: for every 100bp cut, how much does gold typically move? Is gold breaking the traditional inverse correlation? Data from FRED/Bloomberg.",
+          "system_prompt": "You are a macro strategist. Use real Federal Reserve data and historical correlations. Be precise about the relationship between real yields and gold.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_miners_cheap",
+          "prompt": "Why are gold mining stocks so cheap relative to gold at $4,500? Gold is near all-time highs but GDX has not kept pace. What is the GDX/Gold ratio? Historical GDX/Gold ratio (2011 peak vs now). Investor sentiment towards miners. Is this a generational buying opportunity or a value trap? What catalysts could close the gap? M&A activity in gold mining sector.",
+          "system_prompt": "You are a contrarian equity strategist. Analyze the disconnect between gold price and miner valuations with real data. Cite GDX performance data.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "btg_analyst_targets",
+          "prompt": "B2Gold (BTG) analyst coverage. List ALL analysts covering BTG with their firm, rating (buy/hold/sell), price target, and date of last update. What is the consensus target? What is the highest target? What is the lowest? How many analysts cover BTG? Are any targets based on gold above $3,000? What gold price assumption do most analysts use?",
+          "system_prompt": "You are an equity research analyst. List only real analysts from real firms. If you cannot verify a specific target, say UNVERIFIED. Do not fabricate analyst names or firms.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gau_analyst_targets",
+          "prompt": "Galiano Gold (GAU) analyst coverage. List ALL analysts covering GAU with their firm, rating, price target, and date. How many analysts cover GAU? Is it under-followed? What is the consensus target vs current price? What gold price do they assume? At $4,500 gold, what would fair value be using their methodologies?",
+          "system_prompt": "You are an equity research analyst. GAU is a small-cap with limited coverage. List only real analysts. If coverage is thin, say so explicitly.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_royalty_streaming",
+          "prompt": "Gold royalty and streaming companies under $10: list all with ticker, price, market cap, revenue, portfolio of streams/royalties, key assets. Compare FNV, WPM, RGLD (large caps) to small caps like OR, SAND, EMX, MTA, ELEF. Which small-cap royalty/streaming companies have the best risk-adjusted exposure to gold at $4,500?",
+          "system_prompt": "You are a mining finance analyst specializing in royalty/streaming models. List only real companies with real tickers. Mark any price data as UNVERIFIED if uncertain.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "btg_dividend_analysis",
+          "prompt": "B2Gold dividend analysis. Current dividend per share, yield, payout ratio, dividend history (last 5 years). Is the dividend sustainable at gold $4,500? $3,000? $2,000? What is the FCF payout ratio? Has B2Gold ever cut the dividend? Compare BTG's yield to other mid-tier gold miners. Is BTG a dividend growth story?",
+          "system_prompt": "You are a dividend analyst. Use real dividend data from B2Gold IR and SEDAR+. Calculate payout ratios from actual financial statements.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_junior_miners",
+          "prompt": "Sub-$5 junior gold mining stocks with real production (not just exploration). List companies with: actual gold production >20,000 oz/year, share price under $5, market cap under $1B. For each: ticker, production, AISC, cash, debt, P/NAV. At $4,500 gold, which juniors are generating massive FCF but still priced for $2,000 gold? This is where the edge is.",
+          "system_prompt": "You are a junior mining specialist. Only list companies with ACTUAL production (not explorers). Verify production figures from filings. Say UNVERIFIED for any uncertain data.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "btg_insider_ownership",
+          "prompt": "B2Gold insider and institutional ownership. Who are the top 10 institutional holders? Have they been buying or selling in 2024-2025? Any activist investors? Insider transactions in last 12 months — who bought, who sold, how much? Short interest — current %, days to cover, trend. Any unusual options activity?",
+          "system_prompt": "You are an institutional ownership analyst. Use SEC 13F filings, SEDI (Canadian insider reports), and SEDAR+ data. Cite specific filing dates. For anything you can't verify, say UNVERIFIED.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gau_insider_ownership",
+          "prompt": "Galiano Gold insider and institutional ownership. Top institutional holders from 13F filings. Recent insider transactions. Short interest. Is GAU owned by gold ETFs (GDX, GDXJ)? What percentage of float is held by passive funds? Any concentrated holders? Insider buying signals?",
+          "system_prompt": "You are an institutional ownership analyst. Use real SEC and SEDI data. GAU is a small-cap — coverage may be thin. Say UNVERIFIED for uncertain data.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_ma_targets",
+          "prompt": "Gold mining M&A analysis 2024-2026. Recent deals: who acquired whom, at what price per oz of reserves, premium paid. Which sub-$5 gold miners are likely M&A targets? What premium do acquirers typically pay? Is BTG an M&A target? Is GAU? At $4,500 gold, what would BTG be worth in an M&A scenario (price per oz of reserves method)?",
+          "system_prompt": "You are an M&A advisor specializing in mining. Use real transaction data. Cite deal values and dates. For speculative targets, clearly label as OPINION.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gold_cost_inflation",
+          "prompt": "Gold mining cost inflation analysis. Have AISCs been rising? By how much per year? Diesel, labor, cyanide, explosives, steel — which input costs are driving AISC higher? Is AISC inflation eating into the gold price benefit? Compare 2020 vs 2024 AISC for top 10 gold miners. At what gold price do high-cost miners become unprofitable?",
+          "system_prompt": "You are a mining cost analyst. Use real AISC data from annual reports. Show the trend with specific numbers. If uncertain about recent data, mark as ESTIMATED.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_etf_vs_miners",
+          "prompt": "Investment comparison: GLD (gold ETF) vs GDX (gold miners ETF) vs GDXJ (junior miners ETF) vs individual stocks (BTG, GAU). 1-year, 3-year, 5-year total returns for each. Sharpe ratios. Max drawdowns. If gold goes to $5,000, which has the most upside: physical gold ETF or mining stocks? Quantify the leverage ratio.",
+          "system_prompt": "You are a portfolio strategist. Use real return data. For 2025-2026 returns, mark as UNVERIFIED. Calculate leverage ratios from historical data.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_china_india_demand",
+          "prompt": "China and India gold demand analysis. Shanghai Gold Exchange (SGE) premiums vs LBMA. Indian import data (tonnes per quarter). Chinese consumer demand trends. Are Chinese investors buying gold instead of real estate? India wedding season impact. Physical gold demand vs investment demand in both countries. Cite WGC and customs data.",
+          "system_prompt": "You are an Asian gold market specialist. Use World Gold Council, SGE, and Indian customs data. Mark uncertain figures as ESTIMATED.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_miners_pe_screen",
+          "prompt": "Screen all gold mining stocks globally for: P/E under 10, positive FCF, AISC under $1,800/oz, production above 50,000 oz/year, net cash positive. At $4,500 gold, these companies have $2,700+/oz margin and are trading at single-digit P/E — this is the edge. List every company that passes this screen with full metrics.",
+          "system_prompt": "You are a quantitative equity screener. Only include companies you can verify exist and have real production. Mark any unverified data clearly.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "btg_fcf_at_4500",
+          "prompt": "B2Gold free cash flow model at gold $4,500/oz. Using 2024 actual production (461K oz), AISC ($1,478/oz), calculate: revenue, gross margin per oz ($3,022), total gross profit, estimated G&A, capex (maintenance + Goose), taxes (by jurisdiction — Mali, Philippines, Namibia, Canada), and resulting FCF. What is the FCF yield at current market cap? Compare to S&P 500 average FCF yield of ~4%.",
+          "system_prompt": "You are a financial modeler. Use real B2Gold data from 2024 annual report. Show all math. If you estimate any input, clearly label it. Gold price input: $4,500/oz.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gau_fcf_at_4500",
+          "prompt": "Galiano Gold free cash flow model at gold $4,500/oz. Using latest production data, AISC, calculate: revenue, margin per oz, total gross profit, estimated G&A, sustaining capex, taxes (Ghana), and resulting FCF. What is the FCF yield at current market cap? Is GAU a cash machine at $4,500 gold that the market hasn't priced in?",
+          "system_prompt": "You are a financial modeler. Use real GAU data from latest filings. Show all math. Gold price input: $4,500/oz.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "gold_1000x_candidates",
+          "prompt": "Can any gold mining stock achieve 1000x returns from current price? What market cap would that imply? For BTG at $4.77 × 1000 = $4,770/share = ~$6.2 trillion (impossible). For GAU at $2.34 × 1000 = $2,340/share = ~$500 billion (impossible). So gold miners CANNOT be 1000x plays. What realistic multiple is possible? 5x? 10x? 20x? At what gold price? What about gold exploration companies — could a discovery create a 100x?",
+          "system_prompt": "You are a realistic investment analyst. Be brutally honest about return potential. Don't hype. Calculate exact market caps at various multiples.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_sector_risks",
+          "prompt": "What could CRASH gold below $3,000? List every bearish scenario with probability: strong USD rally, peace deals reducing geopolitical premium, central bank selling, crypto replacing gold as hedge, real rate spike, Chinese gold selling to defend yuan. For each scenario, estimate gold price impact and probability. What is the base case for gold in 2027?",
+          "system_prompt": "You are a risk analyst. Present both bull and bear cases with evidence. Don't be biased towards gold. If you think gold is overpriced, say so.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_technical_analysis",
+          "prompt": "Gold price technical analysis. Key support and resistance levels. 50-day and 200-day moving averages. RSI. Is gold overbought at $4,500? Historical: when gold last reached all-time highs, what happened next? 2011 peak analysis (what caused the crash from $1,900 to $1,050). Could a similar pattern repeat? MACD, Bollinger bands, volume analysis.",
+          "system_prompt": "You are a technical analyst. Use real chart data. For levels above $2,400 (post your training data), say CANNOT VERIFY and use projection methods.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_seasonal_patterns",
+          "prompt": "Gold seasonal trading patterns. Which months historically have the strongest gold performance? Indian festival/wedding buying seasons. Chinese New Year impact. Jewelry demand seasonality. Is there a best time to buy gold miners? Diwali, Akshaya Tritiya, Chinese New Year — quantify the seasonal demand spike in tonnes.",
+          "system_prompt": "You are a commodities seasonal analyst. Use historical data to identify real patterns. Cite sources.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "gold_mining_jurisdiction_risk",
+          "prompt": "Rank gold mining jurisdictions by risk: Canada, Australia, USA, Ghana, Mali, Burkina Faso, Philippines, Mexico, Peru, Brazil, DRC, Tanzania, South Africa. For each: mining code stability, tax rates, royalty rates, recent changes, nationalization risk, security risk. Fraser Institute mining survey rankings. Which jurisdictions offer the best risk-adjusted returns?",
+          "system_prompt": "You are a political risk analyst specializing in mining jurisdictions. Use Fraser Institute Annual Survey data. Cite specific rankings and scores.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "platinum_palladium_pgm",
+          "prompt": "Are platinum group metals (PGMs) even more mispriced than gold? Platinum at ~$1,000 vs gold at $4,500 — ratio is 4.5x (historical average ~0.5-0.8x). Is platinum massively undervalued? List platinum miners under $10 with production data. Sibanye Stillwater, Impala, Anglo American Platinum — which are cheapest? Could PGMs be a better contrarian bet than gold?",
+          "system_prompt": "You are a PGM market analyst. Use real ratio data and production figures. If platinum miners are cheap for a reason (demand destruction from EVs), explain why.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_hedge_expiry",
+          "prompt": "Gold mining hedge book analysis. Which companies have gold price hedges that are about to expire? When a company's hedge at $2,000/oz expires and they can sell at $4,500/oz spot, that's a massive earnings catalyst. Check: GAU hedge expiry dates and prices, BTG hedge status, Newmont, Barrick hedges. Quantify the annual revenue impact of hedge expiry at $4,500 gold.",
+          "system_prompt": "You are a mining hedge book analyst. Use actual hedge contract data from annual reports and MD&A filings. If you can't find specific hedge data, say UNVERIFIED.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "gold_inflation_hedge",
+          "prompt": "Is gold actually working as an inflation hedge in 2024-2026? CPI vs gold price correlation. Real gold price (inflation-adjusted) — is gold at a real all-time high or still below 1980 peak? If gold is $4,500 nominal, what is that in 1980 dollars? Compare gold performance to TIPS, I-bonds, real estate, commodities basket as inflation hedges.",
+          "system_prompt": "You are a macro economist. Use real CPI data and calculate real (inflation-adjusted) gold prices. Show the math.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "pipeline": "bln-diversify-anchor-safety-v3",
+  "model": "deepseek-chat",
+  "budget": 5.00,
+  "output_dir": "results/bln_diversify_v3",
+  "phases": [
+    {
+      "agents": 20,
+      "tasks": [
+        {
+          "id": "div-01",
+          "agent": "agent-div-01",
+          "prompt": "CONTEXT: BeLikeNative (belikenative.com) is an AI Chrome writing extension. Currently publishing backlinks to Dev.to (DA 62, canonical only = near-zero equity) and Telegraph (DA 90, dofollow).\n\nTASK: Research GitHub Pages as a backlink platform in exhaustive detail.\n- Exact API calls to create a repo, enable Pages, push HTML content with backlinks\n- How to structure repos (1 article per repo? 1 repo with multiple pages?)\n- How to avoid GitHub detecting spam repos\n- Optimal repo naming conventions\n- How many repos per account before flagged\n- Whether GitHub Pages links are actually dofollow (verify with real examples)\n- Sitemap generation and submission for GitHub Pages\n- Complete bash script template using gh CLI and GitHub API\n- Real-world examples of sites using GitHub Pages for SEO backlinks\n\nProvide exact curl/gh commands, not pseudocode."
+        },
+        {
+          "id": "div-02",
+          "agent": "agent-div-02",
+          "prompt": "CONTEXT: Building backlink pipeline for belikenative.com. Need to diversify link sources.\n\nTASK: Research Write.as API for automated backlink publishing.\n- Full API documentation: auth, post creation, collections, custom domains\n- Rate limits and anti-spam measures\n- Whether links are dofollow by default (verify)\n- How to create accounts programmatically\n- Pricing tiers and free tier limitations\n- Content format requirements (Markdown? HTML?)\n- Canonical URL support\n- How many posts per day before flagged\n- Complete bash/curl script for automated publishing\n- Comparison with WriteFreely (self-hosted alternative)"
+        },
+        {
+          "id": "div-03",
+          "agent": "agent-div-03",
+          "prompt": "CONTEXT: BeLikeNative backlink pipeline. Need anchor text diversification strategy.\n\nTASK: Research Google's anchor text penalty detection in exhaustive detail (2024-2026).\n- What exact anchor text ratios trigger manual review or algorithmic demotion\n- Penguin 4.0+ real-time penalty mechanics\n- Case studies of sites penalized for anchor text manipulation\n- Safe anchor text distribution for a new site (DR 22) vs established site (DR 50+)\n- How Google differentiates natural vs manipulated anchor profiles\n- Branded vs generic vs exact match vs partial match safe ratios\n- Per-platform anchor variation requirements\n- How anchor text from different DA tiers affects penalty risk\n- Specific anchor text patterns that trigger spam classifiers\n- Recovery strategies if anchor text penalty is detected\n- Tools to audit current anchor profile (free options)"
+        },
+        {
+          "id": "div-04",
+          "agent": "agent-div-04",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension for AI writing. 2,199 WordPress articles. Building automated backlink pipeline.\n\nTASK: Research Blogger/Blogspot API v3 for automated backlink publishing.\n- Complete OAuth 2.0 setup for Blogger API\n- How to create blogs programmatically\n- Post creation API with full parameter reference\n- Whether links are dofollow or nofollow (Blogger changed this multiple times)\n- Workarounds for nofollow if applicable\n- Template modification to enable dofollow\n- Rate limits and daily post limits\n- Account limits (blogs per account, posts per blog)\n- Anti-spam detection triggers\n- How to make Blogger posts look natural (templates, images)\n- Complete automation script (bash + curl)\n- DA/DR of blogspot.com subdomains vs custom domains"
+        },
+        {
+          "id": "div-05",
+          "agent": "agent-div-05",
+          "prompt": "CONTEXT: Building diversified backlink pipeline. Current: Dev.to + Telegraph. Need more platforms.\n\nTASK: Research Notion public pages as a backlink source.\n- Can Notion pages be indexed by Google?\n- Are outbound links from Notion dofollow?\n- How to create public Notion pages via API\n- Rate limits for Notion API\n- DA/DR of notion.so/notion.site\n- Content formatting via API (blocks, pages, databases)\n- How many workspaces/pages before flagged\n- Whether canonical URLs can be set\n- Real examples of Notion pages ranking in Google\n- Automation potential and complete API script\n- Comparison with Notion alternatives (Coda, Slite)"
+        },
+        {
+          "id": "div-06",
+          "agent": "agent-div-06",
+          "prompt": "CONTEXT: BeLikeNative backlink pipeline needs platform diversification.\n\nTASK: Research Reddit as a backlink source for belikenative.com.\n- Are Reddit links dofollow or nofollow? (verify current status 2025-2026)\n- Which subreddits allow self-promotion links\n- Reddit API for automated posting (rate limits, auth)\n- r/languagelearning, r/EnglishLearning, r/grammar, r/chrome_extensions rules\n- Karma requirements for posting\n- How to avoid shadowban detection\n- Reddit's spam filter heuristics\n- Whether Reddit links pass PageRank regardless of nofollow status\n- Optimal posting frequency per subreddit\n- Comment backlinks vs post backlinks\n- Reddit profile page DA\n- How to build genuine engagement alongside backlinks"
+        },
+        {
+          "id": "div-07",
+          "agent": "agent-div-07",
+          "prompt": "CONTEXT: BeLikeNative.com backlink diversification strategy.\n\nTASK: Research Quora as a backlink platform.\n- Current link status: dofollow or nofollow? (2025-2026)\n- Quora Spaces for content publishing\n- Quora API or automation options\n- Which topics/spaces relevant to AI writing tools\n- Answer length and quality requirements to avoid deletion\n- How many answers per day before flagged\n- Profile page optimization for backlinks\n- Quora's content moderation AI\n- Whether Quora answers rank in Google (verify with examples)\n- Quora Partner Program impact on reach\n- DA/DR of quora.com\n- Complete automation strategy"
+        },
+        {
+          "id": "div-08",
+          "agent": "agent-div-08",
+          "prompt": "CONTEXT: belikenative.com needs diverse referring domains for SEO.\n\nTASK: Research free web 2.0 platforms for backlink creation at scale.\n- List ALL platforms with DA 50+ that allow free publishing with links\n- For each: dofollow vs nofollow, API availability, rate limits, content format\n- Include: Tumblr, LiveJournal, Weebly, Wix, WordPress.com, Sites.Google.com\n- Include: HubPages, Vocal.media, Penzu, Strikingly, Tilda\n- Which platforms have been devalued by Google (avoid these)\n- Which platforms are currently safe and effective (2025-2026)\n- Content quality requirements per platform\n- Account creation limits\n- Rank them by: (1) link equity, (2) ease of automation, (3) safety\n- Provide API endpoints or automation methods for top 5"
+        },
+        {
+          "id": "div-09",
+          "agent": "agent-div-09",
+          "prompt": "CONTEXT: BeLikeNative Chrome extension. Building backlink pipeline with anchor text rotation.\n\nTASK: Design a deterministic anchor text rotation algorithm.\n- Input: slug, platform, article_number\n- Output: anchor text, target URL, link type\n- Requirements:\n  - 60-70% branded anchors ('BeLikeNative', 'belikenative.com', 'the BeLikeNative extension', 'BeLikeNative Chrome extension')\n  - 20-25% generic ('read more', 'check this out', 'this tool', 'learn more', 'click here', 'see here')\n  - 8-12% partial match ('AI writing assistant', 'grammar tool for Chrome', 'writing extension')\n  - 2-5% exact match ('AI writing tool', 'grammar checker', 'Chrome writing extension')\n- Must be deterministic (same inputs = same output)\n- Must distribute evenly across 2,199 articles\n- Provide complete bash function implementation\n- Include distribution tracking and weekly balance check script\n- Include per-platform variation (same article gets different anchor on different platforms)"
+        },
+        {
+          "id": "div-10",
+          "agent": "agent-div-10",
+          "prompt": "CONTEXT: BeLikeNative backlink pipeline. Currently 33 backlinks from 2 platforms.\n\nTASK: Research Google Search Console API for backlink monitoring.\n- How to query referring domains, backlinks, anchor text via GSC API\n- Service account setup for automated querying\n- How to detect manual actions or penalties via API\n- How to track position changes for target keywords\n- How to identify which backlinks Google has indexed\n- Rate limits and query quotas\n- How to detect lost backlinks\n- Integration with Ahrefs/SEMrush free alternatives\n- Complete Python or bash script for weekly backlink health report\n- Alert system for DR drops or penalty indicators\n- How to cross-reference GSC data with published.log"
+        },
+        {
+          "id": "div-11",
+          "agent": "agent-div-11",
+          "prompt": "CONTEXT: belikenative.com backlink pipeline diversification.\n\nTASK: Research Stack Overflow and Stack Exchange as backlink sources.\n- Are Stack Overflow/Exchange links dofollow or nofollow?\n- Which Stack Exchange sites are relevant (English Language & Usage, Web Applications, Software Recommendations)\n- Reputation requirements for posting links\n- Anti-spam detection on Stack sites\n- How to provide genuine value while including backlinks\n- DA/DR of Stack Overflow/Exchange subdomains\n- Rate limits for answering\n- Whether profile links are dofollow\n- Best practices to avoid getting links removed\n- API for monitoring questions relevant to AI writing tools\n- Historical changes to Stack's link policy"
+        },
+        {
+          "id": "div-12",
+          "agent": "agent-div-12",
+          "prompt": "CONTEXT: Building diverse backlink profile for belikenative.com.\n\nTASK: Research free directory and listing sites for backlinks.\n- Top 50 directories with DA 40+ that accept Chrome extensions\n- Specifically: Chrome extension directories, AI tool directories, writing tool listings\n- For each: DA, dofollow/nofollow, submission process, review time\n- Include: Product Hunt, AlternativeTo, G2, Capterra, SaaSHub, ToolPilot.ai\n- Include: Software Advice, GetApp, There's An AI For That, FutureTools.io\n- Free vs paid listings\n- Which directories Google still trusts in 2025-2026\n- Automation potential for each\n- NAP consistency requirements\n- Expected indexing time\n- Priority ranking by SEO value"
+        },
+        {
+          "id": "div-13",
+          "agent": "agent-div-13",
+          "prompt": "CONTEXT: BeLikeNative automated backlink pipeline.\n\nTASK: Research content syndication networks for automated backlink distribution.\n- What syndication networks exist (Outbrain, Taboola, CNET syndication)\n- Free syndication options\n- RSS-based syndication (how to set up, which aggregators)\n- IFTTT and Zapier for automated cross-posting\n- RSS feed to multiple platforms automation\n- WordPress REST API -> RSS -> syndication pipeline\n- Which syndicated links pass equity\n- Medium's import feature (does it create backlinks?)\n- News aggregator submission (Google News, Apple News, Flipboard)\n- Automated press release distribution (free options)\n- Which syndication methods are safe vs risky in 2025-2026"
+        },
+        {
+          "id": "div-14",
+          "agent": "agent-div-14",
+          "prompt": "CONTEXT: belikenative.com needs .edu and .gov backlinks for maximum authority.\n\nTASK: Research strategies to acquire .edu backlinks for an AI writing tool.\n- 'Free for Students' program template and pitch email\n- University writing center outreach strategy\n- ESL/EFL department outreach\n- Student discount page submissions\n- University resource page outreach\n- Scholarship page link building (dead or alive in 2026?)\n- .edu blog commenting (still effective?)\n- University library database submissions\n- Guest lectures/webinars at universities (virtual)\n- Open educational resource (OER) contributions\n- How many .edu links needed for meaningful DR impact\n- Expected response rate for cold outreach to universities\n- Template emails for each approach\n- List of 20 specific university writing centers to target"
+        },
+        {
+          "id": "div-15",
+          "agent": "agent-div-15",
+          "prompt": "CONTEXT: Building backlink pipeline for belikenative.com Chrome extension.\n\nTASK: Research link building via social bookmarking and content curation platforms.\n- Current state of social bookmarking for SEO (2025-2026)\n- Which platforms still pass value: Pinterest, Mix, Pocket, Digg, Flipboard\n- Scoop.it, Paper.li, Curated.co, Feedly Boards\n- DA/DR of each platform\n- Dofollow vs nofollow status for each\n- Automation APIs or tools for each\n- Safe daily limits per platform\n- Content format requirements\n- Whether Google has devalued any of these\n- Link diversity benefits even from nofollow platforms\n- Complete automation strategy for top 5 platforms\n- Expected SEO impact from 50-100 bookmarks"
+        },
+        {
+          "id": "div-16",
+          "agent": "agent-div-16",
+          "prompt": "CONTEXT: BeLikeNative backlink pipeline with anchor text rotation.\n\nTASK: Research target URL diversification strategy.\n- Should all backlinks point to homepage or distribute across pages?\n- Optimal homepage vs inner page ratio\n- How to select which inner pages to boost with backlinks\n- Pillar page strategy: which 10-15 pages deserve the most backlinks\n- Deep link ratio for natural-looking profile\n- Which page types get most natural backlinks (tools, guides, comparisons, lists)\n- Category page vs individual post backlinks\n- How to identify pages with highest traffic potential for backlink targeting\n- Landing page optimization for backlinked pages (CTA, internal links)\n- URL parameter tracking for backlink sources without affecting SEO\n- Complete target URL rotation algorithm alongside anchor text rotation"
+        },
+        {
+          "id": "div-17",
+          "agent": "agent-div-17",
+          "prompt": "CONTEXT: BeLikeNative.com uses WordPress. Building automated backlink pipeline.\n\nTASK: Research Google Business Profile and local SEO backlinks.\n- Can a Chrome extension have a Google Business Profile?\n- Local directory submissions (Yelp, Yellow Pages, Crunchbase, AngelList)\n- Crunchbase company page (DA, dofollow status)\n- AngelList/Wellfound company listing\n- LinkedIn company page optimization\n- Facebook business page backlinks\n- Twitter/X profile link value\n- Other social profiles that pass equity\n- Citation building for SaaS companies\n- How to get featured on TechCrunch, Product Hunt, Indie Hackers\n- Press mention link building strategies\n- HARO/Connectively for journalist mentions\n- Complete social profile setup checklist with expected DA for each"
+        },
+        {
+          "id": "div-18",
+          "agent": "agent-div-18",
+          "prompt": "CONTEXT: belikenative.com backlink pipeline. Need to understand penalties and recovery.\n\nTASK: Research Google penalties related to automated link building.\n- Manual Actions related to link schemes (exact text Google uses)\n- Algorithmic penalties (Penguin, SpamBrain) vs manual penalties\n- How Google detects programmatic link building in 2025-2026\n- SpamBrain's link spam detection capabilities\n- Link velocity triggers (how many links per day/week triggers review)\n- Footprint detection (same anchor, same template, same publishing time)\n- IP address correlation between linking domains\n- How to create plausible deniability for automated links\n- Disavow tool: when to use, how to use, recovery timeline\n- Case studies of sites that recovered from link penalties\n- Penalty risk assessment for current pipeline (Dev.to + Telegraph)\n- Risk mitigation checklist for adding 5 more platforms"
+        },
+        {
+          "id": "div-19",
+          "agent": "agent-div-19",
+          "prompt": "CONTEXT: BeLikeNative backlink pipeline needs diverse link types.\n\nTASK: Research image and infographic backlink strategies.\n- How to create shareable infographics for AI writing topics\n- Infographic submission sites (DA 40+) that are still effective\n- Image SEO: alt text optimization for backlinks\n- Pinterest as an image backlink source (dofollow status)\n- Canva public designs as backlink sources\n- Visual.ly, Infographic Journal, Daily Infographic\n- Embeddable infographics with backlink code\n- How to track image backlinks\n- AI tools for infographic generation (DALL-E, Midjourney integration)\n- Infographic + article combo for maximum backlink potential\n- Expected number of backlinks per quality infographic\n- Video content backlinks (YouTube descriptions, Vimeo, Dailymotion)\n- Podcast show notes backlinks"
+        },
+        {
+          "id": "div-20",
+          "agent": "agent-div-20",
+          "prompt": "CONTEXT: BeLikeNative backlink pipeline. 2,199 articles. Currently 33 backlinks on 2 platforms.\n\nTASK: Design a comprehensive 90-day backlink diversification roadmap.\n- Week-by-week action plan with specific targets\n- Platform rollout order (which platform to add each week)\n- Daily link building quotas per platform\n- Anchor text distribution targets per week\n- Target URL rotation schedule\n- Monitoring checkpoints (what to check weekly)\n- Emergency brake conditions (when to stop building)\n- Budget allocation per platform\n- Team/automation requirements\n- Expected DR trajectory (current 22 -> target by day 90)\n- Risk assessment per phase\n- Contingency plans for: platform ban, Google penalty, API changes\n- Success metrics and KPIs for each phase\n- Complete project timeline with dependencies"
+        }
+      ]
+    }
+  ]
+}

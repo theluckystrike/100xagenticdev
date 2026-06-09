@@ -1,14 +1,18 @@
 from __future__ import annotations
 
 """
-DeepSeek Async Client — High-throughput API client with rate limiting & cost tracking.
-OpenAI-compatible endpoint. Designed for 20+ concurrent agents.
+Multi-Provider Async Client — DeepSeek + OpenRouter (MiMo, etc).
+OpenAI-compatible endpoint. Designed for 35 concurrent agents.
 
-Pricing (V4 promo until May 31, 2026):
-  - Cache Hit Input: $0.003625/M tokens
-  - Cache Miss Input: $0.435/M tokens
-  - Output: $0.87/M tokens
-  - V4 Flash: $0.14/M input, $0.28/M output
+Providers:
+  deepseek  → api.deepseek.com  (DEEPSEEK_API_KEY)
+  openrouter → openrouter.ai    (OPENROUTER_API_KEY)
+
+Key models:
+  deepseek-chat        V4 Pro  $0.435/$0.87  — fast, cheap, 94% halluc
+  deepseek-chat-flash  V4 Flash $0.14/$0.28  — ultra cheap, bulk tasks
+  mimo-ai/mimo-v2.5-pro         $0.435/$0.87  — 24.5% halluc, intel tasks ← USE THIS
+  anthropic/claude-sonnet-4     $3/$15        — best calibration
 """
 
 import asyncio
@@ -21,12 +25,39 @@ from typing import Optional
 import httpx
 
 # ── Pricing (USD per million tokens) ────────────────────────────────────────
-PRICING = {
-    "deepseek-chat": {"input": 0.435, "output": 0.87, "cache_hit": 0.003625},
-    "deepseek-reasoner": {"input": 0.87, "output": 3.48, "cache_hit": 0.007250},
+PRICING: dict[str, dict[str, float]] = {
+    # DeepSeek models
+    "deepseek-chat":       {"input": 0.435,  "output": 0.87,  "cache_hit": 0.003625},
+    "deepseek-chat-flash": {"input": 0.14,   "output": 0.28,  "cache_hit": 0.0014},
+    "deepseek-reasoner":   {"input": 0.87,   "output": 3.48,  "cache_hit": 0.007250},
+    # MiMo — 24.5% hallucination rate vs DeepSeek 94% — USE FOR INTEL
+    "mimo-ai/mimo-v2.5-pro":  {"input": 0.435,  "output": 0.87,  "cache_hit": 0.003625},
+    "mimo-ai/mimo-v2.5":      {"input": 0.14,   "output": 0.28,  "cache_hit": 0.0014},
+    # Claude via OpenRouter
+    "anthropic/claude-sonnet-4": {"input": 3.0, "output": 15.0, "cache_hit": 0.30},
+    "anthropic/claude-haiku-4":  {"input": 1.0, "output": 5.0,  "cache_hit": 0.10},
 }
 
-DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
+# Model aliases for CLI convenience
+MODEL_ALIASES: dict[str, str] = {
+    "mimo":          "mimo-ai/mimo-v2.5-pro",
+    "mimo-base":     "mimo-ai/mimo-v2.5",
+    "flash":         "deepseek-chat-flash",
+    "pro":           "deepseek-chat",
+    "reasoner":      "deepseek-reasoner",
+    "sonnet":        "anthropic/claude-sonnet-4",
+    "haiku":         "anthropic/claude-haiku-4",
+}
+
+# ── Provider config ──────────────────────────────────────────────────────────
+PROVIDERS: dict[str, dict[str, str]] = {
+    "deepseek":   {"base_url": "https://api.deepseek.com/v1",  "key_env": "DEEPSEEK_API_KEY"},
+    "openrouter": {"base_url": "https://openrouter.ai/api/v1", "key_env": "OPENROUTER_API_KEY"},
+}
+
+# Models that require OpenRouter
+OPENROUTER_MODELS = {"mimo-ai/mimo-v2.5-pro", "mimo-ai/mimo-v2.5", "anthropic/claude-sonnet-4", "anthropic/claude-haiku-4"}
+
 MAX_RETRIES = 4
 BASE_BACKOFF_SEC = 1.0
 MAX_BACKOFF_SEC = 30.0
@@ -106,8 +137,23 @@ class PipelineStats:
         return self.agents[agent_id]
 
 
+def resolve_model(alias: str) -> str:
+    """Expand model alias to canonical model ID."""
+    assert isinstance(alias, str) and alias, "model alias must be non-empty string"
+    return MODEL_ALIASES.get(alias, alias)
+
+
+def infer_provider(model: str) -> str:
+    """Return 'openrouter' or 'deepseek' based on model ID."""
+    assert model, "model must be non-empty"
+    if model in OPENROUTER_MODELS or "/" in model:
+        return "openrouter"
+    return "deepseek"
+
+
 def _calc_cost(model: str, prompt_tokens: int, completion_tokens: int, cached_tokens: int) -> float:
     """Calculate cost in USD for a single request."""
+    assert prompt_tokens >= 0 and completion_tokens >= 0, "token counts must be non-negative"
     rates = PRICING.get(model, PRICING["deepseek-chat"])
     uncached_input = max(0, prompt_tokens - cached_tokens)
     cost = (
@@ -115,44 +161,73 @@ def _calc_cost(model: str, prompt_tokens: int, completion_tokens: int, cached_to
         + (cached_tokens / 1_000_000) * rates["cache_hit"]
         + (completion_tokens / 1_000_000) * rates["output"]
     )
+    assert cost >= 0, f"cost must be non-negative, got {cost}"
     return round(cost, 8)
 
 
 class DeepSeekClient:
-    """Async DeepSeek API client with connection pooling, retries, and circuit breaker."""
+    """
+    Multi-provider async client: DeepSeek + OpenRouter.
+    Designed for 35 concurrent agents. Supports MiMo V2.5 Pro via OpenRouter.
+    """
 
     def __init__(
         self,
         api_key: Optional[str] = None,
         model: str = "deepseek-chat",
-        max_concurrent: int = 20,
+        max_concurrent: int = 35,
         budget_limit_usd: float = 50.0,
         timeout_sec: float = 120.0,
+        provider: Optional[str] = None,
     ):
-        self.api_key = api_key or os.environ.get("DEEPSEEK_API_KEY", "")
-        if not self.api_key:
-            raise ValueError("DEEPSEEK_API_KEY not set")
+        assert 1 <= max_concurrent <= 100, f"max_concurrent must be 1-100, got {max_concurrent}"
+        assert budget_limit_usd > 0, "budget_limit_usd must be positive"
 
-        self.model = model
+        self.model = resolve_model(model)
         self.timeout_sec = timeout_sec
+
+        # Auto-detect provider from model name if not explicit
+        self._provider = provider or infer_provider(self.model)
+        assert self._provider in PROVIDERS, f"Unknown provider: {self._provider}"
+
+        provider_cfg = PROVIDERS[self._provider]
+        self._base_url = provider_cfg["base_url"]
+
+        # Resolve API key: explicit > env var for provider > fallback
+        if api_key:
+            self.api_key = api_key
+        else:
+            self.api_key = os.environ.get(provider_cfg["key_env"], "")
+        if not self.api_key:
+            raise ValueError(
+                f"API key not set for provider '{self._provider}'. "
+                f"Set env var: {provider_cfg['key_env']}"
+            )
+
         self._semaphore = asyncio.Semaphore(max_concurrent)
         self.stats = PipelineStats(budget_limit_usd=budget_limit_usd)
         self.stats.start_time = time.time()
-
         self._client: Optional[httpx.AsyncClient] = None
 
     async def _get_client(self) -> httpx.AsyncClient:
+        """Lazy-init httpx client with 75-connection pool for 35-agent throughput."""
         if self._client is None or self._client.is_closed:
+            extra_headers: dict[str, str] = {}
+            if self._provider == "openrouter":
+                extra_headers["HTTP-Referer"] = "https://github.com/theluckystrike/100xagenticdev"
+                extra_headers["X-Title"] = "100x Agentic Pipeline"
+
             self._client = httpx.AsyncClient(
-                base_url=DEEPSEEK_BASE_URL,
+                base_url=self._base_url,
                 headers={
                     "Authorization": f"Bearer {self.api_key}",
                     "Content-Type": "application/json",
+                    **extra_headers,
                 },
                 timeout=httpx.Timeout(self.timeout_sec, connect=10.0),
                 limits=httpx.Limits(
-                    max_connections=50,
-                    max_keepalive_connections=25,
+                    max_connections=75,
+                    max_keepalive_connections=40,
                     keepalive_expiry=30.0,
                 ),
             )

@@ -1,0 +1,309 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "upst_10k_revenue_verified",
+          "prompt": "UPST (Upstart Holdings) — Extract EXACT revenue numbers from SEC 10-K and 10-Q filings.\n\nProvide VERIFIED quarterly revenue from IPO (Dec 2020) through the latest filing you have access to:\n- Q4 2020, Q1-Q4 2021, Q1-Q4 2022, Q1-Q4 2023, Q1 2024\n- For EACH quarter: Total revenue, Fee revenue, Interest income, Servicing revenue\n- Show YoY growth rate for each quarter\n- Flag which quarters showed DECELERATION vs ACCELERATION\n\nCite the EXACT 10-Q/10-K filing and page number for each data point.\nIf you cannot verify a number from SEC filings, write UNVERIFIED.\nDo NOT estimate or interpolate. Only use numbers directly from filings.",
+          "system_prompt": "You are an SEC filing analyst. ONLY use numbers from official 10-K and 10-Q filings. If a number is not from a filing, mark it UNVERIFIED. Never fabricate data.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_loan_volume_verified",
+          "prompt": "UPST — Extract EXACT loan origination data from SEC filings.\n\nFor EACH quarter (Q4 2020 through latest available):\n1. Total loan originations (dollar volume)\n2. Number of loans originated\n3. Average loan size\n4. % of loans retained on balance sheet vs sold to investors\n5. Conversion rate (applications to funded loans)\n6. Platform fee as % of loan amount (take rate)\n\nAlso provide:\n7. Total cumulative loans originated since inception\n8. Loan types: personal loans vs auto loans vs HELOC — volume split\n9. Average APR charged to borrowers\n10. Default rate / charge-off rate by vintage year\n\nCite EXACT SEC filing and section for each number. UNVERIFIED if not from filing.",
+          "system_prompt": "You are an SEC filing analyst. ONLY use numbers from official 10-K and 10-Q filings. Mark UNVERIFIED if not from filing.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_balance_sheet_forensic",
+          "prompt": "UPST — Forensic balance sheet analysis from SEC filings.\n\nExtract from the MOST RECENT 10-K or 10-Q:\n1. Cash and cash equivalents (EXACT number)\n2. Restricted cash\n3. Loans held on balance sheet (fair value and unpaid principal)\n4. Total assets\n5. Total liabilities\n6. Convertible notes outstanding (face value, conversion price, maturity date)\n7. Warehouse credit facilities (total capacity, amount drawn, interest rate)\n8. Stockholders' equity\n9. Book value per share\n10. Tangible book value per share\n\nAlso:\n11. Off-balance-sheet exposure: How much loan risk does UPST still carry via guarantees, buyback obligations, or risk-sharing?\n12. Variable interest entities (VIEs): Does UPST consolidate any securitization trusts?\n13. Goodwill and intangibles — any impairment risk?\n\nCite EXACT filing, page, and line item. UNVERIFIED if estimated.",
+          "system_prompt": "You are a forensic accountant analyzing SEC filings. ONLY cite verified data from 10-K/10-Q. Mark UNVERIFIED if not directly from filing.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_share_count_dilution",
+          "prompt": "UPST — EXACT share count and dilution analysis from SEC filings.\n\nFrom DEF 14A (proxy) and 10-K/10-Q filings:\n1. Shares outstanding at IPO (December 2020)\n2. Shares outstanding at each fiscal year end (2020, 2021, 2022, 2023)\n3. Latest shares outstanding (most recent 10-Q)\n4. Stock options outstanding and weighted average exercise price\n5. RSUs outstanding and vesting schedule\n6. Convertible notes: conversion price, shares issuable upon conversion\n7. Warrants outstanding (if any)\n8. Fully diluted share count\n9. Total SBC expense by year (2020, 2021, 2022, 2023)\n10. SBC as % of revenue by year\n11. Annual dilution rate (new shares / beginning shares)\n12. Treasury stock / buyback activity (if any)\n\nCompute: At current dilution rate, what will fully diluted share count be in 2026? 2028? 2030?\n\nCite EXACT filing for each number. UNVERIFIED if estimated.",
+          "system_prompt": "You are a forensic accountant. ONLY cite verified SEC filing data. Mark UNVERIFIED if not from filing.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_insider_form4",
+          "prompt": "UPST — Insider trading analysis from SEC Form 4 filings.\n\nFor EACH named executive and director, provide ALL Form 4 transactions:\n1. CEO Dave Girouard — every buy, sell, option exercise from IPO to latest\n2. CFO Sanjay Datta — every transaction\n3. CTO Paul Gu — every transaction\n4. All other Section 16 officers and directors\n\nFor each transaction:\n- Date\n- Type (buy, sell, option exercise, RSU vest + sell)\n- Number of shares\n- Price per share\n- Total value\n- Shares held after transaction\n\nKey questions:\n- Has CEO been NET BUYER or NET SELLER since IPO?\n- At what price points did insiders BUY vs SELL?\n- Did any insider buy during the $14 low?\n- What is current insider ownership % (total shares held by all insiders / total outstanding)?\n\nCite Form 4 filing dates. UNVERIFIED if not from SEC EDGAR.",
+          "system_prompt": "You are an SEC compliance analyst. Use ONLY Form 4 filing data from SEC EDGAR. Mark UNVERIFIED if not verified.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_ai_model_verification",
+          "prompt": "UPST — Verify ALL claims about the AI model from SEC filings and earnings calls.\n\nWhat does UPST ACTUALLY say in their 10-K about their AI model?\n1. How many variables does the model use? (UPST claims 1,600+ — verify from 10-K risk factors or business description)\n2. What default prediction improvement vs FICO does UPST claim IN FILINGS? (Not press releases)\n3. How is the model validated? Third-party audits? CFPB review?\n4. What are the specific risk factors related to AI model failure listed in the 10-K?\n5. Has the model ever underperformed? What happened during 2022-2023 rate hikes?\n6. Model retraining: How often? How many retraining cycles per year?\n7. Data inputs: What data does UPST use that FICO doesn't? (Education, employment, bank transactions?)\n8. Disparate impact risk: Has UPST disclosed any fair lending investigations?\n9. CFPB no-action letter: Was it granted? Status? Expiration?\n10. Auto loan model: When launched? Performance vs personal loan model?\n\nONLY cite from 10-K, 10-Q, or earnings call transcripts. UNVERIFIED if from press releases or third-party sources.",
+          "system_prompt": "You are a regulatory analyst. Verify ALL claims against official SEC filings ONLY. Mark UNVERIFIED for any claim not in filings.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_funding_partners",
+          "prompt": "UPST — Verify funding partner data from SEC filings.\n\n1. How many bank/credit union partners does UPST have? (10-K says what number?)\n2. Top lending partners by volume (if disclosed)\n3. Customer concentration: Does any single partner represent >10% of revenue? (10-K requirement to disclose)\n4. Institutional investor commitments: What are 'committed purchase agreements' / forward-flow agreements?\n5. ABS (asset-backed securitization) issuances: Dates, sizes, yields, ratings\n6. Does UPST guarantee any loan performance to partners? What % of loss is retained?\n7. Cross River Bank relationship: Is Cross River still the primary origination bank? What happened to Cross River's regulatory issues?\n8. What is UPST's funding model? Does it need continuous access to capital markets?\n9. What happens to UPST if funding dries up (as it did in 2022-2023)?\n10. Risk factor: Does the 10-K explicitly warn about funding concentration?\n\nCite EXACT 10-K sections. UNVERIFIED if not from filing.",
+          "system_prompt": "You are a credit analyst. Verify ALL claims from SEC filings. Mark UNVERIFIED if not from filing.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_credit_quality",
+          "prompt": "UPST — Credit quality and default rate analysis from SEC filings.\n\n1. What is UPST's reported charge-off rate by vintage year? (2019, 2020, 2021, 2022, 2023)\n2. How does UPST define 'default'? 30-day, 60-day, 90-day delinquency?\n3. What is the distribution of UPST loans by credit tier? (Prime, near-prime, subprime)\n4. Average FICO score of UPST borrowers vs traditional bank borrowers\n5. Loss rates during the 2022-2023 stress period: Did the AI model accurately predict defaults?\n6. Did UPST have to buy back any loans due to model failures?\n7. What is the residual value risk on UPST's balance sheet? (Loans held at fair value vs amortized cost)\n8. What is UPST's exposure to rising unemployment? Stress test scenarios in 10-K?\n9. Consumer complaints: What does the CFPB complaint database show for UPST?\n10. Did any lending partners leave UPST due to credit quality concerns?\n\nCite EXACT 10-K/10-Q sections. UNVERIFIED if not from filing.",
+          "system_prompt": "You are a credit risk analyst. Use ONLY SEC filing data. Mark UNVERIFIED if not verified from filings.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_rate_sensitivity",
+          "prompt": "UPST — Interest rate sensitivity analysis.\n\n1. What happened to UPST's revenue in each rate hike cycle? Map Fed Funds Rate vs UPST quarterly revenue.\n2. How much did loan origination volume decline when rates went from 0% to 5.5%?\n3. What is UPST's interest rate exposure on loans held on balance sheet?\n4. If rates are cut 100bps in 2025, what is the estimated revenue impact? (Use UPST's own sensitivity disclosures from 10-K)\n5. How does UPST's AI model adjust for rate changes? Does it reprice risk in real-time?\n6. What is the correlation between UPST stock price and 10-year Treasury yield?\n7. What happened to UPST's funding costs when rates rose?\n8. Does UPST hedge interest rate risk? If so, how? (Swaps, caps, floors?)\n9. What would happen in a STAGFLATION scenario (high rates + high unemployment)?\n10. Did UPST's 10-K explicitly model a recession scenario?\n\nCite 10-K risk factors and financial notes. UNVERIFIED if not from filing.",
+          "system_prompt": "You are a fixed income analyst. Use ONLY verified data from SEC filings. Mark UNVERIFIED if not from filing.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_regulatory_risk",
+          "prompt": "UPST — Complete regulatory risk assessment from SEC filings.\n\n1. CFPB no-action letter: Was it issued? What does it cover? Has it expired? (The CFPB issued one in 2017/2020 — verify status)\n2. Fair lending risk: Has UPST been investigated for disparate impact? Any DOJ inquiries?\n3. State licensing: In how many states is UPST licensed? Any states where they cannot operate?\n4. FDIC/OCC implications: Does the bank charter of Cross River/other partners create regulatory dependencies?\n5. What specific regulatory risks does the 10-K list? (Quote exact risk factor language)\n6. Has UPST received any enforcement actions, consent orders, or MRAs (Matters Requiring Attention)?\n7. Class action lawsuits: Any pending? What are the claims?\n8. Data privacy: What data does UPST collect? CCPA/GDPR compliance?\n9. AI regulation risk: How would the EU AI Act or US AI executive order affect UPST?\n10. Political risk: Has any senator or congressman targeted UPST specifically?\n\nCite EXACT 10-K risk factors, 8-K disclosures, or court filings. UNVERIFIED if not from official sources.",
+          "system_prompt": "You are a regulatory compliance analyst. Use ONLY official filings and regulatory databases. Mark UNVERIFIED if not verified.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_competition_deep",
+          "prompt": "UPST — Deep competitive analysis. Who are the REAL threats?\n\nFor EACH competitor, provide verified data:\n\n1. ZEST AI (private) — Revenue, customers, AI model claims, funding\n2. PAGAYA (PGY) — Market cap, revenue, growth, GM, loan volume, AI model size\n3. LENDINGCLUB (LC) — Revenue, growth, GM, loan volume, bank charter advantage\n4. SOFI (lending segment) — Personal loan originations, AI vs traditional underwriting\n5. PROSPER — Still operating? Revenue? Market share?\n6. AVANT — Still operating? Revenue?\n7. BIG BANKS in-house AI:\n   - JPMorgan COiN/LendingHome: How much do they originate using AI?\n   - Goldman Marcus: Status of consumer lending?\n   - Citi: AI underwriting progress?\n8. Apple Pay Later: Threat to UPST's personal loan market?\n9. Klarna/Affirm: Overlap with UPST's market?\n\nFor UPST vs each competitor:\n- Market share in US personal loans\n- Take rate comparison\n- Default rate comparison (if available)\n- Funding advantage\n- Technology advantage\n\nUse SEC filings for public companies. UNVERIFIED for private companies.",
+          "system_prompt": "You are a competitive intelligence analyst. Use SEC filings for public companies. Mark UNVERIFIED for private company data.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_unit_economics",
+          "prompt": "UPST — Unit economics deep dive from SEC filings.\n\nFor EACH quarter (or at minimum each fiscal year):\n1. Revenue per loan originated\n2. Cost per loan originated (include: origination costs, verification, servicing setup)\n3. Contribution margin per loan\n4. Customer acquisition cost (CAC) — how does UPST acquire borrowers?\n5. Lifetime value (LTV) of a borrower — do borrowers return for second loans?\n6. Marketing spend as % of revenue\n7. Technology and development spend as % of revenue\n8. G&A as % of revenue\n9. Operating leverage: Is contribution margin expanding as volume grows?\n10. Breakeven volume: How many loans per quarter does UPST need to be profitable?\n\nAlso:\n11. What is the marginal cost of adding one more lending partner?\n12. What is the marginal cost of processing one more loan through the AI model?\n13. Is UPST's cost structure more like a SaaS platform (high fixed, low marginal) or a traditional lender (linear costs)?\n\nCite 10-K operating expense breakdown. UNVERIFIED if estimated.",
+          "system_prompt": "You are a unit economics analyst. Use ONLY SEC filing data for calculations. Mark UNVERIFIED if estimated.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_auto_heloc_expansion",
+          "prompt": "UPST — Verify auto loan and HELOC expansion from SEC filings.\n\nAuto Loans:\n1. When did UPST launch auto lending? (Exact date from 8-K or 10-K)\n2. How many auto loans originated to date?\n3. Auto loan origination volume by quarter\n4. Auto loan default rates vs personal loan default rates\n5. Auto dealer partnerships: How many? Who?\n6. Is UPST's auto AI model performing better or worse than personal loan model?\n7. Revenue contribution from auto loans ($ and %)\n\nHELOC:\n1. When did UPST launch HELOC? (Exact date)\n2. How many HELOCs originated to date?\n3. HELOC origination volume by quarter\n4. Average HELOC size, rate, term\n5. Revenue contribution from HELOC ($ and %)\n\nSmall Business Lending:\n1. Has UPST entered small business lending? If so, when?\n2. Any filings mentioning small business expansion?\n\nMortgage:\n1. Has UPST mentioned mortgage lending in any filing?\n2. What would mortgage expansion require? (Licensing, capital, regulatory approval)\n\nCite EXACT filings. UNVERIFIED if not from SEC.",
+          "system_prompt": "You are an SEC filing analyst. ONLY cite verified filing data. Mark UNVERIFIED if not from filings.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_mgmt_credibility",
+          "prompt": "UPST — Management credibility audit.\n\n1. CEO Dave Girouard:\n   - Background: Google VP of Enterprise (2004-2012). What was his track record at Google?\n   - Compensation: Total comp from latest DEF 14A (base, bonus, SBC, perks)\n   - Has he ever been sanctioned, fired, or involved in fraud?\n   - Speaking record: What has he promised on earnings calls that DID and DIDN'T happen?\n\n2. CFO Sanjay Datta:\n   - Background and track record\n   - Compensation from DEF 14A\n   - Has CFO been accurate in guidance?\n\n3. CTO Paul Gu:\n   - Background (was he a Thiel Fellow?)\n   - Technical credibility\n   - Compensation\n\n4. Board of Directors:\n   - Who is on the board? Any notable names?\n   - Board independence: How many independent directors?\n   - Any related-party transactions disclosed in DEF 14A?\n\n5. Earnings guidance accuracy:\n   - List every quarter where UPST gave guidance\n   - Did they beat or miss? By how much?\n   - Have they ever withdrawn guidance? When and why?\n\n6. Red flags:\n   - Any SEC investigations?\n   - Any restatements?\n   - Auditor changes?\n   - Who is the auditor? Any concerns?\n\nCite DEF 14A, 10-K, earnings transcripts. UNVERIFIED if not from filings.",
+          "system_prompt": "You are a corporate governance analyst. Use SEC filings and earnings transcripts. Mark UNVERIFIED if not verified.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_cash_flow_forensic",
+          "prompt": "UPST — Cash flow statement forensic analysis from SEC filings.\n\nFor EACH fiscal year (2020, 2021, 2022, 2023) and latest quarter:\n1. Operating cash flow (EXACT from filing)\n2. Investing cash flow\n3. Financing cash flow\n4. Free cash flow (CapEx detail)\n5. Cash from origination of loans\n6. Cash from sale of loans\n7. Cash from servicing fees\n8. Cash used for loan purchases / warehousing\n9. Net change in loans held on balance sheet\n10. SBC add-back (non-cash)\n\nKey questions:\n11. Is UPST's cash flow from operations REAL or inflated by loan sales timing?\n12. What is the quality of earnings? (Accrual vs cash)\n13. Does UPST have any off-balance-sheet obligations that affect true cash flow?\n14. Working capital trends: Is UPST consuming or generating working capital?\n15. CapEx requirements: What does UPST spend on technology infrastructure?\n\nCite EXACT filing line items from the cash flow statement. UNVERIFIED if estimated.",
+          "system_prompt": "You are a forensic accountant. ONLY use exact numbers from SEC filing cash flow statements. Mark UNVERIFIED if estimated.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_valuation_model",
+          "prompt": "UPST — Build a rigorous valuation model.\n\nUsing ONLY verified SEC filing data:\n\n1. DCF Model:\n   - Revenue growth scenarios: Bear (10%), Base (25%), Bull (40%) CAGR for 5 years\n   - Margin trajectory: What margins are achievable? (Cite peer companies)\n   - Terminal growth rate: 3%\n   - WACC: Calculate using UPST's actual beta, debt/equity ratio, and risk-free rate\n   - Fair value per share for each scenario\n\n2. Comparable Company Analysis:\n   - Compare UPST to: PGY (Pagaya), LC (LendingClub), SOFI, AFRM, V, MA\n   - Metrics: P/S, P/E, EV/EBITDA, P/FCF\n   - Where does UPST sit vs peers?\n\n3. Revenue Multiple Analysis:\n   - At current ~$1B revenue run rate and $3.2B market cap = ~3.2x revenue\n   - Is this cheap or expensive vs fintech peers?\n   - What multiple does UPST deserve based on growth rate and margins?\n\n4. Sum-of-Parts:\n   - Platform fee business value\n   - Servicing business value\n   - Interest income value (on retained loans)\n   - AI model / technology IP value\n\nWhat price is UPST FAIRLY valued at today? What price represents a good ENTRY POINT?\n\nCite all inputs. UNVERIFIED if estimated.",
+          "system_prompt": "You are a valuation analyst. Use verified financial data. Show all assumptions. Mark UNVERIFIED if estimated.",
+          "temperature": 0.15,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "upst_vs_lendingclub",
+          "prompt": "UPST vs LendingClub (LC) — Head-to-head comparison from SEC filings.\n\nLendingClub (LC) acquired Radius Bank in 2021, becoming a bank. Compare:\n\n1. Revenue: UPST vs LC quarterly trajectory\n2. Loan origination volume: UPST vs LC\n3. Gross margins: UPST vs LC\n4. Net income: UPST vs LC (which is profitable?)\n5. AI model: Does LC use AI? How does it compare to UPST?\n6. Funding model: LC has deposits (bank), UPST relies on partners/ABS\n7. Cost of funds: LC (bank deposits) vs UPST (warehouse lines + ABS)\n8. Default rates: LC vs UPST\n9. Market share in personal loans\n10. Stock performance: LC vs UPST over last 3 years\n\nWhich is the better investment at current prices? Why?\n\nCite SEC filings for both companies. UNVERIFIED if estimated.",
+          "system_prompt": "You are a comparative financial analyst. Use SEC filings for both companies. Mark UNVERIFIED if estimated.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_vs_pagaya",
+          "prompt": "UPST vs Pagaya (PGY) — Head-to-head comparison from SEC filings.\n\nPagaya is UPST's closest competitor in AI lending. Compare:\n\n1. Revenue: UPST vs PGY quarterly trajectory\n2. Network volume (loan originations): UPST vs PGY\n3. AI model: What does each claim? 1,600+ variables (UPST) vs what for PGY?\n4. Number of lending partners: UPST vs PGY\n5. Gross margins: UPST vs PGY\n6. Net income: Which is profitable?\n7. Default rate comparison\n8. Market cap and valuation multiples\n9. Funding model differences\n10. Geographic focus: US only vs international?\n\nWho is winning? Who has the better moat?\n\nCite SEC filings for both companies. UNVERIFIED if estimated.",
+          "system_prompt": "You are a comparative financial analyst. Use SEC filings for both companies. Mark UNVERIFIED if estimated.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_recession_stress",
+          "prompt": "UPST — Recession stress test analysis.\n\nUsing the 2022-2023 period as a real-world stress test:\n\n1. What happened to UPST's revenue during the rate hike cycle? (Exact quarterly numbers)\n2. What happened to loan origination volume? (Exact quarterly numbers)\n3. Did UPST's AI model accurately predict the increase in defaults?\n4. How many lending partners reduced or paused originations?\n5. How much did UPST's stock decline? (Peak to trough)\n6. How long did the revenue trough last? (Number of quarters)\n7. How much cash did UPST burn during the downturn?\n8. Did UPST have to raise equity capital during the downturn?\n9. Did any employees leave during the downturn? Headcount changes?\n10. What changes did UPST make to the AI model in response?\n\nNow project a SEVERE recession scenario (2008-level):\n11. Unemployment rises from 4% to 10%\n12. Personal loan default rates double\n13. Funding markets freeze completely\n14. Can UPST survive? For how many quarters?\n15. What is the floor for UPST stock in this scenario?\n\nCite actual 2022-2023 data from 10-K/10-Q. Mark projections as UNVERIFIED.",
+          "system_prompt": "You are a credit stress test analyst. Use actual historical data from SEC filings. Mark projections as UNVERIFIED.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_tam_realistic",
+          "prompt": "UPST — Realistic TAM (Total Addressable Market) analysis.\n\nDo NOT use UPST's inflated TAM claims. Calculate independently:\n\n1. US Personal Loan Market:\n   - Total outstanding: Federal Reserve data (cite source)\n   - Annual originations: How much is originated per year?\n   - Online origination share vs branch: What % is digital?\n   - UPST's share of digital personal loan originations\n\n2. US Auto Loan Market:\n   - Total outstanding\n   - Annual originations\n   - What % is addressable by AI underwriting? (Exclude captive finance)\n   - UPST's current share\n\n3. US HELOC Market:\n   - Total outstanding\n   - Annual originations\n   - What % is addressable by AI underwriting?\n\n4. Realistic Revenue Ceiling:\n   - At 5% market share of each segment at 3% platform fee = ? revenue\n   - At 10% market share = ? revenue\n   - At 20% market share = ? revenue\n   - What is the MAXIMUM revenue UPST could achieve in the US?\n\n5. International:\n   - Has UPST mentioned international expansion in any filing?\n   - What markets are addressable? UK, Canada, Australia?\n   - Regulatory barriers to international expansion\n\n6. TAM CEILING: What is the absolute maximum revenue UPST could generate if everything goes perfectly?\n\nUse Federal Reserve, FDIC, and industry data. UNVERIFIED if estimated.",
+          "system_prompt": "You are a market sizing analyst. Use official government and industry data. Mark UNVERIFIED if estimated.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_short_interest",
+          "prompt": "UPST — Short interest and market sentiment analysis.\n\n1. Current short interest: shares short, % of float, days to cover\n2. Short interest history: How has short interest changed over time? (At IPO, peak 2022, now)\n3. Institutional ownership: Top 10 institutional holders (from 13F filings)\n4. Did any notable hedge funds take large positions? (Citadel, Renaissance, Two Sigma, etc.)\n5. Analyst coverage: How many analysts? Consensus rating? Average price target?\n6. Analyst history: Who has been consistently right about UPST? Who has been wrong?\n7. Short seller reports: Has any short seller published a report on UPST? (Citron, Hindenburg, etc.)\n8. Options activity: Unusual call/put activity? Implied volatility?\n9. Insider buying vs short interest: Are insiders buying while shorts are selling?\n10. Social media sentiment: Is UPST a meme stock? WSB activity?\n\nUse 13F filings, FINRA data, and analyst reports. UNVERIFIED if estimated.",
+          "system_prompt": "You are a market microstructure analyst. Use official filing data where possible. Mark UNVERIFIED if estimated.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_7signals_honest",
+          "prompt": "UPST — Honest 7-signal assessment using ONLY verified data.\n\nScore UPST against the 7 NVIDIA 1000x signals, but ONLY using numbers from SEC filings:\n\n1. Revenue growth >30% YoY:\n   - What is the EXACT revenue growth from the most recent 10-Q?\n   - Is it accelerating or decelerating?\n   - Score: PASS/FAIL with citation\n\n2. Gross margins >60% and expanding:\n   - What is the EXACT GAAP gross margin from the most recent filing?\n   - Is it expanding or contracting?\n   - How does UPST define 'cost of revenue'? (Some fintechs exclude key costs)\n   - Score: PASS/FAIL with citation\n\n3. Insider ownership >20%:\n   - EXACT insider ownership % from DEF 14A\n   - Is management buying or selling?\n   - Score: PASS/FAIL with citation\n\n4. Annual dilution <5%:\n   - EXACT annual dilution rate from share count history\n   - Score: PASS/FAIL with citation\n\n5. 0-5 analyst coverage:\n   - How many analysts cover UPST?\n   - Score: PASS/FAIL\n\n6. TAM expanding 10x in next decade:\n   - Is the AI lending TAM actually expanding 10x? Or is it a fixed market being disrupted?\n   - Score: PASS/FAIL with reasoning\n\n7. Ecosystem lock-in or switching cost moat:\n   - Does UPST have switching costs? Can banks easily replace UPST with Zest AI or in-house?\n   - Does UPST have network effects? (More loans → better model → more partners)\n   - Score: PASS/FAIL with reasoning\n\nFINAL SCORE: X/7\nBe BRUTALLY honest. No optimism bias.",
+          "system_prompt": "You are a scoring analyst. Be brutally honest. ONLY use verified SEC data. Mark UNVERIFIED if estimated.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_10x_probability",
+          "prompt": "UPST — Rigorous 10x probability assessment.\n\nCurrent: $33.61, $3.2B market cap. 10x = $336/share, $32B market cap.\n\nFor UPST to be worth $32B, it needs one of:\n- Scenario A: $3.2B revenue at 10x P/S (what growth rate and for how long?)\n- Scenario B: $1.6B net income at 20x P/E (what margins needed?)\n- Scenario C: $2B FCF at 16x P/FCF (what conversion needed?)\n\nFor EACH scenario:\n1. Is it physically achievable? (Revenue ceiling from TAM analysis)\n2. How long would it take? (5yr, 10yr, 15yr?)\n3. What must go RIGHT? (List 5 things)\n4. What could go WRONG? (List 5 things)\n5. Historical precedent: Has any AI fintech grown from $1B to $3B+ revenue? How long did it take?\n\nAssign probabilities:\n- P(10x in 3 years) = ?\n- P(10x in 5 years) = ?\n- P(10x in 10 years) = ?\n- P(stock goes to $0 in 5 years) = ?\n- P(stock stays flat $20-40 for 5 years) = ?\n\nBase your probabilities on historical base rates of similar companies. UNVERIFIED for all probability estimates.",
+          "system_prompt": "You are a probabilistic analyst. Use historical base rates and verified financial data. Mark UNVERIFIED for probability estimates.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_risk_matrix",
+          "prompt": "UPST — Complete risk matrix. Identify EVERY risk factor.\n\nCategorize risks by probability and impact:\n\n1. REGULATORY RISKS:\n   - CFPB crackdown on AI lending\n   - DOJ disparate impact investigation\n   - State licensing revocation\n   - AI regulation (EU AI Act, US proposals)\n\n2. CREDIT RISKS:\n   - Recession causing mass defaults\n   - AI model failure in new economic regime\n   - Funding partner withdrawal\n   - ABS market freeze\n\n3. COMPETITIVE RISKS:\n   - JPMorgan/Goldman build in-house AI\n   - Pagaya/Zest AI win market share\n   - Apple/Google enter consumer lending\n   - Open-source AI models commoditize underwriting\n\n4. OPERATIONAL RISKS:\n   - Key person risk (CEO/CTO departure)\n   - Technology failure / data breach\n   - Cross River Bank regulatory action\n   - Talent war (AI engineers)\n\n5. FINANCIAL RISKS:\n   - Dilution exceeds revenue growth\n   - Cash burn in downturn\n   - Convertible note dilution at conversion\n   - Interest rate sensitivity\n\n6. MARKET RISKS:\n   - Multiple compression (fintech re-rating)\n   - Short seller attack\n   - Contagion from fintech failures\n   - Macro shock (2008-level)\n\nFor EACH risk: Probability (1-5), Impact (1-5), Mitigation. Use 10-K risk factors as starting point.\n\nCite 10-K risk factors where applicable. UNVERIFIED for probability estimates.",
+          "system_prompt": "You are a risk management analyst. Use 10-K risk factors as baseline. Mark UNVERIFIED for probability estimates.",
+          "temperature": 0.15,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "upst_bull_bear_thesis",
+          "prompt": "UPST — Definitive bull and bear thesis.\n\nBULL THESIS (steelman — make the strongest possible case):\n1. Why UPST could be the 'Visa of AI lending' — disrupting a $4.7T market\n2. Why the AI model is a genuine moat that improves with scale\n3. Why the 2022-2023 crash was a cyclical trough, not structural decline\n4. Why CEO buying at $25-35 is a strong signal\n5. Why rate cuts will catalyze a revenue explosion\n6. Why UPST at 3x revenue is cheap vs SaaS peers at 10-15x\n7. Most optimistic but realistic price target with timeline\n\nBEAR THESIS (steelman — make the strongest possible case):\n1. Why UPST is a cyclical lending company masquerading as tech\n2. Why the AI moat is weak (banks can replicate, Pagaya competes)\n3. Why 83% gross margins are misleading (exclude loan losses?)\n4. Why the 2022-2023 crash revealed the business model's fragility\n5. Why regulatory risk is existential (CFPB + disparate impact)\n6. Why UPST will never reach escape velocity to justify $32B+ valuation\n7. Most pessimistic but realistic price target with timeline\n\nWHO IS RIGHT? Based on verified data only, which thesis has more evidence?\n\nUse SEC filing data to support both sides. UNVERIFIED for predictions.",
+          "system_prompt": "You are a debate analyst presenting both sides with equal rigor. Use verified data. Mark UNVERIFIED for predictions.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "upst_entry_strategy",
+          "prompt": "UPST — Optimal entry strategy for a $250-500 position.\n\nGiven:\n- Current price: $33.61\n- IBKR portfolio: $2,500 equity, $2,054 cash\n- Already holding: TUYA (95 @ $2.10), TIGR (39 @ $5.01)\n- Open orders: PAGS 50@$9.22, PAYO 50@$5.12, BTG 50@$4.77, GRAB 50@$3.55, GAU 100@$2.34\n\n1. Should UPST be bought NOW at $33.61? Or wait for a pullback?\n2. Technical analysis: Key support/resistance levels for UPST\n3. What price would represent a 'margin of safety' entry? (30% below fair value)\n4. Dollar-cost averaging: Should the position be built in 3-5 tranches?\n5. Position sizing: Given $2,054 cash, how much should be allocated to UPST? (Considering existing positions)\n6. Stop loss: At what price should UPST be sold if the thesis breaks?\n7. Catalyst calendar: When are UPST's next earnings? Any upcoming regulatory events?\n8. Risk management: What other portfolio adjustments should be made to fund UPST? (Trim any existing positions?)\n9. Correlation risk: Does UPST correlate with any existing holdings? (PAYO, PAGS — all fintech)\n10. Optimal order type: Market order, limit order at what price, or GTC?\n\nProvide a specific action plan with exact prices and quantities.\n\nUNVERIFIED for all price predictions and recommendations.",
+          "system_prompt": "You are a portfolio manager. Provide specific actionable recommendations. Mark UNVERIFIED for price predictions.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_sec_risk_factors_full",
+          "prompt": "UPST — Extract and analyze ALL risk factors from the most recent 10-K filing.\n\nList EVERY risk factor from the 10-K in order, with:\n1. Risk factor title (exact wording)\n2. Key quote (most important sentence)\n3. Severity assessment (LOW / MEDIUM / HIGH / CRITICAL)\n4. Has this risk materialized in the past? (YES / NO / PARTIALLY)\n5. If YES, what happened and what was the financial impact?\n\nPay special attention to:\n- 'Our business is dependent on our AI models' performance' (or similar)\n- 'Concentration risk' (any single partner >10%?)\n- 'Interest rate risk'\n- 'Regulatory risk'\n- 'Competition'\n- 'We may not maintain profitability'\n- 'Our stock price may be volatile'\n\nHow many total risk factors does UPST list? How does this compare to typical fintech companies?\n\nCite EXACT 10-K section and page numbers. UNVERIFIED if not from filing.",
+          "system_prompt": "You are a risk factor analyst. Use ONLY the most recent 10-K filing. Mark UNVERIFIED if not from filing.",
+          "temperature": 0.05,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "upst_earnings_call_analysis",
+          "prompt": "UPST — Analyze the last 4 earnings calls for management credibility.\n\nFor the last 4 quarterly earnings calls:\n1. What did CEO say about growth outlook? Did it happen?\n2. What did CFO say about margins? Did it happen?\n3. What did management say about the macro environment? Were they right?\n4. What was analyst sentiment? Challenging questions asked?\n5. Key metrics management highlighted — did they hold up?\n6. Any forward-looking statements that turned out wrong?\n7. Tone: Was management overly optimistic, realistic, or cautious?\n8. Did management dodge any questions? Which ones?\n9. What NEW information was disclosed on each call?\n10. Biggest surprise on each call (positive or negative)\n\nLook for patterns:\n- Is management consistently over-promising and under-delivering?\n- Or are they sandbagging (guiding low, beating high)?\n- Has the narrative shifted over the 4 calls?\n\nCite specific earnings call dates and quotes. UNVERIFIED if from memory.",
+          "system_prompt": "You are an earnings call analyst. Use specific quotes and dates. Mark UNVERIFIED if not from transcript.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_convertible_notes",
+          "prompt": "UPST — Convertible note analysis from SEC filings.\n\nExtract ALL convertible note details:\n1. Issue date(s)\n2. Principal amount(s)\n3. Coupon rate(s)\n4. Maturity date(s)\n5. Conversion price(s)\n6. Conversion premium at issuance\n7. Current stock price vs conversion price — are notes in-the-money?\n8. Total dilution if all notes convert at current price\n9. Make-whole provisions or acceleration clauses\n10. Can UPST force conversion? Under what conditions?\n11. Can holders put (force buyback) the notes? Under what conditions?\n12. Net share settlement option — can UPST pay in cash instead of stock?\n\nAlso:\n13. What was the use of proceeds from the convertible offering?\n14. Did UPST enter any capped call transactions to offset dilution?\n15. What is the accounting impact? (ASC 470-20 treatment)\n\nThis is CRITICAL for understanding future dilution. Cite EXACT 10-K/10-Q notes to financial statements.",
+          "system_prompt": "You are a convertible bond analyst. Use ONLY SEC filing data from notes to financial statements. Mark UNVERIFIED if estimated.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_geographic_breakdown",
+          "prompt": "UPST — Geographic and demographic analysis from SEC filings.\n\n1. In which US states does UPST operate? Any states excluded?\n2. Top states by loan origination volume (if disclosed)\n3. Urban vs rural borrower mix\n4. Average borrower profile: Age, income, FICO, education (from 10-K or S-1)\n5. Does UPST have any international operations?\n6. Has UPST mentioned international expansion in any filing?\n7. What regulatory approvals are needed for each state?\n8. State-level interest rate caps: Which states limit what UPST can charge?\n9. Does UPST use the 'bank model' to export favorable rates nationally? (Cross River is NJ-chartered)\n10. Risk: If 'true lender' rules change, does this break UPST's model?\n\nAlso verify:\n11. Number of employees (from 10-K)\n12. Office locations\n13. Any layoffs disclosed?\n\nCite EXACT filing sections. UNVERIFIED if not from filing.",
+          "system_prompt": "You are a regulatory analyst. Use SEC filings. Mark UNVERIFIED if not from filing.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "upst_operating_leverage",
+          "prompt": "UPST — Operating leverage analysis from SEC filings.\n\nCompute from 10-K/10-Q data:\n1. Revenue by year (2019-2023)\n2. COGS by year — what exactly is in UPST's cost of revenue?\n3. Gross profit by year\n4. R&D expense by year and as % of revenue\n5. S&M expense by year and as % of revenue\n6. G&A expense by year and as % of revenue\n7. Total OpEx by year and as % of revenue\n8. Operating income/loss by year\n9. GAAP net income by year\n10. Adjusted EBITDA by year (if reported)\n\nKey questions:\n11. At what revenue level does UPST become consistently GAAP profitable?\n12. Is operating leverage visible? (OpEx growing slower than revenue?)\n13. What is the MARGINAL contribution margin? (Revenue from one more loan minus cost)\n14. How scalable is the cost structure? (Fixed costs vs variable costs split)\n15. If revenue doubles from here, what does operating margin look like?\n\nCite EXACT 10-K income statement line items. UNVERIFIED if estimated.",
+          "system_prompt": "You are a financial analyst. Use EXACT income statement data from SEC filings. Mark UNVERIFIED if estimated.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_accounting_quality",
+          "prompt": "UPST — Accounting quality and red flag analysis.\n\nCheck for common accounting red flags in UPST's SEC filings:\n\n1. Revenue recognition: How does UPST recognize platform fees? At origination or over loan life?\n2. Fair value accounting: Does UPST use Level 3 (model-based) fair value for any assets? What assumptions?\n3. Loan loss reserves: What methodology? How much is reserved? Is it adequate?\n4. Related-party transactions: Any disclosed in 10-K or DEF 14A?\n5. Non-GAAP adjustments: What does UPST exclude from non-GAAP metrics? Are adjustments reasonable?\n6. Revenue quality: What % of revenue is recurring vs transactional?\n7. Accruals quality: Cash flow from operations vs net income (Sloan accrual ratio)\n8. Auditor opinion: Clean? Going concern? Material weakness?\n9. Internal controls: Any material weaknesses or significant deficiencies disclosed?\n10. Restatements: Has UPST ever restated financial results?\n\nCompute Beneish M-Score if possible (quality of earnings flag).\n\nCite EXACT 10-K accounting policy sections and audit report. UNVERIFIED if computed.",
+          "system_prompt": "You are a forensic accountant specializing in earnings quality. Use SEC filings. Mark UNVERIFIED if computed/estimated.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_sp_moody_ratings",
+          "prompt": "UPST — Credit ratings and debt analysis.\n\n1. Does UPST have a corporate credit rating from S&P, Moody's, or Fitch? If not, why?\n2. ABS (asset-backed securities) ratings: What ratings do UPST's securitizations receive?\n3. Tranche structure of most recent ABS deal\n4. What is the weighted average coupon on UPST's ABS deals?\n5. Who buys UPST's ABS? (Insurance companies, pension funds, hedge funds?)\n6. Has any UPST ABS tranche been downgraded?\n7. Warehouse facility terms: Lenders, rates, covenants, maturity\n8. Does UPST have any financial covenants it must maintain?\n9. What is UPST's weighted average cost of debt?\n10. Debt maturity schedule: When does each tranche mature?\n\nAlso:\n11. How does UPST's ABS performance compare to other consumer ABS issuers?\n12. Has UPST accessed the ABS market during the 2022-2023 stress period?\n13. What is the current spread on UPST ABS vs benchmarks?\n\nCite 10-K notes to financial statements, 8-K filings, and ABS offering documents. UNVERIFIED if estimated.",
+          "system_prompt": "You are a fixed income analyst. Use SEC filings and rating agency data. Mark UNVERIFIED if estimated.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_technology_stack",
+          "prompt": "UPST — Technology infrastructure analysis.\n\n1. Cloud provider: AWS, GCP, Azure? Multi-cloud?\n2. AI/ML framework: TensorFlow, PyTorch, proprietary?\n3. Data infrastructure: How much data does UPST process per loan application?\n4. Model serving: Real-time inference latency — how fast is the decision?\n5. API architecture: How do bank partners integrate?\n6. Security certifications: SOC 2, ISO 27001, PCI DSS?\n7. Technology team size: How many engineers? From 10-K or DEF 14A\n8. R&D spend as % of revenue — how does this compare to SaaS companies?\n9. Patents: How many patents does UPST hold? What do they cover?\n10. Open source contributions: Does UPST contribute to or use open-source AI?\n\nKey question: Is UPST's technology genuinely differentiated, or could a well-funded competitor (JPMorgan, Google) replicate it?\n\n11. What would it cost to build a competing AI lending platform from scratch?\n12. How long would it take? (Engineering months/years)\n13. What is UPST's data advantage? (Years of loan performance data)\n14. Can this data advantage be replicated by buying loan data from credit bureaus?\n\nUse 10-K technology descriptions, patent filings, and job postings. UNVERIFIED if speculative.",
+          "system_prompt": "You are a technology due diligence analyst. Use 10-K descriptions and patent data. Mark UNVERIFIED if speculative.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_comparable_crashes",
+          "prompt": "UPST — Compare to other stocks that crashed 90%+ and recovered.\n\nHistorical precedents of 90%+ crashes and recoveries:\n\n1. Amazon: $113 -> $5.51 (-95%, 2000-2001) -> $3,500+ (700x from bottom)\n   - What was different about Amazon's business during the crash?\n   - Revenue growth during crash period\n   - Cash position during crash\n\n2. Netflix: $300 -> $7.78 (-97%, 2011) -> $700 (90x from bottom)\n   - What caused the crash? (Qwikster)\n   - Recovery catalyst\n\n3. Tesla: $414 -> $101 (-75%, 2022) -> $400+ (4x from bottom)\n   - What drove the recovery?\n\n4. Meta: $382 -> $88 (-77%, 2022) -> $500+ (5.7x from bottom)\n   - What changed? (Cost cutting, Reels)\n\n5. LendingClub: IPO $28.65 -> $1.30 (-95%, 2016-2020) -> $14 (10x from bottom)\n   - Most relevant comp to UPST\n   - What drove LendingClub's crash? (CEO scandal, regulatory)\n   - What drove the recovery? (Radius Bank acquisition, deposits)\n\nFor UPST specifically:\n6. UPST crashed from $401 to ~$14 (-96%). Current $33.61 = 2.4x from bottom.\n7. Which historical pattern does UPST most resemble?\n8. Based on these precedents, what is the EXPECTED recovery trajectory?\n9. What percentage of stocks that crash 90%+ ever recover to ATH? (Base rate)\n10. What differentiates the ones that recover from the ones that don't?\n\nUse verified historical data. UNVERIFIED if estimated.",
+          "system_prompt": "You are a financial historian. Use verified historical data. Mark UNVERIFIED if estimated.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_hood_pattern_check",
+          "prompt": "UPST — Does UPST match the HOOD turnaround pattern?\n\nHOOD turnaround signals at $8 (June 2022):\n1. Insider buying at 90%+ drawdown — CEO bought $1M at $8-10\n2. Cash > market cap — $6.2B cash vs $7B mcap\n3. Cyclical revenue trough (not structural)\n4. High short interest (25-30%)\n5. Product catalyst pipeline ignored by market\n6. Revenue monetization > user growth (ARPU doubled)\n\nCheck UPST against EACH of these 6 signals:\n\n1. INSIDER BUYING: Did UPST insiders buy at the $14 low? At what prices? How much?\n2. CASH vs MCAP: What was UPST's cash position at the bottom? Was it close to market cap?\n3. CYCLICAL vs STRUCTURAL: Was UPST's revenue decline cyclical (rate-driven) or structural (business model broken)? EVIDENCE from filings.\n4. SHORT INTEREST: What was UPST's short interest at the bottom? Is it still elevated?\n5. PRODUCT CATALYST: What product catalysts does UPST have that the market is ignoring? (Auto, HELOC, international)\n6. MONETIZATION: Is UPST's revenue per loan increasing? Is the AI model improving over time? Evidence from filings.\n\nSCORE: How many of 6 HOOD turnaround signals does UPST pass?\nWhat is different about UPST vs HOOD? (Better or worse setup?)\n\nCite SEC filings for all UPST data. Use verified HOOD data for comparison.",
+          "system_prompt": "You are a turnaround analyst. Compare using verified data from SEC filings. Mark UNVERIFIED if estimated.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_cross_river_risk",
+          "prompt": "UPST — Cross River Bank dependency risk analysis.\n\nCross River Bank is UPST's primary origination partner. Deep dive:\n\n1. What % of UPST loans are originated through Cross River? (From UPST's 10-K customer concentration disclosures)\n2. Cross River's regulatory status: Any FDIC/OCC enforcement actions?\n3. The 'true lender' doctrine: Does Cross River face legal challenges as a mere name-lender?\n4. Cross River's other partnerships: Who else uses Cross River? (Affirm, Marlette, Coinbase)\n5. If Cross River is shut down or restricted, what happens to UPST?\n6. Has UPST diversified away from Cross River? How many origination banks now?\n7. Cross River's capital adequacy: Can it support UPST's growth?\n8. Has any state sued Cross River or challenged its lending practices?\n9. FDIC consent order risk: Has the FDIC expressed concerns about Cross River's fintech partnerships?\n10. Backup plan: If Cross River is lost, how long would it take UPST to find replacement banks?\n\nThis is a CRITICAL dependency. If Cross River is impaired, UPST's entire business model breaks.\n\nCite UPST 10-K risk factors, Cross River FDIC filings, and regulatory databases. UNVERIFIED if not verified.",
+          "system_prompt": "You are a banking regulatory analyst. Use SEC filings and FDIC data. Mark UNVERIFIED if not verified.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_ai_vs_fico_evidence",
+          "prompt": "UPST — What is the ACTUAL evidence that UPST's AI model outperforms FICO?\n\nSeparate CLAIMS from EVIDENCE:\n\n1. UPST CLAIMS: '1,600+ variables', '75% fewer defaults at same approval rate' — WHERE does this appear in SEC filings? Exact quote.\n2. Is there ANY third-party validation of these claims? (Academic papers, independent audits)\n3. CFPB no-action letter: Did the CFPB validate the model? Or just allow testing?\n4. What happened to UPST's model during 2022-2023? Did it actually predict the rate-shock defaults?\n5. UPST's own disclosure: What do they say about model limitations in the 10-K?\n6. Vintage analysis: What are the ACTUAL default rates for each loan cohort (2019, 2020, 2021, 2022, 2023)?\n7. Are UPST's default rates ACTUALLY lower than bank defaults for similar borrowers? Evidence?\n8. The 'macro adjustment' problem: Did UPST have to manually override its AI model in 2022? (Indicates model failure)\n9. Does UPST disclose its model's accuracy metrics? (AUC, KS statistic, Gini coefficient)\n10. Has UPST's AI model been challenged in court or by regulators as discriminatory?\n\nCRITICAL: UPST's entire value proposition rests on the AI model being better than FICO. If this claim is overstated, the business has no moat.\n\nCite SEC filings and any third-party research. UNVERIFIED if from UPST marketing only.",
+          "system_prompt": "You are a model validation analyst. Distinguish between marketing claims and verified evidence. Mark UNVERIFIED if not independently verified.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_macro_sensitivity_map",
+          "prompt": "UPST — Map UPST's performance to every major macro variable.\n\nUsing UPST's quarterly data overlaid with macro data:\n\n1. Fed Funds Rate vs UPST Revenue (quarterly from 2020-2024)\n2. 10-Year Treasury Yield vs UPST Loan Volume\n3. Unemployment Rate vs UPST Default Rates\n4. Consumer Confidence Index vs UPST Applications\n5. Personal Savings Rate vs UPST Borrower Demand\n6. Home Price Index vs UPST HELOC Demand\n7. Auto Sales vs UPST Auto Loan Volume\n8. VIX (Volatility) vs UPST Stock Price\n\nWhat is the SINGLE most important macro variable for UPST? (Most likely answer: Fed Funds Rate)\n\nProject for 3 scenarios:\n- BULL: Fed cuts 200bps by end 2026 → What happens to UPST revenue?\n- BASE: Fed cuts 100bps by end 2026\n- BEAR: Rates stay at 5%+ through 2026\n\nFor UPST at $33.61, which macro scenario is priced in? Is the market optimistic or pessimistic?\n\nUse FRED (Federal Reserve Economic Data) for macro data. UPST data from SEC filings. UNVERIFIED for projections.",
+          "system_prompt": "You are a macro-financial analyst. Use FRED data and SEC filings. Mark UNVERIFIED for projections.",
+          "temperature": 0.15,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_board_governance",
+          "prompt": "UPST — Board of directors and corporate governance analysis from DEF 14A.\n\n1. List ALL board members with: Name, role, background, tenure, compensation\n2. Board independence: How many independent vs insider directors?\n3. Dual-class stock: Does UPST have supervoting shares? Who controls voting?\n4. Anti-takeover provisions: Poison pill? Staggered board? Delaware incorporation?\n5. Say-on-pay results: Did shareholders approve executive compensation?\n6. CEO compensation vs performance: Is Dave Girouard overpaid relative to results?\n7. Board stock ownership: Do directors have meaningful skin in the game?\n8. Audit committee: Who is on it? Qualifications?\n9. Risk committee: Does one exist? Focus areas?\n10. Related-party transactions: Any conflicts of interest?\n\nRed flags to check:\n11. Any director resigned recently? (Could signal problems)\n12. Any shareholder proposals? What were they?\n13. Does UPST have a clawback policy?\n14. ESG/DEI disclosures: Relevant to regulatory risk?\n\nCite DEF 14A (latest proxy statement). UNVERIFIED if not from proxy.",
+          "system_prompt": "You are a corporate governance analyst. Use ONLY DEF 14A proxy statement data. Mark UNVERIFIED if not from proxy.",
+          "temperature": 0.05,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "upst_patent_analysis",
+          "prompt": "UPST — Patent portfolio analysis.\n\nFrom USPTO and UPST's 10-K:\n1. How many patents does UPST hold? (Issued and pending)\n2. What are the key patent claims? (AI underwriting methods, data processing, etc.)\n3. When do the earliest patents expire?\n4. Has UPST been involved in any patent litigation? (As plaintiff or defendant)\n5. Are UPST's patents broad enough to block competitors? Or are they narrow?\n6. Can Zest AI, Pagaya, or a bank work around UPST's patents?\n7. Does UPST license any technology from third parties?\n8. Has UPST acquired any patents through acquisitions?\n9. R&D spend vs patent output: Is UPST investing enough in IP?\n10. How does UPST's patent portfolio compare to competitors (PGY, LC, SOFI)?\n\nKey question: Is UPST's patent portfolio a real moat, or is it defensive at best?\n\nCite patent numbers from USPTO. UNVERIFIED if not verified.",
+          "system_prompt": "You are an IP analyst. Use USPTO data and 10-K disclosures. Mark UNVERIFIED if not verified.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "upst_hallucination_check",
+          "prompt": "UPST — Hallucination detection. Cross-check ALL key numbers.\n\nI will provide CLAIMED numbers from our previous analysis. Verify or REFUTE each one using SEC filings:\n\n1. CLAIMED: Revenue Q1 2026 = $260M. VERIFY from most recent 10-Q.\n2. CLAIMED: Gross margin = 83%. VERIFY from most recent 10-Q. What EXACTLY is in cost of revenue?\n3. CLAIMED: Revenue growth = 45% YoY. VERIFY: which quarters? Is this Q/Q or Y/Y?\n4. CLAIMED: CEO bought $1.7M at $25-35. VERIFY from Form 4 filings.\n5. CLAIMED: 85+ lending partners. VERIFY from 10-K.\n6. CLAIMED: $4.5B committed forward-flow agreements. VERIFY from 10-K/10-Q.\n7. CLAIMED: 5.3M total loans originated. VERIFY from 10-K.\n8. CLAIMED: 1,600+ variables in AI model. VERIFY from 10-K.\n9. CLAIMED: 30-50% fewer defaults vs FICO. VERIFY from 10-K.\n10. CLAIMED: $1.1B cash, $850M debt. VERIFY from latest balance sheet.\n11. CLAIMED: SBC = 9% of revenue (declining from 18%). VERIFY from 10-K/10-Q.\n12. CLAIMED: Shares = 90M (from 45M at IPO). VERIFY from 10-K.\n13. CLAIMED: Contribution margin = 48%. VERIFY: what does UPST define as contribution margin?\n14. CLAIMED: FCF positive Q4 2025. VERIFY from 10-Q.\n15. CLAIMED: Insider ownership = 13%. VERIFY from DEF 14A.\n\nFor EACH: State VERIFIED (with source) or REFUTED (with correct number) or UNVERIFIABLE (no filing access).\n\nYour KNOWLEDGE CUTOFF matters here. If you cannot access 2025-2026 filings, say so explicitly.",
+          "system_prompt": "You are a fact-checker. Your ONLY job is to verify or refute claims using SEC filings. Be explicit about your knowledge cutoff.",
+          "temperature": 0.05,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "upst_final_verdict",
+          "prompt": "UPST — FINAL VERDICT. Synthesize ALL analysis into a definitive assessment.\n\nUsing everything we know from SEC filings:\n\n1. INVESTMENT GRADE: Rate UPST as A (strong buy), B (buy), C (hold), D (sell), or F (avoid)\n2. CONVICTION LEVEL: 1-10 scale\n3. FAIR VALUE ESTIMATE: $ per share with bear/base/bull scenarios\n4. TIME HORIZON: How long to hold?\n5. POSITION SIZE: What % of a $2,500 portfolio?\n6. ENTRY STRATEGY: Buy now, wait for pullback, or dollar-cost average?\n7. EXIT TRIGGERS: What would make you sell? (List 5 specific triggers with thresholds)\n8. MONITORING CHECKLIST: What metrics to watch each quarter? (List 10)\n\nKEY QUESTIONS TO ANSWER:\n9. Is UPST a PLATFORM (like Visa) or a LENDER (like LendingClub)? This determines the appropriate valuation.\n10. Is the AI model a REAL moat or MARKETING? What is the honest evidence?\n11. Is the CEO trustworthy? (Buying shares = positive signal. But is it enough?)\n12. Is the 2022-2023 crash a BUYING OPPORTUNITY (like Amazon in 2001) or a WARNING (like Theranos)?\n13. What is the single biggest risk that could send UPST to $0?\n14. What is the single biggest catalyst that could 5x UPST from here?\n\n15. FINAL 1000x ASSESSMENT: Can UPST ever be worth $3.2T? (Be honest — the answer is almost certainly no, but explain why with math)\n\nBase ALL conclusions on verified SEC filing data. UNVERIFIED for predictions.",
+          "system_prompt": "You are the lead analyst delivering a final investment recommendation. Be decisive and honest. Use verified data. Mark UNVERIFIED for predictions.",
+          "temperature": 0.15,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "phases": [
+    {
+      "phase_id": "phase1_live_operators",
+      "tasks": [
+        {
+          "task_id": "p1-01-telegram-operators",
+          "prompt": "TASK: Find and list REAL Telegram channels, groups, and bots that sell unauthorized AI API proxy access (GPT-4, Claude, etc). Search for known channels like @gpt4free_chat, @openai_api_reseller, @claude_api_cheap, @gpt_proxy, @ai_api_market and similar. For EACH channel found, provide: exact channel name/handle, approximate member count, pricing listed, models offered, payment methods accepted (USDT, crypto, Alipay), whether they have a bot for automated key delivery, and any linked websites or GitHub repos. Also search for Russian-language Telegram channels selling AI API access. List at minimum 15 specific real Telegram channels/groups with their exact handles.",
+          "system_prompt": "You are an OSINT researcher investigating unauthorized AI API resale operations on Telegram. Report only channels and operators you can verify exist. Provide exact handles, not hypothetical names. If you cannot verify a channel exists, say so explicitly.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-02-github-proxy-repos",
+          "prompt": "TASK: Find ALL active GitHub repositories that provide unauthorized proxy access to GPT-4, Claude, or other paid AI APIs. Known repos include: xtekky/gpt4free, PawanOsman/ChatGPT, chatgptProxyAPI, pandora-next, fuclaude, new-api, one-api, chat-api-proxy. For EACH repo provide: exact GitHub URL (github.com/user/repo), star count, last commit date, what models it proxies, how it works technically (reverse proxy, session stealing, key pooling), whether it has been DMCA'd, and any linked Discord/Telegram communities. Also search for forks and derivative projects. List minimum 20 real repos with exact URLs.",
+          "system_prompt": "You are a security researcher cataloging open-source projects that enable unauthorized AI API access. Report exact GitHub URLs, real star counts, and technical details. Only report repos you can verify exist.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-03-proxy-websites",
+          "prompt": "TASK: Find REAL websites that sell or provide unauthorized proxy access to AI APIs like GPT-4, Claude, Gemini. Search for domains like: gptapi.us, api2d.com, openai-sb.com, closeai.biz, api.chatanywhere.tech, ohmygpt.com, aigcbest.top, chatapi.ai, gpt-api.hk, one-api.com, and similar. For EACH website provide: exact domain/URL, what models they offer, their pricing structure, payment methods, whether they use OpenAI-compatible endpoints, uptime/reliability claims, any Terms of Service, country of registration (WHOIS data), and CDN/hosting provider. List minimum 15 real proxy service websites with exact URLs.",
+          "system_prompt": "You are a cybersecurity analyst investigating unauthorized AI API proxy services. Report exact domains and URLs you can verify. Include technical details about their infrastructure when available.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-04-discord-communities",
+          "prompt": "TASK: Find REAL Discord servers and communities involved in AI API proxy resale, key sharing, or unauthorized access. Search for servers related to: gpt4free community, AI API trading, GPT proxy marketplace, Claude API sharing, AI underground, free AI API access. For EACH server provide: exact server name, invite link pattern if known, approximate member count, what's traded/sold, moderation level, whether they have automated bots for key distribution, linked websites or GitHub repos, and any notable operators/admins. Also investigate Reddit communities like r/ChatGPTAPI, r/LocalLLaMA discussions about proxies, r/AIproxy. List minimum 10 real Discord servers and 5 Reddit threads with specific details.",
+          "system_prompt": "You are an OSINT analyst mapping online communities involved in AI API proxy distribution. Report only communities you can verify exist with specific details.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-05-chinese-platforms",
+          "prompt": "TASK: Deep investigation of Chinese platforms selling AI API proxy access. Find REAL sellers and listings on Xianyu (闲鱼), Taobao (淘宝), and Pinduoduo (拼多多). Search terms include: GPT API代理, Claude接口, AI接口转发, GPT转发站, OpenAI代理, ChatGPT代充, API中转. For EACH listing/seller found provide: platform, seller name/shop name, pricing in CNY and USD equivalent, what's being sold (API keys, proxy endpoints, token packages), delivery method (卡密, API endpoint, WeChat group invite), ratings/reviews count, and any linked WeChat groups or websites. Also investigate Chinese developer forums like V2EX, CSDN, Zhihu for discussions about proxy services. List minimum 15 specific real sellers/listings.",
+          "system_prompt": "You are a market intelligence analyst specializing in Chinese digital marketplaces. Report specific seller names, shop names, and pricing from real platform listings. Use Chinese search terms for accuracy.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-06-one-api-new-api-ecosystem",
+          "prompt": "TASK: Deep-dive into the one-api and new-api ecosystem — the open-source API management platforms that power most grey market proxy operations. Find: (1) songquanpeng/one-api on GitHub — exact stars, forks, features, how operators use it to pool and resell API keys. (2) Calcium-Ion/new-api — the popular fork with additional features. (3) All major forks and derivatives (list exact repos). (4) Commercial hosting services built on one-api/new-api (find real URLs). (5) Docker deployment guides on Chinese blogs. (6) WeChat/Telegram groups for one-api operators. (7) How these tools handle key rotation, load balancing, rate limiting, and billing. These are the BACKBONE of 90%+ of grey market operations. List every repo URL, fork, and commercial derivative you can find.",
+          "system_prompt": "You are a software infrastructure analyst examining the open-source tools that enable AI API proxy operations at scale. Report exact GitHub URLs, star counts, and technical capabilities.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p1-07-payment-infrastructure",
+          "prompt": "TASK: Map the payment and financial infrastructure of grey market AI API operations. Find: (1) USDT/TRC-20 wallet addresses associated with known proxy operators. (2) Payment processors used — Alipay, WeChat Pay, Stripe (for Western operators), crypto payment gateways. (3) Pricing models — per-token, subscription, prepaid credits, unlimited plans. (4) Specific pricing pages from real proxy services (URLs). (5) Volume discount structures. (6) Refund/dispute handling. (7) How operators handle chargebacks and fraud. (8) Revenue estimates for top operators based on visible transaction volumes on Xianyu/Taobao. (9) Gift card arbitrage — buying OpenAI/Anthropic credits with discounted gift cards. Provide specific financial data points with sources.",
+          "system_prompt": "You are a financial intelligence analyst investigating payment flows in unauthorized digital services markets. Report specific financial data, pricing structures, and payment methods from real operators.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Compile a MASTER DIRECTORY of all grey market AI API operators found across all 7 agents. Organize by platform (GitHub, Telegram, Discord, Websites, Chinese marketplaces). For each entry include: exact name/URL/handle, platform, models offered, pricing, status (active/inactive), risk level. Deduplicate entries. Flag any entries that could not be verified. This should be a comprehensive actionable intelligence directory."
+    },
+    {
+      "phase_id": "phase2_technical_infrastructure",
+      "tasks": [
+        {
+          "task_id": "p2-01-reverse-proxy-architecture",
+          "prompt": "TASK: Technical deep-dive into how grey market AI API reverse proxies work. Analyze the source code of: gpt4free (xtekky/gpt4free), fuclaude, pandora-next, ChatGPT-to-API, and similar projects. For each: (1) What endpoints do they expose? (2) How do they authenticate with the upstream API? (3) Session token management — how are ChatGPT/Claude web sessions converted to API calls? (4) How do they handle streaming responses (SSE)? (5) Rate limiting bypass techniques in the code. (6) Key rotation algorithms. (7) Error handling and fallback strategies. (8) What models are supported? Provide actual code snippets or function names where possible. Compare architectures across projects.",
+          "system_prompt": "You are a systems security engineer analyzing reverse proxy codebases for AI APIs. Provide technical architecture details without creating new exploitation tools.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-02-hosting-infrastructure",
+          "prompt": "TASK: Map the hosting infrastructure used by grey market AI API proxy operators. Investigate: (1) Which cloud providers host proxy services — Cloudflare Workers, Vercel, Railway, Render, DigitalOcean, Hetzner, Chinese cloud providers (Aliyun, Tencent Cloud, Huawei Cloud)? (2) CDN usage — Cloudflare (most common), Fastly, CloudFront? (3) DNS patterns — what domains do operators use? .com, .us, .top, .xyz, .ai? (4) SSL certificate analysis — Let's Encrypt vs commercial certs? (5) Server locations — US, Singapore, Hong Kong, Japan? (6) Docker deployment patterns. (7) Cost of running a proxy operation (compute, bandwidth, domain, CDN). Provide specific technical data from real infrastructure observations.",
+          "system_prompt": "You are an infrastructure security analyst mapping the hosting patterns of unauthorized API proxy operations. Report observed technical details about real infrastructure.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-03-detection-evasion",
+          "prompt": "TASK: Analyze how AI API proxy operators evade detection by OpenAI, Anthropic, and Google. Research: (1) IP rotation strategies — residential proxies, datacenter rotation, cloud function distribution. (2) User-agent and fingerprint spoofing techniques found in OSS code. (3) Request pattern obfuscation — timing randomization, burst avoidance. (4) How operators handle CAPTCHAs (Cloudflare Turnstile, reCAPTCHA) — Turnstile solver services, browser automation. (5) Account creation automation — bulk email generation, phone verification services. (6) How operators respond when keys get banned — automated replacement, backup pools. (7) Geographic distribution of proxy nodes to avoid pattern detection. Report techniques found in actual open-source code and operator documentation.",
+          "system_prompt": "You are a platform security researcher analyzing detection evasion techniques used by API abuse operations. This is defensive research to help platforms improve their security. Report observed techniques from public sources.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-04-fuclaude-analysis",
+          "prompt": "TASK: Deep analysis of 'fuclaude' and similar Claude-specific proxy projects. Search GitHub for: fuclaude, claude-proxy, claude-api-free, claude-reverse-proxy, anthropic-proxy, and similar repos. For EACH: (1) Exact GitHub URL and star count. (2) How does it bypass Anthropic's security? (3) Does it use web session tokens, API keys, or another method? (4) What Claude models does it support (Opus, Sonnet, Haiku)? (5) Rate limiting and session management. (6) Has Anthropic taken action against it (DMCA, API blocks)? (7) Community size (Discord, Telegram). Also analyze how Claude's security differs from GPT's — why is Claude harder to proxy? What specific Anthropic defenses make it more expensive in grey markets (10-20% vs 3% of official pricing)?",
+          "system_prompt": "You are a security researcher analyzing Claude-specific proxy projects for defensive purposes. Report exact repo URLs, technical mechanisms, and security implications.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-05-api2d-closeai-analysis",
+          "prompt": "TASK: Investigate the largest commercial AI API proxy services that operate as semi-legitimate businesses. Focus on: (1) api2d.com — pricing, models, infrastructure, company behind it, terms of service. (2) closeai.biz / openai-sb.com — same analysis. (3) OhMyGPT (ohmygpt.com) — pricing, reputation, models. (4) Any service using domains like *gpt*.com, *claude*.ai, *openai*.*, *ai-api*.*. (5) For each service: exact URL, pricing page screenshot description, supported models, payment methods, uptime guarantees, Terms of Service analysis, WHOIS data (registrant, country, creation date), hosting provider. (6) How do these differ from truly unauthorized proxies — do they have official partnerships or are they pure grey market? List minimum 10 commercial proxy services with full details.",
+          "system_prompt": "You are a competitive intelligence analyst investigating commercial AI API proxy services. Report exact URLs, pricing, and business details from real services you can verify.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-06-openrouter-alternatives",
+          "prompt": "TASK: Map the ecosystem of API aggregators and routers that sit between legitimate and grey market. Investigate: (1) OpenRouter (openrouter.ai) — fully legitimate, but enables easy model switching. Pricing, models, how it works. (2) Together AI (together.ai) — hosts open-source models cheaply. (3) Replicate — pay-per-second model hosting. (4) Other aggregators: AnyScale, Fireworks.ai, Perplexity API, Groq. (5) Chinese alternatives: Baichuan API, Zhipu API, Moonshot (Kimi), 01.AI (Yi), DeepSeek. (6) For each: exact URL, pricing, models available, how they differ from grey market proxies. (7) Which of these are used as FALLBACKS by grey market operators when primary proxy keys get banned? Create a spectrum from fully legitimate → grey zone → fully unauthorized.",
+          "system_prompt": "You are a market analyst mapping the AI API provider ecosystem from legitimate to unauthorized. Report exact URLs, pricing, and business models.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p2-07-legal-enforcement",
+          "prompt": "TASK: Document all known legal enforcement actions against AI API proxy operators. Find: (1) DMCA takedowns on GitHub — which repos were taken down and when? Search GitHub DMCA repo for OpenAI and Anthropic takedowns. (2) Lawsuits filed by OpenAI or Anthropic against proxy operators. (3) Terms of Service violations and account bans — documented cases. (4) Platform moderation actions — Xianyu/Taobao removing AI proxy listings. (5) Law enforcement actions in any country. (6) Cloudflare abuse reports and domain takedowns. (7) How operators respond to legal pressure — jurisdiction shopping, domain migration, repo forking. (8) The gpt4free legal saga — timeline of DMCA, counter-notices, and current status. Provide specific dates, case numbers, and outcomes where available.",
+          "system_prompt": "You are a legal researcher documenting enforcement actions against unauthorized AI API operations. Report specific cases, dates, and outcomes from public records.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Create a TECHNICAL INFRASTRUCTURE REPORT covering: (1) Architecture patterns used by proxy operators (with diagrams). (2) The one-api/new-api ecosystem map. (3) Hosting and CDN patterns. (4) Detection evasion techniques. (5) Top commercial proxy services with URLs and pricing. (6) Legal enforcement timeline. (7) The legitimate-to-unauthorized spectrum of API providers. Include all real URLs, repo links, and service names found."
+    },
+    {
+      "phase_id": "phase3_verification",
+      "tasks": [
+        {
+          "task_id": "p3-01-verify-github-repos",
+          "prompt": "TASK: Verify the existence and current status of these GitHub repositories related to AI API proxying. For EACH, confirm: (1) Does the repo exist right now? (2) Current star count. (3) Last commit date. (4) Has it been DMCA'd or archived? (5) Is it actively maintained? Check these specific repos: xtekky/gpt4free, PawanOsman/ChatGPT, songquanpeng/one-api, Calcium-Ion/new-api, pandora-next/deploy, adams549659584/go-proxy-bingai, chatgptProxyAPI, aurora-develop/aurora, missuo/FreeGPT35, linweiyuan/go-chatgpt-api, xqdoo00o/ChatGPT-to-API. Also search for any NEW repos (created in 2024-2025) that proxy GPT-4, Claude, or Gemini. Report exact URLs and current status for each.",
+          "system_prompt": "You are a verification analyst confirming the existence and status of GitHub repositories. Only report what you can verify. Mark anything uncertain.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-02-verify-proxy-websites",
+          "prompt": "TASK: Verify the existence and current status of these AI API proxy websites. For EACH, confirm: (1) Is the domain active? (2) What does it serve — proxy API, documentation, or something else? (3) Pricing if visible. (4) SSL certificate details. (5) Cloudflare or other CDN? Check these specific domains: api2d.com, openai-sb.com, closeai.biz, ohmygpt.com, chatanywhere.tech, gptapi.us, aigcbest.top, one-api.biz, ai-proxy.one, gpt-api.hk, openai-proxy.com, api.chatanywhere.org, newapi.pro, burn.hair (known Claude proxy). Report exact URLs and current operational status for each.",
+          "system_prompt": "You are a web intelligence analyst verifying the operational status of AI API proxy services. Report only verified findings.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-03-verify-telegram-channels",
+          "prompt": "TASK: Verify the existence and current status of Telegram channels selling AI API access. Search for and verify channels using terms: GPT API, Claude API, AI proxy, OpenAI reseller, ChatGPT cheap, AI API wholesale. Check known channel patterns: @gpt4free, @openai_api, @claude_proxy, @ai_api_shop, @gpt_reseller. For EACH verified channel: (1) Exact handle. (2) Current member count. (3) Last post date. (4) What's being sold. (5) Pricing in USD. (6) Admin usernames if visible. (7) Linked websites or bots. Also check for AI API proxy bots that provide automated key delivery. Report minimum 10 verified Telegram entities.",
+          "system_prompt": "You are an OSINT analyst verifying Telegram channels involved in AI API proxy distribution. Report only channels you can confirm exist.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-04-verify-pricing-claims",
+          "prompt": "TASK: Verify current grey market pricing for AI API access across all major platforms. Cross-reference prices from: (1) GitHub repo README files that list proxy pricing. (2) Telegram channel pinned messages with pricing. (3) Proxy website pricing pages. (4) Xianyu/Taobao listing prices (convert CNY to USD). (5) Discord server pricing announcements. For each model (GPT-4o, GPT-4-Turbo, Claude 3 Opus, Claude 3.5 Sonnet, Claude 3 Haiku, Gemini Pro, Llama hosted), compile: official API price, lowest grey market price found, highest grey market price found, median grey market price, and the specific source for each price point. Flag any pricing that seems too low to be legitimate (possible scam).",
+          "system_prompt": "You are a pricing analyst verifying grey market AI API pricing data across multiple sources. Cross-reference all claims. Flag outliers and potential scams.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-05-verify-market-size",
+          "prompt": "TASK: Verify or debunk the claim that the AI API grey market is $150-300M/year processing 5-15 trillion tokens/day. Calculate from bottom up: (1) Count visible proxy operators (GitHub repos with 1K+ stars, Telegram channels with 1K+ members, websites with Alexa/Similarweb traffic data). (2) Estimate per-operator revenue based on visible pricing and user counts. (3) Sum up for total market size. (4) Compare with top-down estimates (what percentage of OpenAI/Anthropic total API traffic could be grey market?). (5) Check if 5-15T tokens/day is even plausible — compare with OpenAI's reported total daily volume. (6) Find any third-party reports or analyses of grey market size. Provide confidence intervals for all estimates.",
+          "system_prompt": "You are a market sizing analyst. Verify claims about market size using bottom-up calculations and cross-referencing with known data points. Be skeptical of round numbers and extraordinary claims.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-06-new-entrants-2025",
+          "prompt": "TASK: Find NEW grey market operators and services that emerged in 2024-2025. The market evolves rapidly — many operators from 2023 are dead and new ones have taken their place. Search for: (1) New GitHub repos (created after Jan 2024) that proxy AI APIs. (2) New proxy websites registered in 2024-2025. (3) New Telegram channels (check channel creation dates). (4) New Chinese marketplace sellers. (5) Any services offering access to GPT-4o, Claude 3.5 Sonnet, or Gemini 1.5 (models released in 2024). (6) New payment methods or delivery mechanisms. (7) Services specifically targeting the post-Codex landscape (after OpenAI changed Codex access). Report ONLY 2024-2025 developments.",
+          "system_prompt": "You are a trend analyst tracking new entrants in the AI API grey market. Focus exclusively on developments from 2024-2025. Report exact dates, URLs, and details.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p3-07-scam-analysis",
+          "prompt": "TASK: Investigate scams and fraud within the AI API grey market. The market has a significant scam problem — many sellers take payment and never deliver. Find: (1) Known scam operators — Telegram channels that disappeared after collecting payments. (2) Fake proxy websites that collect API keys from users (phishing for real keys). (3) Services that promise unlimited GPT-4 access but actually route to GPT-3.5. (4) Bait-and-switch pricing — advertise low prices, charge more. (5) Forums or communities where users report scams (Reddit threads, Telegram groups, V2EX posts). (6) How to distinguish legitimate proxy operators from scams. (7) Estimated percentage of grey market that is pure scam. Provide specific examples of scam operations with evidence.",
+          "system_prompt": "You are a fraud analyst investigating scams within the AI API grey market. Report specific scam operations, techniques, and user reports.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Create a VERIFIED INTELLIGENCE REPORT. For every operator, website, repo, and channel found in Phases 1-2, mark as: VERIFIED (confirmed active), UNVERIFIED (found but not confirmed), DEAD (confirmed inactive), or SCAM (confirmed fraudulent). Include confidence levels. Compile a final VERIFIED DIRECTORY with only confirmed-active entities. Flag all pricing data with verification status."
+    },
+    {
+      "phase_id": "phase4_deep_profiles",
+      "tasks": [
+        {
+          "task_id": "p4-01-top10-github-profiles",
+          "prompt": "TASK: Create detailed profiles of the TOP 10 GitHub repositories that enable AI API proxying. For EACH repo provide: (1) Exact URL. (2) Creator/maintainer username and profile. (3) Star count and fork count. (4) Creation date and last update. (5) Programming language. (6) Technical architecture summary (how it works in 3-4 sentences). (7) Docker deployment support. (8) Models supported. (9) DMCA/legal history. (10) Community size (Discord/Telegram links from README). (11) Key competitors/forks. (12) One-line verdict. Rank by impact (stars × recency × model coverage). Include repos like: gpt4free, one-api, new-api, ChatGPT-to-API, pandora-next, go-chatgpt-api, aurora, FreeGPT35, and any others found.",
+          "system_prompt": "You are a software analyst profiling open-source AI API proxy projects. Provide detailed, factual profiles based on publicly available repository data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-02-top10-commercial-proxies",
+          "prompt": "TASK: Create detailed profiles of the TOP 10 commercial AI API proxy services (websites that sell proxy access). For EACH provide: (1) Exact URL. (2) Pricing page details (all plans and prices). (3) Models offered. (4) Payment methods. (5) API compatibility (OpenAI-compatible endpoint?). (6) Uptime/reliability claims. (7) WHOIS data (registrant country, creation date). (8) CDN/hosting (Cloudflare, etc). (9) Traffic estimates (SimilarWeb or Alexa). (10) Terms of Service summary. (11) User reviews/reputation. (12) Risk assessment (legitimate vs grey market vs scam). Include services like: api2d.com, openai-sb.com, ohmygpt.com, and others discovered. Rank by legitimacy and traffic.",
+          "system_prompt": "You are a competitive intelligence analyst profiling commercial AI API proxy services. Report exact URLs, pricing, and business details.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-03-operator-profiles",
+          "prompt": "TASK: Profile the known grey market OPERATORS (people/organizations, not just tools). Research: (1) xtekky — gpt4free creator, known controversy, current status. (2) PawanOsman — ChatGPT proxy developer, popular in the proxy community. (3) songquanpeng — one-api creator, Chinese developer, massive ecosystem. (4) Calcium-Ion — new-api fork maintainer. (5) Any operators identified by handles on Telegram (GPT-API-China admin, ClaudeMax admin, etc). (6) Chinese operators with Xianyu shops (any identifiable individuals). For EACH: online handles, platforms active on, estimated user base, revenue estimate, known associates, legal history, geographic location (if determinable). This is OSINT from public sources only.",
+          "system_prompt": "You are an OSINT analyst profiling individuals involved in AI API grey market operations using publicly available information only. Report handles, platforms, and activities documented in public sources.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-04-enforcement-timeline",
+          "prompt": "TASK: Build a comprehensive TIMELINE of enforcement actions against AI API grey market operators from 2023-2025. For EACH event provide: (1) Exact date (or month). (2) Who took action (OpenAI, Anthropic, GitHub, platform). (3) What action (DMCA, lawsuit, ban, takedown). (4) Target (specific repo, operator, website). (5) Outcome (taken down, restored, forked, migrated). (6) Source (GitHub DMCA repo, news article, court filing). Search the GitHub DMCA repository (github/dmca) for all OpenAI and Anthropic takedown requests. Check news articles about AI API abuse lawsuits. Check for platform moderation changes (Xianyu, Telegram). Build a chronological timeline with at minimum 20 events.",
+          "system_prompt": "You are a legal analyst building an enforcement timeline from public records. Report specific dates, actions, and outcomes. Cite sources for each event.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-05-burn-hair-analysis",
+          "prompt": "TASK: Deep investigation of burn.hair — a well-known Claude API proxy service. Research: (1) Is burn.hair still active? (2) What services does it offer (which Claude models)? (3) Pricing structure. (4) How does it work technically — does it use web session proxying or leaked/pooled API keys? (5) Who operates it (any public information)? (6) User reviews and community discussion. (7) Has Anthropic taken action against it? (8) Related services/domains. (9) Payment methods accepted. (10) Any GitHub repos linked to it. Also investigate similar Claude-specific proxy services: claude.ai alternatives, Claude mirror sites, Claude API unofficial endpoints. This is one of the most prominent Claude grey market operations.",
+          "system_prompt": "You are a security researcher investigating a specific AI API proxy service for intelligence purposes. Report verified details from public sources only.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-06-v2ex-zhihu-intel",
+          "prompt": "TASK: Mine Chinese developer forums for grey market intelligence. Search: (1) V2EX (v2ex.com) — search for threads about: GPT代理, API中转, one-api部署, new-api搭建, Claude代理, AI接口. (2) Zhihu (zhihu.com) — search for: GPT API购买, 如何使用ChatGPT, Claude API获取. (3) CSDN — technical guides on deploying proxy services. (4) 52pojie.cn (cracking forum) — AI API cracking discussions. (5) Hostloc — hosting community discussions about API proxy hosting. For EACH forum: find specific thread URLs if possible, summarize what's discussed, extract operator names/service URLs mentioned, pricing shared, and technical details. Chinese developer forums are where operators OPENLY discuss their setups.",
+          "system_prompt": "You are a Chinese-language OSINT analyst extracting intelligence from Chinese developer forums and communities. Search using Chinese terms and report findings with English translations.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p4-07-model-specific-proxies",
+          "prompt": "TASK: Find proxy services SPECIFIC to each major AI model family. Organize by model: (1) GPT-4o proxies — cheapest sources, most reliable, specific URLs. (2) Claude 3.5 Sonnet proxies — known services, pricing, reliability. (3) Claude 3 Opus proxies — premium pricing, fewer operators. (4) Gemini Pro/Ultra proxies — do they exist? Where? (5) Llama 3.1 hosted proxies — are people charging for open-source model access? (6) Mistral proxies. (7) Multi-model proxies that offer everything through one API. For EACH model: list specific proxy services/URLs, pricing comparison, quality/reliability rating, and whether the proxy truly provides the claimed model (some swap to cheaper models). Create a MODEL-BY-MODEL proxy directory.",
+          "system_prompt": "You are a market analyst creating a model-specific directory of AI API proxy services. Report specific URLs and pricing for each model category.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Create DEEP PROFILES for all major grey market entities. Organize into: (1) TOP 10 GitHub Repos — with full profiles. (2) TOP 10 Commercial Proxy Services — with URLs, pricing, verdicts. (3) KEY Operator Profiles — handles, platforms, estimated scale. (4) Enforcement Timeline — chronological with 20+ events. (5) Model-Specific Proxy Directory. (6) Chinese Forum Intelligence Summary. Each entry must have a verification status and risk rating."
+    },
+    {
+      "phase_id": "phase5_dashboard_package",
+      "tasks": [
+        {
+          "task_id": "p5-01-verified-directory",
+          "prompt": "TASK: Create the FINAL VERIFIED DIRECTORY of all grey market AI API operators. Using all data from previous phases, compile a structured directory with these columns: Name, Type (GitHub/Website/Telegram/Xianyu/Discord), URL/Handle, Models Offered, Pricing, Status (Active/Dead/Scam), Verification Level (High/Medium/Low), Risk Rating (1-5), Notes. Include MINIMUM 50 entries across all categories. Sort by verification level (most verified first). This directory should be the single source of truth for grey market intelligence. Flag any entries that were fabricated or unverifiable by previous agents. Include last-verified date for each entry.",
+          "system_prompt": "You are a data analyst compiling a verified intelligence directory. Only include entries with supporting evidence. Clearly mark verification levels and flag uncertainty.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-02-pricing-matrix",
+          "prompt": "TASK: Create the FINAL PRICING MATRIX for grey market AI API access. For each model: (1) Official API price (input/output per 1M tokens). (2) Lowest verified grey market price. (3) Median grey market price. (4) Highest grey market price. (5) Grey market discount percentage range. (6) Most common grey market source at each price point. (7) Quality concerns (model swapping, rate limiting, downtime). Models to include: GPT-4o, GPT-4-Turbo, GPT-4o-mini, GPT-3.5-Turbo, Claude 3 Opus, Claude 3.5 Sonnet, Claude 3 Haiku, Gemini 1.5 Pro, Gemini 1.5 Flash, Llama 3.1 70B/405B (hosted), Mistral Large, DeepSeek V3. Include USD and CNY pricing.",
+          "system_prompt": "You are a pricing analyst creating a comprehensive pricing matrix. Report specific prices with sources. Flag unverified pricing.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-03-risk-intelligence",
+          "prompt": "TASK: Create a RISK INTELLIGENCE BRIEF for organizations considering or already using grey market AI APIs. Cover: (1) Legal risks — ToS violations, potential lawsuits, CFAA implications. (2) Data security risks — what proxy operators can see, data monetization. (3) Operational risks — service reliability, model swapping, sudden shutdowns. (4) Financial risks — account bans, lost prepaid credits, chargeback issues. (5) Compliance risks — GDPR, HIPAA, SOC2 implications of routing through unauthorized proxies. (6) Reputational risks — if exposed. (7) Supply chain risks — dependency on grey market infrastructure. For each risk: probability (1-5), impact (1-5), mitigation strategy, real-world example. Create a risk scoring framework.",
+          "system_prompt": "You are a risk analyst creating an enterprise risk assessment for grey market AI API usage. Be thorough but balanced — present risks objectively.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-04-market-trends",
+          "prompt": "TASK: Analyze MARKET TRENDS in the AI API grey market for 2024-2025 and forecast 2026. Cover: (1) How has the market changed since GPT-4 launch (Mar 2023)? (2) Impact of GPT-4o release on proxy pricing. (3) Impact of Claude 3.5 Sonnet on grey market demand. (4) The shift from session-based proxying to API key pooling. (5) Consolidation — are top operators getting bigger? (6) New business models (subscription proxies, prepaid credits, enterprise grey market). (7) The open-source model threat — as Llama/Mistral improve, does grey market demand drop? (8) Regulatory developments that could impact the market. (9) 2026 predictions: will the market grow or shrink? Which models will be most proxied? What new techniques will emerge?",
+          "system_prompt": "You are a market trend analyst forecasting the evolution of the AI API grey market. Base predictions on observed trends and data, not speculation.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-05-countermeasures",
+          "prompt": "TASK: Compile a COUNTERMEASURES REPORT — what can AI companies do to combat grey market proxying? Evaluate: (1) Technical countermeasures — token watermarking, device fingerprinting, anomaly detection, rate limiting improvements. (2) Pricing countermeasures — eliminate unlimited subscription abuse, regional pricing controls, usage caps. (3) Legal countermeasures — DMCA, lawsuits, payment processor pressure, ISP blocking. (4) Product countermeasures — make official API so cheap that grey market isn't worth it (DeepSeek approach). (5) Partnership countermeasures — work with Chinese platforms (Alibaba, Tencent) to remove listings. For EACH countermeasure: effectiveness (1-5), implementation difficulty (1-5), current status (deployed/planned/proposed), impact on legitimate users, cost to implement. Rank by effectiveness × feasibility.",
+          "system_prompt": "You are a security strategist designing countermeasures against unauthorized AI API distribution. Evaluate each strategy objectively.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-06-dashboard-data-tables",
+          "prompt": "TASK: Format ALL findings into DASHBOARD-READY DATA TABLES. Create structured tables for: (1) OPERATOR DIRECTORY — 50+ entries with Name, Platform, URL, Models, Pricing, Status, Risk. (2) PRICING MATRIX — all models × grey market vs official. (3) GITHUB REPOS — top 15 with URL, stars, status, models, verdict. (4) PROXY WEBSITES — top 15 with URL, pricing, models, status, risk. (5) TELEGRAM CHANNELS — top 10 with handle, members, pricing, models. (6) ENFORCEMENT TIMELINE — 20+ events chronologically. (7) RISK MATRIX — 10+ risks with probability × impact. (8) MARKET STATS — key numbers (market size, operator count, token volume, etc). Each table should be in clean markdown format ready for HTML conversion. Deduplicate across all phases.",
+          "system_prompt": "You are a data visualization specialist formatting intelligence data into clean, structured tables for dashboard display. Ensure consistency and deduplication across all tables.",
+          "temperature": 0.2,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "p5-07-executive-brief",
+          "prompt": "TASK: Write the EXECUTIVE INTELLIGENCE BRIEF — a 500-word summary of ALL grey market OSINT findings. Structure: (1) ONE-LINE VERDICT: Is the grey market a threat, an opportunity, or both? (2) SCALE: Market size, operator count, token volume — with confidence levels. (3) KEY OPERATORS: Name the top 5 most impactful operators/projects with exact URLs. (4) PRICING REALITY: What does grey market access actually cost vs official? (5) RISKS: Top 3 risks for users. Top 3 risks for AI companies. (6) TRENDS: Is the market growing or shrinking? Why? (7) RECOMMENDATION: What should AI companies do? What should developers know? (8) CONFIDENCE ASSESSMENT: How much of our intel is verified vs estimated vs speculative? This brief should be suitable for a C-suite audience.",
+          "system_prompt": "You are a senior intelligence analyst writing an executive brief on the AI API grey market. Be concise, direct, and evidence-based. Cite specific examples.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Create the FINAL GREY MARKET OSINT PACKAGE containing: (1) Executive Brief (500 words). (2) Verified Operator Directory (50+ entries). (3) Pricing Matrix (all models). (4) Top 15 GitHub Repos with URLs. (5) Top 15 Proxy Websites with URLs. (6) Top 10 Telegram Channels. (7) Enforcement Timeline (20+ events). (8) Risk Matrix. (9) Market Trends & 2026 Forecast. (10) Countermeasures Report. All data should be in structured table format ready for HTML dashboard integration. Include verification status for every data point."
+    }
+  ]
+}

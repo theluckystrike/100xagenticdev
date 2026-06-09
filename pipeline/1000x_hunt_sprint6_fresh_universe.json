@@ -1,0 +1,295 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "s6_t01_gdrx_deep",
+          "prompt": "Deep dive on GoodRx (GDRX). Business model: prescription discount marketplace. Analyze: (1) What is the actual moat - is it network effects or just a coupon service? (2) Amazon Pharmacy threat - how real is it? (3) PBM relationships - are they sticky or commodity? (4) Why has revenue declined - structural or cyclical? (5) Path to revenue re-acceleration. (6) What would make this a 10x from $3? Be specific about bear case and bull case. Do NOT cite any financial numbers - we have live data.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t02_bmbl_deep",
+          "prompt": "Deep dive on Bumble (BMBL). The stock has crashed 63% from 52w high. Analyze: (1) Is the dating app market winner-take-all or can Bumble coexist with Hinge/Tinder? (2) Why is revenue declining 14% YoY - is the product failing? (3) What is Bumble's actual differentiator now that 'women message first' is no longer novel? (4) International expansion potential. (5) What would a 10x look like from $3? (6) Is this a value trap or turnaround? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t03_pltk_deep",
+          "prompt": "Deep dive on Playtika (PLTK). Mobile gaming company with 85.4% insider ownership. Analyze: (1) What does 85% insider ownership mean - is this a controlled company that doesn't care about minority shareholders? (2) Mobile gaming industry dynamics - is it growing or dying? (3) Playtika's specific games portfolio - which are growing vs declining? (4) Acquisition strategy track record. (5) Why might insiders hold 85% and NOT sell - what do they know? (6) Can this 10x from $3.61 or is it an extractive insider situation? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t04_domo_deep",
+          "prompt": "Deep dive on Domo (DOMO). Business intelligence SaaS company at $4.53. Analyze: (1) How does Domo compete against Tableau/Power BI/Looker which are bundled with bigger platforms? (2) Is Domo's 'low-code BI' positioning defensible? (3) Why has revenue stagnated at $319M for years? (4) Could Domo be an acquisition target? By whom? (5) Customer base - enterprise vs mid-market? (6) What would a 10x require - new product cycle, acquisition, or market shift? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t05_lpro_deep",
+          "prompt": "Deep dive on Open Lending (LPRO). Auto lending facilitator at $2.21. Analyze: (1) What exactly does LPRO do - is it a lender or a technology platform? (2) Why has revenue declined 16% - is this interest rate driven? (3) If rates get cut, how much does LPRO benefit? Is it a pure rate-cut play? (4) Competition - who else does auto lending facilitation? (5) Is the near-prime auto lending market growing or shrinking? (6) What would make this a 10x - full rate cut cycle + market expansion? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t06_jfin_deep",
+          "prompt": "Deep dive on Jiayin Group (JFIN). Chinese fintech at $4.35 with ZERO analysts covering it. Analyze: (1) What does Jiayin actually do - consumer lending, wealth management, or both? (2) Why does NO analyst cover this stock? Is it too small or is there a structural problem? (3) Chinese P2P lending crackdown history - is Jiayin a survivor or a zombie? (4) Regulatory risk from Chinese government. (5) 21.5% insider ownership - is this meaningful for a Chinese company? (6) Can a Chinese fintech with zero coverage become a 10x? What precedents exist? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t07_finv_deep",
+          "prompt": "Deep dive on FinVolution Group (FINV). Chinese fintech at $5.32 with massive cash position. Analyze: (1) What is FinVolution's actual business - P2P lending pivot to what? (2) International expansion (Indonesia, Philippines) - how real is it? (3) How does FINV compare to LX (LexinFintech) and QFIN (360 Finance)? (4) Chinese fintech regulation trajectory - is the worst over? (5) Why is the stock so cheap if cash exceeds market cap? Is there a reason the market doesn't trust the cash? (6) Can Chinese fintech ADRs ever re-rate or is there a permanent discount? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t08_gotu_deep",
+          "prompt": "Deep dive on Gaotu Techedu (GOTU). Chinese education company at $1.93 with $2.5B net cash on $460M market cap. Analyze: (1) What happened with China's education crackdown in 2021? (2) What is Gaotu doing NOW - pivoted to what business? (3) Why does the market value this at $460M when it has $2.5B in net cash? What's the catch? (4) Can the cash be extracted (dividends, buybacks) or is it trapped in China? (5) History of Chinese companies with cash > market cap - do they ever re-rate? (6) Is this a deep value play or a value trap with trapped capital? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t09_uwmc_deep",
+          "prompt": "Deep dive on UWM Holdings (UWMC). Largest wholesale mortgage lender at $3.01. Analyze: (1) What is wholesale mortgage lending and why is it different from retail? (2) UWMC vs Rocket Mortgage (RKT) - competitive dynamics. (3) Is UWMC a pure interest rate cycle play? (4) CEO Mat Ishbia's strategy - aggressive market share grabs during downturns. (5) What happens to UWMC if/when rates drop to 5%? (6) Can a mortgage lender be a 10x or is it inherently cyclical/capped? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t10_alit_deep",
+          "prompt": "Deep dive on Alight (ALIT). HR/benefits administration platform at $0.95 that crashed 84% from high. Analyze: (1) What exactly does Alight do - payroll, benefits admin, cloud HR? (2) How does it compete with Workday, ADP, Paychex? (3) Why has the stock crashed so severely - is the business failing or is it a leverage issue? (4) Private equity involvement - who are the major holders? (5) Is the $2.2B revenue base stable or declining? (6) At $0.95 and 4 analysts covering, is this a distressed value play or a bankruptcy risk? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t11_rent_deep",
+          "prompt": "Deep dive on Rent the Runway (RENT). Fashion rental at $3.97 with 73.8% insider ownership. Analyze: (1) Is the clothing rental model viable long-term or was it a VC fantasy? (2) Why does management own 73.8% - founder control or unable to sell? (3) Post-COVID recovery - are subscribers coming back? (4) Unit economics - does renting clothes actually work at scale? (5) Competitive threats from ThredUp, Poshmark, traditional retail. (6) Can RENT become profitable and grow, or is this a structurally broken model? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t12_nuvb_deep",
+          "prompt": "Deep dive on Nuvation Bio (NUVB). Biotech at $4.96 with 2598% revenue growth and 24.5% short interest. Analyze: (1) What is Nuvation's drug pipeline - what diseases, what stage? (2) Why such explosive revenue growth - did a drug get approved or is this from an acquisition? (3) Why is 24.5% of float shorted - what do bears see? (4) David Hung as CEO - his track record (Medivation/Enzalutamide). (5) Cash runway and dilution risk. (6) Is this a legitimate biotech with a shot at blockbuster drugs or a speculative shell? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t13_evgo_deep",
+          "prompt": "Deep dive on EVgo (EVGO). EV charging network at $2.43 with 33.6% short interest. Analyze: (1) EVgo vs ChargePoint vs Blink vs Tesla Supercharger - who wins the charging war? (2) Why is 33.6% of float shorted - what is the bear thesis? (3) Is EV charging a natural monopoly or commodity? (4) Revenue growth 45.5% is strong - is utilization improving? (5) Government subsidies (NEVI program) - how much does EVgo depend on them? (6) Can an EV charging company ever be profitable, or is this permanently capital-intensive? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t14_clov_deep",
+          "prompt": "Deep dive on Clover Health (CLOV). Medicare Advantage insurer at $3.92 with 62% revenue growth. Analyze: (1) What is Clover's actual moat - the Clover Assistant AI platform? (2) SPAC origin - did management over-promise? History of SEC investigation. (3) Medicare Advantage industry dynamics - CMS star ratings, risk adjustment. (4) How does CLOV compete against UnitedHealth, Humana, CVS-Aetna? (5) Is 62% revenue growth sustainable in Medicare Advantage? (6) Path to profitability - when and how? SPAC stocks have terrible track records. Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t15_mvst_deep",
+          "prompt": "Deep dive on Microvast (MVST). Battery technology company at $1.46 with 37.8% insider ownership but -48% revenue decline. Analyze: (1) What is Microvast's battery technology - how does it differ from CATL, BYD, Samsung SDI? (2) Why has revenue declined 48% - lost a major customer? (3) Target markets - commercial vehicles, energy storage, or consumer EVs? (4) Manufacturing footprint - where are factories and what is capacity? (5) 37.8% insider ownership is unusually high - who are the insiders? (6) Is the battery market still a viable space for a small player or has consolidation killed the opportunity? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t16_open_deep",
+          "prompt": "Deep dive on Opendoor Technologies (OPEN). iBuyer at $5.31 that went from $0.51 to $10.87 this year. Analyze: (1) Is iBuying a viable business model or was it proven to be a disaster? (2) Why did the stock 10x from its low - what changed? (3) Zillow exited iBuying - why does Opendoor think they can succeed where Zillow failed? (4) Interest rate sensitivity - how much does housing transaction volume affect OPEN? (5) With 8.2% gross margin in real estate, can this ever generate meaningful profits? (6) Is the recent 10x rally justified or is this a dead cat bounce? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t17_sndl_deep",
+          "prompt": "Deep dive on SNDL (SNDL). Cannabis company at $1.46 with retail operations. Analyze: (1) What is SNDL's current business - cannabis growing, retail dispensaries, or both? (2) US federal legalization - is SNDL positioned to benefit or is it a Canadian-only play? (3) History of massive dilution and reverse splits. (4) Liquor retail acquisition strategy - pivot away from cannabis? (5) Can ANY cannabis company become a 10x given the industry's history of destroying shareholder value? (6) Is SNDL the exception or the rule in cannabis? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t18_blnk_deep",
+          "prompt": "Deep dive on Blink Charging (BLNK). EV charging at $0.84 - near penny stock territory. Analyze: (1) How does BLNK differ from EVgo and ChargePoint? (2) At $0.84, is this approaching delisting risk? (3) Revenue has stagnated at $104M - why? (4) Owner-operator model vs network model - which is Blink? (5) History of fraud allegations and SEC scrutiny. (6) Is this a legitimate EV infrastructure play or a stock promotion? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers, prices, or metrics - the user has live verified data. Focus purely on business model, competitive dynamics, and strategic assessment.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t19_grab_validate",
+          "prompt": "HOLDING VALIDATION: GRAB (150 shares held). We own this stock. Provide honest assessment: (1) Biggest risk to GRAB that we might be ignoring. (2) What would make you SELL GRAB immediately? (3) Competition from GoTo/Gojek merger - how is it going? (4) Regulatory risk in Southeast Asia. (5) Can GRAB become the 'Uber that works' or will it always subsidize growth? (6) Is 150 shares the right size or should we add/trim? Do NOT cite financial numbers.",
+          "system_prompt": "You are a devil's advocate analyst. Your job is to stress-test holdings and find reasons to SELL. Be brutally honest. DO NOT cite any financial numbers - the user has live verified data.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t20_btg_validate",
+          "prompt": "HOLDING VALIDATION: BTG (50 shares held). We own this stock. Provide honest assessment: (1) Gold price dependency - what happens to BTG if gold drops to $2,000? (2) Goose Project execution risk - what could go wrong? (3) Fekola mine (Mali) political risk - coups, taxes, nationalization? (4) Management track record on capital allocation. (5) Is BTG a gold miner or a gold exploration company? (6) What would make you SELL BTG immediately? Do NOT cite financial numbers.",
+          "system_prompt": "You are a devil's advocate analyst. Your job is to stress-test holdings and find reasons to SELL. Be brutally honest. DO NOT cite any financial numbers - the user has live verified data.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t21_gau_validate",
+          "prompt": "HOLDING VALIDATION: GAU (100 shares held). We own this stock. Provide honest assessment: (1) Galiano Gold is an Asanko mine operator in Ghana - what are the specific risks in Ghana? (2) Single-mine concentration risk. (3) Gold All-In Sustaining Cost (AISC) - is Asanko a high-cost mine? (4) History of the Asanko joint venture with Gold Fields. (5) What catalysts could move GAU 5x+ from here? (6) What would make you SELL GAU immediately? Do NOT cite financial numbers.",
+          "system_prompt": "You are a devil's advocate analyst. Your job is to stress-test holdings and find reasons to SELL. Be brutally honest. DO NOT cite any financial numbers - the user has live verified data.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t22_tuya_validate",
+          "prompt": "HOLDING VALIDATION: TUYA (95 shares held). We own this stock. Provide honest assessment: (1) TUYA is a Chinese IoT platform - VIE structure risk, delisting risk. (2) Smart home market - is it growing or has it stalled? (3) Competition from Xiaomi, Huawei, Amazon Alexa, Google Home platforms. (4) Revenue growth only 8.3% - is this a low-growth cash cow? (5) Can TUYA ever return cash to shareholders or is the Chinese cash trapped? (6) What would make you SELL TUYA immediately? Do NOT cite financial numbers.",
+          "system_prompt": "You are a devil's advocate analyst. Your job is to stress-test holdings and find reasons to SELL. Be brutally honest. DO NOT cite any financial numbers - the user has live verified data.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t23_tigr_validate",
+          "prompt": "HOLDING VALIDATION: TIGR (39 shares held). We own this stock. Provide honest assessment: (1) UP Fintech is a Chinese brokerage - what happens if China restricts overseas stock trading for citizens? (2) Competitive position vs Futu (FUTU), which is much larger. (3) Singapore, US, Australia expansion - is it real or token? (4) User growth trajectory - are new users sticky? (5) 45.8% revenue growth - sustainable or one-time? (6) What would make you SELL TIGR immediately? Do NOT cite financial numbers.",
+          "system_prompt": "You are a devil's advocate analyst. Your job is to stress-test holdings and find reasons to SELL. Be brutally honest. DO NOT cite any financial numbers - the user has live verified data.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t24_hidden_gems",
+          "prompt": "HIDDEN GEM SCREEN: Find stocks currently $1-$5 that match the 1000x winner pattern: (1) Revenue growing >30% YoY, (2) Gross margin >60%, (3) In a market that most people think is dead or irrelevant, (4) Hated by Wall Street (<5 analysts), (5) Had a massive crash (>80% from all-time high), (6) Founder-led with significant insider ownership. Name as many real companies as you can that currently trade $1-$5 and match at least 4 of these 6 criteria. Be specific - no vague suggestions.",
+          "system_prompt": "You are a stock screener specialist. Focus on real, currently-trading US-listed stocks in the $1-$5 range. Be specific with company names and tickers. Your knowledge cutoff means prices may be outdated - focus on identifying the companies, the user will verify current prices.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t25_anti_consensus",
+          "prompt": "ANTI-CONSENSUS SCREEN: What are the most HATED sectors/stocks in 2024-2025 where sentiment is maximally negative? Historical pattern: the best 1000x opportunities come from sectors everyone has given up on. Examples: (1) Growth tech in 2008 (AMZN $5), (2) EVs in 2019 (TSLA $15 pre-split), (3) Cybersecurity in 2016 (CRWD IPO). What sectors RIGHT NOW have maximum pessimism that could produce the next generation of winners? Name specific sub-$5 stocks in each sector.",
+          "system_prompt": "You are a contrarian investment analyst. Focus on identifying areas of maximum market pessimism where valuations are compressed to historic lows. Name specific tickers.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t26_turnaround_screen",
+          "prompt": "TURNAROUND SCREEN: Find companies $1-$5 that match the Robinhood (HOOD) turnaround pattern: (1) IPO or SPAC that crashed 90%+, (2) Now generating positive free cash flow, (3) Management buying stock at the bottom, (4) Product still has daily active users, (5) Bear thesis was 'they'll go bankrupt' but cash position proves otherwise, (6) High short interest (>15%) creating squeeze potential. Name specific tickers that fit this pattern right now.",
+          "system_prompt": "You are a turnaround specialist. Identify companies that crashed hard but show concrete signs of recovery. Focus on US-listed stocks $1-$5. Be specific with company names.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t27_china_adr_risk",
+          "prompt": "CHINA ADR RISK ASSESSMENT: Our portfolio has 3 Chinese ADR exposures (TUYA, TIGR, GRAB is Singapore but has China operations). Analyze: (1) Current US-China relations trajectory for ADR listings, (2) HFCAA audit status - which Chinese companies have passed PCAOB inspections? (3) VIE structure legal risk - has China moved to legitimize or eliminate VIEs? (4) Capital controls - can Chinese companies still pay dividends to US shareholders? (5) What is the realistic worst case scenario for Chinese ADRs in 2025-2026? (6) Should we reduce China exposure or is the discount already pricing in the risk?",
+          "system_prompt": "You are a geopolitical risk analyst specializing in US-China financial relations. Provide factual, balanced analysis of regulatory risks affecting Chinese ADRs listed in the US.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t28_gold_thesis",
+          "prompt": "GOLD THESIS VALIDATION: Our portfolio is 19% gold miners (BTG + GAU). Analyze: (1) Current gold supply/demand dynamics, (2) Central bank buying trend - is it accelerating or decelerating? (3) De-dollarization thesis - how real is it? (4) Gold miners vs physical gold vs gold ETFs - which outperforms in a gold bull market? (5) Risk: what would crash gold below $2,000? (6) Junior miners (GAU) vs mid-tier (BTG) - which has more upside in a gold bull market? Provide the strongest bear case against gold.",
+          "system_prompt": "You are a commodities analyst specializing in precious metals. Provide balanced analysis of the gold market outlook and its implications for gold mining equities.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t29_lx_deep",
+          "prompt": "Deep dive on LexinFintech (LX). Chinese consumer lending platform at $2.20 with 59% analyst upside target. Analyze: (1) What is LexinFintech's business - consumer installment credit for young Chinese professionals? (2) How does it compare to FINV and JFIN? (3) What happened during China's P2P lending crackdown - did LX survive intact? (4) Technology platform vs direct lender - which model does LX use? (5) Growth trajectory in Chinese consumer credit. (6) At $2.20 with $363M market cap, what would drive re-rating? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst specializing in Chinese fintech. Provide qualitative analysis only. DO NOT cite any financial numbers.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t30_payo_update",
+          "prompt": "PENDING ORDER VALIDATION: PAYO (Payoneer). We have a pending buy order at $5.12. Current price ~$5.43. Analyze: (1) Is Payoneer's cross-border payments moat getting stronger or weaker? (2) OCC Trust Charter - what does this mean for Payoneer's competitive position? (3) Competition from Wise, PayPal, traditional banks. (4) Is 6.1% revenue growth concerning for a fintech? (5) Earnings growth 13.3% - is this accelerating or decelerating? (6) Should we raise our limit price to get filled, or wait for a dip? What catalyst could bring it to $5.12? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst. Provide qualitative analysis only. DO NOT cite any financial numbers - the user has live verified data.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t31_pags_update",
+          "prompt": "PENDING ORDER VALIDATION: PAGS (PagSeguro). We have a pending buy order at $9.22 - our #1 conviction position. Analyze: (1) PagSeguro vs Stone vs MercadoPago - competitive dynamics in Brazil payments. (2) Brazilian fintech regulatory environment - is it getting friendlier? (3) What happened in PagSeguro's recent quarters - is the turnaround thesis still intact? (4) Banking license and lending expansion - how is it going? (5) Brazil macro outlook - will rate cuts help or hurt PagSeguro? (6) Is $9.22 still a good entry or should we adjust? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst specializing in Latin American fintech. Provide qualitative analysis only. DO NOT cite any financial numbers.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t32_convergence",
+          "prompt": "SPRINT 6 CONVERGENCE SCORE: Based on all Sprint 6 analysis, rank ALL stocks analyzed in this sprint from best to worst 1000x potential. For each stock, assign: (1) Moat score (1-10), (2) TAM score (1-10), (3) Anti-consensus score (1-10, higher = more hated = better), (4) Catalyst clarity (1-10), (5) Management quality (1-10). Total out of 50. Identify the TOP 5 candidates and the BOTTOM 5 to avoid. Be decisive - no hedging.",
+          "system_prompt": "You are a portfolio strategist. Rank all analyzed stocks decisively. No hedging or qualifiers. Pick winners and losers clearly.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t33_portfolio_grade",
+          "prompt": "PORTFOLIO GRADE: Grade our current 5-position portfolio (GRAB, BTG, GAU, TUYA, TIGR) plus 2 pending (PAGS, PAYO). For each position: (1) Is it in the right size relative to conviction? (2) Does it contribute to diversification or create concentration risk? (3) What is the weakest link in the portfolio? (4) What is missing - what sector/theme should we add? (5) Give the overall portfolio a letter grade A-F. (6) If you could only keep 3 of the 7 positions, which 3 and why?",
+          "system_prompt": "You are a portfolio construction specialist. Grade the portfolio honestly. Be willing to recommend sells/trims, not just buys.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t34_v3_score_new",
+          "prompt": "V3 FRAMEWORK SCORING: Score these NEW candidates against the 1000x v3 framework (100 pts): GDRX (GoodRx, prescription marketplace), BMBL (Bumble, dating app), PLTK (Playtika, mobile gaming), DOMO (Domo, BI SaaS), ALIT (Alight, HR platform), RENT (Rent the Runway), NUVB (Nuvation Bio), EVGO (EVgo, EV charging), MVST (Microvast, batteries), OPEN (Opendoor, iBuyer), LX (LexinFintech), GOTU (Gaotu Techedu). Categories: A(20) Growth, B(15) Margin, C(15) Insider, D(15) Capital, E(10) Moat, F(10) TAM, G(10) Catalyst, H(5) Anti-Fragility. Apply penalties: CN_ADR -15, >10% dilution -20, reverse split -25, CEO selling -15, zero rev -10, SPAC -5. Provide final score and A/B/C/D/F grade for each.",
+          "system_prompt": "You are a quantitative equity analyst. Score each stock systematically against the framework. Be rigorous with penalties.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t35_sprint_log",
+          "prompt": "SPRINT LOG UPDATE: We are now on Sprint 6 (175+ agents across 5 prior sprints). Document: (1) What has the pipeline LEARNED across sprints 1-5? Key validated insights. (2) What mistakes did we make (trusting DeepSeek numbers, expanding to $50 range)? (3) What framework improvements should we make for Sprint 7? (4) Updated conviction rankings for all stocks we've analyzed. (5) Recommended Sprint 7 targets - what should 40 agents focus on next? (6) Overall pipeline efficiency assessment - are we getting better at finding opportunities?",
+          "system_prompt": "You are a research operations analyst. Assess the multi-sprint research pipeline's learning trajectory and recommend improvements for the next sprint.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t36_insider_screen",
+          "prompt": "INSIDER BUYING SCREEN: Which sub-$5 US-listed stocks have had significant insider buying (CEO, CFO, or board members buying with personal money, NOT options exercises) in the last 6 months? This is one of the strongest 1000x predictive signals. Insider buying at the bottom of a crash, especially by the CEO with millions of personal dollars, preceded recovery in HOOD, UPST, CRWD, and PLTR. Name as many specific examples as you can of sub-$5 stocks where insiders are currently buying heavily.",
+          "system_prompt": "You are an insider trading analyst (legal form 4 filings). Focus on OPEN MARKET purchases by insiders, not option exercises or grants. Name specific companies and insiders.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t37_short_squeeze",
+          "prompt": "SHORT SQUEEZE CANDIDATES: Which sub-$5 stocks currently have >20% short interest AND improving fundamentals? High short interest + fundamental improvement = short squeeze potential. We found this pattern in UPST (32% short) and EVGO (33.6% short). Name specific tickers with their approximate short interest levels and explain why the short thesis might be wrong for each.",
+          "system_prompt": "You are a short interest analyst. Identify heavily shorted stocks where the bear thesis may be breaking down. Focus on sub-$5 stocks. Your price data may be stale - focus on identifying companies and the dynamics.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t38_sector_rotation",
+          "prompt": "SECTOR ROTATION TIMING: We're in a rate-cutting cycle (or about to be). Historically, which sectors perform best in the first 12 months AFTER rate cuts begin? Specifically: (1) Do growth stocks outperform value? (2) Do small caps outperform large caps? (3) Which specific sub-sectors have the highest beta to rate cuts? (4) Name sub-$5 stocks positioned to benefit from each sector rotation pattern. (5) What is the historical timeline - how long after first cut do small caps rally? (6) Is there a sequence (first financials, then growth, then speculative)?",
+          "system_prompt": "You are a macro strategist specializing in sector rotation during rate cut cycles. Provide historical evidence and specific current opportunities.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t39_cash_fortress",
+          "prompt": "CASH FORTRESS SCREEN: Find sub-$5 stocks where cash + equivalents exceeds market capitalization. We found this pattern in TUYA (cash 73% of mcap) and GOTU (cash 5.4x mcap). Companies trading below their cash value are either: (a) deep value opportunities where the market is wrong, or (b) value traps where cash is trapped/burning. For each company you find, explain which category it falls into and why.",
+          "system_prompt": "You are a deep value analyst. Find companies trading below their cash value. Focus on US-listed stocks $1-$5. Distinguish between genuine value and value traps.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t40_kill_list",
+          "prompt": "KILL LIST: Which of these stocks should we NEVER buy and why? From our screened universe: BLNK, BIRD, AMC, WKHS, IQ, SNDL, ACB, BITF, BTBT. For each, identify the specific anti-pattern: (1) Chronic dilution >10%/year, (2) CEO/insider selling at bottom, (3) Reverse split history, (4) Negative unit economics with no path to profitability, (5) Fraud/SEC investigation history, (6) Zombie company burning cash with no product. Be specific about which red flags apply to each.",
+          "system_prompt": "You are a forensic analyst. Your job is to identify stocks that will destroy capital. Be ruthless and specific about red flags. No mercy for bad businesses.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s6_t41_final_watchlist",
+          "prompt": "SPRINT 6 FINAL WATCHLIST: Based on ALL Sprint 6 analysis, produce the definitive watchlist. Format for each stock: TICKER | PRICE | ONE-LINE THESIS | TOP RISK | CONVICTION (1-10) | ACTION (BUY/WATCH/AVOID). Separate into three tiers: TIER 1 (add to portfolio now), TIER 2 (watch for entry), TIER 3 (interesting but not ready). Maximum 5 stocks per tier. Be DECISIVE - this watchlist guides real capital allocation.",
+          "system_prompt": "You are a portfolio manager making final allocation decisions. Be decisive. No more than 15 stocks total across all tiers. Quality over quantity.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

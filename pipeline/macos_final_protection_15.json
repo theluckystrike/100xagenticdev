@@ -1,0 +1,106 @@
+{
+  "name": "macOS Final Protection Scan — Prolonged Session & Targeted Attack Defense",
+  "description": "15-agent investigation: prolonged unlocked session risks, Google OAuth client secret exposure, AirDrop attack reconstruction, real-world protection for developer with crypto in Vietnam",
+  "phases": [
+    {
+      "name": "Phase 1: Prolonged Session Attack Vectors",
+      "tasks": [
+        {
+          "id": "session-1",
+          "prompt": "A developer runs their MacBook for hours in coffee shops in Vietnam with: display sleep set to 90 MINUTES, no confirmed screensaver password requirement, macOS firewall DISABLED, Wake on LAN ENABLED on AC power, 6+ ports open on 0.0.0.0 (Logitech:59869, rapportd:49152, Spotify:51125/57621, AirPlay:5000/7000). They have $73K in BTC, API keys, SSH keys, and bank statements in Downloads. What are the SPECIFIC attack scenarios possible against a machine running for hours with these settings? Cover: local network attacks, physical proximity attacks, Bluetooth attacks, evil maid attacks, and shoulder surfing leading to credential theft.",
+          "system_prompt": "You are a red team operator specializing in physical-proximity and local-network attacks against macOS. Provide specific attack playbooks, not theoretical risks."
+        },
+        {
+          "id": "session-2",
+          "prompt": "A MacBook Pro has these ports LISTENING ON ALL INTERFACES (0.0.0.0): Logitech Options Plus on port 59869, rapportd on port 49152, Spotify on ports 51125 and 57621, AirPlay (ControlCenter) on ports 5000 and 7000. The firewall is DISABLED. Wake on LAN is ENABLED. The machine is on a shared coffee shop network. What specific exploits exist for each of these services? Are there known CVEs for Logitech Options Plus REST API, rapportd, or Spotify's local web server? Can an attacker on the same WiFi connect to these ports?",
+          "system_prompt": "You are a red team operator specializing in physical-proximity and local-network attacks against macOS. Provide specific attack playbooks, not theoretical risks."
+        },
+        {
+          "id": "session-3",
+          "prompt": "A Google OAuth client_secret JSON file is sitting unencrypted in Downloads: client_secret_400075469450-5u5rhbs8pa0ceh6nv1dpatmgujt20e31.apps.googleusercontent.com.json. What can an attacker do with a Google OAuth client secret? Can they impersonate the application, intercept OAuth flows, gain access to Google APIs, or pivot to other Google services? What is the blast radius of this specific exposure?",
+          "system_prompt": "You are a red team operator specializing in physical-proximity and local-network attacks against macOS. Provide specific attack playbooks, not theoretical risks."
+        }
+      ]
+    },
+    {
+      "name": "Phase 2: AirDrop Attack Deep Dive",
+      "tasks": [
+        {
+          "id": "airdrop-1",
+          "prompt": "Two sharingd type-6 quarantine entries appeared on May 28, 2026 at 20:45 — one day before a fake ChatGPT.app malware was detected. The quarantine database has EMPTY URL fields for the malware. AirDrop was enabled for Everyone. The user frequents Vietnamese coffee shops. Research: (1) How exactly does AirDrop malware delivery work technically? (2) What is quarantine type 6? (3) Can AirDrop bypass Gatekeeper? (4) Are there documented cases of AirDrop being used for malware delivery in public places? (5) What tools can an attacker use to mass-AirDrop to nearby devices?",
+          "system_prompt": "You are a macOS exploit researcher with deep knowledge of the AirDrop protocol, AWDL, and Bluetooth LE proximity attacks. Provide technical depth with references to CVEs and research papers."
+        },
+        {
+          "id": "airdrop-2",
+          "prompt": "Research the AWDL (Apple Wireless Direct Link) protocol security. AWDL is the protocol underlying AirDrop. What are the known vulnerabilities? CVE-2020-9906 (AWDL remote code execution), CVE-2020-3843, and newer 2024-2026 AWDL vulns. Can an attacker silently discover nearby Apple devices via AWDL without the target accepting? Can they fingerprint the device model, username, or phone number hash? How does Apple's hash resolution attack work against AirDrop?",
+          "system_prompt": "You are a macOS exploit researcher with deep knowledge of the AirDrop protocol, AWDL, and Bluetooth LE proximity attacks. Provide technical depth with references to CVEs and research papers."
+        },
+        {
+          "id": "airdrop-3",
+          "prompt": "Can Bluetooth Low Energy (BLE) be used to attack a MacBook Pro in a coffee shop? The target has Bluetooth ON with paired devices: Logitech MX Master 3S (connected), AirPods Pro, soundcore Liberty 4 NC. What BLE attacks are possible? BlueBorne, KNOB attack, BLE impersonation, mouse jacking on Logitech devices. Can an attacker inject keystrokes via a spoofed Logitech mouse connection?",
+          "system_prompt": "You are a macOS exploit researcher with deep knowledge of the AirDrop protocol, AWDL, and Bluetooth LE proximity attacks. Provide technical depth with references to CVEs and research papers."
+        }
+      ]
+    },
+    {
+      "name": "Phase 3: Real-World Attack Intelligence Vietnam 2025-2026",
+      "tasks": [
+        {
+          "id": "intel-1",
+          "prompt": "What are the documented cyber attacks targeting foreign developers and digital nomads in Vietnam in 2025-2026? Cover: (1) coffee shop WiFi attacks (evil twin, captive portal phishing), (2) cryptocurrency theft targeting expats, (3) SIM swap attacks on Vietnamese mobile carriers (Viettel, Vinaphone, MobiFone), (4) physical device theft and subsequent exploitation, (5) social engineering via Telegram/Zalo groups. Provide specific incidents, not just theoretical risks.",
+          "system_prompt": "You are a threat intelligence analyst covering Southeast Asian cybercrime with access to OSINT feeds, dark web monitoring, and law enforcement reports."
+        },
+        {
+          "id": "intel-2",
+          "prompt": "Research fake ChatGPT.app malware campaigns specifically targeting macOS in 2025-2026. What are the CONFIRMED malware families distributed as fake ChatGPT? Focus on: Atomic Stealer (AMOS) ChatGPT variants, Realst macOS stealer, Cthulhu Stealer, MacStealer. For each: what data do they steal, how are they distributed, what are the known IOCs (file hashes, C2 domains, signing certificates)? Has Apple's XProtect added signatures for these specific variants?",
+          "system_prompt": "You are a threat intelligence analyst covering Southeast Asian cybercrime with access to OSINT feeds, dark web monitoring, and law enforcement reports."
+        },
+        {
+          "id": "intel-3",
+          "prompt": "Lazarus Group (North Korean APT) has been documented targeting cryptocurrency developers with Operation DreamJob and AppleJeus campaigns. They specifically target macOS users with fake applications. Research: (1) What is their 2025-2026 macOS tooling? (2) Do they specifically target users in Vietnam? (3) What is their typical delivery mechanism — is AirDrop/physical proximity consistent with their TTPs? (4) What is the profile of their typical victim? (5) How do they select targets — GitHub profiles, crypto portfolio visibility, conference attendance?",
+          "system_prompt": "You are a threat intelligence analyst covering Southeast Asian cybercrime with access to OSINT feeds, dark web monitoring, and law enforcement reports."
+        }
+      ]
+    },
+    {
+      "name": "Phase 4: Immediate Protection Commands",
+      "tasks": [
+        {
+          "id": "protect-1",
+          "prompt": "Provide a COMPLETE macOS lockdown script (single bash script, copy-paste ready) that does ALL of the following in one execution: (1) Enable firewall + stealth mode + block all incoming, (2) Set display sleep to 2 minutes on both battery and AC, (3) Require password IMMEDIATELY after sleep/screensaver, (4) Disable AirDrop completely, (5) Disable Handoff, (6) Disable Wake on LAN, (7) Disable Bluetooth discoverability, (8) Set hot corner for screen lock, (9) Enable automatic security updates, (10) Disable Remote Login/Management/Screen Sharing. All via terminal commands that work on macOS Sequoia. The script must be idempotent and safe to run multiple times.",
+          "system_prompt": "You are a macOS systems administrator. Provide EXACT working terminal commands. Test mentally that each command works on macOS Sequoia before including it. No theory, only commands."
+        },
+        {
+          "id": "protect-2",
+          "prompt": "Provide exact commands to close all unnecessary open ports on macOS: (1) Stop Logitech Options Plus from binding 0.0.0.0:59869 or restrict it to localhost, (2) Disable AirPlay Receiver (ControlCenter ports 5000/7000), (3) Restrict Spotify's local server ports, (4) Block rapportd from listening on all interfaces. Also provide a PF (packet filter) firewall ruleset that blocks ALL incoming connections on all interfaces except localhost, while allowing all outbound traffic. Include the pf.conf rules and the commands to load them.",
+          "system_prompt": "You are a macOS systems administrator. Provide EXACT working terminal commands. Test mentally that each command works on macOS Sequoia before including it. No theory, only commands."
+        },
+        {
+          "id": "protect-3",
+          "prompt": "Provide exact commands to secure the Downloads folder of a developer who has these sensitive files exposed: (1) proton-recovery-phrase.pdf (crypto recovery), (2) Google OAuth client_secret JSON, (3) ABN AMRO bank statements, (4) invoices with real names/amounts. For each: how to encrypt with GPG, how to move to a secure vault location, how to securely wipe the original. Also provide a script to scan Downloads for ANY file matching sensitive patterns (password, secret, key, credential, recovery, statement, invoice) and alert the user.",
+          "system_prompt": "You are a macOS systems administrator. Provide EXACT working terminal commands. Test mentally that each command works on macOS Sequoia before including it. No theory, only commands."
+        }
+      ]
+    },
+    {
+      "name": "Phase 5: Long-Term Defense Architecture",
+      "tasks": [
+        {
+          "id": "defense-1",
+          "prompt": "Design a complete automated security monitoring system for a macOS developer workstation that runs 24/7. Include: (1) LaunchAgent plist for a monitoring daemon that runs every 60 seconds, (2) checks for new LaunchAgents/Daemons, (3) checks for new listening ports, (4) checks for unsigned processes, (5) checks for TCC database modifications, (6) checks for new login items, (7) alerts via terminal-notifier or osascript when anomalies detected. Provide complete plist XML and monitoring script.",
+          "system_prompt": "You are a defense-in-depth security architect for high-value macOS workstations. Provide production-ready scripts and configurations."
+        },
+        {
+          "id": "defense-2",
+          "prompt": "Design a 'crypto developer workstation' security architecture for someone with $73K+ in BTC, multiple API keys, and production server access who works from Vietnamese coffee shops. Cover: (1) hardware security (YubiKey, privacy screen, cable lock), (2) network security (VPN kill switch, DNS-over-HTTPS, PF firewall rules), (3) session security (auto-lock, Touch ID, hot corners), (4) secret management (1Password CLI vs macOS Keychain vs Doppler), (5) browser compartmentalization (crypto browser vs dev browser vs personal), (6) backup strategy (encrypted Time Machine, iCloud considerations), (7) emergency response (break-glass script). Prioritize by impact.",
+          "system_prompt": "You are a defense-in-depth security architect for high-value macOS workstations. Provide production-ready scripts and configurations."
+        },
+        {
+          "id": "defense-3",
+          "prompt": "Create a weekly automated security audit script for macOS that: (1) Checks all code signing on installed apps, (2) Verifies no new unsigned dylibs, (3) Scans .env files for leaked secrets, (4) Checks SSH authorized_keys for unauthorized entries, (5) Audits Chrome extensions for new/changed ones, (6) Checks quarantine database for new suspicious entries, (7) Verifies firewall is still enabled, (8) Checks for new cron jobs or LaunchAgents, (9) Reports open ports, (10) Emails a summary report. Provide the complete script as a cron job.",
+          "system_prompt": "You are a defense-in-depth security architect for high-value macOS workstations. Provide production-ready scripts and configurations."
+        }
+      ]
+    }
+  ]
+}

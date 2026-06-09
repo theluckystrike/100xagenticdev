@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "ab-01",
+          "prompt": "Write a complete, self-contained HTML page for abwex.com titled 'Effect Size Calculator — Cohen\\'s d, Hedges\\' g & Glass\\'s Delta'. Build an interactive calculator where users: 1) Enter Group 1 mean and SD, 2) Enter Group 2 mean and SD, 3) Enter sample sizes for both groups, 4) Click Calculate. Compute and display: Cohen's d, Hedges' g (bias-corrected), Glass's delta, Common Language Effect Size (CLES/probability of superiority), overlap percentage between distributions. Show visual overlapping normal distribution curves (canvas-drawn) that update in real-time. Include interpretation guide: small (0.2), medium (0.5), large (0.8). Dark theme (#0f172a background), modern CSS, mobile-responsive. NO external dependencies. SEO meta tags, Open Graph, JSON-LD FAQ schema (3 Qs). Canonical: https://abwex.com/tools/effect-size-calculator. Footer: '© 2025 abwex.com — Free Statistics Tools'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ab-02",
+          "prompt": "Write a complete, self-contained HTML page for abwex.com titled 'Multivariate Test Duration Estimator — How Long to Run Your MVT'. Build an interactive calculator where users: 1) Enter number of variations (2-10), 2) Enter baseline conversion rate (%), 3) Enter minimum detectable effect (%), 4) Enter daily traffic, 5) Select significance level (90%, 95%, 99%), 6) Select power (80%, 90%, 95%). Calculate: required sample size per variation, total sample needed, estimated days to reach significance, and a comparison table showing duration at different MDE levels. Include a timeline visualization showing expected completion date. Explain why MVTs need more traffic than A/B tests. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://abwex.com/tools/mvt-duration-estimator. Footer: '© 2025 abwex.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ab-03",
+          "prompt": "Write a complete, self-contained HTML page for abwex.com titled 'Funnel Conversion Calculator — Analyze Drop-Off at Every Step'. Build an interactive tool where users: 1) Add funnel steps (name + visitors count), up to 10 steps, 2) Reorder steps with up/down buttons, 3) See real-time funnel visualization (horizontal bars showing relative size). Calculate: step-to-step conversion rate, cumulative conversion rate, drop-off count and percentage at each step, overall funnel conversion. Highlight the biggest drop-off step in red. Include benchmark comparison inputs (enter industry averages). Export results as CSV. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://abwex.com/tools/funnel-conversion-calculator. Footer: '© 2025 abwex.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ab-04",
+          "prompt": "Write a complete, self-contained HTML page for abwex.com titled 'Statistical Power Visualizer — See How Power Changes'. Build an interactive tool where users: 1) Adjust effect size slider (0.01-2.0), 2) Adjust sample size slider (10-10000), 3) Adjust alpha level slider (0.01-0.10), 4) Toggle one-tailed vs two-tailed test. Render a real-time canvas visualization showing: the null distribution, the alternative distribution, the critical value line, shaded alpha region (Type I error), shaded beta region (Type II error), and shaded power region. Display: power value, beta, required sample size for 80% power at current effect size. Explain Type I vs Type II errors visually. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://abwex.com/tools/statistical-power-visualizer. Footer: '© 2025 abwex.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ab-05",
+          "prompt": "Write a complete, self-contained HTML page for abwex.com titled 'Z-Score Calculator — Standard Score & Probability Lookup'. Build an interactive tool where users: 1) Mode 1: Enter raw score, mean, SD → calculate z-score and probability, 2) Mode 2: Enter z-score → show probability (cumulative, between, outside), 3) Mode 3: Enter probability → find z-score. Show: z-score, cumulative probability, percentile rank, probability between ±z. Render a normal distribution curve (canvas) with shaded area corresponding to the probability. Include a z-table reference (clickable). Show the formula and step-by-step calculation. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://abwex.com/tools/z-score-calculator. Footer: '© 2025 abwex.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "m3-01",
+          "prompt": "Write a complete, self-contained HTML page for ml3x.com titled 'PCA Step-by-Step Calculator — Principal Component Analysis Solver'. Build an interactive tool where users: 1) Enter a data matrix (rows=samples, cols=features, up to 10x10), 2) Click Calculate. Show step-by-step: a) Center the data (subtract mean), b) Compute covariance matrix, c) Find eigenvalues and eigenvectors, d) Sort by eigenvalue (descending), e) Show explained variance ratio per component, f) Show cumulative explained variance. Render a scree plot (canvas bar chart of eigenvalues) and cumulative variance line. Allow selecting number of components to keep. Show transformed data. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://ml3x.com/tools/pca-calculator. Footer: '© 2025 ml3x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "m3-02",
+          "prompt": "Write a complete, self-contained HTML page for ml3x.com titled 'Cosine Similarity Calculator — Compare Vectors & Text'. Build an interactive tool with two modes: 1) Vector mode: enter two numeric vectors (comma-separated), calculate cosine similarity, Euclidean distance, Manhattan distance, and dot product. Show formula breakdown. 2) Text mode: enter two text strings, convert to TF vectors, calculate cosine similarity. Show the term-frequency matrix. Render a 2D/3D angle visualization between vectors using canvas. Include interpretation: 1.0 = identical, 0 = orthogonal, -1 = opposite. Batch mode: paste multiple vector pairs, get similarity matrix. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://ml3x.com/tools/cosine-similarity-calculator. Footer: '© 2025 ml3x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "m3-03",
+          "prompt": "Write a complete, self-contained HTML page for ml3x.com titled 'Cross-Entropy Loss Calculator — Binary & Categorical Loss Solver'. Build an interactive tool where users: 1) Select mode: binary cross-entropy or categorical cross-entropy, 2) For binary: enter true label (0 or 1) and predicted probability, 3) For categorical: enter true class labels and predicted probability distribution for multiple samples. Calculate: loss per sample, average loss, and show the loss formula with values substituted. Render a loss curve (canvas) showing how loss changes as prediction varies from 0 to 1. Include comparison with MSE loss. Batch mode: enter multiple predictions, show loss for each. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://ml3x.com/tools/cross-entropy-calculator. Footer: '© 2025 ml3x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "m3-04",
+          "prompt": "Write a complete, self-contained HTML page for ml3x.com titled 'Softmax Calculator — Convert Logits to Probabilities'. Build an interactive tool where users: 1) Enter logits as comma-separated values (e.g., 2.0, 1.0, 0.1), 2) Adjust temperature parameter (0.01-10.0) with slider, 3) See real-time probability output. Show: raw logits, exp(logits), sum of exp, final softmax probabilities. Render a bar chart (canvas) comparing logits vs probabilities side by side. Show how temperature affects the distribution: low temp = sharper (more confident), high temp = flatter (more uniform). Include the formula with step-by-step calculation. Add numerical stability note (subtract max). Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://ml3x.com/tools/softmax-calculator. Footer: '© 2025 ml3x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "m3-05",
+          "prompt": "Write a complete, self-contained HTML page for ml3x.com titled 'K-Means Clustering Calculator — Step-by-Step Centroid Solver'. Build an interactive tool where users: 1) Enter 2D data points (x,y pairs) or click on a canvas to place points, 2) Select K (number of clusters, 2-8), 3) Click Initialize to place random centroids, 4) Step through iterations one by one: a) Assign points to nearest centroid, b) Recalculate centroid positions, c) Show movement distance. Render the canvas with colored points and centroids, cluster boundaries (Voronoi-style shading). Show: iteration number, centroid coordinates, WCSS (within-cluster sum of squares), convergence status. Include elbow method helper. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://ml3x.com/tools/kmeans-calculator. Footer: '© 2025 ml3x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "en-01",
+          "prompt": "Write a complete, self-contained HTML page for enhio.com titled 'Flesch Reading Score Calculator — Check Your Text Readability'. Build an interactive tool where users: 1) Paste text into a textarea, 2) Click Analyze. Calculate in real-time: Flesch Reading Ease score (206.835 - 1.015×ASL - 84.6×ASW), Flesch-Kincaid Grade Level, Gunning Fog Index, Coleman-Liau Index, SMOG Index, Automated Readability Index. Show: total words, sentences, syllables, avg sentence length, avg syllables/word. Display a color-coded gauge (0-100) for Flesch score with grade level interpretation (Very Easy 90-100, Easy 80-89, etc.). Highlight complex sentences (>25 words) in the text. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://enhio.com/tools/flesch-reading-calculator. Footer: '© 2025 enhio.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "en-02",
+          "prompt": "Write a complete, self-contained HTML page for enhio.com titled 'Sentence Length Analyzer — Optimize Your Writing Rhythm'. Build an interactive tool where users: 1) Paste text, 2) See each sentence with its word count displayed, color-coded: green (<15 words), yellow (15-25), orange (25-35), red (>35). Show: histogram of sentence lengths (canvas bar chart), average sentence length, median, standard deviation, longest/shortest sentence highlighted. Calculate a 'rhythm score' based on length variation (monotonous if all same length, good if varied). Suggest improvements for overly long sentences. Show a sentence length sparkline for visual flow. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://enhio.com/tools/sentence-length-analyzer. Footer: '© 2025 enhio.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "en-03",
+          "prompt": "Write a complete, self-contained HTML page for enhio.com titled 'Passive Voice Detector — Find & Fix Passive Constructions'. Build an interactive tool where users: 1) Paste text into a textarea, 2) Click Analyze. Detect passive voice patterns using regex (forms of 'to be' + past participle patterns). Highlight passive sentences in the text with yellow background. Show: total sentences, passive count, passive percentage, each passive sentence with a suggested active voice rewrite (template-based). Include a 'passive voice score' gauge (0-100%, lower is better). Show common passive patterns detected. Reference style guides on when passive is acceptable (scientific writing, unknown agent). Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://enhio.com/tools/passive-voice-detector. Footer: '© 2025 enhio.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "en-04",
+          "prompt": "Write a complete, self-contained HTML page for enhio.com titled 'Word Choice Optimizer — Replace Weak Words with Strong Alternatives'. Build an interactive tool where users: 1) Paste text, 2) Click Analyze. Scan for weak/overused words: very, really, just, things, stuff, got, nice, good, bad, big, small, a lot, basically, literally, actually. Highlight them in the text. For each flagged word, show a dropdown of stronger alternatives in context. Show stats: total weak words found, percentage of total words, top 5 most overused. Include a 'word strength score' (100 = no weak words). Allow users to click a suggestion to replace in-place. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://enhio.com/tools/word-choice-optimizer. Footer: '© 2025 enhio.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "en-05",
+          "prompt": "Write a complete, self-contained HTML page for enhio.com titled 'Speaking Time Estimator — How Long Will Your Text Take to Read Aloud?'. Build an interactive tool where users: 1) Paste text or enter word count, 2) Select speaking pace: slow (100 wpm), conversational (130 wpm), moderate (150 wpm), fast (170 wpm), presentation (120 wpm), audiobook (150 wpm), auctioneer (250 wpm), 3) Adjust custom WPM slider (80-300). Calculate: speaking time (hours, minutes, seconds), number of pauses (one per sentence), total pause time (0.5s per pause), adjusted total time. Show a visual timeline with time markers. Include section breakdown if text has paragraphs. Add comparison: 'equivalent to X TED talks' or 'X podcast episodes'. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://enhio.com/tools/speaking-time-estimator. Footer: '© 2025 enhio.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kr-01",
+          "prompt": "Write a complete, self-contained HTML page for krzen.com titled 'Image Optimization Calculator — Estimate Savings from Compression'. Build an interactive calculator where users: 1) Enter image dimensions (width × height), 2) Select format (JPEG, PNG, WebP, AVIF, SVG), 3) Select quality level (low/medium/high/lossless), 4) Enter number of images on page, 5) Enter monthly pageviews. Calculate: estimated file size per image, total page weight from images, savings from format conversion (JPEG→WebP: ~30%, PNG→WebP: ~50%, JPEG→AVIF: ~50%), bandwidth savings per month, CDN cost savings. Show comparison table of all formats. Include lazy loading savings estimate. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://krzen.com/tools/image-optimization-calculator. Footer: '© 2025 krzen.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kr-02",
+          "prompt": "Write a complete, self-contained HTML page for krzen.com titled 'Lazy Loading Threshold Calculator — Optimize Viewport Loading'. Build an interactive tool where users: 1) Enter viewport height (px) or auto-detect, 2) Enter total page height, 3) Enter number of images/iframes on page, 4) Position each resource (above/below fold distance), 5) Adjust rootMargin (px before viewport to start loading). Calculate: resources loaded immediately vs deferred, estimated initial page weight savings, time to interactive improvement, bandwidth savings for bounce visitors. Show a visual page scrollmap with load triggers. Generate HTML code with Intersection Observer. Include native loading='lazy' comparison. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://krzen.com/tools/lazy-loading-calculator. Footer: '© 2025 krzen.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kr-03",
+          "prompt": "Write a complete, self-contained HTML page for krzen.com titled 'CDN Latency Estimator — Compare Edge Network Performance'. Build an interactive calculator where users: 1) Select origin server region (US-East, US-West, EU-West, EU-Central, Asia-Pacific, etc.), 2) Select target audience regions (multi-select), 3) Enter average resource size (KB), 4) Toggle CDN on/off. Calculate: estimated latency without CDN (based on geographic distance, ~1ms per 100km + processing), estimated latency with CDN (edge pop proximity), TTFB improvement, total page load time savings. Show a world map (CSS-drawn simplified) with latency heatmap. Compare popular CDN edge counts. Include cache hit rate impact on performance. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://krzen.com/tools/cdn-latency-estimator. Footer: '© 2025 krzen.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kr-04",
+          "prompt": "Write a complete, self-contained HTML page for krzen.com titled 'Resource Hints Generator — Preload, Prefetch & Preconnect Builder'. Build an interactive tool where users: 1) Add resources with: URL, type (script, style, font, image, fetch), priority (high/medium/low), 2) Auto-suggest the correct resource hint: preload (critical path), prefetch (next navigation), preconnect (third-party origin), dns-prefetch, modulepreload, 3) Show explanation for each hint type. Generate: complete HTML <link> tags, copy-to-clipboard. Show a loading waterfall diagram (CSS-based) comparing: no hints vs with hints. Include best practices: don't over-preload, font preload with crossorigin, preconnect for APIs. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://krzen.com/tools/resource-hints-generator. Footer: '© 2025 krzen.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "kr-05",
+          "prompt": "Write a complete, self-contained HTML page for krzen.com titled 'Critical CSS Extractor — Above-the-Fold CSS Calculator'. Build an interactive tool where users: 1) Paste their full CSS stylesheet, 2) Paste their HTML content (or enter viewport dimensions), 3) Click Analyze. Parse the CSS and identify: selectors that match elements likely above the fold (body, header, nav, h1, hero, main first-child patterns), estimated critical CSS size, full CSS size, potential savings. Generate: extracted critical CSS (inline-ready), deferred CSS loading code (loadCSS pattern), comparison of before/after render-blocking time. Show CSS selector coverage analysis. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://krzen.com/tools/critical-css-extractor. Footer: '© 2025 krzen.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "iv-01",
+          "prompt": "Write a complete, self-contained HTML page for invokebot.com titled 'Webhook Retry Calculator — Exponential Backoff Planner'. Build an interactive calculator where users: 1) Enter max retry attempts (1-20), 2) Enter base delay (seconds), 3) Enter backoff multiplier (1.5-4.0), 4) Enter max delay cap (seconds), 5) Toggle jitter (adds random 0-50% to each delay). Calculate and display: delay for each attempt, cumulative time from first attempt, total window (time from first try to last retry). Show a timeline visualization of retry attempts. Generate code snippets for: Python (tenacity), JavaScript (exponential-backoff), curl retry loop. Include recommendations by use case (payment webhooks: aggressive retries, notifications: fewer). Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://invokebot.com/tools/webhook-retry-calculator. Footer: '© 2025 invokebot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "iv-02",
+          "prompt": "Write a complete, self-contained HTML page for invokebot.com titled 'Webhook vs Polling Cost Comparator — Which is Cheaper?'. Build an interactive calculator where users: 1) Enter expected events per hour (1-10000), 2) Enter polling interval (seconds, 1-3600), 3) Enter API cost per request ($), 4) Enter webhook server cost per month ($), 5) Enter average event processing time (ms). Calculate for both approaches: requests per hour/day/month, monthly API cost, server compute cost, total monthly cost, latency (polling: avg half the interval, webhook: near-instant), wasted requests (polling with no new data). Show comparison table and break-even chart (at what event frequency does webhook become cheaper). Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://invokebot.com/tools/webhook-vs-polling-calculator. Footer: '© 2025 invokebot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "iv-03",
+          "prompt": "Write a complete, self-contained HTML page for invokebot.com titled 'Event Schema Validator — Validate JSON Webhook Payloads'. Build an interactive tool where users: 1) Paste a JSON Schema definition (or use preset templates: Stripe webhook, GitHub webhook, Slack event, custom), 2) Paste a JSON payload to validate, 3) Click Validate. Show: valid/invalid status, list of all validation errors with JSON path (e.g., $.data.amount is required), type mismatches, missing required fields, extra properties. Highlight errors in the JSON with line numbers. Include a schema builder: add fields with name, type, required, description → generate JSON Schema. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://invokebot.com/tools/event-schema-validator. Footer: '© 2025 invokebot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "iv-04",
+          "prompt": "Write a complete, self-contained HTML page for invokebot.com titled 'Webhook Signature Generator — HMAC Authentication Builder'. Build an interactive tool where users: 1) Enter webhook secret key, 2) Paste request body (JSON), 3) Select algorithm (HMAC-SHA256, HMAC-SHA1, HMAC-SHA512, HMAC-MD5), 4) Select encoding (hex, base64). Generate: signature hash, full signature header (X-Webhook-Signature format), verification code snippets in Python, Node.js, Go, PHP. Include a verification tester: paste received signature + body + secret → verify match. Explain timing-safe comparison. Show common webhook signature formats from providers (Stripe, GitHub, Shopify). Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://invokebot.com/tools/webhook-signature-generator. Footer: '© 2025 invokebot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "iv-05",
+          "prompt": "Write a complete, self-contained HTML page for invokebot.com titled 'Idempotency Key Generator — Prevent Duplicate Webhook Processing'. Build an interactive tool where users: 1) Select key format: UUIDv4, UUIDv7 (time-ordered), ULID, nanoid, custom prefix + random, 2) Enter optional prefix (e.g., 'evt_', 'wh_'), 3) Generate single key or batch (1-100), 4) Show key properties: length, entropy bits, collision probability at N keys, time-sortable (yes/no). Include: explanation of idempotency in webhook processing, storage strategies (Redis TTL, database dedup table), code examples for idempotent webhook handler in Python and Node.js. Copy-to-clipboard for each key. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://invokebot.com/tools/idempotency-key-generator. Footer: '© 2025 invokebot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "m0-01",
+          "prompt": "Write a complete, self-contained HTML page for ml0x.com titled 'Bias-Variance Tradeoff Calculator — Visualize Model Complexity'. Build an interactive tool where users: 1) Adjust model complexity slider (1-20, representing polynomial degree), 2) Adjust noise level slider (0-2), 3) Adjust training set size slider (10-500). Render a canvas visualization showing: training error curve (decreasing with complexity), test error curve (U-shaped), bias² component (decreasing), variance component (increasing), total error = bias² + variance + noise. Highlight the optimal complexity point (minimum test error). Show underfitting zone (left) and overfitting zone (right). Include explanation of bias-variance decomposition formula. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://ml0x.com/tools/bias-variance-calculator. Footer: '© 2025 ml0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "m0-02",
+          "prompt": "Write a complete, self-contained HTML page for ml0x.com titled 'Dropout Rate Optimizer — Find the Right Regularization'. Build an interactive tool where users: 1) Select layer type (dense/fully connected, convolutional, recurrent/LSTM), 2) Enter number of neurons/filters in layer, 3) Enter training set size, 4) Adjust dropout rate slider (0.0-0.9). Show: effective neurons after dropout, expected training time multiplier, regularization strength estimation, recommended dropout rate by layer type (dense: 0.5, conv: 0.2-0.3, recurrent: 0.2). Render a visual grid of neurons with random ones 'dropped' (grayed out) updating in real-time with the slider. Include Monte Carlo Dropout explanation for uncertainty. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://ml0x.com/tools/dropout-optimizer. Footer: '© 2025 ml0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "m0-03",
+          "prompt": "Write a complete, self-contained HTML page for ml0x.com titled 'Batch Normalization Calculator — Step-by-Step BN Computation'. Build an interactive tool where users: 1) Enter a batch of values (e.g., activations from a layer, comma-separated per sample), 2) Enter epsilon (default 1e-5), 3) Enter gamma (scale, default 1.0) and beta (shift, default 0.0). Calculate step by step: a) batch mean, b) batch variance, c) normalize: (x - mean) / sqrt(var + eps), d) scale and shift: gamma * normalized + beta. Show all intermediate values. Include running mean/variance explanation for inference mode. Render before/after distribution (canvas histogram). Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://ml0x.com/tools/batch-normalization-calculator. Footer: '© 2025 ml0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "m0-04",
+          "prompt": "Write a complete, self-contained HTML page for ml0x.com titled 'Gradient Clipping Calculator — Prevent Exploding Gradients'. Build an interactive tool where users: 1) Enter gradient values per parameter (comma-separated), 2) Select clipping method: clip by value (min/max), clip by norm (max L2 norm), clip by global norm, 3) Enter clipping threshold. Calculate: original gradient norms (per-param and global), clipped gradients, scaling factor applied, gradient norm before/after. Render a visual comparison: bars showing original vs clipped gradient magnitudes per parameter. Include: when to use each method, recommended thresholds by architecture (RNN: 1.0, Transformer: 1.0, CNN: 5.0), PyTorch/TF code snippets. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://ml0x.com/tools/gradient-clipping-calculator. Footer: '© 2025 ml0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "m0-05",
+          "prompt": "Write a complete, self-contained HTML page for ml0x.com titled 'Model Ensemble Calculator — Combine Predictions for Better Accuracy'. Build an interactive tool where users: 1) Add models (name + accuracy/score), up to 10 models, 2) Select ensemble method: simple averaging, weighted averaging (enter weights), majority voting, stacking (show concept), 3) Enter sample predictions from each model (class labels or probabilities). Calculate: ensemble prediction, expected accuracy improvement (diversity-based estimate), agreement rate between models, Fleiss' kappa. Show which models agree/disagree per sample. Include: when ensembles help most (diverse models), diminishing returns chart, comparison of methods. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://ml0x.com/tools/ensemble-calculator. Footer: '© 2025 ml0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "lb-01",
+          "prompt": "Write a complete, self-contained HTML page for lochbot.com titled 'CORS Policy Generator — Build Cross-Origin Resource Sharing Rules'. Build an interactive tool where users: 1) Add allowed origins (specific URLs or * for all), 2) Select allowed methods (GET, POST, PUT, DELETE, PATCH, OPTIONS), 3) Add allowed headers (Content-Type, Authorization, X-Custom-Header, etc.), 4) Set max-age for preflight cache (seconds), 5) Toggle credentials (Access-Control-Allow-Credentials). Generate: complete CORS headers, server configuration for Express.js, Nginx, Apache, Flask, Django. Include a preflight request simulator: enter request details, see if CORS would allow it. Show common CORS errors and fixes. Security warnings for overly permissive configs. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://lochbot.com/tools/cors-policy-generator. Footer: '© 2025 lochbot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "lb-02",
+          "prompt": "Write a complete, self-contained HTML page for lochbot.com titled 'JWT Decoder & Validator — Inspect JSON Web Tokens'. Build an interactive tool where users: 1) Paste a JWT token, 2) See decoded: header (algorithm, type), payload (all claims with timestamps converted to readable dates), signature (base64). Color-code the three parts (header=red, payload=purple, signature=blue). Show: expiration status (expired/valid/no exp), issued-at, not-before, issuer, subject, audience. 3) Optional: enter secret key to verify signature (HS256 only, computed client-side). Include: JWT structure explanation, common claims reference (iss, sub, aud, exp, nbf, iat, jti), security best practices. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://lochbot.com/tools/jwt-decoder. Footer: '© 2025 lochbot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "lb-03",
+          "prompt": "Write a complete, self-contained HTML page for lochbot.com titled 'Password Strength Calculator — Entropy & Crack Time Estimator'. Build an interactive tool where users: 1) Type a password in real-time, 2) See instant analysis: length, character set (lowercase, uppercase, digits, symbols), entropy (bits), estimated crack time at various speeds (1K/s offline, 1B/s GPU, 100B/s cluster). Show: strength meter (very weak to very strong), specific weaknesses (too short, no symbols, common patterns, dictionary words from a built-in list of 100 common passwords), suggestions for improvement. Compare against NIST guidelines. Show mathematical formula for entropy calculation. Include a secure password generator (adjustable length, character types). Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://lochbot.com/tools/password-strength-calculator. Footer: '© 2025 lochbot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "lb-04",
+          "prompt": "Write a complete, self-contained HTML page for lochbot.com titled 'Hash Generator — MD5, SHA-1, SHA-256 & SHA-512'. Build an interactive tool where users: 1) Enter text or paste content, 2) See all hash outputs simultaneously: MD5 (128-bit), SHA-1 (160-bit), SHA-256 (256-bit), SHA-512 (512-bit). Each hash shows: hex output, base64 output, copy button. Use the Web Crypto API (SubtleCrypto) for SHA hashes and a pure JS implementation for MD5. Include: HMAC mode (enter a secret key), file hash mode (drag & drop a file, hash its contents), hash comparison tool (paste two hashes, check if they match). Show hash length in bits and characters. Security notes: MD5/SHA-1 are broken for security, use SHA-256+. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://lochbot.com/tools/hash-generator. Footer: '© 2025 lochbot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "lb-05",
+          "prompt": "Write a complete, self-contained HTML page for lochbot.com titled 'Base64 Encoder & Decoder — Convert Text, URLs & Files'. Build an interactive tool with tabs: 1) Text mode: encode/decode text to/from Base64, show character count and byte size, 2) URL-safe mode: Base64URL encoding (replace +/ with -_), 3) File mode: drag-and-drop file → convert to Base64 data URI, show MIME type and size. Two textareas side by side: input (left) and output (right) with a swap button. Include: auto-detect if input is Base64 (try decode, check if valid), line wrapping toggle (76 chars per line for MIME), comparison of Base64 vs Base64URL. Show size overhead (33% larger than original). Copy and download buttons. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://lochbot.com/tools/base64-encoder. Footer: '© 2025 lochbot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ep-01",
+          "prompt": "Write a complete, self-contained HTML page for epochpilot.com titled 'ISO 8601 Duration Calculator — Parse & Convert Durations'. Build an interactive tool where users: 1) Enter an ISO 8601 duration string (e.g., P1Y2M3DT4H5M6S) or build one with inputs (years, months, days, hours, minutes, seconds), 2) Parse and display: total seconds, total minutes, total hours, total days (approximate for months/years), human-readable string. 3) Duration arithmetic: add/subtract two durations, multiply duration by a number. 4) Convert to other formats: seconds, milliseconds, human-readable, cron-compatible interval. Include ISO 8601 duration format reference with examples. Validate input format with error highlighting. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://epochpilot.com/tools/iso-duration-calculator. Footer: '© 2025 epochpilot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ep-02",
+          "prompt": "Write a complete, self-contained HTML page for epochpilot.com titled 'Recurring Event Generator — Create Repeating Schedules'. Build an interactive tool where users: 1) Enter start date and time, 2) Select recurrence: daily, weekly (select days), bi-weekly, monthly (by date or by day-of-week), yearly, 3) Enter end condition: after N occurrences (1-365) or until a date, 4) Add exceptions (skip specific dates). Generate: list of all occurrence dates/times, total count, iCal (RRULE) format string, JSON array of dates, export as .ics file. Show a mini calendar view with occurrences highlighted. Include common presets: 'Every weekday', 'First Monday of month', 'Last Friday', 'Quarterly'. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://epochpilot.com/tools/recurring-event-generator. Footer: '© 2025 epochpilot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ep-03",
+          "prompt": "Write a complete, self-contained HTML page for epochpilot.com titled 'Pomodoro Timer — Focus & Break Timer with Stats'. Build a fully functional Pomodoro timer: 1) Adjustable work duration (15-60 min, default 25), 2) Short break (3-10 min, default 5), 3) Long break (10-30 min, default 15), 4) Long break after N pomodoros (default 4). Show: large circular progress timer (canvas-drawn), current phase (work/short break/long break), session count, Start/Pause/Reset buttons. Track stats for current session: total focus time, pomodoros completed, breaks taken. Audio notification when phase ends (use Web Audio API oscillator beep). Include keyboard shortcuts (Space=start/pause, R=reset). Persist stats in localStorage. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://epochpilot.com/tools/pomodoro-timer. Footer: '© 2025 epochpilot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ep-04",
+          "prompt": "Write a complete, self-contained HTML page for epochpilot.com titled 'World Clock Dashboard — Track Multiple Time Zones'. Build an interactive dashboard where users: 1) Add cities/time zones from a searchable dropdown (include 50+ major cities with their IANA timezone), 2) Each clock shows: city name, current time (updating every second), date, UTC offset, AM/PM or 24h toggle, 3) Drag to reorder clocks, 4) Remove clocks with X button, 5) Show time difference between any two selected clocks. Display both analog (canvas-drawn clock face) and digital time. Highlight: business hours (9-5 green), night (10pm-6am dark). Save selected cities to localStorage. Include 'Meeting planner' mode: find overlapping business hours across all added zones. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://epochpilot.com/tools/world-clock-dashboard. Footer: '© 2025 epochpilot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+        {
+          "task_id": "ep-05",
+          "prompt": "Write a complete, self-contained HTML page for epochpilot.com titled 'Sleep Cycle Calculator — Find Your Optimal Wake-Up Time'. Build an interactive calculator where users: 1) Mode 1: Enter bedtime → calculate optimal wake times (in 90-min sleep cycles: 4, 5, 6 cycles = 6h, 7.5h, 9h), accounting for 15 min average sleep onset, 2) Mode 2: Enter desired wake time → calculate optimal bedtimes, 3) Mode 3: 'I want to sleep now' → show next optimal wake times from current time. Display: recommended sleep cycles, total sleep duration, sleep quality rating per option (4 cycles=fair, 5=good, 6=ideal). Show a visual timeline of sleep stages (light→deep→REM cycles) drawn with canvas. Include tips for better sleep hygiene. Dark theme (#0f172a), mobile-responsive, inline CSS/JS. SEO meta, JSON-LD FAQ. Canonical: https://epochpilot.com/tools/sleep-cycle-calculator. Footer: '© 2025 epochpilot.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        }
+      ]
+    }
+  ]
+}

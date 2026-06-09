@@ -1,0 +1,287 @@
+{
+  "project": "Grey Market Intelligence APIs — Validation & Citation Pipeline",
+  "description": "35 agents to verify every claim in the Intel APIs report, find primary source citations, cross-validate pricing/scores, and produce verified findings for the combined mega-dashboard",
+  "model": "deepseek-chat",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "API Existence & Pricing Verification",
+      "tasks": [
+        {
+          "task_id": "p1_osint_verify",
+          "prompt": "Verify the following OSINT tools claimed in the grey market intel report. For EACH, confirm: (1) Does it exist? (2) Is it really free/open-source? (3) Does it have 200+ integrations as claimed? (4) Current GitHub stars and last commit date. (5) Official website URL.\n\nTools to verify:\n- SpiderFoot (claimed: free, 200+ OSINT sources, self-hosted Docker)\n- Recon-ng (claimed: free, open source, modular recon)\n- theHarvester (claimed: free, open source)\n- Maltego (claimed: $999/yr CE edition)\n\nFor SpiderFoot specifically: verify the Docker deployment command 'ghcr.io/smicallef/spiderfoot:latest', verify it actually queries Shodan/VirusTotal/SecurityTrails, verify the port 5001 claim. Provide exact URLs to documentation pages that confirm each claim.",
+          "system_prompt": "You are a technical verification analyst. Only state facts you can confirm from official documentation, GitHub repositories, and vendor websites. Provide exact URLs for every claim verified. If something cannot be verified, say so clearly.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_deep_web_verify",
+          "prompt": "Verify the following deep web/dark web search APIs. For EACH confirm: (1) Does the company/product exist? (2) Current pricing (exact, from their website). (3) Do they actually provide the capabilities claimed? (4) Free tier details.\n\nAPIs to verify:\n- IntelX (claimed: $50/mo Pro, 800+ paste sites, 100 queries/day free)\n- Cybersixgill (claimed: $1,667/mo minimum, private Telegram access)\n- Recorded Future (claimed: $1,250/mo, technical source monitoring)\n- Flashpoint (claimed: $5,000/mo, Chinese underground)\n- KELA DARKBEAST (claimed: $2,500/mo, Chinese dark web forums)\n- Digital Shadows (claimed: $2,500/mo, now ReliaQuest)\n- DarkOwl (claimed: $1,250/mo)\n- Webz.io (claimed: $99-$499/mo, 1K calls/mo free)\n\nProvide exact pricing page URLs or documentation links for each verified claim.",
+          "system_prompt": "You are a pricing verification analyst. Cross-reference all pricing claims against official vendor websites, G2/Gartner reviews, and published case studies. Note any discrepancies. Provide URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_ai_proxy_verify",
+          "prompt": "Verify these AI proxy detection and observability tools. For EACH confirm: (1) Existence (2) Exact current pricing (3) Free tier limits (4) Key capabilities.\n\n- Cloudflare AI Gateway (claimed: $5/mo, 100K-1M free requests, proxy detection)\n- Helicone (claimed: $20/mo, 10K-100K free requests, anomaly detection)\n- LiteLLM (claimed: free OSS, unlimited self-hosted)\n- Langfuse (claimed: $59/mo, 50K obs/mo free)\n- ProxyScan (claimed: $99/mo, 500 requests free, residential proxy detection)\n- IPQualityScore (claimed: $50/mo, 500 queries/day free)\n- Portkey (claimed: $25/mo, 10K req/mo free)\n- OpenMeter (claimed: $0.10/1K events, 100K events/mo free)\n\nFor Cloudflare AI Gateway specifically: Does it actually detect grey market proxy usage at the network level? Provide documentation URLs.",
+          "system_prompt": "You are a technical verification analyst. Verify each tool's existence, pricing, and capabilities against official documentation. Provide exact URLs for confirmed claims.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_scraping_verify",
+          "prompt": "Verify these web scraping and marketplace monitoring APIs. For EACH confirm: (1) Existence (2) Pricing (3) Chinese marketplace capabilities.\n\n- Bright Data (claimed: $500/mo minimum, China Unlocker for Xianyu/Taobao/Pinduoduo)\n- Oxylabs (claimed: $300/mo, Chinese residential proxies)\n- Pixy (claimed: $1,000/mo, visual Xianyu monitoring via computer vision)\n- MarketGuard (claimed: $200/mo, multi-platform MAP monitoring)\n- Apify (claimed: $49/mo, $5 free credit)\n- Diffbot (claimed: $299/mo, 10K calls/mo free)\n- SerpApi (claimed: $50/mo, 100 searches free, Taobao/Baidu)\n- ScrapingBee (claimed: $49/mo, 1K credits free)\n\nCRITICAL: Does Pixy actually exist as described? Can you find its website? Does Bright Data really have a 'China Unlocker' product? Provide URLs.",
+          "system_prompt": "You are a market verification analyst. Verify each provider against their official website. Pay special attention to 'Pixy' and 'ChainSleuth' which may be fabricated. Provide exact URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_crypto_verify",
+          "prompt": "Verify these crypto tracing and blockchain intelligence APIs. For EACH confirm: (1) Does it exist? (2) Exact current pricing (3) USDT/TRON capabilities.\n\n- ChainSleuth (claimed: $500/mo, USDT TRON tracing, 1/10th Chainalysis cost, 100 free calls)\n- TRM Labs (claimed: $4,167/mo, TRON-based USDT tracing)\n- Chainalysis KYT (claimed: $4,167-$10,000/mo, enterprise crypto investigation)\n- Nansen (claimed: $299/mo, 10 calls/min free, wallet labeling)\n- Elliptic (claimed: $4,167/mo, 10-hop transaction tracing)\n- Dune Analytics (claimed: $390/mo, custom SQL blockchain queries)\n- Etherscan API (claimed: $0-$30/mo, 5 calls/sec free)\n\nCRITICAL VERIFICATION: Does 'ChainSleuth' actually exist as a product at $500/mo? Search for its website, documentation, any mention. This is a key claim in the report. Provide URLs or evidence it does NOT exist.",
+          "system_prompt": "You are a blockchain forensics analyst. Verify each provider's existence and pricing. Be especially skeptical of lesser-known tools - verify they are real products with real websites. Provide exact URLs for all verified claims.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_payment_infra_verify",
+          "prompt": "Verify these payment forensics and infrastructure discovery APIs. For EACH confirm existence, pricing, capabilities.\n\nPayment Forensics:\n- SEON (claimed: $599/mo, 500 free calls, Alipay/virtual card detection)\n- Sift (claimed: $1,000/mo)\n- Sardine (claimed: $1,000/mo, combined fraud + crypto)\n- Forter (claimed: $2,000/mo)\n- Ekata (claimed: $500/mo, 100 queries free)\n\nInfrastructure Discovery:\n- URLScan.io (claimed: free, 100 scans/day)\n- Shodan (claimed: $59/mo, 50 results/search free)\n- SecurityTrails (claimed: $49/mo, 50 queries/mo free)\n- Censys (claimed: $79/mo, 250 queries/mo free)\n- GreyNoise (claimed: $99/mo, 1K queries/mo free)\n\nVerify each against official pricing pages. Provide URLs.",
+          "system_prompt": "You are a verification analyst. Check each provider's official website for current pricing and capabilities. Provide exact documentation URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_social_brand_verify",
+          "prompt": "Verify these social monitoring and brand protection APIs. For EACH confirm existence, pricing, capabilities.\n\nSocial Monitoring:\n- SocialLeak (claimed: $300/mo, Telegram/Discord/Weibo monitoring)\n- Brandwatch (claimed: $2,500/mo or $30K+/yr)\n- Telemetr.io (claimed: $29-$199/mo, Telegram analytics)\n- Talkwalker (claimed: $1,667/mo or $20K+/yr)\n- TGStat (claimed: $19-$99/mo, Telegram discovery)\n\nBrand Protection:\n- BrandShield (claimed: $2,000/mo)\n- PhishLabs (claimed: $2,500/mo)\n- Red Points (claimed: $1,800/mo)\n- Bolster (claimed: $1,500/mo)\n\nThreat Intel Platforms:\n- VirusTotal (claimed: free, 500 req/day)\n- CrowdStrike Falcon Intel (claimed: $3,500/mo)\n- Anomali (claimed: $3,000/mo)\n- MISP (claimed: free self-hosted)\n- AlienVault OTX (claimed: free, unlimited)\n\nCRITICAL: Does 'SocialLeak' exist as a product? Verify. Provide URLs for all confirmed claims.",
+          "system_prompt": "You are a market verification analyst. Verify each product exists and its pricing matches claims. Flag any products that appear fabricated. Provide exact URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "Compile ALL verification results into a master table. For each of the 80+ APIs:\n- CONFIRMED (exists, pricing matches) with URL\n- PARTIALLY CONFIRMED (exists but pricing differs) with correct pricing\n- UNVERIFIABLE (cannot find evidence)\n- FABRICATED (does not appear to exist)\n\nList the total count of each category. Highlight the most critical findings — especially any APIs that appear to be fabricated/hallucinated by the LLMs."
+    },
+    {
+      "phase": 2,
+      "name": "Score & Ranking Validation",
+      "tasks": [
+        {
+          "task_id": "p2_spiderfoot_deep",
+          "prompt": "Deep verification of SpiderFoot (ranked #1 with 94/100 score).\n\n1. Go to the SpiderFoot GitHub repo. What is the actual module count? Does it really have 200+ integrations?\n2. What does the official documentation say about grey market intelligence capabilities?\n3. Are there any published case studies of SpiderFoot being used for grey market detection?\n4. What are the actual limitations documented by the developers?\n5. Is the Docker image 'ghcr.io/smicallef/spiderfoot:latest' real and current?\n6. Is the scoring of 94/100 for grey market intelligence justified, or is it inflated?\n\nProvide all URLs to documentation, GitHub issues, and any third-party reviews.",
+          "system_prompt": "You are a security tools analyst. Provide objective assessment based on official documentation and community feedback. Do not accept marketing claims at face value.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_intelx_deep",
+          "prompt": "Deep verification of IntelX (ranked #2 with 88/100 score).\n\n1. What is IntelX's actual current pricing? Go to intelx.io and find their pricing page.\n2. Do they really index 800+ paste sites? What is the actual documented number?\n3. What is the actual free tier? Is it 100 queries/day or different?\n4. Can IntelX actually monitor grey market AI proxy listings? Any evidence?\n5. What data sources does IntelX actually cover vs what the report claims?\n6. Are there published reviews or analyses of IntelX's capabilities?\n\nProvide exact URLs for all claims verified.",
+          "system_prompt": "You are a verification analyst. Only state what you can confirm from primary sources. Provide exact URLs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_cloudflare_deep",
+          "prompt": "Deep verification of Cloudflare AI Gateway (ranked #3 with 85/100 score).\n\n1. Go to Cloudflare's documentation for AI Gateway. What does it actually do?\n2. Does it really detect grey market proxy usage at the network level? Or is this an exaggeration?\n3. What is the actual pricing? Is it $5/mo or part of Cloudflare's broader plans?\n4. Does it provide IP reputation and data center identification as claimed?\n5. What are the actual rate limits and free tier?\n6. Is there any Cloudflare documentation mentioning grey market or proxy detection as a use case?\n\nProvide exact Cloudflare documentation URLs.",
+          "system_prompt": "You are a cloud infrastructure analyst. Verify claims against official Cloudflare documentation. Be critical — distinguish between actual capabilities and speculative use cases.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_bright_data_deep",
+          "prompt": "Deep verification of Bright Data (ranked #4 with 82/100 score).\n\n1. Does Bright Data really have a 'China Unlocker' product? Find the exact product page.\n2. Can it actually scrape Xianyu (闲鱼) and Taobao reliably? Any documentation?\n3. What is the actual minimum pricing? Is $500/mo accurate?\n4. What success rates does Bright Data claim for Chinese marketplace scraping?\n5. Are there case studies of Bright Data being used for grey market monitoring?\n6. What are the actual anti-bot bypass capabilities documented?\n\nProvide exact Bright Data documentation and product page URLs.",
+          "system_prompt": "You are a web scraping specialist. Verify Bright Data's Chinese marketplace capabilities against their official documentation. Distinguish between general proxy capabilities and specific Chinese marketplace features.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_chainsleuth_deep",
+          "prompt": "CRITICAL VERIFICATION: ChainSleuth (ranked #5 with 80/100 score, claimed $500/mo USDT TRON tracing at 1/10th Chainalysis cost).\n\nThis is the MOST important verification task. Search extensively for:\n1. Does a product called 'ChainSleuth' exist? Search for chainsleuth.com, chainsleuth.io, any domain.\n2. Search GitHub for 'ChainSleuth'. Any repositories?\n3. Search Product Hunt, Crunchbase, LinkedIn for 'ChainSleuth'.\n4. Search Google for 'ChainSleuth crypto tracing API'.\n5. Is this a real product or was it hallucinated by the LLM?\n6. If it doesn't exist, what IS the actual cheapest USDT TRON tracing API available?\n\nBe thorough. If ChainSleuth is fabricated, this invalidates a major recommendation in the report.",
+          "system_prompt": "You are a fact-checker. This is a critical verification. If this product does not exist, clearly state 'FABRICATED' and explain what alternatives actually exist at this price point.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_market_gap_verify",
+          "prompt": "Verify the 5 market gaps and their claimed TAM figures:\n\n1. 'AI Proxy Pricing Index API' — claimed $50-100M TAM, 9.2/10 score\n2. 'AI API Usage Compliance Scoring' — claimed $100-200M TAM, 8.8/10 score\n3. 'Model Substitution Detection API' — claimed $30-80M TAM, 8.5/10 score\n4. 'Chinese AI Marketplace Monitor' — claimed $40-80M TAM, 8.2/10 score\n5. 'Operator Lifecycle Tracking' — claimed $20-50M TAM, 7.8/10 score\n\nFor EACH: (1) Is there really no existing product? Search thoroughly. (2) Are the TAM estimates reasonable? Compare to similar markets. (3) Are the build cost estimates ($100K-$1M) realistic? (4) Do any partial solutions exist that the report missed?\n\nAlso verify the mega claim: '$200M-$500M total addressable market for unified grey market intelligence'. Is this grounded in any published market research?",
+          "system_prompt": "You are a market sizing analyst. Critically evaluate TAM claims against comparable markets and published research. Note any TAM figures that appear fabricated or wildly inflated.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_stack_cost_verify",
+          "prompt": "Verify the cost calculations for the 3 recommended stacks:\n\nFree Stack ($0/mo):\n- SpiderFoot: really free? Yes/No + URL\n- VirusTotal: really free 500 req/day? Current limits?\n- URLScan.io: really free 100 scans/day? Current limits?\n- Telethon: really free? Any costs?\n- LiteLLM: really free OSS? URL\n- Grafana: really free self-hosted? URL\n\nStartup Stack (claimed $626/mo):\n- Verify each component's actual current pricing\n- Calculate the real total\n- Flag any pricing that has changed\n\nEnterprise Stack (claimed $10,283/mo):\n- Verify each component's actual current pricing\n- Calculate the real total\n- Note any components with opaque/enterprise pricing\n\nProvide corrected cost estimates with URLs to current pricing pages.",
+          "system_prompt": "You are a procurement analyst. Verify all pricing against current vendor websites. Calculate exact totals. Flag any outdated or incorrect pricing.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "Based on the deep verifications, produce:\n1. A CORRECTED Top 10 ranking — adjust scores based on what's actually verified. Flag any entries that should be removed (fabricated products).\n2. CORRECTED stack costs with verified pricing.\n3. CORRECTED market gap TAM estimates.\n4. A credibility score (0-100) for the original report.\n5. List of ALL fabricated/hallucinated products found.\n6. List of ALL pricing errors found with correct values."
+    },
+    {
+      "phase": 3,
+      "name": "Citation Mining & Cross-Reference",
+      "tasks": [
+        {
+          "task_id": "p3_pricing_citations",
+          "prompt": "Find PRIMARY SOURCE citations (exact URLs) for the pricing of every API in the Top 20:\n\n1. SpiderFoot — GitHub repo URL, license file URL\n2. IntelX — pricing page URL\n3. Cloudflare AI Gateway — pricing/docs URL\n4. Bright Data — pricing page URL\n5. ChainSleuth — any URL (or confirm non-existence)\n6. URLScan.io — API docs URL\n7. Helicone — pricing page URL\n8. Shodan — pricing page URL\n9. SEON — pricing page URL\n10. Cybersixgill — any pricing reference URL\n11-20: Recorded Future, Pixy, Nansen, SecurityTrails, VirusTotal, KELA, LiteLLM, SocialLeak, MarketGuard, Flashpoint\n\nFor EACH, provide: (a) The exact URL to the pricing page (b) The price you see on that page (c) Whether it matches the report's claim (d) Date of last known update.\n\nIf a product has no public pricing page, note 'Enterprise/Contact Sales' and provide the sales page URL.",
+          "system_prompt": "You are a citation specialist. Provide exact, clickable URLs for every pricing claim. Do not fabricate URLs. If you cannot find a URL, say 'URL NOT FOUND'.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_capability_citations",
+          "prompt": "Find PRIMARY SOURCE citations for the KEY CAPABILITIES claimed for the Top 10 APIs:\n\n1. SpiderFoot '200+ integrations' — find the module list or count in official docs\n2. IntelX '800+ paste sites' — find this claim in their documentation\n3. Cloudflare AI Gateway 'network-level proxy detection' — find documentation of this capability\n4. Bright Data 'China Unlocker for Xianyu/Taobao' — find the product page\n5. ChainSleuth 'USDT TRON tracing at 1/10th Chainalysis cost' — find any documentation\n6. URLScan.io 'website screenshots, DOM content capture' — find API docs\n7. Helicone 'real-time AI API anomaly detection' — find documentation\n8. Shodan 'exposed proxy server discovery' — find relevant documentation\n9. SEON 'Alipay/virtual card detection' — find feature documentation\n10. Cybersixgill 'private Telegram group access' — find capability documentation\n\nProvide exact URLs that confirm each specific capability claim.",
+          "system_prompt": "You are a documentation analyst. Find the exact documentation page that confirms each capability claim. Provide URLs. If a capability is not documented, note 'CLAIM NOT DOCUMENTED'.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_china_citations",
+          "prompt": "Find citations for ALL claims about Chinese marketplace monitoring:\n\n1. '70%+ of AI proxy reselling occurs on Chinese marketplaces' — source?\n2. 'Xianyu has no official API' — verification URL\n3. 'Alibaba risk control system blocks 99% of scrapers' — source?\n4. 'Bright Data is the only viable option for Xianyu/Taobao scraping' — evidence\n5. 'Pixy provides computer vision for Xianyu monitoring' — does Pixy exist? URL?\n6. 'Chinese phone + Alipay real-name verification required for Xianyu' — source?\n7. 'Scraping Chinese platforms may violate Cybersecurity Law and PIPL' — legal citations\n8. 'Knownsec and Qi-AnXin' as Chinese OSINT firms — do they offer the claimed services?\n\nProvide exact URLs for every claim. Note which claims are unverifiable speculation vs documented facts.",
+          "system_prompt": "You are a China tech analyst. Verify claims about Chinese platforms and regulations. Provide primary source URLs. Distinguish between confirmed facts and speculation.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_prediction_citations",
+          "prompt": "Evaluate the report's 2027-2028 predictions. For EACH, find supporting or contradicting evidence:\n\n1. 'Cloudflare will acquire Helicone' — any M&A signals? Cloudflare acquisition history?\n2. 'SpiderFoot will acquire IntelX' — any signals? SpiderFoot's revenue/funding?\n3. 'Recorded Future will acquire Cybersixgill' — any signals? RF acquisition history?\n4. 'Bright Data will acquire Pixy' — does Pixy even exist?\n5. 'Chainalysis will acquire ChainSleuth' — does ChainSleuth exist?\n6. '3-5 dominant platforms by 2028' — comparable market evolution data?\n7. 'AI-native intelligence becomes standard by 2027' — current AI integration trends?\n8. '$200-500M TAM for unified grey market intel' — any published market research?\n\nProvide evidence URLs. Rate each prediction: PLAUSIBLE / SPECULATIVE / UNSUPPORTED / IMPOSSIBLE (if target doesn't exist).",
+          "system_prompt": "You are a market predictions analyst. Evaluate each prediction against available evidence. Clearly distinguish between plausible speculation and unsupported claims.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_grey_market_original_verify",
+          "prompt": "Cross-reference the ORIGINAL grey market report's key claims (from the AI-Proxy-Grey-Market-Report) against the API landscape findings:\n\n1. Original claim: '$2-5B grey market' — any API provider's documentation reference this market size?\n2. Original claim: '96-98% discounts' — do any monitoring tools detect these price points?\n3. Original claim: '1-2.5M users' — does any platform data support this?\n4. Original claim: '300-500 operators' — does any threat intel provider track this many?\n5. The validation report scored the original at 18/100 credibility — does the API landscape data support or contradict this low score?\n6. Are the APIs recommended actually useful for monitoring the grey market as described in the original report?\n\nCross-validate between the three reports. Which claims are consistent across all three? Which contradict?",
+          "system_prompt": "You are a cross-validation analyst. Compare claims across multiple intelligence reports. Identify consistencies and contradictions. Provide specific references.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_build_vs_buy_verify",
+          "prompt": "Verify the Build vs Buy decision matrix claims:\n\n1. BUILD setup cost '$120,000 (6 months dev)' — is this realistic for a grey market monitoring platform?\n2. BUY '2-Year TCO $83K-$248K' — verify the math against actual verified pricing\n3. ASSEMBLE '2-Year TCO $132,720' — verify: $42K setup + $2,580/mo × 24 = $103,920. Does the $132,720 figure add up?\n4. Coverage claims: BUILD 85-90%, BUY 35-40%, ASSEMBLE 80-85% — are these justified?\n5. 'Time to first intel: 1-2 weeks for ASSEMBLE' — realistic given setup complexity?\n6. The 'hybrid scale-up roadmap' phases 1-3 — are the costs and timelines realistic?\n\nProvide calculation breakdowns and flag any math errors.",
+          "system_prompt": "You are a financial analyst. Verify all cost calculations, check the math, and flag any errors. Provide corrected figures where needed.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_alternative_verify",
+          "prompt": "Search for APIs and tools that the report MISSED. Are there important grey market intelligence tools not mentioned?\n\nSearch for:\n1. Any new AI security/observability tools launched in 2025-2026\n2. Specialized proxy detection APIs not mentioned\n3. Chinese marketplace monitoring tools not in the report\n4. Telegram OSINT tools not mentioned\n5. Crypto tracing tools under $500/mo not mentioned\n6. Any 'unified grey market detection' products that may have launched\n7. Open-source alternatives to expensive tools not mentioned\n8. Government/law enforcement tools with public APIs\n\nFor each NEW tool found: name, URL, pricing, capabilities, and why it should be in the report.",
+          "system_prompt": "You are a competitive intelligence analyst. Find tools the original report missed. Provide URLs and evidence for each new tool discovered.",
+          "temperature": 0.4,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "Compile ALL citations into a master citation database:\n1. For each API: Confirmed URL, Pricing URL, Capability Documentation URL, Status (VERIFIED/UNVERIFIED/FABRICATED)\n2. For each market claim: Supporting evidence URL, Rating (CONFIRMED/UNCONFIRMED/CONTRADICTED)\n3. For each prediction: Evidence URLs, Rating (PLAUSIBLE/SPECULATIVE/IMPOSSIBLE)\n4. List of MISSED tools that should be added\n5. List of FABRICATED products that should be removed\n6. Corrected math for Build vs Buy\n7. Overall report credibility score with justification"
+    },
+    {
+      "phase": 4,
+      "name": "Corrected Intelligence Synthesis",
+      "tasks": [
+        {
+          "task_id": "p4_corrected_top10",
+          "prompt": "Using the verification results from previous phases, produce a CORRECTED Top 10 ranking of grey market intelligence APIs.\n\nRules:\n1. REMOVE any products confirmed as fabricated/hallucinated\n2. ADJUST scores based on verified capabilities (not claimed capabilities)\n3. CORRECT all pricing to verified current figures\n4. ADD any missed tools that should be in the Top 10\n5. For each entry provide: Rank, Name, VERIFIED Score, VERIFIED Price, Verification Status, Citation URL\n\nAlso produce a 'CONFIDENCE LEVEL' for each ranking: HIGH (fully verified), MEDIUM (partially verified), LOW (mostly unverified).\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a senior intelligence analyst. Only include products confirmed to exist. Adjust all scores to reflect verified rather than claimed capabilities.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p4_corrected_stacks",
+          "prompt": "Using verified pricing from previous phases, produce CORRECTED stack recommendations:\n\n1. FREE Stack — only include tools confirmed free with verified URLs\n2. STARTUP Stack — use verified pricing, calculate correct total\n3. ENTERPRISE Stack — use verified pricing, calculate correct total\n\nFor each stack:\n- List only VERIFIED tools (remove any fabricated ones)\n- Use VERIFIED pricing (not claimed pricing)\n- Calculate CORRECT total monthly cost\n- Provide REALISTIC coverage estimates based on verified capabilities\n- Include 1 citation URL per tool\n\nAlso correct the 'Hybrid Scale-Up Roadmap' with verified costs.\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a procurement analyst. Use only verified pricing. Flag any tools where pricing is enterprise/opaque and cannot be verified.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_corrected_gaps",
+          "prompt": "Using verification results, produce CORRECTED market gap analysis:\n\n1. Do the 5 claimed market gaps actually exist? Or are there partial solutions?\n2. Correct the TAM estimates — which are realistic vs inflated?\n3. For each gap, are the build cost estimates realistic?\n4. Were any gaps identified that the original report missed?\n5. Is the 'Unified Grey Market Intelligence API' ($230M TAM) realistic?\n\nProduce a corrected table with: Gap Name, VERIFIED TAM, Confidence Level, Existing Partial Solutions, Corrected Build Cost.\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a market sizing analyst. Provide realistic, defensible estimates. Flag any TAM figures that are speculative.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_corrected_china",
+          "prompt": "Using verification results, produce a CORRECTED China coverage assessment:\n\n1. Which APIs actually work for Chinese marketplace scraping? Verified evidence only.\n2. Is Bright Data's China capability verified or marketing hype?\n3. Does Pixy exist? If not, what ARE the alternatives for visual Xianyu monitoring?\n4. Is the claim that '70% of AI proxy reselling is on Chinese marketplaces' verified?\n5. Are the Chinese OSINT firms (Knownsec, Qi-AnXin) real and do they offer what's claimed?\n6. What is the REALISTIC cost to monitor Chinese marketplaces based on verified tools?\n\nProvide corrected China assessment with citations.\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a China tech verification analyst. Separate verified facts from marketing claims. Provide corrected assessment.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_original_report_reassess",
+          "prompt": "Re-assess the original AI Proxy Grey Market Report in light of the API landscape findings:\n\nThe original report claimed:\n- $2-5B grey market size\n- 96-98% discounts\n- 1-2.5M users\n- 300-500 operators\n- USDT on TRON as primary payment\n\nThe validation pipeline scored it 18/100 credibility.\n\nNow with the API landscape data:\n1. Do any of the verified intelligence tools provide data that could confirm or deny these claims?\n2. What would it actually COST to verify the original report's claims using the tools identified?\n3. Which specific tools would you use for each claim verification?\n4. Is the 18/100 credibility score fair, or should it be adjusted?\n5. What is the MINIMUM viable intelligence stack to investigate the grey market?\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a senior intelligence analyst. Connect the API landscape findings to the original report's claims. Provide a realistic assessment.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_corrected_predictions",
+          "prompt": "Using verification results, produce CORRECTED predictions for 2027-2028:\n\n1. Remove any predictions involving fabricated companies\n2. Adjust acquisition predictions based on verified company sizes/funding\n3. Are the 'new categories to watch' realistic based on verified market data?\n4. Which predictions have supporting evidence vs pure speculation?\n\nProduce a corrected predictions table with: Prediction, Confidence (HIGH/MEDIUM/LOW), Supporting Evidence, Status (VERIFIED/SPECULATIVE/IMPOSSIBLE).\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are a market analyst. Remove impossible predictions. Rate remaining predictions honestly.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_mega_dashboard_data",
+          "prompt": "Synthesize ALL findings across ALL three reports into structured data for a mega-dashboard:\n\n1. EXECUTIVE METRICS: Total APIs evaluated, confirmed real, fabricated, pricing verified, total market gaps\n2. REPORT COMPARISON: Original Grey Market Report (18/100) vs Intel APIs Report (??/100 after corrections) — which is more reliable?\n3. COMBINED FINDINGS: What do we ACTUALLY KNOW (verified) about the AI grey market and the tools to monitor it?\n4. VERIFIED ACTION ITEMS: What tools should someone actually buy TODAY, based on verified data only?\n5. RISK REGISTER: What claims remain unverified and should NOT be relied upon?\n6. CROSS-REPORT CONTRADICTIONS: Where do the three reports disagree?\n\nContext from Phase 1-3: {previous_synthesis}",
+          "system_prompt": "You are an executive intelligence analyst. Produce structured data suitable for a dashboard. Separate verified facts from speculation clearly.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        }
+      ],
+      "synthesis_prompt": "Produce the FINAL CORRECTED INTELLIGENCE ASSESSMENT:\n\n1. CORRECTED Top 10 APIs (with confidence levels and citation URLs)\n2. CORRECTED Stack Recommendations (with verified pricing)\n3. CORRECTED Market Gaps (with realistic TAMs)\n4. CORRECTED China Assessment\n5. CORRECTED Predictions\n6. OVERALL CREDIBILITY SCORE for the Intel APIs Report (0-100)\n7. LIST OF ALL FABRICATED/HALLUCINATED PRODUCTS removed\n8. LIST OF ALL PRICING CORRECTIONS made\n9. COMBINED FINDINGS across all three reports\n10. What we KNOW vs what we DON'T KNOW"
+    },
+    {
+      "phase": 5,
+      "name": "Final Dashboard Data Package",
+      "tasks": [
+        {
+          "task_id": "p5_verified_api_directory",
+          "prompt": "Produce the FINAL VERIFIED API directory for the mega-dashboard. For each API:\n- Name\n- Category\n- VERIFIED Status (REAL/FABRICATED/UNVERIFIED)\n- VERIFIED Price (or 'Enterprise/Unverified')\n- VERIFIED Score (adjusted from original)\n- Best Citation URL\n- One-line capability summary\n- China coverage (YES/PARTIAL/NO)\n\nOrganize by the 10 categories. Remove fabricated products. Add any missed tools found during validation.\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a data analyst producing structured output for a dashboard. Be concise. Only include verified information.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_credibility_scorecard",
+          "prompt": "Produce the FINAL credibility scorecard comparing all three reports:\n\nReport 1: AI Proxy Grey Market Report (40 agents)\n- Original credibility: 18/100 (from validation pipeline)\n- Key issues: fabricated statistics, no citations, contradictions\n\nReport 2: Grey Market Intel APIs Report (35 agents)\n- Credibility: ?? (calculate from Phase 2-4 findings)\n- Issues: any fabricated products, pricing errors, inflated TAMs\n\nReport 3: Combined Mega-Dashboard (this pipeline, 35 agents)\n- Credibility: ?? (based on verification rigor)\n\nProduce for each:\n- Credibility score (0-100)\n- Grade (A-F)\n- # claims verified\n- # claims fabricated\n- # claims unverifiable\n- Top 3 most reliable findings\n- Top 3 least reliable findings\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a senior intelligence quality analyst. Score each report objectively based on verification data.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p5_action_brief",
+          "prompt": "Produce the FINAL ACTION BRIEF — what should someone actually DO based on VERIFIED data across all three reports:\n\n1. VERIFIED TOOLS TO BUY TODAY (only tools confirmed real with verified pricing)\n2. VERIFIED THREATS TO MONITOR (only grey market threats with evidence)\n3. VERIFIED MARKET OPPORTUNITIES (only gaps with realistic TAMs)\n4. THINGS WE CANNOT VERIFY (and therefore should not act on)\n5. RECOMMENDED NEXT STEPS for further investigation\n6. COST TO INVESTIGATE: What would it actually cost to definitively verify the original grey market claims?\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are an executive advisor. Provide actionable recommendations based ONLY on verified data. Clearly flag any recommendations based on unverified data.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p5_citation_database",
+          "prompt": "Produce the COMPLETE CITATION DATABASE for the mega-dashboard. This is the most important output.\n\nFor EVERY VERIFIED CLAIM across all reports, provide:\n1. Claim text (short)\n2. Source URL\n3. Verification status (CONFIRMED/PARTIALLY CONFIRMED/UNCONFIRMED)\n4. Date of verification\n5. Report origin (Original/APIs/Validation)\n\nOrganize by category:\n- API Pricing Citations (20+)\n- API Capability Citations (20+)\n- Market Size Citations\n- China Coverage Citations\n- Technical Architecture Citations\n- Prediction Citations\n\nAim for 50+ total citations with real URLs.\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a citation librarian. Provide exact, real URLs. Do not fabricate URLs. If you cannot find a URL, say 'URL NOT FOUND — claim unverified'.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_error_log",
+          "prompt": "Produce the COMPLETE ERROR LOG — every error, fabrication, and correction found across all three reports:\n\n1. FABRICATED PRODUCTS: List every product/API that appears to not exist\n2. PRICING ERRORS: List every incorrect price with the original claim vs verified price\n3. CAPABILITY OVERSTATEMENTS: List every capability that was exaggerated\n4. MATH ERRORS: List every calculation error found\n5. CONTRADICTIONS: List every claim that contradicts another claim across the three reports\n6. MISSING CITATIONS: List critical claims that have zero supporting evidence\n7. HALLUCINATED STATISTICS: List any market size, user count, or other statistics that appear fabricated\n\nFor each error: (a) What was claimed (b) What is actually true (c) Which report made the error (d) Severity (CRITICAL/MAJOR/MINOR)\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a quality assurance analyst. Document every error thoroughly. Be comprehensive — do not skip any errors found.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p5_executive_summary",
+          "prompt": "Produce the FINAL EXECUTIVE SUMMARY for the mega-dashboard (500 words max):\n\n1. What was researched (3 pipeline runs, 110 total agents, AI grey market + API landscape + validation)\n2. What we found (headline findings — 5 bullet points max)\n3. What is VERIFIED vs UNVERIFIED\n4. The single most important finding\n5. The single biggest risk\n6. The recommended action\n7. Total cost of all research ($0.23 + $0.22 + $0.23 = $0.68 total)\n\nThis must be concise, executive-level, and clearly distinguish fact from speculation.\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a chief intelligence officer writing a board-level brief. Be concise, precise, and clearly separate verified facts from speculation.",
+          "temperature": 0.3,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "p5_combined_metrics",
+          "prompt": "Produce STRUCTURED METRICS for the mega-dashboard visualization:\n\nPipeline Metrics:\n- Total agents run: 110 (40 + 35 + 35)\n- Total cost: $0.68\n- Total runtime: ~1,465s\n- Phase success rate: X/15 phases\n- Synthesis success rate: X/15\n\nVerification Metrics:\n- Total claims checked: X\n- Confirmed: X (X%)\n- Partially confirmed: X (X%)\n- Unverifiable: X (X%)\n- Fabricated/False: X (X%)\n\nAPI Metrics:\n- Total APIs evaluated: 80+\n- Confirmed real: X\n- Confirmed fabricated: X\n- Pricing verified: X\n- Free tools available: X\n- Minimum viable stack cost: $X/mo\n\nMarket Metrics:\n- Original grey market size claim: $2-5B (UNVERIFIED)\n- API landscape market gaps: $200-500M (SPECULATIVE)\n- Verified tools market: ~$X\n\nContext from Phase 4: {previous_synthesis}",
+          "system_prompt": "You are a data analyst. Produce exact numbers suitable for dashboard visualization. Use the format specified.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "Produce the FINAL MEGA-DASHBOARD DATA PACKAGE:\n\n1. EXECUTIVE SUMMARY (500 words max)\n2. REPORT CREDIBILITY COMPARISON (3 reports scored)\n3. VERIFIED API DIRECTORY (all confirmed APIs with prices and URLs)\n4. CORRECTED TOP 10 RANKING\n5. CORRECTED STACK RECOMMENDATIONS  \n6. COMPLETE CITATION DATABASE (50+ citations)\n7. COMPLETE ERROR LOG (all fabrications, pricing errors, contradictions)\n8. DASHBOARD METRICS (structured numbers)\n9. ACTION BRIEF (what to actually do)\n10. WHAT WE KNOW vs WHAT WE DON'T KNOW\n\nThis is the definitive document combining all 110 agents of research into verified, actionable intelligence."
+    }
+  ]
+}

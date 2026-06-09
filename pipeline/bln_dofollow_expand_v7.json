@@ -1,0 +1,289 @@
+{
+  "phases": [
+    {
+      "phase": 1,
+      "tasks": [
+        {
+          "task_id": "df-verify-01",
+          "prompt": "Visit these platforms and check if external links in user content are dofollow or nofollow. For EACH platform, state: 1) Does the platform add rel='nofollow' or rel='ugc' to external links in user-generated content? 2) What specific content type has dofollow links (bio, description, article body, comments, project pages)? 3) What is the current DA/DR? Platforms to check: Notion.so public pages, Carrd.co, Strikingly, Google Sites, Webflow (free tier), Tilda.cc, Readthedocs.io, GitBook public docs. Be extremely specific - check 2024-2025 data, many platforms changed policies.",
+          "system_prompt": "You are an SEO link building researcher. Only report CONFIRMED information. If unsure, say UNVERIFIED. Never guess about dofollow status.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-02",
+          "prompt": "Check dofollow status for these platforms as of 2025-2026: 1) About.me profiles 2) Gravatar profiles 3) Behance project descriptions 4) Dribbble shots 5) Kaggle notebooks/datasets 6) Observable notebooks 7) Glitch.com projects 8) Replit deployments 9) StackBlitz projects 10) CodeSandbox deployments. For each: dofollow or nofollow? What DA? Is there an API for automation? What content type carries the link?",
+          "system_prompt": "You are an SEO link building researcher. Only report CONFIRMED information with dates. Many platforms switched to nofollow in 2023-2024.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-03",
+          "prompt": "Check dofollow status for these documentation/wiki platforms: 1) ReadTheDocs hosted docs 2) GitBook public documentation 3) Docusaurus on GitHub Pages 4) MkDocs on GitHub Pages 5) Wiki.js hosted 6) Confluence public spaces 7) Notion public pages 8) Slite public docs 9) Coda.io published docs 10) HackMD/CodiMD published notes. For each: are external links dofollow? What's the DA? Can you automate publishing via API?",
+          "system_prompt": "You are an SEO researcher focused on documentation platforms. Report only confirmed 2024-2025 data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-04",
+          "prompt": "Check these static hosting and deployment platforms for dofollow status of links in deployed HTML pages: 1) Render.com static sites 2) Railway.app 3) Fly.io 4) Deno Deploy 5) Netlify (re-verify 2025) 6) Vercel (re-verify 2025) 7) AWS Amplify free tier 8) Firebase Hosting free tier 9) Tiiny.host 10) Neocities.org. For each: do they inject nofollow into your HTML? Do they add X-Robots-Tag headers? What's the subdomain DA?",
+          "system_prompt": "You are a web hosting expert. Static hosting platforms serve YOUR HTML unmodified - the question is whether the subdomain domain itself has authority and whether they add any nofollow headers.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-05",
+          "prompt": "Check these code/developer platforms for dofollow external links: 1) npm package README on npmjs.com (re-verify 2025) 2) PyPI project description on pypi.org 3) crates.io package pages 4) RubyGems.org gem pages 5) Packagist.org (PHP) 6) NuGet.org (.NET) 7) pub.dev (Dart/Flutter) 8) hex.pm (Elixir) 9) Go pkg.dev 10) Docker Hub README. For each: is the homepage/repository link dofollow? Are README rendered links dofollow? What's the DA?",
+          "system_prompt": "You are a developer ecosystem researcher. Package registries often have high DA. Check if links in package descriptions and READMEs are dofollow.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-06",
+          "prompt": "Check these creative/portfolio platforms for dofollow links: 1) ArtStation 2) DeviantArt 3) Flickr 4) 500px 5) Unsplash contributor profiles 6) Pexels contributor profiles 7) Pixabay contributor profiles 8) SoundCloud 9) Bandcamp artist pages 10) Vimeo. For each: are profile/bio links dofollow? Are links in descriptions dofollow? What's the DA? Is there API access?",
+          "system_prompt": "You are an SEO researcher. Creative platforms often have high DA. Check both profile links and content description links.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-07",
+          "prompt": "Check these social/community platforms for dofollow links in 2025: 1) Substack (free newsletter) 2) Ghost(Pro) free 3) Beehiiv free 4) Buttondown free 5) Revue (still alive?) 6) ConvertKit free landing pages 7) Mailchimp landing pages 8) HubSpot free CMS 9) Wix (re-verify 2025) 10) Squarespace (verify). For each: dofollow or nofollow? What content type? API available?",
+          "system_prompt": "You are an SEO researcher. Newsletter and CMS platforms have changed their link policies frequently. Report only 2024-2025 confirmed data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-08",
+          "prompt": "Check these education/knowledge platforms for dofollow links: 1) Instructables.com 2) WikiHow user contributions 3) Quora Spaces (not answers) 4) Medium publications (not personal) 5) Slideshare presentations 6) Speaker Deck 7) Prezi presentations 8) Google Scholar profiles 9) ResearchGate profiles 10) Academia.edu profiles. For each: dofollow or nofollow? What DA? Link in what content type?",
+          "system_prompt": "You are an SEO researcher. Education platforms often have very high DA. Check specifically for dofollow status in 2024-2025.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-09",
+          "prompt": "Check these business/directory platforms for dofollow links: 1) Crunchbase profiles 2) AngelList/Wellfound 3) Product Hunt launches 4) AlternativeTo listings 5) G2 product pages 6) Capterra listings 7) SourceForge projects 8) OSDN projects 9) F-Droid listings 10) Chrome Web Store developer pages. For each: dofollow or nofollow? DA? Can you create a listing for a Chrome extension (BeLikeNative is a Chrome extension)?",
+          "system_prompt": "You are an SEO researcher specializing in business directories and software listings. BeLikeNative is a Chrome extension for grammar/translation. Focus on platforms where a Chrome extension can be legitimately listed.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-10",
+          "prompt": "Check these forum/Q&A platforms for dofollow links in 2025: 1) Stack Overflow user profiles 2) GitHub Discussions 3) GitLab Issues (public) 4) Discourse hosted forums 5) Lemmy instances 6) Hacker News profile 7) Lobsters profile 8) IndieHackers 9) DEV.to comments (vs articles) 10) Hashnode (re-verify 2025). For each: dofollow or nofollow? What specific content has dofollow? DA?",
+          "system_prompt": "You are an SEO researcher. Forum platforms changed policies after Google's 2024 spam update. Report only confirmed 2025 data.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-static-01",
+          "prompt": "For static site hosting platforms that serve YOUR unmodified HTML (like GitHub Pages does), the links in your HTML are naturally dofollow because the platform doesn't modify your content. Confirm this is true for: 1) Cloudflare Pages 2) GitLab Pages 3) GitHub Pages 4) Surge.sh 5) Render static sites 6) Netlify 7) Vercel 8) Firebase Hosting 9) AWS Amplify. The real question is: what is the DA/authority of the subdomain? List each with their subdomain format and approximate DA.",
+          "system_prompt": "You are a technical SEO expert. Static hosting platforms serve unmodified HTML, so dofollow is inherent. The value depends on subdomain DA.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-static-02",
+          "prompt": "Research these lesser-known free static hosting services and their subdomain DA: 1) Fleek.co (IPFS hosting) 2) Pinata (IPFS) 3) Spheron 4) 4everland 5) Storj hosting 6) InfinityFree 7) 000webhost 8) AwardSpace 9) Byethost 10) FreeFlarum. For each: free tier available? Subdomain format? Estimated DA? Any restrictions on content? API for deployment?",
+          "system_prompt": "You are a web hosting researcher. Focus on platforms with decent domain authority where you can deploy static HTML with your own links.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-paste-01",
+          "prompt": "Check these paste/snippet/gist platforms for dofollow links: 1) GitHub Gists (description vs file content) 2) GitLab Snippets 3) Bitbucket Snippets 4) Pastebin.com 5) paste.ee 6) dpaste.org 7) Hastebin 8) Rentry.co 9) Telegraph (telegra.ph) 10) txt.fyi. For each: are links in content dofollow? What's the DA? Is there API access? What's the URL format?",
+          "system_prompt": "You are an SEO researcher. Paste/snippet platforms vary widely in their link handling. Some render markdown with dofollow links, others are plaintext only.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-embed-01",
+          "prompt": "Research platforms where you can embed interactive content with backlinks: 1) Observable notebooks 2) Jupyter nbviewer 3) Google Colab shared notebooks 4) Kaggle notebooks 5) Streamlit Cloud apps 6) Gradio on HuggingFace Spaces 7) Shiny apps (shinyapps.io) 8) Dash apps (on Render) 9) Retool public apps 10) Bubble.io free apps. For each: dofollow or nofollow? DA? Can you include clickable external links? API/automation possible?",
+          "system_prompt": "You are an SEO researcher. Interactive web app platforms are often overlooked for link building. Focus on free tiers with public URLs.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-bookmark-01",
+          "prompt": "Check these social bookmarking and link sharing platforms for dofollow in 2025: 1) Mix.com (StumbleUpon successor) 2) Flipboard magazines 3) Pocket shared collections 4) Raindrop.io public collections 5) Papaly public boards 6) Diigo public bookmarks 7) Pearltrees 8) Scoop.it 9) Wakelet collections 10) start.me public pages. For each: dofollow or nofollow? DA? Can you include custom descriptions with links?",
+          "system_prompt": "You are an SEO researcher. Social bookmarking went through a nofollow purge in 2023-2024. Report only current 2025 status.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-map-01",
+          "prompt": "Check these map/location/review platforms for dofollow links: 1) Google Business Profile website link 2) Apple Maps Connect 3) Bing Places 4) Yelp business page 5) TripAdvisor 6) Trustpilot 7) BBB (Better Business Bureau) 8) Manta 9) Yellow Pages online 10) MapQuest. For each: is the website link dofollow? DA? Free to create? Relevant for a software product (Chrome extension)?",
+          "system_prompt": "You are a local SEO researcher. Some business directories still offer dofollow links. Check if a Chrome extension developer can legitimately create profiles.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-wiki-01",
+          "prompt": "Research wiki and knowledge base platforms where you can create public pages with external links: 1) Fandom.com wikis 2) Miraheze hosted wikis 3) Wiki.gg 4) WikiDot 5) Shoutwiki 6) Referata 7) Everipedia/IQ.wiki 8) Golden.com 9) Notion public wiki pages 10) Slite public knowledge bases. For each: dofollow or nofollow on external links? DA? Free to create? API available?",
+          "system_prompt": "You are an SEO researcher specializing in wiki platforms. Many wikis have very high DA. Check current dofollow policies.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-video-01",
+          "prompt": "Check these video/audio platforms for dofollow links in descriptions and profiles: 1) YouTube channel about/links 2) Vimeo video descriptions 3) Dailymotion 4) Rumble 5) Odysee/LBRY 6) PeerTube instances 7) Podcast hosting (Anchor/Spotify for Podcasters) 8) Buzzsprout 9) Podbean 10) Simplecast. For each: dofollow or nofollow? DA? Link placement (profile, description, show notes)?",
+          "system_prompt": "You are an SEO researcher. Video and podcast platforms often have very high DA but many switched to nofollow. Report 2025 status.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-ai-01",
+          "prompt": "Check these AI/ML platforms for dofollow links: 1) HuggingFace model cards 2) HuggingFace Spaces 3) Replicate model pages 4) Weights & Biases public reports 5) Neptune.ai public experiments 6) MLflow public tracking 7) Papers With Code 8) OpenML datasets 9) Kaggle datasets 10) DagsHub repos. For each: dofollow or nofollow? DA? Can you include external links to a related tool?",
+          "system_prompt": "You are an AI/ML ecosystem researcher. These platforms have rapidly growing DA. Check if external links in model cards, dataset descriptions, or space READMEs are dofollow.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-tools-01",
+          "prompt": "Check these developer tool and SaaS directory platforms for dofollow links: 1) StackShare.io 2) SaaSHub.com 3) GetApp.com 4) SoftwareAdvice.com 5) Slant.co 6) LibHunt 7) awesome-selfhosted list 8) Free-for-dev list 9) Product Hunt alternatives sections 10) SideProjectors. For each: dofollow or nofollow? DA? Can BeLikeNative (Chrome grammar/translation extension) be legitimately listed?",
+          "system_prompt": "You are a SaaS directory researcher. Tool listing sites can provide high-value backlinks. Focus on free listings with dofollow.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-gov-edu-01",
+          "prompt": "Research high-authority .gov and .edu link opportunities that are legitimately available: 1) Government open data portals that accept tool submissions 2) University resource pages that list language learning tools 3) Library resource guides 4) State education department tool lists 5) ESL resource directories maintained by schools. Are any of these realistic for a Chrome grammar/translation extension? What are the submission processes?",
+          "system_prompt": "You are an SEO researcher. .edu and .gov links are extremely valuable. Focus ONLY on legitimate, realistic opportunities for a grammar/translation Chrome extension.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-chrome-01",
+          "prompt": "Research backlink opportunities specific to Chrome extensions: 1) Chrome Web Store listing (dofollow?) 2) Edge Add-ons store 3) Firefox Add-ons store 4) Opera addons 5) Chrome extension review sites (list top 10 with DA and dofollow status) 6) Chrome extension directories beyond the official store 7) 'Best Chrome extensions' listicle sites that accept submissions 8) Extension comparison sites. For each: dofollow? DA? Submission process?",
+          "system_prompt": "You are a Chrome extension marketing researcher. BeLikeNative is a grammar checker and translation Chrome extension. Find all backlink opportunities in the extension ecosystem.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-github-01",
+          "prompt": "Research GitHub-specific backlink strategies beyond GitHub Pages repos: 1) Awesome lists (which ones accept Chrome extensions or language tools?) 2) GitHub Topics pages 3) GitHub Stars program 4) GitHub README profile links 5) GitHub organization pages 6) GitHub Wiki pages (dofollow?) 7) GitHub Discussions links 8) GitHub Sponsors profiles 9) Contributing to popular repos with links in docs 10) GitHub Actions marketplace. For each: dofollow? DA? Realistic for a grammar tool?",
+          "system_prompt": "You are a GitHub ecosystem researcher. GitHub (DA 95) offers many link opportunities beyond simple repos. Focus on legitimate approaches.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-webring-01",
+          "prompt": "Research modern web directories and webrings that still provide dofollow links: 1) DMOZ successors (Curlie.org, etc) 2) Best of the Web (botw.org) 3) Jayde.com 4) Starting Point Directory 5) Spoke.com 6) Hotfrog 7) Cylex 8) Brownbook 9) n49.com 10) Foursquare/Swarm business listings. For each: still active? Dofollow? DA? Free tier? Relevant for software?",
+          "system_prompt": "You are a directory SEO researcher. Most old directories died but some survive with real DA. Report only active, free, dofollow directories.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "acct-setup-01",
+          "prompt": "For a Chrome extension called BeLikeNative (grammar checker + translation tool), list EVERY account that needs to be created to maximize dofollow backlinks. For each account provide: 1) Platform name and URL 2) Signup URL 3) What information is needed (email, phone, business details, etc) 4) Is email verification required? 5) Is manual review required? 6) Time to approval 7) Whether the profile/listing link is dofollow 8) Estimated DA. Group by priority: HIGH (confirmed dofollow, DA>80), MEDIUM (confirmed dofollow, DA 50-80), LOW (unverified or DA<50).",
+          "system_prompt": "You are a marketing operations specialist. Create an exhaustive, actionable account creation checklist. Only include platforms where you're confident about dofollow status.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "acct-setup-02",
+          "prompt": "Create a step-by-step account creation guide for these HIGH-PRIORITY platforms for BeLikeNative Chrome extension: 1) Cloudflare (for Pages) 2) GitLab (for Pages + Snippets) 3) Surge.sh 4) npm (for package publishing) 5) PyPI (for package publishing) 6) Product Hunt 7) AlternativeTo 8) Chrome Web Store developer account 9) Edge Add-ons developer 10) Firefox Add-ons developer. For each: exact signup URL, required fields, costs, API key generation steps, token storage recommendations.",
+          "system_prompt": "You are a developer operations specialist. Provide exact URLs and step-by-step instructions. Note any costs (e.g., Chrome Web Store $5 registration fee).",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "acct-setup-03",
+          "prompt": "For the existing accounts (GitHub: theluckystrike, Dev.to: alphashark, Telegraph: no account needed), what ADDITIONAL actions can be taken to get more dofollow backlinks? 1) GitHub: create org, enable Sponsors, add to awesome lists, create GitHub Wiki, use Discussions 2) Dev.to: create organization, series, cross-posting 3) What other platforms support OAuth with GitHub (login with GitHub) that would make account creation instant?",
+          "system_prompt": "You are a growth hacking specialist. Maximize backlinks from existing accounts before creating new ones.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-rss-01",
+          "prompt": "Research RSS/syndication platforms that provide dofollow backlinks: 1) Feedly public collections 2) Inoreader shared feeds 3) NewsBlur social feeds 4) RSS aggregators that create public pages from feeds 5) Planet aggregators 6) Blog directories (BlogLovin, Alltop, etc) 7) Technorati (still alive?) 8) Blog Engage 9) Blokube 10) BlogEngage. For each: dofollow? DA? Free? Automated?",
+          "system_prompt": "You are an RSS/syndication researcher. Blog syndication can provide passive backlinks. Report only platforms active in 2025.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-press-01",
+          "prompt": "Research free press release and news distribution platforms: 1) PRLog 2) PR.com 3) OpenPR 4) 24-7 Press Release (free tier) 5) EIN Presswire (free tier) 6) Newswire.com (free?) 7) PRFire 8) PressBuzz 9) Online PR Media 10) Free Press Release. For each: dofollow links in release body? DA? Free tier limits? Can a Chrome extension launch be a legitimate press release?",
+          "system_prompt": "You are a PR distribution researcher. Free press release sites can provide legitimate backlinks for software launches. Report 2025 status.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-forum-01",
+          "prompt": "Research niche forums and communities where a grammar/translation Chrome extension would be ON-TOPIC and where signature/profile links might be dofollow: 1) Language learning forums (list top 5) 2) ESL teacher forums 3) Freelance translator forums (ProZ.com, TranslatorsCafe) 4) Digital nomad forums 5) Chrome extension developer forums 6) Grammar/writing communities 7) Reddit alternatives with dofollow (Lemmy instances, Tildes). For each: dofollow in profiles/signatures? DA? Community size?",
+          "system_prompt": "You are a community marketing researcher. Focus on forums where BeLikeNative (grammar/translation extension) would be genuinely relevant and welcome.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-schema-01",
+          "prompt": "Research structured data and rich result opportunities that can generate backlinks or improve indexing: 1) Google Merchant Center (free listings) 2) Schema.org SoftwareApplication markup for Chrome extensions 3) Microsoft Clarity/Bing Webmaster tools 4) Yandex Webmaster 5) IndexNow API partners 6) Google Programmable Search Engine listings 7) Open Graph markup optimization for social sharing 8) JSON-LD Software listing schemas. What structured data can BeLikeNative implement?",
+          "system_prompt": "You are a technical SEO specialist. Focus on structured data that helps with indexing and generates rich results for a Chrome extension.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-expired-01",
+          "prompt": "Research techniques for finding expired domains with existing backlinks that could be redirected or rebuilt: 1) How to find expired domains in the grammar/translation niche 2) Tools for checking expired domain backlinks (free) 3) What to look for in an expired domain 4) Cost of acquiring expired .com domains 5) Is this a viable strategy for BeLikeNative? Pros and cons vs building new backlinks. Give an honest risk assessment.",
+          "system_prompt": "You are a domain acquisition specialist. Be honest about costs, risks, and whether expired domains are worth the effort for a small Chrome extension.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-linkreclaim-01",
+          "prompt": "Research link reclamation and unlinked brand mention strategies: 1) How to find unlinked mentions of 'BeLikeNative' or 'belikenative.com' using free tools 2) How to find broken links on high-DA sites that could be replaced with BeLikeNative links 3) HARO/Connectively for expert quotes 4) Help a Reporter alternatives (SourceBottle, PressPlugs) 5) Guest post opportunities on language learning blogs. What are the most time-efficient approaches?",
+          "system_prompt": "You are a link reclamation specialist. Focus on free, time-efficient methods. Be realistic about the effort required for each approach.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-master-01",
+          "prompt": "Create a MASTER PRIORITY LIST of ALL confirmed dofollow backlink opportunities for BeLikeNative (Chrome grammar/translation extension). Rank by: Score = (DA * dofollow_confidence) / effort_hours. Include: 1) Platform name 2) DA 3) Dofollow confidence (1-10) 4) Effort to set up (hours) 5) Can be automated? 6) Account creation needed? 7) Score. List at least 30 platforms. Exclude platforms already used: Dev.to, Telegraph, GitHub Pages.",
+          "system_prompt": "You are a strategic SEO planner. Create a data-driven priority ranking. Only include platforms with dofollow confidence >= 7/10.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-master-02",
+          "prompt": "Based on all known dofollow platforms, create a 4-WEEK ACTION PLAN for BeLikeNative backlink expansion: Week 1: Account creation (list exactly which accounts, in priority order). Week 2: First wave publishing (which platforms, how many links). Week 3: Second wave + verification. Week 4: Automation setup for recurring publishing. Include specific daily tasks. Stay within velocity limit of 12 links/week at DR 22.",
+          "system_prompt": "You are a project manager for SEO campaigns. Create an actionable, realistic 4-week plan that respects Google's velocity limits.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-11",
+          "prompt": "CRITICAL VERIFICATION: For the following platforms that are commonly CLAIMED to be dofollow, verify the ACTUAL current status by checking recent reports from 2025: 1) npm package homepage links 2) PyPI project URLs 3) GitHub Gist description links 4) Cloudflare Pages deployed HTML 5) GitLab Pages deployed HTML 6) Surge.sh deployed HTML 7) HuggingFace Spaces 8) Render.com static sites 9) Bitbucket Snippets 10) Neocities.org. Many SEO blogs report outdated information. What's the REAL status?",
+          "system_prompt": "You are a fact-checking SEO researcher. SEO blogs often copy outdated information from each other. Focus on primary sources and recent verifications from 2025.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-verify-12",
+          "prompt": "Research which platforms allow you to set custom canonical URLs or custom meta tags in user-generated content, which is even more valuable than just dofollow links: 1) Dev.to (yes, canonical_url field) 2) Hashnode (custom canonical?) 3) Medium (custom canonical?) 4) Ghost(Pro) free 5) Substack 6) HuggingFace Spaces (custom meta?) 7) Cloudflare Pages (full HTML control) 8) GitLab Pages (full HTML control) 9) npm package pages 10) Any others? Canonical URL = tells Google the original source, directing PageRank.",
+          "system_prompt": "You are a technical SEO specialist. Custom canonical URLs are the gold standard for syndicated content. List all platforms that support this.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-huggingface-01",
+          "prompt": "Deep dive into HuggingFace as a backlink platform: 1) Are external links in Space README files dofollow? 2) Are links in Model Card descriptions dofollow? 3) Are links in Dataset Card descriptions dofollow? 4) What is HuggingFace's DA? 5) Can you deploy a Gradio app that includes clickable backlinks? 6) Rate limits for creating Spaces/Models/Datasets? 7) API for automated creation? 8) What kind of content makes sense for a grammar/translation tool on HuggingFace?",
+          "system_prompt": "You are a HuggingFace platform expert. HuggingFace has very high DA and growing authority. Research all backlink opportunities thoroughly.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-npm-deep-01",
+          "prompt": "Deep dive into npm/PyPI as backlink platforms: 1) npm: Is the homepage link on npmjs.com dofollow? 2) npm: Are links in rendered README dofollow? 3) npm: What's npmjs.com's DA? 4) PyPI: Is the homepage link on pypi.org dofollow? 5) PyPI: Are links in project description dofollow? 6) PyPI: What's pypi.org's DA? 7) What kind of packages make sense for BeLikeNative? (e.g., belikenative-utils, grammar-check-api-client) 8) Publishing process for each 9) Can you automate package creation?",
+          "system_prompt": "You are a package registry expert. npm (DA 97) and PyPI (DA 95) are extremely high authority. Research exact dofollow status.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "df-competitor-01",
+          "prompt": "Research backlink profiles of BeLikeNative's competitors to find dofollow opportunities they use that we don't: 1) Grammarly - what platforms do they have backlinks from? 2) LanguageTool - their backlink sources 3) ProWritingAid - their backlink sources 4) QuillBot - their backlink sources 5) DeepL - their backlink sources. Focus on finding platforms where these competitors have dofollow backlinks that BeLikeNative could also get. Use publicly available data.",
+          "system_prompt": "You are a competitive SEO analyst. Research competitor backlink profiles to find untapped dofollow opportunities. Focus on platforms accessible to a smaller player.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        }
+      ]
+    }
+  ]
+}

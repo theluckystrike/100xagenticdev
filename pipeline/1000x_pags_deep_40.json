@@ -1,0 +1,267 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "PAGS-SEC-01-q1-2025-income",
+          "prompt": "PagSeguro Digital (PAGS) — Q1 2025 INCOME STATEMENT LINE BY LINE.\n\nFrom the 6-K filed on SEC EDGAR (Exhibit 99.1 or 99.2), extract EVERY line item from the Q1 2025 income statement:\n1. Total Revenue and Income\n2. Transaction activities and other services revenue\n3. Financial income (interest on deposits, credit operations)\n4. Cost of sales and services\n5. Gross Profit and Gross Margin %\n6. Selling expenses\n7. Administrative expenses\n8. Financial expenses\n9. Other operating income/expenses\n10. Income before taxes\n11. Income tax expense\n12. Net Income\n13. EPS (basic and diluted)\n14. Weighted average shares outstanding\n\nCite exact R$ amounts from the filing. Compare each line YoY vs Q1 2024.",
+          "system_prompt": "You are an SEC filing analyst. Extract exact numbers from the 6-K filing. Every number must cite the exhibit and page. If you cannot find a specific line item, say NOT FOUND.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-SEC-02-balance-sheet",
+          "prompt": "PagSeguro Digital (PAGS) — Q1 2025 BALANCE SHEET LINE BY LINE.\n\nFrom the 6-K filed on SEC EDGAR, extract:\n1. Cash and cash equivalents (exact R$ amount)\n2. Short-term investments\n3. Accounts receivable from card issuers\n4. Receivables from related parties\n5. Credit portfolio (gross)\n6. Allowance for expected credit losses\n7. Credit portfolio (net)\n8. Total current assets\n9. Property and equipment\n10. Goodwill and intangibles\n11. Total assets\n12. Deposits (from PagBank clients)\n13. Borrowings and financing (current + non-current)\n14. Total debt\n15. Total liabilities\n16. Total shareholders' equity\n17. Book value per share\n\nCalculate: Net cash = Cash + investments - total debt. What is net cash per share?",
+          "system_prompt": "You are a forensic balance sheet analyst. Extract exact R$ amounts. Calculate net cash position precisely.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-SEC-03-cash-flow",
+          "prompt": "PagSeguro Digital (PAGS) — Q1 2025 CASH FLOW STATEMENT.\n\nFrom the 6-K, extract:\n1. Operating cash flow (total)\n2. Key operating items: depreciation, provision for credit losses, changes in working capital\n3. Investing cash flow: capex, acquisitions, investment purchases/sales\n4. Financing cash flow: debt repayments, share buybacks, dividends\n5. Net change in cash\n6. Free cash flow calculation: OCF - capex\n\nCRITICAL: Is PAGS truly generating free cash flow, or is the cash position inflated by deposit growth (which is a liability)? Separate REAL operating FCF from deposit-driven cash growth.",
+          "system_prompt": "You are a cash flow forensics expert. Distinguish between genuine FCF and deposit-driven cash growth. This is critical for a banking company.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-SEC-04-credit-portfolio",
+          "prompt": "PagSeguro Digital (PAGS) — CREDIT PORTFOLIO DEEP DIVE.\n\nFrom the 6-K and 20-F, extract:\n1. Total credit portfolio (gross) Q1 2025\n2. Credit portfolio by type: payroll loans, credit cards, working capital, merchant advances\n3. NPL 15-90 days (early delinquency)\n4. NPL 90+ days (serious delinquency)\n5. NPL trend: Q1 2024 → Q2 2024 → Q3 2024 → Q4 2024 → Q1 2025\n6. Provision coverage ratio (allowance / NPL 90+)\n7. Net charge-off rate\n8. Credit portfolio as % of total equity\n9. Is the credit book GROWING or SHRINKING? Growth rate?\n\nCRITICAL RISK: If NPLs spike, PAGS's net income gets destroyed. How much of NI depends on credit income vs payments?",
+          "system_prompt": "You are a credit risk analyst for Brazilian fintechs. Focus on NPL trends, provision adequacy, and credit concentration risk.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-SEC-05-segment-breakdown",
+          "prompt": "PagSeguro Digital (PAGS) — REVENUE SEGMENT BREAKDOWN Q1 2025.\n\nFrom the 6-K, extract the EXACT revenue breakdown:\n1. Transaction activities and other services (payment processing fees)\n2. Financial income from transaction activities (MDR float income)\n3. Other financial income (PagBank deposits, credit operations)\n4. Subscription and equipment rental\n5. Other services\n\nFor EACH segment:\n- Revenue in R$\n- YoY growth rate\n- % of total revenue\n- Margin contribution\n\nKEY QUESTION: What % of PAGS's revenue comes from PAYMENTS vs BANKING? Is PAGS a payments company or a bank?",
+          "system_prompt": "You are a fintech analyst. Break down revenue by segment with exact filing citations.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-SEC-06-tpv-clients",
+          "prompt": "PagSeguro Digital (PAGS) — TPV & CLIENT METRICS Q1 2025.\n\nFrom the 6-K and earnings release, extract:\n1. Total Payment Volume (TPV) Q1 2025 in R$\n2. TPV YoY growth\n3. TPV QoQ growth\n4. TPV by channel: in-store (POS) vs online (e-commerce)\n5. Active merchants (total)\n6. Active banking clients (PagBank)\n7. Average Revenue Per Active Client\n8. Client acquisition cost\n9. Churn rate (if disclosed)\n10. Take rate: Revenue / TPV — exact calculation\n11. Take rate trend: Q1 2024, Q2 2024, Q3 2024, Q4 2024, Q1 2025\n\nIs the take rate compressing or stable? This is the SINGLE MOST IMPORTANT metric for PAGS.",
+          "system_prompt": "You are a payments analyst. Focus on TPV trends and take rate trajectory. These determine PAGS's value.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-SEC-07-buyback-dilution",
+          "prompt": "PagSeguro Digital (PAGS) — SHARE BUYBACK & DILUTION ANALYSIS.\n\nFrom SEC filings (6-K, 20-F, SC 13D):\n1. Current buyback authorization: $300M approved Nov 2024 — how much remains?\n2. Q1 2025 buyback activity: shares repurchased, average price, total $\n3. Q4 2024 buyback activity: shares repurchased, average price\n4. Q3 2024 buyback activity\n5. Total shares repurchased in last 12 months\n6. Shares outstanding: basic and diluted (Q1 2025 vs Q1 2024)\n7. Has share count actually DECREASED? By how much?\n8. Stock-based compensation expense Q1 2025 — is SBC offsetting buybacks?\n9. Net buyback: shares repurchased minus shares issued via SBC = net reduction\n\nCRITICAL: If SBC > buybacks, the company is DILUTING despite the buyback program.",
+          "system_prompt": "You are a corporate actions analyst. Determine if the buyback program is genuinely reducing share count or being offset by SBC dilution.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-SEC-08-20F-risks",
+          "prompt": "PagSeguro Digital (PAGS) — 20-F RISK FACTORS ANALYSIS.\n\nFrom the most recent 20-F (FY2024, filed April 2025), extract the TOP 10 risk factors:\n1. List each risk factor heading\n2. For each, summarize in 1-2 sentences\n3. Flag any NEW risk factors added in 2024 that weren't in 2023\n4. Flag any risk factors that have been REMOVED (positive signal)\n5. Specific risks to check:\n   a. PIX regulatory risk\n   b. Central Bank of Brazil (BCB) regulatory changes\n   c. Competition from Nubank, StoneCo, Mercado Pago\n   d. FX risk (R$/USD)\n   e. Credit risk (NPL exposure)\n   f. Cybersecurity/fraud risk\n   g. Key person risk (CEO Alexandre Magnani)\n   h. Cayman Islands holding company structure risk\n\nAny risk factor that could cause >30% drawdown?",
+          "system_prompt": "You are a regulatory risk analyst. Focus on risks that could materially impact the stock price.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-COMP-01-vs-stne",
+          "prompt": "PAGS vs StoneCo (STNE) — HEAD TO HEAD COMPARISON (Q1 2025 data).\n\nFor EACH metric, provide BOTH companies' numbers side by side:\n1. Revenue (R$ and USD)\n2. Net Income (R$ and USD)\n3. Net Margin\n4. TPV\n5. Active clients/merchants\n6. Take rate\n7. NPL 90+ days\n8. Credit portfolio size\n9. Net cash position\n10. P/E ratio (trailing)\n11. EV/EBITDA\n12. P/B ratio\n13. Revenue growth YoY\n14. Buyback program ($ remaining)\n15. Market cap\n\nWhich company is OBJECTIVELY better value today? Use Q1 2025 data only.",
+          "system_prompt": "You are a LatAm fintech equity analyst. Provide an objective, numbers-only comparison. No opinions, just data.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-COMP-02-vs-nubank",
+          "prompt": "PAGS vs Nubank (NU) — VALUATION GAP ANALYSIS.\n\nOur thesis says PAGS is undervalued relative to Nubank. Verify:\n1. Nubank current market cap\n2. Nubank trailing P/E ratio\n3. Nubank Q1 2025 revenue and net income\n4. Nubank active customers\n5. Nubank NPL rate\n6. Nubank net cash position\n\nThen compare:\n7. PAGS P/E 6.5x vs Nubank P/E — what is the EXACT gap?\n8. Revenue per customer: PAGS vs Nubank\n9. Net income margin: PAGS vs Nubank\n10. Growth rate: PAGS vs Nubank\n\nIs the valuation gap JUSTIFIED? Why might Nubank deserve a premium?\nAt what Nubank P/E multiple would PAGS be fairly valued?",
+          "system_prompt": "You are a LatAm fintech analyst. Compare valuations objectively. The market may be RIGHT to value Nubank higher.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-COMP-03-vs-mercadopago",
+          "prompt": "PAGS vs Mercado Pago (MELI's fintech arm) — COMPETITIVE THREAT.\n\nMercado Pago is PAGS's biggest competitive threat. Analyze:\n1. Mercado Pago's TPV in Brazil (most recent data)\n2. Mercado Pago's market share in Brazilian payments\n3. Is Mercado Pago gaining share FROM PagSeguro? Evidence?\n4. Mercado Pago's pricing vs PAGS (MDR rates)\n5. Mercado Pago's banking products (savings, credit)\n6. MercadoLibre's ability to subsidize Mercado Pago with e-commerce profits\n7. PAGS's competitive moat against Mercado Pago\n\nCRITICAL QUESTION: Can PAGS survive long-term against a competitor backed by a $80B+ parent company?",
+          "system_prompt": "You are a competitive strategy analyst for Brazilian fintech. Be skeptical of PAGS's moat.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-PIX-01-impact",
+          "prompt": "PIX IMPACT ON PAGSEGURO — THE REAL STORY.\n\nOur previous sprint HALLUCINATED 'PIX revenue R$187M'. PAGS does NOT break out PIX-specific revenue. So what IS the real PIX impact?\n\n1. What is PIX? (Brazil's instant payment system launched Nov 2020)\n2. PIX transaction volume in Brazil (total market)\n3. How does PAGS make money from PIX? (QR code payments, PIX checkout for merchants)\n4. Does PIX CANNIBALIZE card payments? (merchants pay lower fees on PIX vs card)\n5. PAGS's take rate trend BEFORE PIX (2019-2020) vs AFTER PIX (2021-2025)\n6. Has PAGS's card TPV declined since PIX launched?\n7. Official management commentary on PIX impact (from earnings calls)\n8. Net effect: Is PIX net POSITIVE (new revenue) or net NEGATIVE (take rate compression) for PAGS?\n\nThis is THE critical question for the thesis. PIX could be slowly killing PAGS's margins.",
+          "system_prompt": "You are a Brazilian payments expert. Analyze the PIX impact with data, not speculation. Cite earnings call transcripts if possible.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-PIX-02-regulation",
+          "prompt": "BRAZIL CENTRAL BANK (BCB) REGULATORY RISK FOR PAGS.\n\n1. What is PAGS's regulatory status? Payment institution? SCD? Bank?\n2. Has BCB imposed any new regulations on payment institutions in 2024-2025?\n3. PIX fee regulation: Can BCB mandate that PIX payments be free for merchants? Has this been proposed?\n4. Interchange fee regulation: Has BCB capped interchange fees? Any proposed changes?\n5. Open banking/Open Finance: How does this affect PAGS?\n6. Credit regulation: Does PAGS need a specific license to offer credit? SCD vs direct credit?\n7. Anti-money laundering requirements: Any increased scrutiny?\n8. Capital requirements: What capital ratios does BCB require for PAGS-type institutions?\n\nWhat is the probability of a regulatory action that would reduce PAGS's revenue by >10%?",
+          "system_prompt": "You are a Brazilian financial regulatory analyst. Focus on specific regulatory risks to payment institutions.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-MACRO-01-selic",
+          "prompt": "BRAZIL SELIC RATE IMPACT ON PAGS.\n\n1. Current Selic rate (June 2025)\n2. Selic rate path: last 12 months of BCB decisions\n3. Market consensus for Selic by end of 2025 and 2026\n4. How does Selic affect PAGS? Specifically:\n   a. Higher Selic = higher interest income on deposits (positive)\n   b. Higher Selic = higher cost of funding credit portfolio (negative)\n   c. Higher Selic = lower economic activity = lower TPV growth (negative)\n   d. Higher Selic = higher NPLs from borrowers (negative)\n5. Net effect: Does PAGS benefit from HIGHER or LOWER Selic?\n6. Selic sensitivity: For every 100bp Selic change, how much does PAGS NI change?\n7. If Selic cuts to 10% by 2026, what happens to PAGS's financial income?\n\nPAGS is a BANK now. Interest rate sensitivity is critical.",
+          "system_prompt": "You are a Brazilian macro/banking analyst. Quantify the Selic rate sensitivity for PAGS.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-MACRO-02-brl-fx",
+          "prompt": "BRL/USD FX RISK FOR PAGS INVESTORS.\n\nPAGS reports in R$ but US investors hold USD-denominated ADRs.\n\n1. Current BRL/USD rate\n2. BRL/USD 12-month trend\n3. BRL/USD 5-year trend\n4. If BRL depreciates 10% vs USD, what happens to PAGS's USD-reported:\n   a. Revenue?\n   b. Net income?\n   c. EPS in USD?\n   d. Stock price?\n5. PAGS's FX hedging: Does PAGS hedge its USD exposure? (from 20-F)\n6. Historical correlation between BRL weakness and PAGS stock price\n7. Does PAGS have USD revenue? Or is everything in R$?\n\nFor a $300-500 position, how much FX risk are we taking?",
+          "system_prompt": "You are an FX risk analyst. Quantify the BRL/USD risk for a US-based investor holding PAGS ADRs.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-OWNERSHIP-01-uol",
+          "prompt": "PAGSEGURO OWNERSHIP STRUCTURE — WHO CONTROLS PAGS?\n\n1. UOL Group ownership: Exact % of PAGS shares held\n2. Who owns UOL? (Folha Group, Matias family)\n3. Does UOL have voting control? (supervoting shares?)\n4. Has UOL been BUYING or SELLING PAGS shares in the last 12 months?\n5. Related party transactions: Does PAGS pay fees to UOL/Folha?\n6. Minority shareholder protection: Is there a poison pill or rights plan?\n7. Could UOL take PAGS private? At what premium?\n8. Corporate governance rating (ISS, Glass Lewis)\n\nCRITICAL: If UOL controls >50%, they could take PAGS private at a lowball premium. Is this a risk or an opportunity?",
+          "system_prompt": "You are a corporate governance analyst. Focus on controlling shareholder risks for minority investors.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-OWNERSHIP-02-institutional",
+          "prompt": "PAGS INSTITUTIONAL OWNERSHIP — LATEST 13F DATA.\n\nFrom the MOST RECENT 13F filings (Q1 2025 or Q4 2024):\n1. Top 20 institutional holders with exact share counts and % of float\n2. Which institutions INCREASED positions in the most recent quarter?\n3. Which institutions DECREASED or EXITED?\n4. Total institutional ownership %\n5. Any activist investors? (Elliott, ValueAct, Third Point, etc.)\n6. Any hedge fund with >3% position?\n7. Index fund ownership (Vanguard, BlackRock, State Street)\n8. EM-focused fund ownership (Templeton, Mobius, etc.)\n\nDO NOT HALLUCINATE. If you don't have exact 13F data, say 'DATA NOT AVAILABLE FOR THIS QUARTER'.",
+          "system_prompt": "You are an institutional ownership analyst. Only report data you can verify. If uncertain, mark as UNVERIFIED. Previous agents hallucinated UBS +1200% — be extremely careful.",
+          "temperature": 0.1,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-OWNERSHIP-03-insider",
+          "prompt": "PAGS INSIDER TRANSACTIONS — FORM 4 ANALYSIS.\n\nFrom SEC EDGAR Form 4 filings for PagSeguro Digital:\n1. List ALL Form 4 filings in the last 12 months\n2. For each: insider name, title, transaction type (buy/sell/grant), shares, price\n3. Are insiders NET BUYERS or NET SELLERS?\n4. Has CEO Alexandre Magnani bought any shares on the open market?\n5. Has CFO bought any shares?\n6. Total insider ownership % (from latest proxy)\n7. Any insider sales that are concerning?\n\nPrevious agents claimed 'zero insider buying in 6 months.' Verify or refute this.",
+          "system_prompt": "You are a Form 4 filing analyst. Only cite actual SEC filings. Do not hallucinate insider transactions.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-VALUATION-01-dcf",
+          "prompt": "PAGS DCF VALUATION — BUILD FROM SCRATCH.\n\nBuild a 5-year DCF model for PAGS:\n\nAssumptions (justify each):\n1. Revenue growth: Year 1, 2, 3, 4, 5\n2. Net margin trajectory\n3. Capex as % of revenue\n4. Working capital changes\n5. Tax rate (Brazil effective rate for financial institutions)\n6. Discount rate (WACC) — must include Brazil ERP. What is the appropriate WACC?\n7. Terminal growth rate\n8. Terminal P/E multiple (cross-check)\n\nOutput:\n- FCF for each year\n- Terminal value\n- Enterprise value\n- Equity value (EV - debt + cash)\n- Fair value per share\n- Margin of safety at current price (~$10)\n\nSensitivity table: fair value at WACC 14-22% and terminal growth 2-5%.",
+          "system_prompt": "You are a valuation analyst. Build a rigorous DCF model. Show all assumptions and calculations. Be conservative.",
+          "temperature": 0.2,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "PAGS-VALUATION-02-multiples",
+          "prompt": "PAGS RELATIVE VALUATION — GLOBAL FINTECH COMPS.\n\nCompare PAGS to global fintech peers on CURRENT multiples:\n\n1. P/E: PAGS vs StoneCo vs Nubank vs Mercado Pago vs Wise vs Adyen vs SoFi vs Block\n2. EV/EBITDA: Same peer set\n3. P/S: Same peer set\n4. P/B: Same peer set\n5. PEG ratio: Same peer set\n6. Revenue growth: Same peer set\n7. Net margin: Same peer set\n\nCreate a table showing where PAGS ranks on each metric.\n\nIf PAGS traded at the MEDIAN peer P/E, what would the share price be?\nIf PAGS traded at the MEDIAN peer EV/EBITDA, what would the share price be?\n\nIs PAGS cheap because it's in Brazil, or because the business is inferior?",
+          "system_prompt": "You are a global fintech equity analyst. Provide current multiples for each company. Calculate implied values for PAGS.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-VALUATION-03-sum-of-parts",
+          "prompt": "PAGS SUM-OF-PARTS VALUATION.\n\nPAGS has two distinct businesses:\n\nA) PAYMENTS BUSINESS (PagSeguro):\n- Revenue from transaction fees, MDR\n- Comparable to: Adyen, StoneCo, Cielo\n- Appropriate multiple: EV/Revenue for payments companies\n- Estimate this segment's value\n\nB) BANKING BUSINESS (PagBank):\n- Revenue from deposits, credit, financial services\n- Comparable to: Nubank, Inter & Co, Banco Pan\n- Appropriate multiple: P/B for digital banks\n- Estimate this segment's value\n\nC) CORPORATE CASH:\n- Net cash: R$8.1B ($1.4B)\n- Value at par (no discount) or discounted?\n\nTotal SoTP value = A + B + C\nCompare to current market cap.\nImplied discount or premium?",
+          "system_prompt": "You are a sum-of-parts valuation specialist. Value each business segment independently.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-CATALYST-01-selic-cut",
+          "prompt": "PAGS CATALYST: BRAZIL SELIC RATE CUTS.\n\n1. When is the next BCB Copom meeting? (exact date)\n2. What is the market expectation for the next rate decision?\n3. If Selic is CUT by 50bp, what is the expected impact on:\n   a. PAGS stock price (historical correlation)\n   b. PAGS financial income\n   c. Brazilian small-cap index performance\n4. Historical precedent: What happened to PAGS when Selic was cut in 2023?\n5. If Selic reaches 10% by end 2026, what is PAGS's estimated NI at that rate?\n\nSelic cuts are the #1 near-term catalyst for PAGS. Quantify the impact.",
+          "system_prompt": "You are a Brazilian rates strategist. Quantify the Selic cut catalyst for PAGS.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-CATALYST-02-msci",
+          "prompt": "PAGS CATALYST: MSCI INDEX INCLUSION.\n\n1. Is PAGS currently in any MSCI index? (MSCI Brazil, MSCI EM, MSCI EM Small Cap?)\n2. What are the market cap requirements for MSCI EM inclusion?\n3. At what market cap would PAGS qualify for MSCI EM inclusion?\n4. If PAGS is added to MSCI EM, estimate the passive fund buying (% of float, dollar amount)\n5. MSCI rebalancing dates (next scheduled)\n6. Has PAGS been in MSCI EM before and been removed? When?\n\nMSCI inclusion drives passive inflows. This could be a mechanical re-rating catalyst.",
+          "system_prompt": "You are an index inclusion specialist. Verify MSCI eligibility and estimate passive flow impact.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-CATALYST-03-mna",
+          "prompt": "PAGS M&A ANALYSIS — ACQUIRER OR TARGET?\n\n1. Could PAGS be an acquisition TARGET? By whom?\n   - MercadoLibre (consolidate Brazil payments)\n   - Visa/Mastercard (vertical integration)\n   - JPMorgan/Goldman (EM fintech expansion)\n   - UOL (go-private)\n2. What premium would an acquirer pay? (based on LatAm fintech M&A precedents)\n3. Has PAGS made any ACQUISITIONS recently?\n4. Does PAGS have excess cash to fund acquisitions?\n5. Any reported M&A rumors or speculation?\n6. Precedent transactions: What multiples were paid for Brazilian fintechs?\n   - Cielo go-private (2024)\n   - Stone/Linx merger\n   - Others\n\nM&A is a potential upside catalyst. Quantify the probability and premium.",
+          "system_prompt": "You are an M&A analyst specializing in LatAm fintech. Assess PAGS as both acquirer and target.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-RISK-01-npls",
+          "prompt": "PAGS RISK: CREDIT BLOW-UP SCENARIO.\n\nPAGS has a growing credit portfolio. What happens if NPLs spike?\n\n1. Current NPL 90+ rate\n2. If NPL 90+ doubles (from current to 2x), what is the impact on:\n   a. Provision expense\n   b. Net income\n   c. Net cash position\n3. Historical worst case: What was PAGS's highest NPL rate? When?\n4. What caused the NPL spike? (COVID? Macro? Credit expansion?)\n5. Stress test: At what NPL rate does PAGS become UNPROFITABLE?\n6. Credit portfolio concentration: Is it diversified or concentrated in SMBs?\n7. Secured vs unsecured lending split\n8. Average duration of credit book\n\nThis is the #1 downside risk. A credit blow-up could halve the stock.",
+          "system_prompt": "You are a credit risk stress-testing analyst. Model the downside scenarios rigorously.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-RISK-02-competition",
+          "prompt": "PAGS COMPETITIVE MOAT — IS IT DEFENSIBLE?\n\n1. PAGS's market share in Brazil payments (2023, 2024, 2025 trend)\n2. Is PAGS gaining or losing share? To whom?\n3. Barriers to entry in Brazil payments: How hard is it to compete?\n4. PAGS's competitive advantages:\n   a. Distribution network (POS terminals)\n   b. PagBank banking license\n   c. Brand recognition in micro/SMB segment\n   d. Technology/product differentiation\n5. PAGS's competitive disadvantages:\n   a. vs Nubank (banking/UX)\n   b. vs StoneCo (SMB focus/software)\n   c. vs Mercado Pago (e-commerce integration)\n   d. vs PIX (free payments)\n6. In 5 years, will PAGS still exist as an independent company? Probability?\n\nBe skeptical. Moats can erode fast in fintech.",
+          "system_prompt": "You are a competitive strategy analyst. Challenge PAGS's moat with evidence.",
+          "temperature": 0.2,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "PAGS-RISK-03-cayman",
+          "prompt": "PAGS HOLDING STRUCTURE RISK — CAYMAN ISLANDS.\n\nPAGS is incorporated in the Cayman Islands. Key questions:\n1. Is PAGS a Cayman holding company? What is the exact corporate structure?\n2. What are the risks of a Cayman incorporation for minority shareholders?\n3. Can the board bypass shareholder votes more easily than a US/Brazil incorporated company?\n4. Tax implications: Does PAGS pay Brazilian taxes on profits? Or does it use Cayman to reduce taxes?\n5. Dividend repatriation: Can PAGS easily move cash from Brazil to Cayman to shareholders?\n6. Legal jurisdiction: If there's a shareholder lawsuit, where is it filed?\n7. Has any analyst flagged the Cayman structure as a governance risk?\n\nThis is a common risk for EM ADRs. How material is it for PAGS?",
+          "system_prompt": "You are a corporate governance analyst specializing in offshore holding structures.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-MGMT-01-ceo",
+          "prompt": "PAGS MANAGEMENT QUALITY ASSESSMENT.\n\n1. CEO: Who is the current CEO? Background, tenure, track record\n2. CFO: Who is the current CFO? Background\n3. Management stability: Any C-suite turnover in last 2 years?\n4. CEO compensation: Total comp from 20-F proxy\n5. CEO ownership: How many shares does the CEO own? % of float?\n6. Board quality: Independent directors, relevant expertise\n7. Management guidance accuracy: Have they consistently met or beaten guidance?\n8. Capital allocation track record: Smart buybacks (buying low)? Bad acquisitions?\n9. Any lawsuits, SEC investigations, or regulatory actions against management?\n10. Glassdoor rating for PagSeguro (employee satisfaction)\n\nManagement quality is the #1 predictor of long-term returns. Rate PAGS management 1-10.",
+          "system_prompt": "You are a management quality analyst. Assess the leadership team objectively.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-TECH-01-product",
+          "prompt": "PAGS PRODUCT & TECHNOLOGY STACK.\n\n1. POS terminal hardware: Who manufactures? Owned or leased? Technology (NFC, QR, chip)?\n2. PagBank app: Number of downloads, App Store rating, feature set\n3. Technology stack: Cloud infrastructure, processing capacity\n4. Fraud detection: AI/ML capabilities, fraud loss rate\n5. API/developer platform: Does PAGS have an open API for developers?\n6. Digital wallet: Features, market share vs competitors\n7. Crypto/digital assets: Any exposure?\n8. Cloud/core banking: Built in-house or licensed?\n9. R&D spending as % of revenue\n10. Key technology differentiators vs StoneCo and Nubank\n\nIs PAGS a technology company or a financial services company that uses technology?",
+          "system_prompt": "You are a fintech product analyst. Assess PAGS's technology capabilities.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-THESIS-01-bull",
+          "prompt": "PAGS BULL CASE — MAXIMUM UPSIDE SCENARIO (3-year).\n\nConstruct the most optimistic but REALISTIC bull case:\n1. Revenue trajectory: What growth rate is achievable?\n2. Net margin expansion: How high can margins go?\n3. Credit book growth: Opportunity size\n4. Selic cuts to 10%: Impact on NI\n5. Multiple re-rating: If PAGS re-rates to 12x P/E (still below NU), target price?\n6. Buyback impact: If PAGS buys back 10% of float per year, EPS impact?\n7. MSCI inclusion: Passive flow catalyst\n8. M&A premium: Upside from potential acquisition\n\nBull case target price in 3 years? Show the math.\nWhat probability do you assign to the bull case?",
+          "system_prompt": "You are a growth equity analyst. Construct a data-driven bull case.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-THESIS-02-bear",
+          "prompt": "PAGS BEAR CASE — MAXIMUM DOWNSIDE SCENARIO (3-year).\n\nConstruct the most pessimistic but REALISTIC bear case:\n1. PIX kills take rates: Take rate falls to 0.8% (from 1.1%)\n2. NPL spike: NPL 90+ doubles to 10%\n3. Competition: Mercado Pago and Nubank take 30% of PAGS's TPV\n4. Selic stays at 14%+: Kills SMB spending\n5. BRL depreciates 25% vs USD: FX drag on ADR\n6. Regulatory crackdown: BCB caps interchange fees\n7. Management misstep: Bad acquisition or credit expansion too fast\n\nBear case target price in 3 years? Show the math.\nWhat probability do you assign to the bear case?\nAt what price does PAGS become a clear SELL?",
+          "system_prompt": "You are a short-seller analyst. Construct a data-driven bear case.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-THESIS-03-sizing",
+          "prompt": "PAGS POSITION SIZING — $300 vs $500 ALLOCATION.\n\nFor a $2,000 total portfolio:\n\nScenario A: $300 allocation (15% of portfolio)\n- Number of shares at ~$10\n- Upside if PAGS goes to $15 (50%): $150 gain\n- Downside if PAGS goes to $7 (30%): $90 loss\n- Impact on total portfolio: +7.5% / -4.5%\n\nScenario B: $500 allocation (25% of portfolio)\n- Number of shares at ~$10\n- Upside if PAGS goes to $15 (50%): $250 gain\n- Downside if PAGS goes to $7 (30%): $150 loss\n- Impact on total portfolio: +12.5% / -7.5%\n\n1. Kelly Criterion: Based on expected value and win probability, what is the optimal bet size?\n2. At 9/10 conviction and 6.5x P/E, does $500 make sense?\n3. What would need to be TRUE for $500 to be the right bet?\n4. What is the maximum position size that allows you to sleep at night if it drops 50%?\n5. Does concentrating in PAGS violate any portfolio construction principles?\n\nFinal recommendation: $300 or $500? With exact reasoning.",
+          "system_prompt": "You are a portfolio sizing specialist. Use Kelly Criterion and risk management principles. Be quantitative.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-FINAL-01-verdict",
+          "prompt": "PAGS FINAL INVESTMENT VERDICT.\n\nAfter reviewing ALL available data (Q1 2025 financials, balance sheet, credit portfolio, competition, regulation, macro, ownership, valuation, catalysts, risks):\n\n1. CONVICTION SCORE: 1-10 with justification\n2. FAIR VALUE: Single number (your best estimate)\n3. MARGIN OF SAFETY: % below fair value at current ~$10 price\n4. BUY/HOLD/SELL recommendation\n5. OPTIMAL ALLOCATION: $300 or $500 for a $2,000 portfolio?\n6. LIMIT PRICE: What price should the limit order be set at?\n7. TIME HORIZON: How long to hold?\n8. SELL TRIGGERS: What would make you sell?\n9. KEY MONITORING METRICS: Top 3 numbers to watch quarterly\n10. SINGLE BIGGEST CONCERN\n\nBe brutally honest. This is real money.",
+          "system_prompt": "You are a chief investment officer making a final buy/sell decision. Be decisive. Give clear numbers. This person will execute based on your recommendation.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-EARNINGS-01-history",
+          "prompt": "PAGS EARNINGS SURPRISE HISTORY — LAST 8 QUARTERS.\n\nFor each of the last 8 quarters (Q1 2023 through Q4 2024 and Q1 2025):\n1. EPS estimate (consensus)\n2. EPS actual (reported)\n3. Surprise % (beat or miss)\n4. Stock price reaction on earnings day (% change)\n5. Revenue estimate vs actual\n\nCreate a table showing the pattern.\n\nAlso:\n6. What is the consensus EPS estimate for Q2 2025?\n7. What is the consensus revenue estimate for Q2 2025?\n8. When is the Q2 2025 earnings date?\n9. Based on the pattern, is PAGS likely to beat or miss Q2 2025?",
+          "system_prompt": "You are an earnings analyst. Track the beat/miss pattern. Cite consensus estimates from FactSet, Bloomberg, or Yahoo Finance.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-PAGBANK-01-growth",
+          "prompt": "PAGBANK — THE BANKING ARM DEEP DIVE.\n\nPagBank is PAGS's digital banking platform. Analyze:\n1. Total PagBank deposits (R$) — most recent\n2. PagBank deposit growth rate (YoY)\n3. PagBank active clients\n4. PagBank revenue contribution (% of total PAGS revenue)\n5. Products: savings, CDB, credit card, personal loans, insurance\n6. PagBank app ratings (iOS, Android)\n7. Average balance per client\n8. PagBank NPS score (if available)\n9. Comparison to Nubank's digital banking metrics\n10. Is PagBank profitable on a standalone basis?\n\nPagBank could be the hidden gem inside PAGS — or a drag on margins. Which is it?",
+          "system_prompt": "You are a digital banking analyst. Assess PagBank's standalone value and growth trajectory.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-SHORT-01-interest",
+          "prompt": "PAGS SHORT INTEREST & SENTIMENT ANALYSIS.\n\n1. Current short interest (shares short)\n2. Short interest as % of float\n3. Days to cover (short interest / avg daily volume)\n4. Short interest trend (last 6 months — increasing or decreasing?)\n5. Cost to borrow PAGS shares (borrow rate)\n6. Put/call ratio (options sentiment)\n7. Analyst consensus: How many buy/hold/sell ratings?\n8. Average analyst price target\n9. Most recent analyst upgrade or downgrade (date, firm, target)\n10. Retail vs institutional sentiment (Reddit, StockTwits mentions if relevant)\n\nIs the short squeeze potential meaningful, or is short interest too low to matter?",
+          "system_prompt": "You are a sentiment and positioning analyst. Provide current short interest and analyst data.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "PAGS-EXECUTION-01-order",
+          "prompt": "PAGS ORDER EXECUTION — OPTIMAL ENTRY.\n\nWe want to buy 30-50 shares of PAGS at around $10.\n\n1. Current bid/ask spread for PAGS (typical)\n2. Average daily volume (30-day)\n3. Is our order (30-50 shares) material vs daily volume? Slippage risk?\n4. Best time of day to execute: Open, midday, or close?\n5. LIMIT vs MARKET: At this volume, does it matter?\n6. Should we buy all at once or split into 2-3 tranches?\n7. Upcoming events that might move the price: earnings, ex-dividend, macro\n8. Technical levels: Current support and resistance\n9. 200-day moving average: Is PAGS above or below?\n10. RSI: Is PAGS overbought or oversold?\n\nGenerate the EXACT IBKR order: Symbol, Action, Qty, Type, Price, TIF.",
+          "system_prompt": "You are a trade execution specialist. Generate an optimal entry strategy for a small-cap ADR.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        }
+      ]
+    }
+  ]
+}

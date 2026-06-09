@@ -1,0 +1,162 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "s7_t01_gau_gold_fields",
+          "prompt": "CRITICAL VALIDATION: Galiano Gold (GAU) and the Gold Fields exit. In Sprint 6, DeepSeek claimed 'Gold Fields walked away from the Asanko JV, sold their stake for a pittance.' VALIDATE THIS CLAIM: (1) When exactly did Gold Fields exit the Asanko JV? (2) What were the terms - what price did Gold Fields sell for? (3) WHY did Gold Fields exit - was it because the mine was bad, or strategic reallocation? (4) Did Gold Fields exit at a loss or profit? (5) Are there cases where a major miner exits a JV that later becomes very profitable? (6) After Gold Fields exited, what happened to Galiano's operations - did they improve or deteriorate? Be specific with dates and terms.",
+          "system_prompt": "You are a mining industry analyst. Validate specific claims about the Gold Fields / Galiano Gold Asanko joint venture. Cite specific dates, deal terms, and reasons. Distinguish between 'walked away from a bad asset' vs 'strategic portfolio rebalancing.'",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t02_gau_aisc",
+          "prompt": "GAU COST ANALYSIS: What is Galiano Gold's All-In Sustaining Cost (AISC) at the Asanko mine? (1) What was AISC in 2022, 2023, 2024, and guidance for 2025? (2) How does Asanko's AISC compare to industry average and to other West African gold mines? (3) At what gold price does Asanko break even? (4) Is there a specific mine plan change (underground development, new pits, processing improvements) that could lower AISC? (5) What is the current mine life and reserve/resource base? (6) Is there exploration upside (near-mine discoveries) that could extend mine life?",
+          "system_prompt": "You are a mining cost analyst. Focus on AISC data, mine economics, and reserve/resource estimates. Be specific with numbers where you can.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t03_gau_ghana",
+          "prompt": "GAU COUNTRY RISK: Ghana mining operations risk assessment. (1) What is Ghana's current political stability? Last election, government stance on mining? (2) Has Ghana changed its mining code or tax rates recently? (3) 'Galamsey' (illegal mining) - is it a real threat to Asanko specifically? (4) Infrastructure reliability at Asanko (power, water, roads). (5) Compare Ghana mining jurisdiction vs Mali (where BTG's Fekola is) vs other African mining jurisdictions. (6) Has any major gold mine in Ghana been nationalized, heavily taxed, or shut down by government action in the last 20 years?",
+          "system_prompt": "You are a geopolitical risk analyst specializing in African mining jurisdictions. Compare risks factually. Ghana vs Mali vs other African mining countries.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t04_gau_insider_why",
+          "prompt": "GAU INSIDER BUYING ANALYSIS: Paul Wright (insider at Galiano Gold) bought $108,500 worth of shares on May 19, 2026 and $63,925 on March 16, 2026 in open market purchases. (1) Who is Paul Wright at Galiano Gold - what is his role? (2) Is there a pattern of insider buying at GAU over the past 2 years? (3) Why would an insider buy $172K of personal money in a single-mine gold company? (4) What does insider buying signal in junior/mid-tier gold miners specifically? (5) Historical correlation between insider buying in gold miners and subsequent stock performance. (6) Are there other insiders buying or is it just Wright?",
+          "system_prompt": "You are an insider transaction analyst. Analyze the significance of open-market purchases by insiders in mining companies. Focus on the signal value, not the dollar amount.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t05_gau_gold_price",
+          "prompt": "GAU GOLD PRICE SENSITIVITY: Galiano Gold has 45.8% operating margin and EV/EBITDA of 2.9x. (1) At gold $3,000/oz, $2,500/oz, $2,000/oz, and $1,800/oz, estimate GAU's approximate margin and FCF. (2) What is the gold price floor where GAU starts losing money (based on its AISC)? (3) How leveraged is GAU to gold price moves vs larger miners like Barrick or Newmont? (4) If gold goes to $3,500/oz (some analysts predict this), what could GAU stock realistically be worth? (5) What hedging does GAU have in place, if any? (6) Is GAU more of a 'gold call option' or a 'gold dividend stock'?",
+          "system_prompt": "You are a gold equity analyst. Model GAU's sensitivity to gold price changes. Use reasonable assumptions for AISC and production levels.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t06_gau_vs_peers",
+          "prompt": "GAU PEER COMPARISON: Compare Galiano Gold (GAU) to these gold mining peers: B2Gold (BTG), Torex Gold (TXG), Endeavour Mining (EDV), Alamos Gold (AGI), Kinross (KGC). For each, compare: (1) AISC per ounce, (2) Operating margin, (3) EV/EBITDA, (4) Production (ounces/year), (5) Number of mines, (6) Jurisdiction risk, (7) FCF yield. Where does GAU rank? Is it the worst as DeepSeek implied, or is it competitive?",
+          "system_prompt": "You are a gold mining equity analyst. Provide factual peer comparison across key operating and valuation metrics.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t07_gau_production",
+          "prompt": "GAU PRODUCTION TRAJECTORY: Galiano Gold quarterly revenue accelerated from $97M to $114M to $160M to $167M over the last 4 quarters. (1) What is driving this revenue acceleration - higher gold prices, higher production, or both? (2) What is Asanko's annual gold production in ounces for 2023, 2024, 2025 (actual and guidance)? (3) Is there a mine plan expansion underway (new pit phases, underground development)? (4) What is the processing plant capacity and current utilization? (5) Are there any production risks (water table, grade variability, equipment age)? (6) What does the 3-5 year production profile look like?",
+          "system_prompt": "You are a mining production analyst. Focus on production volumes, processing capacity, and mine plan details for the Asanko mine.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t08_tuya_dividend",
+          "prompt": "CRITICAL VALIDATION: Tuya Inc (TUYA) dividend history. DeepSeek claimed 'TUYA has never paid a dividend and cash is trapped in China.' yfinance shows a dividend rate of $0.11/share. VALIDATE: (1) Has TUYA actually declared and paid dividends? When did they start? (2) What was the total dividend amount? (3) Was it a special one-time dividend or a recurring policy? (4) How did TUYA get cash OUT of China to pay the dividend - what mechanism? (5) Does this disprove the 'trapped cash' thesis? (6) Are there other Chinese ADRs that successfully pay dividends, proving cash can be repatriated?",
+          "system_prompt": "You are a Chinese ADR analyst specializing in capital repatriation and dividend policies. Validate whether TUYA has actually returned cash to shareholders.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t09_tuya_vie_real",
+          "prompt": "VIE RISK REALITY CHECK: How real is the VIE structure risk for TUYA specifically? (1) Has China taken any concrete action against VIE structures in 2023-2026? (2) Has ANY Chinese ADR been delisted or had its VIE invalidated? (3) What happened with the Didi VIE situation - was it resolved? (4) Are Chinese regulators moving TOWARD or AWAY from accepting VIEs? (5) TUYA is an IoT platform, not social media or data-heavy - does this make it lower risk than a Didi or ByteDance? (6) What specific regulatory action would have to happen for TUYA's VIE to actually fail? How probable is this in the next 3-5 years?",
+          "system_prompt": "You are a Chinese regulatory analyst specializing in VIE structures and US-listed Chinese companies. Assess VIE risk based on actual regulatory actions, not theoretical risks.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t10_tuya_iot_market",
+          "prompt": "TUYA IoT MARKET REALITY: DeepSeek claimed 'smart home market has stalled' and TUYA is a 'middleman being cut out by Xiaomi/Huawei.' VALIDATE: (1) Is the global IoT/smart home market actually growing or stalling? What do IDC, Gartner, Statista say about market size projections? (2) Is TUYA actually losing market share to Xiaomi/Huawei, or is it growing in different segments? (3) What is TUYA's actual business model - is it purely a middleman or does it provide critical infrastructure? (4) Matter protocol - is it a threat or opportunity for TUYA? (5) TUYA's revenue grew 8.3% - is this stalling or healthy growth for an IoT platform? (6) What would make TUYA's revenue accelerate to 15-20%?",
+          "system_prompt": "You are an IoT industry analyst. Assess the smart home and IoT platform market factually. Is TUYA's position getting stronger or weaker?",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t11_tuya_cash_value",
+          "prompt": "TUYA CASH FORTRESS VALUATION: TUYA has $951M cash, $10M debt, $1,281M market cap. That means the market values the BUSINESS (ex-cash) at only $340M. The business generates $328M revenue and $63M net income. (1) Is a business generating $63M NI worth only $340M? That's a 5.4x P/E on the operating business. (2) What are comparable IoT/SaaS platform businesses worth (EV/Revenue, EV/NI)? (3) If the cash were to be fully valued (not discounted), what should TUYA stock be worth? (4) What scenarios could unlock the cash value (buyback, larger dividend, go-private, strategic sale)? (5) Has TUYA management indicated any capital return plans beyond the dividend? (6) What is the downside risk from here - how much lower can it go when you're buying at 5x earnings ex-cash?",
+          "system_prompt": "You are a deep value analyst specializing in cash-rich companies. Assess TUYA's sum-of-parts valuation and cash deployment options.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t12_tuya_competition",
+          "prompt": "TUYA COMPETITIVE ANALYSIS: DeepSeek claimed Xiaomi, Huawei HarmonyOS, Amazon Alexa, and Google Home are building closed ecosystems that cut out TUYA. VALIDATE: (1) Are these companies actually competing with TUYA, or are they serving different market segments? (2) TUYA serves thousands of white-label device manufacturers - do Xiaomi/Huawei serve this segment? (3) Is TUYA's revenue growing or declining in each geographic region (China, US, Europe, SE Asia)? (4) How many active IoT devices are on the TUYA platform? Is this number growing? (5) What is TUYA's customer retention rate? (6) Can a white-label IoT platform coexist with branded ecosystems (Xiaomi, Google), or is it winner-take-all?",
+          "system_prompt": "You are a competitive strategy analyst for the IoT industry. Assess whether TUYA's platform model is threatened by branded ecosystems or can coexist.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t13_tuya_buyback",
+          "prompt": "TUYA BUYBACK AND CAPITAL RETURN: (1) Has TUYA announced any share buyback program? If yes, how much and what has been executed? (2) What is TUYA's current share count trend - is it diluting or shrinking? (3) Has management made any public statements about returning cash to shareholders? (4) Compare TUYA's capital return policy to other Chinese ADRs (Alibaba, JD.com, Baidu) who have done large buybacks. (5) At $951M cash and $1,281M market cap, TUYA could theoretically buy back 74% of its float. What's stopping them? (6) How much of the cash is offshore (held outside China) vs onshore?",
+          "system_prompt": "You are a capital allocation analyst. Assess TUYA's buyback and capital return policies compared to peer Chinese ADRs.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t14_gau_bull_case",
+          "prompt": "GAU MAXIMUM BULL CASE: What is the absolute best-case scenario for Galiano Gold over the next 3-5 years? (1) Gold goes to $3,500/oz - what would GAU earn and what would the stock be worth? (2) Near-mine discovery extends mine life by 10+ years. (3) Processing improvements lower AISC by 15%. (4) Exploration success at other properties (if any). (5) Acquisition by a major (at what premium?). (6) What is the realistic maximum stock price in 5 years in the best case? Is a 5x-10x from $2.23 plausible?",
+          "system_prompt": "You are a gold equity analyst constructing the maximum bull case. Be specific about assumptions and resulting valuation.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t15_tuya_bull_case",
+          "prompt": "TUYA MAXIMUM BULL CASE: What is the absolute best-case scenario for TUYA over the next 3-5 years? (1) Revenue accelerates to 20%+ growth as IoT adoption picks up globally. (2) Operating leverage kicks in - margins expand from 9.2% to 20%+. (3) Management executes a massive buyback with the $951M cash pile. (4) Matter protocol adoption makes TUYA the default IoT infrastructure layer. (5) Go-private offer from management or strategic acquirer. (6) What is the realistic maximum stock price in 5 years? Is a 5x from $2.09 ($10) plausible?",
+          "system_prompt": "You are a technology equity analyst constructing the maximum bull case for an IoT platform company. Be specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t16_gau_worst_case",
+          "prompt": "GAU WORST CASE: What is the absolute worst realistic scenario for Galiano Gold? (1) Gold crashes to $1,800/oz - does GAU survive? (2) Ghana government imposes windfall tax or changes mining code. (3) Asanko mine has a major geological or environmental incident. (4) Grade variability makes the mine uneconomic. (5) What is the floor price for GAU stock in a severe bear case? (6) Compare to what happened to junior miners in the 2013-2015 gold bear market. Could GAU go to zero?",
+          "system_prompt": "You are a risk analyst. Construct the worst realistic scenario for a single-mine gold company in Ghana. Be specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t17_tuya_worst_case",
+          "prompt": "TUYA WORST CASE: What is the absolute worst realistic scenario for TUYA? (1) VIE structure invalidated by Chinese government - what actually happens? Do shareholders lose everything? (2) US executive order banning investment in Chinese tech - how does this play out? (3) Revenue declines as competitors take market share. (4) Cash is gradually burned or trapped by Chinese capital controls. (5) What is the floor price for TUYA? (6) With $951M cash and $10M debt, how much downside is there? Can a company with 74% cash/MCap actually go to zero?",
+          "system_prompt": "You are a risk analyst. Construct the worst realistic scenario for a Chinese ADR IoT company with massive cash reserves. Be specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t18_hold_framework",
+          "prompt": "HOLD vs SELL DECISION FRAMEWORK: We hold GAU (100 shares @ $2.29) and TUYA (95 shares @ $2.10). Create a rigorous HOLD vs SELL framework based on REAL DATA ONLY: GAU data: $432M rev (+88.8%), 45.8% op margin, $68M FCF, $83M net cash, EV/EBITDA 2.9, insider buying $172K, 1 analyst target $4.25, 1% short. TUYA data: $328M rev (+8.3%), $63M NI (+41.1% earn growth), $21M FCF, $941M net cash (74% of MCap), paying dividends, 4 analysts target $3.42, 0.8% short, P/E 20.9 (5.4x ex-cash). Based ONLY on this verified data, should we HOLD or SELL each position? What specific data point would change the answer?",
+          "system_prompt": "You are a portfolio decision analyst. Use ONLY the provided verified data to make a HOLD vs SELL recommendation. Do NOT introduce unverified claims. Be decisive.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t19_gau_revenue_driver",
+          "prompt": "GAU REVENUE ACCELERATION: Galiano Gold quarterly revenue went $97M → $114M → $160M → $167M over four quarters. This is dramatic acceleration. (1) What percentage of this acceleration is due to higher gold prices vs higher production volume? (2) What was the average realized gold price per ounce in each quarter? (3) How many ounces did Asanko produce in each quarter? (4) Is the mine hitting a new high-grade zone? (5) Were there any one-time factors (stockpile processing, grade reconciliation) inflating recent quarters? (6) Is this revenue trajectory sustainable going forward?",
+          "system_prompt": "You are a mining financial analyst. Decompose revenue acceleration into price vs volume components.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t20_tuya_earnings_quality",
+          "prompt": "TUYA EARNINGS QUALITY: TUYA reported $63M net income with 41.1% earnings growth. (1) Is this real operating income or does it include one-time items (investment gains, FX, asset sales)? (2) What are TUYA's main expense categories? Are costs growing faster or slower than revenue? (3) Is the $21M FCF consistent with $63M NI, or is there a gap suggesting accounting quality issues? (4) Stock-based compensation - how much is SBC diluting real earnings? (5) How sustainable is this profitability - could TUYA sustain or grow earnings at this rate? (6) Compare TUYA's earnings quality metrics to other Chinese IoT/tech companies.",
+          "system_prompt": "You are a forensic accountant. Assess earnings quality for a Chinese IoT company. Look for SBC, one-time items, and NI-to-FCF gaps.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t21_hold_patience",
+          "prompt": "INVESTMENT PATIENCE ANALYSIS: The investor explicitly said 'I don't want to juggle and trade, I value my time.' Analyze: (1) What is the historical return of patient buy-and-hold vs active trading in small-cap stocks? (2) How often do investors sell too early in turnaround stories? (3) GAU at cost basis $2.29 and TUYA at $2.10 - are these positions at risk of permanent capital loss or are they well-positioned for patience? (4) What is the expected return of holding GAU and TUYA for 3-5 years vs selling now? (5) Transaction costs and tax implications of selling small positions ($229 and $200). (6) Is the time/attention cost of monitoring worth more than the potential gain from optimal timing?",
+          "system_prompt": "You are a behavioral finance analyst. Assess the case for patient holding vs active trading for a retail investor with limited time. Consider transaction costs, tax friction, and time value.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s7_t22_convergence_hold",
+          "prompt": "SPRINT 7 CONVERGENCE: Based on ALL Sprint 7 analysis, provide the definitive HOLD vs SELL verdict for: (1) GAU - 100 shares @ $2.29 ($229 invested), and (2) TUYA - 95 shares @ $2.10 ($200 invested). Use ONLY verified data from live sources. Consider: revenue trajectory, profitability, insider activity, cash position, analyst targets, risk factors, and the investor's preference for not trading. Provide a CLEAR, DECISIVE answer: HOLD or SELL for each. No hedging.",
+          "system_prompt": "You are the final decision-maker. Use verified data only. Be decisive. The investor does not want to trade unless the data clearly demands it.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

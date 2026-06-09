@@ -1,0 +1,206 @@
+{
+  "name": "macOS Deep Security Investigation — Targeted Attack Analysis",
+  "description": "35-agent deep investigation into potential targeted attack. ChatGPT.app malware blocked, firewall disabled, Proton recovery PDF exposed, crypto dashboard visible, developer workstation with API keys.",
+  "phases": [
+    {
+      "name": "Phase 1: Attack Vector Analysis",
+      "tasks": [
+        {
+          "id": "attack-1",
+          "prompt": "A developer in Vietnam (WiFi networks show Vietnamese locations: Holiday Beach Danang, Pho Thin, Katinat Coffee) had a fake 'ChatGPT.app' blocked by macOS Gatekeeper. The quarantine DB shows it was downloaded via Chrome but the URL fields are empty. Chrome history shows visits to chatgpt.com, platform.openai.com, and YouTube videos about ChatGPT. What attack vectors could deliver a fake ChatGPT.app without leaving a URL in the quarantine DB? Could it have been: AirDrop (sharingd entries found), USB drive, or a browser exploit?",
+          "system_prompt": "You are a senior threat analyst investigating a potential targeted attack on a developer workstation. Provide forensic-quality analysis."
+        },
+        {
+          "id": "attack-2",
+          "prompt": "The quarantine database shows TWO 'sharingd' entries from 2026-05-28 20:45 (type 6), one day before the malware alert. sharingd handles AirDrop, Shared WiFi Passwords, and Proximity Sharing. Could someone nearby have AirDropped the malicious ChatGPT.app? What does quarantine type 6 mean? Is this a common malware delivery vector in coffee shops or co-working spaces?",
+          "system_prompt": "You are a senior threat analyst investigating a potential targeted attack on a developer workstation. Provide forensic-quality analysis."
+        },
+        {
+          "id": "attack-3",
+          "prompt": "A developer's macOS firewall is DISABLED (State = 0, stealth mode off), they're on Ethernet (not WiFi currently but frequents Vietnamese coffee shops), and have NordVPN running. They have a crypto trading dashboard open ($73,978 BTC visible in screenshot), Coinbase Wallet Chrome extension, and multiple API keys in environment variables. Assess the risk profile. What attacks are possible with firewall disabled on a local network?",
+          "system_prompt": "You are a senior threat analyst investigating a potential targeted attack on a developer workstation. Provide forensic-quality analysis."
+        },
+        {
+          "id": "attack-4",
+          "prompt": "Chrome history shows OpenAI login with email hint 'garyjlawrence@yahoo.com' and MFA challenge on 2026-05-14. YouTube history from 2026-05-13 shows 'How to Bypass TurnItIn AI Writing Detection (ChatGPT)' and other ChatGPT-related videos. Could these be part of a social engineering campaign where a malicious search result or YouTube link led to downloading a fake ChatGPT.app? What's the typical kill chain for SEO/YouTube poisoning targeting AI tool users?",
+          "system_prompt": "You are a senior threat analyst investigating a potential targeted attack on a developer workstation. Provide forensic-quality analysis."
+        },
+        {
+          "id": "attack-5",
+          "prompt": "The ARP table shows only 3 devices on the local network: gateway (192.168.0.1), one unknown device (192.168.0.100, MAC 20:be:b4:15:6f:79), and the target machine (192.168.0.104). The MAC prefix 20:be:b4 belongs to which manufacturer? Could this be a rogue device performing MITM, ARP spoofing, or DNS poisoning on the local network to serve a fake ChatGPT download page?",
+          "system_prompt": "You are a senior threat analyst investigating a potential targeted attack on a developer workstation. Provide forensic-quality analysis."
+        },
+        {
+          "id": "attack-6",
+          "prompt": "The target has 'Antigravity.app' installed today (2026-05-29 15:01 UTC), signed by Google LLC (TeamID EQHXZ8M8AV), 423MB. What is Google Antigravity? Is it legitimate? Could a malicious app impersonate a Google signing certificate? Also found 'iScreen Shoter' from Mac App Store — is this a known legitimate app or has it been flagged as spyware/adware?",
+          "system_prompt": "You are a senior threat analyst investigating a potential targeted attack on a developer workstation. Provide forensic-quality analysis."
+        },
+        {
+          "id": "attack-7",
+          "prompt": "The developer's system has Karabiner-Elements (keyboard remapper) installed with kernel driver extension. The screenshot shows System Settings > Keyboard > Modifier Keys open at the time of the malware alert. Could a malicious Karabiner config be used as a keylogger? Can Karabiner's DriverKit extension intercept keystrokes for credential theft? What should be checked in the Karabiner config?",
+          "system_prompt": "You are a senior threat analyst investigating a potential targeted attack on a developer workstation. Provide forensic-quality analysis."
+        }
+      ]
+    },
+    {
+      "name": "Phase 2: Exposure Assessment",
+      "tasks": [
+        {
+          "id": "expose-1",
+          "prompt": "A developer has a 'proton-recovery-phrase.pdf' sitting in their Downloads folder unencrypted. They have Coinbase Wallet Chrome extension, NordVPN, and a crypto dashboard showing $73,978 in BTC visible on screen. They work from Vietnamese coffee shops. What is the realistic theft risk? How quickly should they rotate Proton credentials? What's the priority order for securing these assets?",
+          "system_prompt": "You are a cryptocurrency security and OPSEC specialist. Assess exposure levels and prioritize defensive actions."
+        },
+        {
+          "id": "expose-2",
+          "prompt": "A developer has these API keys potentially exposed via environment variables: DEEPSEEK_API_KEY, ANTHROPIC_API_KEY, plus likely GitHub PATs, MongoDB connection strings, AWS credentials, and Resend API keys (email service). The macOS firewall is OFF. No malware executed (Gatekeeper blocked it). What is the exposure risk for each? Which should be rotated first? Can API keys be extracted without malware running?",
+          "system_prompt": "You are a cryptocurrency security and OPSEC specialist. Assess exposure levels and prioritize defensive actions."
+        },
+        {
+          "id": "expose-3",
+          "prompt": "A developer uses NordVPN on macOS but the built-in macOS firewall is DISABLED. DNS is routed through 100.64.0.2 (NordVPN DNS). The IP is 10.5.0.2 (NordVPN tunnel). How protected are they? Does NordVPN's Kill Switch compensate for the disabled firewall? What about local network attacks that bypass VPN (ARP poisoning, LLMNR/NBNS poisoning, mDNS attacks)?",
+          "system_prompt": "You are a cryptocurrency security and OPSEC specialist. Assess exposure levels and prioritize defensive actions."
+        },
+        {
+          "id": "expose-4",
+          "prompt": "The developer has 50+ cron jobs running automated pipelines (EarlyThunder crypto intelligence, SC audit pipeline, SEO pipelines, domain hunter). These scripts make API calls, fetch data from external sources, and write to local files. Could compromised cron scripts be used as persistence or exfiltration mechanisms? How to audit cron script integrity?",
+          "system_prompt": "You are a cryptocurrency security and OPSEC specialist. Assess exposure levels and prioritize defensive actions."
+        },
+        {
+          "id": "expose-5",
+          "prompt": "iScreen Shoter app (Mac App Store, signed by Apple) has a helper process with symlinks to Desktop, Downloads, Movies, Music, Pictures. It was installed 2026-03-03 and has a Google heartbeat-storage directory. Is this a known data collection app? Has iScreen Shoter ever been reported for privacy violations on the Mac App Store? What data could it access via those symlinks within its sandbox?",
+          "system_prompt": "You are a cryptocurrency security and OPSEC specialist. Assess exposure levels and prioritize defensive actions."
+        },
+        {
+          "id": "expose-6",
+          "prompt": "A developer has Redis running on localhost:6379 with no authentication visible. They have Docker installed. Logitech Options Plus is listening on port 59869 (all interfaces, not just localhost). What are the security implications? Could Logitech's open port be exploited? Is unauthenticated Redis a risk even on localhost with NordVPN running?",
+          "system_prompt": "You are a cryptocurrency security and OPSEC specialist. Assess exposure levels and prioritize defensive actions."
+        },
+        {
+          "id": "expose-7",
+          "prompt": "The developer works from Vietnamese coffee shops frequently (14+ WiFi networks saved, mostly Vietnamese locations). They have a crypto trading dashboard, Coinbase Wallet, and multiple API keys. What are the specific risks of using unsecured/shared WiFi networks for crypto and development work in Southeast Asia? Are there known targeted attacks against expat developers in Vietnam?",
+          "system_prompt": "You are a cryptocurrency security and OPSEC specialist. Assess exposure levels and prioritize defensive actions."
+        }
+      ]
+    },
+    {
+      "name": "Phase 3: Immediate Hardening Actions",
+      "tasks": [
+        {
+          "id": "harden-1",
+          "prompt": "Provide the exact terminal commands to enable and harden the macOS firewall immediately: enable firewall, enable stealth mode, block all incoming connections except essentials, enable logging. Include the socketfilterfw commands.",
+          "system_prompt": "You are a macOS hardening specialist. Provide EXACT terminal commands ready to copy-paste. No theory, just commands."
+        },
+        {
+          "id": "harden-2",
+          "prompt": "Provide exact commands to: disable AirDrop, disable Handoff, disable Bluetooth discoverability, disable Remote Login, disable Remote Management, disable Screen Sharing, disable Remote Apple Events on macOS. All via terminal (no GUI needed).",
+          "system_prompt": "You are a macOS hardening specialist. Provide EXACT terminal commands ready to copy-paste. No theory, just commands."
+        },
+        {
+          "id": "harden-3",
+          "prompt": "Provide exact commands to install and configure LuLu (Objective-See firewall), BlockBlock (persistence detector), ReiKey (keylogger detector), and KnockKnock (startup auditor) on macOS via brew or direct download. Include post-install configuration for maximum protection.",
+          "system_prompt": "You are a macOS hardening specialist. Provide EXACT terminal commands ready to copy-paste. No theory, just commands."
+        },
+        {
+          "id": "harden-4",
+          "prompt": "Provide exact commands to: password-protect Redis on localhost, bind Logitech Options Plus to localhost only (not 0.0.0.0), check and fix Docker daemon security settings, enable NordVPN Kill Switch via CLI if available. Focus on closing the open ports found: 59869 (Logitech), 6379 (Redis), 57621 (Spotify).",
+          "system_prompt": "You are a macOS hardening specialist. Provide EXACT terminal commands ready to copy-paste. No theory, just commands."
+        },
+        {
+          "id": "harden-5",
+          "prompt": "Provide exact commands to securely move and encrypt the proton-recovery-phrase.pdf from Downloads: encrypt with GPG, move to a secure location, wipe the original file securely. Also provide commands to audit all PDF and sensitive files in Downloads folder.",
+          "system_prompt": "You are a macOS hardening specialist. Provide EXACT terminal commands ready to copy-paste. No theory, just commands."
+        },
+        {
+          "id": "harden-6",
+          "prompt": "Provide exact commands to verify Karabiner-Elements configuration hasn't been tampered with: check config file integrity, verify no suspicious key mappings that could act as keylogger, check the Karabiner event log for unusual events. Karabiner config is at ~/.config/karabiner/karabiner.json.",
+          "system_prompt": "You are a macOS hardening specialist. Provide EXACT terminal commands ready to copy-paste. No theory, just commands."
+        },
+        {
+          "id": "harden-7",
+          "prompt": "Provide a complete macOS security lockdown script that can be run as a single bash script: enable firewall + stealth, disable sharing services, configure automatic security updates, clear quarantine database, remove browser cache, flush DNS, restart mDNSResponder. One script, copy-paste ready.",
+          "system_prompt": "You are a macOS hardening specialist. Provide EXACT terminal commands ready to copy-paste. No theory, just commands."
+        }
+      ]
+    },
+    {
+      "name": "Phase 4: Credential Rotation Playbook",
+      "tasks": [
+        {
+          "id": "rotate-1",
+          "prompt": "Step-by-step guide to rotate Proton Mail credentials: change password, regenerate recovery phrase, revoke all active sessions, enable/verify FIDO2 key if available, check Proton account activity log. Specific URLs and steps.",
+          "system_prompt": "You are a credential security specialist. Provide step-by-step rotation guides with exact URLs and commands."
+        },
+        {
+          "id": "rotate-2",
+          "prompt": "Step-by-step guide to rotate API keys: DeepSeek API key (platform.deepseek.com), Anthropic API key, GitHub PATs, and Resend API key. Include: where to rotate each, how to update environment variables, how to verify old keys are invalidated.",
+          "system_prompt": "You are a credential security specialist. Provide step-by-step rotation guides with exact URLs and commands."
+        },
+        {
+          "id": "rotate-3",
+          "prompt": "Step-by-step guide to secure Coinbase Wallet after a malware scare where the malware was BLOCKED before execution: check transaction history, verify wallet address hasn't changed, check for unauthorized approvals, consider creating a new wallet and transferring funds. When is wallet rotation necessary vs just monitoring?",
+          "system_prompt": "You are a credential security specialist. Provide step-by-step rotation guides with exact URLs and commands."
+        },
+        {
+          "id": "rotate-4",
+          "prompt": "Step-by-step guide to audit and rotate SSH keys on macOS: list all keys, check authorized_keys for unauthorized entries, generate new Ed25519 keys, update GitHub/GitLab/AWS with new keys, remove old keys. Include commands for each step.",
+          "system_prompt": "You are a credential security specialist. Provide step-by-step rotation guides with exact URLs and commands."
+        },
+        {
+          "id": "rotate-5",
+          "prompt": "Step-by-step guide to rotate MongoDB connection strings and AWS credentials: rotate MongoDB user passwords, update connection strings in .env files, rotate AWS access keys, update IAM policies. Include commands for MongoDB and AWS CLI.",
+          "system_prompt": "You are a credential security specialist. Provide step-by-step rotation guides with exact URLs and commands."
+        },
+        {
+          "id": "rotate-6",
+          "prompt": "Step-by-step guide to audit OpenAI account security: check API key usage, revoke unused keys, check billing for unauthorized usage, verify MFA is enabled, check connected applications, review organization access. The account email is garyjlawrence@yahoo.com.",
+          "system_prompt": "You are a credential security specialist. Provide step-by-step rotation guides with exact URLs and commands."
+        },
+        {
+          "id": "rotate-7",
+          "prompt": "After completing credential rotation on a developer workstation, provide a verification checklist: how to confirm each service is using the new credentials, how to test each API key works, how to verify no leaked credentials in git history, how to set up monitoring for future compromises. Include tools like trufflehog, gitleaks.",
+          "system_prompt": "You are a credential security specialist. Provide step-by-step rotation guides with exact URLs and commands."
+        }
+      ]
+    },
+    {
+      "name": "Phase 5: Ongoing OPSEC for Developer in Vietnam",
+      "tasks": [
+        {
+          "id": "opsec-1",
+          "prompt": "Design an OPSEC protocol for a developer working from coffee shops in Vietnam with crypto assets ($73K+ BTC), multiple API keys, and production server access. Cover: VPN always-on policy, screen privacy filters, AirDrop lockdown, WiFi security, shoulder surfing prevention, device lockout timer.",
+          "system_prompt": "You are an operational security specialist for high-value digital nomad developers. Vietnam-specific advice."
+        },
+        {
+          "id": "opsec-2",
+          "prompt": "What are the specific cybersecurity threats for foreign developers in Vietnam in 2025-2026? State-sponsored surveillance, criminal hacking groups targeting expats, SIM swap attacks on Vietnamese phone numbers, banking trojans, cryptocurrency theft rings. Provide specific threat intelligence.",
+          "system_prompt": "You are an operational security specialist for high-value digital nomad developers. Vietnam-specific advice."
+        },
+        {
+          "id": "opsec-3",
+          "prompt": "Design a browser compartmentalization strategy: Profile 1 (crypto — Coinbase Wallet, exchanges), Profile 2 (development — GitHub, Claude, APIs), Profile 3 (casual browsing). Which browser for each? How to prevent cross-profile data leakage? Should crypto be on a separate browser entirely?",
+          "system_prompt": "You are an operational security specialist for high-value digital nomad developers. Vietnam-specific advice."
+        },
+        {
+          "id": "opsec-4",
+          "prompt": "Design a secret management system for a macOS developer who has API keys in .env files, cron jobs referencing API keys, and 50+ automation scripts. Options: 1Password CLI, macOS Keychain, encrypted .env, Doppler, Infisical. Which is most practical for a solo developer who needs secrets in scripts and cron jobs?",
+          "system_prompt": "You are an operational security specialist for high-value digital nomad developers. Vietnam-specific advice."
+        },
+        {
+          "id": "opsec-5",
+          "prompt": "Design a travel security protocol for a MacBook Pro carrying crypto assets and production credentials: pre-travel checklist, airport/border crossing security (full disk encryption, firmware password, plausible deniability), hotel/Airbnb WiFi safety, physical security (laptop cable lock, safe, never leave unattended).",
+          "system_prompt": "You are an operational security specialist for high-value digital nomad developers. Vietnam-specific advice."
+        },
+        {
+          "id": "opsec-6",
+          "prompt": "How to set up automated security monitoring on macOS that runs in the background: daily integrity checks on LaunchAgents/Daemons, weekly network connection audit, monthly credential exposure scan (trufflehog), real-time process monitoring for unsigned binaries. Provide a cron-based monitoring script.",
+          "system_prompt": "You are an operational security specialist for high-value digital nomad developers. Vietnam-specific advice."
+        },
+        {
+          "id": "opsec-7",
+          "prompt": "Emergency response plan if a developer's MacBook is stolen in Vietnam: remote wipe via Find My Mac, what to revoke first (crypto > SSH > API keys > email), which Vietnamese authorities to contact, insurance considerations, recovery from encrypted Time Machine backup. Step-by-step, time-critical order.",
+          "system_prompt": "You are an operational security specialist for high-value digital nomad developers. Vietnam-specific advice."
+        }
+      ]
+    }
+  ]
+}

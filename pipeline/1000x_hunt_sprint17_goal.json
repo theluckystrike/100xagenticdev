@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "t01",
+          "prompt": "HISTORICAL 1000x WINNER DNA ANALYSIS. Study these verified 1000x+ winners at their ENTRY POINT (before the run): NVDA $5.28 (MCap $13.4B, Rev $5.01B, +7% growth, 56% GM, CUDA ecosystem), MNST $0.80 (MCap $15M, Rev $81M, +67% growth, 38% GM, Coke distribution deal), AMZN $5.51 (MCap $1.9B, Rev $3.12B, +13%, marketplace+AWS), AAPL $0.27 (MCap $1.8B, Rev $7.08B, ecosystem lock-in, Jobs return), NFLX $0.50 (MCap $200M, Rev $152M, +88%, DVD logistics), TSLA $4.72 (MCap $800M, Rev $117M, +1100%, vertical integration). What are the COMMON CHARACTERISTICS that all these had at entry? Identify the 5-10 most critical variables that predict 1000x outcomes.",
+          "system_prompt": "You are a quantitative equity researcher studying multi-bagger returns. Extract the precise DNA pattern from verified historical data. Focus on what was VISIBLE at entry point, not in hindsight.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t02",
+          "prompt": "1000x DNA VARIABLE MATRIX — SCORING FRAMEWORK. Based on the 1000x winners (NVDA, MNST, AMZN, AAPL, NFLX, TSLA, AMD, SHOP, CRWD, PLTR, RKLB), create a scoring framework with weighted variables. For each variable, assign a weight (total 100%). Variables must include: (1) TAM size vs current revenue (market penetration <1%), (2) Revenue growth rate, (3) Gross margin, (4) Insider ownership/alignment, (5) Platform/ecosystem moat, (6) Secular tailwind, (7) Price zone (sub-$10 at entry), (8) Market cap at entry vs TAM, (9) Unit economics trajectory, (10) Management quality. Create a formula that can score any stock against this 1000x DNA.",
+          "system_prompt": "You are building a quantitative scoring model. Weights should reflect which variables were MOST predictive of 1000x outcomes. The model must be actionable for screening current stocks.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t03",
+          "prompt": "SCORE GRAB ($3.41) against the 1000x DNA matrix. VERIFIED: MCap $13.9B, Rev $3.55B (+23.5%), GM 40.2%, PM 10.7%, FCF $330M, insider ownership low, institutions 42%, SE Asia superapp (ride-hailing+food+fintech+payments), TAM: SE Asia digital economy $218B (2025) growing to $600B+ (2030). GRAB has: (1) Platform/ecosystem? YES - superapp. (2) Revenue growing? YES +23.5%. (3) Market penetration? ~1.6% of $218B TAM. (4) Secular tailwind? YES - SE Asia digitization. (5) Sub-$10? YES $3.41. (6) Gross margin? 40.2% (moderate). Rate GRAB 1-100 on 1000x potential.",
+          "system_prompt": "You are scoring stocks against the 1000x DNA matrix. Be precise. Most stocks will score LOW — that's correct. Only exceptional companies score above 60.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t04",
+          "prompt": "SCORE PAGS ($8.77) against the 1000x DNA matrix. VERIFIED: MCap $2.45B, Rev $19.8B (+1.5%), GM 51.3%, PM 10.8%, FCF $5.23B, Brazilian fintech/payments. TAM: Brazil digital payments market ~$500B+, LATAM fintech $150B+. PAGS has: (1) Platform? YES — PagBank (banking) + PagSeguro (payments). (2) Revenue growth? SLOW +1.5%. (3) Market penetration? High in Brazil SMB. (4) Secular tailwind? YES — cash-to-digital in Brazil. (5) Sub-$10? YES $8.77. (6) Gross margin? 51.3%. BUT: Revenue growth has stalled. Is PAGS a growth company or a mature value play?",
+          "system_prompt": "You are scoring stocks against the 1000x DNA matrix. Be honest about growth deceleration. A company with slowing growth is unlikely to be 1000x.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t05",
+          "prompt": "SCORE SMWB ($4.31) against the 1000x DNA matrix. VERIFIED: MCap $378M, Rev $289M (+10.1%), GM 79.6%, PM -10.4% (not profitable), FCF $25.1M. SaaS analytics platform (Similarweb). TAM: Digital intelligence/web analytics market $15-30B. SMWB has: (1) Platform? YES — web traffic data monopoly. (2) Revenue growth? 10.1% (moderate). (3) Market penetration? <2% of $15-30B TAM. (4) Secular tailwind? YES — data-driven marketing. (5) Sub-$10? YES $4.31. (6) Gross margin? 79.6% (EXCELLENT for SaaS). Compare to early-stage CRWD or PLTR. Score 1-100.",
+          "system_prompt": "You are scoring stocks against the 1000x DNA matrix. SMWB has SaaS-like margins but slow growth. Compare realistically to early CRWD/PLTR/SHOP.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t06",
+          "prompt": "SCORE BMBL ($2.85) against the 1000x DNA matrix. VERIFIED: MCap $432M, Rev $931M (-14.1%), GM 71.9%, PM -71% (goodwill impairment), FCF $235M. Dating app (Bumble). TAM: Online dating $15-20B. BMBL has: (1) Platform? YES — women-first dating. (2) Revenue growth? DECLINING -14.1%. (3) Market penetration? HIGH — Bumble is already #2 dating app. (4) Secular tailwind? MIXED — dating apps face fatigue + AI disruption. (5) Sub-$10? YES $2.85. (6) Gross margin? 71.9%. BUT: This is a DECLINING business at ATH market penetration. Can a declining company be 1000x? Score 1-100.",
+          "system_prompt": "You are scoring stocks against the 1000x DNA matrix. A declining business almost NEVER becomes 1000x. Be honest.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t07",
+          "prompt": "SCORE TUYA ($1.99) against the 1000x DNA matrix. VERIFIED: MCap $1.22B, Rev $328M (+8.3%), GM 47.8%, PM 19.1%, FCF $21.2M, Cash $951M (74% of mcap). IoT cloud platform, China-based (ADR risk). TAM: Global IoT platform market $80-150B by 2030. TUYA has: (1) Platform? YES — IoT device cloud. (2) Revenue growth? +8.3% (slow). (3) Market penetration? <0.5% of IoT TAM. (4) Secular tailwind? YES — IoT explosion. (5) Sub-$10? YES $1.99. (6) Gross margin? 47.8%. BUT: China ADR risk, slow growth, niche platform. Score 1-100.",
+          "system_prompt": "You are scoring stocks against the 1000x DNA matrix. Consider China ADR risk as a significant discount factor. IoT TAM is huge but TUYA's growth is too slow for 1000x.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t08",
+          "prompt": "SCORE TIGR ($4.67) against the 1000x DNA matrix. VERIFIED: MCap $835M, Rev $539M (+45.8%), GM 87.6%, PM 31.7%. Fintech brokerage (Tiger Brokers), China-based. TAM: APAC online brokerage $50-100B. TIGR has: (1) Platform? YES — multi-market brokerage. (2) Revenue growth? +45.8% (STRONG). (3) Market penetration? <1% of APAC. (4) Secular tailwind? YES — retail trading. (5) Sub-$10? YES $4.67. (6) Gross margin? 87.6% (EXCEPTIONAL). BUT: China ADR risk, regulatory exposure, KILLED at 2/10 in Sprint 12. Why was it killed and does the 1000x DNA say different?",
+          "system_prompt": "You are scoring stocks against the 1000x DNA matrix. TIGR was previously killed. Score objectively against DNA criteria regardless of prior rating.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t09",
+          "prompt": "SCORE TASK ($5.86) against the 1000x DNA matrix. VERIFIED: MCap $537M, Rev $1.21B (+10.3%), GM 39.2%, PM 8.7%, FCF $81.5M. TaskUs provides digital outsourcing (content moderation, AI training data, customer support). TAM: Digital outsourcing/BPO $350-500B. TASK has: (1) Platform? PARTIAL — human-in-loop AI services. (2) Revenue growth? +10.3% (moderate). (3) Market penetration? <0.3% of BPO TAM. (4) Secular tailwind? YES AND NO — AI creates demand for training data BUT also threatens to replace human services. (5) Sub-$10? YES $5.86. (6) Gross margin? 39.2% (low for tech). Score 1-100.",
+          "system_prompt": "You are scoring stocks against the 1000x DNA matrix. Consider the AI disruption paradox: AI creates demand for TASK's services short-term but threatens them long-term.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t10",
+          "prompt": "SCORE PAYO ($5.09) against the 1000x DNA matrix. VERIFIED: MCap $1.70B, Rev $1.07B (+6.1%), GM 84.9%, PM 6.8%, FCF -$39.3M (negative). Payoneer — cross-border payments platform. TAM: Cross-border B2B payments $150-250T market. PAYO has: (1) Platform? YES — global payments network. (2) Revenue growth? +6.1% (SLOW). (3) Market penetration? TINY fraction of $150T+ market. (4) Secular tailwind? YES — globalization of freelance/SMB economy. (5) Sub-$10? YES $5.09. (6) Gross margin? 84.9% (EXCELLENT). BUT: Revenue growth is slow for the TAM opportunity. Negative FCF. Score 1-100.",
+          "system_prompt": "You are scoring stocks against the 1000x DNA matrix. High margins + huge TAM + low penetration is classic 1000x setup, BUT execution matters. Is revenue growth fast enough?",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t11",
+          "prompt": "SCORE GAU ($2.15) against the 1000x DNA matrix. VERIFIED: MCap $562M, Rev $432M (+88.8%), GM 50.7%, PM 7.0%, FCF $67.9M. Galiano Gold — gold miner (Ghana). TAM: Gold mining $230B+. GAU has: (1) Platform? NO — commodity producer. (2) Revenue growth? +88.8% (mine expansion). (3) Market penetration? N/A (commodity). (4) Secular tailwind? YES — gold supercycle. (5) Sub-$10? YES $2.15. (6) Gross margin? 50.7%. Gold miners are NEVER 1000x candidates — they're commodity producers with depleting assets. Score 1-100.",
+          "system_prompt": "You are scoring stocks against the 1000x DNA matrix. Commodity producers with depleting reserves almost NEVER achieve 1000x returns. Be honest.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t12",
+          "prompt": "SCORE BTG ($4.55) against the 1000x DNA matrix. VERIFIED: MCap $6.06B, Rev $3.69B (+117.7%), GM 65.5%, PM 14.8%, FCF $719M. B2Gold — gold miner. Already at $6.06B MCap — too large for 1000x ($6 TRILLION would be needed). Same commodity producer limitations as GAU. Gold miners are structurally incapable of 1000x. Why? (1) Depleting reserves. (2) Capex-intensive. (3) No platform effects. (4) Revenue capped by gold price and production. (5) No compounding — each oz mined is gone. Score 1-100.",
+          "system_prompt": "You are scoring stocks against the 1000x DNA matrix. BTG at $6B MCap is already disqualified from 1000x by math alone. Score accordingly.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t13",
+          "prompt": "COMPARATIVE RANKING: Score all portfolio + watchlist stocks on 1000x potential. Rank from highest to lowest: GRAB ($3.41), PAGS ($8.77), SMWB ($4.31), BMBL ($2.85), TUYA ($1.99), TIGR ($4.67), TASK ($5.86), PAYO ($5.09), GAU ($2.15), BTG ($4.55). For EACH, give: (1) 1000x DNA Score (1-100), (2) Realistic max multiple (3x, 5x, 10x, 100x, 1000x), (3) Key 1000x variable present/missing, (4) One-line verdict. Then answer: Does ANY of these have genuine 1000x potential?",
+          "system_prompt": "You are the final ranking agent. Be brutally honest. Most stocks are NOT 1000x candidates. If none qualify, say so. The goal is to identify where to concentrate capital for maximum asymmetric upside.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t14",
+          "prompt": "WHERE TO FIND 1000x CANDIDATES IN 2026. The current portfolio (GRAB, BMBL, TUYA, GAU, BTG) and watchlist (SMWB, PAGS, PAYO, TASK) were screened from 394 stocks. None may be true 1000x. Identify the SECTORS and THEMES most likely to produce the next 1000x in 2026-2027: (1) AI infrastructure (who is the next NVDA?), (2) Robotics/automation, (3) Biotech/gene therapy, (4) Space/defense, (5) Energy transition, (6) Quantum computing, (7) Digital health, (8) Web3/crypto infrastructure. For EACH sector, name 1-2 specific sub-$10 stocks that have 1000x DNA. Must be real companies with real revenue.",
+          "system_prompt": "You are a 1000x opportunity scout. Name SPECIFIC tickers with real financials. No SPACs, no pre-revenue biotechs, no meme stocks. Real companies with real revenue at sub-$10 prices.",
+          "temperature": 0.5,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t15",
+          "prompt": "1000x DNA: PLATFORM EFFECTS ANALYSIS. The most critical variable in 1000x outcomes is PLATFORM/ECOSYSTEM. NVDA had CUDA, AMZN had Marketplace+AWS, AAPL had iPhone ecosystem, NFLX had recommendation engine, TSLA had Supercharger+FSD, CRWD had Falcon, PLTR had AIP. Analyze which current portfolio stocks have genuine platform effects: GRAB (superapp), SMWB (web analytics data), TUYA (IoT cloud), PAYO (payments network), PAGS (PagBank+PagSeguro). Rate the STRENGTH of each platform (1-10) and whether it creates lock-in, network effects, and switching costs.",
+          "system_prompt": "You are a platform economics expert. Rate platform strength objectively. Weak platforms (low switching costs, no network effects) should score <4.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t16",
+          "prompt": "1000x DNA: TAM PENETRATION ANALYSIS. The key insight from historical winners is they ALL had <2% TAM penetration at entry. Calculate current TAM penetration for each stock: GRAB (Rev $3.55B / TAM $218B SE Asia digital = 1.6%), PAGS (Rev $19.8B / TAM $500B Brazil digital = 4.0%), SMWB (Rev $289M / TAM $15-30B analytics = 1-2%), TUYA (Rev $328M / TAM $80-150B IoT = 0.2-0.4%), PAYO (Rev $1.07B / TAM $150T cross-border = 0.001%), TASK (Rev $1.21B / TAM $350-500B BPO = 0.2-0.3%), BMBL (Rev $931M / TAM $15-20B dating = 4.6-6.2%). Which have the most runway?",
+          "system_prompt": "You are a TAM penetration analyst. Low penetration + large TAM = maximum upside potential. But penetration must be GROWING, not stalled.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t17",
+          "prompt": "1000x DNA: SECULAR TAILWIND ANALYSIS. Every 1000x winner rode a massive secular wave: NVDA rode AI/GPU computing, AMZN rode e-commerce, AAPL rode smartphones, TSLA rode EV transition, NFLX rode streaming, CRWD rode cybersecurity. What SPECIFIC secular tailwinds exist for each portfolio stock in 2026? Rate the STRENGTH and DURATION (years) of each tailwind: GRAB (SE Asia digitization), PAGS (Brazil cash-to-digital), SMWB (data-driven marketing), TUYA (IoT), PAYO (globalization of work), TASK (AI training data), BMBL (??), GAU/BTG (gold supercycle). Which tailwinds are strongest?",
+          "system_prompt": "You are a macro trend analyst. Rate tailwind strength 1-10 and expected duration in years. A 1000x needs a 10+ year tailwind.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t18",
+          "prompt": "1000x DNA: REVENUE GROWTH TRAJECTORY. At entry, most 1000x winners had revenue growing >30% YoY. Current growth rates: GRAB +23.5%, BMBL -14.1%, TUYA +8.3%, GAU +88.8%, BTG +117.7%, TIGR +45.8%, PAGS +1.5%, PAYO +6.1%, SMWB +10.1%, TASK +10.3%. Only GRAB (23.5%), GAU (88.8%), BTG (117.7%), and TIGR (45.8%) have strong growth. But GAU/BTG are commodity miners (growth from mine expansion, not compounding). TIGR is killed (China ADR). That leaves GRAB as the ONLY portfolio stock with 1000x-level growth. Is this correct? What minimum growth rate is needed for 1000x over 10 years?",
+          "system_prompt": "You are a growth trajectory analyst. Calculate the minimum annual revenue CAGR needed to reach 1000x market cap from each stock's current level over 10 years.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t19",
+          "prompt": "1000x DNA: INSIDER OWNERSHIP & SKIN IN GAME. At entry, most 1000x winners had significant insider ownership: NVDA (Jensen Huang ~4.2%), TSLA (Elon Musk ~22%), NFLX (Reed Hastings ~15%), PLTR (Peter Thiel ~35.7%). Current portfolio insider ownership: GRAB (unknown), BMBL (low), TUYA (CEO 19.36%), GAU (3.4%), BTG (unknown), TIGR (10.8%), PAGS (unknown), PAYO (unknown), SMWB (8.4%), TASK (unknown). Which have the highest insider alignment? TUYA CEO at 19.36% is the highest — does this signal conviction? Compare to 1000x winner insider levels.",
+          "system_prompt": "You are an insider alignment analyst. High insider ownership (>10%) is a strong positive signal. Low insider ownership (<3%) with insider selling is a red flag.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t20",
+          "prompt": "WHAT MODEL/DATA SOURCE TO USE INSTEAD OF DEEPSEEK. The pipeline currently uses DeepSeek for qualitative analysis but it hallucinates numbers (7.5% error rate on facts, ZERO trust on specific numbers). What alternatives exist for getting RELIABLE data during stock research? Evaluate: (1) Claude API with tool use (can call yfinance/SEC EDGAR directly), (2) GPT-4o with browsing, (3) Financial data APIs (Alpha Vantage, Polygon, Financial Modeling Prep, IEX Cloud, Quandl), (4) SEC EDGAR XBRL feeds (raw filings), (5) yfinance Python library (free, already used), (6) MCP servers for exchange data. Recommend the optimal stack for reliable automated equity research. Cost vs accuracy tradeoff.",
+          "system_prompt": "You are a data infrastructure architect for automated equity research. Prioritize DATA ACCURACY over cost. DeepSeek is cheap but unreliable. What's the best alternative?",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t21",
+          "prompt": "1000x PROBABILITY CALCULATOR. For each stock, calculate the MATHEMATICAL probability of 1000x return. Formula: Current MCap × 1000 = Target MCap. Is Target MCap achievable for ANY company in that sector? GRAB: $13.9B × 1000 = $13.9T (NO — larger than any company ever). SMWB: $378M × 1000 = $378B (MAYBE — SaaS companies have reached this). BMBL: $432M × 1000 = $432B (NO — dating app cannot be $432B). TUYA: $1.22B × 1000 = $1.22T (NO). PAYO: $1.70B × 1000 = $1.70T (NO). TASK: $537M × 1000 = $537B (VERY unlikely). Which current portfolio/watchlist stock has the highest MATHEMATICAL 1000x probability?",
+          "system_prompt": "You are a probability mathematician. Be ruthlessly mathematical. If the target MCap exceeds the entire sector TAM, probability is 0%. Only SMWB at $378M has even a theoretical path.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t22",
+          "prompt": "IDENTIFY NEW 1000x CANDIDATES: SECTOR SCAN. The current portfolio has NO genuine 1000x candidate (GRAB is closest but at $13.9B MCap, 1000x = $13.9T, impossible). To find a real 1000x, you need: MCap <$500M, Rev growing >50%/yr, GM >50%, platform/ecosystem, TAM >$100B, <1% penetration, sub-$10 price. Scan these sectors for stocks matching ALL criteria: (1) AI/ML infrastructure (not the LLM companies but the picks-and-shovels), (2) Edge computing, (3) Quantum computing, (4) Autonomous systems, (5) Digital health/biotech. Name specific tickers with verified revenue data.",
+          "system_prompt": "You are a 1000x stock screener. Apply ALL criteria strictly. Most stocks fail. Name only those that pass every criterion. If none pass, say none pass.",
+          "temperature": 0.5,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t23",
+          "prompt": "1000x TIMING ANALYSIS. Historical 1000x winners took 5-15 years from entry to peak. NVDA took ~20 years ($5 in 2015 to $1,000+ in 2024), AMZN took ~20 years, AAPL took ~20 years from Jobs' return, TSLA took ~10 years, NFLX took ~15 years. The user's timeframe is 10 years. Analyze: (1) Is 10 years enough for a 1000x return? (2) Which sectors are MOST LIKELY to produce 1000x in the NEXT 10 years (2026-2036)? (3) What stage should the company be at TODAY to be 1000x by 2036? (4) Has the window for finding a 1000x at sub-$10 already closed in this cycle?",
+          "system_prompt": "You are a market cycle analyst. Be realistic about 1000x timing. Most 1000x returns required buying during deep pessimism and holding through 15-20 year cycles.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t24",
+          "prompt": "1000x DNA: GROSS MARGIN AS PREDICTOR. All 1000x winners had high or rapidly improving gross margins at entry: NVDA 56.1%, SHOP 79.2%, CRWD 72.5%, PLTR 78%, NFLX 45%, AMZN 28% (low but improving), TSLA 26.5% (improving). Portfolio gross margins: GRAB 40.2%, BMBL 71.9%, TUYA 47.8%, GAU 50.7%, BTG 65.5%, TIGR 87.6%, PAGS 51.3%, PAYO 84.9%, SMWB 79.6%, TASK 39.2%. High-margin stocks: TIGR 87.6%, PAYO 84.9%, SMWB 79.6%, BMBL 71.9%, BTG 65.5%. Which combine HIGH MARGINS with HIGH GROWTH? Only TIGR (87.6% GM + 45.8% growth) — but it's killed for China ADR risk.",
+          "system_prompt": "You are a margin quality analyst. The magic combination is >60% GM + >30% revenue growth. Identify which stocks have both.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t25",
+          "prompt": "PORTFOLIO OPTIMIZATION: Given that no current holding has genuine 1000x potential, what is the OPTIMAL allocation for a $2,500 portfolio seeking maximum asymmetric upside? Current: GRAB $540 (8/10), BTG $234, GAU $225, TUYA $200, TIGR $202 (SELL), Cash $1,062, Pending PAGS $461, PAYO $255. Recommended actions: (1) Sell TIGR ($202 → cash), (2) Allocate to highest-conviction positions, (3) Reserve capital for NEW 1000x candidates when found. What's the ideal allocation? Should the portfolio FOCUS on 2-3 high-conviction positions or DIVERSIFY across 8-10?",
+          "system_prompt": "You are a portfolio optimization analyst for a small account ($2,500). For small portfolios, CONCENTRATION beats diversification. Kelly criterion suggests 2-3 max conviction bets.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t26",
+          "prompt": "GRAB AS BEST 1000x CANDIDATE. GRAB scores highest in the portfolio on 1000x DNA: platform/ecosystem (superapp), revenue growth (+23.5%), TAM ($218B growing to $600B+), sub-$10 price ($3.41), secular tailwind (SE Asia digitization). GRAB's realistic upside: 3-5x = $10-17 (realistic), 10x = $34 (bull case, $140B MCap = larger than any SE Asian company), 100x = $341 (impossible — $1.4T). While GRAB can't reach 1000x from $13.9B MCap, it could be a 5-10x. Is GRAB the BEST use of capital in the portfolio? Should position be DOUBLED from 150 to 300 shares?",
+          "system_prompt": "You are a capital allocation analyst. GRAB is the best position but 1000x is mathematically impossible from $13.9B. Focus on realistic 3-10x analysis.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t27",
+          "prompt": "SMWB AS DARK HORSE 1000x CANDIDATE. SMWB has the smallest MCap ($378M) in the portfolio/watchlist, giving it the longest mathematical runway for 1000x ($378B target — unlikely but SaaS companies have reached this). SMWB DNA: GM 79.6% (SaaS-level), platform (web analytics data monopoly), TAM $15-30B, penetration ~1-2%. BUT: Revenue growth only 10.1%, negative profit margin, FCF just $25M. Compare SMWB's DNA at $4.31 to early-stage PLTR at $6 or early CRWD at $16. Does SMWB have what it takes to be a SaaS compounder like Datadog, Cloudflare, or CrowdStrike?",
+          "system_prompt": "You are a SaaS compounder analyst. Compare SMWB's current metrics to where CRWD/DDOG/NET were at similar market caps. Is the growth rate fast enough?",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t28",
+          "prompt": "DATA STACK RECOMMENDATION FOR 1000x PIPELINE. The user wants to screen 1000s of stocks efficiently for 1000x DNA. Current stack: DeepSeek (qualitative, unreliable) + yfinance (data, free, reliable) + Claude (orchestration). Recommend the optimal data pipeline: (1) For PRICE/FINANCIALS: yfinance (free) vs Financial Modeling Prep API ($19/mo, 250K calls, full financials + DCF + ratios) vs Alpha Vantage (free tier 5/min). (2) For QUALITATIVE: Claude API (accurate but expensive ~$0.015/1K tokens) vs DeepSeek ($0.0007/1K, unreliable) vs Gemini (mid-price, mid-reliability). (3) For SEC FILINGS: EDGAR XBRL (free, structured) vs SEC-API ($50/mo). (4) For SCREENING: Finviz (free screener) vs custom yfinance screen. Build the recommended stack with cost estimate for screening 1000 stocks.",
+          "system_prompt": "You are a fintech data architect. Design the optimal cost-effective pipeline for screening 1000+ stocks. Prioritize accuracy over cost. The current DeepSeek approach works but hallucinates facts.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t29",
+          "prompt": "1000x DNA: WHAT'S MISSING FROM THE CURRENT PORTFOLIO. Compare the portfolio to the 1000x DNA checklist: (1) Sub-$500M MCap? Only SMWB ($378M), BMBL ($432M), TASK ($537M) qualify. (2) Revenue >$100M growing >30%? GRAB ($3.55B, +23.5%) is close but MCap too large. None of the sub-$500M stocks grow >30%. (3) GM >50%? SMWB 79.6%, BMBL 71.9%. (4) Platform/ecosystem? GRAB (strong), SMWB (moderate). (5) <1% TAM penetration? TUYA 0.3%, SMWB 1-2%. CONCLUSION: The portfolio has PIECES of 1000x DNA spread across different stocks, but NO SINGLE STOCK has ALL the pieces. What's the gap?",
+          "system_prompt": "You are a gap analysis specialist. Identify precisely which 1000x DNA variables are missing and which sectors/stocks might fill them.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t30",
+          "prompt": "FINAL 1000x HUNT STRATEGY. Given: (1) No current holding is a true 1000x candidate. (2) GRAB is the BEST position (8/10, 5-10x potential). (3) SMWB is the BEST mathematical 1000x candidate (smallest MCap, SaaS margins). (4) Gold miners (GAU/BTG) are NEVER 1000x. (5) BMBL is declining. (6) TIGR is killed. Recommended 1-year strategy: (a) What to SELL, (b) What to HOLD, (c) What to ADD, (d) WHERE to look for the next 1000x. Should the focus shift from sub-$10 value stocks to sub-$500M growth stocks with 1000x DNA? What specific screens should the pipeline run next?",
+          "system_prompt": "You are the chief strategist. Design the 1-year roadmap for finding the 1000x. Be actionable. Name specific next steps, screens to run, and sectors to investigate.",
+          "temperature": 0.5,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t31",
+          "prompt": "VERIFIABLE DATA SOURCES FOR AUTOMATED RESEARCH. List SPECIFIC APIs and data sources that provide VERIFIED financial data (not AI-generated guesses): (1) yfinance — free, Python, covers 90% of needs but rate-limited. (2) Financial Modeling Prep (FMP) — $19/mo, REST API, income statement/balance sheet/cash flow/ratios/DCF/insider transactions. (3) SEC EDGAR XBRL — free, XML, raw 10-K/10-Q data, gold standard. (4) Polygon.io — $29/mo, real-time + historicals. (5) Alpha Vantage — free tier (25/day), financials + technicals. (6) IEX Cloud — $9/mo, company fundamentals. (7) FRED — free, macro data. For each: coverage, cost, reliability, rate limits, Python library availability.",
+          "system_prompt": "You are a financial data API specialist. Provide EXACT pricing, rate limits, and Python library names. The goal is to build a pipeline that can screen 1000 stocks/day with verified data.",
+          "temperature": 0.2,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t32",
+          "prompt": "1000x HUNT: FRESH UNIVERSE SCAN. Using the 1000x DNA criteria (MCap <$500M, Rev >$50M growing >30%, GM >50%, platform/ecosystem, TAM >$50B, sub-$10), identify 10 NEW stocks not in the current portfolio or watchlist that could be 1000x candidates. Search across: US exchanges (NYSE, NASDAQ), Canadian (TSX, TSXV). Sectors: AI infrastructure, cybersecurity, cloud, fintech, healthtech, robotics, space. Name the ticker, price, MCap, revenue, growth rate, gross margin, and one-line thesis for each.",
+          "system_prompt": "You are a 1000x stock screener. Apply ALL criteria strictly. Name REAL companies with REAL revenue. If you can't verify the data, say so. Do not make up numbers.",
+          "temperature": 0.5,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t33",
+          "prompt": "1000x DNA: THE MISSING CATALYST. Every 1000x winner had a SPECIFIC CATALYST that ignited the run: NVDA — Data Center GPU (2016), AMZN — AWS launch (2006), AAPL — iPod+iTunes (2001), TSLA — Model S deliveries (2012), NFLX — streaming pivot (2007), CRWD — COVID remote work (2020), PLTR — AIP platform launch (2023). For current portfolio stocks, identify: (1) What is each stock's potential CATALYST? (2) When could it happen? (3) How likely is it? GRAB: SE Asia financial services license? SMWB: AI-powered analytics product? PAGS: PIX instant payments adoption? BMBL: AI dating feature? TUYA: Smart home platform standard?",
+          "system_prompt": "You are a catalyst identification specialist. A 1000x needs a SPECIFIC, IDENTIFIABLE catalyst event, not just 'growth.' What's the ignition event for each stock?",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t34",
+          "prompt": "1000x DNA: MOAT DURABILITY ANALYSIS. NVDA's CUDA moat has lasted 10+ years. AMZN's marketplace moat is 25+ years. AAPL's ecosystem is 20+ years. For current portfolio: (1) GRAB's superapp moat — how durable? GoTo/Sea Group compete. (2) SMWB's web analytics moat — how durable? SimilarWeb data is hard to replicate. (3) BMBL's dating moat — WEAK (users multi-home). (4) TUYA's IoT moat — moderate (device integrations). (5) PAYO's payments moat — moderate (network effects). Rate moat durability 1-10 years for each. A 1000x requires a moat that lasts 15+ years.",
+          "system_prompt": "You are a competitive moat analyst. Rate moat durability honestly. Most moats are weaker than investors think. Only structural moats (data, ecosystem, regulatory) last 15+ years.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t35",
+          "prompt": "SPRINT 17 FINAL VERDICT: 1000x HUNT STATUS. After analyzing all portfolio and watchlist stocks against the 1000x DNA matrix: (1) RANKING: Order all stocks by 1000x potential score. (2) BEST CANDIDATE: Which one stock has the highest probability of 1000x return? (3) HONEST ASSESSMENT: Is a 1000x outcome realistic from the current portfolio? (4) PIVOT RECOMMENDATION: Should the strategy pivot from 'find 1000x in sub-$10 stocks' to 'find 10-50x in concentrated positions'? (5) NEXT SPRINT: What should Sprint 18 focus on to advance the 1000x hunt?",
+          "system_prompt": "You are the final strategist. Be honest: if 1000x is unrealistic from the current portfolio, say so and recommend the next best strategy. The user wants maximum asymmetric upside over 10 years.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t36",
+          "prompt": "YFINANCE AUTOMATED SCREEN: Design a Python script that can screen for 1000x candidates using yfinance. The script should: (1) Scan all NASDAQ/NYSE stocks, (2) Filter: price <$10, MCap <$500M, revenue >$50M, revenue growth >30%, gross margin >50%, (3) Calculate TAM penetration where possible, (4) Output: ticker, price, MCap, revenue, growth, GM, sector. How many stocks would typically pass these filters? Estimate the false positive rate. What additional filters would improve accuracy?",
+          "system_prompt": "You are a quantitative screener developer. Design a practical yfinance-based screen that can be run daily. Keep it simple and fast.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t37",
+          "prompt": "1000x DNA: NETWORK EFFECTS SCORING. The strongest 1000x predictor is NETWORK EFFECTS (each new user makes the product more valuable). Rate each stock's network effect strength (0-10): GRAB (riders attract drivers attract restaurants = 8/10), BMBL (users attract users = 5/10, but multi-homing weakens it), TUYA (device manufacturers attract consumers = 4/10), PAYO (senders attract receivers = 6/10), PAGS (merchants attract consumers = 7/10), SMWB (more data = better analytics = more subscribers = 3/10, weak network), TASK (no network effects = 0/10). Which have GENUINE network effects?",
+          "system_prompt": "You are a network effects analyst. Rate honestly. Most companies claim network effects but few actually have them. True network effects create exponential, not linear, value.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t38",
+          "prompt": "1000x DNA: MANAGEMENT TRACK RECORD SCORING. Did management previously build something from zero to massive scale? NVDA: Jensen Huang built CUDA from scratch. AMZN: Bezos built marketplace from garage. TSLA: Musk built SpaceX and PayPal. For current portfolio: GRAB — Anthony Tan (McKinsey background, built Grab from scratch in SE Asia = STRONG), BMBL — Whitney Wolfe Herd (founder, built Bumble after Tinder = MODERATE but company declining), TUYA — Jerry Wang (CEO, 19.4% ownership, built IoT platform = MODERATE), SMWB — Or Offer (founder, data background = MODERATE), PAGS — Ricardo Dutra (professionalized PagSeguro = MODERATE). Rate management's 1000x DNA.",
+          "system_prompt": "You are a founder/CEO analyst. The best 1000x outcomes come from FOUNDER-LED companies with mission-driven CEOs who own significant equity. Rate each.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t39",
+          "prompt": "DEEP VALUE vs 1000x GROWTH: STRATEGY FORK. The current portfolio is mostly DEEP VALUE plays (BMBL at 3x EV/EBITDA, TUYA with cash = 74% of MCap, GAU/BTG gold miners). Deep value is 2-5x, NOT 1000x. 1000x requires GROWTH + PLATFORM + TAM + TIME. Should the portfolio: (A) KEEP deep value focus (2-5x on each position, compound slowly), (B) PIVOT to growth (sell value positions, buy 1-2 high-growth platform companies with 1000x DNA), or (C) BARBELL (keep deep value for downside protection, add 1 concentrated growth bet for 1000x upside)? Recommend specific allocation percentages.",
+          "system_prompt": "You are a portfolio strategy architect. For a $2,500 portfolio, the optimal approach matters enormously. Small portfolios need CONCENTRATION, not diversification.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t40",
+          "prompt": "1000x HUNT: ONE-YEAR ROADMAP. Design a 12-month plan to identify and position in the next 1000x winner. Monthly milestones: Month 1: Screen 500 sub-$500M stocks using yfinance. Month 2: Deep dive top 20 with 40-agent pipeline. Month 3: Build positions in top 3. Month 4-6: Monitor catalysts. Month 7-9: Re-screen for new candidates. Month 10-12: Concentrate in best 1-2 positions. Key activities per month, cost estimate (pipeline + API costs), expected outcome. The pipeline currently costs ~$0.05 per sprint (40 agents). At $0.05/sprint, what's the annual cost for weekly sprints?",
+          "system_prompt": "You are a project manager for a 1000x equity research operation. Design a realistic 12-month plan with specific deliverables, costs, and milestones.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        }
+      ]
+    }
+  ]
+}

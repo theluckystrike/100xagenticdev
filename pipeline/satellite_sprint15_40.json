@@ -1,0 +1,466 @@
+{
+  "pipeline_id": "satellite_sprint15_40",
+  "description": "Sprint 15 — 40 pure math/logic calculator pages across 8 high-ROI domains. Zero external data dependencies. All tools are self-contained computational engines. K1: 5 pages per domain. K3: deploy after Jun 5 (48h from Jun 3 S11/S12-S14 deploys).",
+  "sprint": 15,
+  "date": "2026-06-05",
+  "domains": [
+    "heytensor.com",
+    "kickllm.com",
+    "gpt0x.com",
+    "abwex.com",
+    "ml3x.com",
+    "claudkit.com",
+    "claudflow.com",
+    "kappafy.com"
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "description": "Generate 40 HTML tool pages — 5 per domain, 8 domains. Pure math/logic calculators only. Zero real-world data fetches. All computations are deterministic formulas.",
+      "tasks": [
+
+        {
+          "task_id": "ht-s15-01",
+          "domain": "heytensor.com",
+          "slug": "learning-rate-finder-calculator",
+          "tool_description": "Learning Rate Finder Calculator — simulate the LR range test. User enters min LR, max LR, number of iterations, batch loss values (manual or auto-simulated with noise). Plots loss vs LR curve on canvas. Highlights the optimal LR region (steepest negative slope). Shows: suggested LR (10x before minimum loss), warmup schedule suggestion, cyclical LR range. Pure math: exponential LR sweep, finite differences for slope.",
+          "prompt": "Write a complete, self-contained HTML page for heytensor.com titled 'Learning Rate Finder Calculator'. Build an interactive tool where users: 1) Enter min LR (e.g. 1e-7), max LR (e.g. 1.0), number of steps (50-500), 2) Toggle between 'auto-simulate loss curve' (generates a realistic noisy convex curve using Math.random seeded noise + quadratic formula) or 'manual paste loss values', 3) Click Run Finder. Compute: exponential LR sweep (lr = min_lr * (max_lr/min_lr)^(step/n_steps)), smooth loss with EMA (beta=0.98), find steepest descent region using finite differences, recommend optimal LR as 10x before minimum smoothed loss. Display: canvas chart of smoothed loss vs log(LR) with highlighted optimal region, suggested LR in bold, suggested cyclical LR range (optimal/10 to optimal/2), OneCycleLR policy suggestion. Include PyTorch code snippet showing torch.optim.lr_scheduler.OneCycleLR with computed values. Dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent), mobile-responsive, zero external deps. Canonical: https://heytensor.com/tools/learning-rate-finder-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Meta title under 60 chars, meta description under 155 chars. Footer: '© 2025 heytensor.com — Free ML Engineering Tools'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ht-s15-02",
+          "domain": "heytensor.com",
+          "slug": "gradient-accumulation-calculator",
+          "tool_description": "Gradient Accumulation Steps Calculator. Given target effective batch size, GPU memory, per-GPU batch size, number of GPUs — compute required accumulation steps, effective LR scaling (linear or sqrt rule), estimated memory usage, and throughput penalty.",
+          "prompt": "Write a complete, self-contained HTML page for heytensor.com titled 'Gradient Accumulation Calculator'. Build an interactive calculator where users: 1) Enter desired effective batch size (e.g. 2048), 2) Enter per-GPU batch size (e.g. 8), 3) Enter number of GPUs (1-512), 4) Select LR scaling rule (linear: lr *= effective_bs/base_bs, or sqrt: lr *= sqrt(effective_bs/base_bs)), 5) Enter base batch size (default 256) and base LR. Compute: accumulation_steps = effective_bs / (per_gpu_bs * num_gpus), scaled_lr, steps per optimizer update, estimated throughput overhead (1-3% per accumulation step). Display: results table, recommendation (use gradient checkpointing if accum_steps > 8), PyTorch training loop code snippet showing scaler and accumulate pattern with GradScaler. Include comparison table: 4 common batch size configurations. Dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent), mobile-responsive, zero external deps. Canonical: https://heytensor.com/tools/gradient-accumulation-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Meta title under 60 chars, meta description under 155 chars. Footer: '© 2025 heytensor.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ht-s15-03",
+          "domain": "heytensor.com",
+          "slug": "transformer-flops-calculator",
+          "tool_description": "Transformer FLOPs Calculator. Given model config (layers, hidden dim, heads, FFN multiplier, sequence length, batch size) — compute forward pass FLOPs, backward pass FLOPs, total training FLOPs per step, MFU (model FLOP utilization) given GPU TFLOPS.",
+          "prompt": "Write a complete, self-contained HTML page for heytensor.com titled 'Transformer FLOPs Calculator'. Build an interactive calculator where users enter: number of layers (L), hidden dimension (d_model), number of attention heads, FFN expansion factor (default 4), sequence length, batch size, GPU type (dropdown: A100-40GB=312TFLOPS, A100-80GB=312TFLOPS, H100=989TFLOPS, RTX-4090=82.6TFLOPS, V100=112TFLOPS). Compute using standard formulas: attention FLOPs per layer = 4 * batch * seq^2 * d_model + 4 * batch * seq * d_model^2, FFN FLOPs per layer = 2 * batch * seq * d_model * ffn_dim * 2, total forward FLOPs = L * (attention + FFN), backward FLOPs = 2x forward, total per step = 3x forward. Also compute: MFU = achieved_flops / peak_tflops where achieved = total_flops / step_time_seconds (user enters step time). Show breakdown table (attention vs FFN vs total), MFU gauge (typical 40-60% for well-tuned training), and comparison across GPU types. Include Chinchilla scaling law reference. Dark theme, mobile-responsive, zero external deps. Canonical: https://heytensor.com/tools/transformer-flops-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 heytensor.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ht-s15-04",
+          "domain": "heytensor.com",
+          "slug": "cosine-lr-schedule-visualizer",
+          "tool_description": "Cosine LR Schedule Visualizer. Given total steps, warmup steps, initial LR, min LR — renders the full schedule on canvas. Supports cosine annealing, cosine with restarts (SGDR), warmup+cosine, and linear warmup+cosine decay. Shows exact LR at any step.",
+          "prompt": "Write a complete, self-contained HTML page for heytensor.com titled 'Cosine LR Schedule Visualizer'. Build an interactive tool where users: 1) Enter total training steps, 2) Enter warmup steps (linear warmup from 0 to max_lr), 3) Enter max LR, 4) Enter min LR (default 0 or 1e-7), 5) Select schedule type: (a) cosine decay, (b) cosine with warm restarts (SGDR) with T_0 and T_mult inputs, (c) linear warmup + cosine, (d) warmup + cosine + constant end phase. Compute LR at every step using exact formulas: cosine = min_lr + 0.5*(max_lr-min_lr)*(1+cos(pi*step/total_steps)), SGDR restarts. Render on canvas (responsive, 600px wide). Interactive: hover over chart to see exact (step, lr) values in a tooltip. Show: table of LR at key steps (0, warmup_end, 25%, 50%, 75%, 100%), total LR reduction %. PyTorch code snippet: torch.optim.lr_scheduler.CosineAnnealingLR with computed params. Dark theme (#0f172a bg), mobile-responsive, zero external deps. Canonical: https://heytensor.com/tools/cosine-lr-schedule-visualizer. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 heytensor.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ht-s15-05",
+          "domain": "heytensor.com",
+          "slug": "attention-head-dimension-calculator",
+          "tool_description": "Attention Head Dimension Calculator. Given d_model and num_heads — compute d_k, d_v, total attention params, KV cache size per token per layer, recommended head configurations. Shows impact of Multi-Head vs Multi-Query vs Grouped-Query attention on KV cache.",
+          "prompt": "Write a complete, self-contained HTML page for heytensor.com titled 'Attention Head Dimension Calculator'. Build an interactive calculator where users enter: d_model (hidden dimension), number of attention heads, number of layers (for KV cache calc), sequence length (for KV cache calc), batch size, precision (fp16/bf16/fp32 bytes per element). Compute: d_k = d_v = d_model / num_heads, Q/K/V projection param counts (d_model * d_model each), output projection (d_model * d_model), total attention params per layer. KV cache: size_per_token = 2 * num_layers * num_heads * d_k * bytes_per_element, total KV cache = size_per_token * seq_len * batch_size in MB/GB. Compare attention variants: (1) Multi-Head Attention (MHA) — full KV, (2) Multi-Query Attention (MQA) — 1 KV head, (3) Grouped-Query Attention (GQA) — user enters num_kv_heads: KV cache scales by num_kv_heads/num_heads. Show comparison table across MHA/MQA/GQA-2/GQA-4/GQA-8. Recommended head counts: d_model / num_heads should be 64 or 128. Dark theme, mobile-responsive, zero external deps. Canonical: https://heytensor.com/tools/attention-head-dimension-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 heytensor.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "kl-s15-01",
+          "domain": "kickllm.com",
+          "slug": "vector-database-cost-calculator",
+          "tool_description": "Vector Database Cost Calculator. Given number of vectors, dimension, query QPS, storage tier — compute monthly cost for Pinecone, Weaviate Cloud, Qdrant Cloud, and pgvector on RDS. Pure math: storage = n_vectors * dim * 4 bytes, index overhead multiplier 1.5x-3x.",
+          "prompt": "Write a complete, self-contained HTML page for kickllm.com titled 'Vector Database Cost Calculator'. Build an interactive calculator where users enter: number of vectors (1K to 1B), embedding dimension (128/256/384/768/1024/1536/3072), queries per second (QPS), replicas (1-3), metadata size per vector (bytes). Compute storage using: raw_bytes = n_vectors * dim * 4 (float32) or * 2 (float16), index overhead 2x-3x depending on HNSW parameters. Show monthly cost estimates using hardcoded 2025 pricing tiers: Pinecone (Serverless: $0.033/1M writes, $0.10/1M reads, $0.000/1M stored vectors after free tier), Weaviate Cloud (Sandbox free 14d, Standard ~$25/mo/node), Qdrant Cloud ($0 for 1GB free, then ~$0.0019/GB/hr), pgvector self-hosted (compute: enter instance cost). Include comparison table across all 4 options, breakeven analysis (when to switch from serverless to dedicated), recommended solution by scale tier (< 100K: any free tier, 100K-10M: Pinecone serverless, >10M: self-hosted). Dark theme (#0f172a), mobile-responsive, zero external deps. Canonical: https://kickllm.com/tools/vector-database-cost-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 kickllm.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "kl-s15-02",
+          "domain": "kickllm.com",
+          "slug": "llm-fine-tuning-cost-estimator",
+          "tool_description": "LLM Fine-Tuning Cost Estimator. Given base model size, training dataset tokens, PEFT method (LoRA/QLoRA/full FT), GPU type and cloud provider — compute total GPU hours, cloud cost, and memory requirements. Pure math formulas for LoRA param counts and training FLOPs.",
+          "prompt": "Write a complete, self-contained HTML page for kickllm.com titled 'LLM Fine-Tuning Cost Estimator'. Build an interactive calculator where users select: base model size (1B/3B/7B/13B/30B/70B parameters), fine-tuning method (Full Fine-Tune / LoRA / QLoRA / DoRA), LoRA rank r (4/8/16/32/64) and alpha, dataset size in tokens (1M to 10B), number of epochs (1-10), batch size, GPU type (A100-40GB $3.31/hr, A100-80GB $4.00/hr, H100 $7.00/hr, L4 $1.10/hr). Compute: training FLOPs = 6 * dataset_tokens * model_params (full FT), LoRA trainable params = 2 * r * d_model * num_layers * num_target_modules (estimate target_modules as 2/3 of total), QLoRA memory = model_params * 0.5 bytes (4-bit) + optimizer states for LoRA params only. GPU hours = total_flops / (gpu_tflops * mfu_estimate * 3600), where mfu_estimate = 0.35 for fine-tuning. Total cost = gpu_hours * hourly_rate. Show: memory breakdown (model weights + optimizer + activations), whether model fits in single GPU, cost comparison across all GPU types, estimated time. Include LoRA param count formula. Dark theme, mobile-responsive, zero external deps. Canonical: https://kickllm.com/tools/llm-fine-tuning-cost-estimator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 kickllm.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "kl-s15-03",
+          "domain": "kickllm.com",
+          "slug": "retrieval-precision-recall-calculator",
+          "tool_description": "RAG Retrieval Precision/Recall Calculator. Given true positives, false positives, false negatives — compute precision, recall, F1, MRR, NDCG@k, and MAP. Interactive confusion matrix builder. Pure math, no external data.",
+          "prompt": "Write a complete, self-contained HTML page for kickllm.com titled 'RAG Retrieval Metrics Calculator'. Build an interactive tool with 3 modes: (1) Basic Metrics: enter TP, FP, FN → compute precision = TP/(TP+FP), recall = TP/(TP+FN), F1 = 2*P*R/(P+R), accuracy, specificity. Show confusion matrix visualization (2x2 grid with color coding). (2) Ranking Metrics: user enters a ranked list of results (up to 20) marking each as relevant (1) or not (0) → compute MRR (mean reciprocal rank = 1/rank_of_first_relevant), Precision@k and Recall@k for k=1,3,5,10, NDCG@k (normalized discounted cumulative gain using DCG = sum(rel_i/log2(i+1)) and IDCG), Average Precision (AP = sum(P@k * rel_k / total_relevant)). (3) Multi-query MAP: user enters AP values for multiple queries → computes MAP = mean(AP). Show all formulas inline. Interactive: clicking cells in the ranked list toggles relevant/not-relevant and recalculates instantly. Include interpretation guide: what constitutes good RAG retrieval (precision>0.7, recall>0.6 typical targets). Dark theme (#0f172a), mobile-responsive, zero external deps. Canonical: https://kickllm.com/tools/retrieval-precision-recall-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 kickllm.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "kl-s15-04",
+          "domain": "kickllm.com",
+          "slug": "sparse-dense-hybrid-search-calculator",
+          "tool_description": "Hybrid Search Score Calculator. Given BM25 sparse score and dense cosine similarity score — compute hybrid scores using RRF (Reciprocal Rank Fusion), weighted sum with alpha, and relative score fusion. Shows how different alpha values shift results. Pure math.",
+          "prompt": "Write a complete, self-contained HTML page for kickllm.com titled 'Hybrid Search Score Calculator'. Build an interactive tool that demonstrates hybrid retrieval (BM25 + dense vector search) score fusion. Mode 1 — Single query: user enters BM25 scores (rank list of 10 docs, each 0-20) and cosine similarity scores (0-1 range, 10 docs). Compute: (a) RRF score = sum(1/(k+rank_i)) where k=60, (b) weighted sum: alpha*dense + (1-alpha)*normalized_bm25, (c) relative score fusion. Alpha slider (0.0 to 1.0). Show reranked lists for each method and how rankings change. Mode 2 — Alpha sensitivity: given fixed scores for 2 competing docs, plot hybrid score vs alpha on canvas. Mode 3 — BM25 from scratch: user enters query terms and document texts, computes TF-IDF-based BM25 (k1=1.5, b=0.75): BM25 = IDF * (TF*(k1+1))/(TF+k1*(1-b+b*doc_len/avg_doc_len)). Include interpretation of alpha: 0=pure BM25, 1=pure dense, 0.5=balanced. Dark theme (#0f172a), mobile-responsive, zero external deps. Canonical: https://kickllm.com/tools/sparse-dense-hybrid-search-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 kickllm.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "kl-s15-05",
+          "domain": "kickllm.com",
+          "slug": "context-compression-ratio-calculator",
+          "tool_description": "Context Compression Ratio Calculator. Given original context tokens and compressed token count — compute compression ratio, cost savings at various LLM pricing tiers, quality-cost tradeoff visualization. Simulates LLMLingua and Selective Context strategies.",
+          "prompt": "Write a complete, self-contained HTML page for kickllm.com titled 'Context Compression Ratio Calculator'. Build an interactive calculator where users: 1) Enter original context length in tokens, 2) Enter compressed context length (or use slider for target compression ratio 10%-90%), 3) Select LLM model for cost comparison (GPT-4o: $5/1M input, Claude 3.5 Sonnet: $3/1M, Gemini 1.5 Pro: $1.25/1M, GPT-4o-mini: $0.15/1M, Claude Haiku: $0.25/1M), 4) Enter daily request volume. Compute: compression_ratio = (original-compressed)/original * 100%, monthly_cost_original = (original_tokens/1M) * price_per_M * daily_requests * 30, monthly_cost_compressed = (compressed_tokens/1M) * price_per_M * daily_requests * 30, monthly_savings, annual_savings. Show: cost comparison table across all models, breakeven analysis (how many requests to justify adding compression overhead), optimal target compression by use-case (summarization: 50-70%, RAG context: 30-50%, few-shot examples: 60-80%). Canvas chart: cost vs compression ratio curve. Dark theme (#0f172a), mobile-responsive, zero external deps. Canonical: https://kickllm.com/tools/context-compression-ratio-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 kickllm.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Use dark theme (#0f172a bg, #e2e8f0 text, #38bdf8 accent). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "g0-s15-01",
+          "domain": "gpt0x.com",
+          "slug": "llm-benchmark-score-normalizer",
+          "tool_description": "LLM Benchmark Score Normalizer. Given raw scores on MMLU, HumanEval, MATH, GSM8K, HellaSwag — normalize to 0-100 scale, compute composite score with user-defined weights, plot radar chart. Pure math: min-max normalization, weighted average.",
+          "prompt": "Write a complete, self-contained HTML page for gpt0x.com titled 'LLM Benchmark Score Normalizer'. Build an interactive tool where users: 1) Enter raw benchmark scores for up to 5 models across 8 benchmarks: MMLU (0-100%), HumanEval (0-100%), MATH (0-100%), GSM8K (0-100%), HellaSwag (0-100%), ARC-Challenge (0-100%), WinoGrande (0-100%), BBH (0-100%). 2) Adjust weight sliders for each benchmark (default equal weights, sum to 1.0). 3) Compute: min-max normalized score per benchmark across entered models, weighted composite score = sum(weight_i * score_i), rank models by composite. Display: (a) data entry grid (models as columns, benchmarks as rows), (b) radar chart on canvas (spider/web plot) showing all models overlaid, (c) bar chart of composite scores with ranking, (d) heat map of raw scores (green=high, red=low). Pre-filled example: GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, LLaMA-3-70B with plausible 2024 scores. Export results as CSV. Dark theme with purple accent (#8b5cf6), mobile-responsive, zero external deps. Canonical: https://gpt0x.com/tools/llm-benchmark-score-normalizer. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 gpt0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with purple accent (#8b5cf6). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "g0-s15-02",
+          "domain": "gpt0x.com",
+          "slug": "tokens-per-second-calculator",
+          "tool_description": "LLM Tokens Per Second (TPS) Calculator. Given latency measurements — compute TPS, Time to First Token (TTFT), throughput for batched inference. Compare theoretical peak vs actual throughput. Show bottleneck analysis (memory bandwidth vs compute bound).",
+          "prompt": "Write a complete, self-contained HTML page for gpt0x.com titled 'LLM Tokens Per Second Calculator'. Build an interactive tool with 3 modes: (1) Latency to TPS: user enters time to first token (ms), total generation time (ms), output tokens generated → compute tokens/sec = output_tokens / (total_ms/1000), inter-token latency = (total_ms - ttft_ms) / output_tokens. (2) Throughput Estimator: user enters model size (GB), GPU memory bandwidth (GB/s, hardcoded dropdown: A100=2TB/s, H100=3.35TB/s, RTX4090=1TB/s, RTX3090=936GB/s), batch size, precision → compute memory-bandwidth-bound TPS = bandwidth_GBs / (model_size_GB / batch_size), show if compute-bound or memory-bound. (3) Batch Throughput: user enters single-request TPS and batch size → compute throughput gains with Amdahl's law estimate and batching efficiency curve on canvas. Show: interpretation table (>100 TPS=excellent, 30-100=good, 10-30=acceptable, <10=slow), cost per 1M tokens at various TPS rates and GPU costs. Dark theme with purple accent, mobile-responsive, zero external deps. Canonical: https://gpt0x.com/tools/tokens-per-second-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 gpt0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with purple accent (#8b5cf6). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "g0-s15-03",
+          "domain": "gpt0x.com",
+          "slug": "ai-api-latency-budget-planner",
+          "tool_description": "AI API Latency Budget Planner. Given total user-facing SLA (e.g. 2000ms), break it down: network RTT + TTFT + generation time + post-processing. Compute max acceptable model latency. Show p50/p95/p99 budget allocation with safety margins.",
+          "prompt": "Write a complete, self-contained HTML page for gpt0x.com titled 'AI API Latency Budget Planner'. Build an interactive tool where users define their latency SLA and break it down. Inputs: (1) Total user-facing SLA in ms (e.g. 2000ms), (2) Sliders for: client-side processing (0-200ms), network round-trip RTT (10-500ms, auto-suggest by region), authentication/middleware overhead (10-100ms), prompt construction (0-50ms), post-processing/parsing (0-100ms). Compute: remaining budget for LLM = SLA - all_overheads. Then split LLM budget: TTFT portion (user sets %) and generation portion. Calculate: max acceptable TTFT, max acceptable generation TPS given output_tokens budget. Safety margin: recommend keeping 20% buffer. Display: (1) Stacked horizontal bar showing all latency components as colored segments, (2) Traffic light: GREEN if LLM budget > 500ms, YELLOW 200-500ms, RED < 200ms (infeasible), (3) Table of compatible models by latency: fast (Haiku/GPT-4o-mini/Gemini Flash <200ms TTFT), medium (Sonnet/GPT-4o 200-500ms), slow (Opus/o1 >500ms). P95 allocation: multiply all estimates by 1.5x for p95 budget. Export as PDF summary. Dark theme with purple accent, mobile-responsive, zero external deps. Canonical: https://gpt0x.com/tools/ai-api-latency-budget-planner. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 gpt0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with purple accent (#8b5cf6). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "g0-s15-04",
+          "domain": "gpt0x.com",
+          "slug": "prompt-token-budget-optimizer",
+          "tool_description": "Prompt Token Budget Optimizer. Given a context window size and prompt components (system prompt, few-shot examples, user message, context chunks) — compute token allocations, show how many examples fit, optimize for cost vs quality tradeoff. Pure token arithmetic.",
+          "prompt": "Write a complete, self-contained HTML page for gpt0x.com titled 'Prompt Token Budget Optimizer'. Build an interactive tool where users allocate a context window budget. Inputs: (1) Total context window (dropdown: 4K/8K/16K/32K/64K/128K/200K/1M tokens), (2) Reserve for output (tokens), (3) Sliders/inputs for each component: system prompt (paste text → auto-count tokens using ~4 chars/token estimate), few-shot examples (number of examples × tokens-per-example), retrieved context chunks (number of chunks × chunk_size), user message estimate, conversation history. Display: (1) Stacked bar chart showing token allocation across all components, (2) Remaining tokens indicator (green/yellow/red), (3) Recommendations: 'You can fit N more few-shot examples' or 'Reduce context chunks by X to fit comfortably', (4) Cost impact: given model and price per token, show cost per request at current allocation, (5) Efficiency score: output_tokens / total_input_tokens ratio. Interactive: adjusting any slider instantly recomputes and updates the chart. Include presets: RAG pipeline, chat assistant, code review, document analysis. Dark theme with purple accent, mobile-responsive, zero external deps. Canonical: https://gpt0x.com/tools/prompt-token-budget-optimizer. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 gpt0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with purple accent (#8b5cf6). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "g0-s15-05",
+          "domain": "gpt0x.com",
+          "slug": "speculative-decoding-speedup-calculator",
+          "tool_description": "Speculative Decoding Speedup Calculator. Given draft model acceptance rate, draft model size, target model size — compute theoretical speedup, break-even acceptance rate, cost savings. Pure math: speedup = (1 + alpha*gamma) / (alpha + 1) where alpha=acceptance_rate, gamma=draft_tokens.",
+          "prompt": "Write a complete, self-contained HTML page for gpt0x.com titled 'Speculative Decoding Speedup Calculator'. Build an interactive calculator for speculative decoding analysis. Inputs: (1) Number of draft tokens per step (gamma, typically 4-8), (2) Acceptance rate alpha (0.0-1.0, typical 0.7-0.9), (3) Draft model size (relative to target, e.g. 0.1 for 10x smaller), (4) Draft model latency (ms per token), (5) Target model latency (ms per token). Compute using Chen et al. 2023 formula: expected tokens per step = (1 - alpha^(gamma+1)) / (1 - alpha), speedup = expected_tokens_accepted / (1 + draft_model_size_ratio * gamma), wall-time speedup = target_latency_per_token / ((draft_latency * gamma + target_latency) / expected_tokens_per_step). Show: (a) speedup gauge (1.0x to 3.0x typical range), (b) sensitivity chart: speedup vs acceptance rate for different gamma values on canvas, (c) breakeven alpha: minimum acceptance rate needed for any speedup, (d) cost analysis: if paying per GPU-hour, show % cost reduction. Include reference to Medusa (multiple draft heads) and EAGLE (draft with feature alignment) with their typical speedup ranges. Dark theme with purple accent, mobile-responsive, zero external deps. Canonical: https://gpt0x.com/tools/speculative-decoding-speedup-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 gpt0x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with purple accent (#8b5cf6). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ab-s15-01",
+          "domain": "abwex.com",
+          "slug": "chi-square-test-calculator",
+          "tool_description": "Chi-Square Test Calculator. Supports goodness-of-fit and independence tests. User enters observed/expected frequencies in a table. Computes chi-square statistic, degrees of freedom, p-value (using chi-square CDF approximation), and interpretation. Fully self-contained math.",
+          "prompt": "Write a complete, self-contained HTML page for abwex.com titled 'Chi-Square Test Calculator'. Build an interactive tool with 2 modes: (1) Goodness-of-Fit: user enters observed counts (up to 10 categories) and expected counts or expected probabilities. Compute: chi2 = sum((O-E)^2/E), df = k-1. (2) Test of Independence (contingency table): dynamic table editor (up to 6 rows × 6 cols), user enters observed frequencies. Compute: row totals, column totals, expected = (row_total * col_total) / grand_total, chi2 statistic, df = (rows-1)*(cols-1). For both modes: compute p-value using incomplete gamma function approximation (implement regularized incomplete gamma P(a,x) via series expansion — sufficient accuracy for df 1-20), display p-value to 4 decimal places. Show: (a) step-by-step calculation table (O, E, (O-E)^2/E per cell), (b) chi2 critical values at α=0.05 and α=0.01 (hardcoded table for df 1-20), (c) conclusion: 'Reject H0 at 0.05 level' or 'Fail to reject H0', (d) effect size (Cramér's V for independence: V = sqrt(chi2/(n*min(r-1,c-1)))). Dark theme with indigo accent (#6366f1), mobile-responsive, zero external deps. Canonical: https://abwex.com/tools/chi-square-test-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 abwex.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with indigo accent (#6366f1). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ab-s15-02",
+          "domain": "abwex.com",
+          "slug": "bayesian-ab-test-calculator",
+          "tool_description": "Bayesian A/B Test Calculator. Given control and treatment conversions and trials — compute posterior Beta distributions, probability that B beats A, expected uplift, credible intervals. Uses Beta(a,b) with conjugate prior. Renders posterior distributions on canvas.",
+          "prompt": "Write a complete, self-contained HTML page for abwex.com titled 'Bayesian A/B Test Calculator'. Build an interactive tool where users enter: Control visitors, Control conversions; Treatment visitors, Treatment conversions; Prior alpha and beta (default 1,1 = flat). Compute using Beta distribution conjugate update: posterior_A = Beta(alpha + conversions_A, beta + visitors_A - conversions_A), posterior_B = Beta(alpha + conversions_B, beta + visitors_B - conversions_B). Calculate: (1) P(B > A) via Monte Carlo simulation (draw 10,000 samples from each posterior, compute fraction where B > A), (2) Expected uplift = (mean_B - mean_A) / mean_A * 100%, (3) 95% Credible Intervals for each variant using Beta quantile function (implement via Newton's method on incomplete beta), (4) Posterior conversion rates. Display: (a) canvas chart showing both posterior Beta PDF curves overlaid (smooth density using 200 points), (b) shaded region where B > A, (c) results table with interpretation. Include prior sensitivity: show how different priors (skeptical 10,10 vs optimistic 1,1 vs informative from past data) affect P(B>A). Dark theme with indigo accent (#6366f1), mobile-responsive, zero external deps. Canonical: https://abwex.com/tools/bayesian-ab-test-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 abwex.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with indigo accent (#6366f1). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ab-s15-03",
+          "domain": "abwex.com",
+          "slug": "sample-size-calculator-proportions",
+          "tool_description": "Sample Size Calculator for Proportions. Given baseline conversion rate, minimum detectable effect, significance level, power — compute required sample size using two-proportion z-test formula. Supports one-tailed and two-tailed tests, unequal traffic splits.",
+          "prompt": "Write a complete, self-contained HTML page for abwex.com titled 'Sample Size Calculator — Proportions'. Build an interactive calculator where users enter: baseline conversion rate p1 (%), minimum detectable effect as relative % (e.g. 10% lift) or absolute percentage points, significance level α (0.01/0.05/0.10), statistical power 1-β (0.80/0.90/0.95), test type (one-tailed/two-tailed), traffic split (50/50 or custom). Compute: p2 = p1 * (1 + relative_mde) or p1 + absolute_mde, pooled_p = (p1+p2)/2, n = (z_alpha/2 + z_beta)^2 * (p1*(1-p1) + p2*(1-p2)) / (p2-p1)^2 for two-proportions, where z values are hardcoded (z_0.025=1.96, z_0.05=1.645, z_0.10=1.28, z_0.20=0.842, z_0.10=1.28, z_0.05=1.645). Adjust for unequal split: n_control = n * (1/k + 1) / 2, n_treatment = n * k / (k+1). Show: (a) required n per variant and total, (b) runtime calculator: given daily traffic and split, compute days needed, (c) sensitivity table: n for MDE range 5%/10%/15%/20%/30% lift, (d) canvas chart: power curve (power vs sample size). Dark theme with indigo accent, mobile-responsive, zero external deps. Canonical: https://abwex.com/tools/sample-size-calculator-proportions. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 abwex.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with indigo accent (#6366f1). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ab-s15-04",
+          "domain": "abwex.com",
+          "slug": "t-test-calculator",
+          "tool_description": "T-Test Calculator. Supports one-sample, independent two-sample, and paired t-tests. User enters raw data or summary statistics. Computes t-statistic, degrees of freedom, p-value via t-distribution CDF approximation, 95% CI, and Cohen's d effect size.",
+          "prompt": "Write a complete, self-contained HTML page for abwex.com titled 'T-Test Calculator — One-Sample, Two-Sample & Paired'. Build an interactive calculator with 3 modes: (1) One-sample t-test: enter sample mean, SD, n, hypothesized mean μ0 → t = (x̄ - μ0) / (s/√n), df = n-1. (2) Independent two-sample: enter Group 1 (mean, SD, n) and Group 2 (mean, SD, n), toggle equal/unequal variances → for equal: pooled SD = sqrt(((n1-1)*s1^2 + (n2-1)*s2^2)/(n1+n2-2)), t = (x1-x2) / (pooled_sd * sqrt(1/n1+1/n2)), df = n1+n2-2; for Welch: df = Welch-Satterthwaite formula. (3) Paired t-test: user pastes two columns of values (up to 50 pairs) → compute differences, mean_diff, sd_diff, t = mean_diff / (sd_diff/√n), df = n-1. For all modes: compute p-value using t-distribution CDF implemented via regularized incomplete beta function (numerical approximation). Show: test statistic, df, p-value (one and two-tailed), 95% CI for the difference, Cohen's d = (mean1-mean2)/pooled_sd, interpretation (small d<0.2, medium 0.5, large 0.8). Hypothesis statement builder. Dark theme with indigo accent, mobile-responsive, zero external deps. Canonical: https://abwex.com/tools/t-test-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 abwex.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with indigo accent (#6366f1). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ab-s15-05",
+          "domain": "abwex.com",
+          "slug": "regression-to-mean-calculator",
+          "tool_description": "Regression to the Mean Calculator. Given observed extreme value, population mean, population SD, and correlation r — compute expected regression to mean (Kelley's formula), expected true score, shrinkage estimate. Visualizes on normal distribution canvas. Pure statistics.",
+          "prompt": "Write a complete, self-contained HTML page for abwex.com titled 'Regression to the Mean Calculator'. Build an interactive statistics tool that quantifies the regression-to-the-mean effect. Inputs: (1) Observed score X, (2) Population mean μ, (3) Population SD σ, (4) Reliability coefficient r (0-1, or correlation between pre/post measurement), (5) Number of time periods to project. Compute: z-score of observed = (X - μ)/σ, predicted true score (Kelley's formula) = r*X + (1-r)*μ, regression amount = (1-r)*(X-μ), percentage regression = (1-r)*100%. For time series: predicted score at time t = μ + r^t * (X-μ). Show: (a) number line visualization with observed, predicted, and mean marked, (b) regression trajectory chart on canvas (score vs time for t=0..10), (c) interpretation: how much of the extreme score is 'real' vs luck, (d) example applications: sports performance, exam retakes, medical treatments. Include: twin study heritability example, sport regression examples (batting averages, marathon times). Warn when r=0 (pure luck) vs r=1 (no regression). Dark theme with indigo accent, mobile-responsive, zero external deps. Canonical: https://abwex.com/tools/regression-to-mean-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 abwex.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with indigo accent (#6366f1). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ml3-s15-01",
+          "domain": "ml3x.com",
+          "slug": "eigenvalue-eigenvector-calculator",
+          "tool_description": "Eigenvalue and Eigenvector Calculator. For 2x2 and 3x3 matrices, compute eigenvalues (characteristic polynomial roots), eigenvectors, diagonalization D=P^-1*A*P. Shows step-by-step derivation. Visualizes 2D eigenvector directions on canvas. Pure linear algebra.",
+          "prompt": "Write a complete, self-contained HTML page for ml3x.com titled 'Eigenvalue & Eigenvector Calculator'. Build an interactive linear algebra tool. Support 2x2 and 3x3 matrices. For 2x2: compute characteristic polynomial det(A - λI) = λ^2 - trace(A)*λ + det(A) = 0, solve quadratic for eigenvalues λ1, λ2 (handle complex eigenvalues: display a+bi), then for each eigenvalue compute eigenvector by solving (A-λI)v=0 (reduce to row echelon). For 3x3: compute characteristic polynomial via cofactor expansion (cubic), find roots numerically using Durand-Kerner or companion matrix approach (simplified), compute eigenvectors. Show step-by-step: (1) matrix input with validation, (2) characteristic polynomial written out symbolically, (3) eigenvalue roots, (4) eigenvector computation steps for each eigenvalue, (5) verification: A*v = λ*v check. Canvas visualization for 2x2: draw unit circle, show how eigenvectors define the principal axes, animate transformation A*x for points on unit circle. Include diagonalization: if diagonalizable, show P, D, P^-1 and verify P*D*P^-1 = A. Dark theme with yellow accent (#eab308), mobile-responsive, zero external deps. Canonical: https://ml3x.com/tools/eigenvalue-eigenvector-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 ml3x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with yellow accent (#eab308). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ml3-s15-02",
+          "domain": "ml3x.com",
+          "slug": "matrix-determinant-calculator",
+          "tool_description": "Matrix Determinant Calculator. Supports 2x2 through 6x6 matrices. Computes determinant via cofactor expansion (with step-by-step), LU decomposition, and Sarrus rule for 3x3. Also computes: matrix rank, trace, inverse (if det≠0), condition number estimate.",
+          "prompt": "Write a complete, self-contained HTML page for ml3x.com titled 'Matrix Determinant Calculator'. Build a comprehensive matrix determinant tool supporting sizes 2x2 through 6x6 (user selects). Implement: (1) Cofactor expansion along row 1 with full step-by-step display showing each minor matrix and its cofactor, (2) Sarrus rule shortcut for 3x3 with diagonal product visualization, (3) LU decomposition (Doolittle) showing L and U matrices and det = product of U diagonal elements. Also compute for any entered matrix: trace (sum of diagonal), rank (via row reduction), inverse matrix using adjugate method (A^-1 = adj(A)/det(A)) for n≤4, Frobenius norm = sqrt(sum of squared elements), condition number estimate = ||A|| * ||A^-1|| if invertible. Display: matrix input grid (dynamic size), selected method result with steps, properties table, inverse matrix (if det≠0). For singular matrices (det=0): explain meaning, show null space dimension = n - rank. Validation: detect and warn about ill-conditioned matrices. Dark theme with yellow accent (#eab308), mobile-responsive, zero external deps. Canonical: https://ml3x.com/tools/matrix-determinant-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 ml3x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with yellow accent (#eab308). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ml3-s15-03",
+          "domain": "ml3x.com",
+          "slug": "gradient-descent-visualizer",
+          "tool_description": "Gradient Descent Visualizer. Animates gradient descent on 6 classic loss surfaces (bowl, saddle, Rosenbrock, beale, etc). User sets learning rate, momentum, optimizer (SGD/Adam/RMSProp/AdaGrad). Shows trajectory on 2D contour plot, loss curve, convergence detection. Pure math.",
+          "prompt": "Write a complete, self-contained HTML page for ml3x.com titled 'Gradient Descent Visualizer'. Build an animated optimization visualization tool. Six preset loss functions: (1) Quadratic bowl: f(x,y) = x^2 + y^2, (2) Elongated bowl: f(x,y) = x^2/10 + y^2, (3) Saddle: f(x,y) = x^2 - y^2, (4) Rosenbrock: f(x,y) = (1-x)^2 + 100*(y-x^2)^2, (5) Rastrigin: f(x,y) = 20 + x^2 - 10*cos(2πx) + y^2 - 10*cos(2πy), (6) Beale: f(x,y) = (1.5-x+xy)^2 + (2.25-x+xy^2)^2 + (2.625-x+xy^3)^2. Optimizers: SGD (with optional momentum β), Adam (β1=0.9, β2=0.999, ε=1e-8), RMSProp (β=0.9), AdaGrad. Inputs: learning rate slider, starting point (click on chart or enter x,y), max iterations. Canvas: (a) 2D contour plot with trajectory animated step-by-step using requestAnimationFrame, (b) loss curve updating in real-time, (c) current position and gradient vector displayed. Controls: play/pause/reset/step. Compare mode: run two optimizers simultaneously on same function. Show: steps to convergence, final loss value. Dark theme with yellow accent (#eab308), mobile-responsive, zero external deps. Canonical: https://ml3x.com/tools/gradient-descent-visualizer. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 ml3x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with yellow accent (#eab308). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ml3-s15-04",
+          "domain": "ml3x.com",
+          "slug": "convolution-output-size-calculator",
+          "tool_description": "CNN Convolution Output Size Calculator. Given input dimensions, kernel size, stride, padding, dilation, groups — compute output height/width, receptive field size, parameter count, FLOPs per layer. Supports Conv1D, Conv2D, Conv3D, transposed convolutions.",
+          "prompt": "Write a complete, self-contained HTML page for ml3x.com titled 'CNN Convolution Output Size Calculator'. Build an interactive calculator for convolutional neural network geometry. Support 4 operation types: Conv2D, DepthwiseConv2D, TransposedConv2D (deconv), Conv1D. Inputs: input size (H, W, C), kernel size (kH, kW), stride (sH, sW), padding mode (valid/same/custom), dilation (dH, dW), output channels. Compute for Conv2D: output_H = floor((H + 2*padding_H - dilation_H*(kH-1) - 1)/stride_H + 1), same for W. Output_C = num_filters. Parameters = kH * kW * C_in * C_out + C_out (bias). FLOPs = 2 * kH * kW * C_in * output_H * output_W * C_out. Receptive field: RF = 1 + sum_over_layers((kernel-1)*product_of_previous_strides). For TransposedConv: output_H = (H-1)*stride - 2*padding + dilation*(kH-1) + output_padding + 1. Build a multi-layer network builder: user adds up to 10 layers, tool tracks tensor shape through the network and shows shape at each layer, total params, total FLOPs. Include presets: VGG-16 block, ResNet block, MobileNet depthwise block. Dark theme with yellow accent (#eab308), mobile-responsive, zero external deps. Canonical: https://ml3x.com/tools/convolution-output-size-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 ml3x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with yellow accent (#eab308). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ml3-s15-05",
+          "domain": "ml3x.com",
+          "slug": "information-entropy-calculator",
+          "tool_description": "Information Theory Entropy Calculator. Compute Shannon entropy, cross-entropy, KL divergence, mutual information, and perplexity from probability distributions. User enters discrete distributions. Visualizes on bar chart. Shows entropy in bits and nats. Pure information theory math.",
+          "prompt": "Write a complete, self-contained HTML page for ml3x.com titled 'Information Entropy Calculator'. Build a comprehensive information theory tool with 5 modes: (1) Shannon Entropy: user enters probability distribution (up to 20 events) as comma-separated values → H(X) = -sum(p_i * log2(p_i)), show in bits and nats, max entropy comparison (uniform distribution), entropy efficiency = H / log2(n). (2) Cross-Entropy: enter true distribution P and predicted distribution Q → H(P,Q) = -sum(p_i * log2(q_i)), show alongside H(P) and KL divergence = H(P,Q) - H(P). (3) KL Divergence: enter P and Q → KL(P||Q) = sum(p_i * log(p_i/q_i)), show asymmetry: KL(P||Q) vs KL(Q||P). (4) Mutual Information: enter 2x2 to 4x4 joint probability table → I(X;Y) = sum(p(x,y) * log(p(x,y)/(p(x)*p(y)))). (5) Perplexity: enter token probabilities or cross-entropy value → PP = 2^H or e^H. Display: canvas bar chart of probability distribution, entropy value highlighted, interpretation (0=deterministic, log2(n)=maximum uncertainty). Validate: probabilities must sum to 1. Show formula for each computation. Dark theme with yellow accent (#eab308), mobile-responsive, zero external deps. Canonical: https://ml3x.com/tools/information-entropy-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 ml3x.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with yellow accent (#eab308). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ck-s15-01",
+          "domain": "claudkit.com",
+          "slug": "claude-context-window-cost-planner",
+          "tool_description": "Claude Context Window Cost Planner. Given conversation turns, messages per turn, tokens per message, daily conversations — compute monthly token usage and cost across Claude Haiku/Sonnet/Opus. Shows how conversation history growth multiplies costs. Prompt caching savings estimator.",
+          "prompt": "Write a complete, self-contained HTML page for claudkit.com titled 'Claude Context Window Cost Planner'. Build an interactive cost modeling tool for multi-turn Claude applications. Inputs: (1) Average turns per conversation (slider 1-50), (2) Average tokens per user message, (3) Average tokens per assistant response, (4) System prompt length (tokens), (5) Daily conversations (volume), (6) Toggle: include full conversation history vs sliding window of last N turns. Compute: tokens per turn (with history growth: turn_n = system + sum_of_all_previous_turns), monthly input tokens, monthly output tokens, monthly cost for Haiku ($0.25/$1.25 per MTok in/out), Sonnet 4 ($3/$15), Opus 4 ($15/$75). Show: (a) how input cost grows super-linearly with conversation length (chart: cost per conversation vs num turns), (b) sliding window optimization: cost at window sizes 5/10/20 turns vs full history, (c) prompt caching calculator: if 90% of context is cached (cached price = 10% of input), show savings per month, (d) breakeven: at what daily volume does upgrading to Sonnet for quality justify the cost premium. Dark theme with pink accent (#ec4899), mobile-responsive, zero external deps. Canonical: https://claudkit.com/tools/claude-context-window-cost-planner. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 claudkit.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with pink accent (#ec4899). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ck-s15-02",
+          "domain": "claudkit.com",
+          "slug": "tool-use-latency-calculator",
+          "tool_description": "Claude Tool Use Latency Calculator. Given number of tool calls per request, tool execution time, model response time — compute total request latency, parallel vs sequential execution gains, and optimal tool batching strategy. Pure latency arithmetic.",
+          "prompt": "Write a complete, self-contained HTML page for claudkit.com titled 'Tool Use Latency Calculator'. Build an interactive latency modeling tool for Claude tool-use applications. Inputs: (1) Number of tool definitions in schema, (2) Avg tokens to describe all tools (auto-estimate: 50 tokens per tool), (3) Avg tool calls per request, (4) Tool execution time distribution (enter p50, p95, p99 in ms), (5) Model response latency for tool-use request (ms), (6) Enable parallel tool execution toggle, (7) Max parallel tools. Compute: sequential total latency = model_latency + sum(tool_latencies), parallel latency = model_latency + max(tool_latencies_batch), speedup = sequential/parallel, token overhead per request = tool_schema_tokens + tool_result_tokens. Show: (a) latency breakdown waterfall chart (SVG), (b) P50/P95/P99 total latency estimates using input percentiles, (c) tool schema token cost: extra input tokens × model price = cost overhead per request, (d) recommendation: when to use parallel tool use (>2 independent tools), when to reduce schema (>20 tools = latency tax), (e) comparison table: 1/2/3/5/10 tool calls, sequential vs parallel. Dark theme with pink accent (#ec4899), mobile-responsive, zero external deps. Canonical: https://claudkit.com/tools/tool-use-latency-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 claudkit.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with pink accent (#ec4899). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ck-s15-03",
+          "domain": "claudkit.com",
+          "slug": "anthropic-rate-limit-calculator",
+          "tool_description": "Anthropic API Rate Limit Calculator. Given Tier (1-4), model, and usage patterns — compute safe request rates, tokens per minute budget, daily token budget, request queuing strategy, and burst capacity. Shows which tier is needed for given workload.",
+          "prompt": "Write a complete, self-contained HTML page for claudkit.com titled 'Anthropic Rate Limit Calculator'. Build an interactive rate limit planning tool. Hardcode Anthropic 2025 tier limits: Tier 1 (free/new): Claude Haiku 50K TPM/50 RPM, Sonnet 40K TPM/50 RPM; Tier 2: Haiku 400K TPM/2K RPM, Sonnet 160K TPM/1K RPM; Tier 3: Haiku 2M TPM/4K RPM, Sonnet 800K TPM/4K RPM, Opus 40K TPM/1K RPM; Tier 4: Haiku 4M TPM/8K RPM, Sonnet 2M TPM/8K RPM, Opus 400K TPM/4K RPM. Inputs: (1) Current tier dropdown, (2) Model, (3) Requests per minute needed, (4) Avg tokens per request (input + output), (5) Peak burst duration (seconds). Compute: TPM usage = RPM * avg_tokens, headroom % = (limit - usage)/limit * 100, concurrent requests safe limit, burst tokens = (tier_TPM/60) * burst_seconds (not sustained), how long until rate limit recovery (TPM window is 60s rolling). Show: (a) gauge charts for RPM and TPM utilization, (b) traffic light: green <70%, yellow 70-90%, red >90%, (c) upgrade recommendation: which tier handles workload, (d) retry strategy: exponential backoff recommendation (base 1s, max 60s, jitter), (e) queue depth calculator: given queue of N requests, estimated drain time. Dark theme with pink accent, mobile-responsive, zero external deps. Canonical: https://claudkit.com/tools/anthropic-rate-limit-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 claudkit.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with pink accent (#ec4899). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ck-s15-04",
+          "domain": "claudkit.com",
+          "slug": "extended-thinking-budget-calculator",
+          "tool_description": "Claude Extended Thinking Budget Calculator. Given thinking token budget (1024 to 100K) and task complexity — estimate quality vs cost tradeoff, compute cost per request for Sonnet/Opus with thinking, and find the optimal budget for your use case. Pure token math.",
+          "prompt": "Write a complete, self-contained HTML page for claudkit.com titled 'Extended Thinking Budget Calculator'. Build an interactive tool for optimizing Claude extended thinking token budgets. Inputs: (1) Task type (select: math/coding/reasoning=high benefit, writing/summarization=low benefit, analysis/planning=medium benefit), (2) Thinking budget slider: 1,024 to 100,000 tokens (log scale), (3) Expected output tokens, (4) Model: Claude Sonnet 4 ($3/$15 + thinking at $3/MTok) or Claude Opus 4 ($15/$75 + thinking at $15/MTok), (5) Daily requests. Compute: total input cost = (input_tokens + thinking_budget) * input_price, output cost = output_tokens * output_price, total cost per request, monthly cost, thinking overhead % = thinking_cost/total_cost. Show: (a) cost breakdown bar chart: base input vs thinking vs output, (b) quality vs budget curve (qualitative S-curve: minimal gain below 1K, steep gain 1K-16K, diminishing returns 16K-100K — render on canvas), (c) recommended budgets by task: math (32K), coding (16K), writing (1K-4K), (d) comparison table: no thinking vs 4K vs 16K vs 64K budgets showing cost multiplier, (e) monthly cost at various budgets. Dark theme with pink accent, mobile-responsive, zero external deps. Canonical: https://claudkit.com/tools/extended-thinking-budget-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 claudkit.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with pink accent (#ec4899). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "ck-s15-05",
+          "domain": "claudkit.com",
+          "slug": "system-prompt-token-optimizer",
+          "tool_description": "System Prompt Token Optimizer. User pastes a system prompt. Tool counts tokens (~4 chars/token), identifies verbose sections, suggests compression techniques (bullet vs prose, remove filler words), shows projected savings, estimates monthly cost reduction at various traffic volumes.",
+          "prompt": "Write a complete, self-contained HTML page for claudkit.com titled 'System Prompt Token Optimizer'. Build an interactive system prompt analyzer and optimizer. User pastes a system prompt (textarea, up to 10,000 chars). Compute: estimated token count = Math.ceil(text.length / 4) with note about approximation, character count, word count. Analyze and flag: (1) Verbose phrases (pattern match: 'please make sure to', 'you should always', 'it is important that', 'as an AI assistant', 'I will help you' → flag as removable filler), (2) Repeated concepts (find duplicate noun phrases using frequency analysis), (3) Prose vs bullets (detect long prose paragraphs that could be bullet lists — any paragraph >100 words), (4) Redundant politeness ('please', 'thank you' in system prompts = wasted tokens). Show: (a) highlighted system prompt with flagged sections color-coded by issue type, (b) token count gauge with comparison: cheap (<200 tokens), normal (200-800), expensive (800-2000), very expensive (>2000), (c) estimated savings if all flags addressed (calculate removed chars → token reduction), (d) monthly cost savings table: at 1K/10K/100K/1M requests/day, for Haiku/Sonnet/Opus, (e) rewrite suggestions for top 3 flagged phrases. Copy optimized version button. Dark theme with pink accent, mobile-responsive, zero external deps. Canonical: https://claudkit.com/tools/system-prompt-token-optimizer. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 claudkit.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with pink accent (#ec4899). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "cf-s15-01",
+          "domain": "claudflow.com",
+          "slug": "agent-memory-architecture-planner",
+          "tool_description": "Agent Memory Architecture Planner. Given agent task type, expected session length, user base size — compute storage requirements for working memory (in-context), episodic memory (vector store), semantic memory (knowledge base), and procedural memory (tool definitions). Cost comparison across architectures.",
+          "prompt": "Write a complete, self-contained HTML page for claudflow.com titled 'Agent Memory Architecture Planner'. Build an interactive planning tool for AI agent memory systems. Inputs: (1) Agent type (select: customer support / coding assistant / research agent / personal assistant / task automation), (2) Average session turns, (3) Sessions per day, (4) Unique users, (5) Data retention period (days). Compute 4 memory tiers: (A) Working memory (in-context): size = current_turn_tokens + system_prompt, cost = tokens * model_price, max capacity = context_window_size. (B) Episodic memory (vector store): storage_MB = sessions_per_day * retention_days * avg_session_tokens * 4 bytes * 1536_dim / (1M * 4_bytes_per_float), embedding_cost = total_tokens * $0.0001/1K tokens (text-embedding-3-small). (C) Semantic memory (document KB): estimate documents needed based on agent type, storage = doc_count * avg_doc_size_KB. (D) Procedural memory (tool schemas): tokens = tool_count * 50 tokens, added to every request cost. Show: (a) Recommended architecture by agent type (table), (b) Monthly storage cost breakdown across all 4 tiers, (c) Scaling chart: cost vs user count on canvas, (d) Decision flowchart: when to add each memory tier (SVG). Dark theme with orange accent (#f97316), mobile-responsive, zero external deps. Canonical: https://claudflow.com/tools/agent-memory-architecture-planner. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 claudflow.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with orange accent (#f97316). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "cf-s15-02",
+          "domain": "claudflow.com",
+          "slug": "multi-agent-token-budget-splitter",
+          "tool_description": "Multi-Agent Token Budget Splitter. Given a total monthly token budget and number of agents (orchestrator + workers) — compute per-agent allocation, overhead for inter-agent messages, optimal topology (flat vs hierarchical), and cost per completed task. Pure arithmetic.",
+          "prompt": "Write a complete, self-contained HTML page for claudflow.com titled 'Multi-Agent Token Budget Splitter'. Build an interactive budget allocation tool for multi-agent pipelines. Inputs: (1) Total monthly token budget (or monthly $ budget with model selection), (2) Number of agents (1-20), (3) Agent roles: add roles via dropdown (orchestrator/researcher/coder/reviewer/executor/summarizer) with expected token allocation %, (4) Inter-agent message overhead (avg tokens per message, avg messages per task), (5) Tasks per month. Compute: tokens_per_task = sum(agent_tokens) + inter_agent_messages, tasks_supported = total_budget / tokens_per_task, cost_per_task = (tokens_per_task / 1M) * model_price. Compare topologies: (a) Flat (N workers + 1 orchestrator, orchestrator sees all results), (b) Hierarchical (orchestrator → sub-orchestrators → workers, reduced orchestrator context), (c) Pipeline (sequential agents, each sees only previous output). For each topology: total tokens per task, max parallel tasks at budget, cost per task. Show: (a) token flow diagram (SVG nodes and arrows), (b) budget allocation pie chart on canvas, (c) tasks/month vs agent count curve, (d) recommendation table. Dark theme with orange accent, mobile-responsive, zero external deps. Canonical: https://claudflow.com/tools/multi-agent-token-budget-splitter. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 claudflow.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with orange accent (#f97316). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "cf-s15-03",
+          "domain": "claudflow.com",
+          "slug": "subagent-parallelism-speedup-calculator",
+          "tool_description": "Sub-Agent Parallelism Speedup Calculator. Amdahl's Law applied to AI agent pipelines. Given serial fraction and number of parallel agents — compute speedup, efficiency, optimal agent count, and cost-per-speedup tradeoff. Pure Amdahl's Law math.",
+          "prompt": "Write a complete, self-contained HTML page for claudflow.com titled 'Sub-Agent Parallelism Speedup Calculator'. Build an interactive Amdahl's Law calculator for AI agent pipelines. Inputs: (1) Serial fraction of task (0-100%, the part that must run sequentially — orchestration, synthesis), (2) Parallel fraction (100 - serial), (3) Number of parallel agents (slider 1-64), (4) Agent latency (ms per agent task), (5) Orchestration overhead per agent (ms), (6) Cost per agent call ($). Compute using Amdahl's Law: speedup = 1 / (serial_fraction + parallel_fraction/n_agents). Also compute: Gustafson's Law speedup = n_agents - serial_fraction*(n_agents-1) (for scaled problems), efficiency = speedup / n_agents, total cost = n_agents * cost_per_call + orchestration_cost, cost_efficiency = speedup / total_cost (value per dollar), optimal agent count (where marginal speedup / marginal cost is maximized). Display: (a) canvas chart: speedup curve vs n_agents for 3 serial fractions (5%, 20%, 50%), (b) efficiency curve, (c) cost-speedup tradeoff: speedup per dollar vs agent count, (d) table of (n_agents, speedup, efficiency, cost, cost_efficiency) for n=1,2,4,8,16,32, (e) recommendation: where to stop adding agents (efficiency < 50% = diminishing returns). Dark theme with orange accent, mobile-responsive, zero external deps. Canonical: https://claudflow.com/tools/subagent-parallelism-speedup-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 claudflow.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with orange accent (#f97316). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "cf-s15-04",
+          "domain": "claudflow.com",
+          "slug": "workflow-retry-cost-calculator",
+          "tool_description": "Agentic Workflow Retry Cost Calculator. Given step failure rates, retry strategy (linear/exponential backoff), max retries per step, and step token cost — compute expected total cost including retries, expected completion rate, mean time to complete. Geometric series math.",
+          "prompt": "Write a complete, self-contained HTML page for claudflow.com titled 'Agentic Workflow Retry Cost Calculator'. Build an interactive cost modeling tool for multi-step agentic workflows with failures. User builds a workflow: add up to 10 sequential steps, each with: step name, success probability (%), tokens consumed, cost per attempt ($). Set retry strategy: max retries (0-10), backoff type (none/fixed/exponential with base multiplier). Compute for each step: expected attempts = sum_{k=0}^{max_retries} k * p_fail^k * p_success (geometric series), expected cost per step = cost_per_attempt * expected_attempts. For the full pipeline: workflow_success_rate = product(step_success_rates_with_retries), expected_total_cost = sum(step_expected_costs), mean_attempts_to_complete = sum(step_expected_attempts), token overhead from retries = sum(retry_tokens). Show: (a) step-by-step table with expected cost and success rate per step, (b) total pipeline success rate (highlight if <80% = needs attention), (c) cost breakdown: baseline cost (no failures) vs expected cost with retries — show cost multiplier, (d) sensitivity: most fragile step (biggest cost driver), (e) recommendation: which steps to add human-in-the-loop checkpoints. Dark theme with orange accent, mobile-responsive, zero external deps. Canonical: https://claudflow.com/tools/workflow-retry-cost-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 claudflow.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with orange accent (#f97316). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "cf-s15-05",
+          "domain": "claudflow.com",
+          "slug": "self-consistency-majority-vote-calculator",
+          "tool_description": "Self-Consistency / Majority Vote Calculator. Given N samples and per-sample accuracy p — compute probability of majority vote being correct via binomial distribution, optimal N, and cost-accuracy tradeoff. Shows the math of why 10 samples at 70% accuracy beats 1 sample at 90%.",
+          "prompt": "Write a complete, self-contained HTML page for claudflow.com titled 'Self-Consistency Majority Vote Calculator'. Build an interactive tool demonstrating the self-consistency prompting technique. Inputs: (1) Single-sample accuracy p (0.3-0.99), (2) Number of samples N (slider 1-51, odd values for clean majority), (3) Cost per sample ($), (4) Target accuracy threshold. Compute: P(majority correct) = sum_{k=ceil(N/2)}^{N} C(N,k) * p^k * (1-p)^(N-k) using binomial distribution (implement choose(n,k) with Pascal's triangle for N up to 51). Show: (a) accuracy vs N chart on canvas for 3 baseline accuracies (50%, 70%, 80%), (b) required N to hit 90%, 95%, 99% target accuracy given p, (c) cost-accuracy table: (N, accuracy, total cost, cost per additional accuracy point), (d) optimal N finder: marginal accuracy gain per additional sample — stop when < 0.5% per sample, (e) comparison: self-consistency N=10 at p=0.7 vs chain-of-thought p=0.85 at N=1, (f) break-even: when does cost of N samples justify accuracy gain? Color coding: green if target reached, yellow if close, red if infeasible. Dark theme with orange accent, mobile-responsive, zero external deps. Canonical: https://claudflow.com/tools/self-consistency-majority-vote-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 claudflow.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with orange accent (#f97316). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "kp-s15-01",
+          "domain": "kappafy.com",
+          "slug": "api-retry-exponential-backoff-calculator",
+          "tool_description": "API Retry Exponential Backoff Calculator. Given base delay, max delay, max retries, jitter type (full/equal/decorrelated) — compute exact retry schedule, total wait time, success probability at each retry. Visualizes timeline. Pure math with geometric series.",
+          "prompt": "Write a complete, self-contained HTML page for kappafy.com titled 'API Retry Exponential Backoff Calculator'. Build an interactive retry strategy planner. Inputs: (1) Base delay ms (50-5000), (2) Multiplier (1.5-4.0, default 2), (3) Max delay ms (1000-60000), (4) Max retries (1-20), (5) Jitter type: None / Full jitter (random between 0 and cap) / Equal jitter (cap/2 + random(0, cap/2)) / Decorrelated (delay = random(base, prev*3)), (6) Error rate % (for success probability). Compute for each attempt n: cap = min(max_delay, base * multiplier^n), delay with jitter formula, cumulative elapsed time. Also compute: total_max_wait = sum of all delays, P(success by attempt n) = 1 - error_rate^n, expected_attempts = sum_{n=1}^{max_retries} n * (1-error_rate) * error_rate^(n-1), expected_wait = sum(delay_n * P(reaching_n)). Display: (a) retry timeline visualization (horizontal bar chart showing delay intervals, color by jitter scatter), (b) table: attempt number, delay, jitter range, cumulative time, P(success), (c) comparison: all 4 jitter strategies on same chart — show thundering herd prevention, (d) recommendation: Full jitter for high contention, Equal for mix, (e) code snippets for Python (requests + urllib3), Node.js (axios-retry). Dark theme with purple accent (#a855f7), mobile-responsive, zero external deps. Canonical: https://kappafy.com/tools/api-retry-exponential-backoff-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 kappafy.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with purple accent (#a855f7). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "kp-s15-02",
+          "domain": "kappafy.com",
+          "slug": "api-pagination-performance-calculator",
+          "tool_description": "API Pagination Performance Calculator. Given total records, page size, client processing time per page — compute total pages, total requests, total time for cursor/offset/keyset pagination strategies. Shows which strategy wins at different dataset sizes. Pure math.",
+          "prompt": "Write a complete, self-contained HTML page for kappafy.com titled 'API Pagination Performance Calculator'. Build an interactive comparison tool for pagination strategies. Inputs: (1) Total records (1K to 1B), (2) Page size (10-1000), (3) API response time per request (ms), (4) Client processing time per page (ms), (5) Target: page N you need to reach (for deep pagination analysis). Compute and compare 4 strategies: (A) Offset pagination: total_pages = ceil(total/page_size), time to page N = N * (api_ms + processing_ms), db_cost grows O(N*page_size) for OFFSET, (B) Cursor-based: same page count but O(1) db cost per page, constant time per request, (C) Keyset: same as cursor but requires indexed column, (D) Seek method: same as keyset. Show: (a) total time to fetch ALL records for each strategy, (b) time to reach deep page N — show how offset degrades linearly while cursor stays constant (canvas chart: time vs page_number for all strategies), (c) cost comparison assuming $0.10/million DB reads, (d) recommendation matrix: which strategy for (small dataset + few pages), (large dataset + random access), (large + sequential), (e) implementation guide: code examples for cursor pagination in SQL and REST API response format. Dark theme with purple accent, mobile-responsive, zero external deps. Canonical: https://kappafy.com/tools/api-pagination-performance-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 kappafy.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with purple accent (#a855f7). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "kp-s15-03",
+          "domain": "kappafy.com",
+          "slug": "oauth-token-expiry-calculator",
+          "tool_description": "OAuth Token Expiry & Refresh Strategy Calculator. Given access token TTL, refresh token TTL, requests per second — compute optimal refresh threshold, token overlap window, expected token refresh rate, and cache hit ratio. Pure time arithmetic.",
+          "prompt": "Write a complete, self-contained HTML page for kappafy.com titled 'OAuth Token Expiry Calculator'. Build an interactive tool for OAuth 2.0 token lifecycle planning. Inputs: (1) Access token TTL (seconds: 300-86400), (2) Refresh token TTL (days: 1-365), (3) Requests per second using the token, (4) Refresh buffer (seconds before expiry to refresh, e.g. 60s), (5) Network latency for token refresh (ms), (6) Enable token rotation toggle. Compute: effective_token_lifetime = TTL - buffer, refresh_frequency = 1 / effective_token_lifetime (refreshes per second), refresh_requests_per_day = 86400 / effective_token_lifetime, API requests per refresh = effective_token_lifetime * RPS, refresh_overhead_% = (refresh_requests_per_day / (RPS * 86400)) * 100. Token rotation chain: if refresh TTL = 30 days and rotated on use, rolling window length, max refresh chain depth = refresh_TTL / access_TTL. Show: (a) token lifecycle timeline visualization (SVG: horizontal bar showing access token windows with refresh events marked), (b) table: TTL vs refresh overhead % vs API:refresh request ratio, (c) recommendation: optimal TTL for your RPS (minimize refreshes while limiting exposure window), (d) security tradeoff: shorter TTL = more secure but more refreshes — plot on canvas, (e) code: Python token refresh with threading.Timer. Dark theme with purple accent, mobile-responsive, zero external deps. Canonical: https://kappafy.com/tools/oauth-token-expiry-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 kappafy.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with purple accent (#a855f7). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "kp-s15-04",
+          "domain": "kappafy.com",
+          "slug": "api-versioning-deprecation-timeline-planner",
+          "tool_description": "API Versioning & Deprecation Timeline Planner. Given API version history, release cadence, client migration speed — compute deprecation window, sunset dates, expected client migration %, and communication schedule. Date arithmetic with migration rate modeling.",
+          "prompt": "Write a complete, self-contained HTML page for kappafy.com titled 'API Deprecation Timeline Planner'. Build an interactive planning tool for API versioning strategy. Inputs: (1) Current date (auto-filled with today), (2) Number of active API versions (1-5), (3) Deprecation notice period (months: 3-24), (4) Support window after deprecation notice (months: 3-18), (5) Client adoption speed (% of clients upgrading per month — sigmoid curve: fast adopters 40% in month 1, slow tail), (6) Major version release cadence (months). Compute: sunset_date = deprecation_date + support_window, expected_migration_% at each month using sigmoid: p(t) = 100 / (1 + exp(-k*(t - t_midpoint))), stranded_clients_at_sunset = 100 - migration_%(sunset_date - notice_date). Show: (a) Gantt-style timeline (canvas) showing all version lifecycles — active/deprecated/sunset phases in different colors, (b) client migration curve (S-curve chart), (c) stranded client risk: how many % still on old API at sunset, (d) communication schedule: automated reminder dates at 6mo/3mo/1mo/2weeks/1week before sunset, (e) recommended deprecation policy: table of (grace period, expected stranded %) for different client types (mobile apps vs server apps vs enterprise). Dark theme with purple accent, mobile-responsive, zero external deps. Canonical: https://kappafy.com/tools/api-versioning-deprecation-timeline-planner. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 kappafy.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with purple accent (#a855f7). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        },
+
+        {
+          "task_id": "kp-s15-05",
+          "domain": "kappafy.com",
+          "slug": "graphql-vs-rest-payload-size-calculator",
+          "tool_description": "GraphQL vs REST Payload Size Calculator. Given resource schema, required fields, and number of requests — compute over-fetching overhead for REST, under-fetching penalty (N+1 queries), and break-even point. Bandwidth and latency cost comparison. Pure arithmetic.",
+          "prompt": "Write a complete, self-contained HTML page for kappafy.com titled 'GraphQL vs REST Payload Calculator'. Build an interactive comparison tool. User defines a data schema: add entities (e.g. 'User': id, name, email, avatar, bio, followers_count, settings). For REST: mark which fields are returned in each endpoint (all fields = over-fetching). For GraphQL: user specifies only the needed fields. Inputs: (1) Schema builder: add up to 5 entities with up to 15 fields each (name + estimated bytes per field), (2) Select required fields for the use case, (3) Number of related entities to fetch (for N+1 analysis), (4) Requests per day, (5) Average network bandwidth cost ($/GB, default $0.09/GB AWS). Compute: REST payload = all fields * bytes, GraphQL payload = selected fields * bytes, over_fetching_ratio = rest_payload / graphql_payload, monthly_bandwidth_rest = rest_payload * requests/day * 30 / (1024^3) GB, bandwidth_savings_% = (rest-graphql)/rest * 100, N+1 for REST: extra_requests = num_related (each requires separate call), GraphQL: 1 request (batched). Show: (a) payload comparison bars, (b) monthly bandwidth and cost comparison, (c) N+1 penalty: REST total requests vs GraphQL total requests, (d) total cost of ownership: bandwidth + latency * request count, (e) recommendation matrix: when GraphQL wins (complex nested data, mobile clients) vs REST (simple CRUD, caching). Dark theme with purple accent, mobile-responsive, zero external deps. Canonical: https://kappafy.com/tools/graphql-vs-rest-payload-size-calculator. Schema: WebApplication + FAQPage (3 Qs) + BreadcrumbList. Footer: '© 2025 kappafy.com'.",
+          "system_prompt": "You are a senior full-stack developer. Create production-quality, fully self-contained HTML pages with inline CSS and JS. Every tool must be genuinely functional with real calculations — no placeholders. Dark theme with purple accent (#a855f7). Mobile-responsive. Include proper SEO meta tags, canonical URL, JSON-LD schema.",
+          "temperature": 0.3,
+          "max_tokens": 8000
+        }
+
+      ],
+      "synthesis_prompt": "Review all 40 generated HTML pages for Sprint 15. For each page verify: (1) title tag exists and is under 60 characters, (2) meta description exists and is under 155 characters, (3) canonical URL matches the expected pattern https://[domain]/tools/[slug], (4) JSON-LD structured data exists and is syntactically valid JSON, (5) at least one interactive JavaScript feature (calculator, chart, or live-updating input), (6) zero CDN or external dependencies (no cdn.jsdelivr.net, unpkg.com, googleapis.com, cloudflare.com links), (7) footer text present, (8) dark theme applied. List any pages that fail any gate with the specific issue. Output as JSON: {\"sprint\":15,\"total\":40,\"pass_count\":N,\"fail_count\":N,\"results\":[{\"task_id\":\"...\",\"domain\":\"...\",\"slug\":\"...\",\"status\":\"PASS/FAIL\",\"issues\":[]}]}"
+    }
+  ]
+}

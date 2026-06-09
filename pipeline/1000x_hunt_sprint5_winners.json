@@ -1,0 +1,295 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "nvidia_sub10_anatomy",
+          "prompt": "NVIDIA (NVDA) at sub-$10 (2015-2016, split-adjusted ~$5-8). Extract EVERY variable at that exact moment:\n1. Price, market cap, shares outstanding, insider ownership %\n2. Revenue, revenue growth YoY, gross margin, operating margin, net margin\n3. PE, PS, PB, EV/Revenue\n4. FCF, cash position, debt, net cash\n5. Number of analysts covering, consensus rating\n6. Short interest %\n7. What was the CATALYST that started the move? (gaming + data center)\n8. What was the MOAT? (CUDA ecosystem — when did it become apparent?)\n9. CEO Jensen Huang — insider buying/selling at that price?\n10. What did bears say? What was the consensus WRONG about?\n11. Annual dilution rate\n12. Employee count\n13. What sector was it classified as? Was AI even mentioned?\n14. TAM at the time vs actual TAM that materialized\n15. Key product launches in 2015-2016\nBe SPECIFIC with numbers. Cite sources (10-K, earnings calls).",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations. If you cannot verify a number, say UNVERIFIED.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "tesla_sub10_anatomy",
+          "prompt": "Tesla (TSLA) when it was sub-$10 (2010-2013, split-adjusted ~$1.50-$6). Extract EVERY variable:\n1. Price, market cap, shares outstanding, insider ownership %\n2. Revenue, revenue growth YoY, gross margin, operating margin, net margin\n3. PE, PS, PB, EV/Revenue\n4. FCF, cash position, debt\n5. Analyst coverage count, consensus\n6. Short interest %\n7. CATALYST that started the move (Model S launch)\n8. MOAT (vertical integration, Supercharger network)\n9. Elon Musk insider activity at that price\n10. What did bears say? What was consensus WRONG about?\n11. Dilution rate (how much did shares increase?)\n12. Employee count\n13. TAM estimate at the time vs what materialized\n14. Key milestones 2010-2013\nExact numbers with citations.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations. If you cannot verify a number, say UNVERIFIED.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "amazon_sub10_anatomy",
+          "prompt": "Amazon (AMZN) at sub-$10 (2001-2002, post-dot-com crash, ~$5.50-$8). Extract EVERY variable:\n1. Price, market cap, shares outstanding, insider ownership %\n2. Revenue, revenue growth, gross margin, operating margin, net margin\n3. PE, PS, PB\n4. FCF, cash, debt (was it near bankruptcy?)\n5. Analyst coverage, consensus (how many said sell?)\n6. Short interest\n7. CATALYST (survived dot-com, AWS seeds)\n8. MOAT (marketplace network effects, logistics)\n9. Bezos insider activity\n10. Bear thesis at the time\n11. Dilution rate\n12. Employee count\n13. TAM estimate then vs actual\n14. Key milestones 2001-2003\nExact numbers.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "netflix_sub10_anatomy",
+          "prompt": "Netflix (NFLX) at sub-$10 (2002-2004 and again 2011-2012 during Qwikster crash). Extract EVERY variable at BOTH moments:\n1. Price, market cap, shares, insider ownership\n2. Revenue, growth, margins\n3. Valuation multiples\n4. Cash, debt, FCF\n5. Analyst coverage\n6. Short interest\n7. CATALYST\n8. MOAT\n9. Reed Hastings insider activity\n10. Bear thesis\n11. Dilution\n12. What changed to create the 1000x move?\nExact numbers.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "apple_sub10_anatomy",
+          "prompt": "Apple (AAPL) at sub-$2 (1997-2003, split-adjusted ~$0.30-$1.50). Extract EVERY variable:\n1. Price, market cap, shares, insider ownership\n2. Revenue, growth, margins (was it profitable?)\n3. Valuation multiples\n4. Cash, debt (Microsoft bailout?)\n5. Analyst coverage\n6. Short interest\n7. CATALYST (Steve Jobs return, iPod, iTunes)\n8. MOAT (ecosystem lock-in — when did it start?)\n9. Jobs insider activity\n10. Bear thesis\n11. Dilution\n12. Key milestones 1997-2003\n13. TAM then vs actual\nExact numbers.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "monster_sub5_anatomy",
+          "prompt": "Monster Beverage (MNST, formerly Hansen Natural) at sub-$1 (2003-2004, split-adjusted ~$0.10-$0.50). This is the GREATEST 1000x stock ever. Extract EVERY variable:\n1. Price, market cap, shares, insider ownership\n2. Revenue, growth, margins\n3. Valuation multiples\n4. Cash, debt\n5. Analyst coverage (probably 0-2)\n6. CATALYST (Monster Energy launch 2002)\n7. MOAT (brand, distribution via Coca-Cola)\n8. Insider activity\n9. How long until the market noticed?\n10. What made this a 1000x and not just a 10x?\n11. Employee count\n12. TAM at launch vs actual energy drink TAM\nExact numbers.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "crowdstrike_sub15_anatomy",
+          "prompt": "CrowdStrike (CRWD) at $15-20 (2020 COVID crash, March 2020). Extract EVERY variable:\n1. Price, market cap, shares, insider ownership\n2. Revenue ($152M Q4 FY2020), growth rate (89%!)\n3. Gross margin (was it >70%?), operating margin\n4. Valuation — PS was probably 15-20x even at bottom\n5. Cash, debt, FCF\n6. Analyst coverage (was it low?)\n7. Short interest\n8. CATALYST (remote work + cloud security)\n9. George Kurtz insider activity\n10. How quickly did it recover? Timeline to $100, $300, $782\n11. What signals were present at $15 that screamed BUY?\n12. Was there a MOAT visible at $15? (Falcon platform)\n13. ARR at the time, net retention rate\nExact numbers.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "palantir_sub10_anatomy",
+          "prompt": "Palantir (PLTR) at sub-$10 (DPO Sept 2020, traded $9-10 initially, crashed to $6 in 2022). Extract EVERY variable at BOTH moments:\n1. Price, market cap, shares, insider ownership (Thiel + Karp)\n2. Revenue, growth, margins\n3. Valuation multiples\n4. Cash, debt\n5. Analyst coverage (many hated it)\n6. Short interest\n7. CATALYST (government AI contracts + AIP launch)\n8. MOAT (classified deployments, switching costs)\n9. Thiel/Karp insider selling (was it massive?)\n10. Bear thesis (SBC, government dependency)\n11. What changed from $6 to $156? Exact timeline.\n12. When did commercial revenue inflect?\n13. AIP launch date and impact\nExact numbers.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "rocketlab_sub5_anatomy",
+          "prompt": "Rocket Lab (RKLB) at sub-$5 (2022-2023, crashed from $21 SPAC price to $3.50). Extract EVERY variable:\n1. Price, market cap, shares, insider ownership (Peter Beck)\n2. Revenue, growth, margins\n3. Valuation multiples\n4. Cash, debt\n5. Analyst coverage\n6. Short interest\n7. CATALYST (Neutron development, Electron reliability, space economy)\n8. MOAT (only commercial orbital rocket besides SpaceX)\n9. Peter Beck insider activity at $3.50\n10. Bear thesis (cash burn, Neutron delays)\n11. What changed from $3.50 to $143?\n12. When did backlog inflect?\n13. Government contract wins\nExact numbers.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "hood_sub8_anatomy",
+          "prompt": "Robinhood (HOOD) at sub-$8 (2022-2023, crashed from $85 IPO to $6.81). Extract EVERY variable:\n1. Price, market cap, shares, insider ownership\n2. Revenue, growth, margins\n3. Valuation multiples\n4. Cash, debt (cash > mcap?)\n5. Analyst coverage, consensus\n6. Short interest\n7. CATALYST (crypto rally + retirement accounts + gold card)\n8. MOAT (Gen-Z brand, gamification)\n9. Vlad Tenev insider activity at $7\n10. Bear thesis (meme stock, PFOF ban risk)\n11. What changed from $7 to $94?\n12. ARPU trajectory\n13. Monthly active users at bottom vs now\n14. When did profitability inflect?\nExact numbers.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "shopify_sub5_anatomy",
+          "prompt": "Shopify (SHOP) at sub-$5 (IPO 2015 at ~$4-5 adjusted). Extract EVERY variable:\n1. Price, market cap, shares, insider ownership (Tobias Lutke)\n2. Revenue ($105M FY2014), growth\n3. Margins\n4. Cash, debt\n5. Analyst coverage\n6. CATALYST (e-commerce platform, API ecosystem)\n7. MOAT (merchant lock-in, app store)\n8. Was there any indication at $5 this would be 50x+?\n9. Key metrics: GMV, merchant count, take rate\n10. What did bulls see that bears missed?\nExact numbers.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "amd_sub2_anatomy",
+          "prompt": "AMD at sub-$2 (2015-2016, near-bankruptcy, traded $1.60-$2.50). Extract EVERY variable:\n1. Price, market cap, shares, insider ownership (Lisa Su just joined)\n2. Revenue, growth, margins (was GM positive?)\n3. Valuation multiples\n4. Cash, debt (was it near-bankrupt?)\n5. Analyst coverage\n6. Short interest (was it >30%?)\n7. CATALYST (Zen architecture, Lisa Su turnaround)\n8. MOAT (x86 license — only alternative to Intel)\n9. Lisa Su insider activity\n10. Bear thesis\n11. What changed from $2 to $200+?\n12. Key product launches (Ryzen timeline)\n13. When did revenue inflect?\nExact numbers.",
+          "system_prompt": "You are a forensic equity analyst. Provide EXACT numbers with citations.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "common_variables_extract",
+          "prompt": "Analyze these 1000x+ winners at their sub-$10 entry points: NVIDIA, Tesla, Amazon, Netflix, Apple, Monster, AMD, CRWD, PLTR, RKLB, HOOD, Shopify.\n\nExtract the COMMON VARIABLES present in ALL or MOST winners at the moment of maximum opportunity:\n1. Revenue growth rate range\n2. Gross margin range\n3. Were they profitable? (most were NOT)\n4. Insider ownership range\n5. Insider buying pattern\n6. Analyst coverage (low or high?)\n7. Short interest pattern\n8. Cash position relative to market cap\n9. Dilution rate\n10. TAM expansion pattern (was TAM VISIBLE or INVISIBLE?)\n11. Moat type (network effect, ecosystem, IP, brand, regulatory)\n12. Catalyst type (product launch, market shift, management change)\n13. Bear thesis strength (strong bears = good sign?)\n14. Time from bottom to 10x (how long?)\n15. Time from bottom to 100x\n16. Time from bottom to 1000x\n17. What % of the time were they cash-flow positive at entry?\n18. What was the SINGLE most predictive variable?\n\nCreate a SCORING FRAMEWORK with weights for each variable.",
+          "system_prompt": "You are a quantitative analyst building a predictive model. Be rigorous. Only use patterns that appear in 8+ of 12 winners.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "anti_pattern_failures",
+          "prompt": "Analyze stocks that LOOKED like 1000x candidates but FAILED:\n- Chegg (CHGG): Was $8, crashed to $1.34 — why?\n- Redfin (RDFN): Delisted — why?\n- Lucid (LCID): -96% GM, why did it fail?\n- Nikola (NKLA): Fraud — what were the warning signs?\n- QuantumScape (QS): 77% dilution — what signals predicted failure?\n- Lordstown (RIDE): Bankrupt — warning signs?\n- Wish (WISH): $30 to $0.50 — what went wrong?\n- Skillz (SKLZ): $40 to $1 — why?\n- Clover Health (CLOV): SPAC fraud — signs?\n- Peloton (PTON): $160 to $3 — structural vs cyclical?\n\nFor EACH failure, identify:\n1. Which 1000x signals were PRESENT (false positives)\n2. Which WARNING SIGNALS were ignored\n3. The SINGLE biggest reason for failure\n4. When was the last safe exit point?\n\nCreate an ANTI-PATTERN checklist — if ANY of these are present, KILL the candidate.",
+          "system_prompt": "You are a forensic analyst specializing in identifying fraud and failure patterns. Be brutal and specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "us_stock_count_sub5",
+          "prompt": "How many US-listed stocks currently trade between $1 and $5?\n\nBreak down by:\n1. Total count on NYSE + NASDAQ + AMEX\n2. By exchange\n3. By sector (Technology, Healthcare, Financial, Energy, etc.)\n4. By market cap tier: nano-cap (<$50M), micro-cap ($50M-$300M), small-cap ($300M-$2B)\n5. How many have revenue > $10M?\n6. How many have positive gross margins?\n7. How many have revenue growth > 20%?\n8. How many have insider ownership > 10%?\n9. How many are profitable?\n10. Approximate count that pass ALL of: revenue > $10M AND GM > 40% AND growth > 15%\n\nUse the most recent data available. Cite sources.",
+          "system_prompt": "You are a quantitative market analyst. Provide the best estimates with sources. If exact counts unavailable, provide ranges.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "screen_sub5_rev_growth",
+          "prompt": "Screen ALL US-listed stocks between $1 and $5 that have:\n- Revenue > $50M annually\n- Revenue growth > 20% YoY\n- Positive gross margins\n\nList every stock that passes with:\n1. Ticker, name, price, market cap\n2. Revenue, growth rate, gross margin\n3. Sector\n4. Why it might be interesting for 10x+ potential\n5. Red flags\n\nDo NOT include:\n- Chinese ADRs (CN risk)\n- Biotech with no revenue\n- SPACs\n- Penny stocks with no real business\n\nBe comprehensive — list ALL that pass the screen.",
+          "system_prompt": "You are a stock screener. List every qualifying stock. Do not filter by your opinion — list ALL that pass the numerical criteria.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "screen_sub5_insider_buying",
+          "prompt": "Find ALL US-listed stocks between $1 and $5 where CEO or C-suite executives have been BUYING shares in the open market in the last 6 months.\n\nFor each, provide:\n1. Ticker, name, price, market cap\n2. Who bought, how much, at what price\n3. Revenue, growth, margins\n4. Why are insiders buying?\n5. Is this a turnaround or value trap?\n\nInsider buying at sub-$5 by the CEO is the #1 signal from our 1000x winner analysis. The CEO putting their OWN money in at the bottom is the strongest conviction signal.",
+          "system_prompt": "You are an insider transaction analyst. Focus on OPEN MARKET purchases, not option exercises or 10b5-1 plans.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "screen_sub5_high_gm",
+          "prompt": "Find ALL US-listed stocks between $1 and $5 with gross margins above 60%.\n\nFor each, provide:\n1. Ticker, name, price, market cap\n2. Revenue, gross margin, operating margin\n3. Revenue growth\n4. Sector\n5. Why does it have high margins at such a low price? (usually means revenue crashed)\n6. Is this a real business or a shell?\n\nHigh gross margins + low stock price = either a turnaround or a dying business. We need to distinguish.",
+          "system_prompt": "You are a stock screener. List every qualifying stock. Be comprehensive.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "screen_sub5_low_dilution",
+          "prompt": "Find ALL US-listed stocks between $1 and $5 with:\n- Annual share dilution < 5%\n- No reverse stock splits in the last 3 years\n- Revenue > $20M\n\nExclude biotechs, SPACs, Chinese ADRs.\n\nFor each, provide:\n1. Ticker, name, price, market cap\n2. Share count history (3 years)\n3. Revenue, margins\n4. Why is dilution low? (rare for sub-$5 stocks)\n\nLow dilution at sub-$5 is extremely rare and extremely bullish — it means management isn't desperate for cash.",
+          "system_prompt": "You are a dilution analyst. Focus on SHARE COUNT trajectory, not just SBC.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "screen_sub5_crashed_90pct",
+          "prompt": "Find ALL US-listed stocks between $1 and $5 that have crashed 80%+ from their all-time high AND still have:\n- Revenue > $50M\n- Positive gross margins\n- Not in bankruptcy or restructuring\n\nFor each, provide:\n1. Ticker, name, current price, ATH, % decline\n2. Revenue, margins, growth\n3. Why did it crash?\n4. Is the crash cyclical or structural?\n5. Is there a path to recovery?\n6. Cash position vs burn rate (survival analysis)\n\nThis is the HOOD/UPST turnaround screen. We want stocks that crashed for cyclical reasons, not structural death.",
+          "system_prompt": "You are a turnaround analyst. Focus on separating cyclical crashes from structural failures.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "screen_sub5_moat_candidates",
+          "prompt": "Find ALL US-listed stocks between $1 and $5 that might have a defensible MOAT:\n- Network effects (marketplaces, platforms)\n- Ecosystem lock-in (APIs, developer tools)\n- Regulatory moat (licenses, patents, approvals)\n- Data moat (proprietary datasets)\n- Brand moat (consumer recognition)\n- Switching cost moat\n\nFor each, provide:\n1. Ticker, name, price, market cap\n2. Type of moat\n3. Strength of moat (1-10)\n4. Revenue, margins\n5. Why is it so cheap if it has a moat?\n\nA stock with a real moat at $1-5 is the holy grail — it means the market is pricing it for death but the moat prevents actual death.",
+          "system_prompt": "You are a competitive advantage analyst. Be skeptical — most cheap stocks have NO moat. Only list those with REAL defensibility.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "screen_sub3_aggressive",
+          "prompt": "AGGRESSIVE SCREEN: Find ALL US-listed stocks between $1 and $3 with market cap > $100M.\n\nFor each, list:\n1. Ticker, name, price, market cap\n2. Revenue, margins, growth\n3. Cash vs debt\n4. Insider ownership\n5. Sector\n6. One-sentence thesis (bull or kill)\n\nThis is the deepest value screen. Sub-$3 with $100M+ mcap means real institutional infrastructure but extreme pessimism.",
+          "system_prompt": "You are a deep value screener. List EVERY stock that meets the criteria. No filtering by opinion.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "tuya_deep_validation",
+          "prompt": "TUYA Inc (TUYA) deep forensic validation. Current holding: 95 shares @ $2.10.\n\n1. Current price, market cap, enterprise value\n2. Revenue trajectory (last 4 quarters and last 3 years)\n3. Revenue growth YoY\n4. Gross margin, operating margin, net margin\n5. Cash position vs debt (is EV negative?)\n6. IoT device connections (how many?)\n7. Developer count on platform\n8. Geographic revenue split (US vs China vs other)\n9. Customer concentration\n10. Insider ownership and recent transactions\n11. Short interest\n12. Competitive position vs Tuya alternatives\n13. China ADR risk assessment\n14. Delisting risk (HFCAA compliance)\n15. 7-signal score for 10x potential\n16. Is this a value trap or genuine opportunity?\nCite sources for every number.",
+          "system_prompt": "You are a forensic analyst. TUYA is a Chinese IoT cloud platform trading on NYSE. Assess ALL risks including geopolitical.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "tigr_deep_validation",
+          "prompt": "UP Fintech (TIGR) deep forensic validation. Current holding: 39 shares @ $5.01.\n\n1. Current price, market cap\n2. Revenue trajectory (last 4 quarters)\n3. Revenue growth, gross margin, profit margin\n4. Cash vs debt\n5. Total client assets, funded accounts\n6. Revenue per account\n7. Geographic expansion (Singapore, Australia, NZ, HK)\n8. Regulatory status in each market\n9. Commission revenue vs margin lending vs other\n10. Insider ownership and recent transactions\n11. Competition (Futu, Interactive Brokers, moomoo)\n12. China ADR risk\n13. HFCAA compliance status\n14. 7-signal assessment\n15. Is $5 fair value or is there 10x upside?\nCite sources.",
+          "system_prompt": "You are a forensic analyst. TIGR is a Chinese online brokerage. Assess ALL risks.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "winner_variable_matrix",
+          "prompt": "Create a comprehensive VARIABLE MATRIX for 1000x winners. Use these 12 stocks at their entry point: NVDA ($5), TSLA ($2), AMZN ($6), NFLX ($5), AAPL ($1), MNST ($0.30), AMD ($2), CRWD ($15), PLTR ($6), RKLB ($3.50), HOOD ($7), SHOP ($5).\n\nFor EACH stock, score these variables at entry (1-10 scale):\n1. Revenue growth rate\n2. Gross margin quality\n3. Insider conviction (buying/ownership)\n4. Low dilution\n5. Analyst neglect (fewer = better)\n6. TAM invisibility (market didn't see the TAM)\n7. Moat embryo (early signs of moat)\n8. Bear thesis strength (stronger bears = more upside)\n9. Cash runway adequacy\n10. Product-market fit evidence\n11. Management quality (track record)\n12. Short interest (high = potential squeeze)\n13. Price-to-sales cheapness\n14. Cyclical vs secular tailwind\n15. Network effect potential\n\nThen calculate WHICH variables had the highest correlation with actual returns. Rank the top 5 most predictive variables.\n\nOutput as a clean matrix table.",
+          "system_prompt": "You are a quantitative analyst building a predictive model for 1000x stocks. Score objectively based on data at the entry point, not hindsight.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "entry_timing_analysis",
+          "prompt": "For each 1000x winner, analyze the TIMING of entry:\n\n1. NVDA: How long from $5 to first 10x? To 100x? To 1000x?\n2. TSLA: Same timeline analysis\n3. AMZN: Same\n4. NFLX: Same\n5. AAPL: Same\n6. MNST: Same\n7. AMD: Same\n8. CRWD: How long from $15 to 10x? (still going)\n9. PLTR: From $6 to 10x? To 25x?\n10. RKLB: From $3.50 to 10x? To 40x?\n11. HOOD: From $7 to 10x?\n12. SHOP: From $5 to 10x? To 50x?\n\nAlso answer:\n- Average time to 10x for these winners?\n- Average time to 100x?\n- Was there ever a drawdown >50% AFTER the initial bottom? (test of conviction)\n- What was the maximum drawdown from entry to final price?\n- Did ANY of them go straight up or did ALL have scary drawdowns?",
+          "system_prompt": "You are a timing analyst. Use split-adjusted prices. Be precise on dates.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "sector_rotation_1000x",
+          "prompt": "Which SECTORS produced the most 1000x stocks historically?\n\nAnalyze from 1990 to 2025:\n1. Technology (software, hardware, semiconductors)\n2. Consumer discretionary (e-commerce, beverages, auto)\n3. Healthcare (biotech, medtech, pharma)\n4. Financial (fintech, insurance)\n5. Energy (solar, oil)\n6. Communication (social media, streaming)\n7. Industrials (defense, aerospace, EV)\n\nFor each sector:\n- Count of 1000x+ stocks\n- Count of 100x+ stocks\n- Count of 10x+ stocks (from sub-$10 entry)\n- What was the typical TAM expansion driver?\n- What's the NEXT sector likely to produce 1000x?\n\nAlso: What emerging sectors TODAY could be the 'AI chips' of 2015?",
+          "system_prompt": "You are a macro strategist. Focus on where the NEXT 1000x will come from, not where the last ones came from.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "deepdive_sub5_batch1",
+          "prompt": "Deep dive the following sub-$5 stocks. For each provide: price, mcap, revenue, growth, GM, insider ownership, dilution rate, cash/debt, sector, 1-sentence thesis, 10x probability (%), KILL or WATCH.\n\n1. SOUN (SoundHound AI) — voice AI\n2. DNA (Ginkgo Bioworks) — synthetic biology\n3. GEVO — renewable fuels\n4. CLSK (CleanSpark) — Bitcoin mining\n5. MARA (Marathon Digital) — Bitcoin mining\n6. OPEN (Opendoor) — iBuying\n7. SKLZ (Skillz) — mobile gaming platform\n8. WISH — e-commerce\n9. CLOV (Clover Health) — health insurance AI\n10. BBAI (BigBear.ai) — government AI\n\nBe BRUTAL. Most of these should be KILL.",
+          "system_prompt": "You are a ruthless stock screener. Default assumption: KILL unless overwhelming evidence otherwise. Focus on dilution, revenue, and insider activity.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "deepdive_sub5_batch2",
+          "prompt": "Deep dive the following sub-$5 stocks. For each: price, mcap, revenue, growth, GM, insider ownership, dilution rate, cash/debt, sector, thesis, 10x probability, KILL or WATCH.\n\n1. ASTS (AST SpaceMobile) — satellite broadband\n2. JOBY (Joby Aviation) — eVTOL\n3. LILM (Lilium) — eVTOL\n4. ACHR (Archer Aviation) — eVTOL\n5. ORGN (Origin Materials) — carbon-negative plastics\n6. MVST (Microvast) — EV batteries\n7. QS (QuantumScape) — solid-state batteries\n8. STEM (Stem Inc) — energy storage AI\n9. BLNK (Blink Charging) — EV charging\n10. LAZR (Luminar) — lidar for autonomous vehicles\n\nBe BRUTAL. Most are SPACs that will die.",
+          "system_prompt": "You are a ruthless stock screener. Default: KILL unless overwhelming evidence.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "deepdive_sub5_batch3",
+          "prompt": "Deep dive the following sub-$5 stocks. For each: price, mcap, revenue, growth, GM, insider ownership, dilution rate, cash/debt, sector, thesis, 10x probability, KILL or WATCH.\n\n1. IONQ — quantum computing\n2. RGTI (Rigetti) — quantum computing\n3. ARQQ (Arqit Quantum) — quantum encryption\n4. SNDL (SNDL Inc) — cannabis\n5. TLRY (Tilray) — cannabis\n6. ACB (Aurora Cannabis) — cannabis\n7. SOFI (SoFi) — neobank (check if still sub-$5)\n8. PSFE (Paysafe) — payments\n9. LMND (Lemonade) — insurance AI\n10. PAYO (Payoneer) — cross-border payments\n\nBe BRUTAL. Check current prices — some may have moved above $5.",
+          "system_prompt": "You are a ruthless stock screener. Default: KILL unless overwhelming evidence.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "deepdive_sub5_batch4",
+          "prompt": "Deep dive the following sub-$5 stocks. For each: price, mcap, revenue, growth, GM, insider ownership, dilution rate, cash/debt, sector, thesis, 10x probability, KILL or WATCH.\n\n1. BTG (B2Gold) — gold mining\n2. GAU (Galiano Gold) — gold mining\n3. AG (First Majestic Silver) — silver mining\n4. GRAB (Grab Holdings) — SE Asian super-app\n5. PAGS (PagSeguro) — Brazilian fintech\n6. RCAT (Red Cat) — defense drones\n7. MNDY (Monday.com) — check price\n8. BIRD (Allbirds) — sustainable shoes\n9. BARK (BarkBox) — pet products\n10. OUST (Ouster) — lidar\n\nBe BRUTAL.",
+          "system_prompt": "You are a ruthless stock screener. Default: KILL.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "deepdive_sub5_fintech",
+          "prompt": "Deep dive ALL fintech stocks between $1 and $5. Fintech is the sector most likely to produce the next HOOD-style turnaround.\n\nCheck these specifically:\n1. PAYO (Payoneer) — cross-border payments\n2. PSFE (Paysafe) — online payments\n3. TIGR (UP Fintech) — online brokerage\n4. FUTU (Futu Holdings) — check if sub-$5\n5. NRDS (NerdWallet) — financial comparison\n6. LPRO (Open Lending) — auto lending AI\n7. TOST (Toast) — restaurant fintech, check price\n8. Any other fintech sub-$5 you can find\n\nFor each: price, mcap, revenue, growth, GM, insider activity, dilution, moat assessment, 10x probability.",
+          "system_prompt": "You are a fintech specialist. The HOOD turnaround pattern (insider buying + cash > mcap + cyclical decline) is the template. Score each against it.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "deepdive_sub5_defense_ai",
+          "prompt": "Deep dive ALL defense/AI stocks between $1 and $5. Defense AI is a high-conviction secular growth sector.\n\nCheck:\n1. RCAT (Red Cat) — defense drones\n2. BBAI (BigBear.ai) — government AI\n3. BKSY (BlackSky) — satellite imagery\n4. IREN — check sector/price\n5. Any other defense/AI sub-$5\n\nFor each: price, mcap, revenue, growth, GM, government contracts, insider activity, dilution, moat (security clearance = moat?), 10x probability.\n\nAlso assess: Is Anduril-like defense AI possible at sub-$5 public market? Or is all the alpha in private markets (Anduril, Shield AI)?",
+          "system_prompt": "You are a defense sector analyst. Focus on contract backlog, security clearances, and government spending trajectory.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "deepdive_sub5_biotech_real",
+          "prompt": "Find ALL biotech/life science stocks between $1 and $5 that have ACTUAL REVENUE (not just pipeline). Revenue > $20M.\n\nFor each: price, mcap, revenue, growth, GM, pipeline value, insider activity, dilution (biotech dilution is usually horrific), cash runway, key drug/product.\n\nBiotech is the #1 sector for 1000x returns historically BUT 99% of biotech sub-$5 stocks go to zero. We need to find the ones with REVENUE and a late-stage pipeline catalyst.",
+          "system_prompt": "You are a biotech analyst. Focus on revenue-generating biotechs, not pre-revenue. Dilution rate is the KILL signal — >10% annual dilution = automatic KILL.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "scoring_framework_v3",
+          "prompt": "Design a SCORING FRAMEWORK specifically for sub-$5 stocks with 10x-1000x potential.\n\nBased on analysis of NVDA, TSLA, AMZN, NFLX, AAPL, MNST, AMD, CRWD, PLTR, RKLB, HOOD, SHOP at their entry points, create:\n\nSCORING SYSTEM (100 points max):\nA. Growth Engine (20 pts) — revenue growth, revenue trajectory, acceleration\nB. Margin Quality (15 pts) — gross margin, operating leverage potential\nC. Insider Conviction (15 pts) — CEO buying, ownership %, no selling\nD. Capital Discipline (15 pts) — low dilution, no reverse splits, cash runway\nE. Moat Embryo (10 pts) — early signs of defensibility\nF. TAM Invisibility (10 pts) — market doesn't see the real TAM yet\nG. Catalyst Proximity (10 pts) — product launch, regulatory approval within 12 months\nH. Anti-Fragility (5 pts) — survived a crisis, cash > burn rate\n\nPENALTIES:\n- China ADR: -15\n- >10% dilution: -20\n- Reverse split history: -25\n- CEO selling at bottom: -15\n- Zero revenue: -10\n- SPAC origin: -5\n\nOutput the complete framework with scoring criteria for each subcategory.",
+          "system_prompt": "You are a quantitative model designer. Create a rigorous, backtestable scoring system. Every point must be justified by historical data from the 12 winners.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "sprint_log_design",
+          "prompt": "Design a SPRINT LOG system for tracking our 1000x hunt over time.\n\nThe system should include:\n1. Sprint number, date, agent count, cost\n2. Key discoveries per sprint\n3. Stocks added to WATCH list (with entry targets)\n4. Stocks KILLED (with reason)\n5. Position changes (buys, sells, adjustments)\n6. Cumulative stats (total agents, total cost, hit rate)\n7. Performance tracking (did our picks beat SPY?)\n8. Deadline structure:\n   - Weekly: price check all WATCH stocks\n   - Monthly: full rescore of WATCH list\n   - Quarterly: expand universe screen\n   - Annual: full retrospective\n9. Accumulation rules:\n   - Add on 10% dip from entry\n   - Double position if 3+ signals confirmed by live data\n   - SELL if any KILL signal triggers\n10. Risk management:\n   - Max 15% of portfolio in any single stock\n   - Max 40% in sub-$5 stocks total\n   - Stop-loss at -30% from entry\n\nOutput as a JSON schema.",
+          "system_prompt": "You are a portfolio management system designer. Create a practical, automated tracking system.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "historical_1000x_count",
+          "prompt": "How many stocks in US market history have achieved 1000x returns (100,000% gain) from their lowest price?\n\nProvide:\n1. Total count of verified 1000x+ stocks\n2. List ALL of them with: ticker, lowest price, highest price, return multiple, time period\n3. What % of all US-listed stocks ever achieved 1000x?\n4. What % achieved 100x?\n5. What % achieved 10x?\n6. Base rates: If you buy a random sub-$5 stock, what is the probability of 10x? 100x? 1000x?\n7. If you screen for our top 5 variables (growth, margins, insider buying, low dilution, moat), what does the probability improve to?\n\nBe as comprehensive as possible. This establishes the base rate for our strategy.",
+          "system_prompt": "You are a financial historian. Provide verified data. If exact counts are unavailable, provide best estimates with methodology.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "current_sub5_universe_size",
+          "prompt": "As of mid-2025, how many stocks trade on US exchanges (NYSE, NASDAQ, AMEX) in each price range:\n1. $0.01 - $1.00 (penny stocks)\n2. $1.00 - $2.00\n3. $2.00 - $3.00\n4. $3.00 - $5.00\n5. $5.00 - $10.00\n6. $10.00 - $50.00\n7. $50.00+\n\nFor the $1-$5 range specifically:\n- Total count\n- Count with market cap > $100M\n- Count with market cap > $500M\n- Count with revenue > $100M\n- Count with positive earnings\n- Count that are NOT biotech, NOT Chinese ADR, NOT SPAC\n- Count that have been in the $1-$5 range for less than 2 years (recent arrivals = more interesting)\n\nThis defines our hunting ground.",
+          "system_prompt": "You are a market structure analyst. Provide the best available data.",
+          "temperature": 0.1,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "screen_sub5_tam_invisible",
+          "prompt": "Find stocks between $1-$5 where the TOTAL ADDRESSABLE MARKET is currently INVISIBLE to the market — meaning the company is positioned in a market that could be 10-100x larger than analysts currently estimate.\n\nExamples of 'invisible TAM' from history:\n- NVIDIA 2015: Gaming GPU company. Invisible TAM: AI training ($300B+)\n- AMZN 2002: Online bookstore. Invisible TAM: Cloud computing ($500B+)\n- AAPL 2003: Computer maker. Invisible TAM: Smartphone ($400B+)\n- MNST 2003: Juice company. Invisible TAM: Energy drinks ($100B+)\n\nWhat sub-$5 stocks TODAY are in a position where their current business looks small but they're positioned for a TAM expansion that nobody sees?\n\nConsider:\n- AI infrastructure (but not the obvious plays)\n- Quantum computing applications\n- Space economy\n- Synthetic biology manufacturing\n- Edge computing / IoT\n- Defense autonomy\n- Climate tech\n- Digital identity\n- Brain-computer interfaces\n\nList every candidate with your assessment.",
+          "system_prompt": "You are a visionary analyst. Look 5-10 years ahead. The best 1000x investments look STUPID at the time of purchase.",
+          "temperature": 0.3,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "convergence_sub5_score",
+          "prompt": "For ALL sub-$5 stocks mentioned across ALL screens in this sprint, calculate a CONVERGENCE SCORE (how many independent screens flagged this stock).\n\nA stock flagged by multiple independent screens is MORE likely to be a real opportunity than one flagged by only one screen.\n\nScreens:\n1. Revenue growth > 20%\n2. Insider buying\n3. High gross margins > 60%\n4. Low dilution < 5%\n5. Crashed 80%+ (turnaround)\n6. Moat candidate\n7. Sub-$3 with $100M+ mcap\n8. Invisible TAM\n\nScore each stock: how many of 8 screens does it appear in?\nRank by convergence score.\nAny stock scoring 5+/8 is a PRIORITY WATCH.\nAny stock scoring 3-4/8 is a SECONDARY WATCH.\nAny stock scoring 1-2/8 is BACKGROUND MONITOR.",
+          "system_prompt": "You are a convergence analyst. Cross-reference ALL screens. The power is in the intersection.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "final_sub5_watchlist",
+          "prompt": "FINAL OUTPUT: Create the definitive sub-$5 watchlist for the 1000x hunt.\n\nUsing ALL analysis from this sprint (winner anatomy, failure anti-patterns, screens, convergence), produce:\n\n1. TIER 1 — HIGH CONVICTION WATCH (3-5 stocks max):\n   - Stock, price, entry target, stop-loss\n   - Convergence score\n   - Key thesis in 1 sentence\n   - Primary risk\n   - Position size recommendation ($2,500 portfolio)\n\n2. TIER 2 — MONITOR (5-10 stocks):\n   - Stock, price, what would upgrade it to Tier 1\n   - Key catalyst to watch for\n\n3. TIER 3 — BACKGROUND (10-20 stocks):\n   - Stock, price, why it's interesting but not ready\n\n4. KILLED — DO NOT BUY (list with reason)\n\n5. SPRINT LOG ENTRY:\n   - Sprint 5 summary\n   - New additions\n   - Total agents used\n   - Next sprint focus\n\nBe EXTREMELY selective for Tier 1. Only stocks with 4+/8 convergence AND matching 3+ variables from the 1000x winner framework belong in Tier 1.",
+          "system_prompt": "You are a portfolio manager making the final call. Your reputation is on the line. Only recommend stocks you would buy with your own money at sub-$5.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

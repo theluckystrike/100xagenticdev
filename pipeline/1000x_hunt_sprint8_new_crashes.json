@@ -1,0 +1,148 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "s8_t01_mq_deep",
+          "prompt": "Deep dive on Marqeta (MQ) at $4.10. Modern card issuing platform. $652M revenue, 70% gross margin, 19.2% growth, $116M FCF, just turned profitable at $2M NI. Analyze: (1) What is Marqeta's actual moat - is modern card issuing defensible? (2) Customer concentration risk - Block/Square dependency. (3) Competition from Stripe Issuing, Adyen, legacy processors. (4) Why did the stock crash from IPO highs? Was the bear thesis justified? (5) Is the turn to profitability sustainable? (6) Path to 10x from $4.10. Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst specializing in fintech infrastructure. Qualitative analysis only. DO NOT cite numbers.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t02_smwb_deep",
+          "prompt": "Deep dive on Similarweb (SMWB) at $4.38. Web analytics and digital intelligence SaaS platform. $289M revenue, 79.6% gross margin, 10.1% growth, $25M FCF. Analyze: (1) What does Similarweb actually do - competitive intelligence, SEO analytics, market research? (2) How does it compete against Semrush, Ahrefs, Google Analytics? (3) Is web analytics data a defensible moat? (4) Customer base - who pays for this and why? (5) Why is the stock cheap at 1.3x revenue with 80% margins? (6) Path to 10x. Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst specializing in SaaS and digital marketing tools. Qualitative analysis only.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t03_rpay_deep",
+          "prompt": "Deep dive on Repay Holdings (RPAY) at $3.93. Integrated payments for verticals (auto lending, healthcare, B2B). $313M revenue, 75.1% GM, 4.5% growth, $46M FCF. Analyze: (1) What verticals does Repay serve and why are they sticky? (2) Competition from Stripe, Square, FIS, Fiserv. (3) Acquisition-driven growth history - organic vs inorganic? (4) Why has growth slowed to 4.5%? (5) Is the payments processing space too crowded for a sub-$400M player? (6) Path to 10x. Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst specializing in payment processing. Qualitative analysis only.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t04_tbla_deep",
+          "prompt": "Deep dive on Taboola (TBLA) at $4.86. Content discovery and native advertising platform. $2.0B revenue, 29.7% GM, $136M FCF, $110M NI, 21.6% insider ownership. Analyze: (1) What is Taboola's actual business - the 'recommended content' widgets on news sites? (2) Is this a growing or dying business model (clickbait reputation, ad blockers)? (3) Yahoo partnership - how important is it? (4) Competition from Outbrain (merged?), Google Discover. (5) AI threat - will AI-generated content or AI assistants destroy content discovery? (6) Path to 10x. Do NOT cite financial numbers.",
+          "system_prompt": "You are a digital advertising analyst. Qualitative analysis only.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t05_myps_deep",
+          "prompt": "Deep dive on PLAYSTUDIOS (MYPS) at $0.58. Mobile gaming company with loyalty rewards mechanic (play games, earn real-world rewards from MGM, Marriott, etc). $231M revenue, 76.7% GM, $28M FCF at a $75M market cap. Analyze: (1) Revenue is 3x the market cap - why is this so cheap? (2) The loyalty rewards angle - is it a real differentiator or gimmick? (3) MGM Resorts partnership - anchor or dependency? (4) Mobile gaming market dynamics for casino-style games. (5) Is this a legitimate deep value play at 0.3x revenue? (6) What's the catch - why is the market pricing this at $75M? Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst specializing in mobile gaming and entertainment. Qualitative analysis only.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t06_cron_deep",
+          "prompt": "Deep dive on Cronos Group (CRON) at $2.73. Cannabis company backed by Altria (Marlboro). 48.5% insider ownership (Altria owns 42%). $160M revenue, 39.6% GM, 40.1% growth. Analyze: (1) Why is Cronos different from other cannabis stocks (SNDL, ACB, CGC) that we killed? (2) Altria's 42% stake - strategic advantage or albatross? (3) What would US federal legalization mean for Cronos specifically? (4) Revenue growth 40% is impressive for cannabis - what's driving it? (5) Is Cronos the 'survivor' of cannabis, or will it follow the same dilution path? (6) Path to 10x. Do NOT cite financial numbers.",
+          "system_prompt": "You are an equity research analyst specializing in cannabis and consumer staples. Qualitative analysis only.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t07_talk_deep",
+          "prompt": "Deep dive on Talkspace (TALK) at $5.22. Online therapy/telehealth platform. $238M revenue, 39.2% GM, 18.2% growth, just turned profitable at $1M NI. Analyze: (1) Is online therapy a growing or stabilizing market post-COVID? (2) Competition from BetterHelp (Teladoc), Cerebral, traditional therapists going online. (3) B2B channel (employer benefits) vs B2C - which is growing? (4) Clinical quality - do outcomes justify the model? (5) Insurance reimbursement trends for telehealth. (6) Path to 10x. Do NOT cite financial numbers.",
+          "system_prompt": "You are a healthcare equity research analyst. Qualitative analysis only.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t08_mq_moat",
+          "prompt": "MOAT ANALYSIS: Marqeta (MQ). The card issuing platform processes billions in volume. (1) What makes switching away from Marqeta's API hard for customers? (2) Is there a network effect in card issuing? (3) How long do enterprise contracts typically last? (4) What percentage of revenue comes from Block/Square vs other customers? (5) Has any major customer ever left Marqeta? (6) Compare Marqeta's competitive position to Stripe Issuing, Galileo (SoFi), Lithic, and i2c.",
+          "system_prompt": "You are a fintech competitive strategy analyst. Focus on moat durability and switching costs.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t09_myps_catch",
+          "prompt": "WHAT'S THE CATCH: PLAYSTUDIOS (MYPS) trades at 0.3x revenue with 77% gross margin and positive FCF. This is absurdly cheap. What is the market seeing that we're not? (1) Is revenue declining or about to decline? (2) Is there a debt bomb or convertible note overhang? (3) Are insiders selling? (4) Is there a regulatory risk to casino-style mobile games? (5) Is the MGM partnership at risk of non-renewal? (6) Is there a going-concern risk despite positive FCF? Something must explain a 0.3x revenue multiple for a 77% GM company.",
+          "system_prompt": "You are a forensic analyst. Your job is to find the hidden risk that explains why a company trades at such a massive discount. Be thorough.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t10_tbla_yahoo",
+          "prompt": "CRITICAL DEPENDENCY: Taboola (TBLA) and Yahoo. Taboola has a major partnership with Yahoo for native advertising. (1) What percentage of Taboola's revenue comes from Yahoo? (2) When does the Yahoo contract expire? (3) What happens to Taboola's revenue if Yahoo doesn't renew? (4) Is Yahoo itself financially stable enough to be a reliable partner? (5) Has Taboola diversified beyond Yahoo? (6) Is the Yahoo deal a moat or a concentration risk?",
+          "system_prompt": "You are a digital advertising analyst. Focus on partnership dependencies and revenue concentration risks.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t11_clne_deep",
+          "prompt": "Deep dive on Clean Energy Fuels (CLNE) at $2.11. Renewable natural gas (RNG) for heavy-duty trucks. $439M revenue, 27.3% GM, 13.3% growth, 21.5% insider ownership. Analyze: (1) Is RNG for trucking a bridge fuel that dies when EVs arrive, or a permanent niche? (2) Who are CLNE's customers - major trucking fleets? (3) EPA renewable fuel standard dependency. (4) Amazon partnership for delivery fleet RNG. (5) Competition from EV trucks (Tesla Semi, Nikola) and hydrogen. (6) Path to 10x. Do NOT cite financial numbers.",
+          "system_prompt": "You are an energy transition analyst. Focus on the RNG vs EV vs hydrogen competition for heavy-duty transport.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t12_insider_check",
+          "prompt": "INSIDER ACTIVITY SCREEN: For each of these stocks, what is the recent insider buying/selling pattern? MYPS (PLAYSTUDIOS), MQ (Marqeta), TBLA (Taboola), SMWB (Similarweb), CRON (Cronos). Are insiders buying with personal money (bullish) or selling/exercising options (neutral to bearish)? Focus on OPEN MARKET purchases by CEO/CFO/directors, not option exercises or grants.",
+          "system_prompt": "You are an insider transaction analyst. Focus on Form 4 open-market purchases. Distinguish between conviction buying and routine option exercises.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t13_rate_cut_beta",
+          "prompt": "RATE CUT SENSITIVITY: Which of these sub-$5 stocks benefit MOST from interest rate cuts? Rank them: MQ (Marqeta), SMWB (Similarweb), RPAY (Repay), TBLA (Taboola), MYPS (PLAYSTUDIOS), CRON (Cronos), TALK (Talkspace), CLNE (Clean Energy), GDRX (GoodRx), LPRO (Open Lending), UWMC (UWM Holdings). For each, explain the mechanism (lower funding costs, higher consumer spending, multiple expansion, etc). Which are PURE rate plays vs quality businesses regardless of rates?",
+          "system_prompt": "You are a macro strategist. Rank stocks by rate-cut sensitivity and explain the causal mechanism.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t14_v3_score",
+          "prompt": "V3 FRAMEWORK SCORING: Score these NEW candidates. v3 framework (100 pts): A(20)Growth, B(15)Margin, C(15)Insider, D(15)Capital, E(10)Moat, F(10)TAM, G(10)Catalyst, H(5)Anti-Fragility. Penalties: CN_ADR -15, >10% dilution -20, reverse split -25, CEO selling -15, zero rev -10, SPAC -5. Live data: MQ ($4.10, 70%GM, +19%, $116M FCF), SMWB ($4.38, 80%GM, +10%, $25M FCF), RPAY ($3.93, 75%GM, +4.5%, $46M FCF), TBLA ($4.86, 30%GM, +9%, $136M FCF, 21.6% insider), MYPS ($0.58, 77%GM, -7%, $28M FCF, 19.5% insider), CRON ($2.73, 40%GM, +40%, 48.5% insider), TALK ($5.22, 39%GM, +18%), CLNE ($2.11, 27%GM, +13%, 21.5% insider).",
+          "system_prompt": "You are a quantitative equity analyst. Score each stock systematically. Use the live data provided.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t15_mq_block",
+          "prompt": "CRITICAL RISK: Marqeta (MQ) customer concentration. Block (formerly Square) is reportedly Marqeta's largest customer, possibly 50%+ of revenue. (1) What percentage of MQ revenue comes from Block? (2) Is Block building its own card issuing in-house? (3) What happened with the Block contract renegotiation - terms changed? (4) If Block leaves, can Marqeta survive? (5) What other major customers does Marqeta have? (6) Customer diversification trend - is concentration getting better or worse?",
+          "system_prompt": "You are a fintech analyst. Assess customer concentration risk for a platform company. Be specific.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t16_smwb_data_moat",
+          "prompt": "DATA MOAT ANALYSIS: Similarweb (SMWB) claims to have a unique web analytics dataset. (1) How does Similarweb collect its data - browser extensions, ISP partnerships, panels? (2) Is this data legally defensible in a post-GDPR, post-cookie world? (3) How accurate is Similarweb data compared to actual site analytics? (4) Can Google, Microsoft, or Amazon replicate this data trivially? (5) What is Similarweb's renewal rate and net dollar retention? (6) Is 'alternative data for digital markets' a growing or shrinking TAM?",
+          "system_prompt": "You are a data analytics industry analyst. Assess the defensibility of web analytics data in a privacy-first world.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t17_kill_or_watch",
+          "prompt": "KILL OR WATCH: From the Sprint 8 universe, categorize each stock as KILL (never buy) or WATCH (monitor for entry). Consider our established anti-patterns: >10% dilution, reverse splits, CEO selling, negative unit economics, fraud history. Stocks to categorize: LPSN (LivePerson), ATER (Aterian), RXRX (Recursion Pharma), PLUG (Plug Power), SPCE (Virgin Galactic), NNOX (Nano-X), EDIT (Editas), MAXN (Maxeon Solar), GROV (Grove Collaborative), BCAB (BioAtla). For each KILL, cite the specific anti-pattern.",
+          "system_prompt": "You are a forensic analyst. Apply the established kill criteria ruthlessly. No mercy for bad businesses.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t18_convergence",
+          "prompt": "SPRINT 8 CONVERGENCE: Rank ALL new Sprint 8 candidates from best to worst opportunity. For each, provide: Ticker | Score out of 50 (Moat 10 + TAM 10 + Anti-consensus 10 + Catalyst 10 + Management 10) | One-line verdict. Then produce the FINAL WATCHLIST: maximum 5 stocks across TIER 1 (buy now), TIER 2 (watch for entry), TIER 3 (interesting but risky). Candidates: MQ, SMWB, RPAY, TBLA, MYPS, CRON, TALK, CLNE. Be DECISIVE.",
+          "system_prompt": "You are a portfolio manager making final allocation decisions. Be decisive. Quality over quantity. Maximum 5 stocks total.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t19_portfolio_fit",
+          "prompt": "PORTFOLIO FIT: Our current portfolio is GRAB (150 shr), BTG (50), GAU (100), TUYA (95), TIGR (39). Pending: PAGS, PAYO. From the Sprint 8 candidates, which stocks would IMPROVE portfolio diversification? Current exposures: SE Asia super-app 22%, Gold miners 18%, Chinese ADR tech 16%, Cash 43%. Which Sprint 8 candidates add NEW sector exposure (US SaaS, US fintech infrastructure, digital advertising, healthcare, clean energy)? Rank the best 3 additions for portfolio diversification.",
+          "system_prompt": "You are a portfolio construction specialist. Focus on diversification benefits, not just individual stock quality.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s8_t20_final_action",
+          "prompt": "SPRINT 8 FINAL ACTION LIST: Based on all Sprint 8 analysis, what should the investor DO? The investor has ~$1,062 cash, values their time, and does not want to trade frequently. Provide: (1) Which Sprint 8 stocks, if any, deserve a position? (2) Suggested position size and limit price. (3) What would the portfolio look like after adding? (4) What price alerts to set. (5) What to monitor and when. Keep it simple - maximum 2-3 new positions, with clear entry criteria. The investor's edge is PATIENCE, not trading frequency.",
+          "system_prompt": "You are a portfolio advisor for a patient retail investor. Minimize trades, maximize conviction. Only recommend positions with clear edge.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}

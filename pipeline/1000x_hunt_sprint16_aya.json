@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "t01",
+          "prompt": "Aya Gold & Silver (TSX:AYA, AYASF). VERIFIED DATA: Price CAD$29.77/USD$19.33, MCap CAD$4.27B/USD$2.76B, EV CAD$4.21B. Revenue: 2022 $38.2M, 2023 $42.8M, 2024 $39.1M, 2025 $202.1M, Q1'26 $117.3M (+247% YoY). Net Income: 2024 -$21.6M, 2025 $45.6M, Q1'26 $48.3M. Analyze the Zgounder mine expansion — what drove revenue from $39M to $202M to annualized $469M? When did expansion complete? What is current production capacity in oz silver? Is the claim of '6 million oz silver' accurate? Cite specific production data.",
+          "system_prompt": "You are a mining industry analyst. Provide specific production data with citations. Flag any claims you cannot verify.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t02",
+          "prompt": "AYA Gold & Silver SHARE DILUTION ANALYSIS. VERIFIED: Shares outstanding: 2022=105,020,190, 2023=122,377,703 (+16.5%), 2024=130,770,053 (+6.9%), 2025=142,014,007 (+8.6%), current=142,986,547 (+0.7%). TOTAL DILUTION: +36.2% in 3 years. The bull thesis claims 'no stock dilution, 1st mine is so profitable it funds Boumadine construction.' This appears FALSE based on share count data. Analyze: (1) What caused each year's dilution — equity raises, warrants, options, acquisitions? (2) Is the company CURRENTLY diluting? (3) Will Boumadine require additional equity raises? (4) At what rate is dilution occurring now vs historically?",
+          "system_prompt": "You are a forensic equity analyst. The share count data is VERIFIED from SEC/SEDAR filings via yfinance. Focus on reconciling the 'no dilution' claim with the 36% share increase.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t03",
+          "prompt": "AYA Gold & Silver FREE CASH FLOW FORENSIC. VERIFIED ANNUAL FCF: 2022=-$33.7M, 2023=-$98.7M, 2024=-$101.6M, 2025=-$4.2M. VERIFIED QUARTERLY FCF: Q2'25=-$6.6M, Q3'25=-$4.4M, Q4'25=-$2.2M, Q1'26=+$8.98M, Q1'26=+$53.4M. The bull thesis claims '$250+ million in free cash flow.' Annualizing Q1'26 FCF gives $213.6M, not $250M. Analyze: (1) Is $250M FCF achievable? What silver price does it require? (2) Is Q1'26 FCF sustainable or one-time? (3) What's the capex split between Zgounder maintenance and Boumadine development? (4) When does Boumadine capex peak?",
+          "system_prompt": "You are a mining cash flow specialist. The FCF data is from VERIFIED financial statements. Be precise about whether $250M FCF is real or aspirational.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t04",
+          "prompt": "AYA Gold & Silver BOUMADINE MINE ANALYSIS. The bull thesis claims: 'Building 2nd mine, Boumadine, which will produce 37 million oz silver equivalent (gold, silver, lead and zinc) in 2029 or 2030. Revenue and profits will increase by 6x or 7x.' Analyze: (1) What is the latest Boumadine feasibility study showing? NPV, IRR, capex required, timeline. (2) Is 37M oz AgEq realistic? What's the breakdown by metal? (3) What's the total capex to build Boumadine? How much has been spent vs remaining? (4) Is 2029/2030 production start realistic? (5) What permitting/regulatory risks exist in Morocco? Cite specific study data.",
+          "system_prompt": "You are a mining project evaluation specialist. Analyze the Boumadine development project with specific technical data. Flag any claims that lack verification.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t05",
+          "prompt": "AYA Gold & Silver VALUATION ANALYSIS. VERIFIED: Price CAD$29.77, MCap CAD$4.27B, EV CAD$4.21B, P/S 14.95x, P/E 35.9x, Forward P/E 13.3x, P/B 6.7x, EV/EBITDA 27.2x, EV/Revenue 14.7x. Compare AYA's valuation to silver mining peers: First Majestic Silver (AG), Pan American Silver (PAAS), MAG Silver (MAG), Coeur Mining (CDE), Endeavour Silver (EXK), Hecla Mining (HL). AYA trades at 14.9x P/S — most silver miners trade at 2-5x. Is the premium justified by growth? What P/S would be fair for a miner growing revenue 5-7x over 4 years?",
+          "system_prompt": "You are a mining equity valuation specialist. Use specific peer multiples. Flag if AYA's premium is excessive or justified.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t06",
+          "prompt": "SILVER MARKET ANALYSIS for AYA investment thesis. The bull says 'Silver is at $75 which is $45 per oz below its all time high in January.' Verify: (1) What is the ACTUAL current silver spot price in June 2026? (2) What was the actual ATH and when? (3) What is the supply/demand outlook for silver? (4) How sensitive is AYA's valuation to silver price? What's revenue/FCF at $30, $40, $50, $75, $100 silver? (5) What's the silver-gold ratio telling us? (6) Industrial demand vs investment demand trends.",
+          "system_prompt": "You are a precious metals market analyst. Verify the silver price claims with current data. Analyze AYA's silver price sensitivity.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t07",
+          "prompt": "AYA Gold & Silver MANAGEMENT & GOVERNANCE. Analyze: (1) Who is the CEO and management team? Background, track record, tenure. (2) Insider ownership at 3.4% — is this low for a mining company? (3) Any insider buying or selling in the last 12 months? (4) Who are the major institutional holders (42.2%)? (5) Board composition and independence. (6) CEO compensation vs peers. (7) Any related-party transactions or governance red flags? (8) Has management delivered on previous guidance/promises?",
+          "system_prompt": "You are a corporate governance analyst specializing in mining companies. Assess management quality and alignment with shareholders.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t08",
+          "prompt": "AYA Gold & Silver MOROCCO COUNTRY RISK. AYA operates in Morocco (Zgounder and Boumadine mines). Analyze: (1) Morocco's mining regulatory framework — stability, rule of law, expropriation risk. (2) Tax regime for mining companies. (3) Royalty rates. (4) Any history of government interference with mining operations? (5) Infrastructure quality (roads, power, water) near mine sites. (6) Labor relations and costs in Moroccan mining. (7) Environmental permitting risks. (8) How does Morocco compare to other mining jurisdictions (Canada, Mexico, Peru, DRC)?",
+          "system_prompt": "You are a geopolitical risk analyst specializing in mining jurisdictions. Assess Morocco's risk profile for mining investment.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t09",
+          "prompt": "AYA Gold & Silver REVENUE TRAJECTORY VERIFICATION. VERIFIED quarterly revenue: Q1'25 $33.8M, Q2'25 $38.6M, Q3'25 $54.3M, Q4'25 $75.3M, Q1'26 $117.3M. This is a perfect hockey stick: each quarter bigger than the last. Analyze: (1) What drove the sequential growth? Production ramp? Silver price increase? Both? (2) Is Q1'26 at $117M the new run rate or a one-time peak? (3) What production level (oz) does Q1'26 revenue imply at current silver prices? (4) Can this growth rate sustain through 2026? (5) What does consensus expect for FY2026 revenue?",
+          "system_prompt": "You are a mining revenue analyst. Decompose the revenue growth into volume (oz produced) vs price (silver spot) components. Be specific with numbers.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t10",
+          "prompt": "AYA Gold & Silver TECHNICAL ANALYSIS. VERIFIED: Price CAD$29.77, 52w low $11.45, 52w high $30.15 (NEAR ATH). 50-day MA $24.01, 200-day MA $20.12. Stock has tripled from 52w low. Analyze: (1) Is buying at 99% of ATH wise? Historical studies on buying miners at ATHs. (2) RSI, MACD, volume trends. (3) Support levels if silver corrects. (4) What happens to AYA if silver drops to $25/oz from current ~$32? (5) Is this a breakout or a blow-off top? (6) Comparative: did other miners that hit ATHs (Barrick, Newmont) continue or reverse?",
+          "system_prompt": "You are a technical analyst specializing in mining stocks. Assess the risk of buying near all-time highs.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t11",
+          "prompt": "AYA Gold & Silver COST STRUCTURE. VERIFIED: Gross Margin 54.9%, Operating Margin 66.2% (NOTE: operating margin > gross margin is unusual — may include gains), Profit Margin 30.5%, 810 employees. Analyze: (1) What is AYA's All-In Sustaining Cost (AISC) per oz silver at Zgounder? (2) How does AISC compare to peers (AG, PAAS, CDE, HL)? (3) What silver price does AYA break even at? (4) Is AYA a low-cost or high-cost producer? (5) Revenue per employee at $353K — is this good for mining? (6) How will costs change as Boumadine ramps up?",
+          "system_prompt": "You are a mining cost analyst. Focus on AISC per oz and cost quartile positioning. Cite specific AISC data.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t12",
+          "prompt": "AYA Gold & Silver vs PEERS COMPARISON. Compare AYA to: First Majestic Silver (AG), Pan American Silver (PAAS), MAG Silver (MAG), Coeur Mining (CDE), Hecla Mining (HL), Endeavour Silver (EXK), SilverCrest Metals (SIL). Compare on: (1) Market cap, (2) Production oz, (3) Revenue, (4) P/S, P/E, EV/EBITDA, (5) AISC, (6) Growth rate, (7) Mine count/diversification, (8) Reserve/resource size. Is AYA's premium over peers justified?",
+          "system_prompt": "You are a silver mining equity comparables analyst. Build a detailed peer comparison table.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t13",
+          "prompt": "AYA Gold & Silver DEBT AND FUNDING ANALYSIS. VERIFIED: Total Debt $100.2M, Cash $171.7M, Net Cash $71.4M, D/E 21.4%. Analyze: (1) What is the debt structure — senior secured, term loans, credit facilities, convertible notes? (2) Maturity dates and interest rates. (3) Covenants — are there any restrictive covenants? (4) Can AYA fund Boumadine construction from operating cash flow alone? What capex is needed? (5) If additional funding needed, what form — debt, equity, streaming/royalty? (6) Compare balance sheet strength to silver mining peers.",
+          "system_prompt": "You are a mining finance analyst. Focus on capital structure and Boumadine funding gap analysis.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t14",
+          "prompt": "AYA Gold & Silver RESERVE AND RESOURCE ANALYSIS. Analyze: (1) Zgounder mine reserves and resources — proven, probable, measured, indicated, inferred. Total contained oz silver. Mine life at current production rate. (2) Boumadine reserves and resources — breakdown by metal (silver, gold, lead, zinc). Total AgEq. Mine life. (3) What grade is Zgounder operating at? Grade vs reserve grade — are they high-grading? (4) Resource-to-reserve conversion rate. (5) Any exploration upside beyond known deposits? (6) Depletion risk — how many years of reserves remain at Zgounder at 6M oz/yr?",
+          "system_prompt": "You are a mining geologist and resource analyst. Focus on reserve quality, mine life, and high-grading risk. Cite specific resource estimates.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t15",
+          "prompt": "AYA Gold & Silver RATE 1-10 for 10-year buy-and-hold. VERIFIED DATA: Price USD$19.33 (CAD$29.77), MCap $2.76B, Rev $285M TTM (growing 247% YoY), NI $87M TTM, FCF $55.8M TTM (Q1'26 alone was $53.4M), Cash $172M, Debt $100M, Net Cash $71M, P/S 14.95x, P/E 35.9x, Forward P/E 13.3x, EV/EBITDA 27.2x, Shares +36% over 3 years, at ATH. Rate on: Value (1-10), Growth Potential (1-10), Safety (1-10), Catalyst (1-10), Management (1-10). Average them. Consider: stock is at ATH (no margin of safety), P/S 15x is extreme for mining, but growth is real and massive. Boumadine could 6x revenue but is 3-4 years away. Silver at $32 not $75.",
+          "system_prompt": "You are a portfolio analyst rating stocks 1-10. Be brutally honest. High growth does NOT automatically mean high rating — valuation and risk matter equally.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t16",
+          "prompt": "AYA Gold & Silver 1000x TEST. Current MCap USD$2.76B. For 1000x = $2.76 TRILLION — that would make AYA larger than Apple. For 100x = $276B — larger than BHP, the world's largest miner. For 10x = $27.6B — would be among top 5 silver companies globally. For 5x = $13.8B — requires silver sector re-rating and Boumadine success. For 3x = $8.3B — realistic if Boumadine delivers and silver stays strong. Assess each multiple's probability. What's the realistic maximum 10-year upside from current price?",
+          "system_prompt": "You are a long-term equity strategist. Assess realistic return multiples. Be mathematical and specific.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t17",
+          "prompt": "AYA Gold & Silver SCENARIO MATRIX. Build 5 scenarios with probabilities. Use VERIFIED DATA: Current price USD$19.33, MCap $2.76B, Revenue $285M TTM growing 247%, Boumadine expected 2029-2030 at 37M AgEq. Consider: (1) Bull: Boumadine on time + silver $50+ = what price? (2) Parity: revenue 6x growth priced in correctly = what? (3) Base: Boumadine delayed 1 year, silver stays $30-35 = what? (4) Bear: Boumadine cost overruns + silver drops to $20 = what? (5) Death: Boumadine fails + silver crash + dilution = what? Assign probabilities and calculate EV.",
+          "system_prompt": "You are a scenario analysis specialist. Build a probability-weighted expected value model. Be realistic about mining project risks — most mines face delays and cost overruns.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t18",
+          "prompt": "AYA Gold & Silver KILL TEST. Apply kill criteria: (1) Chronic dilution >10%/yr? VERIFIED: +16.5% (2023), +6.9% (2024), +8.6% (2025), +0.7% (YTD 2026). 2023 exceeded threshold. Current rate declining. (2) CEO/insider selling at bottom? Check recent insider transactions. (3) Reverse split history? (4) Negative unit economics? Gross margin 54.9% — POSITIVE. (5) Fraud/SEC/regulatory issues? Any in Morocco? (6) Zombie company? Revenue growing 247% — NOT zombie. (7) Any OTHER kill criteria specific to mining: resource depletion, environmental disaster, water/power risk, community opposition?",
+          "system_prompt": "You are a kill-criteria analyst. Apply each criterion strictly. If any KILL triggers, the stock is DEAD regardless of growth story.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t19",
+          "prompt": "AYA Gold & Silver RISK MATRIX. Rate probability (1-5) and impact (1-5) for each risk: (1) Silver price crash (to $20/oz), (2) Boumadine construction delays (typical in mining: 60%+ probability), (3) Boumadine cost overruns (industry average 30-40% over budget), (4) Morocco political risk, (5) Further share dilution for Boumadine funding, (6) Zgounder mine depletion or grade decline, (7) Environmental/water issues in semi-arid Morocco, (8) Management execution risk, (9) Buying at ATH — mean reversion risk, (10) Currency risk (CAD/USD/MAD). Calculate composite risk score.",
+          "system_prompt": "You are a mining risk analyst. Mining projects historically have 60%+ chance of delays and 30-40% cost overruns. Factor these base rates into your analysis.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t20",
+          "prompt": "AYA Gold & Silver SWOT ANALYSIS. Build a weighted SWOT. VERIFIED STRENGTHS: Revenue +247% YoY, Q1'26 FCF $53.4M, low-cost Zgounder mine, growing production. VERIFIED WEAKNESSES: P/S 14.95x (extreme), at ATH (zero margin of safety), 36% dilution in 3 years, single operating mine concentration. OPPORTUNITIES: Boumadine 37M AgEq, silver supercycle thesis, Morocco expanding mining sector. THREATS: Silver price crash, Boumadine delays/overruns, dilution, grade decline. Weight each quadrant by importance and assess net balance.",
+          "system_prompt": "You are a strategic analyst. Build a balanced SWOT. Do NOT let the growth story blind you to structural risks.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t21",
+          "prompt": "AYA Gold & Silver vs PORTFOLIO COMPARISON. Compare AYA (USD$19.33) to existing portfolio: GRAB $3.60 (8/10), BMBL $3.04 (7/10), GAU $2.29 (6/10), TUYA $2.09 (6.5/10), BTG $4.64 (5/10). All existing positions are sub-$10. AYA is $19.33 — outside the pipeline's typical range. Analyze: (1) Does AYA add diversification or increase mining concentration (already hold GAU + BTG)? (2) Is a $19 stock suitable for a sub-$10 hunting pipeline? (3) Risk-adjusted return comparison: which offers better asymmetry from current price? (4) Correlation with GAU (gold) — does silver mining overlap?",
+          "system_prompt": "You are a portfolio construction analyst. Compare risk/reward profiles. The portfolio targets sub-$10 stocks with asymmetric upside.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t22",
+          "prompt": "AYA Gold & Silver WHY OUTPERFORMING PEERS. The thesis says AYA is at ATH while other silver/gold miners are 20-30% below ATHs. Verify: (1) Check YTD performance of AG, PAAS, CDE, HL, EXK, MAG vs AYA. (2) What specifically drives AYA's outperformance — growth rate? Low AISC? Boumadine optionality? Morocco jurisdiction premium? (3) Is the outperformance justified or is AYA in a speculative bubble? (4) Are peers cheap or is AYA expensive? (5) Could AYA's outperformance be a contrarian SELL signal — 'when everyone knows it's the best stock, it's priced in'?",
+          "system_prompt": "You are a relative performance analyst. Determine whether AYA's outperformance vs peers is fundamental or speculative.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t23",
+          "prompt": "AYA Gold & Silver SILVER PRICE SENSITIVITY MODEL. Build a sensitivity table for AYA revenue and FCF at different silver prices. Current production ~6M oz/yr. VERIFIED Q1'26 revenue $117.3M at ~$32/oz silver. Assumptions: (1) At $20/oz silver: revenue = ?, FCF = ?, break-even? (2) At $25/oz: ? (3) At $30/oz: ? (4) At $35/oz: ? (5) At $40/oz: ? (6) At $50/oz: ? (7) At $75/oz (bull thesis): ? Also model Boumadine at 37M AgEq at each price point. What silver price makes the $4.27B CAD valuation fair?",
+          "system_prompt": "You are a commodity sensitivity analyst. Build a clear revenue/FCF sensitivity table by silver price. Be specific with math.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t24",
+          "prompt": "AYA Gold & Silver MINING PROJECT EXECUTION RISK. Historical base rates for mining project failures: (1) What percentage of mining development projects (like Boumadine) are completed on time? On budget? (2) Average cost overrun for polymetallic underground mines. (3) Average delay in months. (4) Compare Boumadine's complexity (gold, silver, lead, zinc polymetallic underground) to simpler projects. (5) What happens to AYA's valuation if Boumadine is delayed 2 years? (6) What if capex is 50% over budget? (7) Case studies of similar projects that failed or succeeded.",
+          "system_prompt": "You are a mining project risk specialist. Use industry base rates for project execution. Most investors underestimate mining project risk.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t25",
+          "prompt": "AYA Gold & Silver ENTRY STRATEGY. The stock is at CAD$29.77, near its ATH of $30.15. For a 10-year buy-and-hold: (1) Should you buy at ATH or wait for a pullback? If so, what price? (2) What's the average drawdown for mining stocks after hitting ATH? (3) Position sizing recommendation for a $2,500 portfolio that already has GAU and BTG. (4) Dollar-cost averaging vs lump sum at ATH? (5) What catalysts could push it higher from here vs what could cause a correction? (6) Stop-loss or no stop-loss for miners?",
+          "system_prompt": "You are a portfolio entry strategy analyst. Consider the risk of buying at ATH vs missing a genuine breakout.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t26",
+          "prompt": "AYA Gold & Silver HIGH-GRADING RISK. Aya is producing ~6M oz silver at Zgounder. Analyze: (1) Is Aya mining the highest-grade portions of Zgounder first (high-grading)? (2) What is the reserve grade vs the mill feed grade? If mill feed is higher, that's high-grading. (3) How many years of reserves remain at current production rates? (4) What happens to revenue and margins when grade declines? (5) Is the current impressive profitability artificially boosted by mining the cream of the orebody? (6) What's the grade profile of Boumadine?",
+          "system_prompt": "You are a mining engineer assessing reserve quality and grade management. High-grading makes near-term results look amazing but destroys long-term value.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t27",
+          "prompt": "AYA Gold & Silver ACQUISITION TARGET ANALYSIS. At CAD$4.27B market cap, is AYA an acquisition target? (1) Who could acquire AYA — Pan American Silver, First Majestic, Wheaton Precious Metals, or a major like Newmont/Barrick? (2) What premium would be required? (3) Does Boumadine make AYA more or less attractive as a target? (4) Has there been any M&A speculation or approaches? (5) Does the dual TSX/OTC listing affect M&A? (6) Could a streaming/royalty deal on Boumadine be more likely than outright acquisition?",
+          "system_prompt": "You are an M&A analyst specializing in mining sector consolidation. Assess acquisition probability and likely terms.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t28",
+          "prompt": "AYA Gold & Silver QUARTERLY EARNINGS QUALITY. VERIFIED Q1 2026: Revenue $117.3M, Net Income $48.3M, OCF $70.2M, FCF $53.4M. This is exceptional: NI margin 41.2%, FCF margin 45.5%. Analyze: (1) Are there any one-time items in Q1'26 NI? (2) How much is silver price vs production volume driving the beat? (3) Any deferred revenue or working capital gains inflating OCF? (4) What's the operating margin vs gross margin discrepancy (yfinance shows Op Margin 66.2% > Gross Margin 54.9% — this is impossible, investigate)? (5) Tax rate analysis — is Morocco's tax regime boosting NI?",
+          "system_prompt": "You are an earnings quality forensic analyst. The operating margin > gross margin discrepancy is a RED FLAG — investigate why yfinance reports this. Something in the data is wrong.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t29",
+          "prompt": "AYA Gold & Silver WATER AND ENVIRONMENTAL RISK. Zgounder and Boumadine are in Morocco's Anti-Atlas region. Analyze: (1) Water availability — is water scarce in the region? Mining is water-intensive. (2) Environmental permitting for Boumadine — any community opposition? (3) Tailings management — dry vs wet tailings, dam risk. (4) Is Morocco tightening environmental regulations? (5) Climate change impact on water availability in semi-arid North Africa. (6) Has AYA had any environmental incidents? (7) ESG rating and disclosures.",
+          "system_prompt": "You are an environmental and ESG analyst for mining operations. Water risk in semi-arid regions is one of the biggest operational threats for miners.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t30",
+          "prompt": "AYA Gold & Silver SILVER SUPERCYCLE THESIS. The bull argument implies silver is undervalued at $32/oz (claiming $75 price, which may be incorrect). Analyze: (1) Is there a case for a silver supercycle? Solar panel demand, EV demand, industrial use growth. (2) Silver supply constraints — are there enough new mines? (3) Gold-silver ratio history and mean reversion. (4) If silver goes to $50+, what happens to AYA's revenue with Zgounder + Boumadine combined? (5) If silver drops to $20, what happens? (6) Historical volatility of silver — max drawdowns.",
+          "system_prompt": "You are a commodity supercycle analyst. Assess the silver bull thesis objectively — both the upside and the probability of a crash.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t31",
+          "prompt": "AYA Gold & Silver INSIDER TRANSACTION ANALYSIS. Insider ownership is low at 3.4%. Analyze: (1) Who are the key insiders and what do they own? (2) Any insider buying or selling in last 12 months? On SEDI (Canadian insider filing system). (3) Any recent stock option grants or exercises? (4) Management compensation structure — salary vs stock vs options. (5) Does the CEO have significant skin in the game? (6) Compare insider ownership to peer silver miners. (7) Any insider selling into the ATH run-up?",
+          "system_prompt": "You are an insider transaction analyst. Low insider ownership (3.4%) combined with ATH is potentially concerning — management may not have skin in the game.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t32",
+          "prompt": "AYA Gold & Silver DEFINITIVE RATING 1-10. Consider ALL verified data: Price USD$19.33 at ATH (+160% from 52w low), MCap $2.76B, Rev $285M TTM (+247% YoY), Q1'26 NI $48.3M (margin 41%), FCF $53.4M (margin 45.5%), P/S 14.95x (5-7x peer premium), Forward P/E 13.3x, shares +36% dilution over 3 years, single operating mine, Boumadine 3-4 years away, 810 employees, Morocco jurisdiction, silver at ~$32/oz. Rate: Value, Growth Potential, Safety, Catalyst, Management (each 1-10). Average. Recommend: BUY, WATCHLIST, or PASS? If BUY, at what price? If WATCHLIST, what trigger to buy?",
+          "system_prompt": "You are the definitive rating agent. Your rating is FINAL. Consider BOTH the extraordinary growth AND the extreme valuation and risks. A stock can have amazing growth and still be a bad buy if the price already reflects it.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t33",
+          "prompt": "AYA Gold & Silver CONVICTION SCORE. After analyzing all data, rate your CONVICTION in AYA as a 10-year investment at current price (USD$19.33). Scale 1-10. Consider: (1) How confident are you in Boumadine delivering on schedule and budget? (2) How confident are you silver stays above $30/oz for 10 years? (3) How confident management won't dilute further? (4) How confident the stock won't pull back 30-50% from ATH? (5) How confident are you vs GRAB (8/10 conviction at $3.60)? Is AYA's risk/reward better or worse than GRAB from current price?",
+          "system_prompt": "You are a conviction analyst. Be honest about uncertainty. Mining stocks at ATH with development-stage projects carry significant risk. A stock can be excellent but still overpriced.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t34",
+          "prompt": "AYA Gold & Silver BULL THESIS CLAIM VERIFICATION. The bull thesis makes these specific claims. Verify EACH against hard data: (1) 'Producing 6 million oz silver now at Zgounder' — verify actual production. (2) '$250+ million in free cash flow' — VERIFIED: Annual FCF was NEGATIVE until 2026. Q1'26 annualized = $213M not $250M. (3) 'Building 2nd mine Boumadine which will produce 37 million oz silver equivalent in 2029 or 2030' — verify feasibility study. (4) 'No stock dilution, 1st mine funds Boumadine' — VERIFIED FALSE: shares +36% in 3 years. (5) 'Revenue and profits will increase by 6x or 7x' — verify math. (6) 'Silver is at $75' — verify current spot price.",
+          "system_prompt": "You are a fact-checker. For EACH claim, verdict: CONFIRMED, MISLEADING, FALSE, or UNVERIFIABLE. Use specific data citations.",
+          "temperature": 0.2,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t35",
+          "prompt": "AYA Gold & Silver BALANCE SHEET DEEP DIVE. VERIFIED from Q1 2026: Total Assets $658.4M, Total Liabilities $189.7M, Stockholders Equity $458.3M, Cash $171.7M, Total Debt $100.2M, Net Tangible Assets $458.3M (no goodwill). Analyze: (1) What are the main asset categories? PP&E, mine development, exploration assets. (2) Are any assets at risk of impairment? (3) Working capital adequacy for Boumadine construction. (4) No goodwill = clean balance sheet. (5) What does the $100M debt consist of? (6) Debt-to-equity at 21.4% — conservative or tight for a miner in development phase?",
+          "system_prompt": "You are a balance sheet analyst specializing in mining companies. Assess asset quality and funding adequacy for the Boumadine development phase.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t36",
+          "prompt": "AYA Gold & Silver SHORT INTEREST AND FLOAT ANALYSIS. VERIFIED: Short ratio 3.34 days, float 142.8M shares (99.9% of outstanding), insiders 3.4%, institutions 42.2%. Analyze: (1) Is the short interest elevated or normal for silver miners? (2) Is there short squeeze potential? (3) At 99.9% float, essentially no locked-up shares — implications? (4) Institutional ownership at 42.2% — who are the top holders? (5) Any activist investor involvement? (6) Trading volume trends — is liquidity adequate for a $2.76B company?",
+          "system_prompt": "You are a market microstructure analyst. Assess float dynamics, short interest, and institutional positioning.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t37",
+          "prompt": "AYA Gold & Silver POLYMETALLIC COMPLEXITY AT BOUMADINE. Boumadine is described as producing gold, silver, lead, and zinc. Analyze: (1) Polymetallic mines are more complex than single-metal mines — higher processing costs, more complex metallurgy. What are the specific challenges? (2) Lead and zinc are base metals with different market dynamics than precious metals — how volatile are lead/zinc prices? (3) What's the revenue split expected: silver vs gold vs lead vs zinc? (4) Does the polymetallic nature increase or decrease risk? (5) Processing plant requirements — do they need separate circuits for each metal? (6) Environmental risk of lead/zinc processing.",
+          "system_prompt": "You are a metallurgical engineer and mining process specialist. Assess the technical complexity of a polymetallic underground mine.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t38",
+          "prompt": "AYA Gold & Silver HISTORICAL SHARE PRICE ANALYSIS. VERIFIED: 52w low $11.45, 52w high $30.15, current $29.77. Analyze: (1) What was AYA's IPO/listing price and date? (2) Historical price chart — has it been a steady climber or volatile? (3) Largest drawdowns in company history (peak to trough). (4) Correlation with silver price moves. (5) Beta vs TSX, vs silver ETF (SLV). (6) Has the stock ever been cheaper than current on a forward P/E basis? (7) What caused the 52w low of $11.45 — when was this and what happened?",
+          "system_prompt": "You are a historical price analyst. Assess the stock's volatility profile and drawdown history. Mining stocks can drop 50%+ even in bull markets.",
+          "temperature": 0.3,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t39",
+          "prompt": "AYA Gold & Silver FINAL VERDICT AND ACTION RECOMMENDATION. Synthesize all analysis: VERIFIED: Revenue exploding +247% YoY (REAL). Q1'26 FCF $53.4M (REAL). Boumadine 37M AgEq potential (UNVERIFIED — feasibility study needed). Share dilution +36% in 3 years (REAL — contradicts 'no dilution' claim). P/S 14.95x at ATH (EXTREME for mining). Forward P/E 13.3x (REASONABLE if growth continues). For a $2,500 portfolio with $1,062 cash: (1) BUY, WATCHLIST, or PASS? (2) If BUY: at what price, how many shares, position sizing? (3) If WATCHLIST: what price/event triggers a BUY? (4) Does AYA belong in a sub-$10 stock pipeline at $19.33?",
+          "system_prompt": "You are the final verdict agent. Make a clear, actionable recommendation. Consider the portfolio already has GAU (gold) and BTG (gold miner) — adding AYA increases precious metals concentration to 3 of 7 positions.",
+          "temperature": 0.4,
+          "max_tokens": 800
+        },
+        {
+          "task_id": "t40",
+          "prompt": "AYA Gold & Silver DATA TRUST AUDIT. Review all data used in this sprint. For each key metric, assign a trust level: (1) Price/MCap/EV — YFINANCE VERIFIED. (2) Revenue/NI quarterly — YFINANCE VERIFIED. (3) FCF quarterly — YFINANCE VERIFIED but annual FCF negative until 2026. (4) Share dilution — YFINANCE VERIFIED at +36%. (5) Zgounder 6M oz production — UNVERIFIED (DeepSeek claim). (6) Boumadine 37M AgEq — UNVERIFIED (bull thesis claim). (7) '$250M FCF' claim — MISLEADING (annualized Q1'26 gives $213M, not $250M). (8) 'No dilution' claim — FALSE. (9) Silver at $75 — UNVERIFIED (current spot ~$32). (10) AISC costs — UNVERIFIED. Compile a trust scorecard.",
+          "system_prompt": "You are a data integrity auditor. Flag every unverified claim. The pipeline operates on ZERO TRUST — every number must have a verified source.",
+          "temperature": 0.2,
+          "max_tokens": 800
+        }
+      ]
+    }
+  ]
+}

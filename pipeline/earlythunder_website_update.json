@@ -1,0 +1,283 @@
+{
+  "phases": [
+    {
+      "name": "Phase 1: Token Content + Blog + Guide Generation — 40 Agents",
+      "tasks": [
+        {
+          "task_id": "token-content-01",
+          "prompt": "For each of these crypto tokens, write a concise key_catalyst (max 80 chars, the single most important upcoming positive catalyst) and key_risk (max 80 chars, the single biggest risk). Be specific with numbers and dates where possible. Format as JSON array: [{\"symbol\":\"X\",\"key_catalyst\":\"...\",\"key_risk\":\"...\"}]\n\nTokens: OKB (OKX exchange token, score 145), PAXG (gold-backed token, score 115), BGB (Bitget exchange token, score 142), LEO (Bitfinex token, score 136), LPT (Livepeer video transcoding, score 121), GT (Gate.io token, score 131), ORCA (Solana DEX, score 120), MAV (Maverick AMM, score 102), VRTX (Vertex Protocol perp DEX, score 105), CHZ (Chiliz sports fan tokens, score 109)",
+          "system_prompt": "You are a crypto research analyst at a hedge fund. You have deep knowledge of each protocol's fundamentals, upcoming catalysts (upgrades, launches, partnerships, regulatory events), and risks (competition, token unlocks, regulatory threats, smart contract risks). Be extremely specific and factual. No generic statements.",
+          "temperature": 0.4,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "token-content-02",
+          "prompt": "For each of these crypto tokens, write a concise key_catalyst (max 80 chars) and key_risk (max 80 chars). Format as JSON array: [{\"symbol\":\"X\",\"key_catalyst\":\"...\",\"key_risk\":\"...\"}]\n\nTokens: PRIME (Echelon Prime gaming, score 105), MNDE (Marinade Solana staking, score 106), KCS (KuCoin exchange token, score 120), WOO (WOO Network exchange, score 122), XMR (Monero privacy, score 115), STG (Stargate cross-chain bridge, score 107), JOE (Trader Joe Avalanche DEX, score 115), QNT (Quant Overledger, score 116), CFG (Centrifuge RWA, score 118), HBAR (Hedera enterprise DLT, score 117)",
+          "system_prompt": "You are a crypto research analyst at a hedge fund. You have deep knowledge of each protocol's fundamentals, upcoming catalysts (upgrades, launches, partnerships, regulatory events), and risks (competition, token unlocks, regulatory threats, smart contract risks). Be extremely specific and factual. No generic statements.",
+          "temperature": 0.4,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "token-content-03",
+          "prompt": "For each of these crypto tokens, write a concise key_catalyst (max 80 chars) and key_risk (max 80 chars). Format as JSON array: [{\"symbol\":\"X\",\"key_catalyst\":\"...\",\"key_risk\":\"...\"}]\n\nTokens: TNSR (Tensor Solana NFT marketplace, score 102), FTM (Fantom/Sonic L1, score 110), KNC (Kyber Network DEX aggregator, score 112), BICO (Biconomy account abstraction, score 101), PERP (Perpetual Protocol, score 100), STORJ (Storj decentralized storage, score 101), ALCX (Alchemix self-repaying loans, score 118), OM (MANTRA RWA chain, score 88), XLM (Stellar payments, score 108), VELA (Vela Exchange perp DEX, score 92)",
+          "system_prompt": "You are a crypto research analyst at a hedge fund. Be specific and factual about catalysts and risks.",
+          "temperature": 0.4,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "token-content-04",
+          "prompt": "For each of these crypto tokens, write a concise key_catalyst (max 80 chars) and key_risk (max 80 chars). Format as JSON array: [{\"symbol\":\"X\",\"key_catalyst\":\"...\",\"key_risk\":\"...\"}]\n\nTokens: GEL (Gelato Web3 automation, score 93), SLND (Solend lending, score 95), GTC (Gitcoin public goods, score 98), QUICK (QuickSwap Polygon DEX, score 90), RDNT (Radiant Capital lending, score 104), RON (Ronin gaming chain, score 110), MLN (Enzyme asset management, score 104), RSR (Reserve Rights stablecoin, score 103), KLAY (Klaytn Korean blockchain, score 100), KSM (Kusama canary network, score 97)",
+          "system_prompt": "You are a crypto research analyst at a hedge fund. Be specific and factual about catalysts and risks.",
+          "temperature": 0.4,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "token-content-05",
+          "prompt": "For each of these crypto tokens, write a concise key_catalyst (max 80 chars) and key_risk (max 80 chars). Format as JSON array: [{\"symbol\":\"X\",\"key_catalyst\":\"...\",\"key_risk\":\"...\"}]\n\nTokens: SHDW (Shadow/GenesysGo storage, score 95), CRO (Crypto.com token, score 109), TRU (TrueFi uncollateralized lending, score 87), APE (ApeCoin NFT ecosystem, score 88), ATH (Aethir GPU compute, score 103), ILV (Illuvium gaming, score 90), MC (Merit Circle/Beam gaming, score 92), DASH (Dash payments, score 85), GMT (STEPN move-to-earn, score 82), AUDIO (Audius music streaming, score 83)",
+          "system_prompt": "You are a crypto research analyst at a hedge fund. Be specific and factual about catalysts and risks.",
+          "temperature": 0.4,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "token-content-06",
+          "prompt": "For each of these crypto tokens, write a concise key_catalyst (max 80 chars) and key_risk (max 80 chars). Format as JSON array: [{\"symbol\":\"X\",\"key_catalyst\":\"...\",\"key_risk\":\"...\"}]\n\nTokens: BADGER (BadgerDAO Bitcoin DeFi, score 105), FLR (Flare smart contracts, score 95), NMR (Numeraire data science, score 101), HT (HTX exchange token, score 118), IOTX (IoTeX IoT blockchain, score 92), COTI (COTI privacy L2, score 91), SKL (SKALE zero-gas L2, score 88), ACH (Alchemy Pay crypto payments, score 80), REQ (Request Network invoicing, score 82), RAD (Radicle decentralized git, score 90)",
+          "system_prompt": "You are a crypto research analyst at a hedge fund. Be specific and factual about catalysts and risks.",
+          "temperature": 0.4,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "token-content-07",
+          "prompt": "For each of these crypto tokens, write a concise key_catalyst (max 80 chars) and key_risk (max 80 chars). Format as JSON array: [{\"symbol\":\"X\",\"key_catalyst\":\"...\",\"key_risk\":\"...\"}]\n\nTokens: POOL (PoolTogether no-loss lottery, score 93), FLUX (Flux decentralized compute, score 89), CTSI (Cartesi Linux rollups, score 86), ALPACA (Alpaca Finance leveraged yield, score 78), YGG (Yield Guild Games, score 85), INV (Inverse Finance, score 82), POLYX (Polymesh institutional, score 90), GLMR (Moonbeam Polkadot EVM, score 85), RLC (iExec cloud computing, score 84), MX (MEXC exchange token, score 112)",
+          "system_prompt": "You are a crypto research analyst at a hedge fund. Be specific and factual about catalysts and risks.",
+          "temperature": 0.4,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "token-content-08",
+          "prompt": "For each of these crypto tokens, write a concise key_catalyst (max 80 chars) and key_risk (max 80 chars). Format as JSON array: [{\"symbol\":\"X\",\"key_catalyst\":\"...\",\"key_risk\":\"...\"}]\n\nTokens: PROP (Propy real estate NFT, score 90), FARM (Harvest Finance yield, score 93), MBOX (Mobox gaming, score 79), HOPR (HOPR privacy mixnet, score 84), SNT (Status messenger, score 80), ALPHA (Alpha Venture DAO, score 78), POND (Marlin Protocol, score 79), TRB (Tellor oracle, score 95), CELR (Celer Network bridge, score 82), NANO (Nano feeless payments, score 85)",
+          "system_prompt": "You are a crypto research analyst at a hedge fund. Be specific and factual about catalysts and risks.",
+          "temperature": 0.4,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "token-content-09",
+          "prompt": "For each of these crypto tokens, write a concise key_catalyst (max 80 chars) and key_risk (max 80 chars). Format as JSON array: [{\"symbol\":\"X\",\"key_catalyst\":\"...\",\"key_risk\":\"...\"}]\n\nTokens: ETC (Ethereum Classic, score 90), ALICE (MyNeighborAlice gaming, score 80), PEAQ (peaq DePIN, score 83), HIGH (Highstreet metaverse, score 78), SXP (SXP/Solar blockchain, score 75), DENT (Dent mobile data, score 72), LEVER (LeverFi trading, score 75), NOS (Nosana GPU compute, score 88), GOG (Guild of Guardians, score 82), AGLD (Adventure Gold DAO, score 80)",
+          "system_prompt": "You are a crypto research analyst at a hedge fund. Be specific and factual about catalysts and risks.",
+          "temperature": 0.4,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "token-content-10",
+          "prompt": "For each of these crypto tokens, write a concise key_catalyst (max 80 chars) and key_risk (max 80 chars). Format as JSON array: [{\"symbol\":\"X\",\"key_catalyst\":\"...\",\"key_risk\":\"...\"}]\n\nTokens: CANTO (Canto L1, score 78), FORTH (Ampleforth governance, score 76), BOND (BarnBridge DeFi, score 82), WAXP (WAX gaming blockchain, score 72), PRCL (Parcl real estate, score 80), IDEX (IDEX DEX, score 75), BTT (BitTorrent Chain, score 70), MCB (MUXP/MUX Protocol, score 78), RVN (Ravencoin assets, score 72)",
+          "system_prompt": "You are a crypto research analyst at a hedge fund. Be specific and factual about catalysts and risks.",
+          "temperature": 0.4,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "blog-supply-analysis",
+          "prompt": "Write a comprehensive blog post (1500-2000 words) titled 'Supply Shock: 15 Crypto Tokens With Ultra-Scarce Supply Under 100M Max'. Cover why max supply matters for price appreciation (Bitcoin's 21M as the gold standard), then analyze these ultra-scarce tokens sorted by score:\n\n1. BTC (21M max, score 183, $1.5T mcap)\n2. AAVE (16M max, score 180, $1.3B mcap)\n3. MKR (1M max, score 177, $1.6B mcap)\n4. LQTY (100M max, score 151)\n5. FLUID (100M max, score 150)\n6. GMX (13.25M max, score 143)\n7. AR (66M max, score 140)\n8. ENS (100M max, score 137)\n9. BANANA (10M max, score 135)\n10. YFI (36.6K max, score 134)\n11. MLN (no max, but only 3.3M total, score 104)\n12. FARM (690K max, score 93)\n13. BOND (10M max, score 82)\n\nFor each: explain why the supply cap matters for this specific token, its current circ%, and the bull case. End with a ranked list of 'best supply-adjusted opportunities'.\n\nFormat the response as JSON: {\"title\":\"...\",\"slug\":\"supply-shock-ultra-scarce-crypto-tokens\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"supply\",\"tokenomics\",\"analysis\"]}",
+          "system_prompt": "You are a senior crypto research analyst writing for an institutional audience. Use data-driven analysis with specific numbers. Write in a clear, authoritative tone without hype. Include specific supply numbers, market caps, and dilution ratios. All claims must be verifiable.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-dilution-risk",
+          "prompt": "Write a blog post (1200-1500 words) titled 'Dilution Trap: 10 Popular Tokens Where 70%+ of Supply Is Still Locked'. Explain why low circulating supply relative to total supply creates massive sell pressure risk. Cover these high-dilution tokens:\n\n1. HYPE - 23% circulating, 4.3x dilution multiplier, $13B mcap\n2. SCROLL - 19% circulating, 5.3x dilution\n3. MODE - 70% circulating but low mcap\n4. RBN - only 8.3% circulating, 12x dilution\n5. MOBILE - 39% circulating\n6. PRCL - 45% circulating\n7. W (Wormhole) - check circ ratio\n8. EIGEN - check circ ratio\n9. BERA - check circ ratio\n10. Any others with <30% circulating\n\nFor each: explain the unlock schedule risk, when major unlocks happen, and whether the project fundamentals justify the dilution risk.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"dilution-trap-locked-supply-tokens\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"tokenomics\",\"risk\",\"supply\"]}",
+          "system_prompt": "You are a crypto risk analyst. Focus on quantitative data: exact circulating %, unlock dates, sell pressure estimates. Be specific about which tokens have concerning unlock schedules and which have earned their premium despite low float.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-hold-core",
+          "prompt": "Write a blog post (1500-2000 words) titled 'The Magnificent 7: Why These Are Our Only HOLD CORE Tokens Out of 250'. Explain the extreme selectivity of the 25-variable framework — only 7 out of 250 tokens scored above 170. Cover each:\n\n1. ETH (199) - Regulatory fortress, Glamsterdam upgrade, 100% circulating\n2. HYPE (185) - Hyperliquid, despite 23% circ only, revenue justifies\n3. WSTETH (185) - Lido's wrapped staked ETH, yield + ETH exposure\n4. BTC (183) - Digital gold, 21M cap, institutional adoption\n5. AAVE (180) - DeFi lending king, 95% circulating, fee switch\n6. UNI (178) - DEX monopoly, fee switch, 71% circulating\n7. MKR (177) - 1M max supply, DAI dominance, burn mechanism\n\nFor each: top 3 variable scores, key catalyst, why it beat 243 other tokens. End with portfolio weighting recommendation.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"magnificent-7-hold-core-tokens\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"portfolio\",\"analysis\",\"hold-core\"]}",
+          "system_prompt": "You are the CIO of a crypto hedge fund writing an investor letter. Authoritative, data-driven, precise. Every claim backed by specific numbers.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-250-expansion",
+          "prompt": "Write a blog post (1000-1500 words) titled 'We Scored 250 Tokens So You Don't Have To: Key Findings From Our 40-Agent Research Sprint'. Cover:\n\n- The methodology: 25 variables, each rated 1-10 by parallel DeepSeek research agents\n- Scale: 250 tokens, 6,250 individual variable scores\n- Verdict distribution: 7 HOLD CORE (2.8%), 26 HOLD (10.4%), 38 CAUTIOUS HOLD (15.2%), 74 WATCH (29.6%), 105 PASS (42%)\n- Surprise findings: tokens that scored higher/lower than expected\n- Supply data analysis: tokens with best/worst supply profiles\n- The data hardening process: 19-agent validation sprint, 115 corrections\n- What was added: supply metrics from CoinGecko, exchange listings, token standards\n- Key takeaway: 87% of tokens scored below HOLD threshold — most alts are not worth holding\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"250-token-scorecard-key-findings\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"methodology\",\"scorecard\",\"analysis\"]}",
+          "system_prompt": "You are a fintech product writer explaining a quantitative research process to a crypto-savvy audience. Be transparent about methodology, highlight surprising findings, and maintain analytical rigor.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-exchange-tokens",
+          "prompt": "Write a blog post (1000-1500 words) titled 'Exchange Tokens: The Hidden Revenue Machines of Crypto'. Analyze exchange native tokens as an asset class:\n\n1. BNB (score 157) - Binance, $90B+ mcap, burn mechanism, BNB Chain\n2. OKB (score 145) - OKX, 21M max supply like BTC, burn mechanism\n3. BGB (score 142) - Bitget, fastest-growing exchange 2025-2026\n4. LEO (score 136) - Bitfinex/Tether, $8.85, buyback from Tether profits\n5. GT (score 131) - Gate.io, strong burn mechanism\n6. KCS (score 120) - KuCoin, dividend-style payouts\n7. HT (score 118) - HTX (ex-Huobi), recovery play\n8. MX (score 112) - MEXC, high volume exchange\n9. CRO (score 109) - Crypto.com, sports sponsorships, Cronos chain\n\nCover: revenue models (fee sharing, burns, utility), supply mechanics, risk (regulatory), and which offer best risk-adjusted returns.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"exchange-tokens-hidden-revenue-machines\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"exchange-tokens\",\"revenue\",\"analysis\"]}",
+          "system_prompt": "You are a crypto research analyst specializing in exchange economics. Focus on quantifiable revenue, burn rates, and competitive positioning.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "guide-supply-metrics",
+          "prompt": "Write a comprehensive guide (2000-2500 words) titled 'How to Read Crypto Supply Metrics: Circulating, Total, Max Supply, FDV & Dilution'. Cover:\n\n1. What each metric means (with examples)\n   - Circulating Supply: coins actively available (BTC: 20M of 21M)\n   - Total Supply: all minted coins (ETH: 120.7M, no max)\n   - Max Supply: hard cap (BTC: 21M, ETH: ∞, HYPE: 1B)\n   - Market Cap vs FDV: mcap = price × circ, FDV = price × total/max\n   - Dilution multiplier: FDV/MCap ratio\n\n2. Why these metrics matter for investment\n   - Low circ% = future sell pressure from unlocks\n   - Low max supply = scarcity premium\n   - High FDV/MCap = token is 'expensive' on fully diluted basis\n\n3. Red flags to watch for\n   - Circ% below 30% (HYPE 23%, RBN 8%)\n   - FDV/MCap above 5x\n   - Infinite max supply with high inflation\n   - Insider unlock cliffs\n\n4. Case studies\n   - BTC: Perfect supply profile (95% circ, 21M cap, 1.0x dilution)\n   - ETH: No cap but deflationary burns (100% circ)\n   - HYPE: High conviction but 4.3x dilution risk\n   - FARM: Only 690K max supply — ultra-scarce\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"how-to-read-crypto-supply-metrics\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"guide\",\"tokenomics\",\"supply\"]}",
+          "system_prompt": "You are an educator writing for intermediate crypto investors. Clear explanations, practical examples, specific numbers. Every concept should connect to an investment decision.",
+          "temperature": 0.5,
+          "max_tokens": 6144
+        },
+        {
+          "task_id": "guide-25-variables",
+          "prompt": "Write a guide (1500-2000 words) titled 'The 25-Variable Framework: How We Score 250 Altcoins'. Explain each of the 25 variables used in the scoring framework:\n\n1. Protocol Revenue - actual earned fees/revenue\n2. Revenue Trend - QoQ growth direction\n3. P/S Multiple - price-to-sales ratio\n4. Supply Inflation - annual token emission rate\n5. Unlock Schedule - upcoming token unlocks\n6. Circ/FDV Ratio - circulating vs fully diluted\n7. Buyback/Burn - token burn mechanisms\n8. Smart Money - institutional/whale flows\n9. Insider Selling - team/VC selling patterns\n10. Holder Concentration - whale dominance\n11. Staking Yield - real yield after inflation\n12. TVL Trend - total value locked direction\n13. Active Users - daily active users\n14. Developer Activity - GitHub commits/PRs\n15. Ecosystem Growth - dApps, integrations\n16. Market Share - sector dominance\n17. Competitive Moat - defensibility\n18. Institutional Adoption - TradFi integration\n19. Exchange Depth - liquidity across exchanges\n20. Regulatory Safety - legal clarity\n21. Catalyst Calendar - upcoming events\n22. BTC Alpha - outperformance potential\n23. Team Execution - delivery track record\n24. Treasury/Runway - project sustainability\n25. Social Mindshare - community engagement\n\nFor each: what it measures, how it's scored 1-10, why it matters, and which tokens score highest.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"25-variable-scoring-framework-explained\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"methodology\",\"framework\",\"guide\"]}",
+          "system_prompt": "You are a quant researcher explaining a scoring methodology. Be precise about what each variable captures and why it's predictive of token performance.",
+          "temperature": 0.4,
+          "max_tokens": 6144
+        },
+        {
+          "task_id": "guide-dca-strategy",
+          "prompt": "Write a guide (1500-2000 words) titled 'Dollar-Cost Averaging Into Crypto: A Data-Driven Strategy Using Our 250-Token Scorecard'. Cover:\n\n1. Why DCA beats lump sum for volatile assets\n2. How to select DCA candidates from the scorecard\n   - Only DCA into HOLD CORE and HOLD tokens (33 out of 250)\n   - Supply-adjusted selection: prefer high circ%, low dilution\n   - Diversification across categories (DeFi, L1, Infrastructure)\n3. Sample 4-tranche DCA portfolio\n   - Core (55%): ETH, HYPE, AAVE, UNI, MKR, SOL\n   - Growth (25%): LINK, NEAR, ONDO, ETHFI, JUP\n   - Speculative (15%): DRIFT, GMX, AKT, FLUID\n   - Cash Reserve (5%): stablecoins\n4. Execution: weekly buys, exchange selection, cold storage\n5. Rebalancing triggers: score changes, verdict changes\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"dca-strategy-250-token-scorecard\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"strategy\",\"dca\",\"portfolio\",\"guide\"]}",
+          "system_prompt": "You are a portfolio strategist writing for crypto investors. Be practical and specific with percentages, token selections, and execution details.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-defi-revenue",
+          "prompt": "Write a blog post (1200-1500 words) titled 'DeFi Revenue Kings: Which Protocols Actually Make Money?'. Analyze the highest-scoring DeFi tokens by protocol revenue:\n\n1. AAVE (180) - Lending giant, $200M+ annual revenue, fee switch coming\n2. UNI (178) - DEX monopoly, ~$1B cumulative fees, fee switch activated\n3. MKR (177) - DAI stability fees, RWA revenue, $100M+ annual\n4. ETHFI (162) - EtherFi restaking, growing rapidly\n5. MORPHO (158) - Lending optimization, capital efficient\n6. LQTY (151) - Liquity v2, interest rate innovation\n7. FLUID (150) - Novel AMM + lending hybrid\n8. CRV (147) - Curve stablecoin backbone, crvUSD revenue\n9. GMX (143) - Perp DEX, real yield to stakers\n10. DRIFT (140) - Solana perp DEX, growing market share\n\nFor each: revenue source, trend, P/S ratio, revenue per token. End with ranking by 'revenue quality' (sustainable, growing, moat-protected).\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"defi-revenue-kings-protocols-that-make-money\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"defi\",\"revenue\",\"analysis\"]}",
+          "system_prompt": "You are a DeFi analyst at a crypto hedge fund. Focus on verifiable revenue data from DeFiLlama and Token Terminal. Distinguish between protocol revenue (goes to tokenholders) and total fees (goes to LPs). Be skeptical of inflated revenue claims.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-l1-wars",
+          "prompt": "Write a blog post (1200-1500 words) titled 'L1 Wars 2026: Scoring 20 Layer-1 Blockchains Head to Head'. Compare L1 tokens from our scorecard:\n\nTier 1 (HOLD CORE): ETH (199), BTC (183)\nTier 2 (HOLD): SOL (170), BNB (157), SUI (148), AVAX (147), INJ (145), AR (140), NEAR (143)\nTier 3 (CAUTIOUS): TRX (132), APT (129), SEI (125), TON (127), ADA (122), S/FTM (110)\nTier 4 (WATCH/PASS): DOT (113), ATOM (107), ALGO (100), XRP (122)\n\nCompare across: developer activity, TVL, revenue, user growth, institutional adoption. Which L1s are gaining share? Which are dying? End with prediction for L1 landscape in 2027.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"l1-wars-2026-scoring-layer-1-blockchains\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"l1\",\"comparison\",\"analysis\"]}",
+          "system_prompt": "You are a blockchain infrastructure analyst. Compare chains objectively using metrics: TVL, daily transactions, unique addresses, developer count, revenue. No tribalism.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-pass-tokens",
+          "prompt": "Write a blog post (1000-1500 words) titled 'Why 105 Out of 250 Tokens Got a PASS Verdict (And What That Means)'. Analyze the PASS tier:\n\n- 42% of all scored tokens failed to reach 100/250\n- Common failure patterns: low revenue, high inflation, no moat, regulatory risk\n- Categories most represented in PASS: meme coins (SHIB, DOGE at 64-68), dead L1s, zombie protocols\n- Some surprises in PASS: well-known tokens that scored poorly and why\n- What separates a WATCH (100-119) from a PASS (<100)\n- Why 'popular' doesn't mean 'good investment'\n- The few PASS tokens that might recover (and what would need to change)\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"why-105-tokens-got-pass-verdict\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"analysis\",\"scorecard\",\"risk\"]}",
+          "system_prompt": "You are a contrarian crypto analyst who values fundamentals over narrative. Explain why popular tokens can be bad investments. Be diplomatic but honest.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "guide-reading-scorecard",
+          "prompt": "Write a practical guide (1200-1500 words) titled 'How to Use the EarlyThunder 250-Token Scorecard'. Cover:\n\n1. Understanding the rankings table\n   - Score: sum of 25 variables (max 250)\n   - Verdict: HOLD CORE (≥170), HOLD (140-169), CAUTIOUS (120-139), WATCH (100-119), PASS (<100)\n   - Price: live from Binance/Bybit/Kraken/Crypto.com\n\n2. Reading the supply columns\n   - MCap vs FDV: why FDV matters more for new tokens\n   - Circ%: green (≥90%) = safe, red (<30%) = dilution risk\n   - Dil. multiplier: 1.0x = no dilution, 5x+ = extreme risk\n   - Max Supply: ∞ means no cap, check inflation rate\n\n3. Using the special analysis tables\n   - Low-Cap Supply Gems: best risk/reward\n   - Ultra-Scarce Supply: scarcity premium candidates\n   - Dilution Risk: tokens to avoid or size down\n\n4. Making decisions\n   - How to build a portfolio from the scorecard\n   - When to override the score (personal conviction, sector allocation)\n   - How often to check (weekly is enough)\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"how-to-use-250-token-scorecard\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"guide\",\"scorecard\",\"tutorial\"]}",
+          "system_prompt": "You are a product educator writing for users who are new to the platform. Be practical, step-by-step, and connect every feature to an investment decision.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-ai-depin",
+          "prompt": "Write a blog post (1200-1500 words) titled 'AI & DePIN Tokens: Separating Revenue From Hype'. Analyze AI and DePIN tokens from our scorecard:\n\n1. RENDER (137) - GPU rendering, real enterprise customers\n2. TAO (134) - Bittensor AI subnet marketplace\n3. FET/ASI (126) - Artificial Superintelligence Alliance\n4. AKT (133) - Akash decentralized cloud, actual usage\n5. THETA (119) - Video CDN + EdgeCloud\n6. AR (140) - Permanent data storage, 66M max supply\n7. HNT (125) - Helium IoT/mobile network\n8. IO (115) - io.net GPU compute marketplace\n9. GRASS (109) - Web scraping DePIN\n10. OLAS (112) - Autonomous AI agents\n11. NOS (88) - Nosana GPU compute on Solana\n12. ATH (103) - Aethir GPU compute\n\nKey question: which ones have REAL revenue vs just narrative? Cross-reference with protocol_revenue scores from the 25-variable framework.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"ai-depin-tokens-revenue-vs-hype\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"ai\",\"depin\",\"analysis\"]}",
+          "system_prompt": "You are a technology analyst who covers both AI and crypto. Be skeptical of AI narrative tokens without real revenue. Distinguish between 'AI-adjacent' and 'actually using AI for revenue'.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-privacy-coins",
+          "prompt": "Write a blog post (800-1000 words) titled 'Privacy Coins in 2026: Regulatory Risk vs Freedom Tech'. Cover:\n\n1. XMR/Monero (score 115, WATCH) - Delisted from most CEXes, but hashrate ATH\n2. ZEC/Zcash (score 90, PASS) - Optional privacy, Zcash Sustainability Fund\n3. DASH (score 85, PASS) - Privacy optional, pivoting to payments\n4. NANO (score 85, PASS) - Not privacy but feeless, included for comparison\n\nCover: regulatory landscape (EU MiCA, US stance), exchange delistings, actual usage metrics, and whether privacy coins have investment merit despite regulatory headwinds.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"privacy-coins-2026-regulatory-risk-freedom-tech\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"privacy\",\"regulation\",\"analysis\"]}",
+          "system_prompt": "You are a crypto policy analyst. Be balanced between privacy rights and regulatory reality. Acknowledge both the importance of financial privacy and the legitimate regulatory concerns.",
+          "temperature": 0.5,
+          "max_tokens": 3072
+        },
+        {
+          "task_id": "blog-gaming-metaverse",
+          "prompt": "Write a blog post (1000-1200 words) titled 'Gaming & Metaverse Tokens: The Sector That Keeps Disappointing'. Analyze gaming tokens from our scorecard:\n\nHigher scores: IMX (128), GALA (100), AXS (95)\nMid scores: RON (110), YGG (85), ALICE (80), GOG (82), GMT (82)\nLow scores: SAND (75), MANA (78), MBOX (79), ILV (90)\n\nCover: why the sector consistently underperforms (low usage, play-to-earn death), which projects have pivoted successfully (Immutable's zkEVM), and whether any gaming tokens are actually worth holding based on fundamentals not narrative.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"gaming-metaverse-tokens-sector-keeps-disappointing\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"gaming\",\"metaverse\",\"analysis\"]}",
+          "system_prompt": "You are a gaming industry analyst who also covers crypto. Be honest about the state of blockchain gaming. Focus on actual player numbers, revenue, and whether tokenomics add value to the gaming experience.",
+          "temperature": 0.5,
+          "max_tokens": 3072
+        },
+        {
+          "task_id": "opportunity-defi-01",
+          "prompt": "For each of these DeFi protocols, write an updated thesis (200-300 words), 3 signals with scores (1-10), 3 catalysts, and 3 risks. Use current May 2026 data.\n\n1. AAVE - lending dominance, GHO stablecoin, fee switch\n2. UNI - Uniswap v4, fee switch, Unichain L2\n3. MKR/SKY - SubDAOs, Spark, endgame transition\n4. MORPHO - lending optimization, institutional adoption\n5. FLUID - novel AMM+lending, Instadapp team\n\nFormat as JSON array: [{\"ticker\":\"AAVE\",\"thesis\":\"...\",\"signals\":[{\"name\":\"Smart Money\",\"score\":9,\"detail\":\"...\"}],\"catalysts\":[\"...\"],\"risks\":[\"...\"]}]",
+          "system_prompt": "You are a DeFi research analyst. Be specific about TVL numbers, revenue figures, and competitive positioning. All data should reflect May 2026 conditions.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "opportunity-defi-02",
+          "prompt": "For each of these DeFi protocols, write an updated thesis (200-300 words), 3 signals with scores (1-10), 3 catalysts, and 3 risks.\n\n1. CRV - Curve DAO, crvUSD, stablecoin backbone\n2. GMX - perp DEX, real yield, Arbitrum native\n3. DRIFT - Solana perp DEX, growing market share\n4. PENDLE - yield tokenization, despite recent decline\n5. LQTY - Liquity v2, interest rate innovation\n\nFormat as JSON array: [{\"ticker\":\"CRV\",\"thesis\":\"...\",\"signals\":[{\"name\":\"...\",\"score\":8,\"detail\":\"...\"}],\"catalysts\":[\"...\"],\"risks\":[\"...\"]}]",
+          "system_prompt": "You are a DeFi research analyst. Be specific about protocol metrics, revenue, and competitive positioning. May 2026 data.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "opportunity-l1-01",
+          "prompt": "For each of these L1/L2 blockchains, write an updated thesis (200-300 words), 3 signals with scores (1-10), 3 catalysts, and 3 risks.\n\n1. SOL - Solana, DeFi hub, Firedancer upgrade\n2. AVAX - Avalanche, subnets, institutional focus\n3. SUI - Move language, gaming ecosystem\n4. NEAR - AI chain abstraction, sharding\n5. INJ - Injective, DeFi-focused L1\n\nFormat as JSON array: [{\"ticker\":\"SOL\",\"thesis\":\"...\",\"signals\":[{\"name\":\"...\",\"score\":8,\"detail\":\"...\"}],\"catalysts\":[\"...\"],\"risks\":[\"...\"]}]",
+          "system_prompt": "You are a blockchain infrastructure analyst. Compare chains using metrics: TPS, TVL, daily txns, developer ecosystem. May 2026 data.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "opportunity-infra-01",
+          "prompt": "For each of these infrastructure tokens, write an updated thesis (200-300 words), 3 signals with scores (1-10), 3 catalysts, and 3 risks.\n\n1. LINK - Chainlink, CCIP, data feeds monopoly\n2. ENS - Ethereum Name Service, namespace monopoly\n3. PYTH - Price feeds on Solana, cross-chain expansion\n4. GRT - The Graph, data indexing, migration to L2\n5. SSV - SSV Network, DVT for Ethereum staking\n\nFormat as JSON array: [{\"ticker\":\"LINK\",\"thesis\":\"...\",\"signals\":[{\"name\":\"...\",\"score\":8,\"detail\":\"...\"}],\"catalysts\":[\"...\"],\"risks\":[\"...\"]}]",
+          "system_prompt": "You are a crypto infrastructure analyst. Focus on protocol adoption metrics, revenue, and competitive landscape. May 2026 data.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "opportunity-yield-01",
+          "prompt": "For each of these yield/staking tokens, write an updated thesis (200-300 words), 3 signals with scores (1-10), 3 catalysts, and 3 risks.\n\n1. ETHFI - EtherFi, liquid restaking leader\n2. WSTETH - Lido wrapped staked ETH\n3. RETH - Rocket Pool ETH\n4. CBETH - Coinbase staked ETH\n5. KMNO - Kamino Finance, Solana yield\n6. SYRUP - Maple Finance, institutional lending\n\nFormat as JSON array: [{\"ticker\":\"ETHFI\",\"thesis\":\"...\",\"signals\":[{\"name\":\"...\",\"score\":8,\"detail\":\"...\"}],\"catalysts\":[\"...\"],\"risks\":[\"...\"]}]",
+          "system_prompt": "You are a yield farming analyst. Focus on real yield (after inflation), TVL sustainability, and regulatory risk for staking services. May 2026 data.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "deadlines-update",
+          "prompt": "Generate 15 upcoming crypto deadline/catalyst events for June-December 2026. These should be specific, verifiable events with approximate dates. Include a mix of:\n\n- Protocol upgrades (e.g., Ethereum Glamsterdam, Solana Firedancer)\n- Token unlocks (major ones, >$100M value)\n- Fee switch activations\n- Regulatory deadlines (MiCA implementation, SEC rulings)\n- Exchange events (new listings, IEOs)\n- ETF decisions\n- Mainnet launches\n\nFormat as JSON array: [{\"protocol\":\"Ethereum\",\"event\":\"Glamsterdam upgrade live on mainnet\",\"end_date\":\"2026-08-15\",\"estimated_end\":null,\"urgency\":\"HIGH\",\"status\":\"UPCOMING\"}]",
+          "system_prompt": "You are a crypto events calendar editor. Only include events that are publicly announced or highly likely based on roadmaps. Include approximate dates. Be conservative with dates — better to say Q3 2026 than a specific wrong date.",
+          "temperature": 0.4,
+          "max_tokens": 3072
+        },
+        {
+          "task_id": "earnings-update",
+          "prompt": "Generate updated top 15 yield/earnings protocols for May 2026, ranked by annualized real yield (after inflation). Include:\n\n1-15 protocols with: name, ticker, annualized yield, TVL, yield source (fees, emissions, RWA), risk level (LOW/MEDIUM/HIGH), and a one-line description.\n\nPrioritize protocols from our HOLD CORE and HOLD tiers: AAVE, MKR, ETHFI, KMNO, FLUID, CRV, GMX, DRIFT, PENDLE, SYRUP.\n\nFormat as JSON array: [{\"protocol\":\"Aave\",\"ticker\":\"AAVE\",\"yield_pct\":4.2,\"tvl_usd\":\"$12.5B\",\"yield_source\":\"Lending fees\",\"risk\":\"LOW\",\"description\":\"Largest DeFi lending protocol. Safety module staking yields 4-5% from protocol fees.\"}]",
+          "system_prompt": "You are a DeFi yield analyst. Only include real yields (fees/revenue), not inflationary token emissions. Be conservative with yield estimates. May 2026 data.",
+          "temperature": 0.4,
+          "max_tokens": 3072
+        },
+        {
+          "task_id": "blog-meme-coins",
+          "prompt": "Write a short blog post (800-1000 words) titled 'Meme Coins: Why DOGE Scores 68 and SHIB Scores 64 Out of 250'. Quick analysis of meme tokens:\n\nBONK (86), PEPE (80), FLOKI (78), WIF (76), POPCAT (72), NEIRO (70), DOGE (68), SHIB (64), DOGS (62), MEME (60)\n\nWhy they all score PASS: no revenue, no product, pure speculation. But acknowledge: DOGE has Elon/payment narrative, FLOKI has DeFi products, BONK drives Solana engagement. The honest truth: meme coins are entertainment, not investments.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"meme-coins-doge-shib-scoring-analysis\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"meme\",\"analysis\",\"risk\"]}",
+          "system_prompt": "You are a crypto analyst who respects the meme coin culture but prioritizes fundamental analysis. Be honest but not dismissive.",
+          "temperature": 0.6,
+          "max_tokens": 2048
+        },
+        {
+          "task_id": "blog-rwa",
+          "prompt": "Write a blog post (1000-1500 words) titled 'Real World Assets (RWA) on Chain: The Tokens That Bridge TradFi and DeFi'. Cover:\n\n1. ONDO (135) - Tokenized treasuries leader, SEC clarity\n2. MKR (177) - DAI backed by RWA (T-bills)\n3. PAXG (115) - Tokenized gold, 1:1 backed\n4. CFG (118) - Centrifuge, real-world credit on-chain\n5. POLYX (90) - Polymesh, institutional securities\n6. PROP (90) - Propy, real estate NFTs\n\nCover the $10B+ RWA market size, institutional adoption (BlackRock BUIDL fund), regulatory enablers, and which tokens capture the most value. Compare RWA yield to DeFi native yield.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"rwa-tokens-bridging-tradfi-defi\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"rwa\",\"tradfi\",\"analysis\"]}",
+          "system_prompt": "You are an institutional finance analyst who covers the intersection of traditional finance and DeFi. Focus on market size, regulatory framework, and actual adoption metrics.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "opportunity-new-01",
+          "prompt": "For each of these newer/trending tokens, write an opportunity thesis (200-300 words), 3 signals with scores (1-10), 3 catalysts, and 3 risks.\n\n1. HYPE (185) - Hyperliquid, L1 + perp DEX, $13B mcap\n2. BERA (125) - Berachain, proof of liquidity\n3. ONDO (135) - Tokenized treasuries\n4. EIGEN (118) - EigenLayer restaking\n5. VIRTUAL (138) - AI agents on Base\n\nFormat as JSON array: [{\"ticker\":\"HYPE\",\"thesis\":\"...\",\"signals\":[{\"name\":\"...\",\"score\":9,\"detail\":\"...\"}],\"catalysts\":[\"...\"],\"risks\":[\"...\"]}]",
+          "system_prompt": "You are a crypto venture analyst evaluating emerging protocols. Focus on what's genuinely new vs repackaged old ideas. May 2026 data.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-staking-liquid",
+          "prompt": "Write a blog post (1000-1500 words) titled 'Liquid Staking & Restaking: The $50B Opportunity Stack'. Cover the yield layers:\n\nLayer 1: ETH staking (3-4% base yield)\n- WSTETH (185) - Lido, 28% market share\n- RETH (160) - Rocket Pool, decentralized\n- CBETH (158) - Coinbase, institutional\n\nLayer 2: Restaking (additional 2-5%)\n- EIGEN (118) - EigenLayer, AVS ecosystem\n- ETHFI (162) - EtherFi, liquid restaking\n- SSV (114) - DVT for validator security\n\nLayer 3: Yield optimization\n- PENDLE (130) - Yield tokenization\n- KMNO (162) - Kamino on Solana\n- SYRUP (168) - Maple institutional lending\n\nCover: total staked ETH ($100B+), risk of slashing, correlation between staking derivatives, and which layer offers best risk-adjusted returns.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"liquid-staking-restaking-50b-opportunity\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"staking\",\"restaking\",\"yield\",\"analysis\"]}",
+          "system_prompt": "You are a staking infrastructure analyst. Focus on yield sources, slashing risks, and the composability of staking derivatives. Use specific TVL and yield numbers.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "opportunity-solana-01",
+          "prompt": "For each of these Solana ecosystem tokens, write an opportunity thesis (200-300 words), 3 signals with scores (1-10), 3 catalysts, and 3 risks.\n\n1. JUP (149) - Jupiter aggregator, Securitize equities\n2. RAY (138) - Raydium DEX, CLMM fees\n3. DRIFT (140) - Perp DEX, insurance fund\n4. KMNO (162) - Kamino yield optimization\n5. PYTH (127) - Price oracle, cross-chain\n6. JTO (148) - Jito MEV, liquid staking\n\nFormat as JSON array: [{\"ticker\":\"JUP\",\"thesis\":\"...\",\"signals\":[{\"name\":\"...\",\"score\":8,\"detail\":\"...\"}],\"catalysts\":[\"...\"],\"risks\":[\"...\"]}]",
+          "system_prompt": "You are a Solana ecosystem specialist. Focus on Solana-specific dynamics: Firedancer upgrade impact, MEV landscape, DeFi composability. May 2026 data.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "blog-verdict-changes",
+          "prompt": "Write a blog post (1000-1500 words) titled 'Verdict Changes: What Moved After Our 19-Agent Validation Sprint'. Cover the major verdict changes from data hardening:\n\nDowngrades:\n- LINK: HOLD CORE → HOLD (-17 points). Labs captures oracle revenue, not token holders\n- PENDLE: HOLD → CAUTIOUS HOLD (-15). Revenue collapsed 88%, insider selling\n- SOL: HOLD CORE → HOLD (-6). Memecoin dependency concerns\n- GEOD: Score inflated, revenue declining QoQ\n- SYRUP: ARR was projection not achieved\n\nUpgrades:\n- TIA: WATCH → CAUTIOUS HOLD (+8). Supply data corrected\n- CRV: Revenue growing, ATH distance corrected\n- ONDO: SEC probe closed, fee switch imminent\n- JUP: Securitize equities live\n- NEAR: P/S ratio was 8x overstated\n\nKey lesson: Always verify LLM-generated data. DeepSeek hallucinated 43x-12,000x wrong prices.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"verdict-changes-19-agent-validation-sprint\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"scorecard\",\"validation\",\"methodology\"]}",
+          "system_prompt": "You are a research integrity officer explaining corrections to an investment model. Be transparent about what was wrong and why. This builds trust.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "guide-token-standards",
+          "prompt": "Write a guide (1000-1500 words) titled 'Token Standards Explained: ERC-20, SPL, BEP-20, Native L1 & What It Means for Your Wallet'. Cover:\n\n1. ERC-20 (Ethereum) - 139 tokens in our scorecard use this\n   - Gas fees, bridge requirements, security\n2. SPL (Solana) - JUP, RAY, DRIFT, BONK, WIF, KMNO\n   - Low fees, fast finality, but Solana downtime risk\n3. BEP-20 (BNB Chain) - CAKE and others\n   - Binance ecosystem, centralization concerns\n4. Native L1 - BTC, ETH, SOL, AVAX, etc.\n   - Most secure, no smart contract risk\n5. Others: TON tokens, Move (Sui/Aptos), BRC-20 (Bitcoin Ordinals)\n\nPractical advice: which wallets work with each, bridge risks, and why token standard affects your actual portfolio risk.\n\nFormat as JSON: {\"title\":\"...\",\"slug\":\"token-standards-explained-erc20-spl-bep20\",\"excerpt\":\"...\",\"content\":\"...(markdown)...\",\"tags\":[\"guide\",\"token-standards\",\"wallets\"]}",
+          "system_prompt": "You are a crypto educator. Explain technical concepts simply. Connect every explanation to a practical implication for the investor's wallet and security.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        }
+      ],
+      "synthesis_prompt": "Compile all agent outputs into a master content package. Group by content type: (1) Token content updates (key_catalyst, key_risk), (2) Blog posts, (3) Guides, (4) Opportunity updates, (5) Data file updates (deadlines, earnings). For each piece, note quality score (1-10) and any factual claims that need verification."
+    }
+  ]
+}

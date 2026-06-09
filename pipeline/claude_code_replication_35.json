@@ -1,0 +1,287 @@
+{
+  "project": "Claude Code Replication Analysis — Cost, Effort, and Step-by-Step Guide",
+  "description": "35 agents researching what it takes to replicate Claude Code CLI capabilities: costs, infrastructure, effort, time estimates, and actionable step-by-step implementation guide",
+  "model": "deepseek-chat",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Claude Code Feature Analysis & Subscription Costs",
+      "tasks": [
+        {
+          "task_id": "p1_claude_code_features",
+          "prompt": "Analyze Claude Code (Anthropic's CLI tool) features in detail as of 2025-2026.\n\nDocument EVERY capability:\n- Interactive terminal agent (REPL mode)\n- File reading, editing, creation (Read, Edit, Write tools)\n- Bash command execution with sandboxing\n- Multi-file codebase navigation (Glob, Grep)\n- Git operations (commit, PR creation, branch management)\n- Web search and URL fetching\n- Sub-agent spawning (parallel agent execution)\n- Context window management (auto-compression)\n- Permission system (allow/deny tool calls)\n- MCP (Model Context Protocol) server integration\n- IDE integrations (VS Code, JetBrains)\n- Hooks system (pre/post tool execution)\n- Plan mode (architectural planning before coding)\n- Task/todo management\n- Memory system (persistent across sessions)\n- Notebook editing (Jupyter)\n- Image/PDF reading\n\nFor each feature, rate complexity: LOW (weekend project), MEDIUM (1-2 weeks), HIGH (1+ month), EXTREME (3+ months).\n\nSource: https://docs.anthropic.com/en/docs/claude-code",
+          "system_prompt": "You are a senior software architect analyzing a complex CLI tool. Be thorough and precise about feature complexity ratings.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p1_subscription_costs",
+          "prompt": "Research the EXACT current costs of using Claude Code with maximum subscription as of 2025-2026.\n\nCover:\n1. Claude Pro subscription: $20/month — what do you get? Usage limits?\n2. Claude Max subscription: $100/month and $200/month tiers — what's included?\n3. Claude Code usage within each tier — token limits, rate limits\n4. API-only access: what would full Claude Code usage cost via API? Estimate monthly API spend for:\n   - Light use (2 hrs/day coding)\n   - Medium use (4 hrs/day coding)\n   - Heavy use (8+ hrs/day, the 'max sub' scenario)\n5. Claude for Enterprise/Teams pricing\n6. Any usage caps, throttling, or fair use policies\n\nCalculate: If someone uses Claude Code 8 hours/day, 5 days/week at maximum throughput, what's the estimated monthly token consumption and cost via:\n- Pro subscription\n- Max subscription ($100 tier)\n- Max subscription ($200 tier)\n- Direct API (pay-per-token)\n\nSources: https://www.anthropic.com/pricing, https://claude.ai/pricing",
+          "system_prompt": "You are a cloud cost analyst. Provide exact pricing and realistic usage estimates. Show your math for token consumption calculations.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_competing_tools",
+          "prompt": "Research ALL competing CLI AI coding tools as of 2025-2026 that attempt to replicate Claude Code functionality.\n\nFor each tool provide:\n- Name and URL\n- Pricing (free/paid/subscription)\n- Which LLM(s) it uses\n- Key features vs Claude Code\n- What's missing compared to Claude Code\n- Community size / GitHub stars\n- Maturity level\n\nTools to research:\n1. Cursor (cursor.com) — IDE, not CLI, but closest competitor\n2. Aider (aider.chat) — open source CLI coding assistant\n3. Continue.dev — open source IDE extension\n4. Cline (formerly Claude Dev) — VS Code extension\n5. OpenHands (formerly OpenDevin) — open source agent\n6. SWE-Agent — open source coding agent\n7. Codex CLI (OpenAI) — if it exists\n8. Amazon Q Developer CLI\n9. GitHub Copilot CLI\n10. Any others you know of\n\nRank them by how close they come to replicating Claude Code's full feature set.",
+          "system_prompt": "You are a developer tools analyst. Provide verified information with URLs. Rate each tool's Claude Code equivalence as a percentage.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_open_source_stack",
+          "prompt": "Research the open-source components needed to BUILD a Claude Code clone from scratch.\n\nFor each component identify the best open-source option:\n\n1. LLM Backend:\n   - Self-hosted: Llama 3.1 405B, DeepSeek V3, Mixtral, Qwen 2.5\n   - Hardware requirements for each (GPU, RAM, storage)\n   - Inference frameworks: vLLM, TGI, Ollama, llama.cpp\n   - What capability gap vs Claude 3.5 Sonnet/Opus?\n\n2. Tool Use / Function Calling:\n   - How to implement tool use with open models\n   - Which open models support function calling well?\n\n3. Code Understanding:\n   - Tree-sitter for AST parsing\n   - Language servers (LSP)\n   - Embedding models for code search\n\n4. Terminal Integration:\n   - Node.js libraries: blessed, ink, enquirer\n   - Python: rich, textual, prompt_toolkit\n   - Rust: ratatui, crossterm\n\n5. File System Operations:\n   - Sandboxing approaches\n   - Safe file editing (diff-based)\n\n6. Context Management:\n   - Token counting\n   - Context compression strategies\n   - Conversation history management\n\nProvide GitHub URLs for every tool mentioned.",
+          "system_prompt": "You are a systems architect. Focus on practical, production-ready open-source tools. Include GitHub URLs and star counts where possible.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_infrastructure_costs",
+          "prompt": "Calculate the EXACT infrastructure costs to self-host an AI coding assistant equivalent to Claude Code.\n\nScenarios:\n\nA. GPU Cloud (rent GPUs):\n- RunPod, Lambda Labs, Vast.ai, Together.ai pricing\n- Cost to run Llama 3.1 405B 24/7 (need ~8x A100 80GB or 4x H100)\n- Cost to run DeepSeek V3 (how many GPUs needed?)\n- Cost to run smaller models (70B on 2x A100, 8B on single GPU)\n- Monthly costs for each configuration\n\nB. Own Hardware:\n- 8x NVIDIA A100 80GB server cost (~$100K-200K?)\n- 4x H100 server cost\n- Consumer option: Mac Studio M2 Ultra (192GB) for 70B models\n- Power and cooling costs\n- Break-even calculation vs cloud rental\n\nC. API Proxy (use other providers' APIs):\n- OpenRouter pricing for various models\n- Together.ai API pricing\n- Fireworks.ai pricing\n- Groq pricing (fast inference)\n- DeepSeek API pricing ($0.14/M input for V3)\n\nFor each scenario calculate: monthly cost for 8hrs/day heavy coding use.\n\nProvide URLs for every pricing page referenced.",
+          "system_prompt": "You are a cloud infrastructure cost analyst. Use CURRENT verified pricing. Show detailed calculations. Include URLs for every price claim.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_capability_gap",
+          "prompt": "Analyze the capability gap between Claude 3.5 Sonnet/Opus (used by Claude Code) and the best open-source alternatives.\n\nTest dimensions:\n1. Code generation quality — how does Llama 3.1 405B compare to Claude 3.5 Sonnet on coding benchmarks? (HumanEval, MBPP, SWE-bench)\n2. Tool use reliability — which open models can reliably call tools/functions without errors?\n3. Long context handling — Claude has 200K context. Open models?\n4. Instruction following — how well do open models follow complex multi-step instructions?\n5. Code editing — can open models do precise diff-based edits like Claude?\n6. Multi-file reasoning — can open models understand large codebases?\n7. Planning capability — can open models create and follow implementation plans?\n\nFor each dimension:\n- Rate Claude as baseline (100%)\n- Rate top open-source model as percentage of Claude\n- Rate DeepSeek V3 as percentage of Claude\n- Identify the dealbreaker gaps (where <70% is unusable)\n\nReference actual benchmarks with sources where possible.",
+          "system_prompt": "You are an AI benchmark analyst. Use published benchmark data where available. Be honest about capability gaps — don't overstate open-source capabilities.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p1_effort_estimate",
+          "prompt": "Estimate the engineering effort to build a Claude Code equivalent from scratch.\n\nBreak down by component:\n\n1. Core CLI Framework (terminal UI, REPL, command parsing)\n   - Estimated lines of code\n   - Time for 1 senior engineer\n   - Key challenges\n\n2. LLM Integration Layer (API calls, streaming, retry logic, model switching)\n   - LOC estimate\n   - Time estimate\n   - Challenges\n\n3. Tool System (file ops, bash execution, search, git, web)\n   - LOC per tool\n   - Time to build all tools\n   - Sandboxing complexity\n\n4. Context Management (compression, history, memory)\n   - LOC estimate\n   - Time estimate\n   - This is the hardest part — explain why\n\n5. Agent System (sub-agents, parallel execution, task management)\n   - LOC estimate\n   - Time estimate\n\n6. Permission & Safety (approval flows, dangerous command detection)\n   - LOC estimate\n   - Time estimate\n\n7. IDE Integration (VS Code extension, JetBrains plugin)\n   - LOC estimate\n   - Time estimate per IDE\n\n8. Testing & QA\n   - Time estimate\n\nTotal estimates:\n- 1 senior engineer: X months\n- Small team (3 engineers): X months\n- With existing frameworks (Aider as base): X months\n\nAssume the goal is 80% feature parity, not 100%.",
+          "system_prompt": "You are a software project estimator with experience in developer tools. Be realistic — account for edge cases, testing, and iteration. Provide both optimistic and pessimistic estimates.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "Synthesize all Phase 1 research into a comprehensive Claude Code analysis:\n\n1. FEATURE MAP: Complete list of Claude Code features with complexity ratings\n2. COST MATRIX: Subscription costs vs API costs vs self-hosted costs\n3. COMPETITOR LANDSCAPE: Ranked alternatives with feature coverage %\n4. BUILD ESTIMATES: Time and cost to build from scratch\n5. CAPABILITY GAP: Where open-source falls short of Claude\n6. KEY INSIGHT: What's the most cost-effective path?"
+    },
+    {
+      "phase": 2,
+      "name": "Deep Dive — Implementation Architecture",
+      "tasks": [
+        {
+          "task_id": "p2_architecture_design",
+          "prompt": "Design the complete architecture for a Claude Code clone.\n\nUsing the Phase 1 research, create a detailed technical architecture:\n\n1. System Architecture Diagram (describe in text):\n   - Frontend: CLI interface layer\n   - Middle: Agent orchestration layer\n   - Backend: LLM provider abstraction\n   - Storage: Context, memory, project state\n\n2. Technology Stack Decision:\n   - Language: TypeScript (like Claude Code) vs Python vs Rust\n   - Pros/cons of each\n   - Recommended: TypeScript (ecosystem match, npm distribution)\n\n3. Key Design Patterns:\n   - Tool registration system\n   - Streaming response handling\n   - Context window management algorithm\n   - Permission/approval system design\n   - Sub-agent spawning mechanism\n\n4. API Abstraction Layer:\n   - Support multiple LLM providers (OpenAI, Anthropic, local)\n   - LiteLLM as abstraction?\n   - Fallback chains\n\n5. File System Safety:\n   - Sandboxing approach\n   - Diff-based editing (how Claude Code does it)\n   - Git integration\n\nProvide specific library recommendations with npm/PyPI package names.",
+          "system_prompt": "You are a senior systems architect designing a developer tool. Provide concrete, implementable architecture decisions with specific package names and versions.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p2_mvp_roadmap",
+          "prompt": "Create a detailed MVP roadmap to build a Claude Code equivalent.\n\nPhase 1 — Core CLI (Week 1-2):\n- What to build first\n- Minimum features for a working prototype\n- Which tools to implement first\n\nPhase 2 — Tool System (Week 3-4):\n- File read/write/edit\n- Bash execution with safety\n- Search (glob/grep)\n\nPhase 3 — Intelligence (Week 5-6):\n- Context management\n- Multi-turn conversation\n- Code understanding\n\nPhase 4 — Advanced Features (Week 7-8):\n- Sub-agents\n- Git integration\n- Permission system\n\nPhase 5 — Polish (Week 9-10):\n- IDE integration\n- Memory/persistence\n- Documentation\n\nFor each phase:\n- Exact deliverables\n- Dependencies\n- Risk factors\n- Go/no-go criteria\n\nTotal: 10-week sprint to 80% parity.",
+          "system_prompt": "You are a technical project manager. Create a realistic, week-by-week roadmap with clear milestones and deliverables.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_cost_comparison_matrix",
+          "prompt": "Build a comprehensive cost comparison matrix: Claude Code subscription vs building your own.\n\nScenario: Heavy developer, 8 hrs/day, 5 days/week\n\nOption A — Claude Max ($200/mo):\n- Monthly cost: $200\n- Annual cost: $2,400\n- What you get: Full Claude Code, latest models, no infra management\n- Limitations: Usage caps, dependent on Anthropic\n\nOption B — Claude API Direct:\n- Estimated monthly token usage for heavy coding\n- Cost at Claude 3.5 Sonnet rates\n- Cost at Claude 3.5 Haiku rates (for sub-tasks)\n- Estimated monthly: $X\n\nOption C — Build + Self-Host (Open Source LLM):\n- Development cost (engineer time × rate)\n- Infrastructure cost (GPU rental)\n- Maintenance cost (ongoing)\n- Total Year 1 cost\n- Total Year 2+ cost\n\nOption D — Build + Use Cheap APIs (DeepSeek, etc.):\n- Development cost\n- API costs ($0.14/M input via DeepSeek)\n- Estimated monthly API spend\n- Total Year 1 cost\n\nOption E — Fork Existing Tool (Aider/Cline) + Customize:\n- Development cost (much less than from scratch)\n- API costs\n- Maintenance cost\n- Total Year 1 cost\n\nCreate a clear table showing: Monthly cost, Annual cost, Quality (% of Claude Code), Maintenance burden, Risk level.",
+          "system_prompt": "You are a technology investment analyst. Create clear cost comparisons with realistic assumptions. Show your calculation methodology.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_step_by_step_guide",
+          "prompt": "Write a COMPLETE step-by-step guide to set up a Claude Code alternative using the cheapest effective approach.\n\nAssumption: Developer on macOS with terminal experience.\n\nSTEP 1: Choose Your Approach\n- Option A: Aider (closest open-source CLI tool)\n- Option B: Continue.dev + local model\n- Option C: Custom build with LiteLLM + DeepSeek API\n\nSTEP 2: Install Prerequisites\n- Exact brew/npm/pip commands\n- Version requirements\n- Environment setup\n\nSTEP 3: Configure LLM Backend\n- For API approach: set up DeepSeek API key, OpenRouter key\n- For local approach: install Ollama, download model\n- Configuration files needed\n\nSTEP 4: Install & Configure the Tool\n- Installation commands\n- Configuration for optimal performance\n- Key settings to tune\n\nSTEP 5: Usage Workflow\n- How to start a coding session\n- How to navigate codebases\n- How to edit files\n- How to run commands\n\nSTEP 6: Optimization\n- Reduce costs (caching, smaller models for simple tasks)\n- Improve speed (streaming, parallel requests)\n- Add missing features\n\nEvery step must include exact terminal commands that can be copy-pasted.",
+          "system_prompt": "You are a technical writer creating a hands-on tutorial. Every command must be copy-pasteable. Test your assumptions — don't include commands that might fail.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p2_deepseek_viability",
+          "prompt": "Deep dive: Can DeepSeek V3 or DeepSeek Coder V2 effectively replace Claude for coding tasks?\n\nResearch:\n1. DeepSeek V3 coding benchmarks vs Claude 3.5 Sonnet\n   - HumanEval scores\n   - SWE-bench scores\n   - Real-world coding task quality\n\n2. DeepSeek API pricing:\n   - V3: $0.14/M input, $0.28/M output (verify current)\n   - Coder V2: pricing?\n   - Rate limits\n   - Availability/uptime\n\n3. Tool use capability:\n   - Does DeepSeek support function calling?\n   - How reliable is it for tool use patterns?\n   - JSON output reliability\n\n4. Context window:\n   - DeepSeek V3 context length\n   - How does it handle long contexts vs Claude's 200K?\n\n5. Real-world experience:\n   - Does Aider work well with DeepSeek?\n   - Community feedback on DeepSeek for coding\n   - Known limitations or issues\n\n6. Cost calculation:\n   - If using DeepSeek API as Claude Code backend\n   - Estimated monthly cost for heavy use\n   - 10x-50x cheaper than Claude? Verify.\n\nSource: https://api-docs.deepseek.com/",
+          "system_prompt": "You are an AI model evaluation expert. Compare DeepSeek objectively against Claude for coding tasks. Use benchmark data where available.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_local_models",
+          "prompt": "Complete guide to running local models for a coding CLI tool.\n\nHardware Options (with exact specs and prices):\n\n1. Mac Studio M2 Ultra (192GB unified memory):\n   - Price: ~$7,000\n   - Can run: up to ~100B parameter models\n   - Performance: tokens/sec for Llama 70B?\n   - Recommended models: Llama 3.1 70B, DeepSeek Coder 33B, Qwen 2.5 72B\n\n2. Mac Mini M4 Pro (48GB):\n   - Price: ~$2,000\n   - Can run: up to ~30B parameter models\n   - Performance: tokens/sec for smaller models?\n   - Recommended models: Llama 3.1 8B, Qwen 2.5 14B, DeepSeek Coder 6.7B\n\n3. Linux PC with RTX 4090 (24GB VRAM):\n   - Price: ~$2,500-3,000\n   - Can run: up to ~30B with quantization\n   - Recommended models and quantization levels\n\n4. Linux PC with 2x RTX 4090:\n   - Price: ~$4,500-5,000\n   - Can run: up to ~70B with quantization\n\nSoftware Setup for Each:\n- Ollama setup commands\n- LM Studio as alternative\n- vLLM for Linux GPU setups\n- llama.cpp for maximum performance\n\nPerformance Reality Check:\n- Tokens/sec for coding tasks (need >20 tok/s for usable experience)\n- Quality comparison: local 70B vs API Claude 3.5 Sonnet\n- Is local hosting actually viable for a Claude Code replacement?\n\nProvide exact product URLs and current prices.",
+          "system_prompt": "You are a hardware and AI infrastructure specialist. Provide exact specs, prices, and performance numbers. Be honest about limitations of local models for coding.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p2_risk_assessment",
+          "prompt": "Comprehensive risk assessment of building/using a Claude Code alternative.\n\nRisks by Category:\n\n1. QUALITY RISK:\n- How much worse is coding output with non-Claude models?\n- Will developers actually use a tool that's 70-80% as good?\n- What tasks are fine with cheaper models vs need Claude-tier?\n\n2. MAINTENANCE RISK:\n- LLM APIs change frequently — maintenance burden?\n- Open-source tools have bugs and breaking changes\n- Who fixes issues when they arise?\n\n3. SECURITY RISK:\n- Running arbitrary commands from an AI\n- Self-hosted models: who secures the GPU servers?\n- API keys for multiple providers — attack surface\n- Data privacy: are code snippets sent to third-party APIs?\n\n4. COST RISK:\n- API pricing can change (DeepSeek could raise prices)\n- GPU prices fluctuate\n- Development time overruns\n- Opportunity cost: time building tools vs building product\n\n5. DEPENDENCY RISK:\n- DeepSeek is Chinese company — geopolitical risk?\n- Open-source projects can be abandoned\n- Hardware can fail\n\n6. PRODUCTIVITY RISK:\n- Time spent building/configuring vs just paying for Claude Code\n- Context switching between tools\n- Missing features impact daily workflow\n\nFor each risk: Likelihood (H/M/L), Impact (H/M/L), Mitigation strategy.\n\nFINAL VERDICT: For a solo developer or small team, is building a Claude Code alternative worth it?",
+          "system_prompt": "You are a technology risk analyst. Be brutally honest about the risks. Don't let the excitement of building something cloud the practical business analysis.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "Synthesize Phase 2 research into actionable implementation guidance:\n\n1. RECOMMENDED ARCHITECTURE: Best technical approach with specific packages\n2. 10-WEEK MVP ROADMAP: Week-by-week milestones\n3. COST MATRIX: Side-by-side comparison of all options with monthly/annual costs\n4. STEP-BY-STEP QUICK START: Copy-pasteable commands to get started TODAY\n5. DEEPSEEK VERDICT: Is it good enough for coding?\n6. LOCAL MODEL VERDICT: Is self-hosting viable?\n7. RISK MATRIX: All risks ranked by severity\n8. BOTTOM LINE: Build vs Buy recommendation"
+    },
+    {
+      "phase": 3,
+      "name": "Verification & Cross-Reference",
+      "tasks": [
+        {
+          "task_id": "p3_verify_pricing",
+          "prompt": "VERIFY all pricing claims from Phases 1-2.\n\nUsing the synthesis data, cross-reference every pricing claim against official sources:\n\n1. Claude Code subscriptions (Pro $20, Max $100/$200)\n2. Claude API per-token pricing\n3. DeepSeek API pricing\n4. OpenRouter pricing\n5. GPU rental costs (RunPod, Lambda, Vast.ai)\n6. Hardware costs (Mac Studio, RTX 4090)\n7. Competitor tool pricing (Cursor, Aider, etc.)\n\nFor each claim:\n- CONFIRMED: matches official source (provide URL)\n- OUTDATED: was true but price changed (provide current price + URL)\n- UNVERIFIABLE: cannot confirm from public sources\n- INCORRECT: clearly wrong (provide correct data + URL)\n\nCreate a verification table.",
+          "system_prompt": "You are a fact-checker specializing in technology pricing. Verify every claim against official sources. Flag anything that cannot be verified.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_verify_benchmarks",
+          "prompt": "VERIFY all benchmark and capability claims from Phases 1-2.\n\nCross-reference:\n1. HumanEval scores claimed for each model\n2. SWE-bench scores\n3. Context window sizes\n4. Token generation speeds\n5. Tool use reliability claims\n6. Feature coverage percentages for competitor tools\n\nFor each claim:\n- CONFIRMED with source URL\n- UNVERIFIABLE\n- INCORRECT (provide correct data)\n\nAlso verify:\n- Are the competitor tools still actively maintained?\n- Have any been deprecated or renamed?\n- Are the GitHub star counts accurate?\n- Are the feature lists current?",
+          "system_prompt": "You are a technical fact-checker. Verify benchmark claims against published papers, official docs, and reputable leaderboards.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_verify_alternatives",
+          "prompt": "VERIFY the top 5 Claude Code alternatives identified in Phases 1-2.\n\nFor each alternative:\n1. Visit the official website/repo — is it still active?\n2. Check latest release date — updated in last 3 months?\n3. Check GitHub issues — any major bugs or complaints?\n4. Check pricing page — has pricing changed?\n5. Check documentation — does it support claimed features?\n6. Check community (Reddit, Discord, HN) — real user feedback?\n\nSpecifically verify:\n- Aider: https://aider.chat — features, models supported, latest version\n- Cursor: https://cursor.com — pricing tiers, features\n- Continue.dev: https://continue.dev — current state\n- Cline: current name and repo URL\n- OpenHands: https://github.com/All-Hands-AI/OpenHands — current state\n\nProvide verified URLs for everything.",
+          "system_prompt": "You are a developer tools researcher. Verify each tool is real, active, and accurately described. Check for recent community feedback.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_real_world_costs",
+          "prompt": "Calculate REAL-WORLD monthly costs for a developer using Claude Code vs alternatives.\n\nScenario: Full-time developer, 8 hrs/day, 5 days/week, coding in TypeScript/Python.\n\nEstimate realistic token consumption:\n- Average messages per hour: ~20-30\n- Average input tokens per message: ~2000 (context + file contents)\n- Average output tokens per message: ~500\n- Tool calls per message: ~2-3 (each adds ~1000 tokens)\n- Context accumulation over session: grows to ~50K-100K tokens\n\nCalculate monthly costs for:\n1. Claude Max $200/mo — is usage unlimited or capped?\n2. Claude API at Sonnet rates — exact monthly cost\n3. Claude API at Haiku rates for sub-tasks — monthly cost\n4. DeepSeek V3 API — monthly cost\n5. OpenRouter (cheapest capable model) — monthly cost\n6. Self-hosted Llama 70B on RunPod — monthly cost\n7. Local Llama 70B on Mac Studio — amortized monthly cost\n\nShow ALL math. Use realistic assumptions.",
+          "system_prompt": "You are a financial analyst. Show detailed token consumption calculations. Use conservative and aggressive estimates to give a range.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_aider_deep_dive",
+          "prompt": "Deep dive into Aider as the most viable Claude Code alternative.\n\nResearch from https://aider.chat and https://github.com/paul-gauthier/aider:\n\n1. Features that match Claude Code:\n   - Multi-file editing\n   - Git integration\n   - Codebase mapping\n   - Multiple model support\n   - Voice coding\n\n2. Features MISSING vs Claude Code:\n   - No sub-agents\n   - No IDE integration (or does it have one now?)\n   - No built-in web search\n   - No image reading\n   - No sandboxed bash execution?\n   - No permission system?\n   - No plan mode?\n\n3. Setup with DeepSeek:\n   - Exact commands to install Aider\n   - Configure with DeepSeek V3 API\n   - Expected monthly cost\n   - Known issues\n\n4. Setup with local models (Ollama):\n   - Exact commands\n   - Which models work best\n   - Performance expectations\n\n5. Community feedback:\n   - Reddit discussions on Aider vs Claude Code\n   - Most common complaints\n   - Most praised features\n\nProvide exact installation commands for macOS.",
+          "system_prompt": "You are a developer tools expert. Provide practical, tested setup instructions. Include real community feedback.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_custom_build_effort",
+          "prompt": "Verify the effort estimates from Phase 2 by looking at actual open-source implementations.\n\nAnalyze these codebases for LOC and complexity:\n1. Aider source code — how many LOC? How complex?\n2. Claude Code (if source visible) — architecture hints\n3. OpenHands — LOC and contributor count\n4. SWE-Agent — LOC and complexity\n5. Cline — LOC for VS Code extension\n\nBased on ACTUAL codebase sizes, re-estimate:\n- Total LOC needed for 80% Claude Code parity\n- Engineering months for 1 senior developer\n- Engineering months for 3-person team\n- Realistic timeline with testing and iteration\n\nAlso identify: What's the HARDEST part to replicate?\n- Context management?\n- Tool use reliability?\n- Multi-file editing accuracy?\n- Sub-agent orchestration?",
+          "system_prompt": "You are a software estimation expert. Base estimates on actual codebases, not theoretical calculations. Be realistic about complexity.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p3_quick_wins",
+          "prompt": "Identify the QUICK WINS: cheapest and fastest ways to get 80% of Claude Code's value.\n\nRank these approaches by cost-effectiveness:\n\n1. Just pay for Claude Max ($200/mo) — is this actually the best deal?\n2. Aider + DeepSeek API (~$5-20/mo?) — how close to Claude Code?\n3. Cursor Pro ($20/mo) — different workflow but similar outcome?\n4. Continue.dev + DeepSeek — free tool + cheap API?\n5. Claude Code on Pro ($20/mo) — what's the usage limit hit?\n6. Aider + Claude API — best of both worlds but expensive?\n7. Custom script wrapping Claude API — minimal code, maximum leverage?\n\nFor each:\n- Setup time: minutes/hours/days\n- Monthly cost\n- Quality vs Claude Code (%)\n- Best for: (what type of work)\n\nCREATE A DECISION MATRIX: If your priority is [cost/quality/speed/flexibility], choose [X].",
+          "system_prompt": "You are a pragmatic technology advisor. Focus on the 80/20 rule — what gives the most value for least effort and cost?",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        }
+      ],
+      "synthesis_prompt": "Synthesize Phase 3 verification into VERIFIED findings:\n\n1. VERIFIED PRICING TABLE: Only confirmed prices with source URLs\n2. VERIFIED BENCHMARKS: Only confirmed performance data\n3. VERIFIED ALTERNATIVES: Top 5 tools with current status and real user feedback\n4. REAL-WORLD COST CALCULATOR: Exact monthly costs by scenario\n5. AIDER DEEP DIVE: Complete setup guide and honest assessment\n6. EFFORT REALITY CHECK: Verified build estimates based on actual codebases\n7. QUICK WIN MATRIX: Decision matrix by priority (cost/quality/speed)\n8. FINAL VERDICT: Best approach for different budget levels"
+    },
+    {
+      "phase": 4,
+      "name": "Consolidated Recommendations",
+      "tasks": [
+        {
+          "task_id": "p4_budget_tiers",
+          "prompt": "Using ALL verified data from Phases 1-3, create definitive budget tier recommendations.\n\nTIER 1 — FREE ($0/mo):\n- Best free setup\n- Exact tools and models\n- What you sacrifice\n- Setup commands\n\nTIER 2 — BUDGET ($5-25/mo):\n- Best budget setup\n- Which tool + which API\n- Expected quality level\n- Setup commands\n\nTIER 3 — MODERATE ($25-100/mo):\n- Best mid-range setup\n- Likely Claude Pro + Aider combination?\n- Setup commands\n\nTIER 4 — PREMIUM ($100-200/mo):\n- Claude Max territory\n- Is anything else worth it at this price?\n- Just pay for Claude Code?\n\nTIER 5 — ENTERPRISE ($200+/mo):\n- Multiple tools in parallel\n- Self-hosted for privacy\n- Team setups\n\nFor each tier: EXACT monthly cost, EXACT setup steps, quality rating (1-10), daily usability rating (1-10).",
+          "system_prompt": "You are a technology purchasing advisor. Make clear, opinionated recommendations for each budget level. Include exact setup commands.",
+          "temperature": 0.3,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_top5_providers",
+          "prompt": "Using ALL verified data, compile the definitive TOP 5 AI coding tool providers with links.\n\nFor each provider:\n1. Name and official URL\n2. What it is (CLI tool, IDE, API service)\n3. Pricing (verified)\n4. Best model to use with it\n5. Claude Code feature coverage (%)\n6. Setup difficulty (1-5)\n7. Best for: (use case)\n8. Dealbreaker: (biggest limitation)\n\nRank by overall value (quality × affordability).\n\nALSO provide:\n- Top 3 LLM API providers by cost-effectiveness for coding\n- Top 3 local model options with hardware requirements\n\nEVERY URL must be verified and current.",
+          "system_prompt": "You are ranking the definitive top 5 providers. Every claim must be verified. Every URL must be real and current.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_implementation_guide",
+          "prompt": "Write the DEFINITIVE step-by-step implementation guide for the recommended budget approach.\n\nAssuming: macOS, terminal proficiency, budget-conscious developer who wants maximum value.\n\nRECOMMENDED SETUP: [Use Phase 3 Quick Wins analysis to pick the best approach]\n\n## Prerequisites\n- macOS version requirements\n- Homebrew packages needed\n- Python/Node.js versions\n\n## Step 1: Get API Keys (5 minutes)\n- Where to sign up\n- Exact URLs\n- Free tier details\n\n## Step 2: Install Tool (5 minutes)\n- Exact commands\n\n## Step 3: Configure (10 minutes)\n- Config file locations\n- Model settings\n- Optimization settings\n\n## Step 4: First Session (try it)\n- Example workflow\n- Common commands\n- Tips for best results\n\n## Step 5: Advanced Configuration\n- Cost optimization (routing, caching)\n- Custom aliases\n- Integration with IDE\n\n## Troubleshooting\n- Common issues and fixes\n\nEvery command must be copy-pasteable on macOS.",
+          "system_prompt": "You are writing a tutorial that a developer can follow in 30 minutes to have a working Claude Code alternative. Every command must work on macOS.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p4_savings_calculator",
+          "prompt": "Create a detailed savings calculator comparing Claude Code Max vs the recommended alternative.\n\nCalculations:\n\n1. Claude Max Annual Cost:\n   - $200/mo × 12 = $2,400/yr\n   - What you get: unlimited(?) Claude Code access\n\n2. Recommended Alternative Annual Cost:\n   - Tool cost: $X/yr\n   - API cost: $X/yr (at estimated heavy usage)\n   - Total: $X/yr\n\n3. Annual Savings: $X\n4. Quality Tradeoff: X% of Claude Code quality\n5. Break-even Analysis: At what usage level does self-hosting beat subscription?\n\nAlso calculate:\n- If you build from scratch: development cost amortized over 2 years\n- If you fork Aider: customization cost + API costs\n- If you just use Claude Pro ($20/mo): what's the usage ceiling?\n\nCreate a clear table:\n| Approach | Monthly | Annual | Quality | Savings vs Max |\n\nFinal calculation: $/hour of productive coding time for each approach.",
+          "system_prompt": "You are a financial analyst. Show all calculations clearly. Use ranges (optimistic/pessimistic) for uncertain values.",
+          "temperature": 0.2,
+          "max_tokens": 3000
+        },
+        {
+          "task_id": "p4_from_scratch_guide",
+          "prompt": "For developers who WANT to build from scratch: Complete technical blueprint.\n\n## Architecture\n```\nCLI Layer (ink/React) → Agent Core (TypeScript) → LLM Abstraction (LiteLLM/custom) → Providers (Claude/DeepSeek/Local)\n                ↓\n        Tool Registry → File Ops, Bash, Search, Git, Web\n                ↓\n        Context Manager → Token Counter, Compressor, History\n                ↓\n        Permission System → Allow/Deny/Approve flows\n```\n\n## Technology Choices\n- TypeScript + Node.js (matching Claude Code's stack)\n- Ink for terminal UI\n- LiteLLM or custom abstraction for multi-provider\n- Tree-sitter for code parsing\n- Simple-git for git operations\n\n## Critical Implementation Details\n1. How to implement streaming tool use\n2. How to implement diff-based file editing\n3. How to implement context compression\n4. How to implement safe bash execution\n5. How to implement sub-agent spawning\n\nProvide CODE SNIPPETS for the hardest parts.",
+          "system_prompt": "You are a senior engineer writing a technical blueprint. Include actual code patterns and design decisions, not just descriptions.",
+          "temperature": 0.3,
+          "max_tokens": 4000
+        },
+        {
+          "task_id": "p4_url_directory",
+          "prompt": "Compile the COMPLETE verified URL directory for all resources mentioned across all phases.\n\nOrganize by category:\n\n## AI Coding Tools\n- Claude Code: URL\n- Aider: URL\n- Cursor: URL\n- Continue.dev: URL\n- Cline: URL\n- OpenHands: URL\n- SWE-Agent: URL\n\n## LLM API Providers\n- Anthropic: URL (pricing page)\n- OpenAI: URL (pricing page)\n- DeepSeek: URL (pricing page)\n- Google AI: URL\n- OpenRouter: URL\n- Together.ai: URL\n- Fireworks.ai: URL\n- Groq: URL\n\n## Local Model Tools\n- Ollama: URL\n- LM Studio: URL\n- vLLM: URL\n- llama.cpp: URL\n\n## Hardware\n- Mac Studio: URL\n- RunPod: URL\n- Lambda Labs: URL\n- Vast.ai: URL\n\n## Supporting Libraries\n- LiteLLM: URL\n- Ink: URL\n- Tree-sitter: URL\n\nEVERY URL must be REAL and CURRENT. No fabricated URLs.",
+          "system_prompt": "You are compiling a verified URL directory. Every single URL must be real. Do not include ANY URL you are not confident exists.",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "p4_executive_summary",
+          "prompt": "Write the executive summary for the Claude Code Replication Analysis.\n\nFormat:\n\n## THE BOTTOM LINE\n[2-3 sentences: Is it worth replicating Claude Code?]\n\n## KEY NUMBERS\n- Claude Max subscription: $X/mo\n- Cheapest viable alternative: $X/mo (using [tool + provider])\n- Build from scratch: $X total (X months, X engineers)\n- Fork existing tool: $X total (X weeks)\n- Monthly savings with alternative: $X (X% less than Claude Max)\n- Quality tradeoff: X% of Claude Code capability\n\n## VERDICT BY BUDGET\n- $0/mo: [recommendation]\n- $5-25/mo: [recommendation]\n- $25-100/mo: [recommendation]\n- $100-200/mo: [recommendation]\n- $200+/mo: [recommendation]\n\n## RECOMMENDED ACTION\n[1-2 paragraphs: What should a developer do RIGHT NOW?]\n\n## WHAT'S CHANGING\n[Brief note on how this landscape is evolving — prices dropping, open models improving, etc.]",
+          "system_prompt": "You are writing an executive brief for a busy developer. Be direct, opinionated, and actionable. No hedging.",
+          "temperature": 0.3,
+          "max_tokens": 2000
+        }
+      ],
+      "synthesis_prompt": "Create the FINAL consolidated output:\n\n1. EXECUTIVE SUMMARY with key numbers and verdict\n2. TOP 5 PROVIDERS with verified links\n3. BUDGET TIER GUIDE ($0 to $200+)\n4. 30-MINUTE QUICK START (copy-pasteable)\n5. SAVINGS CALCULATOR (tables and math)\n6. BUILD-FROM-SCRATCH BLUEPRINT (for ambitious developers)\n7. COMPLETE URL DIRECTORY (all verified links)\n8. RISK MATRIX and honest assessment"
+    },
+    {
+      "phase": 5,
+      "name": "Dashboard Data Package",
+      "tasks": [
+        {
+          "task_id": "p5_dashboard_executive",
+          "prompt": "Create dashboard-ready executive summary data for the Claude Code Replication tab.\n\nFormat as structured data:\n\n## HEADLINE STATS\n- Claude Max monthly cost: $___\n- Cheapest alternative monthly cost: $___\n- Savings potential: ___% \n- Quality tradeoff: ___% of Claude Code\n- Build-from-scratch time: ___ months\n- Quick-start setup time: ___ minutes\n\n## COST COMPARISON TABLE\n| Approach | Monthly Cost | Annual Cost | Quality (%) | Setup Time | Maintenance |\n|----------|-------------|-------------|-------------|------------|-------------|\n[Fill in all approaches]\n\n## VERDICT\n[2 sentences]\n\nUse ONLY verified data from Phase 4 synthesis.",
+          "system_prompt": "You are formatting data for an HTML dashboard. Be precise with numbers. Use only verified data.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "p5_provider_cards",
+          "prompt": "Create dashboard-ready provider cards for the top 5 AI coding tool alternatives.\n\nFor each provider card:\n\n### [RANK] [Provider Name]\n- **URL:** [verified link]\n- **Type:** CLI / IDE / API Service\n- **Cost:** $X/mo\n- **LLM:** [models supported]\n- **Claude Code Coverage:** X%\n- **Setup:** X minutes\n- **Best For:** [1 sentence]\n- **Limitation:** [1 sentence]\n- **Rating:** X/10\n\nRank 1-5 by overall value.\n\nAlso create cards for:\n- Top 3 LLM API providers for coding\n- Top 2 local model setups",
+          "system_prompt": "You are creating structured data for dashboard cards. Keep each card concise and consistent in format.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "p5_setup_guide",
+          "prompt": "Create dashboard-ready step-by-step setup guide for the #1 recommended approach.\n\nFormat for HTML display:\n\n## RECOMMENDED: [Tool Name] + [API Provider]\n**Total Setup Time:** X minutes | **Monthly Cost:** $X | **Quality:** X% of Claude Code\n\n### Step 1: Get API Key (2 min)\n```bash\n# Sign up at [URL]\n# Copy your API key\nexport DEEPSEEK_API_KEY=your_key_here\n```\n\n### Step 2: Install [Tool] (3 min)\n```bash\n[exact commands]\n```\n\n### Step 3: Configure (5 min)\n```bash\n[exact commands]\n```\n\n### Step 4: Start Coding (1 min)\n```bash\n[exact commands]\n```\n\n### Step 5: Optimize (optional)\n```bash\n[commands for cost optimization]\n```\n\nAll commands must work on macOS with zsh.",
+          "system_prompt": "You are creating a quick-start guide. Every command must be copy-pasteable and work on macOS.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "p5_savings_data",
+          "prompt": "Create dashboard-ready savings calculation data.\n\nFormat for charts:\n\n## MONTHLY COST COMPARISON (for bar chart)\n- Claude Max $200: $200\n- Claude Pro: $20\n- Claude API (heavy): $___\n- Aider + DeepSeek: $___\n- Aider + Claude Haiku: $___\n- Cursor Pro: $___\n- Self-hosted (cloud GPU): $___\n- Self-hosted (own hardware, amortized): $___\n\n## ANNUAL COST COMPARISON (for bar chart)\n[Same approaches × 12]\n\n## QUALITY vs COST SCATTER DATA (for scatter plot)\n| Approach | Monthly Cost | Quality (%) |\n\n## BREAK-EVEN ANALYSIS\n- Build from scratch breaks even after ___ months vs Claude Max\n- Fork Aider breaks even after ___ months vs Claude Max\n- Mac Studio purchase breaks even after ___ months vs cloud GPU\n\n## ROI CALCULATION\nIf Claude Code saves 2 hours/day at $100/hr developer rate:\n- Value generated: $___/mo\n- Net ROI of Claude Max: ___% \n- Net ROI of cheapest alternative: ___%",
+          "system_prompt": "You are creating data for interactive charts. All numbers must be consistent and based on verified data from earlier phases.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "p5_build_blueprint",
+          "prompt": "Create dashboard-ready build-from-scratch blueprint data.\n\nFormat:\n\n## BUILD TIMELINE (for Gantt-style display)\n| Phase | Weeks | Description | Deliverable |\n|-------|-------|-------------|-------------|\n| Core CLI | 1-2 | Terminal UI, REPL, basic LLM calls | Working chat CLI |\n| Tools | 3-4 | File ops, bash, search | File editing works |\n| Intelligence | 5-6 | Context mgmt, multi-turn | Smart conversations |\n| Advanced | 7-8 | Sub-agents, git, permissions | Full agent system |\n| Polish | 9-10 | IDE integration, memory | Production ready |\n\n## TECH STACK\n| Component | Recommended | Alternative | NPM Package |\n|-----------|------------|-------------|-------------|\n[Fill in all components]\n\n## EFFORT ESTIMATE\n- Total LOC: ___K lines\n- 1 engineer: ___ months\n- 3 engineers: ___ months\n- Cost at $150K/yr salary: $___\n\n## HARDEST CHALLENGES (ranked)\n1. [Challenge] — Why it's hard\n2. [Challenge] — Why it's hard\n3. [Challenge] — Why it's hard",
+          "system_prompt": "You are creating structured data for a dashboard build blueprint section. Be precise and consistent.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "p5_risk_matrix",
+          "prompt": "Create dashboard-ready risk matrix data.\n\nFormat:\n\n## RISK MATRIX (for heat map)\n| Risk | Likelihood (1-5) | Impact (1-5) | Score | Mitigation |\n|------|------------------|--------------|-------|------------|\n| API price increases | | | | |\n| Model quality regression | | | | |\n| Tool abandonment | | | | |\n| Security breach | | | | |\n| Productivity loss | | | | |\n| Maintenance burden | | | | |\n| Vendor lock-in | | | | |\n| Capability gap | | | | |\n\n## APPROACH RISK COMPARISON\n| Approach | Overall Risk (1-10) | Biggest Risk |\n|----------|--------------------|--------------|\n| Claude Max (just pay) | | |\n| Aider + DeepSeek | | |\n| Aider + Claude API | | |\n| Build from scratch | | |\n| Self-hosted local | | |\n\n## RECOMMENDATION BY RISK TOLERANCE\n- Risk-averse: [approach]\n- Risk-neutral: [approach]\n- Risk-seeking: [approach]",
+          "system_prompt": "You are creating risk assessment data for a dashboard. Assign consistent numerical scores.",
+          "temperature": 0.2,
+          "max_tokens": 2000
+        },
+        {
+          "task_id": "p5_pipeline_stats",
+          "prompt": "Create pipeline statistics summary for the dashboard.\n\nCompile:\n- Total agents run: 35\n- Total phases: 5\n- Agents per phase: 7\n- Model used: DeepSeek V3 (deepseek-chat)\n- Estimated total tokens processed: [estimate based on max_tokens settings]\n- Estimated total cost: [based on DeepSeek pricing]\n- Pipeline execution time: [estimate]\n\n## DATA QUALITY METRICS\n- Pricing claims verified: X/Y (Z%)\n- URLs verified: X/Y (Z%)\n- Benchmark data verified: X/Y (Z%)\n- Tools confirmed active: X/Y (Z%)\n\n## METHODOLOGY\n- Phase 1: Feature analysis + cost research (7 agents)\n- Phase 2: Architecture + implementation deep dive (7 agents)\n- Phase 3: Verification + cross-reference (7 agents)\n- Phase 4: Consolidated recommendations (7 agents)\n- Phase 5: Dashboard data packaging (7 agents)\n\n## LIMITATIONS\n- DeepSeek knowledge cutoff may miss latest pricing changes\n- Self-hosted cost estimates are approximations\n- Quality percentages are subjective assessments\n- Token consumption estimates vary by usage patterns",
+          "system_prompt": "You are compiling pipeline metadata. Be transparent about data quality and limitations.",
+          "temperature": 0.2,
+          "max_tokens": 1500
+        }
+      ],
+      "synthesis_prompt": "Create the FINAL DASHBOARD DATA PACKAGE:\n\n1. EXECUTIVE SUMMARY with headline stats\n2. COST COMPARISON TABLE (all approaches)\n3. TOP 5 PROVIDER CARDS with verified links\n4. STEP-BY-STEP SETUP GUIDE (copy-pasteable)\n5. SAVINGS CALCULATOR DATA (for charts)\n6. BUILD BLUEPRINT (timeline + tech stack)\n7. RISK MATRIX (for heat map)\n8. PIPELINE STATS (methodology + limitations)\n\nThis data will be used to build the HTML dashboard tab. Format everything consistently."
+    }
+  ]
+}

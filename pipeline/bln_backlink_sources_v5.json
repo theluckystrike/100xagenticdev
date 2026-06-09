@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "src-01",
+          "prompt": "MISSION: Find platforms with FREE APIs that allow programmatic publishing of content with DOFOLLOW backlinks. Current platforms: Dev.to (DA 62, canonical only), Telegraph (DA 90, dofollow), GitHub Pages (DA 95, dofollow). For EACH platform you find, provide: (1) exact API endpoint for creating posts, (2) authentication method, (3) whether links are DOFOLLOW or NOFOLLOW — be 100% specific, (4) Domain Authority, (5) rate limits, (6) curl example. Focus on: Notion public pages API, Bear Blog, Svbtle, Posthaven, Postach.io, Telegra.ph alternatives. CRITICAL: Only list platforms where you are CERTAIN about dofollow status. If unsure, say UNVERIFIED.",
+          "system_prompt": "You are a backlink engineer. Only report VERIFIED information. If you're unsure about dofollow status, explicitly say UNVERIFIED. Never guess.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-02",
+          "prompt": "MISSION: Find ALL free static site hosting platforms besides GitHub Pages that give dofollow backlinks. Research: Netlify (DA?), Vercel (DA?), Cloudflare Pages (DA?), GitLab Pages (DA?), Surge.sh (DA?), Render (DA?), Firebase Hosting (DA?), AWS Amplify (DA?). For each: (1) DA score, (2) dofollow or nofollow for hosted content links, (3) API for automated deployment, (4) free tier limits, (5) custom domain support, (6) how to deploy via CLI/API without git clone. We need platforms where we can push HTML with dofollow links via API. Rate each as CONFIRMED DOFOLLOW, CONFIRMED NOFOLLOW, or UNVERIFIED.",
+          "system_prompt": "You are an infrastructure engineer specializing in static hosting. Verify dofollow status by checking actual HTTP headers and HTML meta tags on live sites.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-03",
+          "prompt": "MISSION: Research all PASTE/snippet sharing platforms that allow dofollow links. Check: Pastebin (DA?), GitHub Gists (DA 95), GitLab Snippets (DA?), Bitbucket Snippets (DA?), CodePen (DA 92), JSFiddle (DA 86), Replit (DA 79), Glitch (DA 80), StackBlitz (DA?). For each: (1) DA, (2) dofollow status of links in content, (3) API for programmatic creation, (4) authentication, (5) content format (HTML/MD/plain), (6) rate limits, (7) indexing behavior (do Google crawl these?). Provide curl examples for any with APIs.",
+          "system_prompt": "You are a developer tools expert. Focus on platforms with high DA and API access. Be explicit about link follow status.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-04",
+          "prompt": "MISSION: Research WIKI and documentation platforms for dofollow backlinks. Check: Fandom/Wikia (DA 94), Wikipedia (DA 100, nofollow?), WikiHow (DA 93), Notion public pages (DA 88?), Gitbook (DA 75), ReadTheDocs (DA 89), Docusaurus hosted (DA?), Confluence public (DA?), Bookstack, DokuWiki hosted instances. For each: (1) DA, (2) link policy (dofollow/nofollow), (3) can you create content programmatically?, (4) API details, (5) content guidelines, (6) risk of removal, (7) any successful backlink case studies from these platforms.",
+          "system_prompt": "You are a wiki/documentation specialist. Be brutally honest about which platforms actually pass link equity.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-05",
+          "prompt": "MISSION: Research FORUM and Q&A platforms for dofollow backlinks. Check: Reddit (DA 99), Quora (DA 93), Stack Overflow (DA 95), Stack Exchange network, Hacker News (DA 91), IndieHackers (DA 72), Dev Community forums, Lobsters (DA 60?), Tildes, Product Hunt discussions (DA 90). For each: (1) DA, (2) link policy in answers/comments, (3) can you automate posting via API?, (4) Reddit API changes 2024+, (5) Quora API status, (6) risk of ban, (7) best practices for forum backlinks. Focus on platforms with APIs that allow link posting.",
+          "system_prompt": "You are a community marketing expert. Be realistic about what's automatable vs manual. Flag any platforms that actively penalize link dropping.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-06",
+          "prompt": "MISSION: Research PROFILE/BIO backlinks from high-DA platforms. Many platforms let you add a URL to your profile that's dofollow. Check: GitHub profile (DA 95), GitLab profile (DA 92), Bitbucket (DA 90), npm (DA 95), PyPI (DA 92), Docker Hub (DA 93), Gravatar (DA 89), About.me (DA 82), Linktree (DA 89), Crunchbase (DA 91), AngelList/Wellfound (DA 86). For each: (1) DA, (2) is the profile URL dofollow?, (3) can you create profiles via API?, (4) how many profiles can you create?, (5) do profile pages get indexed by Google? Provide the EXACT method to add a URL to each platform.",
+          "system_prompt": "You are a digital PR specialist. Focus on legitimate profile creation that also passes link equity. One profile per platform is fine.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-07",
+          "prompt": "MISSION: Research DIRECTORY and LISTING platforms for Chrome extension backlinks specifically. BeLikeNative is a Chrome extension for AI writing/grammar. Check: Chrome Web Store (DA?), Product Hunt (DA 91), AlternativeTo (DA 81), G2 (DA 89), Capterra (DA 82), GetApp (DA 72), SaaSHub (DA 59), ToolsForHumans, There's An AI For That (DA?), AI tool directories, Chrome extension directories. For each: (1) DA, (2) link policy, (3) submission process (manual/API), (4) cost (free/paid), (5) expected approval time, (6) monthly traffic, (7) how to optimize the listing for SEO.",
+          "system_prompt": "You are a SaaS marketing expert specializing in directory listings. Focus on directories that both pass link equity AND drive actual referral traffic.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-08",
+          "prompt": "MISSION: Research SOCIAL BOOKMARKING and content aggregation sites for dofollow backlinks. Check: Mix.com (DA?), Flipboard (DA 91), Pocket (DA 92), Digg (DA 81), Slashdot (DA 81), DZone (DA 78), GrowthHackers (DA 65), Hacker Noon submissions (DA 79), BizSugar (DA 58), Zest.is (DA?), Triberr (DA 53). For each: (1) DA, (2) dofollow status, (3) API availability, (4) submission process, (5) content requirements, (6) typical indexing speed. Which ones can be automated?",
+          "system_prompt": "You are a content distribution expert. Distinguish between platforms that are still active vs dead/declining. Many social bookmarking sites from 2010s are now worthless.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-09",
+          "prompt": "MISSION: Research PRESS RELEASE and article syndication platforms for dofollow backlinks. Check: Medium (DA 96), Substack (DA 85), LinkedIn Articles (DA 98), EzineArticles (DA 74), HubPages (DA 84), Vocal.media (DA 75), Newsbreak (DA 82), PRWeb, PR Newswire, GlobeNewswire, BusinessWire, free press release sites. For each: (1) DA, (2) dofollow or nofollow policy, (3) API for automated publishing, (4) cost, (5) content guidelines, (6) are links in articles dofollow? Medium recently changed to nofollow? LinkedIn articles? Substack? Give CURRENT 2025-2026 status.",
+          "system_prompt": "You are a PR and content syndication specialist. Many platforms changed their link policies recently. Report CURRENT status only, not historical.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-10",
+          "prompt": "MISSION: Research EDUCATION and RESOURCE PAGE backlink opportunities for a Chrome extension (BeLikeNative - AI writing/grammar checker). (1) How to find .edu sites that link to writing tools, (2) how to find resource pages about 'ESL writing tools', 'grammar checkers', 'AI writing assistants', (3) Google search operators for finding resource pages, (4) how to do broken link building (find dead links on resource pages, offer BeLikeNative as replacement), (5) how to approach .edu webmasters, (6) template emails for outreach, (7) expected response rates, (8) tools for finding resource pages at scale (Ahrefs free alternatives). This is manual but highest quality.",
+          "system_prompt": "You are a link building outreach specialist. Focus on realistic, actionable strategies with specific search queries and email templates.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-11",
+          "prompt": "MISSION: Research SAFE WEEKLY VELOCITY LIMITS for backlink building across all platforms. (1) Google's stance on link velocity — what triggers manual review? (2) Safe limits by platform type: blogging platforms, static sites, directories, forums, social bookmarks. (3) What does natural link growth look like for a DR 22 site? (4) Maximum safe new referring domains per week for a site at DR 22. (5) Should velocity increase linearly or follow a curve? (6) Case studies of sites penalized for unnatural link velocity. (7) How to simulate natural patterns: varied anchor text, temporal randomization, platform diversity. (8) Specific numbers: how many Dev.to, Telegraph, GitHub Pages per day/week is safe?",
+          "system_prompt": "You are a technical SEO risk analyst. Provide specific numbers based on industry data, not vague guidelines. Reference actual case studies and Google documentation.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-12",
+          "prompt": "MISSION: Research GUEST POSTING platforms that accept automated or semi-automated submissions with dofollow links. Check: Dev.to (already using), Hashnode (nofollow via API), HackerNoon (DA 79), FreeCodeCamp (DA 82), CSS-Tricks (DA 79), Smashing Magazine (DA 89), SitePoint (DA 80), DZone (DA 78), LogRocket Blog (DA 69), Twilio Blog (DA 71). For each: (1) DA, (2) link policy for guest posts, (3) submission process, (4) acceptance rate, (5) editorial review time, (6) content requirements (length, topic), (7) can it be API-automated? Focus on tech/writing/language learning niches relevant to BeLikeNative.",
+          "system_prompt": "You are a guest posting strategist. Be realistic about acceptance rates and distinguish between platforms that accept anyone vs have editorial review.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-13",
+          "prompt": "MISSION: Research WEB 2.0 blog platforms for creating satellite sites with dofollow backlinks. Check: WordPress.com free (DA 96), Blogger/Blogspot (DA 88, nofollow since 2024?), Tumblr (DA 95), Wix (DA 94), Weebly (DA 89), Medium (DA 96), Ghost self-hosted, Squarespace (DA 91), Carrd (DA 80). For each: (1) CURRENT dofollow status as of 2025-2026, (2) free tier availability, (3) API for automated posting, (4) custom domain support on free tier, (5) Google indexing reliability, (6) risk of content removal, (7) ideal content strategy. CRITICAL: Blogger changed to nofollow in 2024 — verify this. WordPress.com free blogs — are outbound links dofollow?",
+          "system_prompt": "You are a Web 2.0 SEO specialist. Many platforms changed their policies recently. Verify CURRENT status. Do not rely on pre-2024 information.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-14",
+          "prompt": "MISSION: Research PACKAGE MANAGER and DEVELOPER ECOSYSTEM backlinks. BeLikeNative is a Chrome extension but we could create utility packages that link back. Check: npm packages (DA 95), PyPI (DA 92), RubyGems (DA 83), Packagist (DA 77), crates.io (DA 72), Maven Central (DA?), NuGet (DA 78), VS Code Marketplace (DA?), Chrome Web Store (DA?), Firefox Add-ons (DA 88). For each: (1) DA, (2) are README/description links dofollow?, (3) how to create a minimal useful package that links to belikenative.com, (4) API for package publishing, (5) will Google index the package page?, (6) risk of removal for thin packages. What's the smallest useful npm package we could publish?",
+          "system_prompt": "You are a developer ecosystem expert. Focus on legitimate packages that provide real value while also including relevant backlinks.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-15",
+          "prompt": "MISSION: Research PRESENTATION and DOCUMENT sharing platforms for backlinks. Check: SlideShare (DA 91), Speaker Deck (DA 74), Prezi (DA 82), Scribd (DA 91), Issuu (DA 92), Google Docs/Slides public (DA?), Canva public designs (DA 93), Figma community (DA 86). For each: (1) DA, (2) dofollow status of links in presentations/documents, (3) API for automated upload, (4) content format requirements (PDF, PPTX, etc.), (5) how to embed clickable backlinks, (6) indexing by Google. Can we auto-generate presentations from our 2,199 articles and upload them?",
+          "system_prompt": "You are a content repurposing specialist. Focus on platforms that actually index and pass link equity from uploaded documents.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-16",
+          "prompt": "MISSION: Research VIDEO and PODCAST platforms for backlinks. Even without real video, some platforms allow description links. Check: YouTube (DA 100), Vimeo (DA 96), Dailymotion (DA 93), Rumble (DA 78), Anchor/Spotify for Podcasters (DA?), SoundCloud (DA 92), Podbean (DA 79), Buzzsprout (DA 70). For each: (1) DA, (2) are description links dofollow?, (3) can you create content without actual video/audio? (text-to-speech?), (4) API for automated upload, (5) minimum content requirements, (6) risk of removal for auto-generated content. YouTube description links — dofollow or nofollow?",
+          "system_prompt": "You are a multimedia SEO expert. Be honest about which platforms actually pass equity through description links vs just using redirects.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-17",
+          "prompt": "MISSION: Research IMAGE hosting and INFOGRAPHIC platforms for backlinks. Check: Imgur (DA 91), Flickr (DA 92), Pinterest (DA 94), Giphy (DA 92), DeviantArt (DA 85), Dribbble (DA 86), Behance (DA 93), Unsplash (DA 92), 500px (DA 77). For each: (1) DA, (2) are profile/description links dofollow?, (3) API for automated upload, (4) can you create infographics about 'AI writing tips' that link to belikenative.com?, (5) indexing behavior, (6) embed code backlinks — do embedded images on other sites create backlinks to the hosting platform? Pinterest pins with links — dofollow?",
+          "system_prompt": "You are a visual content SEO specialist. Focus on platforms where image descriptions or associated links pass equity.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-18",
+          "prompt": "MISSION: Research REVIEW platforms where BeLikeNative can get listed and get dofollow backlinks. Check: Trustpilot (DA 93), G2 (DA 89), Capterra (DA 82), Product Hunt (DA 91), GetApp (DA 72), Software Advice (DA 76), FinancesOnline (DA 75), SaaSWorthy (DA 50), Crozdesk (DA 52), SourceForge (DA 91), Slant (DA 68). For each: (1) DA, (2) dofollow status of product listing links, (3) how to claim/create a listing, (4) can you incentivize reviews?, (5) cost (free/paid listing), (6) time to approval, (7) does the listing page get indexed? Focus on Chrome extension and SaaS review sites.",
+          "system_prompt": "You are a SaaS review platform specialist. Distinguish between platforms where the product URL is dofollow vs nofollow.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-19",
+          "prompt": "MISSION: Research AUTOMATED LINK BUILDING TOOLS and SERVICES that are safe to use. Check: HARO (now Connectively, DA varies), Qwoted, SourceBottle, Featured.com, Terkel, Quoted. Also check SaaS tools: Linkody, Monitor Backlinks, Pitchbox, BuzzStream, Respona, Hunter.io. For each: (1) what it does, (2) cost, (3) is it safe? (4) quality of backlinks obtained, (5) automation level, (6) expected results per month. Also: are there APIs for journalist request platforms where BeLikeNative could be quoted as an expert tool?",
+          "system_prompt": "You are a link building tools expert. Distinguish between white-hat tools (HARO, journalist queries) and gray/black-hat tools. Focus on tools with API access.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-20",
+          "prompt": "MISSION: Research COMMENT and TRACKBACK backlinks from high-DA blogs. (1) Which major tech blogs still have dofollow comments? Check: WordPress.org blog, Cloudflare blog, DigitalOcean blog, Netlify blog, Vercel blog. (2) Are blog comments still relevant for SEO in 2025-2026? (3) Trackback/pingback — do any platforms still support this? (4) CommentLuv and similar plugins — still active? (5) How to find blogs in the 'AI writing tools' niche that accept comments with URLs. (6) Safe comment velocity (how many per day/week). (7) Risk of nofollow, spam filters, IP bans. Give specific, current data.",
+          "system_prompt": "You are a blog outreach specialist. Be honest: most blog comments are nofollow now. Find the exceptions.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-21",
+          "prompt": "MISSION: Research SCHEMA MARKUP and STRUCTURED DATA strategies that amplify backlink value. (1) How does FAQ schema affect CTR for pages with backlinks? (2) HowTo schema for 'how to use BeLikeNative' articles. (3) SoftwareApplication schema for Chrome extension. (4) Article schema with author/publisher. (5) Does structured data help backlinked pages rank faster? (6) BreadcrumbList schema for satellite sites. (7) SameAs schema linking all profiles. (8) WebSite schema with SearchAction. Provide exact JSON-LD snippets for BeLikeNative that could be added to Telegraph/GitHub Pages published articles.",
+          "system_prompt": "You are a structured data expert. Provide copy-paste JSON-LD snippets tailored for Chrome extension product pages.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-22",
+          "prompt": "MISSION: Find API-AUTOMATABLE platforms we haven't considered. Think creatively. Check: Notion API (public pages), Coda.io API, Airtable public views, Google Sites (API?), Webflow CMS API (DA 82), Contentful (DA 73), Storyblok (DA 59), Sanity.io (DA 58), Prismic (DA 55), Strapi Cloud (DA?), Directus Cloud (DA?). Also: HuggingFace Spaces (DA 83), Streamlit Cloud (DA?), Gradio hosted apps. Can we host mini writing tools on HuggingFace that link to BeLikeNative? What about creating a simple Gradio demo?",
+          "system_prompt": "You are a creative growth hacker. Think beyond traditional blogging platforms. Any platform with a public URL and API access is a potential backlink source.",
+          "temperature": 0.6,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-23",
+          "prompt": "MISSION: Research the EXACT safe weekly throughput schedule for our 3-platform pipeline (Dev.to + Telegraph + GitHub Pages). Current: 83 total backlinks (37 Dev.to, 36 Telegraph, 10 GitHub). Site DR: 22. (1) How many new backlinks per WEEK is safe for a DR 22 site? (2) Optimal platform mix per week (e.g., 5 Dev.to + 5 Telegraph + 3 GitHub?). (3) Should we add temporal randomization (not all on same day)? (4) Day-of-week patterns that look natural. (5) How to gradually increase velocity as DR grows. (6) At what DR level can we safely increase to 50/week? 100/week? (7) Google's link velocity detection signals. (8) Create a complete 12-week velocity ramp plan with exact numbers per platform per week.",
+          "system_prompt": "You are a technical SEO strategist. Provide a specific, numbered week-by-week plan. No vague advice — exact numbers only.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-24",
+          "prompt": "MISSION: Research FREE CLASSIFIED and BUSINESS LISTING sites for backlinks. Check: Craigslist (DA 95), Google Business Profile (DA?), Yelp (DA 93), Yellow Pages (DA 87), Manta (DA 69), Hotfrog (DA 52), Brownbook (DA 54), Foursquare (DA 87), Bing Places (DA?), Apple Maps Connect (DA?). Also: startup directories like BetaList (DA 64), StartupBuffer, Launching Next, KillerStartups, SideProjectors. For each: (1) DA, (2) link policy, (3) cost, (4) relevance for a Chrome extension (can you list software?), (5) API availability, (6) expected SEO value.",
+          "system_prompt": "You are a local SEO and startup listing expert. Not all directories accept software products — flag which ones do.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-25",
+          "prompt": "MISSION: Research OPEN SOURCE and AWESOME LISTS for backlinks. (1) How to get listed on GitHub awesome-* lists (awesome-chrome-extensions, awesome-writing-tools, awesome-ai-tools, awesome-productivity). These are DA 95 dofollow links. (2) What are the submission requirements? (3) Success rate for pull requests. (4) How to find ALL relevant awesome lists. (5) Can we create our own awesome-* list that links to BeLikeNative? (6) GitHub Topics pages — can adding topics to our repos create backlinks? (7) GitHub Marketplace for actions/apps — would a GitHub Action that links to BeLikeNative work? (8) Open Source Alternatives lists (osalt.com, etc).",
+          "system_prompt": "You are an open source community expert. Awesome lists are curated — be realistic about acceptance criteria and timelines.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-26",
+          "prompt": "MISSION: Research ACADEMIC and RESEARCH platforms for high-authority backlinks. Check: ResearchGate (DA 93), Academia.edu (DA 92), Google Scholar profiles (DA?), SSRN (DA 82), arXiv (DA 96), ORCID (DA 86), Semantic Scholar (DA 85), PubMed Central (DA?). For a Chrome writing extension: (1) Can we publish a short paper about 'AI-assisted ESL writing tools'? (2) Which platforms accept non-peer-reviewed articles? (3) Where can we create researcher profiles linking to belikenative.com? (4) Are profile links dofollow? (5) How to get cited in actual academic papers about writing tools. (6) Preprint servers that accept tech reports.",
+          "system_prompt": "You are an academic SEO specialist. Focus on platforms that accept practitioner articles, not just peer-reviewed research.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-27",
+          "prompt": "MISSION: Research COMPETITOR BACKLINK PROFILES to find platforms we're missing. Competitors: Grammarly (145K referring domains), QuillBot (38K), LanguageTool (22K), ProWritingAid (8K), Hemingway Editor (5K). (1) What are their top referring domains that we could also get listed on? (2) Use free tools to analyze: Ahrefs free backlink checker, MOZ Link Explorer free, Ubersuggest free. (3) What platforms do ALL of them appear on that we don't? (4) What's the overlap — platforms where 3+ competitors have links? (5) Which of those platforms are free and API-accessible? (6) Any surprising sources — government sites, .edu, niche directories?",
+          "system_prompt": "You are a competitive backlink analyst. Focus on finding platforms all competitors use that BeLikeNative could also leverage. Prioritize free, API-accessible platforms.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-28",
+          "prompt": "MISSION: Research EVENT and MEETUP platforms for backlinks. Check: Meetup.com (DA 91), Eventbrite (DA 88), Luma (DA?), Lu.ma, Conference listing sites, tech conference sponsor pages. (1) Can you create a 'BeLikeNative Writing Workshop' virtual event on Meetup? (2) Are event description links dofollow? (3) Can this be automated via API? (4) What about webinar platforms: Zoom public events, YouTube Live, StreamYard. (5) Hackathon listing sites: Devpost (DA 72), MLH (DA 67). Could we sponsor a writing/AI hackathon? (6) Cost vs link value analysis.",
+          "system_prompt": "You are an event marketing specialist. Be creative but realistic about which platforms provide actual SEO value vs just brand exposure.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-29",
+          "prompt": "MISSION: Research INTERNATIONAL and NON-ENGLISH platforms for backlinks. BeLikeNative helps multilingual writers. (1) High-DA platforms in Spanish: Taringa, Forocoches. (2) German: gutefrage.net (DA 68), mydealz (DA 65). (3) French: commentcamarche (DA 73), JournalDuNet (DA 74). (4) Portuguese: Sapo, Universo Online. (5) Japanese, Chinese, Korean tech blogs. (6) International directory sites. (7) Translation/language learning forums globally. (8) Are links from non-English high-DA sites valuable for English SEO? (9) Multilingual content syndication strategies. (10) International press release distribution.",
+          "system_prompt": "You are a multilingual SEO expert. Focus on platforms with DA 60+ that accept content about language tools. Verify dofollow status.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-30",
+          "prompt": "MISSION: Research RSS, SYNDICATION, and PING services for amplifying backlink indexing. (1) RSS aggregators that create new backlinks: Feedly (DA 93), Inoreader (DA 67), Feedspot (DA 66). (2) Ping services: Pingomatic, Google ping, Bing ping — do they speed up indexing? (3) IndexNow protocol for Bing/Yandex — how to submit our backlink URLs. (4) Google's URL Inspection API for batch submission. (5) Syndication networks: RSS-to-social automation. (6) IFTTT (DA 83) recipes for auto-posting. (7) Zapier webhooks for content distribution. (8) How to create an RSS feed from our published.log and submit to aggregators. (9) Does submitting backlink URLs to search engines speed up link equity transfer?",
+          "system_prompt": "You are a content distribution and indexing specialist. Focus on methods that actually speed up Google's processing of new backlinks.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-31",
+          "prompt": "MISSION: Research GOVERNMENT, NONPROFIT, and HIGH-TRUST platforms for backlinks. (1) .gov sites that link to tools — any writing assistance program directories? (2) Nonprofit directories that list free tools for education. (3) Library resource pages that list writing tools. (4) University writing center resource pages. (5) ESL/EFL organization directories (TESOL, NAFSA, IATEFL). (6) UN/UNESCO education technology directories. (7) How to get listed on .org and .edu resource pages. (8) Free software directories for education (SourceForge education, etc). These are high-effort but DA 90+ links that move the needle enormously.",
+          "system_prompt": "You are an institutional outreach specialist. These links require manual effort but are the highest value. Provide specific contact strategies.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-32",
+          "prompt": "MISSION: Research EXPIRED DOMAIN acquisition for backlink power. (1) Can we find expired domains in the 'writing tools' or 'grammar checker' niche that have existing backlinks? (2) How to redirect an expired domain's link equity to belikenative.com via 301. (3) Tools: ExpiredDomains.net, DropCatch, NameJet — how to filter for relevant domains. (4) What DA/backlink profile makes an expired domain worth buying? (5) Cost expectations for useful expired domains. (6) 301 redirect vs satellite site strategy. (7) Google's stance on expired domain redirects. (8) Case studies of successful expired domain acquisitions for SEO.",
+          "system_prompt": "You are a domain acquisition specialist. Be specific about what makes a domain worth buying for backlink purposes vs worthless.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-33",
+          "prompt": "MISSION: Research CONTENT REPURPOSING strategies to maximize backlinks per article. We have 2,199 WordPress articles. For EACH article, we currently create: 1 Dev.to post, 1 Telegraph post, 1 GitHub Pages site. What other formats can we auto-generate? (1) Slide decks → SlideShare. (2) Infographics → Pinterest, Imgur. (3) Short videos (text-to-video) → YouTube. (4) Podcasts (text-to-speech) → Spotify. (5) PDFs → Scribd, Issuu. (6) Social cards → Twitter/X. (7) Thread format → Twitter/X, Threads, Mastodon. (8) For each format, what's the effort to automate, the expected DA, and the dofollow status? Calculate total potential backlinks per article if ALL channels are used.",
+          "system_prompt": "You are a content multiplication expert. For each format, provide the specific tool/API for automation and realistic effort estimates.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-34",
+          "prompt": "MISSION: Research LINK RECLAMATION and BROKEN LINK strategies. (1) How to find sites that mention 'BeLikeNative' without linking — and request a link. (2) How to find broken links on resource pages about 'grammar tools', 'AI writing', 'ESL tools' — and suggest BeLikeNative as replacement. (3) Google search operators: 'grammar checker' inurl:resources -site:belikenative.com. (4) How to automate broken link discovery with free tools. (5) Outreach email templates for link reclamation. (6) Expected success rate for broken link building. (7) How many outreach emails per week is sustainable? (8) Tools: Screaming Frog, Broken Link Checker, Check My Links extension.",
+          "system_prompt": "You are a link reclamation specialist. Provide specific Google search queries tailored for BeLikeNative's niche.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-35",
+          "prompt": "MISSION: Research BRAND MENTIONS and UNLINKED CITATIONS. (1) How to find web pages that mention 'BeLikeNative' or 'belikenative' without a hyperlink. (2) Free tools for brand mention monitoring: Google Alerts, Mention, Brand24 free tier. (3) How to automate outreach to convert mentions to links. (4) How to find pages mentioning competitors (Grammarly, LanguageTool) that could also mention BeLikeNative. (5) Guest post bio link opportunities on sites that already mention our competitors. (6) Testimonial link building — offering testimonials to tools we use in exchange for a backlink. (7) Partner/integration pages — tools that integrate with Chrome extensions.",
+          "system_prompt": "You are a digital PR and brand monitoring expert. Focus on scalable strategies with free tools.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-36",
+          "prompt": "MISSION: Deep dive on TELEGRAM (telegra.ph) alternatives and similar instant publishing APIs. Telegraph is DA 90 with dofollow. Are there similar platforms? (1) telegra.ph alternatives: graph.org (same backend?), any forks? (2) Rentry.co — DA? API? Dofollow? (3) Telegra.ph-like services. (4) Pastebin alternatives with HTML rendering: paste.ee, dpaste, ix.io, hastebin. (5) URL shorteners that create preview pages with dofollow links. (6) Any instant-publish platforms with API that we haven't found? (7) Dark horse platforms: what's used in non-English markets for instant publishing? (8) Can we self-host a telegra.ph-like service on our own domain?",
+          "system_prompt": "You are a publishing platform expert. Focus on platforms with instant API-based publishing, no approval process, and dofollow links.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-37",
+          "prompt": "MISSION: Research TECHNICAL DOCUMENTATION hosting for backlinks. We could create BeLikeNative API docs, integration guides, SDK docs on: (1) ReadTheDocs (DA 89) — free, dofollow? (2) GitBook (DA 75) — free tier? API? (3) Docusaurus on GitHub Pages, (4) MkDocs on GitHub Pages, (5) Swagger/OpenAPI hosted docs, (6) Postman public collections (DA 82?), (7) Insomnia public collections, (8) RapidAPI listings (DA 79?). For BeLikeNative: even without a real API, can we create 'documentation' pages that serve as backlink sources? What about creating a Chrome Extension Developer Guide that happens to feature BeLikeNative?",
+          "system_prompt": "You are a developer documentation specialist. Focus on platforms that index well and pass link equity through hosted documentation.",
+          "temperature": 0.4,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-38",
+          "prompt": "MISSION: Research FORUM CREATION and COMMUNITY platforms. Instead of posting on existing forums, can we CREATE our own community that links back? (1) Discourse hosted (DA varies) — free tier? (2) Reddit community/subreddit (DA 99) — create r/BeLikeNative or r/AIWritingTools? (3) Facebook Groups (DA 96). (4) Discord server with public pages. (5) Slack community. (6) Circle.so (DA?). (7) Skool communities. (8) GitHub Discussions (DA 95). Which of these create indexable, dofollow pages? Which are worth the maintenance effort? What's the SEO value of an owned community vs posting on others?",
+          "system_prompt": "You are a community building expert. Focus on platforms where community pages actually get indexed by Google and provide link equity.",
+          "temperature": 0.5,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-39",
+          "prompt": "MISSION: Create a MASTER PRIORITY MATRIX for all backlink sources. Given everything we know: (1) Rank ALL platforms by: effort (1-10), DA, dofollow certainty (confirmed/likely/unlikely), API automatable (yes/partial/no), cost, weekly safe volume. (2) Create 3 tiers: Tier 1 (automate immediately), Tier 2 (semi-automated, do this month), Tier 3 (manual, do eventually). (3) Calculate expected 'link equity score' = DA × dofollow_multiplier / est_outbound_links. (4) Create a 12-week execution roadmap showing which platforms to add each week. (5) Total projected backlinks after 12 weeks with this plan. (6) Total projected cost. (7) Expected DR at 12 weeks.",
+          "system_prompt": "You are a strategic SEO planner. Create an actionable, prioritized execution plan with specific numbers. The output should be a decision matrix, not prose.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        },
+        {
+          "task_id": "src-40",
+          "prompt": "MISSION: Research INDEXING ACCELERATION — how to make Google discover and credit our backlinks faster. (1) Google Search Console URL Inspection API — batch submit backlink URLs. (2) IndexNow protocol — submit to Bing/Yandex instantly. (3) Internal linking FROM backlinked pages — does this speed up discovery? (4) Social signals — sharing backlink URLs on Twitter/Reddit accelerates crawling? (5) Creating a dedicated sitemap of all backlink URLs and submitting it. (6) Google's typical timeline: how long from backlink publication to equity transfer? (7) Factors that slow down indexing: thin content, new domains, noindex tags. (8) How to verify Google has found and credited a backlink. (9) Is there a way to request re-crawling of the TARGET page (belikenative.com) to process new backlinks faster?",
+          "system_prompt": "You are a search engine indexing expert. Focus on legitimate methods to accelerate Google's processing. No black-hat indexing services.",
+          "temperature": 0.3,
+          "max_tokens": 4096
+        }
+      ]
+    }
+  ]
+}

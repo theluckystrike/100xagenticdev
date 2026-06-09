@@ -1,0 +1,288 @@
+{
+  "phases": [
+    {
+      "tasks": [
+        {
+          "task_id": "s13_t01_bmbl_revenue_decline",
+          "prompt": "BMBL (Bumble) revenue decline forensic. LIVE VERIFIED DATA: Annual: 2022 $903.5M, 2023 $1,051.8M (+16.4%), 2024 $1,071.6M (+1.9%), 2025 $965.7M (-9.9%). Quarterly: Q1'25 $247.1M, Q2'25 $248.2M, Q3'25 $246.2M, Q4'25 $224.2M (-8.9% QoQ CLIFF), Q1'26 $212.4M (-5.3% QoQ STILL DECLINING). Key questions: 1) What is causing the revenue decline? Is it paying users declining, ARPU declining, or both? 2) Is the Badoo app dragging down results while Bumble app is stable? 3) What did management say on Q1 2026 earnings call about revenue trajectory? 4) Is there a guidance for Q2 2026? 5) At what point does revenue stabilize?",
+          "system_prompt": "You are a consumer internet revenue analyst. Use ONLY the verified quarterly data provided. Identify the specific driver of decline (users vs ARPU vs mix).",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t02_bmbl_fcf_verify",
+          "prompt": "BMBL FCF verification. LIVE VERIFIED DATA from yfinance: Q1'25 FCF $40.8M, Q2'25 $67.7M, Q3'25 $73.8M, Q4'25 $56.3M, Q1'26 $73.8M. TTM FCF $271.6M. OCF Q1'26 $77.2M. Market cap $461M. FCF yield = 58.9%. Questions: 1) Is this FCF sustainable or driven by working capital timing? 2) What is SBC (stock-based compensation)? SBC is a real cost — does FCF minus SBC still look good? 3) Capex is only $3.4M/quarter ($13.6M/year) — is that enough for a tech company? Are they underinvesting? 4) What is maintenance vs growth capex?",
+          "system_prompt": "You are a cash flow forensic analyst. Verify that FCF is real, sustainable, and not inflated by SBC exclusion or working capital manipulation.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t03_bmbl_goodwill",
+          "prompt": "BMBL goodwill impairment analysis. LIVE VERIFIED DATA: Goodwill Q2'25 $1,129M, Q3'25 $1,129M, Q4'25 $732.7M (wrote down ~$396M), Q1'26 $732.7M. Net income: Q2'25 -$253.7M (impairment), Q4'25 -$490.2M (impairment). Total 2025 NI: -$693.1M. But Q1'26 NI: +$45.2M (no impairment). Questions: 1) What did Bumble overpay for? Was Badoo the impaired asset? 2) Is there MORE goodwill at risk? Current $732.7M vs $461M market cap — are they still overstated? 3) Does the impairment affect actual operations or is it purely accounting?",
+          "system_prompt": "You are a goodwill impairment analyst. Determine if remaining $732.7M goodwill is at further risk. Goodwill exceeds market cap by $272M — that's a red flag.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t04_bmbl_debt_maturity",
+          "prompt": "BMBL debt maturity analysis. LIVE VERIFIED: Total debt $597.3M, Cash $245.6M, Net debt $351.7M. Market cap $461M. EV $866M. FCF $271.6M TTM. Questions: 1) When does the $597M debt mature? Is it a term loan, convertible notes, or bonds? 2) What are the interest rates? 3) Can Bumble service this debt with $271M FCF? (Answer: easily, debt/FCF = 2.2x). 4) Are there covenants that could be triggered by revenue decline? 5) Could they pay down all debt in ~2 years with FCF? 6) Is there a refinancing risk?",
+          "system_prompt": "You are a credit analyst. Determine if BMBL's debt is a risk or manageable. $271M FCF vs $597M debt = 2.2x coverage. But what if FCF declines?",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t05_bmbl_users",
+          "prompt": "BMBL user metrics deep dive. Bumble has two apps: Bumble App (women-first dating) and Badoo (European/LatAm dating). Questions: 1) What are MAU (monthly active users) for each app? Trend over last 8 quarters? 2) What are paying users for each app? 3) What is ARPU for each app? 4) Is Badoo dying while Bumble holds? Or both declining? 5) What percentage of revenue comes from Bumble vs Badoo? 6) Downloads trend — App Store and Google Play rankings? 7) Is Bumble BFF (friendship) or Bumble Bizz growing?",
+          "system_prompt": "You are a mobile app analytics expert. Identify whether the user base is shrinking, stable, or shifting between apps. User metrics are the leading indicator for revenue.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t06_bmbl_competition",
+          "prompt": "BMBL competitive landscape. Competitors: 1) Tinder (Match Group) — largest dating app. How is Tinder doing? Revenue trend? 2) Hinge (Match Group) — fastest growing. Is Hinge stealing Bumble users? 3) Facebook Dating — failed? Still active? 4) Feeld, Thursday, The League, Coffee Meets Bagel — niche players growing? 5) AI dating assistants — Blush, Rizz, Slide — are AI tools disrupting dating apps? 6) Gen Z behavior — are young people using dating apps less? TikTok as a dating platform? 7) Is the entire online dating TAM shrinking?",
+          "system_prompt": "You are a consumer internet competitive analyst. Determine if Bumble is losing share to specific competitors or if the entire category is shrinking.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t07_bmbl_management",
+          "prompt": "BMBL management analysis. Whitney Wolfe Herd founded Bumble after leaving Tinder (sexual harassment lawsuit). Questions: 1) Is Whitney still CEO? If not, when did she step down and who replaced her? 2) What is the new CEO's track record? 3) Has there been executive turnover (CFO, CTO, etc.)? 4) Board composition — who are the directors? 5) Blackstone connection — Blackstone took Bumble public, what is their current stake? 6) Dual-class shares — does Whitney still control voting? Can she block an acquisition? 7) What is management's stated strategy for reversing the revenue decline?",
+          "system_prompt": "You are a corporate governance analyst. Assess management quality and whether they have a credible plan to reverse revenue decline.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t08_bmbl_insider_sec",
+          "prompt": "BMBL insider activity forensic. LIVE DATA: Insider ownership 2.6%, Institutional 88.9%. Questions: 1) Check SEC Form 4 filings for BMBL in 2026 — any insider buying or selling? 2) Has Whitney Wolfe Herd sold shares recently? 3) Has any director or officer bought shares at these depressed levels ($3-4 range)? 4) 88.9% institutional — who are the top holders? Blackstone, Vanguard, BlackRock? 5) Any 13D/13G filings indicating activist investors? 6) Any poison pill or takeover defense mechanisms?",
+          "system_prompt": "You are an SEC filings analyst. Insider behavior at multi-year lows is extremely informative. Buying = conviction. Silence = concerning. Selling = run.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t09_bmbl_buyback",
+          "prompt": "BMBL capital allocation analysis. With $271M TTM FCF and $461M market cap, Bumble could buy back its entire float in less than 2 years. Questions: 1) Does Bumble have an active share buyback program? How much has been repurchased? 2) If they spent 50% of FCF ($135M/year) on buybacks, shares would shrink ~29%/year. Is management doing this? 3) What is the dividend policy? (LIVE: no dividend). 4) Are they using FCF to pay down debt instead? 5) What did management say about capital allocation on recent earnings calls? 6) At $3.04/share, a buyback is the highest-ROI use of capital. Are they doing it?",
+          "system_prompt": "You are a capital allocation analyst. With 59% FCF yield, buybacks are the optimal strategy. Determine if management is executing this or wasting FCF.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t10_bmbl_mna_probability",
+          "prompt": "BMBL M&A analysis — detailed. Market cap $461M, Revenue $931M, FCF $271M. Potential acquirers: 1) Match Group (MTCH, $7.5B mcap) — owns Tinder, Hinge, OkCupid. Would Bumble fill the 'women-first' niche? Antitrust: would FTC/DOJ block? What % of US dating market would combined entity control? 2) Private equity — Blackstone already took it public. Could Blackstone take it private again at 3-4x EV/EBITDA? 3) Meta/Alphabet — strategic value of user data? 4) International strategic — Rakuten (Japan), Tencent (China)? 5) What premium would an acquirer pay? At $461M, even 100% premium = $922M = 1x revenue.",
+          "system_prompt": "You are an M&A specialist. Calculate realistic probability-weighted acquisition value. Consider antitrust, dual-class shares, and strategic rationale.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t11_bmbl_sbc",
+          "prompt": "BMBL stock-based compensation (SBC) analysis. CRITICAL: SBC is a real cost that FCF ignores. Questions: 1) What is BMBL's annual SBC expense? 2) Is SBC increasing while revenue declines? (Very common in failing tech). 3) FCF minus SBC = true economic earnings. Calculate this number. 4) SBC as percentage of revenue — above 20% is a red flag. 5) Compare BMBL SBC to Match Group SBC as % of revenue. 6) Is there a risk that FCF is only high because SBC is replacing cash comp? (i.e., employees paid in stock, saving cash)",
+          "system_prompt": "You are a forensic compensation analyst. SBC is the #1 way tech companies inflate FCF. Calculate BMBL's true economic earnings after SBC.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t12_bmbl_dating_tam",
+          "prompt": "Online dating TAM (Total Addressable Market) analysis. Questions: 1) Global online dating revenue 2025 and projected 2030? Is the market growing or shrinking? 2) US online dating revenue specifically? 3) What percentage of adults use dating apps? Is penetration increasing or plateauing? 4) Gen Z usage — are 18-25 year olds using dating apps more or less than millennials did at the same age? 5) Revenue per user trends — are users willing to pay more or less for premium features? 6) Is the shift from subscription to à la carte (pay per boost, superswipe) growing the market or shrinking it?",
+          "system_prompt": "You are a market research analyst. Determine whether the online dating TAM is growing, stable, or contracting. Use data, not assumptions.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t13_bmbl_ai_disruption",
+          "prompt": "AI DISRUPTION RISK for dating apps. Key questions: 1) AI-powered dating assistants (Rizz, YourMove, Blush) — are they replacing or augmenting dating apps? 2) Could AI matchmaking algorithms make current swipe-based apps obsolete? 3) AI-generated profiles and catfishing — is trust in dating apps declining? 4) Could a new AI-native dating app (like 'Ditto' or similar) disrupt Bumble from below? 5) How is Bumble using AI? Any AI features announced? 6) Meta's AI assistant — could it include dating functionality that bypasses apps? 7) What happened to previous dating app disruptors (Lox Club, Feeld, etc.)?",
+          "system_prompt": "You are an AI disruption analyst. Assess whether AI helps or hurts Bumble's business model. Be specific about realistic timeline.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t14_bmbl_international",
+          "prompt": "BMBL international expansion opportunity. Bumble + Badoo combined. Questions: 1) Revenue breakdown US vs international? 2) Badoo is popular in Europe, LatAm, India — is it growing in these markets? 3) India — massive TAM (1.4B people). Is Bumble growing in India? 4) Southeast Asia — dating app adoption? 5) Japan/Korea — is there opportunity? 6) Which geographies are growing and which are declining? 7) Currency impact on revenue — is the strong USD hurting international revenue in dollar terms?",
+          "system_prompt": "You are an international consumer internet analyst. Identify which geographies could provide growth to offset US decline.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t15_bmbl_mtch_comp",
+          "prompt": "BMBL vs MTCH (Match Group) head-to-head comparison. MTCH data: Market cap ~$7.5B, Revenue ~$3.5B, owns Tinder/Hinge/OkCupid/Match. Questions: 1) Revenue growth comparison — is MTCH also declining? 2) FCF comparison — MTCH FCF vs BMBL FCF as % of revenue. 3) Valuation comparison — MTCH P/S vs BMBL P/S. Is BMBL cheaper? 4) Is Hinge growing while Tinder and Bumble both decline? 5) If MTCH is at ~2x P/S and BMBL at ~0.5x P/S, is the discount justified? 6) User growth comparison. 7) Which company has better pricing power?",
+          "system_prompt": "You are a consumer internet portfolio manager. Compare the two public dating companies side by side on every metric that matters.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t16_bmbl_580_employees",
+          "prompt": "BMBL operational efficiency analysis. LIVE VERIFIED: 580 full-time employees. Revenue $931M. Revenue per employee = $1.6M. Questions: 1) How does $1.6M/employee compare to peers? MTCH? Meta? Snap? 2) Has BMBL laid off workers? When and how many? 3) Is 580 employees enough to maintain and grow a global app with 100M+ downloads? 4) Are they outsourcing engineering, customer support, moderation? 5) What are the largest cost categories? Marketing? Sales? R&D? 6) Can they cut more and still maintain the product?",
+          "system_prompt": "You are an operational efficiency analyst. Assess whether 580 employees is lean or dangerously understaffed for a global app platform.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t17_bmbl_brand",
+          "prompt": "BMBL brand value analysis. Bumble's differentiation is 'women make the first move.' Questions: 1) Is this positioning still relevant and valued by users? Or has it become gimmicky? 2) Net Promoter Score (NPS) or app store ratings — how do users rate Bumble vs Tinder vs Hinge? 3) Brand awareness — does the Bumble brand have value beyond the app? 4) Bumble BFF (friendship) and Bumble Bizz (networking) — are these growing or dying? 5) Celebrity endorsements or cultural relevance — is Bumble still 'cool'? 6) Could the brand be licensed or extended into adjacent categories?",
+          "system_prompt": "You are a brand strategy analyst. Assess whether the Bumble brand has durable value or is fading. Brand perception is a leading indicator for user growth.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t18_bmbl_bear_case",
+          "prompt": "BMBL MAXIMUM BEAR CASE. Assume everything goes wrong: 1) Revenue declines -15%/year for 3 years: $931M → $791M → $672M → $572M. 2) FCF margins compress from 29% to 15% as they spend more to retain users. 3) Debt becomes unserviceable. 4) Dating apps become commoditized with free AI alternatives. 5) No acquisition (FTC blocks MTCH deal, PE doesn't want declining asset). 6) Key employees leave due to low morale and underwater stock options. In this scenario, what is the stock worth? What is the floor? Could it go to zero?",
+          "system_prompt": "You are a bearish short-seller analyst. Build the worst-case scenario and calculate the downside. Be as pessimistic as possible but realistic.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t19_bmbl_bull_case",
+          "prompt": "BMBL MAXIMUM BULL CASE. Assume best case: 1) Revenue stabilizes at $850M in 2027 as Badoo cuts are complete. 2) FCF stays at $250M+ with lean 580-person team. 3) Company buys back 30% of shares over 2 years ($250M at ~$3-4/share). 4) Revenue returns to modest 5% growth by 2028 from international expansion (India, SE Asia). 5) MTCH or PE acquires at 3x revenue = $2.5B = $19/share (6x upside from $3.04). 6) AI features improve matching, reducing user churn. In this scenario, what is the stock worth in 3 and 5 years?",
+          "system_prompt": "You are a bullish value investor. Build the best-case scenario with specific price targets. Be optimistic but realistic.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t20_bmbl_base_case",
+          "prompt": "BMBL BASE CASE VALUATION. Current: Price $3.04, MCap $461M, Rev $931M (declining ~14%/yr), FCF $271M, Debt $597M, Cash $246M, EV $866M. Forward P/E 3.03x. Assumptions: 1) Revenue declines 10% in 2026, then 5% in 2027, then stabilizes. 2) FCF margins stay ~25% (cost cuts offset revenue decline). 3) 30% of FCF used for debt paydown, 40% for buybacks, 30% retained. Calculate: A) EPS in 2027 and 2028 (with buyback-reduced share count). B) Fair value at 10x forward P/E (mature tech company). C) Fair value at 1.5x P/S. D) Fair value at 8x FCF. E) Probability-weighted fair value.",
+          "system_prompt": "You are a fundamental valuation analyst. Calculate fair value using multiple methods. Show your math. Use ONLY the verified financial data provided.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t21_bmbl_short_squeeze",
+          "prompt": "BMBL short squeeze potential. LIVE DATA: Short interest 13.4% of float, Short ratio 3.52 days to cover, Float 99.2M shares. Questions: 1) Is 13.4% short interest significant? What is the threshold for squeeze potential? 2) What is the cost to borrow BMBL shares? 3) Has short interest been increasing or decreasing recently? 4) What would trigger a short squeeze? (Earnings beat, acquisition announcement, activist investor?) 5) Historical precedent — has BMBL been squeezed before? 6) What happens to shorts if an acquisition is announced at $6+ (2x premium)?",
+          "system_prompt": "You are a short squeeze analyst. Assess squeeze probability and potential magnitude. 13.4% SI + 3.52 days to cover + falling borrow availability = potential setup.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t22_bmbl_earnings_history",
+          "prompt": "BMBL earnings surprise history. For each of the last 8 quarters, what was the consensus EPS estimate vs actual EPS? Did BMBL beat or miss expectations? What happened to the stock price after each earnings report? Pattern recognition: 1) Does BMBL consistently beat on FCF but miss on revenue? 2) Does management guide conservatively or aggressively? 3) When is the next earnings report? 4) What are current Q2 2026 consensus estimates for revenue and EPS?",
+          "system_prompt": "You are an earnings analyst. Map the pattern of beats/misses and price reactions. This helps predict whether the next earnings is a catalyst or a risk.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t23_bmbl_customer_reviews",
+          "prompt": "BMBL product quality assessment. Questions: 1) App Store rating — what is the current rating for Bumble on iOS and Android? How does it compare to Tinder and Hinge? 2) Common complaints from recent reviews (2025-2026)? 3) Are users complaining about less matches, more bots, worse quality profiles? 4) Has the app had any major bugs or outages recently? 5) Bumble's new features in 2025-2026 — what have they launched? 6) Is the premium subscription worth it? What do premium users say? 7) Retention rates — what % of users are still active after 30 days, 90 days?",
+          "system_prompt": "You are a product analyst. User satisfaction is a leading indicator for revenue. Declining app quality = future revenue decline.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t24_bmbl_regulatory",
+          "prompt": "BMBL regulatory risk assessment. Questions: 1) EU Digital Services Act — how does it affect dating apps? Compliance costs? 2) Age verification requirements — any new regulations requiring ID verification for dating apps? 3) Data privacy — GDPR, California Privacy Act — compliance costs for dating data? 4) FTC scrutiny of dating apps — any investigations? Dark patterns, auto-renewal complaints? 5) Safety regulations — state/federal requirements for background checks, sex offender screening? 6) Section 230 reform — could dating apps lose liability protection?",
+          "system_prompt": "You are a regulatory analyst specializing in consumer internet. Identify regulatory risks that could increase costs or restrict operations for dating apps.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t25_bmbl_network_effects",
+          "prompt": "BMBL network effects analysis. Dating apps have two-sided network effects (men and women need each other). Questions: 1) Are network effects a moat for Bumble or not? (Critics say dating apps have WEAK network effects because users switch easily). 2) Is there a minimum viable user base below which the app becomes useless? Is Bumble approaching that threshold in any market? 3) Geographic density — does Bumble work in rural areas or only in cities? 4) Is there a 'chicken and egg' problem — fewer women → fewer men → death spiral? 5) What keeps users from just using Tinder AND Bumble AND Hinge simultaneously?",
+          "system_prompt": "You are a network effects analyst. Assess whether Bumble's network effects provide any durable competitive advantage or if dating apps are inherently commoditized.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t26_bmbl_pricing_power",
+          "prompt": "BMBL pricing and monetization analysis. Questions: 1) What are Bumble's subscription tiers and prices? (Bumble Boost, Bumble Premium, Bumble Premium+). 2) How have prices changed over time? 3) What is the à la carte revenue (SuperSwipes, Spotlight, Compliments, Travel)? 4) Is ARPU (average revenue per paying user) increasing even as users decline? 5) Could Bumble raise prices significantly without losing more users? 6) What is the free-to-paid conversion rate? 7) Compare pricing to Tinder (Gold, Platinum) and Hinge (HingeX).",
+          "system_prompt": "You are a SaaS pricing analyst. Determine if Bumble has pricing power — can they charge more to offset user decline? Or are users price-sensitive?",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t27_bmbl_blackstone",
+          "prompt": "BLACKSTONE AND BUMBLE. Blackstone (BX) took Bumble public in 2021 at $43/share IPO price (opened at $76). Questions: 1) What is Blackstone's current stake in BMBL? Have they sold down? 2) Does Blackstone have a board seat? How many directors? 3) Could Blackstone take BMBL private again? At $461M mcap and $597M debt, total take-private cost = ~$1B. Blackstone has $1 TRILLION in AUM — trivial for them. 4) Would a go-private make sense? They could harvest the $271M FCF privately. 5) Is there a lockup or any agreement preventing Blackstone from selling? 6) What happened to other Blackstone-backed tech IPOs?",
+          "system_prompt": "You are a private equity analyst. Assess the probability that Blackstone takes BMBL private or supports a take-private by another PE firm.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t28_bmbl_book_value",
+          "prompt": "BMBL trading below book value analysis. LIVE DATA: Book value $4.733/share, Price $3.04, P/B = 0.64x. Assets $1,472.9M, Goodwill $732.7M. Questions: 1) Tangible book value (assets minus goodwill minus intangibles) — what is it per share? 2) If goodwill is worth $0 (which the market is implying), what is the remaining asset value? 3) $1,472.9M assets - $732.7M goodwill - $597.3M debt = $142.9M tangible equity = ~$1.10/share. Is this the real floor? 4) But they generate $271M FCF — shouldn't that be worth something? 5) At P/B 0.64x, the market is saying the business is worth LESS than its assets. Why?",
+          "system_prompt": "You are an asset-based valuation analyst. Determine what BMBL's assets are really worth, including the intangible value of the user base and brand.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t29_bmbl_scenario_matrix",
+          "prompt": "BMBL 5-SCENARIO PROBABILITY MATRIX. Using VERIFIED data (Price $3.04, FCF $271M, Rev $931M declining 14%/yr, Debt $597M): Scenario 1 (20% prob): Revenue stabilizes, FCF maintained, buybacks → $8-12 in 3 years. Scenario 2 (15% prob): Acquisition at 2-3x revenue → $14-20. Scenario 3 (30% prob): Slow decline continues, FCF falls to $150M, stock drifts $2-4 range. Scenario 4 (20% prob): Revenue decline accelerates, debt becomes problem → $1-2. Scenario 5 (15% prob): Death spiral, dating apps disrupted by AI → below $1. Calculate probability-weighted expected value.",
+          "system_prompt": "You are a scenario analyst. Assign probabilities to each scenario and calculate expected value. Use ONLY the verified numbers provided. Show your math.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t30_bmbl_dividend",
+          "prompt": "BMBL DIVIDEND ANALYSIS. With $271M FCF and $461M market cap, if Bumble paid out 50% of FCF as dividends ($135M), the dividend yield would be 29.3%. Questions: 1) Why isn't Bumble paying a dividend? 2) Would a dividend announcement be a catalyst for the stock? 3) Companies in decline often start paying dividends to attract income investors (e.g., AT&T, IBM). Should BMBL do this? 4) What is the optimal capital return mix: buybacks vs dividends vs debt paydown? 5) At $3.04/share, would a $0.50/quarter dividend (16.4% yield) attract institutional buyers?",
+          "system_prompt": "You are a capital return analyst. Evaluate whether a dividend would be value-creating or value-destructive for BMBL at this price level.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t31_bmbl_comps",
+          "prompt": "BMBL comparable company analysis. Compare BMBL to: 1) MTCH (Match Group) — dating direct comp. P/S, EV/EBITDA, FCF yield. 2) PINS (Pinterest) — social platform, similar revenue scale. 3) SNAP (Snapchat) — consumer social, declining growth. 4) GRND (Grindr) — dating app, recently IPO'd. 5) YELP — local marketplace, value play. For each comp: Revenue, growth, margins, FCF, P/S, EV/EBITDA. What is the implied BMBL fair value if it traded at the peer median?",
+          "system_prompt": "You are a comp-based valuation analyst. Calculate BMBL's implied value at peer median multiples. Use specific, verifiable data for each comparable.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t32_bmbl_moat_durability",
+          "prompt": "BMBL MOAT DURABILITY TEST. Buffett asks: 'In 10 years, will this business still exist and be stronger?' Questions: 1) Will people still use dating apps in 2036? (Probably yes — fundamental human need). 2) Will Bumble specifically still exist? Or will it be acquired/merged? 3) Is the 'women make the first move' differentiation durable or easily copied? 4) What prevents a new app from launching and taking users? (Low switching costs vs network effects). 5) Does Bumble have any patents, technology, or data advantage? 6) In 10 years, is dating more likely to be: a) Same apps, b) AI-mediated, c) VR/metaverse, d) Something else entirely?",
+          "system_prompt": "You are a long-term competitive strategy analyst. The investor wants to hold for 10 years. Assess whether Bumble has a business worth owning for a decade.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t33_bmbl_smwb_comp",
+          "prompt": "BMBL vs SMWB head-to-head for watchlist priority. Current watchlist has SMWB @ $3.00 and BMBL @ $2.50. Compare: SMWB (SaaS payments, $170M rev, FCF declining, SBC > OCF concern, Sprint 9 deep dive) vs BMBL (dating, $931M rev, $271M FCF, revenue declining 14%, M&A upside). Which is the better 10-year buy-and-hold? Which has more asymmetric upside? Which has lower risk of permanent capital loss?",
+          "system_prompt": "You are a portfolio analyst choosing between two watchlist names. One is a SaaS compounder with FCF concerns. The other is a fallen angel with massive FCF. Pick one.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t34_bmbl_catalyst_timeline",
+          "prompt": "BMBL CATALYST CALENDAR. What events in the next 12 months could move the stock significantly? Map: 1) Next earnings report date and consensus expectations. 2) Any product launches announced (new features, AI integration)? 3) Potential M&A timeline — when would an acquirer most likely approach? 4) Debt maturity dates — any near-term refinancing events? 5) Blackstone lockup/selling schedule. 6) Short interest reporting dates. 7) Analyst days or investor conferences. 8) Regulatory deadlines (EU DSA compliance). 9) Whitney Wolfe Herd — any planned departure date? 10) Potential buyback announcements.",
+          "system_prompt": "You are a catalyst timeline analyst. Create a month-by-month calendar of potential stock-moving events for BMBL.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t35_bmbl_risk_matrix",
+          "prompt": "BMBL COMPREHENSIVE RISK MATRIX. Rate each risk 1-5 for PROBABILITY and 1-5 for IMPACT. Categories: 1) Revenue decline acceleration, 2) Dating app commoditization, 3) AI disruption of dating, 4) Debt maturity/refinancing risk, 5) Management execution risk, 6) Competitive pressure from Hinge, 7) Regulatory (privacy, age verification), 8) Dual-class share risk (blocks M&A), 9) Goodwill impairment (more write-downs), 10) Key employee attrition. Total possible score: 250. Any risk with P>3 AND I>3 = MATERIAL.",
+          "system_prompt": "You are a risk analyst. Create the most comprehensive risk assessment possible. Flag CRITICAL risks (high probability AND high impact).",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t36_bmbl_position_sizing",
+          "prompt": "BMBL POSITION SIZING for our portfolio. Portfolio: GRAB($540), BTG($234), GAU($225), TUYA($210), TIGR($202). Pending: PAGS 50@$9.22, PAYO 50@$5.12. Cash $1,062. Total ~$2,473. Questions: 1) If we buy BMBL, how many shares? At $3.04, a $200 position = 65 shares. 2) Is $200 enough to be meaningful or should we go $300 (99 shares)? 3) Should we buy at market ($3.04) or set GTC limit at $2.50? 4) Should we cancel PAGS/PAYO pending orders and redirect to BMBL? 5) Max position size as % of portfolio? Currently each position is 8-22% of total. 6) Kelly criterion calculation — what fraction of capital should go to BMBL given the risk/reward?",
+          "system_prompt": "You are a position sizing analyst. Calculate optimal position size using Kelly criterion and portfolio concentration limits. This is real money, be conservative.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t37_bmbl_entry_strategy",
+          "prompt": "BMBL ENTRY STRATEGY. Current price $3.04. 52-week low $2.61 (recent). 52-week high $8.64. 50-day avg $3.61. 200-day avg $4.26. Questions: 1) Buy at $3.04 (market) or wait? Pro: cash flowing, could be acquired. Con: price trending down, could go lower. 2) Dollar-cost average: buy 1/3 now, 1/3 at $2.50, 1/3 at $2.00? 3) Set a single GTC limit at $2.50 (18% below current, near 52w low)? 4) Wait for next earnings report for data on revenue trajectory? 5) Technical support levels — where are they? 6) Is the current downtrend likely to continue? ($3.61 50-day, $4.26 200-day — both above current = bearish trend)",
+          "system_prompt": "You are a tactical entry analyst. Recommend the specific entry strategy for a buy-and-hold investor with limited capital. Consider current technical setup.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t38_bmbl_vs_portfolio",
+          "prompt": "BMBL vs EXISTING PORTFOLIO COMPARISON. Is BMBL a better investment than anything we already hold? Compare BMBL ($3.04, FCF yield 59%, P/S 0.5x, -14% growth) to: 1) GRAB ($3.60, SE Asia superapp, profitability inflecting), 2) BTG ($4.68, gold miner, commodity exposure), 3) GAU ($2.29, gold miner, higher beta), 4) TUYA ($2.21, China IoT, CN_ADR risk), 5) TIGR ($5.18, China brokerage, CN_ADR risk, KILLED but held). Would it be better to SELL a weaker position and buy BMBL? Or keep everything and use cash?",
+          "system_prompt": "You are a portfolio optimization analyst. Determine if swapping any existing position for BMBL improves the portfolio risk-adjusted return.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t39_bmbl_final_verdict",
+          "prompt": "BMBL FINAL VERDICT. Based on ALL Sprint 13 analysis (40 agents), make the definitive call. VERIFIED DATA: Price $3.04, MCap $461M, Revenue $930.9M (declining -14.1%), Q1'26 Revenue $212.4M (declining QoQ), FCF $271M TTM (real and verified), NI -$623.7M (goodwill impairment, NOT cash), Debt $597.3M, Cash $245.6M, Book Value $4.73/share, Forward P/E 3.03x, 580 employees, 88.9% institutional, 13.4% short, 52w low $2.61. OPTIONS: A) BUY now at $3.04. B) GTC LIMIT at $2.50. C) WATCHLIST only — wait for revenue stabilization. D) AVOID — revenue decline is structural and accelerating. State confidence level 1-10.",
+          "system_prompt": "You are the chief investment officer. This is the culmination of 40 agents analyzing one stock. Make a SINGLE definitive recommendation. Use ONLY verified data. REAL money is at stake.",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        },
+        {
+          "task_id": "s13_t40_bmbl_10yr_projection",
+          "prompt": "BMBL 10-YEAR PROJECTION (2026-2036). The investor holds for 10 years. Using VERIFIED data as starting point: Revenue $931M, FCF $271M, Debt $597M, 130.4M shares out. Model three scenarios: OPTIMISTIC (revenue recovers, FCF grows, buybacks compound): Year-by-year revenue, FCF, share count, EPS, and stock price. REALISTIC (slow decline then stabilization): Same metrics. PESSIMISTIC (continuous decline, dating disrupted): Same. For each scenario: What is the 10-year CAGR on a $3.04 investment? What is the total return including buybacks/dividends?",
+          "system_prompt": "You are a long-term equity strategist. Model 10-year projections with explicit assumptions. The investor is buying at $3.04 and holding for 10 years. What is the expected return?",
+          "temperature": 0.1,
+          "max_tokens": 5000
+        }
+      ]
+    }
+  ]
+}
