@@ -403,7 +403,12 @@ class DeepSeekClient:
 
                 except httpx.HTTPStatusError as e:
                     code = e.response.status_code
-                    if code in (500, 502, 503):
+                    # Transient upstream failures. 504 and the Cloudflare 52x family are
+                    # what a saturated gateway returns under high fan-out: a 40-agent
+                    # burst against OpenRouter produced six 504s and lost those agents
+                    # outright because 504 was missing from this set. 408 is a request
+                    # timeout and is equally retryable.
+                    if code in (408, 500, 502, 503, 504, 520, 522, 524):
                         wait = min(BASE_BACKOFF_SEC * (2 ** attempt), MAX_BACKOFF_SEC)
                         await asyncio.sleep(wait)
                         last_error = f"Server error {code}, retry {attempt + 1}"
