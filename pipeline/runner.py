@@ -45,6 +45,34 @@ def parse_args():
     p.add_argument("--anti-hallucination", action="store_true",
                    help="Enable AH mode: MiMo V2.5 Pro, temp=0.1, citation required, "
                         "[UNVERIFIED] stripped")
+    # ── Edge engine (niche scan → edge loop → verify → cards) ────────────────
+    p.add_argument("--edge-loop", action="store_true",
+                   help="Run the EDGE engine: niche-aware scan → iterative edge "
+                        "loop → adversarial verify → ranked edge cards. Needs --topic.")
+    p.add_argument("--load", type=str, default=None,
+                   help="Launch a saved pipeline from a JSON config (topic+goal+"
+                        "workflow). One command: --load pipelines/my_pipeline.json")
+    p.add_argument("--niche", type=str, default=None,
+                   help="Force a niche (else auto-classified). One of: crypto_defi, "
+                        "equities_smallcap, devtools_saas, security_audit, seo_growth, "
+                        "llm_ai_models, generic")
+    p.add_argument("--rounds", type=int, default=3,
+                   help="Edge-loop refinement rounds (default 3, max 8)")
+    p.add_argument("--edge-threshold", type=float, default=0.6,
+                   help="Min edge score to keep a candidate (0..1, default 0.6)")
+    p.add_argument("--top-k-drill", type=int, default=4,
+                   help="How many top candidates to drill deeper each round (default 4)")
+    p.add_argument("--verify-confidence", type=float, default=0.5,
+                   help="Min skeptic confidence for an edge to survive verify "
+                        "(0..1, default 0.5; lower = more permissive)")
+    p.add_argument("--no-enrich", action="store_true",
+                   help="Skip the LLM step that adds topic-specific edge vectors")
+    p.add_argument("--no-ground", action="store_true",
+                   help="Disable live web grounding (scan from model memory only)")
+    p.add_argument("--slug", type=str, default="",
+                   help="Ticker/slug for niche seed URLs (e.g. UPST, hyperliquid)")
+    p.add_argument("--ground-url", action="append", default=[], dest="ground_urls",
+                   help="Explicit grounding URL to fetch (repeatable)")
     p.add_argument("--budget",      type=float, default=10.0,
                    help="Budget limit USD (default: 10.0)")
     p.add_argument("--output",      type=str,   default="",
@@ -136,8 +164,60 @@ def _build_dry_run_phases(args) -> list:
     return []
 
 
+async def run_edge_loop(args):
+    """Run the edge engine end-to-end (or preview it on --dry-run)."""
+    import context_scanner as cs
+    if not args.topic:
+        print("Error: --edge-loop requires --topic")
+        sys.exit(1)
+
+    if args.dry_run:
+        profile = cs.build_profile(args.topic, niche=args.niche)
+        print(f"\nDRY RUN — EDGE engine plan for: {args.topic}")
+        print(f"  Niche: {profile.niche}  (matched: {profile.matched_keywords})")
+        print(f"  Rounds: {args.rounds} | Threshold: {args.edge_threshold} | "
+              f"Drill top-{args.top_k_drill} | Enrich: {not args.no_enrich}")
+        print(f"  Scan vectors ({len(profile.vectors)}):")
+        for v in profile.vectors:
+            print(f"    • {v.key}: {v.description}")
+        return
+
+    from edge_pipeline import EdgePipeline
+    pipe = EdgePipeline(
+        topic=args.topic, niche=args.niche, agents=args.agents, budget=args.budget,
+        model=args.model, provider=args.provider, output_dir=args.output,
+        rounds=args.rounds, threshold=args.edge_threshold,
+        top_k_drill=args.top_k_drill, verify_confidence=args.verify_confidence,
+        enrich=not args.no_enrich, max_tokens=args.max_tokens,
+        ground=not args.no_ground, seed_urls=args.ground_urls, slug=args.slug,
+        verbose=True,
+    )
+    report = await pipe.run()
+    await pipe.close()
+    print(f"\nEdge Brief: {pipe.output_dir / 'edge_brief.md'}")
+    print(f"Cards: {len(report.get('cards', []))} | "
+          f"Cost: ${report['stats']['cost']:.4f} | Niche: {report['niche']}")
+
+
 async def main():
     args = parse_args()
+
+    # Saved-pipeline launcher: one config file → full edge run
+    if args.load:
+        from pipeline_loader import load_config, run_config, preview_config
+        cfg = load_config(args.load)
+        if args.output:
+            cfg["output"] = args.output  # CLI --output overrides config
+        if args.dry_run:
+            preview_config(cfg)
+        else:
+            await run_config(cfg)
+        return
+
+    # Edge engine takes its own path (scan → loop → verify → cards)
+    if args.edge_loop:
+        await run_edge_loop(args)
+        return
 
     # Dry-run: preview tasks without initializing API client
     if args.dry_run:
@@ -159,6 +239,17 @@ async def main():
         anti_hallucination=args.anti_hallucination,
         provider=args.provider,
     )
+
+    # Preflight: one cheap call decides whether the API is usable at all. Without
+    # it an unusable account (dead key / zero prepaid balance) shows up as N
+    # identical opaque agent failures minutes into the run.
+    pre = await orch.client.preflight()
+    if not pre["ok"]:
+        print(f"\n  API PREFLIGHT FAILED: {pre['reason']}")
+        print("  Aborting before spawning agents (no tokens spent).\n")
+        await orch.client.close()
+        return 2
+    print(f"[preflight] {args.provider or 'deepseek'} API ok — {pre['reason']}")
 
     if args.tasks:
         # Load from file

@@ -11,7 +11,7 @@ Providers:
 Key models:
   deepseek-chat        V4 Pro  $0.435/$0.87  — fast, cheap, 94% halluc
   deepseek-chat-flash  V4 Flash $0.14/$0.28  — ultra cheap, bulk tasks
-  mimo-ai/mimo-v2.5-pro         $0.435/$0.87  — 24.5% halluc, intel tasks ← USE THIS
+  xiaomi/mimo-v2.5-pro          $0.435/$0.87  — 24.5% halluc, intel tasks ← USE THIS
   anthropic/claude-sonnet-4     $3/$15        — best calibration
 """
 
@@ -26,27 +26,47 @@ import httpx
 
 # ── Pricing (USD per million tokens) ────────────────────────────────────────
 PRICING: dict[str, dict[str, float]] = {
-    # DeepSeek models
+    # DeepSeek V4 models (current API IDs — June 2026)
+    "deepseek-v4-pro":     {"input": 0.435,  "output": 0.87,  "cache_hit": 0.003625},
+    "deepseek-v4-flash":   {"input": 0.14,   "output": 0.28,  "cache_hit": 0.0014},
+    # Legacy IDs (kept for pricing lookups; aliased forward to v4 below)
     "deepseek-chat":       {"input": 0.435,  "output": 0.87,  "cache_hit": 0.003625},
     "deepseek-chat-flash": {"input": 0.14,   "output": 0.28,  "cache_hit": 0.0014},
     "deepseek-reasoner":   {"input": 0.87,   "output": 3.48,  "cache_hit": 0.007250},
     # MiMo — 24.5% hallucination rate vs DeepSeek 94% — USE FOR INTEL
-    "mimo-ai/mimo-v2.5-pro":  {"input": 0.435,  "output": 0.87,  "cache_hit": 0.003625},
-    "mimo-ai/mimo-v2.5":      {"input": 0.14,   "output": 0.28,  "cache_hit": 0.0014},
+    "xiaomi/mimo-v2.5-pro":  {"input": 0.435,  "output": 0.87,  "cache_hit": 0.003625},
+    "xiaomi/mimo-v2.5":      {"input": 0.14,   "output": 0.28,  "cache_hit": 0.0014},
     # Claude via OpenRouter
     "anthropic/claude-sonnet-4": {"input": 3.0, "output": 15.0, "cache_hit": 0.30},
     "anthropic/claude-haiku-4":  {"input": 1.0, "output": 5.0,  "cache_hit": 0.10},
+    # DeepSeek served through OpenRouter. Same model, different door. This is the
+    # route to use when api.deepseek.com is out of prepaid balance, since the
+    # OpenRouter account is billed separately.
+    "deepseek/deepseek-chat":    {"input": 0.14, "output": 0.28, "cache_hit": 0.014},
 }
 
-# Model aliases for CLI convenience
+# Model aliases for CLI convenience.
+# The DeepSeek API renamed its models to deepseek-v4-{pro,flash} (June 2026);
+# legacy IDs are aliased forward so every existing caller keeps working.
 MODEL_ALIASES: dict[str, str] = {
-    "mimo":          "mimo-ai/mimo-v2.5-pro",
-    "mimo-base":     "mimo-ai/mimo-v2.5",
-    "flash":         "deepseek-chat-flash",
-    "pro":           "deepseek-chat",
-    "reasoner":      "deepseek-reasoner",
-    "sonnet":        "anthropic/claude-sonnet-4",
-    "haiku":         "anthropic/claude-haiku-4",
+    "mimo":                "xiaomi/mimo-v2.5-pro",
+    "mimo-base":           "xiaomi/mimo-v2.5",
+    "flash":               "deepseek-chat",
+    "pro":                 "deepseek-chat",
+    "reasoner":            "deepseek-reasoner",
+    # Real api.deepseek.com model IDs. The "deepseek-v4-*" names route to a
+    # reasoning model that spends the entire max_tokens budget on hidden
+    # reasoning and returns EMPTY content (finish_reason=length). The real
+    # "deepseek-chat" (V3, non-reasoning) returns content fast — use it.
+    "deepseek-chat":       "deepseek-chat",
+    "deepseek-chat-flash": "deepseek-chat",
+    "deepseek-reasoner":   "deepseek-reasoner",
+    "sonnet":              "anthropic/claude-sonnet-4",
+    "haiku":               "anthropic/claude-haiku-4",
+    # DeepSeek via OpenRouter. Use this alias when the direct api.deepseek.com
+    # account has no prepaid balance; OpenRouter bills its own credit pool.
+    "ds-or":               "deepseek/deepseek-chat",
+    "deepseek-or":         "deepseek/deepseek-chat",
 }
 
 # ── Provider config ──────────────────────────────────────────────────────────
@@ -56,9 +76,9 @@ PROVIDERS: dict[str, dict[str, str]] = {
 }
 
 # Models that require OpenRouter
-OPENROUTER_MODELS = {"mimo-ai/mimo-v2.5-pro", "mimo-ai/mimo-v2.5", "anthropic/claude-sonnet-4", "anthropic/claude-haiku-4"}
+OPENROUTER_MODELS = {"xiaomi/mimo-v2.5-pro", "xiaomi/mimo-v2.5", "anthropic/claude-sonnet-4", "anthropic/claude-haiku-4"}
 
-MAX_RETRIES = 4
+MAX_RETRIES = 6
 BASE_BACKOFF_SEC = 1.0
 MAX_BACKOFF_SEC = 30.0
 CIRCUIT_BREAKER_THRESHOLD = 3
@@ -237,6 +257,58 @@ class DeepSeekClient:
         if self._client and not self._client.is_closed:
             await self._client.aclose()
 
+    async def preflight(self) -> dict:
+        """Verify the API connection BEFORE fanning out N agents.
+
+        A dead key or an empty prepaid balance otherwise surfaces as N identical
+        opaque per-agent failures after the full retry ladder. One cheap call up
+        front turns that into a single actionable message.
+
+        Returns {"ok": bool, "reason": str, "balance_usd": float|None}. Never
+        raises on a reachable-but-unusable account: the caller decides.
+        """
+        assert self.api_key, "preflight requires a resolved API key"
+        assert self._provider in PROVIDERS, "preflight requires a known provider"
+
+        client = await self._get_client()
+
+        # DeepSeek exposes a prepaid-balance endpoint (not part of the OpenAI
+        # surface, and it lives off /v1). Check it first: it is the failure that
+        # actually happens in practice.
+        if self._provider == "deepseek":
+            try:
+                resp = await client.get("https://api.deepseek.com/user/balance")
+            except httpx.TransportError as e:
+                return {"ok": False, "reason": f"network unreachable: {type(e).__name__}", "balance_usd": None}
+            if resp.status_code == 401:
+                return {"ok": False, "reason": "401 invalid API key (DEEPSEEK_API_KEY)", "balance_usd": None}
+            if resp.status_code == 200:
+                data = resp.json()
+                infos = data.get("balance_infos") or [{}]
+                bal = float(infos[0].get("total_balance", 0) or 0)
+                if not data.get("is_available", False):
+                    return {
+                        "ok": False,
+                        "reason": (f"insufficient balance (${bal:.2f}). "
+                                   "Top up at https://platform.deepseek.com/top_up"),
+                        "balance_usd": bal,
+                    }
+                return {"ok": True, "reason": f"balance ${bal:.2f}", "balance_usd": bal}
+
+        # Generic providers: a 1-token completion is the cheapest liveness probe.
+        try:
+            resp = await client.post("/chat/completions", json={
+                "model": self.model,
+                "messages": [{"role": "user", "content": "ping"}],
+                "max_tokens": 1,
+            })
+        except httpx.TransportError as e:
+            return {"ok": False, "reason": f"network unreachable: {type(e).__name__}", "balance_usd": None}
+        if resp.status_code == 200:
+            return {"ok": True, "reason": "completion probe ok", "balance_usd": None}
+        detail = (resp.json().get("error", {}) or {}).get("message", "") if resp.text else ""
+        return {"ok": False, "reason": f"HTTP {resp.status_code} {detail}".strip(), "balance_usd": None}
+
     async def chat(
         self,
         messages: list[dict],
@@ -330,14 +402,29 @@ class DeepSeekClient:
                     return {"content": content, "usage": usage, "raw": data}
 
                 except httpx.HTTPStatusError as e:
-                    if e.response.status_code in (500, 502, 503):
+                    code = e.response.status_code
+                    if code in (500, 502, 503):
                         wait = min(BASE_BACKOFF_SEC * (2 ** attempt), MAX_BACKOFF_SEC)
                         await asyncio.sleep(wait)
-                        last_error = f"Server error {e.response.status_code}, retry {attempt + 1}"
+                        last_error = f"Server error {code}, retry {attempt + 1}"
                         continue
+                    # Account-level failures are permanent for the whole run, not
+                    # this one agent: retrying burns the remaining agents against
+                    # the same wall. Open the breaker and say what to actually do.
+                    if code in (401, 402, 403):
+                        agent_stats.circuit_open = True
+                        hint = {
+                            401: "invalid API key — check DEEPSEEK_API_KEY",
+                            402: "insufficient balance — top up at https://platform.deepseek.com/top_up",
+                            403: "forbidden — key lacks access to this model",
+                        }[code]
+                        raise RuntimeError(f"Agent {agent_id}: HTTP {code}, {hint}") from e
                     raise
 
-                except (httpx.ConnectError, httpx.ReadTimeout, httpx.WriteTimeout) as e:
+                except httpx.TransportError as e:
+                    # Covers ConnectError, ReadTimeout, WriteTimeout, ReadError,
+                    # and RemoteProtocolError ("incomplete chunked read") — the
+                    # last is what high-concurrency DeepSeek drops produce.
                     wait = min(BASE_BACKOFF_SEC * (2 ** attempt), MAX_BACKOFF_SEC)
                     await asyncio.sleep(wait)
                     last_error = f"{type(e).__name__}, retry {attempt + 1}"
