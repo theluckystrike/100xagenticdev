@@ -156,6 +156,13 @@ def print_task_summary(phases_data: list, dry_run: bool = False):
 def _build_dry_run_phases(args) -> list:
     """Build task list from args for dry-run preview without initializing client."""
     from task_templates import build_preset_tasks
+    if args.tasks:
+        # load_tasks_from_file yields dicts; the caller expects (tasks, synthesis) pairs.
+        return [
+            (p.get("tasks", []) if isinstance(p, dict) else p,
+             p.get("synthesis_prompt") if isinstance(p, dict) else None)
+            for p in load_tasks_from_file(args.tasks)
+        ]
     if args.preset:
         return build_preset_tasks(args.preset, num_agents=args.agents, topic=args.topic or None)
     if args.prompt:
@@ -166,7 +173,13 @@ def _build_dry_run_phases(args) -> list:
 
 async def run_edge_loop(args):
     """Run the edge engine end-to-end (or preview it on --dry-run)."""
-    import context_scanner as cs
+    try:
+        import context_scanner as cs
+    except ImportError:
+        print("Error: --edge-loop needs the edge engine modules (context_scanner.py, "
+              "edge_pipeline.py), which are not part of this distribution.")
+        print("Use --preset, --prompt, or --tasks instead.")
+        sys.exit(1)
     if not args.topic:
         print("Error: --edge-loop requires --topic")
         sys.exit(1)

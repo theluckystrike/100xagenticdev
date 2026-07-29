@@ -122,21 +122,67 @@ Running `100x init` in your project directory:
 
 ## DeepSeek Multi-Agent Pipeline
 
-For heavy research tasks, use the 20-agent DeepSeek pipeline ($0.14-$0.87/M tokens):
+For heavy research tasks, use the multi-agent DeepSeek pipeline ($0.14-$0.87/M tokens).
+It runs standalone — **Python 3.10+ and `httpx` are the only requirements**, no Claude
+Code CLI needed:
 
 ```bash
-# Fan-out research across 20 perspectives
+git clone https://github.com/theluckystrike/100xagenticdev.git
+cd 100xagenticdev
+pip install httpx
+
+# Get a key at https://platform.deepseek.com
+cd pipeline
+DEEPSEEK_API_KEY="sk-your-key" python3 runner.py \
+  --preset market_scan --topic "your topic here" --agents 20 --budget 5.0
+```
+
+Add `--dry-run` to any command to preview the tasks without spending a token.
+
+**Available presets** — `--agents` is a *ceiling*, and each preset has its own maximum
+task count, so asking for more agents than the preset defines just runs the preset:
+
+| Preset | Max agents | What it does |
+|--------|-----------|--------------|
+| `market_scan` | 20 | Market sizing, trends, opportunities |
+| `llm_model_intel` | 30 | LLM/model landscape intelligence |
+| `crypto_research` | 23 | Multi-phase token/protocol research |
+| `competitive_intel` | 10 | Competitor analysis |
+| `sec_audit_recon` | 10 | Security audit reconnaissance |
+| `seo_research` | 10 | Keyword & SEO strategy |
+| `tech_deep_dive` | 10 | Technology analysis |
+| `code_review` | 5 | Codebase quality review |
+| `domain_research` | 5 | Domain/industry research |
+
+### Custom multi-phase runs
+
+`pipeline/bln_100_agents.json` is a worked example: 5 phases x 20 agents = 100
+parallel researchers. Copy it, swap in your own context and questions:
+
+```bash
+cd pipeline
+DEEPSEEK_API_KEY="sk-your-key" python3 runner.py \
+  --tasks bln_100_agents.json --agents 20 --budget 10.0 --output ./results/my_run
+
+# Interactive HTML dashboard from the results
+python3 aggregator.py ./results/my_run/ ./results/my_run/dashboard.html
+open ./results/my_run/dashboard.html
+```
+
+With `--tasks`, the file decides how many agents run and `--agents` is purely the
+concurrency cap — `bln_100_agents.json` runs all 100 tasks, 20 at a time. Typical
+cost: ~$0.03-0.08 for a 20-agent preset, ~$0.30-1.00 for a 100-agent run. Runtime
+2-10 minutes.
+
+If the DeepSeek account has no balance the runner aborts in preflight before
+spawning agents, so a dead key never burns time. Set `OPENROUTER_API_KEY` and pass
+`--provider openrouter --model ds-or` to route through OpenRouter instead.
+
+The same pipeline is also reachable through the CLI wrapper:
+
+```bash
 100x deepseek --prompt "Analyze the MCP ecosystem" --fan-out 20 --budget 5.0
-
-# Use built-in presets
 100x deepseek --preset crypto_research --topic "Solana DeFi"
-100x deepseek --preset market_scan --topic "AI developer tools"
-100x deepseek --preset sec_audit_recon --topic "OAuth 2.0 libraries"
-100x deepseek --preset code_review --topic "the authentication module"
-
-# Available presets: crypto_research, market_scan, competitive_intel,
-#                    sec_audit_recon, code_review, seo_research,
-#                    domain_research, tech_deep_dive
 ```
 
 ## Architecture
@@ -178,7 +224,7 @@ For heavy research tasks, use the 20-agent DeepSeek pipeline ($0.14-$0.87/M toke
 │   ├── orchestrator.py               # 20-agent async orchestrator
 │   ├── deepseek_client.py            # DeepSeek API client
 │   ├── runner.py                     # CLI runner for DeepSeek pipeline
-│   ├── task_templates.py             # 8 preset task sets
+│   ├── task_templates.py             # 9 preset task sets
 │   └── aggregator.py                 # Dashboard HTML generator
 └── research/
     ├── 1000x-agentic-developer-report.md

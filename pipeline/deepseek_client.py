@@ -424,6 +424,17 @@ class DeepSeekClient:
                             403: "forbidden — key lacks access to this model",
                         }[code]
                         raise RuntimeError(f"Agent {agent_id}: HTTP {code}, {hint}") from e
+                    # A 400 is almost always a rejected model ID (DeepSeek retires
+                    # legacy names periodically). The body says which names are
+                    # live; surfacing it beats an opaque "400 Bad Request" x N agents.
+                    if code == 400:
+                        agent_stats.circuit_open = True
+                        detail = e.response.text[:300].strip()
+                        raise RuntimeError(
+                            f"Agent {agent_id}: HTTP 400 for model '{self.model}' — {detail}\n"
+                            f"  If the model ID was rejected, try --model deepseek-v4-flash "
+                            f"or --provider openrouter --model ds-or."
+                        ) from e
                     raise
 
                 except httpx.TransportError as e:
