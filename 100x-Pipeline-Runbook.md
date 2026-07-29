@@ -5,11 +5,10 @@
 ## Quick Start (30 seconds)
 
 ```bash
-# 1. Clone & install
+# 1. Clone & install — Python 3.10+ and httpx are the only requirements
 git clone https://github.com/theluckystrike/100xagenticdev.git
 cd 100xagenticdev
-ln -sf "$(pwd)/100x" /usr/local/bin/100x
-100x doctor
+pip install httpx
 
 # 2. Set your DeepSeek API key (get one at platform.deepseek.com)
 export DEEPSEEK_API_KEY="sk-your-key-here"
@@ -25,6 +24,16 @@ python3 runner.py \
 # 4. Generate dashboard & open
 python3 aggregator.py ./results/my_run/ ./results/my_run/dashboard.html
 open ./results/my_run/dashboard.html
+```
+
+Add `--dry-run` to step 3 to preview the tasks and cost ceiling without spending a
+token — it should print `Phases: 5 / Total tasks: 100`.
+
+The 4-stage `100x` CLI is a separate, optional layer over the same pipeline. It
+needs Claude Code, `jq` and `bc`; nothing above does:
+
+```bash
+ln -sf "$(pwd)/100x" /usr/local/bin/100x && 100x doctor
 ```
 
 ---
