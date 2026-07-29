@@ -5,10 +5,10 @@
 ## Quick Start (30 seconds)
 
 ```bash
-# 1. Clone & install — Python 3.10+ and httpx are the only requirements
+# 1. Clone & install — Python 3.9+ and httpx are the only requirements
 git clone https://github.com/theluckystrike/100xagenticdev.git
 cd 100xagenticdev
-pip install httpx
+python3 -m pip install httpx   # plain `pip` is absent on stock macOS
 
 # 2. Set your DeepSeek API key (get one at platform.deepseek.com)
 export DEEPSEEK_API_KEY="sk-your-key-here"
@@ -237,7 +237,7 @@ open ./results/todo_saas/dashboard.html
 ## Requirements
 
 - Python 3.9+
-- `pip install httpx` (only dependency)
+- `python3 -m pip install httpx` (only dependency)
 - DeepSeek API key ($5 credit on signup)
 - For Claude pipeline: Claude Code CLI (`npm install -g @anthropic-ai/claude-code`)
 - `jq`, `git`, `bc` (for the bash CLI)

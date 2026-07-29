@@ -123,13 +123,13 @@ Running `100x init` in your project directory:
 ## DeepSeek Multi-Agent Pipeline
 
 For heavy research tasks, use the multi-agent DeepSeek pipeline ($0.14-$0.87/M tokens).
-It runs standalone — **Python 3.10+ and `httpx` are the only requirements**, no Claude
+It runs standalone — **Python 3.9+ and `httpx` are the only requirements**, no Claude
 Code CLI needed:
 
 ```bash
 git clone https://github.com/theluckystrike/100xagenticdev.git
 cd 100xagenticdev
-pip install httpx
+python3 -m pip install httpx   # plain `pip` is absent on stock macOS
 
 # Get a key at https://platform.deepseek.com
 cd pipeline
