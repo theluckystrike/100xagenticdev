@@ -293,7 +293,12 @@ class DeepSeekClient:
                                    "Top up at https://platform.deepseek.com/top_up"),
                         "balance_usd": bal,
                     }
-                return {"ok": True, "reason": f"balance ${bal:.2f}", "balance_usd": bal}
+                return {
+                    "ok": True,
+                    "reason": f"balance ${bal:.2f}",
+                    "balance_usd": bal,
+                    "warning": await self._model_advisory(client),
+                }
 
         # Generic providers: a 1-token completion is the cheapest liveness probe.
         try:
@@ -308,6 +313,30 @@ class DeepSeekClient:
             return {"ok": True, "reason": "completion probe ok", "balance_usd": None}
         detail = (resp.json().get("error", {}) or {}).get("message", "") if resp.text else ""
         return {"ok": False, "reason": f"HTTP {resp.status_code} {detail}".strip(), "balance_usd": None}
+
+    async def _model_advisory(self, client) -> str:
+        """Warn if the wire model is not in the server's advertised list.
+
+        Deliberately advisory, never fatal. /v1/models answers on a zero-balance
+        account, so it is the only model check available before spending, but it
+        lists current names only: DeepSeek keeps retired IDs working as unlisted
+        aliases for a while, and "deepseek-chat" has been exactly that since the
+        June 2026 rename. Blocking on absence would break a working setup.
+        """
+        try:
+            resp = await client.get("https://api.deepseek.com/v1/models")
+            if resp.status_code != 200:
+                return ""
+            body = resp.json()
+            served = [m.get("id") for m in body.get("data", [])] if isinstance(body, dict) else []
+        except (httpx.TransportError, ValueError, KeyError, AttributeError, TypeError):
+            # An advisory must never be able to take down a run that would work.
+            return ""
+        if not served or self.model in served:
+            return ""
+        return (f"model '{self.model}' is not in the server's advertised list "
+                f"({', '.join(served)}). It may still resolve as a legacy alias; "
+                f"if agents fail with HTTP 400, rerun with --model {served[0]}.")
 
     async def chat(
         self,

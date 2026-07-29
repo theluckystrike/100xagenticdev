@@ -263,6 +263,8 @@ async def main():
         await orch.client.close()
         return 2
     print(f"[preflight] {args.provider or 'deepseek'} API ok — {pre['reason']}")
+    if pre.get("warning"):
+        print(f"[preflight] WARNING: {pre['warning']}")
 
     if args.tasks:
         # Load from file
