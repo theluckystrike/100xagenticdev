@@ -82,7 +82,19 @@ def parse_args():
     p.add_argument("--json-mode",   action="store_true")
     p.add_argument("--dry-run",     action="store_true",
                    help="Preview tasks without executing")
-    return p.parse_args()
+    args = p.parse_args()
+    _check_positive_args(p, args)
+    return args
+
+
+def _check_positive_args(p: argparse.ArgumentParser, args) -> None:
+    """Reject values that would silently build a wrong task list (exits with status 2)."""
+    if args.agents < 1:
+        p.error(f"--agents must be at least 1 (got {args.agents})")
+    if args.fan_out < 1:
+        p.error(f"--fan-out must be at least 1 (got {args.fan_out})")
+    if args.budget <= 0:
+        p.error(f"--budget must be greater than 0 (got {args.budget})")
 
 
 def load_tasks_from_file(filepath: str) -> list[dict]:
