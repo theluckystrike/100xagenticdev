@@ -107,7 +107,7 @@ def _build_crypto_research(n: int, topic: str = None) -> list:
     ]
 
     phase1_synthesis = (
-        f"You are synthesizing research from {n} parallel agents analyzing {target}. "
+        f"You are synthesizing research from {len(phase1_tasks)} agents analyzing {target}. "
         "Create a comprehensive investment research report with:\n"
         "1. EXECUTIVE SUMMARY (top 5 findings)\n"
         "2. TOP PICKS (rank the 5 best opportunities with conviction scores 1-10)\n"
@@ -206,7 +206,7 @@ def _build_market_scan(n: int, topic: str = None) -> list:
     ]
 
     synthesis = (
-        f"Synthesize market research from {n} agents into an opportunity map for {target}. "
+        f"Synthesize market research from {len(tasks)} agents into an opportunity map for {target}. "
         "Structure as:\n"
         "1. TOP 5 OPPORTUNITIES (ranked by potential × feasibility)\n"
         "2. MARKET MAP (visual representation of the landscape)\n"
